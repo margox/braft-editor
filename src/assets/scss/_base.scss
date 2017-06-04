@@ -1,0 +1,22 @@
+@import 'inc';
+@import 'icons';
+
+button{
+  outline: none;
+}
+
+.BraftEditor-container{
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  .DraftEditor-editorContainer{
+    padding: 15px;
+    background-color: #f8f9fa;
+    border: none;
+  }
+  .DraftEditor-root,
+  .DraftEditor-editorContainer,
+  .public-DraftEditor-content{
+    height: 100%;
+  }
+}
