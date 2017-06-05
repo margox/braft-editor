@@ -32,6 +32,7 @@
     "webpack-hot-middleware": "^2.18.0"
   },
   "dependencies": {
+    "draft-convert": "^1.4.6",
     "draft-js": "^0.10.1",
     "draftjs-utils": "^0.7.5",
     "file-loader": "^0.11.1",

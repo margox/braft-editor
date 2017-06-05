@@ -1,13 +1,13 @@
-// import assets files
 import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
 
-// import dependencies
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Editor, EditorState, Modifier, RichUtils } from 'draft-js'
+import { convertFromHTML, convertToHTML } from 'draft-convert'
 
-// import components
+import defaultConfigs from 'configs/default'
+import styleMap from 'maps/styles'
 import ControlBar from 'components/ControlBar'
 
 export default class BraftEditor extends React.Component {
@@ -17,6 +17,8 @@ export default class BraftEditor extends React.Component {
     this.state = {
       editorState: EditorState.createEmpty()
     }
+    this.onChange = this.onChange.bind(this)
+    this.handleKeyCommand = this.handleKeyCommand.bind(this)
   }
 
   onChange(editorState) {
@@ -34,20 +36,25 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    const props = {
-      onChange: ::this.onChange,
+    const { controls } = this.props
+
+    const controlBarProps = {
+      onChange: this.onChange,
       editorState: this.state.editorState,
-      controls: ['strikethrough', 'bold', 'superscript', 'subscript', 'italic', 'underline']
+      controls: controls || defaultConfigs.controls
+    }
+
+    const editorProps = {
+      editorState: this.state.editorState,
+      handleKeyCommand: this.handleKeyCommand,
+      onChange: this.onChange,
+      customStyleMap: styleMap
     }
 
     return (
       <div className="BraftEditor-container">
-        <ControlBar {...props} />
-        <Editor
-          editorState={this.state.editorState}
-          handleKeyCommand={::this.handleKeyCommand}
-          onChange={::this.onChange}
-        />
+        <ControlBar {...controlBarProps}/>
+        <Editor {...editorProps}/>
       </div>
     )
   }

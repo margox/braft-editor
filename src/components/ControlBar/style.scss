@@ -2,7 +2,7 @@
 
 .BraftEditor-controlBar{
   min-height: 48px;
-  padding: 0 10px;
+  margin: 0 15px;
   border-bottom: 1px solid #ddd;
   .control-item-group{
     float: left;
@@ -12,21 +12,20 @@
     display: block;
     float: left;
     height: 36px;
-    margin: 6px 5px;
+    margin: 6px 1px 0 0;
     &.button{
       width: 36px;
       padding: 0;
       background-color: transparent;
       border: none;
-      border-radius: 3px;
       color: $COLOR_CONTROL_BUTTON;
       font-size: 18px;
       &:hover{
-        background-color: #eee;
+        background-color: rgba(#000, .05);
+        color: $COLOR_CONTROL_BUTTON_ACTIVE;
       }
       &.active{
-        color: #fff;
-        background-color: $COLOR_CONTROL_BUTTON_ACTIVE;
+        color: $COLOR_CONTROL_BUTTON_ACTIVE;
       }
       i::before{
         display: block;
@@ -34,6 +33,12 @@
         height: 36px;
         line-height: 36px;
       }
+    }
+  }
+  .dropdown{
+    .control-item{
+      float: none;
+      margin: 0;
     }
   }
 }

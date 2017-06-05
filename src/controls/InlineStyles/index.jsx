@@ -1,6 +1,7 @@
 import React from 'react'
 import { RichUtils } from 'draft-js'
-import inlineStyleControlsMap from 'maps/inlineStyleControls'
+import { inlineControls } from 'maps/controls'
+import DropDown from 'components/DropDown'
 
 export default class InlineStyles extends React.Component {
 
@@ -10,11 +11,23 @@ export default class InlineStyles extends React.Component {
       <div className="control-item-group inline-control-item">
       {
         controls.map((item, index) => {
-          let controlItem = inlineStyleControlsMap.find((subItem) => subItem.key.toLowerCase() === item.toLowerCase())
-          let buttonClassNames = "control-item button"
-          editorState.getCurrentInlineStyle().has(controlItem.command) && (buttonClassNames += ' active')
-          if (controlItem) {
-            return <button className={buttonClassNames} key={index} onClick={() => this.execEditorCommand(controlItem.command)} title={controlItem.text}>{controlItem.icon}</button>
+          let controlItem = inlineControls.find((subItem) => subItem.key.toLowerCase() === item.toLowerCase())
+          if (controlItem && controlItem.children) {
+            return (
+              <DropDown className="control-item dropdown" key={index}>
+              {
+                controlItem.children.map((subControlItem, subIndex) => {
+                  let subButtonClassNames = "control-item button"
+                  editorState.getCurrentInlineStyle().has(subControlItem.style) && (subButtonClassNames += ' active')
+                  return <button className={subButtonClassNames} key={subIndex} onClick={() => this.applyStyleControl(subControlItem.style)} title={subControlItem.text}>{subControlItem.icon}</button>
+                })
+              }
+              </DropDown>
+            )
+          } else if (controlItem) {
+            let buttonClassNames = "control-item button"
+            editorState.getCurrentInlineStyle().has(controlItem.style) && (buttonClassNames += ' active')
+            return <button className={buttonClassNames} key={index} onClick={() => this.applyStyleControl(controlItem.style)} title={controlItem.text}>{controlItem.icon}</button>
           } else {
             return null
           }
@@ -24,9 +37,10 @@ export default class InlineStyles extends React.Component {
     )
   }
 
-  execEditorCommand (command) {
+  applyStyleControl (style) {
     const { editorState, onChange } = this.props
-    onChange(RichUtils.toggleInlineStyle(editorState, command))
+    console.log(style)
+    onChange(RichUtils.toggleInlineStyle(editorState, style))
   }
 
 }

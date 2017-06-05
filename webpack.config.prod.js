@@ -1,8 +1,7 @@
-var
-  webpack = require('webpack'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin'),
-  OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'),
-  path = require('path')
+var webpack = require('webpack')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
+  , OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
+  , path = require('path')
 
 module.exports = {
   context: path.join(__dirname, './src'),
@@ -17,7 +16,8 @@ module.exports = {
   externals: {
     'react': 'react',
     'react-dom': 'react-dom',
-    'draft-js': 'draft-js'
+    'draft-js': 'draft-js',
+    'draft-convert': 'draft-convert'
   },
   module: {
     rules: [
