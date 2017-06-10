@@ -39,7 +39,6 @@ export default class InlineStyles extends React.Component {
 
   applyStyleControl (style) {
     const { editorState, onChange } = this.props
-    console.log(style)
     onChange(RichUtils.toggleInlineStyle(editorState, style))
   }
 

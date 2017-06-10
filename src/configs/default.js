@@ -1,3 +1,3 @@
 export default {
-  controls: ['bold', 'italic', 'decorations', 'scripts']
+  controls: ['bold', 'italic', 'underline', 'strikethrough', 'superscript']
 }
