@@ -13,6 +13,7 @@ node_modules
 *.vi
 *~
 *.sass-cache
+/dist
 
 # OS or Editor folders
 .DS_Store
