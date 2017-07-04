@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const inlineControls = [
+export const InlineStyleControls = [
   {
     key: 'bold',
     title: 'Bold',
@@ -35,5 +35,43 @@ export const inlineControls = [
     title: 'Sub Script',
     style: 'SUBSCRIPT',
     icon: <i className="icon-subscript"></i>
+  }
+]
+
+export const BlockTypeControls = [
+  {
+    key: 'unstyled',
+    title: 'Normal',
+    type: 'unstyled'
+  },
+  {
+    key: 'header-one',
+    title: 'H1',
+    type: 'header-one'
+  },
+  {
+    key: 'header-two',
+    title: 'H2',
+    type: 'header-two'
+  },
+  {
+    key: 'header-three',
+    title: 'H3',
+    type: 'header-three'
+  },
+  {
+    key: 'header-four',
+    title: 'H4',
+    type: 'header-four'
+  },
+  {
+    key: 'header-five',
+    title: 'H5',
+    type: 'header-five'
+  },
+  {
+    key: 'header-six',
+    title: 'H6',
+    type: 'header-six'
   }
 ]

@@ -41,11 +41,9 @@ export default class DropDown extends React.Component {
   registerEvent (event) {
 
     let active = false
-
     if (event.target.dataset.braftComponentId === this.componentId) {
       active = !this.state.active
     }
-
     this.setState({ active })
 
   }

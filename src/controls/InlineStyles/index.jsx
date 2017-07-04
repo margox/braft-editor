@@ -1,6 +1,6 @@
 import React from 'react'
 import { RichUtils } from 'draft-js'
-import { inlineControls } from 'maps/controls'
+import { InlineStyleControls } from 'maps/controls'
 import DropDown from 'components/DropDown'
 
 export default class InlineStyles extends React.Component {
@@ -11,7 +11,7 @@ export default class InlineStyles extends React.Component {
       <div className="control-item-group inline-control-item">
       {
         controls.map((item, index) => {
-          let controlItem = inlineControls.find((subItem) => subItem.key.toLowerCase() === item.toLowerCase())
+          let controlItem = InlineStyleControls.find((subItem) => subItem.key.toLowerCase() === item.toLowerCase())
           if (controlItem && controlItem.children) {
             return (
               <DropDown className="control-item dropdown" key={index}>

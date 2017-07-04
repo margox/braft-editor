@@ -1,0 +1,12 @@
+.block-types-dropdown{
+  float: left;
+  width: 118px;
+  margin: 6px 5px 0 5px;
+  .dropdown-items{
+    width: 100px;
+    button {
+      padding: 0 20px;
+      text-align: left;
+    }
+  }
+}

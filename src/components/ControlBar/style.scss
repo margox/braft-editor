@@ -14,18 +14,19 @@
     height: 36px;
     margin: 6px 1px 0 0;
     &.button{
-      width: 36px;
-      padding: 0;
+      min-width: 36px;
       background-color: transparent;
       border: none;
       color: $COLOR_CONTROL_BUTTON;
       font-size: 18px;
       &:hover{
-        outline: 1px solid rgba(#000, .1);
-        color: $COLOR_CONTROL_BUTTON_ACTIVE;
+        box-shadow: inset 0 0 1px 0 rgba(#000, .4);
+        background-color: rgba(#000, .05);
       }
       &.active{
-        color: $COLOR_CONTROL_BUTTON_ACTIVE;
+        background-color: $COLOR_CONTROL_BUTTON_ACTIVE;
+        box-shadow: inset 0 0 1px 0 rgba(#000, .4);
+        color: #fff;
       }
       i::before{
         display: block;
@@ -37,6 +38,7 @@
   }
   .dropdown{
     .control-item{
+      width: 100%;
       float: none;
       margin: 0;
     }
