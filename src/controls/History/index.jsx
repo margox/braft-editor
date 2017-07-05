@@ -10,10 +10,10 @@ export default class History extends React.Component {
 
     return (
       <div className="control-item-group history-control-items">
-        <button className="control-item button" onClick={() => this.handleHistoryControl('undo')}>
+        <button className="control-item button" title="Undo" onClick={() => this.applyHistoryControl('undo')}>
           <i className="icon-undo"></i>
         </button>
-        <button className="control-item button" onClick={() => this.handleHistoryControl('redo')}>
+        <button className="control-item button" title="Redo" onClick={() => this.applyHistoryControl('redo')}>
           <i className="icon-redo"></i>
         </button>
       </div>
@@ -21,7 +21,7 @@ export default class History extends React.Component {
 
   }
 
-  handleHistoryControl (type) {
+  applyHistoryControl (type) {
     this.props.onChange(EditorState[type](this.props.editorState))
   }
 
