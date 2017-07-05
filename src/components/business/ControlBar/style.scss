@@ -38,13 +38,13 @@
       min-width: 36px;
       background-color: transparent;
       border: none;
-      color: $COLOR_CONTROL_BUTTON;
+      color: $COLOR_GRAY;
       font-size: 18px;
       &:hover{
         background-color: rgba(#000, .05);
       }
       &.active{
-        background-color: $COLOR_CONTROL_BUTTON_ACTIVE;
+        background-color: $COLOR_ACTIVE;
         color: #fff;
       }
       i::before{

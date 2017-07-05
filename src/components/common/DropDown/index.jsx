@@ -25,15 +25,15 @@ export default class DropDown extends React.Component {
   render () {
 
     const { active } = this.state
-    const { current, className, children } = this.props
+    const { caption, showDropDownArrow, arrowActive, className, children } = this.props
 
     return (
       <div id={this.componentId} className={"Braft-dropdown " + (active ? "active " : "") + className}>
         <button data-braft-component-id={this.componentId} className="dropdown-handler">
-          <span>{current}</span>
-          <i className="icon-drop-down"></i>
+          <span>{caption}</span>
+          {showDropDownArrow !== false && <i className="icon-drop-down"></i>}
         </button>
-        <div className="dropdown-items">{children}</div>
+        <div className={"dropdown-content" + (arrowActive ? ' arrow-active' : '')}>{children}</div>
       </div>
     )
 
@@ -41,12 +41,28 @@ export default class DropDown extends React.Component {
 
   registerEvent (event) {
 
+    let { hideOnBlur } = this.props
     let active = false
     if (event.target.dataset.braftComponentId === this.componentId) {
       active = !this.state.active
+    } else if (hideOnBlur === false) {
+      active = this.state.active
     }
     this.setState({ active })
 
   }
+
+  show () {
+    this.setState({
+      active: true
+    })
+  }
+
+  hide () {
+    this.setState({
+      active: false
+    })
+  }
+
 
 }

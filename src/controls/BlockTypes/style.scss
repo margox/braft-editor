@@ -2,30 +2,34 @@
   float: left;
   width: 130px;
   margin: 6px 5px 0 5px;
-  .dropdown-items{
-    width: 160px;
-    button {
-      height: auto;
-      padding: 8px 20px;
+  .menu{
+    width: 200px;
+    overflow: hidden;
+    .menu-item {
+      padding: 15px 20px;
       text-align: left;
+      line-height: initial;
       h1,h2,h3,h4,h5,h6{
         margin: 0;
         padding: 0;
       }
       h1{
-        font-size: 24px;
+        font-size: 28px;
       }
       h2{
-        font-size: 20px;
+        font-size: 24px;
       }
       h3{
-        font-size: 18px;
+        font-size: 20px;
       }
       h4{
         font-size: 16px;
       }
-      h5,h6{
+      h5{
         font-size: 14px;
+      }
+      h6{
+        font-size: 12px;
       }
     }
   }

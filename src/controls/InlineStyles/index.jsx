@@ -16,28 +16,32 @@ export default class InlineStyles extends React.Component {
         controls.map((item, index) => {
           let controlItem = InlineStyleControls.find((subItem) => subItem.key.toLowerCase() === item.toLowerCase())
           if (controlItem && controlItem.children) {
+            let isFirstItemActive = currentInlineStyles.has(controlItem.children[0].style)
             return (
               <DropDown
                 key={index}
-                current={InlineStyleControls[0].text}
+                caption={InlineStyleControls[0].text}
+                arrowActive={isFirstItemActive}
                 className={"control-item dropdown " + controlItem.key + '-dropdown'}
               >
-              {
-                controlItem.children.map((subControlItem, subIndex) => {
-                  let subButtonClassNames = "control-item button"
-                  currentInlineStyles.has(subControlItem.style) && (subButtonClassNames += ' active')
-                  return (
-                    <button
-                      key={subIndex}
-                      title={subControlItem.title}
-                      className={subButtonClassNames}
-                      onClick={() => this.applyStyleControl(subControlItem.style)}
-                    >
-                      {subControlItem.text}
-                    </button>
-                  )
-                })
-              }
+                <ul className="menu">
+                {
+                  controlItem.children.map((subControlItem, subIndex) => {
+                    let subButtonClassNames = "menu-item"
+                    currentInlineStyles.has(subControlItem.style) && (subButtonClassNames += ' active')
+                    return (
+                      <li
+                        key={subIndex}
+                        title={subControlItem.title}
+                        className={subButtonClassNames}
+                        onClick={() => this.applyStyleControl(subControlItem.style)}
+                      >
+                        {subControlItem.text}
+                      </li>
+                    )
+                  })
+                }
+                </ul>
               </DropDown>
             )
           } else if (controlItem) {

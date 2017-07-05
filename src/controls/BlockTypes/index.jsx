@@ -19,28 +19,32 @@ export default class BlockTyoes extends React.Component {
           if (controlItem && controlItem.children) {
             let currentItem = controlItem.children.find((item) => item.type === currentBlockType)
             let currentTitle = currentItem ? currentItem.title : 'Normal'
+            let isFirstItemActive = currentBlockType === controlItem.children[0].type
             return (
               <DropDown
                 key={index}
-                current={currentTitle}
+                caption={currentTitle}
+                arrowActive={isFirstItemActive}
                 className={"control-item dropdown " + controlItem.key + '-dropdown'}
               >
+                <ul className="menu">
                 {
                   controlItem.children.map((subControlItem, subIndex) => {
-                    let subButtonClassNames = "control-item button"
+                    let subButtonClassNames = "menu-item"
                     subControlItem.type === currentBlockType && (subButtonClassNames += ' active')
                     return (
-                      <button
+                      <li
                         key={subIndex}
                         title={subControlItem.title}
                         className={subButtonClassNames}
                         onClick={() => this.applyBlockTypeControl(subControlItem.type)}
                       >
                         {subControlItem.text}
-                      </button>
+                      </li>
                     )
                   })
                 }
+                </ul>
               </DropDown>
             )
           } else if (controlItem) {
