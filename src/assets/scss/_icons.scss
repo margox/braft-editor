@@ -187,19 +187,25 @@ $svgPath: '../icons/icomoon.svg?sirizn';
   content: "\e946";
 }
 .icon-undo:before {
-  content: "\e965";
+  content: "\e967";
 }
 .icon-redo:before {
-  content: "\e966";
+  content: "\e968";
 }
 .icon-spinner:before {
   content: "\e980";
+}
+.icon-page-break:before {
+  content: "\ea68";
 }
 .icon-superscript:before {
   content: "\ea6b";
 }
 .icon-subscript:before {
   content: "\ea6c";
+}
+.icon-pagebreak:before {
+  content: "\ea6e";
 }
 .icon-pilcrow:before {
   content: "\ea73";

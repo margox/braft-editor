@@ -1,14 +1,12 @@
 import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
-
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Editor, EditorState, Modifier, RichUtils } from 'draft-js'
 import { convertFromHTML, convertToHTML } from 'draft-convert'
-
 import defaultConfigs from 'configs/default'
 import styleMap from 'maps/styles'
-import ControlBar from 'components/ControlBar'
+import ControlBar from 'components/business/ControlBar'
 
 export default class BraftEditor extends React.Component {
 
@@ -37,13 +35,11 @@ export default class BraftEditor extends React.Component {
   render() {
 
     const { controls } = this.props
-
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
       controls: controls || defaultConfigs.controls
     }
-
     const editorProps = {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,

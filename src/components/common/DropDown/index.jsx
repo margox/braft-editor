@@ -25,14 +25,15 @@ export default class DropDown extends React.Component {
   render () {
 
     const { active } = this.state
-    const { className, children } = this.props
+    const { current, className, children } = this.props
 
     return (
       <div id={this.componentId} className={"Braft-dropdown " + (active ? "active " : "") + className}>
-        <div className="dropdown-items">{children}</div>
         <button data-braft-component-id={this.componentId} className="dropdown-handler">
+          <span>{current}</span>
           <i className="icon-drop-down"></i>
         </button>
+        <div className="dropdown-items">{children}</div>
       </div>
     )
 

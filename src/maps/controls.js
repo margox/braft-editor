@@ -5,73 +5,110 @@ export const InlineStyleControls = [
     key: 'bold',
     title: 'Bold',
     style: 'BOLD',
-    icon: <i className="icon-bold"></i>
+    text: <i className="icon-bold"></i>
   },
   {
     key: 'italic',
     title: 'Italic',
     style: 'ITALIC',
-    icon: <i className="icon-italic"></i>
+    text: <i className="icon-italic"></i>
   },
   {
     key: 'underline',
+    title: 'Underline',
     style: 'UNDERLINE',
-    icon: <i className="icon-underlined"></i>
+    text: <i className="icon-underlined"></i>
   },
   {
-    key: 'strikethrough',
+    key: 'strike-through',
     title: 'Strike Through',
     style: 'STRIKETHROUGH',
-    icon: <i className="icon-strikethrough"></i>
+    text: <i className="icon-strikethrough"></i>
   },
   {
     key: 'superscript',
-    title: 'Super Script',
+    title: 'Superscript',
     style: 'SUPERSCRIPT',
-    icon: <i className="icon-superscript"></i>
+    text: <i className="icon-superscript"></i>
   },
   {
     key: 'subscript',
-    title: 'Sub Script',
+    title: 'Subscript',
     style: 'SUBSCRIPT',
-    icon: <i className="icon-subscript"></i>
+    text: <i className="icon-subscript"></i>
   }
 ]
 
 export const BlockTypeControls = [
   {
-    key: 'unstyled',
-    title: 'Normal',
-    type: 'unstyled'
+    key: 'headings',
+    children: [
+      {
+        key: 'header-one',
+        title: 'Heading 1',
+        text: <h1>Heading 1</h1>,
+        type: 'header-one'
+      },
+      {
+        key: 'header-two',
+        title: 'Heading 2',
+        text: <h2>Heading 2</h2>,
+        type: 'header-two'
+      },
+      {
+        key: 'header-three',
+        title: 'Heading 3',
+        text: <h3>Heading 3</h3>,
+        type: 'header-three'
+      },
+      {
+        key: 'header-four',
+        title: 'Heading 4',
+        text: <h4>Heading 4</h4>,
+        type: 'header-four'
+      },
+      {
+        key: 'header-five',
+        title: 'Heading 5',
+        text: <h5>Heading 5</h5>,
+        type: 'header-five'
+      },
+      {
+        key: 'header-six',
+        title: 'Heading 6',
+        text: <h6>Heading 6</h6>,
+        type: 'header-six'
+      },
+      {
+        key: 'unstyled',
+        title: 'Normal',
+        text: 'Normal',
+        type: 'unstyled'
+      }
+    ]
   },
   {
-    key: 'header-one',
-    title: 'H1',
-    type: 'header-one'
+    key: 'blockquote',
+    title: 'Blockquote',
+    type: 'blockquote',
+    text: <i className="icon-quote"></i>
   },
   {
-    key: 'header-two',
-    title: 'H2',
-    type: 'header-two'
+    key: 'code',
+    title: 'Code Block',
+    type: 'code-block',
+    text: <i className="icon-code"></i>
   },
   {
-    key: 'header-three',
-    title: 'H3',
-    type: 'header-three'
+    key: 'list_ul',
+    title: 'Unordered List',
+    type: 'unordered-list-item',
+    text: <i className="icon-list"></i>
   },
   {
-    key: 'header-four',
-    title: 'H4',
-    type: 'header-four'
-  },
-  {
-    key: 'header-five',
-    title: 'H5',
-    type: 'header-five'
-  },
-  {
-    key: 'header-six',
-    title: 'H6',
-    type: 'header-six'
+    key: 'list_ol',
+    title: 'Ordered List',
+    type: 'ordered-list-item',
+    text: <i className="icon-list-numbered"></i>
   }
 ]

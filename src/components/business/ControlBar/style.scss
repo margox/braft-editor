@@ -3,16 +3,37 @@
 .BraftEditor-controlBar{
   min-height: 48px;
   margin: 0 15px;
-  border-bottom: 1px solid #ddd;
+  box-shadow: inset 0 -.5px 0 0 rgba(#000, .2);
+  line-height: 0;
   .control-item-group{
-    float: left;
+    position: relative;
+    display: inline-block;
     height: 48px;
+    margin-right: 10px;
+    padding-right: 10px;
+    &::after{
+      position: absolute;
+      top: 11px;
+      right: 0;
+      height: 26px;
+      width: 1px;
+      box-shadow: inset -.5px 0 0 0 rgba(#000, .1);
+      content: '';
+    }
+    &:last-child{
+      margin-right: 0;
+      padding-right: 0;
+      &::after{
+        content: none;
+      }
+    }
   }
   .control-item{
     display: block;
     float: left;
     height: 36px;
     margin: 6px 1px 0 0;
+    cursor: pointer;
     &.button{
       min-width: 36px;
       background-color: transparent;
@@ -20,12 +41,10 @@
       color: $COLOR_CONTROL_BUTTON;
       font-size: 18px;
       &:hover{
-        box-shadow: inset 0 0 1px 0 rgba(#000, .4);
         background-color: rgba(#000, .05);
       }
       &.active{
         background-color: $COLOR_CONTROL_BUTTON_ACTIVE;
-        box-shadow: inset 0 0 1px 0 rgba(#000, .4);
         color: #fff;
       }
       i::before{

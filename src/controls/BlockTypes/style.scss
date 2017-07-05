@@ -1,12 +1,32 @@
-.block-types-dropdown{
+.headings-dropdown{
   float: left;
-  width: 118px;
+  width: 130px;
   margin: 6px 5px 0 5px;
   .dropdown-items{
-    width: 100px;
+    width: 160px;
     button {
-      padding: 0 20px;
+      height: auto;
+      padding: 8px 20px;
       text-align: left;
+      h1,h2,h3,h4,h5,h6{
+        margin: 0;
+        padding: 0;
+      }
+      h1{
+        font-size: 24px;
+      }
+      h2{
+        font-size: 20px;
+      }
+      h3{
+        font-size: 18px;
+      }
+      h4{
+        font-size: 16px;
+      }
+      h5,h6{
+        font-size: 14px;
+      }
     }
   }
 }

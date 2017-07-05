@@ -1,3 +1,3 @@
 export default {
-  controls: ['bold', 'italic', 'underline', 'strikethrough', 'superscript', 'subscript']
+  controls: ['color', 'background-color', 'font-size', 'font-family', 'bold', 'italic', 'underline', 'strike-through', 'superscript', 'subscript']
 }
