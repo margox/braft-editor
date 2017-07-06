@@ -1,5 +1,6 @@
 import './style.scss'
 import React from 'react'
+import ResponsiveHelper from 'helpers/responsive'
 import { UniqueIndex } from 'utils/base'
 
 export default class DropDown extends React.Component {
@@ -8,23 +9,42 @@ export default class DropDown extends React.Component {
 
     super(props)
     this.state = {
-      active: false
+      active: false,
+      offset: 0
     }
+    this.responsiveResolveId = null
+    this.dropDownConentElement = null
     this.componentId = 'BRAFT-DROPDOWN-' + UniqueIndex()
 
   }
 
   componentDidMount () {
-    document.body.addEventListener('click', this.registerEvent.bind(this), false)
+
+    this.fixDropDownPosition()
+
+    document.body.addEventListener('click', (event) => {
+      this.registerEvent(event)
+    }, false)
+
+    this.responsiveResolveId = ResponsiveHelper.resolve((event) => {
+      this.fixDropDownPosition(event)
+    })
+
   }
 
   componentWillUnmount () {
-    document.body.removeEventListener('click', this.registerEvent.bind(this), false)
+
+    document.body.removeEventListener('click', (event) => {
+      this.registerEvent(event)
+    }, false)
+
+    ResponsiveHelper.unresolve(this.responsiveResolveId)
+
   }
 
   render () {
 
-    const { active } = this.state
+    const { active, offset } = this.state
     const { caption, showDropDownArrow, arrowActive, className, children } = this.props
 
     return (
@@ -33,10 +53,26 @@ export default class DropDown extends React.Component {
           <span>{caption}</span>
           {showDropDownArrow !== false && <i className="icon-drop-down"></i>}
         </button>
-        <div className={"dropdown-content" + (arrowActive ? ' arrow-active' : '')}>{children}</div>
+        <div style={{marginLeft: offset + 'px'}} ref={(instance) => this.dropDownConentElement = instance} className={"dropdown-content" + (arrowActive ? ' arrow-active' : '')}>{children}</div>
       </div>
     )
 
+  }
+
+  fixDropDownPosition (event) {
+    const rect = this.dropDownConentElement.getBoundingClientRect()
+    const viewWidth = document.body.getBoundingClientRect().width
+    const right = viewWidth - rect.right
+    console.log(right)
+    if (right < 10) {
+      this.setState({
+        offset: (right - 10) * -1
+      })
+    } else if (rect.left < 10) {
+      this.setState({
+        offset: rect.left - 10
+      })
+    }
   }
 
   registerEvent (event) {
