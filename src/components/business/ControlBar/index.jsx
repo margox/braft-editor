@@ -1,9 +1,8 @@
 import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState } from 'draft-js'
-import SupportedControls, { headings } from 'maps/controls'
-import DropDown from 'components/common/DropDown'
-import Headings from 'components/business/Headings'
+import SupportedControls from 'maps/controls'
+import HeadingsDropDown from 'components/business/Headings'
 
 export default class ControlBar extends React.Component {
 
@@ -20,11 +19,9 @@ export default class ControlBar extends React.Component {
         controls.map((item, index) => {
 
           if (item.toLowerCase() === 'split') {
-            return <span className="split-line"></span>
+            return <span key={index} className="split-line"></span>
           }
 
-          let isFirstItemActive = false
-          let dropDownCaption = null
           let controlItem = SupportedControls.find((subItem) => {
             return subItem.key.toLowerCase() === item.toLowerCase()
           })
@@ -33,27 +30,21 @@ export default class ControlBar extends React.Component {
 
             let dropDownComponent = null
             let dropDownComponentProps = {}
+
             if (controlItem.dropdown === 'headings') {
-              let currentHeadingIndex = headings.findIndex((item) => item.command === currentBlockType)
-              isFirstItemActive = currentHeadingIndex === 0
-              dropDownCaption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : 'Normal'
+
               dropDownComponentProps = {
+                key: index,
                 current: currentBlockType,
                 onClick: (command) => this.applyControl(command, 'block-type')
               }
-              dropDownComponent = <Headings {...dropDownComponentProps} />
+
+              dropDownComponent = <HeadingsDropDown {...dropDownComponentProps} />
+
             }
 
-            return (
-              <DropDown
-                key={index}
-                caption={dropDownCaption}
-                arrowActive={isFirstItemActive}
-                className={"control-item dropdown " + controlItem.key + '-dropdown'}
-              >
-                {dropDownComponent}
-              </DropDown>
-            )
+            return dropDownComponent
+
           } else if (controlItem) {
 
             let buttonClassNames = "control-item button"
@@ -66,10 +57,8 @@ export default class ControlBar extends React.Component {
               if (currentBlockType === controlItem.command) {
                 buttonClassNames += ' active'
               }
-            } else if (controlItem.type === 'link') {
-
             }
-  
+
             return (
               <button
                 key={index}

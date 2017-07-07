@@ -1,6 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { headings } from 'maps/controls'
+import DropDown from 'components/common/DropDown'
 
 export default class Headings extends React.Component {
 
@@ -8,23 +9,33 @@ export default class Headings extends React.Component {
 
     const { current, onClick } = this.props
 
+    let currentHeadingIndex = headings.findIndex((item) => item.command === current)
+    let dropDownCaption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : 'Normal'
+    let isFirstItemActive = currentHeadingIndex === 0
+
     return (
-      <ul className="menu headings-list-menu">
-        {
-          headings.map((item, index) => {
-            let isActive = current === item.command
-            return (
-              <li
-                key={index}
-                className={"menu-item" + (isActive ? ' active' : '')}
-                onClick={() => onClick(item.command, item.type)}
-              >
-                {item.text}
-              </li>
-            )
-          })
-        }
-      </ul>
+      <DropDown
+        caption={dropDownCaption}
+        arrowActive={isFirstItemActive}
+        className={"control-item dropdown headings-dropdown"}
+      >
+        <ul className="menu">
+          {
+            headings.map((item, index) => {
+              let isActive = current === item.command
+              return (
+                <li
+                  key={index}
+                  className={"menu-item" + (isActive ? ' active' : '')}
+                  onClick={() => onClick(item.command, item.type)}
+                >
+                  {item.text}
+                </li>
+              )
+            })
+          }
+        </ul>
+      </DropDown>
     )
 
   }
