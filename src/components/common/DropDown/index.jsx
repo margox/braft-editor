@@ -13,7 +13,8 @@ export default class DropDown extends React.Component {
       offset: 0
     }
     this.responsiveResolveId = null
-    this.dropDownConentElement = null
+    this.dropDownHandlerElement = null
+    this.dropDownContentElement = null
     this.componentId = 'BRAFT-DROPDOWN-' + UniqueIndex()
 
   }
@@ -26,8 +27,8 @@ export default class DropDown extends React.Component {
       this.registerEvent(event)
     }, false)
 
-    this.responsiveResolveId = ResponsiveHelper.resolve((event) => {
-      this.fixDropDownPosition(event)
+    this.responsiveResolveId = ResponsiveHelper.resolve(() => {
+      this.fixDropDownPosition()
     })
 
   }
@@ -49,41 +50,62 @@ export default class DropDown extends React.Component {
 
     return (
       <div id={this.componentId} className={"Braft-dropdown " + (active ? "active " : "") + className}>
-        <button data-braft-component-id={this.componentId} className="dropdown-handler">
+        <button
+          className="dropdown-handler"
+          data-braft-component-id={this.componentId}
+          ref={(instance) => this.dropDownHandlerElement = instance}
+        >
           <span>{caption}</span>
           {showDropDownArrow !== false && <i className="icon-drop-down"></i>}
         </button>
-        <div style={{marginLeft: offset + 'px'}} ref={(instance) => this.dropDownConentElement = instance} className={"dropdown-content" + (arrowActive ? ' arrow-active' : '')}>{children}</div>
+        <div
+          className="dropdown-content"
+          style={{marginLeft: offset + 'px'}}
+          ref={(instance) => this.dropDownContentElement = instance}
+        >
+          <i
+            style={{marginLeft: offset * -1}}
+            className={'dropdown-arrow' + (arrowActive ? ' active' : '')}
+          ></i>
+          {children}
+        </div>
       </div>
     )
 
   }
 
-  fixDropDownPosition (event) {
-    const rect = this.dropDownConentElement.getBoundingClientRect()
-    const viewWidth = document.body.getBoundingClientRect().width
-    const right = viewWidth - rect.right
-    console.log(right)
+  fixDropDownPosition () {
+
+    let offset = 0
+    let viewWidth = document.body.getBoundingClientRect().width
+    let handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
+    let contentRect = this.dropDownContentElement.getBoundingClientRect()
+    let right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2
+    let left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2
+
+    right = viewWidth - right
+
     if (right < 10) {
-      this.setState({
-        offset: (right - 10) * -1
-      })
-    } else if (rect.left < 10) {
-      this.setState({
-        offset: rect.left - 10
-      })
+      offset = right - 10
+    } else if (left < 10) {
+      offset = left * -1 + 10
     }
+
+    offset !== this.state.offset && this.setState({ offset })
+
   }
 
   registerEvent (event) {
 
     let { hideOnBlur } = this.props
     let active = false
+
     if (event.target.dataset.braftComponentId === this.componentId) {
       active = !this.state.active
     } else if (hideOnBlur === false) {
       active = this.state.active
     }
+
     this.setState({ active })
 
   }

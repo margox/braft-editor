@@ -19,6 +19,7 @@ export default {
 }
 
 if (!responsiveHelperInited) {
+
   window.addEventListener('resize', (event) => {
     clearTimeout(debouce)
     debouce = setTimeout(() => {
@@ -28,5 +29,7 @@ if (!responsiveHelperInited) {
       debouce = false
     }, 100)
   })
+
   responsiveHelperInited = true
+
 }

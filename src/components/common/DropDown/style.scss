@@ -23,17 +23,17 @@
     cursor: default;
     transform: translate(-50%, 20px);
     transition: .2s;
-    &::before{
+    .dropdown-arrow{
       position: absolute;
       top: -10px;
       left: 50%;
       border: solid 5px transparent;
       border-bottom-color: #212223;
-      content: '';
       transform: translateX(-50%);
-    }
-    &.arrow-active::before{
-      border-bottom-color: $COLOR_ACTIVE;
+      transition: margin .2s;
+      &.active{
+        border-bottom-color: $COLOR_ACTIVE;
+      }
     }
     .menu{
       list-style: none;
