@@ -1,5 +1,8 @@
 export default {
   controls: [
+    'undo',
+    'redo',
+    'split',
     'color',
     'background-color',
     'font-size',

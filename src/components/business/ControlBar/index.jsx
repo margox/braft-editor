@@ -1,8 +1,9 @@
 import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState } from 'draft-js'
-import SupportedControls from 'maps/controls'
+import SupportedControls, { headings } from 'maps/controls'
 import DropDown from 'components/common/DropDown'
+import Headings from 'components/business/Headings'
 
 export default class ControlBar extends React.Component {
 
@@ -28,20 +29,19 @@ export default class ControlBar extends React.Component {
             return subItem.key.toLowerCase() === item.toLowerCase()
           })
 
-          if (controlItem && controlItem.children) {
+          if (controlItem && controlItem.dropdown) {
 
-            if (controlItem.type === 'inline-styles') {
-              if (currentInlineStyles.has(controlItem.children[0].command.toUpperCase())) {
-                isFirstItemActive = true
+            let dropDownComponent = null
+            let dropDownComponentProps = {}
+            if (controlItem.dropdown === 'headings') {
+              let currentHeadingIndex = headings.findIndex((item) => item.command === currentBlockType)
+              isFirstItemActive = currentHeadingIndex === 0
+              dropDownCaption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : 'Normal'
+              dropDownComponentProps = {
+                current: currentBlockType,
+                onClick: (command) => this.applyControl(command, 'block-type')
               }
-              dropDownCaption = controlItem.children[0].text
-            } else if (controlItem.type === 'block-types') {
-              if (currentBlockType === controlItem.children[0].command) {
-                isFirstItemActive = true
-                dropDownCaption = controlItem.children[0].text
-              } else {
-                dropDownCaption = 'Normal'
-              }
+              dropDownComponent = <Headings {...dropDownComponentProps} />
             }
 
             return (
@@ -51,32 +51,7 @@ export default class ControlBar extends React.Component {
                 arrowActive={isFirstItemActive}
                 className={"control-item dropdown " + controlItem.key + '-dropdown'}
               >
-                <ul className="menu">
-                {
-                  controlItem.children.map((subControlItem, subIndex) => {
-                    let menuItemClassNames = "menu-item"
-                    if (subControlItem.type === 'inline-style') {
-                      if (currentInlineStyles.has(subControlItem.command.toUpperCase())) {
-                        menuItemClassNames += ' active'
-                      }
-                    } else if (subControlItem.type === 'block-type') {
-                      if (currentBlockType === subControlItem.command) {
-                        menuItemClassNames += ' active'
-                      }
-                    }
-                    return (
-                      <li
-                        key={subIndex}
-                        title={subControlItem.title}
-                        className={menuItemClassNames}
-                        onClick={() => this.applyControl(subControlItem.command, subControlItem.type)}
-                      >
-                        {subControlItem.text}
-                      </li>
-                    )
-                  })
-                }
-                </ul>
+                {dropDownComponent}
               </DropDown>
             )
           } else if (controlItem) {
@@ -91,6 +66,8 @@ export default class ControlBar extends React.Component {
               if (currentBlockType === controlItem.command) {
                 buttonClassNames += ' active'
               }
+            } else if (controlItem.type === 'link') {
+
             }
   
             return (
