@@ -1,0 +1,26 @@
+@import '~sassinc';
+
+.text-color-picker-wrap{
+  margin: 10px;
+  overflow: hidden;
+}
+.switch-buttons{
+  height: 30px;
+  margin: 10px;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 .5px $COLOR_ACTIVE;
+  button{
+    float: left;
+    width: 50%;
+    height: 30px;
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 12px;
+    font-weight: lighter;
+    text-transform: uppercase;
+    &.active{
+      background-color: $COLOR_ACTIVE;
+    }
+  }
+}

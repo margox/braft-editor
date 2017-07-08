@@ -15,7 +15,7 @@ export default class DropDown extends React.Component {
     this.responsiveResolveId = null
     this.dropDownHandlerElement = null
     this.dropDownContentElement = null
-    this.componentId = 'BRAFT-DROPDOWN-' + UniqueIndex()
+    this.componentId = props.componentId || ('BRAFT-DROPDOWN-' + UniqueIndex())
 
   }
 
@@ -25,7 +25,7 @@ export default class DropDown extends React.Component {
 
     document.body.addEventListener('click', (event) => {
       this.registerEvent(event)
-    }, false)
+    })
 
     this.responsiveResolveId = ResponsiveHelper.resolve(() => {
       this.fixDropDownPosition()
@@ -37,7 +37,7 @@ export default class DropDown extends React.Component {
 
     document.body.removeEventListener('click', (event) => {
       this.registerEvent(event)
-    }, false)
+    })
 
     ResponsiveHelper.unresolve(this.responsiveResolveId)
 
@@ -101,7 +101,7 @@ export default class DropDown extends React.Component {
     let active = false
 
     if (event.target.dataset.braftComponentId === this.componentId) {
-      active = !this.state.active
+      active = event.target.dataset.keepActive ? true : !this.state.active
     } else if (hideOnBlur === false) {
       active = this.state.active
     }

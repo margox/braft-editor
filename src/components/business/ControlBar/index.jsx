@@ -2,7 +2,8 @@ import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState } from 'draft-js'
 import SupportedControls from 'maps/controls'
-import HeadingsDropDown from 'components/business/Headings'
+import HeadingPicker from 'components/business/Headings'
+import TextColorPicker from 'components/business/TextColor'
 
 export default class ControlBar extends React.Component {
 
@@ -36,10 +37,20 @@ export default class ControlBar extends React.Component {
               dropDownComponentProps = {
                 key: index,
                 current: currentBlockType,
-                onClick: (command) => this.applyControl(command, 'block-type')
+                onChange: (command) => this.applyControl(command, controlItem.type)
               }
 
-              dropDownComponent = <HeadingsDropDown {...dropDownComponentProps} />
+              dropDownComponent = <HeadingPicker {...dropDownComponentProps} />
+
+            } else if (controlItem.dropdown === 'text-color') {
+
+              dropDownComponentProps = {
+                key: index,
+                currentInlineStyles, editorState,
+                onChange: (editorState) => this.applyEditorState(editorState)
+              }
+
+              dropDownComponent = <TextColorPicker {...dropDownComponentProps} />
 
             }
 
@@ -47,23 +58,17 @@ export default class ControlBar extends React.Component {
 
           } else if (controlItem) {
 
-            let buttonClassNames = "control-item button"
-
-            if (controlItem.type === 'inline-style') {
-              if (currentInlineStyles.has(controlItem.command.toUpperCase())) {
-                buttonClassNames += ' active'
-              }
-            } else if (controlItem.type === 'block-type') {
-              if (currentBlockType === controlItem.command) {
-                buttonClassNames += ' active'
-              }
-            }
+            let buttonClassName = this.getControlItemClassName({
+              type: controlItem.type,
+              command: controlItem.command,
+              currentBlockType, currentInlineStyles
+            })
 
             return (
               <button
                 key={index}
                 title={controlItem.title}
-                className={buttonClassNames}
+                className={buttonClassName}
                 onClick={() => this.applyControl(controlItem.command, controlItem.type)}
               >
                 {controlItem.text}
@@ -73,10 +78,30 @@ export default class ControlBar extends React.Component {
           } else {
             return null
           }
+
         })
       }
       </div>
     )
+
+  }
+
+  getControlItemClassName (data) {
+
+    let className = 'control-item button'
+    let { type, command, currentBlockType, currentInlineStyles } = data
+
+    if (type === 'inline-style') {
+      if (currentInlineStyles.has(command.toUpperCase())) {
+        className += ' active'
+      }
+    } else if (type === 'block-type') {
+      if (currentBlockType === command) {
+        className += ' active'
+      }
+    }
+
+    return className
 
   }
 
@@ -90,6 +115,10 @@ export default class ControlBar extends React.Component {
       this.props.onChange(EditorState[command](this.props.editorState))
     }
 
+  }
+
+  applyEditorState (editorState) {
+    this.props.onChange(editorState)
   }
 
 }

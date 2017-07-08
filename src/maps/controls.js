@@ -82,6 +82,11 @@ export default [
     title: 'Link',
     text: <i className="icon-link"></i>,
     type: 'link'
+  }, {
+    key: 'text-color',
+    title: 'Text Color',
+    type: 'inline-style',
+    dropdown: 'text-color'
   }
 ]
 

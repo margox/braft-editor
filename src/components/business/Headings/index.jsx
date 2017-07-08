@@ -7,7 +7,7 @@ export default class Headings extends React.Component {
 
   render () {
 
-    const { current, onClick } = this.props
+    const { current, onChange } = this.props
 
     let currentHeadingIndex = headings.findIndex((item) => item.command === current)
     let dropDownCaption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : 'Normal'
@@ -27,7 +27,7 @@ export default class Headings extends React.Component {
                 <li
                   key={index}
                   className={"menu-item" + (isActive ? ' active' : '')}
-                  onClick={() => onClick(item.command, item.type)}
+                  onClick={() => onChange(item.command, item.type)}
                 >
                   {item.text}
                 </li>

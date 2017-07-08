@@ -1,0 +1,27 @@
+@import '~sassinc';
+
+.braft-color-list{
+  list-style: none;
+  width: 240px;
+  margin: 0;
+  padding: 5px;
+  overflow: hidden;
+  li{
+    display: block;
+    float: left;
+    width: 30px;
+    height: 30px;
+    margin: 5px;
+    padding: 0;
+    background-color: currentColor;
+    border-radius: 50%;
+    transition: .3s;
+    &:hover{
+      opacity: .8;
+      transform: scale(.98);
+    }
+    &.active{
+      box-shadow: 0 0 0 3px $COLOR_ACTIVE;
+    }
+  }
+}
