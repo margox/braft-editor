@@ -8,15 +8,28 @@ import defaultConfigs from 'configs/default'
 import styleMap from 'maps/styles'
 import ControlBar from 'components/business/ControlBar'
 
+/**
+ * TODOS
+ * 1. Link Editor, before Jul 09
+ * 2. Font Size / Font Family / Text Aligns, before Jul 12
+ * 3. Image Uploader, before Jul 20
+ * 4. Video / Audio Uploader, before Jul 25
+ * 5. Emoji Picker, before Jul 21
+ * 6. Image Editor, before Aug 5
+ */
+
 export default class BraftEditor extends React.Component {
 
   constructor(props) {
+
     super(props)
+
     this.state = {
       editorState: EditorState.createEmpty()
     }
     this.onChange = this.onChange.bind(this)
     this.handleKeyCommand = this.handleKeyCommand.bind(this)
+
   }
 
   onChange(editorState) {
@@ -24,12 +37,16 @@ export default class BraftEditor extends React.Component {
   }
 
   handleKeyCommand(command) {
+
     const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
+
     if (newState) {
       this.onChange(newState)
       return 'handled'
     }
+
     return 'not-handled'
+
   }
 
   render() {
