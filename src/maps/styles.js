@@ -1,11 +1,17 @@
 import colors from 'configs/colors'
+import fontSizes from 'configs/fontSizes'
 
 const colorStyles = {}
 const bgColorStyles = {}
+const fontSizeStyles = {}
 
 colors.forEach((color, index) => {
   colorStyles['COLOR-' + index] = { color }
   bgColorStyles['BGCOLOR-' + index] = { backgroundColor: color }
+})
+
+fontSizes.forEach((fontSize) => {
+  fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize + 'px' }
 })
 
 const styles = {
@@ -20,7 +26,8 @@ const styles = {
     fontSize: '11px'
   },
   ...colorStyles,
-  ...bgColorStyles
+  ...bgColorStyles,
+  ...fontSizeStyles
 }
 
 export default styles

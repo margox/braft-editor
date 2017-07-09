@@ -4,7 +4,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { Editor, EditorState, Modifier, RichUtils } from 'draft-js'
 import { convertFromHTML, convertToHTML } from 'draft-convert'
-import defaultConfigs from 'configs/default'
+import defaultOptions from 'configs/defaultOptions'
 import styleMap from 'maps/styles'
 import ControlBar from 'components/business/ControlBar'
 
@@ -55,7 +55,7 @@ export default class BraftEditor extends React.Component {
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
-      controls: controls || defaultConfigs.controls
+      controls: controls || defaultOptions.controls
     }
     const editorProps = {
       editorState: this.state.editorState,

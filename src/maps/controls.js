@@ -87,6 +87,11 @@ export default [
     title: 'Text Color',
     type: 'inline-style',
     dropdown: 'text-color'
+  }, {
+    key: 'font-size',
+    title: 'Font Size',
+    type: 'inline-style',
+    dropdown: 'font-size'
   }
 ]
 

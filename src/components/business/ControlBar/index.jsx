@@ -4,6 +4,7 @@ import { RichUtils, EditorState } from 'draft-js'
 import SupportedControls from 'maps/controls'
 import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
+import FontSizePicker from 'components/business/FontSize'
 
 export default class ControlBar extends React.Component {
 
@@ -51,6 +52,16 @@ export default class ControlBar extends React.Component {
               }
 
               dropDownComponent = <TextColorPicker {...dropDownComponentProps} />
+
+            } else if (controlItem.dropdown === 'font-size') {
+
+              dropDownComponentProps = {
+                key: index,
+                currentInlineStyles, editorState,
+                onChange: (editorState) => this.applyEditorState(editorState)
+              }
+
+              dropDownComponent = <FontSizePicker {...dropDownComponentProps} />
 
             }
 
