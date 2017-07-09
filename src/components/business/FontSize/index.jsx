@@ -21,9 +21,7 @@ export default class FontSize extends React.Component {
       return false
     })
 
-    console.log(fontSizes)
-
-    caption = caption || 'Size'
+    caption = caption || 'Font Size'
 
     return (
       <DropDown
