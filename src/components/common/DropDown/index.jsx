@@ -36,6 +36,14 @@ export default class DropDown extends React.Component {
 
   }
 
+  componentWillReceiveProps (next) {
+
+    if (!this.props.disabled && next.disabled) {
+      this.hide()
+    }
+
+  }
+
   componentWillUnmount () {
 
     document.body.removeEventListener('click', (event) => {
@@ -49,11 +57,16 @@ export default class DropDown extends React.Component {
 
   render () {
 
-    const { active, offset } = this.state
-    const { caption, showDropDownArrow, arrowActive, className, children } = this.props
+    let { active, offset } = this.state
+    let { caption, disabled, showDropDownArrow, arrowActive, className, children } = this.props
+
+    disabled && (active = false)
 
     return (
-      <div id={this.componentId} className={"Braft-dropdown " + (active ? "active " : "") + className}>
+      <div
+        id={this.componentId}
+        className={"Braft-dropdown " + (active ? "active " : " ") + (disabled ? "disabled " : " ") + className}
+      >
         <button
           className="dropdown-handler"
           data-braft-component-id={this.componentId}

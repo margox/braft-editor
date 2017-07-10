@@ -81,21 +81,18 @@ export default [
     key: 'link',
     title: 'Link',
     text: <i className="icon-link"></i>,
-    type: 'link'
+    dropdown: 'link'
   }, {
     key: 'text-color',
     title: 'Text Color',
-    type: 'inline-style',
     dropdown: 'text-color'
   }, {
     key: 'font-size',
     title: 'Font Size',
-    type: 'inline-style',
     dropdown: 'font-size'
   }, {
     key: 'font-family',
     title: 'Font Family',
-    type: 'inline-syule',
     dropdown: 'font-family'
   }
 ]

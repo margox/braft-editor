@@ -16,6 +16,8 @@ export default {
     'list_ul',
     'list_ol',
     'blockquote',
-    'code'
+    'code',
+    'split',
+    'link'
   ]
 }

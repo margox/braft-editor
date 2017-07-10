@@ -1,4 +1,30 @@
+@import '~sassinc';
+
 .link-editor{
-  width: 400px;
-  height: 150px;
+  width: 320px;
+  padding: 20px;
+  input{
+    background-color: transparent;
+    border: none;
+    box-shadow: inset 0 0 0 .5px rgba(#fff, .2);
+    color: #fff;
+    &:focus,
+    &:hover{
+      box-shadow: inset 0 0 0 .5px rgba($COLOR_ACTIVE, 1);
+    }
+  }
+  .switch-group{
+    margin: 10px 0;
+    overflow: hidden;
+    .switch-button{
+      float: left;
+    }
+    label{
+      float: left;
+      margin-left: 15px;
+      color: #666;
+      font-size: 12px;
+      line-height: 20px;      
+    }
+  }
 }

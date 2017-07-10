@@ -7,34 +7,54 @@ import DropDown from 'components/common/DropDown'
 export default class LinkEditor extends React.Component {
 
   state = {
-    link: null,
-    target: null
+    link: '',
+    openInNewWindow: false
+  }
+
+  componentWillReceiveProps (props) {
+
   }
 
   render () {
 
-    const { link, target } = this.state
-    const { editorState, selection } = this.props
+    const { link, openInNewWindow } = this.state
+    const { editorState, contentState, selection } = this.props
     const caption = <i className="icon-link"></i>
 
     return (
       <DropDown
         caption={caption}
-        disabled={selection.isisCollapsed()}
+        disabled={selection.isCollapsed()}
+        hideOnBlur={false}
         className={"control-item dropdown link-editor-dropdown"}
       >
         <div className="link-editor">
-          <input
-            type="text"
-            value={link}
-            placeholder="LINK URL"
-            onChange={(e) => {
-              this.setState({
-                link: e.target.value
-              })
-            }}
-          />
-          
+          <div className="input-group">
+            <input
+              type="text"
+              value={link}
+              placeholder="LINK URL"
+              onChange={(e) => {
+                this.setState({
+                  link: e.target.value
+                })
+              }}
+            />
+          </div>
+          <div className="switch-group">
+            <Switch
+              active={openInNewWindow}
+              onClick={() => {
+                this.setState({
+                  openInNewWindow: !openInNewWindow
+                })
+              }}
+            />
+            <label>Open this link in new window</label>
+          </div>
+          <div className="buttins">
+
+          </div>
         </div>
       </DropDown>
     )
@@ -42,8 +62,6 @@ export default class LinkEditor extends React.Component {
   }
 
   handleConfirm () {
-
-
 
   }
 

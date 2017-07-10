@@ -1,0 +1,26 @@
+@import '~sassinc';
+
+.switch-button{
+  position: relative;
+  width: 40px;
+  height: 20px;
+  background-color: #000;//rgba(#fff, .3);
+  border-radius: 10px;
+  transition: background .3s;
+  &.active{
+    background-color: $COLOR_ACTIVE;
+    span{
+      left: 20px;
+    }
+  }
+  span{
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    background-color: #eee;
+    transition: .3s;
+  }
+}

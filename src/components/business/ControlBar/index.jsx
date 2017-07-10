@@ -2,6 +2,7 @@ import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState } from 'draft-js'
 import SupportedControls from 'maps/controls'
+import LinkEditor from 'components/business/LinkEditor'
 import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
 import FontSizePicker from 'components/business/FontSize'
@@ -13,8 +14,9 @@ export default class ControlBar extends React.Component {
 
     const { controls, editorState } = this.props
     const selection = editorState.getSelection()
+    const contentState = editorState.getCurrentContent()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
-    const currentBlockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType()
+    const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
 
     return (
       <div className="BraftEditor-controlBar">
@@ -59,6 +61,15 @@ export default class ControlBar extends React.Component {
             } else if (controlItem.dropdown === 'font-family') {
 
               return <FontFamilyPicker
+                key={index}
+                defaultCaption={controlItem.title}
+                {...{selection, editorState, currentInlineStyle}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
+
+            } else if (controlItem.dropdown === 'link') {
+
+              return <LinkEditor
                 key={index}
                 defaultCaption={controlItem.title}
                 {...{selection, editorState, currentInlineStyle}}
