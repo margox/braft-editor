@@ -1,27 +1,29 @@
 import React from 'react'
 
-const strategy = (contentBlock, callback, contentState) => {
+function handleStrategy (contentBlock, callback, contentState) {
 
   contentBlock.findEntityRanges((character) => {
     const entityKey = character.getEntity()
-    return (entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK')
+    return (
+      entityKey !== null &&
+      contentState.getEntity(entityKey).getType() === 'LINK'
+    )
   }, callback)
 
 }
 
-class Link extends React.Component {
+const Link = (props) => {
 
-  render () {
+  const { children, entityKey, contentState } = props
+  const { href, target } = contentState.getEntity(entityKey).getData()
 
-    const { children, entityKey, contentState } = this.props
-    const { url, target } = contentState.getEntity(entityKey).getData()
-
-    return (
-      <span><a href={url} target={target}>{children}</a></span>
-    )
-
-  }
+  return (
+    <span><a href={href} target={target}>{children}</a></span>
+  )
 
 }
 
-export default { strategy, component: Link }
+export default {
+  strategy: handleStrategy,
+  component: Link
+}

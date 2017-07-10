@@ -72,7 +72,7 @@ export default class ControlBar extends React.Component {
               return <LinkEditor
                 key={index}
                 defaultCaption={controlItem.title}
-                {...{selection, editorState, currentInlineStyle}}
+                {...{selection, editorState, contentState}}
                 onChange={(editorState) => this.applyEditorState(editorState)}
               />
 
@@ -142,6 +142,7 @@ export default class ControlBar extends React.Component {
   }
 
   applyEditorState (editorState) {
+    console.log(editorState)
     this.props.onChange(editorState)
   }
 
