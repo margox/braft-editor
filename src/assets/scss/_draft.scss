@@ -1,11 +1,11 @@
 .BraftEditor-container{
   .DraftEditor-editorContainer{
+    box-sizing: border-box;
     padding: 15px;
     background-color: #fff;
     border: none;
   }
   .DraftEditor-root,
-  .DraftEditor-editorContainer,
   .public-DraftEditor-content{
     height: 100%;
   }

@@ -1,9 +1,11 @@
 import colors from 'configs/colors'
 import fontSizes from 'configs/fontSizes'
+import fontFamilies from 'configs/fontFamilies'
 
 const colorStyles = {}
 const bgColorStyles = {}
 const fontSizeStyles = {}
+const fontFamilyStyles = {}
 
 colors.forEach((color, index) => {
   colorStyles['COLOR-' + index] = { color }
@@ -11,7 +13,13 @@ colors.forEach((color, index) => {
 })
 
 fontSizes.forEach((fontSize) => {
-  fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize + 'px' }
+  fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize }
+})
+
+fontFamilies.forEach((fontFamily, index) => {
+  fontFamilyStyles['FONTFAMILY-' + index] = {
+    fontFamily: fontFamily.family
+  }
 })
 
 const styles = {
@@ -27,7 +35,8 @@ const styles = {
   },
   ...colorStyles,
   ...bgColorStyles,
-  ...fontSizeStyles
+  ...fontSizeStyles,
+  ...fontFamilyStyles
 }
 
 export default styles

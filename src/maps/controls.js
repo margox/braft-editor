@@ -92,6 +92,11 @@ export default [
     title: 'Font Size',
     type: 'inline-style',
     dropdown: 'font-size'
+  }, {
+    key: 'font-family',
+    title: 'Font Family',
+    type: 'inline-syule',
+    dropdown: 'font-family'
   }
 ]
 

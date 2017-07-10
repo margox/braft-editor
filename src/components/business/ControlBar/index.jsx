@@ -5,6 +5,7 @@ import SupportedControls from 'maps/controls'
 import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
 import FontSizePicker from 'components/business/FontSize'
+import FontFamilyPicker from 'components/business/FontFamily'
 
 export default class ControlBar extends React.Component {
 
@@ -47,7 +48,7 @@ export default class ControlBar extends React.Component {
 
               dropDownComponentProps = {
                 key: index,
-                currentInlineStyles, editorState,
+                selection, editorState, currentInlineStyles,
                 onChange: (editorState) => this.applyEditorState(editorState)
               }
 
@@ -57,11 +58,23 @@ export default class ControlBar extends React.Component {
 
               dropDownComponentProps = {
                 key: index,
-                currentInlineStyles, editorState,
+                defaultCaption: controlItem.title,
+                selection, editorState, currentInlineStyles,
                 onChange: (editorState) => this.applyEditorState(editorState)
               }
 
               dropDownComponent = <FontSizePicker {...dropDownComponentProps} />
+
+            } else if (controlItem.dropdown === 'font-family') {
+
+              dropDownComponentProps = {
+                key: index,
+                defaultCaption: controlItem.title,
+                selection, editorState, currentInlineStyles,
+                onChange: (editorState) => this.applyEditorState(editorState)
+              }
+
+              dropDownComponent = <FontFamilyPicker {...dropDownComponentProps} />
 
             }
 

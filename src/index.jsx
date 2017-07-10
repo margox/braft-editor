@@ -51,7 +51,7 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    const { controls } = this.props
+    const { controls, height } = this.props
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
@@ -67,7 +67,12 @@ export default class BraftEditor extends React.Component {
     return (
       <div className="BraftEditor-container">
         <ControlBar {...controlBarProps}/>
-        <Editor {...editorProps}/>
+        <div
+          className="BraftEditor-content"
+          style = {{height: height|| defaultOptions.height}}
+        >
+          <Editor {...editorProps}/>
+        </div>
       </div>
     )
   }

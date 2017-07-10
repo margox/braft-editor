@@ -10,7 +10,7 @@ export default class FontSize extends React.Component {
 
     let caption = null
     let currentFontSize = null
-    let { currentInlineStyles, onChange } = this.props
+    let { defaultCaption, currentInlineStyles, onChange } = this.props
 
     fontSizes.find((item) => {
       if (currentInlineStyles.has('FONTSIZE-' + item)) {
@@ -21,7 +21,7 @@ export default class FontSize extends React.Component {
       return false
     })
 
-    caption = caption || 'Font Size'
+    caption = caption || defaultCaption || 'Font Size'
 
     return (
       <DropDown

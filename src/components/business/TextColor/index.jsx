@@ -22,14 +22,17 @@ export default class TextColor extends React.Component {
     let { currentInlineStyles, onChange } = this.props
 
     presetColors.forEach((item, index) => {
+
       if (currentInlineStyles.has('COLOR-' + index)) {
         captionStyle.color = item
         colorType === 'color' && (currentIndex = index)
       }
+
       if (currentInlineStyles.has('BGCOLOR-' + index)) {
         captionStyle.backgroundColor = item
         colorType === 'backgroundColor' && (currentIndex = index)
       }
+
     })
 
     let caption = (

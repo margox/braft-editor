@@ -12,6 +12,7 @@ export default class DropDown extends React.Component {
       active: false,
       offset: 0
     }
+    this.alive = false
     this.responsiveResolveId = null
     this.dropDownHandlerElement = null
     this.dropDownContentElement = null
@@ -21,6 +22,7 @@ export default class DropDown extends React.Component {
 
   componentDidMount () {
 
+    this.alive = true
     this.fixDropDownPosition()
 
     document.body.addEventListener('click', (event) => {
@@ -39,6 +41,7 @@ export default class DropDown extends React.Component {
       this.registerEvent(event)
     })
 
+    this.alive = false
     ResponsiveHelper.unresolve(this.responsiveResolveId)
 
   }
@@ -106,7 +109,7 @@ export default class DropDown extends React.Component {
       active = this.state.active
     }
 
-    this.setState({ active })
+    this.alive && this.setState({ active })
 
   }
 
