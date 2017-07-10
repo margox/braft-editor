@@ -33,6 +33,7 @@ export default class LinkEditor extends React.Component {
             <input
               type="text"
               value={link}
+              spellCheck={false}
               placeholder="LINK URL"
               onChange={(e) => {
                 this.setState({
@@ -52,8 +53,13 @@ export default class LinkEditor extends React.Component {
             />
             <label>Open this link in new window</label>
           </div>
-          <div className="buttins">
-
+          <div className="buttons">
+            <a className="primary pull-left" href="javascript:void(0);">
+              <i className="icon-delete"></i>
+              <span>Unink</span>
+            </a>
+            <button className="primary pull-right">Confirm</button>
+            <button className="ghost pull-right">Cancel</button>
           </div>
         </div>
       </DropDown>

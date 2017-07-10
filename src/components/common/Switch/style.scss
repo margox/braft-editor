@@ -4,7 +4,7 @@
   position: relative;
   width: 40px;
   height: 20px;
-  background-color: #000;//rgba(#fff, .3);
+  background-color: rgba(#fff, .15);
   border-radius: 10px;
   transition: background .3s;
   &.active{
@@ -21,6 +21,7 @@
     height: 20px;
     border-radius: 10px;
     background-color: #eee;
+    transform: scale(1.2);
     transition: .3s;
   }
 }

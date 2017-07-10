@@ -1,3 +1,5 @@
+@import '~sassinc';
+
 .BraftEditor-container{
   position: relative;
   height: 100%;
@@ -16,6 +18,40 @@
       height: 36px;
       padding: 0 15px;
       font-size: 14px;
+    }
+  }
+
+  .pull-left{
+    float: left;
+  }
+  .pull-right{
+    float: right;
+  }
+
+  button{
+    &.ghost,
+    &.primary{
+      height: 32px;
+      padding: 0 20px;
+      color: #fff;
+      font-size: 12px;
+
+    }
+    &.ghost{
+      background-color: transparent;
+      border: none;
+      box-shadow: inset 0 0 0 .5px rgba(#fff, .5);
+      &:hover{
+        box-shadow: inset 0 0 0 .5px rgba(#fff, .7);
+      }
+    }
+    &.primary{
+      background-color: $COLOR_ACTIVE;
+      border: none;
+      color: #fff;
+      &:hover{
+        background-color: $COLOR_ACTIVE - 20;
+      }
     }
   }
 
