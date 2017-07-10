@@ -13,7 +13,7 @@ export default class ControlBar extends React.Component {
 
     const { controls, editorState } = this.props
     const selection = editorState.getSelection()
-    const currentInlineStyles = editorState.getCurrentInlineStyle()
+    const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = editorState.getCurrentContent().getBlockForKey(selection.getStartKey()).getType()
 
     return (
@@ -31,61 +31,50 @@ export default class ControlBar extends React.Component {
 
           if (controlItem && controlItem.dropdown) {
 
-            let dropDownComponent = null
-            let dropDownComponentProps = {}
-
             if (controlItem.dropdown === 'headings') {
 
-              dropDownComponentProps = {
-                key: index,
-                current: currentBlockType,
-                onChange: (command) => this.applyControl(command, controlItem.type)
-              }
-
-              dropDownComponent = <HeadingPicker {...dropDownComponentProps} />
+              return <HeadingPicker
+                key={index}
+                current={currentBlockType}
+                onChange={(command) => this.applyControl(command, controlItem.type)}
+              />
 
             } else if (controlItem.dropdown === 'text-color') {
 
-              dropDownComponentProps = {
-                key: index,
-                selection, editorState, currentInlineStyles,
-                onChange: (editorState) => this.applyEditorState(editorState)
-              }
-
-              dropDownComponent = <TextColorPicker {...dropDownComponentProps} />
+              return <TextColorPicker
+                key={index}
+                {...{selection, editorState, currentInlineStyle}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
 
             } else if (controlItem.dropdown === 'font-size') {
 
-              dropDownComponentProps = {
-                key: index,
-                defaultCaption: controlItem.title,
-                selection, editorState, currentInlineStyles,
-                onChange: (editorState) => this.applyEditorState(editorState)
-              }
-
-              dropDownComponent = <FontSizePicker {...dropDownComponentProps} />
+              return <FontSizePicker
+                key={index}
+                defaultCaption={controlItem.title}
+                {...{selection, editorState, currentInlineStyle}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
 
             } else if (controlItem.dropdown === 'font-family') {
 
-              dropDownComponentProps = {
-                key: index,
-                defaultCaption: controlItem.title,
-                selection, editorState, currentInlineStyles,
-                onChange: (editorState) => this.applyEditorState(editorState)
-              }
+              return <FontFamilyPicker
+                key={index}
+                defaultCaption={controlItem.title}
+                {...{selection, editorState, currentInlineStyle}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
 
-              dropDownComponent = <FontFamilyPicker {...dropDownComponentProps} />
-
+            } else {
+              return null
             }
-
-            return dropDownComponent
 
           } else if (controlItem) {
 
             let buttonClassName = this.getControlItemClassName({
               type: controlItem.type,
               command: controlItem.command,
-              currentBlockType, currentInlineStyles
+              currentBlockType, currentInlineStyle
             })
 
             return (
@@ -113,10 +102,10 @@ export default class ControlBar extends React.Component {
   getControlItemClassName (data) {
 
     let className = 'control-item button'
-    let { type, command, currentBlockType, currentInlineStyles } = data
+    let { type, command, currentBlockType, currentInlineStyle } = data
 
     if (type === 'inline-style') {
-      if (currentInlineStyles.has(command.toUpperCase())) {
+      if (currentInlineStyle.has(command.toUpperCase())) {
         className += ' active'
       }
     } else if (type === 'block-type') {

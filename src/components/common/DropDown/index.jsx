@@ -8,15 +8,16 @@ export default class DropDown extends React.Component {
   constructor (props) {
 
     super(props)
-    this.state = {
-      active: false,
-      offset: 0
-    }
+
     this.alive = false
     this.responsiveResolveId = null
     this.dropDownHandlerElement = null
     this.dropDownContentElement = null
     this.componentId = props.componentId || ('BRAFT-DROPDOWN-' + UniqueIndex())
+    this.state = {
+      active: false,
+      offset: 0
+    }
 
   }
 
@@ -26,7 +27,7 @@ export default class DropDown extends React.Component {
     this.fixDropDownPosition()
 
     document.body.addEventListener('click', (event) => {
-      this.registerEvent(event)
+      this.registerClickEvent(event)
     })
 
     this.responsiveResolveId = ResponsiveHelper.resolve(() => {
@@ -38,7 +39,7 @@ export default class DropDown extends React.Component {
   componentWillUnmount () {
 
     document.body.removeEventListener('click', (event) => {
-      this.registerEvent(event)
+      this.registerClickEvent(event)
     })
 
     this.alive = false
@@ -98,7 +99,7 @@ export default class DropDown extends React.Component {
 
   }
 
-  registerEvent (event) {
+  registerClickEvent (event) {
 
     let { hideOnBlur } = this.props
     let active = false

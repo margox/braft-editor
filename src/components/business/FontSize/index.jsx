@@ -10,10 +10,10 @@ export default class FontSize extends React.Component {
 
     let caption = null
     let currentFontSize = null
-    let { defaultCaption, currentInlineStyles, onChange } = this.props
+    let { defaultCaption, currentInlineStyle, onChange } = this.props
 
     fontSizes.find((item) => {
-      if (currentInlineStyles.has('FONTSIZE-' + item)) {
+      if (currentInlineStyle.has('FONTSIZE-' + item)) {
         caption = item + 'px'
         currentFontSize = item
         return true
@@ -49,8 +49,7 @@ export default class FontSize extends React.Component {
   toggleFontSize (fontSize) {
 
     const toggledFontSize = 'FONTSIZE-' + fontSize
-    const { editorState } = this.props
-    const selection = editorState.getSelection();
+    const { editorState, selection, currentInlineStyle } = this.props
     const nextContentState = fontSizes.reduce((contentState, item, index) => {
       return Modifier.removeInlineStyle(contentState, selection, 'FONTSIZE-' + item) 
     }, editorState.getCurrentContent())
@@ -61,15 +60,13 @@ export default class FontSize extends React.Component {
       'change-inline-style'
     )
 
-    const currentStyle = editorState.getCurrentInlineStyle();
-
     if (selection.isCollapsed()) {
-      nextEditorState = currentStyle.reduce((state, fontSize) => {
+      nextEditorState = currentInlineStyle.reduce((state, fontSize) => {
         return RichUtils.toggleInlineStyle(state, fontSize)
       }, nextEditorState)
     }
 
-    if (!currentStyle.has(toggledFontSize)) {
+    if (!currentInlineStyle.has(toggledFontSize)) {
       nextEditorState = RichUtils.toggleInlineStyle(
         nextEditorState,
         toggledFontSize

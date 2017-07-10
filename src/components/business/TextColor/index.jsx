@@ -19,16 +19,16 @@ export default class TextColor extends React.Component {
     let captionStyle = {}
     let currentIndex = null
     let { colorType } = this.state
-    let { currentInlineStyles, onChange } = this.props
+    let { currentInlineStyle, onChange } = this.props
 
     presetColors.forEach((item, index) => {
 
-      if (currentInlineStyles.has('COLOR-' + index)) {
+      if (currentInlineStyle.has('COLOR-' + index)) {
         captionStyle.color = item
         colorType === 'color' && (currentIndex = index)
       }
 
-      if (currentInlineStyles.has('BGCOLOR-' + index)) {
+      if (currentInlineStyle.has('BGCOLOR-' + index)) {
         captionStyle.backgroundColor = item
         colorType === 'backgroundColor' && (currentIndex = index)
       }
@@ -89,8 +89,7 @@ export default class TextColor extends React.Component {
 
     const prefix = this.state.colorType === 'color' ? 'COLOR-' : 'BGCOLOR-'
     const toggledColor = prefix + index
-    const { editorState } = this.props
-    const selection = editorState.getSelection();
+    const { editorState, selection, currentInlineStyle } = this.props
     const nextContentState = presetColors.reduce((contentState, item, index) => {
       return Modifier.removeInlineStyle(contentState, selection, prefix + index) 
     }, editorState.getCurrentContent())
@@ -101,15 +100,13 @@ export default class TextColor extends React.Component {
       'change-inline-style'
     )
 
-    const currentStyle = editorState.getCurrentInlineStyle();
-
     if (selection.isCollapsed()) {
-      nextEditorState = currentStyle.reduce((state, color) => {
+      nextEditorState = currentInlineStyle.reduce((state, color) => {
         return RichUtils.toggleInlineStyle(state, color)
       }, nextEditorState)
     }
 
-    if (!currentStyle.has(toggledColor)) {
+    if (!currentInlineStyle.has(toggledColor)) {
       nextEditorState = RichUtils.toggleInlineStyle(
         nextEditorState,
         toggledColor

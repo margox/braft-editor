@@ -2,9 +2,10 @@ import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Editor, EditorState, Modifier, RichUtils } from 'draft-js'
+import { CompositeDecorator, Editor, EditorState, Modifier, RichUtils } from 'draft-js'
 import { convertFromHTML, convertToHTML } from 'draft-convert'
 import defaultOptions from 'configs/defaultOptions'
+import decorators from 'decorators'
 import styleMap from 'maps/styles'
 import ControlBar from 'components/business/ControlBar'
 
@@ -24,11 +25,11 @@ export default class BraftEditor extends React.Component {
 
     super(props)
 
-    this.state = {
-      editorState: EditorState.createEmpty()
-    }
     this.onChange = this.onChange.bind(this)
     this.handleKeyCommand = this.handleKeyCommand.bind(this)
+    this.state = {
+      editorState: EditorState.createEmpty(new CompositeDecorator(decorators))
+    }
 
   }
 
