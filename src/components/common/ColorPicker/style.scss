@@ -9,11 +9,13 @@
   li{
     display: block;
     float: left;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     margin: 5px;
     padding: 0;
+    background-clip: content-box;
     background-color: currentColor;
+    border: 3px solid transparent;
     border-radius: 50%;
     transition: .3s;
     &:hover{
@@ -21,7 +23,7 @@
       transform: scale(.98);
     }
     &.active{
-      box-shadow: 0 0 0 3px $COLOR_ACTIVE;
+      box-shadow: 0 0 0 1px $COLOR_ACTIVE;
     }
   }
 }
