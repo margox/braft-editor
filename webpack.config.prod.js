@@ -18,7 +18,8 @@ module.exports = {
     'react-dom': 'react-dom',
     'draft-js': 'draft-js',
     'draft-convert': 'draft-convert',
-    'react-color': 'react-color'
+    'react-color': 'react-color',
+    'draftjs-utils': 'draftjs-utils'
   },
   module: {
     rules: [

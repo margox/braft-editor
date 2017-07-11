@@ -1,6 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState, Modifier } from 'draft-js'
+import { getSelectionText, getEntityRange, getSelectionEntity } from 'draftjs-utils'
 import Switch from 'components/common/Switch'
 import DropDown from 'components/common/DropDown'
 
@@ -8,15 +9,35 @@ export default class LinkEditor extends React.Component {
 
   state = {
     href: '',
-    target: false
+    target: ''
   }
 
   dropDownComponent = null
 
   componentWillReceiveProps (next) {
 
-    const { href, target } = this.state
-    const { selection, editorState, contentState } = next
+    const { contentState, editorState: nextEditorState } = next
+
+    if (nextEditorState && this.props.editorState !== nextEditorState) {
+      let entityKey = getSelectionEntity(nextEditorState)
+      if (entityKey) {
+        let currentEntity = contentState.getEntity(entityKey)
+        if (currentEntity && currentEntity.get('type') === 'LINK') {
+          let { href, target } = currentEntity.getData()
+          this.setState({ href, target })
+        } else {
+          this.setState({
+            href: '',
+            target: ''
+          })
+        }
+      } else {
+        this.setState({
+          href: '',
+          target: ''
+        })
+      }
+    }
 
   }
 
@@ -53,7 +74,7 @@ export default class LinkEditor extends React.Component {
               active={target === '_blank'}
               onClick={() => {
                 this.setState({
-                  target: target === '_blank' ? '_self' : '_blank'
+                  target: target === '_blank' ? '' : '_blank'
                 })
               }}
             />
