@@ -30,12 +30,20 @@
 
   button{
     &.ghost,
+    &.default,
     &.primary{
       height: 32px;
       padding: 0 20px;
       color: #fff;
       font-size: 12px;
 
+    }
+    &.default{
+      background-color: rgba(#fff, .15);
+      border: none;
+      &:hover{
+        background-color: rgba(#fff, .1);
+      }
     }
     &.ghost{
       background-color: transparent;

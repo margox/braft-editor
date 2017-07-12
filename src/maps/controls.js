@@ -94,6 +94,10 @@ export default [
     key: 'font-family',
     title: 'Font Family',
     dropdown: 'font-family'
+  }, {
+    key: 'text-align',
+    type: 'text-align',
+    title: 'Text Align'
   }
 ]
 

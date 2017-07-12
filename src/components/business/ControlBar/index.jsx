@@ -7,6 +7,7 @@ import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
 import FontSizePicker from 'components/business/FontSize'
 import FontFamilyPicker from 'components/business/FontFamily'
+import TextAlign from 'components/business/TextAlign'
 
 export default class ControlBar extends React.Component {
 
@@ -79,6 +80,16 @@ export default class ControlBar extends React.Component {
             } else {
               return null
             }
+
+          } else if (controlItem.type === 'text-align') {
+
+            return (
+              <TextAlign
+                key={index}
+                {...{selection, editorState, currentInlineStyle}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
+            )
 
           } else if (controlItem) {
 

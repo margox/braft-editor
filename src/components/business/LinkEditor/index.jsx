@@ -48,48 +48,57 @@ export default class LinkEditor extends React.Component {
     const caption = <i className="icon-link"></i>
 
     return (
-      <DropDown
-        caption={caption}
-        disabled={selection.isCollapsed()}
-        hideOnBlur={false}
-        ref={(instance) => this.dropDownComponent = instance}
-        className={"control-item dropdown link-editor-dropdown"}
-      >
-        <div className="link-editor">
-          <div className="input-group">
-            <input
-              type="text"
-              value={href}
-              spellCheck={false}
-              placeholder="LINK URL"
-              onChange={(e) => {
-                this.setState({
-                  href: e.target.value
-                })
-              }}
-            />
+      <div className="pull-left">
+        <DropDown
+          caption={caption}
+          hideOnBlur={false}
+          showDropDownArrow={false}
+          ref={(instance) => this.dropDownComponent = instance}
+          className={"control-item dropdown link-editor-dropdown"}
+        >
+          <div className="link-editor">
+            <div className="input-group">
+              <input
+                type="text"
+                value={href}
+                spellCheck={false}
+                placeholder="LINK URL"
+                onChange={(e) => {
+                  this.setState({
+                    href: e.target.value
+                  })
+                }}
+              />
+            </div>
+            <div className="switch-group">
+              <Switch
+                active={target === '_blank'}
+                onClick={() => {
+                  this.setState({
+                    target: target === '_blank' ? '' : '_blank'
+                  })
+                }}
+              />
+              <label>Open this link in new window</label>
+            </div>
+            <div className="buttons">
+              <a onClick={() => this.handleUnlink()} className="primary pull-left" href="javascript:void(0);">
+                <i className="icon-delete"></i>
+                <span>Unink</span>
+              </a>
+              <button onClick={() => this.handleConfirm()} className="primary pull-right">Confirm</button>
+              <button onClick={() => this.handleCancel()} className="default pull-right">Cancel</button>
+            </div>
           </div>
-          <div className="switch-group">
-            <Switch
-              active={target === '_blank'}
-              onClick={() => {
-                this.setState({
-                  target: target === '_blank' ? '' : '_blank'
-                })
-              }}
-            />
-            <label>Open this link in new window</label>
-          </div>
-          <div className="buttons">
-            <a onClick={() => this.handleUnlink()} className="primary pull-left" href="javascript:void(0);">
-              <i className="icon-delete"></i>
-              <span>Unink</span>
-            </a>
-            <button onClick={() => this.handleConfirm()} className="primary pull-right">Confirm</button>
-            <button onClick={() => this.handleCancel()} className="ghost pull-right">Cancel</button>
-          </div>
-        </div>
-      </DropDown>
+        </DropDown>
+        <button
+          title={'Unlink'}
+          className="control-item button"
+          onClick={() => this.handleUnlink()}
+        >
+          <i className="icon-link-off"></i>
+        </button>
+      </div>
     )
 
   }

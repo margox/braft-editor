@@ -11,6 +11,7 @@ export default {
     'italic',
     'underline',
     'strike-through',
+    'text-align',
     'split',
     'headings',
     'list_ul',
