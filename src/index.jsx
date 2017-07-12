@@ -4,19 +4,18 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { CompositeDecorator, Editor, EditorState, Modifier, RichUtils } from 'draft-js'
 import { convertFromHTML, convertToHTML } from 'draft-convert'
-import defaultOptions from 'configs/defaultOptions'
+import defaultOptions from 'configs/options'
 import decorators from 'decorators'
-import styleMap from 'maps/styles'
+import blockStyles from 'maps/blockStyles'
+import inlineStyles from 'maps/inlineStyles'
 import ControlBar from 'components/business/ControlBar'
 
 /**
  * TODOS
- * 1. Link Editor, before Jul 09
- * 2. Font Size / Font Family / Text Aligns, before Jul 12
- * 3. Image Uploader, before Jul 20
- * 4. Video / Audio Uploader, before Jul 25
- * 5. Emoji Picker, before Jul 21
- * 6. Image Editor, before Aug 5
+ * 1. Image Uploader, before Jul 20
+ * 2. Video / Audio Uploader, before Jul 25
+ * 3. Emoji Picker, before Jul 21
+ * 4. Image Editor, before Aug 5
  */
 
 export default class BraftEditor extends React.Component {
@@ -62,7 +61,8 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       onChange: this.onChange,
-      customStyleMap: styleMap
+      customStyleMap: inlineStyles,
+      blockStyleFn: blockStyles
     }
 
     return (

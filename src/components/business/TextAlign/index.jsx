@@ -1,27 +1,45 @@
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
+import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils'
 
-const textAlignments = [
-  'LEFT',
-  'CENTER',
-  'RIGHT',
-  'JUSTIFY'
-]
+const textAlignments = ['left', 'center', 'right', 'justify']
 
 export default class TextAlign extends React.Component {
 
+  state = {
+    currentAlignment: undefined
+  }
+
+  componentWillReceiveProps (next) {
+
+    if (this.props.editorState !== next.editorState) {
+      this.setState({
+        currentAlignment: getSelectedBlocksMetadata(next.editorState).get('text-align')
+      })
+    }
+
+  }
+
+  setAlignment (alignment) {
+
+    const { editorState, onChange } = this.props
+    const { currentAlignment } = this.state
+
+    if (alignment !== currentAlignment) {
+      onChange(setBlockData(editorState, {
+        'text-align': alignment
+      }))
+    } else {
+      onChange(setBlockData(editorState, {
+        'text-align': undefined
+      }))
+    }
+
+  }
+
   render () {
 
-    let currentAlignment = null
-    let { currentInlineStyle, onChange } = this.props
-
-    textAlignments.find((item) => {
-      if (currentInlineStyle.has('TEXTALIGN-' + item)) {
-        currentAlignment = item
-        return true
-      }
-      return false
-    })
+    const { currentAlignment } = this.state
 
     return (
       <div className="pull-left">
@@ -31,46 +49,15 @@ export default class TextAlign extends React.Component {
               <button
                 key={index}
                 className={'control-item button ' + (item === currentAlignment ? 'active' : null)}
-                onClick={() => this.toggleTextAlign(item)}
+                onClick={() => this.setAlignment(item)}
               >
-                <i className={"icon-align-" + item.toLowerCase()}></i>
+                <i className={"icon-align-" + item}></i>
               </button>
             )
           })
         }
       </div>
     )
-
-  }
-
-  toggleTextAlign (textAlign) {
-
-    const toggledTextAlign = 'TEXTALIGN-' + textAlign
-    const { editorState, selection, currentInlineStyle } = this.props
-    const nextContentState = textAlignments.reduce((contentState, item, index) => {
-      return Modifier.removeInlineStyle(contentState, selection, 'TEXTALIGN-' + item) 
-    }, editorState.getCurrentContent())
-
-    let nextEditorState = EditorState.push(
-      editorState,
-      nextContentState,
-      'change-text-align'
-    )
-
-    if (selection.isCollapsed()) {
-      nextEditorState = currentInlineStyle.reduce((state, textAlign) => {
-        return RichUtils.toggleInlineStyle(state, textAlign)
-      }, nextEditorState)
-    }
-
-    if (!currentInlineStyle.has(toggledTextAlign)) {
-      nextEditorState = RichUtils.toggleInlineStyle(
-        nextEditorState,
-        toggledTextAlign
-      );
-    }
-
-    this.props.onChange(nextEditorState)
 
   }
 

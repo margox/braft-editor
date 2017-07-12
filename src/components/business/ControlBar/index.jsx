@@ -153,7 +153,6 @@ export default class ControlBar extends React.Component {
   }
 
   applyEditorState (editorState) {
-    console.log(editorState)
     this.props.onChange(editorState)
   }
 

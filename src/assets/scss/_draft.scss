@@ -35,5 +35,24 @@
       }
     }
   }
-
+  .braft-left-aligned-block {
+    text-align: left;
+  }
+  .braft-right-aligned-block {
+    text-align: right;
+  }
+  .braft-center-aligned-block {
+    text-align: center;
+  }
+  .braft-justify-aligned-block {
+    text-align: justify;
+  }
+  .braft-left-aligned-block,
+  .braft-right-aligned-block,
+  .braft-center-aligned-block,
+  .braft-justify-aligned-block{
+    & > div{
+      display: inline-block;
+    }
+  }
 }
