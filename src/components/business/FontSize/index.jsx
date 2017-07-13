@@ -26,7 +26,7 @@ export default class FontSize extends React.Component {
     return (
       <DropDown
         caption={caption}
-        className={"control-item dropdown font-sizes-dropdown"}
+        className={"control-item dropdown font-size-dropdown"}
       >
         <ul className="font-sizes-wrap">
           {fontSizes.map((item, index) => {

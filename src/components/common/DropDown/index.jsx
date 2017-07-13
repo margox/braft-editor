@@ -65,7 +65,7 @@ export default class DropDown extends React.Component {
     return (
       <div
         id={this.componentId}
-        className={"Braft-dropdown " + (active ? "active " : " ") + (disabled ? "disabled " : " ") + className}
+        className={"Braft-dropdown " + (active ? "active " : "") + (disabled ? "disabled " : "") + className}
       >
         <button
           className="dropdown-handler"

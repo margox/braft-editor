@@ -42,7 +42,7 @@ export default class TextAlign extends React.Component {
     const { currentAlignment } = this.state
 
     return (
-      <div className="pull-left">
+      <div className="control-item-group">
         {
           textAlignments.map((item, index) => {
             return (

@@ -84,6 +84,13 @@
       font-size: 14px;
       line-height: 36px;
       pointer-events: none;
+      i{
+        display: block;
+        height: 36px;
+        font-size: 16px;
+        line-height: 36px;
+        text-align: center;
+      }
     }
     > i{
       position: absolute;

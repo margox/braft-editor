@@ -29,7 +29,7 @@ export default class FontFamily extends React.Component {
       <DropDown
         caption={caption}
         arrowActive={isFirstItemActive}
-        className={"control-item dropdown font-families-dropdown"}
+        className={"control-item dropdown font-family-dropdown"}
       >
         <ul className="menu">
           {fontFamilies.map((item, index) => {

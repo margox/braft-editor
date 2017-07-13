@@ -15,6 +15,8 @@
       padding: 15px 20px;
       background-color: #f1f2f3;
       border-left: solid 5px #ccc;
+      color: #666;
+      font-style: italic;
     }
     pre{
       max-width: 100%;
@@ -22,10 +24,12 @@
       margin: 5px 0;
       padding: 15px;
       overflow: auto;
-      background-color: #2c3e50;
-      color: #eee;
+      background-color: #f1f2f3;
+      border-radius: 3px;
+      color: #666;
       font-family: monospace;
       font-size: 14px;
+      font-weight: normal;
       line-height: 16px;
       word-wrap: break-word;
       white-space: pre-wrap;

@@ -48,7 +48,7 @@ export default class LinkEditor extends React.Component {
     const caption = <i className="icon-link"></i>
 
     return (
-      <div className="pull-left">
+      <div className="control-item-group">
         <DropDown
           caption={caption}
           hideOnBlur={false}
