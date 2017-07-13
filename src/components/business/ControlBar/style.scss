@@ -54,14 +54,17 @@
         background-color: rgba(#000, .05);
       }
       &.active{
-        background-color: $COLOR_ACTIVE;
-        color: #fff;
+        color: $COLOR_ACTIVE;
       }
       i::before{
         display: block;
         width: 36px;
         height: 36px;
         line-height: 36px;
+      }
+      .icon-undo,
+      .icon-redo{
+        font-size: 14px;
       }
     }
   }
