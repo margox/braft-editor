@@ -19,6 +19,10 @@ export default {
     'blockquote',
     'code',
     'split',
-    'link'
+    'link',
+    'split',
+    'image',
+    'video',
+    'audio'
   ]
 }

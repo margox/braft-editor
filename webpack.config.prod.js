@@ -1,9 +1,11 @@
 var webpack = require('webpack')
+  , merge = require('webpack-merge')
   , ExtractTextPlugin = require('extract-text-webpack-plugin')
   , OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
   , path = require('path')
+  , baseConfigs = require('./webpack.config.base')
 
-module.exports = {
+module.exports = merge(baseConfigs, {
   context: path.join(__dirname, './src'),
   entry: {
     index: './index.jsx'
@@ -20,64 +22,6 @@ module.exports = {
     'draft-convert': 'draft-convert',
     'react-color': 'react-color',
     'draftjs-utils': 'draftjs-utils'
-  },
-  module: {
-    rules: [
-      { 
-        test: /\.(scss|css)$/,
-        use: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader'
-            },
-            {
-              loader: 'sass-loader'
-            }
-          ]
-        })
-      },
-      {
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
-      },
-      {
-        test: /\.(png|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              name: '[name]_[hash:6].[ext]'
-            }
-          }
-        ]
-      },
-      {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 10,
-              name: '[name]_[hash:6].[ext]'
-            }
-          }
-        ]
-      }
-    ]
-  },
-  resolve: {
-    modules: [
-      path.join(__dirname, './src'),
-      path.join(__dirname, './node_modules')
-    ],
-    alias: {
-      'react': path.join(__dirname, 'node_modules', 'react'),
-      'sassinc': path.join(__dirname, './src/assets/scss/_inc.scss')
-    },
-    extensions: ['.js', '.jsx']
   },
   plugins: [
     new ExtractTextPlugin("braft.css"),
@@ -102,4 +46,4 @@ module.exports = {
       }
     })
   ]
-}
+})

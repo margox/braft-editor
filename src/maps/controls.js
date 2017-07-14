@@ -51,8 +51,8 @@ export default [
     command: 'subscript'
   }, {
     key: 'headings',
-    type: 'block-type',
-    dropdown: 'headings'
+    title: 'Headings',
+    type: 'headings',
   }, {
     key: 'blockquote',
     title: 'Blockquote',
@@ -80,24 +80,38 @@ export default [
   }, {
     key: 'link',
     title: 'Link',
-    text: <i className="icon-link"></i>,
-    dropdown: 'link'
+    type: 'link'
   }, {
     key: 'text-color',
     title: 'Text Color',
-    dropdown: 'text-color'
+    type: 'text-color'
   }, {
     key: 'font-size',
     title: 'Font Size',
-    dropdown: 'font-size'
+    type: 'font-size'
   }, {
     key: 'font-family',
     title: 'Font Family',
-    dropdown: 'font-family'
+    type: 'font-family'
   }, {
     key: 'text-align',
-    type: 'text-align',
-    title: 'Text Align'
+    title: 'Text Align',
+    type: 'text-align'
+  }, {
+    key: 'image',
+    title: 'Image',
+    text: <i className="icon-image"></i>,
+    type: 'image'
+  }, {
+    key: 'video',
+    title: 'Video',
+    text: <i className="icon-film"></i>,
+    type: 'video'
+  }, {
+    key: 'audio',
+    title: 'Audio',
+    text: <i className="icon-music"></i>,
+    type: 'audio'
   }
 ]
 

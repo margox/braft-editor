@@ -32,54 +32,52 @@ export default class ControlBar extends React.Component {
             return subItem.key.toLowerCase() === item.toLowerCase()
           })
 
-          if (controlItem && controlItem.dropdown) {
+          if (!controlItem) {
+            return null
+          }
 
-            if (controlItem.dropdown === 'headings') {
+          if (controlItem.type === 'headings') {
 
-              return <HeadingPicker
-                key={index}
-                current={currentBlockType}
-                onChange={(command) => this.applyControl(command, controlItem.type)}
-              />
+            return <HeadingPicker
+              key={index}
+              current={currentBlockType}
+              onChange={(command) => this.applyControl(command, 'block-type')}
+            />
 
-            } else if (controlItem.dropdown === 'text-color') {
+          } else if (controlItem.type === 'text-color') {
 
-              return <TextColorPicker
-                key={index}
-                {...{selection, editorState, currentInlineStyle}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
-              />
+            return <TextColorPicker
+              key={index}
+              {...{selection, editorState, currentInlineStyle}}
+              onChange={(editorState) => this.applyEditorState(editorState)}
+            />
 
-            } else if (controlItem.dropdown === 'font-size') {
+          } else if (controlItem.type === 'font-size') {
 
-              return <FontSizePicker
-                key={index}
-                defaultCaption={controlItem.title}
-                {...{selection, editorState, currentInlineStyle}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
-              />
+            return <FontSizePicker
+              key={index}
+              defaultCaption={controlItem.title}
+              {...{selection, editorState, currentInlineStyle}}
+              onChange={(editorState) => this.applyEditorState(editorState)}
+            />
 
-            } else if (controlItem.dropdown === 'font-family') {
+          } else if (controlItem.type === 'font-family') {
 
-              return <FontFamilyPicker
-                key={index}
-                defaultCaption={controlItem.title}
-                {...{selection, editorState, currentInlineStyle}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
-              />
+            return <FontFamilyPicker
+              key={index}
+              defaultCaption={controlItem.title}
+              {...{selection, editorState, currentInlineStyle}}
+              onChange={(editorState) => this.applyEditorState(editorState)}
+            />
 
-            } else if (controlItem.dropdown === 'link') {
+          } else if (controlItem.type === 'link') {
 
-              return <LinkEditor
-                key={index}
-                defaultCaption={controlItem.title}
-                {...{selection, editorState, contentState}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
-              />
-
-            } else {
-              return null
-            }
+            return <LinkEditor
+              key={index}
+              defaultCaption={controlItem.title}
+              {...{selection, editorState, contentState}}
+              onChange={(editorState) => this.applyEditorState(editorState)}
+            />
 
           } else if (controlItem.type === 'text-align') {
 
@@ -91,7 +89,7 @@ export default class ControlBar extends React.Component {
               />
             )
 
-          } else if (controlItem) {
+          } else {
 
             let buttonClassName = this.getControlItemClassName({
               type: controlItem.type,
@@ -110,8 +108,6 @@ export default class ControlBar extends React.Component {
               </button>
             )
  
-          } else {
-            return null
           }
 
         })
