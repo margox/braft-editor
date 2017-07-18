@@ -22,7 +22,7 @@ export default {
     'link',
     'split',
     'image',
-    'video',
-    'audio'
+    // 'video',
+    // 'audio'
   ]
 }

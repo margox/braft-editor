@@ -1,0 +1,38 @@
+@import '~sassinc';
+
+.braft-image-uploader{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  text-align: center;
+  border: dashed 2px rgba(#fff, .1);
+  color: rgba(#fff, .3);
+  cursor: pointer;
+  transition: border .3s, color .3s;
+  &:hover{
+    border-color: rgba($COLOR_ACTIVE, .5);
+    color: rgba($COLOR_ACTIVE, .5);
+  }
+}
+
+.braft-image-upload-tip{
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  height: 120px;
+  margin: auto;
+  text-align: center;
+  i{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 80px;
+  }
+  span{
+    font-size: 14px;
+  }
+}

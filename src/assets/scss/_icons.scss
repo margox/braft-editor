@@ -29,98 +29,11 @@ $svgPath: '../icons/icomoon.svg?sirizn';
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-paint-format:before {
-  content: "\e90c";
-}
-.icon-image:before {
-  content: "\e90e";
-}
-.icon-images:before {
-  content: "\e90f";
-}
-.icon-camera:before {
-  content: "\e911";
-}
-.icon-music:before {
+.icon-close:before {
   content: "\e913";
 }
-.icon-film:before {
-  content: "\e91c";
-}
-.icon-files-empty:before {
-  content: "\e925";
-}
-.icon-file-text:before {
-  content: "\e926";
-}
-.icon-file-picture:before {
-  content: "\e927";
-}
-.icon-file-music:before {
-  content: "\e928";
-}
-.icon-file-play:before {
-  content: "\e929";
-}
-.icon-file-video:before {
-  content: "\e92a";
-}
-.icon-file-zip:before {
-  content: "\e92b";
-}
-.icon-copy:before {
-  content: "\e92c";
-}
-.icon-paste:before {
-  content: "\e92d";
-}
-.icon-pushpin:before {
-  content: "\e946";
-}
-.icon-undo:before {
-  content: "\e967";
-}
-.icon-redo:before {
-  content: "\e968";
-}
-.icon-spinner:before {
-  content: "\e980";
-}
-.icon-page-break:before {
-  content: "\ea68";
-}
-.icon-superscript:before {
-  content: "\ea6b";
-}
-.icon-subscript:before {
-  content: "\ea6c";
-}
-.icon-pagebreak:before {
-  content: "\ea6e";
-}
-.icon-pilcrow:before {
-  content: "\ea73";
-}
-.icon-ltr:before {
-  content: "\ea74";
-}
-.icon-rtl:before {
-  content: "\ea75";
-}
-.icon-github:before {
-  content: "\eab0";
-}
-.icon-file-pdf:before {
-  content: "\eadf";
-}
-.icon-file-openoffice:before {
-  content: "\eae0";
-}
-.icon-file-word:before {
-  content: "\eae1";
-}
-.icon-file-excel:before {
-  content: "\eae2";
+.icon-align-center:before {
+  content: "\e028";
 }
 .icon-align-justify:before {
   content: "\e026";
@@ -128,17 +41,113 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 .icon-align-left:before {
   content: "\e027";
 }
-.icon-align-center:before {
-  content: "\e028";
-}
 .icon-align-right:before {
   content: "\e029";
 }
-.icon-link-off:before {
-  content: "\e919";
+.icon-music:before {
+  content: "\e90e";
 }
-.icon-link:before {
-  content: "\e91a";
+.icon-image:before {
+  content: "\e90f";
+}
+.icon-camera:before {
+  content: "\e911";
+}
+.icon-copy:before {
+  content: "\e92c";
+}
+.icon-file-excel:before {
+  content: "\eae2";
+}
+.icon-file-music:before {
+  content: "\1f6ce";
+}
+.icon-file-openoffice:before {
+  content: "\eae0";
+}
+.icon-file-pdf:before {
+  content: "\eadf";
+}
+.icon-file-picture:before {
+  content: "\e927";
+}
+.icon-file-play:before {
+  content: "\e929";
+}
+.icon-file-text:before {
+  content: "\e926";
+}
+.icon-file-video:before {
+  content: "\e92a";
+}
+.icon-file-word:before {
+  content: "\eae1";
+}
+.icon-file-zip:before {
+  content: "\e92b";
+}
+.icon-files-empty:before {
+  content: "\e925";
+}
+.icon-film:before {
+  content: "\e91c";
+}
+.icon-github:before {
+  content: "\eab0";
+}
+.icon-ltr:before {
+  content: "\ea74";
+}
+.icon-page-break:before {
+  content: "\ea68";
+}
+.icon-pagebreak:before {
+  content: "\ea6e";
+}
+.icon-paint-format:before {
+  content: "\e90c";
+}
+.icon-paste:before {
+  content: "\e92d";
+}
+.icon-pilcrow:before {
+  content: "\ea73";
+}
+.icon-pushpin:before {
+  content: "\e946";
+}
+.icon-redo:before {
+  content: "\e968";
+}
+.icon-rtl:before {
+  content: "\ea75";
+}
+.icon-spinner:before {
+  content: "\e980";
+}
+.icon-subscript:before {
+  content: "\ea6c";
+}
+.icon-superscript:before {
+  content: "\ea6b";
+}
+.icon-undo:before {
+  content: "\e967";
+}
+.icon-add:before {
+  content: "\e918";
+}
+.icon-bold:before {
+  content: "\e904";
+}
+.icon-code:before {
+  content: "\e903";
+}
+.icon-delete:before {
+  content: "\e914";
+}
+.icon-done:before {
+  content: "\e912";
 }
 .icon-drop-down:before {
   content: "\e906";
@@ -146,50 +155,62 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 .icon-drop-up:before {
   content: "\e909";
 }
-.icon-share-square:before {
-  content: "\e900";
+.icon-emoji:before {
+  content: "\e91b";
 }
-.icon-info:before {
-  content: "\e901";
-}
-.icon-help:before {
-  content: "\e902";
-}
-.icon-code:before {
-  content: "\e903";
-}
-.icon-bold:before {
-  content: "\e904";
-}
-.icon-share:before {
-  content: "\e905";
-}
-.icon-not-disturb:before {
-  content: "\e907";
-}
-.icon-menu:before {
-  content: "\e908";
-}
-.icon-more-vert:before {
-  content: "\e90a";
-}
-.icon-more-horiz:before {
-  content: "\e90b";
-}
-.icon-fullscreen-exit:before {
-  content: "\e90d";
+.icon-font-size:before {
+  content: "\e920";
 }
 .icon-fullscreen:before {
   content: "\e910";
 }
-.icon-done:before {
-  content: "\e912";
+.icon-fullscreen-exit:before {
+  content: "\e90d";
 }
-.icon-delete:before {
-  content: "\e914";
+.icon-help:before {
+  content: "\e902";
+}
+.icon-indent-decrease:before {
+  content: "\e92f";
+}
+.icon-indent-increase:before {
+  content: "\e92e";
+}
+.icon-info:before {
+  content: "\e901";
+}
+.icon-italic:before {
+  content: "\e924";
+}
+.icon-link:before {
+  content: "\e91a";
+}
+.icon-link-off:before {
+  content: "\e919";
+}
+.icon-list:before {
+  content: "\e923";
+}
+.icon-list-numbered:before {
+  content: "\e922";
+}
+.icon-menu:before {
+  content: "\e908";
+}
+.icon-more-horiz:before {
+  content: "\e90b";
+}
+.icon-more-vert:before {
+  content: "\e90a";
+}
+.icon-not-disturb:before {
+  content: "\e907";
 }
 .icon-print:before {
   content: "\e915";
+}
+.icon-quote:before {
+  content: "\e921";
 }
 .icon-search:before {
   content: "\e916";
@@ -197,38 +218,14 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 .icon-settingsx:before {
   content: "\e917";
 }
-.icon-add:before {
-  content: "\e918";
+.icon-share:before {
+  content: "\e905";
 }
-.icon-emoji:before {
-  content: "\e91b";
-}
-.icon-underlined:before {
-  content: "\e91d";
+.icon-share-square:before {
+  content: "\e900";
 }
 .icon-strikethrough:before {
   content: "\e91f";
-}
-.icon-font-size:before {
-  content: "\e920";
-}
-.icon-quote:before {
-  content: "\e921";
-}
-.icon-list-numbered:before {
-  content: "\e922";
-}
-.icon-list:before {
-  content: "\e923";
-}
-.icon-italic:before {
-  content: "\e924";
-}
-.icon-indent-increase:before {
-  content: "\e92e";
-}
-.icon-indent-decrease:before {
-  content: "\e92f";
 }
 .icon-text-color .path1:before {
   content: "\e930";
@@ -237,4 +234,7 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 .icon-text-color .path2:before {
   content: "\e931";
   margin-left: -1em;
+}
+.icon-underlined:before {
+  content: "\e91d";
 }

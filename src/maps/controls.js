@@ -3,113 +3,113 @@ import React from 'react'
 export default [
   {
     key: 'undo',
-    title: 'Undo',
+    title: '撤销',
     text: <i className="icon-undo"></i>,
     type: 'editor-state-method',
     command: 'undo'
   }, {
     key: 'redo',
-    title: 'Redo',
+    title: '重做',
     text: <i className="icon-redo"></i>,
     type: 'editor-state-method',
     command: 'redo'
   }, {
     key: 'bold',
-    title: 'Bold',
+    title: '加粗',
     text: <i className="icon-bold"></i>,
     type: 'inline-style',
     command: 'bold'
   }, {
     key: 'italic',
-    title: 'Italic',
+    title: '斜体',
     text: <i className="icon-italic"></i>,
     type: 'inline-style',
     command: 'italic'
   }, {
     key: 'underline',
-    title: 'Underline',
+    title: '下划线',
     text: <i className="icon-underlined"></i>,
     type: 'inline-style',
     command: 'underline'
   }, {
     key: 'strike-through',
-    title: 'Strike Through',
+    title: '删除线',
     text: <i className="icon-strikethrough"></i>,
     type: 'inline-style',
     command: 'strikethrough',
   }, {
     key: 'superscript',
-    title: 'Superscript',
+    title: '上标',
     text: <i className="icon-superscript"></i>,
     type: 'inline-style',
     command: 'superscript'
   }, {
     key: 'subscript',
-    title: 'Subscript',
+    title: '下标',
     text: <i className="icon-subscript"></i>,
     type: 'inline-style',
     command: 'subscript'
   }, {
     key: 'headings',
-    title: 'Headings',
+    title: '标题',
     type: 'headings',
   }, {
     key: 'blockquote',
-    title: 'Blockquote',
+    title: '引用',
     text: <i className="icon-quote"></i>,
     type: 'block-type',
     command: 'blockquote',
   }, {
     key: 'code',
-    title: 'Code Block',
+    title: '代码块',
     text: <i className="icon-code"></i>,
     type: 'block-type',
     command: 'code-block'
   }, {
     key: 'list_ul',
-    title: 'Unordered List',
+    title: '无序列表',
     text: <i className="icon-list"></i>,
     type: 'block-type',
     command: 'unordered-list-item'
   }, {
     key: 'list_ol',
-    title: 'Ordered List',
+    title: '有序列表',
     text: <i className="icon-list-numbered"></i>,
     type: 'block-type',
     command: 'ordered-list-item'
   }, {
     key: 'link',
-    title: 'Link',
+    title: '超链接',
     type: 'link'
   }, {
     key: 'text-color',
-    title: 'Text Color',
+    title: '颜色',
     type: 'text-color'
   }, {
     key: 'font-size',
-    title: 'Font Size',
+    title: '字号',
     type: 'font-size'
   }, {
     key: 'font-family',
-    title: 'Font Family',
+    title: '字体',
     type: 'font-family'
   }, {
     key: 'text-align',
-    title: 'Text Align',
+    title: '文本对齐',
     type: 'text-align'
   }, {
     key: 'image',
-    title: 'Image',
+    title: '图像',
     text: <i className="icon-image"></i>,
     type: 'image'
   }, {
     key: 'video',
-    title: 'Video',
+    title: '视频',
     text: <i className="icon-film"></i>,
     type: 'video'
   }, {
     key: 'audio',
-    title: 'Audio',
+    title: '音频',
     text: <i className="icon-music"></i>,
     type: 'audio'
   }
@@ -118,44 +118,44 @@ export default [
 export const headings = [
   {
     key: 'header-one',
-    title: 'Heading 1',
-    text: <h1>Heading 1</h1>,
+    title: '标题 1',
+    text: <h1>标题 1</h1>,
     type: 'block-type',
     command: 'header-one'
   }, {
     key: 'header-two',
-    title: 'Heading 2',
-    text: <h2>Heading 2</h2>,
+    title: '标题 2',
+    text: <h2>标题 2</h2>,
     type: 'block-type',
     command: 'header-two'
   }, {
     key: 'header-three',
-    title: 'Heading 3',
-    text: <h3>Heading 3</h3>,
+    title: '标题 3',
+    text: <h3>标题 3</h3>,
     type: 'block-type',
     command: 'header-three'
   }, {
     key: 'header-four',
-    title: 'Heading 4',
-    text: <h4>Heading 4</h4>,
+    title: '标题 4',
+    text: <h4>标题 4</h4>,
     type: 'block-type',
     command: 'header-four'
   }, {
     key: 'header-five',
-    title: 'Heading 5',
-    text: <h5>Heading 5</h5>,
+    title: '标题 5',
+    text: <h5>标题 5</h5>,
     type: 'block-type',
     command: 'header-five'
   }, {
     key: 'header-six',
-    title: 'Heading 6',
-    text: <h6>Heading 6</h6>,
+    title: '标题 6',
+    text: <h6>标题 6</h6>,
     type: 'block-type',
     command: 'header-six'
   }, {
     key: 'unstyled',
-    title: 'Normal',
-    text: 'Normal',
+    title: '常规',
+    text: '常规',
     type: 'block-type',
     command: 'unstyled'
   }

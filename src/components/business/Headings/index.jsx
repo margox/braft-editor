@@ -10,7 +10,7 @@ export default class Headings extends React.Component {
     const { current, onChange } = this.props
 
     let currentHeadingIndex = headings.findIndex((item) => item.command === current)
-    let caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : 'Normal'
+    let caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : '常规'
     let isFirstItemActive = currentHeadingIndex === 0
 
     return (

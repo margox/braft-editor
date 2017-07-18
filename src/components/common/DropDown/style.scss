@@ -19,7 +19,7 @@
     width: auto;
     min-width: 100%;
     margin-top: 9px;
-    background-color: rgba(#212223, 1);
+    background-color: rgba($COLOR_DARK, 1);
     box-shadow: 2px 10px 30px rgba(#000, .3);
     opacity: 0;
     cursor: default;
@@ -30,7 +30,7 @@
       top: -10px;
       left: 50%;
       border: solid 5px transparent;
-      border-bottom-color: rgba(#212223, 1);
+      border-bottom-color: rgba($COLOR_DARK, 1);
       transform: translateX(-50%);
       transition: margin .2s;
       &.active{

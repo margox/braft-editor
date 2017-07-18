@@ -8,8 +8,13 @@ import TextColorPicker from 'components/business/TextColor'
 import FontSizePicker from 'components/business/FontSize'
 import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
+import ImagePicker from 'components/business/ImagePicker'
 
 export default class ControlBar extends React.Component {
+
+  imagePicker = null
+  videoPicker = null
+  audioPicker = null
 
   render () {
 
@@ -21,97 +26,111 @@ export default class ControlBar extends React.Component {
 
     return (
       <div className="BraftEditor-controlBar">
-      {
-        controls.map((item, index) => {
+        <ImagePicker ref={(instance) => this.imagePicker = instance}/>
+        {
+          controls.map((item, index) => {
 
-          if (item.toLowerCase() === 'split') {
-            return <span key={index} className="split-line"></span>
-          }
+            if (item.toLowerCase() === 'split') {
+              return <span key={index} className="split-line"></span>
+            }
 
-          let controlItem = SupportedControls.find((subItem) => {
-            return subItem.key.toLowerCase() === item.toLowerCase()
-          })
+            let controlItem = SupportedControls.find((subItem) => {
+              return subItem.key.toLowerCase() === item.toLowerCase()
+            })
 
-          if (!controlItem) {
-            return null
-          }
+            if (!controlItem) {
+              return null
+            }
 
-          if (controlItem.type === 'headings') {
+            if (controlItem.type === 'headings') {
 
-            return <HeadingPicker
-              key={index}
-              current={currentBlockType}
-              onChange={(command) => this.applyControl(command, 'block-type')}
-            />
+              return <HeadingPicker
+                key={index}
+                current={currentBlockType}
+                onChange={(command) => this.applyControl(command, 'block-type')}
+              />
 
-          } else if (controlItem.type === 'text-color') {
+            } else if (controlItem.type === 'text-color') {
 
-            return <TextColorPicker
-              key={index}
-              {...{selection, editorState, currentInlineStyle}}
-              onChange={(editorState) => this.applyEditorState(editorState)}
-            />
-
-          } else if (controlItem.type === 'font-size') {
-
-            return <FontSizePicker
-              key={index}
-              defaultCaption={controlItem.title}
-              {...{selection, editorState, currentInlineStyle}}
-              onChange={(editorState) => this.applyEditorState(editorState)}
-            />
-
-          } else if (controlItem.type === 'font-family') {
-
-            return <FontFamilyPicker
-              key={index}
-              defaultCaption={controlItem.title}
-              {...{selection, editorState, currentInlineStyle}}
-              onChange={(editorState) => this.applyEditorState(editorState)}
-            />
-
-          } else if (controlItem.type === 'link') {
-
-            return <LinkEditor
-              key={index}
-              defaultCaption={controlItem.title}
-              {...{selection, editorState, contentState}}
-              onChange={(editorState) => this.applyEditorState(editorState)}
-            />
-
-          } else if (controlItem.type === 'text-align') {
-
-            return (
-              <TextAlign
+              return <TextColorPicker
                 key={index}
                 {...{selection, editorState, currentInlineStyle}}
                 onChange={(editorState) => this.applyEditorState(editorState)}
               />
-            )
 
-          } else {
+            } else if (controlItem.type === 'font-size') {
 
-            let buttonClassName = this.getControlItemClassName({
-              type: controlItem.type,
-              command: controlItem.command,
-              currentBlockType, currentInlineStyle
-            })
-
-            return (
-              <button
+              return <FontSizePicker
                 key={index}
-                title={controlItem.title}
-                className={buttonClassName}
-                onClick={() => this.applyControl(controlItem.command, controlItem.type)}
-              >
-                {controlItem.text}
-              </button>
-            )
- 
-          }
+                defaultCaption={controlItem.title}
+                {...{selection, editorState, currentInlineStyle}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
 
-        })
-      }
+            } else if (controlItem.type === 'font-family') {
+
+              return <FontFamilyPicker
+                key={index}
+                defaultCaption={controlItem.title}
+                {...{selection, editorState, currentInlineStyle}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
+
+            } else if (controlItem.type === 'link') {
+
+              return <LinkEditor
+                key={index}
+                defaultCaption={controlItem.title}
+                {...{selection, editorState, contentState}}
+                onChange={(editorState) => this.applyEditorState(editorState)}
+              />
+
+            } else if (controlItem.type === 'text-align') {
+
+              return (
+                <TextAlign
+                  key={index}
+                  {...{selection, editorState, currentInlineStyle}}
+                  onChange={(editorState) => this.applyEditorState(editorState)}
+                />
+              )
+
+            } else if (controlItem.type === 'image') {
+
+              return (
+                <button
+                  key={index}
+                  title={controlItem.title}
+                  className='control-item button'
+                  onClick={() => this.showImagePicker()}
+                >
+                  {controlItem.text}
+                </button>
+              )
+
+            } else {
+
+              let buttonClassName = this.getControlItemClassName({
+                type: controlItem.type,
+                command: controlItem.command,
+                currentBlockType, currentInlineStyle
+              })
+
+              return (
+                <button
+                  key={index}
+                  title={controlItem.title}
+                  className={buttonClassName}
+                  onClick={() => this.applyControl(controlItem.command, controlItem.type)}
+                >
+                  {controlItem.text}
+                </button>
+              )
+  
+            }
+
+          })
+        }
       </div>
     )
 
@@ -150,6 +169,10 @@ export default class ControlBar extends React.Component {
 
   applyEditorState (editorState) {
     this.props.onChange(editorState)
+  }
+
+  showImagePicker () {
+    this.imagePicker.show()
   }
 
 }

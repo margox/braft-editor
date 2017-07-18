@@ -5,20 +5,14 @@ import { UniqueIndex } from 'utils/base'
 
 export default class DropDown extends React.Component {
 
-  constructor (props) {
-
-    super(props)
-
-    this.alive = false
-    this.responsiveResolveId = null
-    this.dropDownHandlerElement = null
-    this.dropDownContentElement = null
-    this.componentId = props.componentId || ('BRAFT-DROPDOWN-' + UniqueIndex())
-    this.state = {
-      active: false,
-      offset: 0
-    }
-
+  alive = false
+  responsiveResolveId = null
+  dropDownHandlerElement = null
+  dropDownContentElement = null
+  componentId = this.props.componentId || ('BRAFT-DROPDOWN-' + UniqueIndex())
+  state = {
+    active: false,
+    offset: 0
   }
 
   componentDidMount () {

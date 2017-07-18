@@ -62,7 +62,7 @@ export default class LinkEditor extends React.Component {
                 type="text"
                 value={href}
                 spellCheck={false}
-                placeholder="LINK URL"
+                placeholder="键入链接地址"
                 onChange={(e) => {
                   this.setState({
                     href: e.target.value
@@ -79,15 +79,15 @@ export default class LinkEditor extends React.Component {
                   })
                 }}
               />
-              <label>Open this link in new window</label>
+              <label>在新窗口打开此链接</label>
             </div>
             <div className="buttons">
               <a onClick={() => this.handleUnlink()} className="primary pull-left" href="javascript:void(0);">
                 <i className="icon-delete"></i>
-                <span>Unink</span>
+                <span>移除链接</span>
               </a>
-              <button onClick={() => this.handleConfirm()} className="primary pull-right">Confirm</button>
-              <button onClick={() => this.handleCancel()} className="default pull-right">Cancel</button>
+              <button onClick={() => this.handleConfirm()} className="primary pull-right">确认</button>
+              <button onClick={() => this.handleCancel()} className="default pull-right">取消</button>
             </div>
           </div>
         </DropDown>

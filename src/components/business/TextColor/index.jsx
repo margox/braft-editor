@@ -11,8 +11,8 @@ export default class TextColor extends React.Component {
   state = {
     colorType: 'color'
   }
-  dropDownComponent = {}
-  dropDownComponentId = 'BRAFT-DROPDOWN-' + UniqueIndex()
+  dropDown = {}
+  dropDownId = 'BRAFT-DROPDOWN-' + UniqueIndex()
 
   render () {
 
@@ -49,24 +49,24 @@ export default class TextColor extends React.Component {
       <DropDown
         caption={caption}
         showDropDownArrow={false}
-        componentId={this.dropDownComponentId}
-        ref={(instance) => this.dropDownComponent = instance}
+        componentId={this.dropDownId}
+        ref={(instance) => this.dropDown = instance}
         className={"control-item dropdown text-color-dropdown"}
       >
         <div className="text-color-picker-wrap">
           <div className="switch-buttons">
             <button
               data-keep-active={true}
-              data-braft-component-id={this.dropDownComponentId}
+              data-braft-component-id={this.dropDownId}
               className={colorType === 'color' ? 'active' : ''}
               onClick={(e) => this.switchColorType('color', e)}
-            >Text</button>
+            >文字颜色</button>
             <button
               data-keep-active={true}
-              data-braft-component-id={this.dropDownComponentId}
+              data-braft-component-id={this.dropDownId}
               className={colorType === 'backgroundColor' ? 'active' : ''}
               onClick={(e) => this.switchColorType('backgroundColor', e)}
-            >Background</button>
+            >背景颜色</button>
           </div>
           <ColorPicker
             width={200}
@@ -114,7 +114,7 @@ export default class TextColor extends React.Component {
     }
 
     this.props.onChange(nextEditorState)
-    this.dropDownComponent.hide()
+    this.dropDown.hide()
 
   }
 
