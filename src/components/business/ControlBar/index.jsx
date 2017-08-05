@@ -27,6 +27,8 @@ export default class ControlBar extends React.Component {
     return (
       <div className="BraftEditor-controlBar">
         <ImagePicker
+          editorState={editorState}
+          contentState={contentState}
           ref={(instance) => this.imagePicker = instance}
           onChange={(editorState) => this.applyEditorState(editorState)}
         />

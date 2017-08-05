@@ -11,13 +11,7 @@ module.exports = {
           {
             loader: 'style-loader',
           }, {
-            loader: 'css-loader',
-            // options: {
-            //   modules: true,
-            //   camelCase: true,
-            //   importLoaders: 1,
-            //   localIdentName: '[local]-[hash:base64:6]'
-            // }
+            loader: 'css-loader'
           }, {
             loader: 'postcss-loader'
           }, {

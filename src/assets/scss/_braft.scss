@@ -8,6 +8,9 @@
 
   .BraftEditor-content{
     overflow: auto;
+    img{
+      user-select: none;
+    }
   }
 
   .input-group{

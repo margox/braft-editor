@@ -9,3 +9,15 @@ export const UniqueIndex = () => {
   return window.__BRAFT_UNIQUE_INDEX__ 
 
 }
+
+export const imageToURL = (file) => {
+
+  return new Promise((resolve, reject) => {
+    try {
+      resolve(URL.createObjectURL(file))
+    } catch (e) {
+      reject(e)
+    }
+  })
+
+}

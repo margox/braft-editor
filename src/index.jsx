@@ -6,6 +6,7 @@ import { CompositeDecorator, Editor, EditorState, Modifier, RichUtils } from 'dr
 import { convertFromHTML, convertToHTML } from 'draft-convert'
 import defaultOptions from 'configs/options'
 import decorators from 'decorators'
+import mediaBlockRenderer from 'medias'
 import blockStyles from 'maps/blockStyles'
 import inlineStyles from 'maps/inlineStyles'
 import ControlBar from 'components/business/ControlBar'
@@ -60,6 +61,7 @@ export default class BraftEditor extends React.Component {
     const editorProps = {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
+      blockRendererFn: mediaBlockRenderer,
       onChange: this.onChange,
       customStyleMap: inlineStyles,
       blockStyleFn: blockStyles
