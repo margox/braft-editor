@@ -50,11 +50,16 @@
     }
   }
 
+  .dropdown-handler{
+    border-radius: 3px;
+  }
+
   .control-item{
     display: block;
     float: left;
     height: 36px;
     margin: 5px 0 5px 3px;
+    border-radius: 3px;
     cursor: pointer;
     &:first-child{
       margin-left: 0;

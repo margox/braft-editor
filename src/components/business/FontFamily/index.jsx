@@ -28,6 +28,7 @@ export default class FontFamily extends React.Component {
     return (
       <DropDown
         caption={caption}
+        hoverTitle="字体"
         arrowActive={isFirstItemActive}
         className={"control-item dropdown font-family-dropdown"}
       >

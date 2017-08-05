@@ -26,6 +26,7 @@ export default class FontSize extends React.Component {
     return (
       <DropDown
         caption={caption}
+        hoverTitle="字号"
         className={"control-item dropdown font-size-dropdown"}
       >
         <ul className="font-sizes-wrap">

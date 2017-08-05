@@ -15,12 +15,14 @@
     width: 60px;
     height: 30px;
     background-color: rgba(#fff, .1);
+    border-radius: 3px;
     margin: 5px;
     color: #fff;
     font-size: 12px;
     line-height: 30px;
     text-align: center;
     text-transform: uppercase;
+    cursor: pointer;
     transition: .3s;
     &:hover{
       background-color: rgba(#fff, .2);

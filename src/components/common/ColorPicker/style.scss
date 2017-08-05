@@ -1,5 +1,10 @@
 @import '~sassinc';
 
+.text-color-dropdown .dropdown-handler span{
+  width: 36px;
+  padding-left: 0;
+}
+
 .braft-color-list{
   list-style: none;
   width: 240px;
@@ -13,7 +18,6 @@
     height: 24px;
     margin: 5px;
     padding: 0;
-    background-clip: content-box;
     background-color: currentColor;
     border: 3px solid transparent;
     border-radius: 50%;
@@ -23,7 +27,7 @@
       transform: scale(.98);
     }
     &.active{
-      box-shadow: 0 0 0 1px $COLOR_ACTIVE;
+      box-shadow: 0 0 0 2px $COLOR_ACTIVE;
     }
   }
 }

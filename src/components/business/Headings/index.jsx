@@ -16,6 +16,7 @@ export default class Headings extends React.Component {
     return (
       <DropDown
         caption={caption}
+        hoverTitle={'标题'}
         arrowActive={isFirstItemActive}
         className={"control-item dropdown headings-dropdown"}
       >

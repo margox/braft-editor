@@ -52,7 +52,7 @@ export default class DropDown extends React.Component {
   render () {
 
     let { active, offset } = this.state
-    let { caption, disabled, showDropDownArrow, arrowActive, className, children } = this.props
+    let { caption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children } = this.props
 
     disabled && (active = false)
 
@@ -63,6 +63,7 @@ export default class DropDown extends React.Component {
       >
         <button
           className="dropdown-handler"
+          title={hoverTitle}
           data-braft-component-id={this.componentId}
           ref={(instance) => this.dropDownHandlerElement = instance}
         >

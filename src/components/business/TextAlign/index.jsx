@@ -3,6 +3,7 @@ import { Modifier, EditorState, RichUtils } from 'draft-js'
 import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils'
 
 const textAlignments = ['left', 'center', 'right', 'justify']
+const textAlignmentTitles = ['左对齐', '居中对齐', '右对齐', '两端对齐']
 
 export default class TextAlign extends React.Component {
 
@@ -48,6 +49,7 @@ export default class TextAlign extends React.Component {
             return (
               <button
                 key={index}
+                title={textAlignmentTitles[index]}
                 className={'control-item button ' + (item === currentAlignment ? 'active' : null)}
                 onClick={() => this.setAlignment(item)}
               >

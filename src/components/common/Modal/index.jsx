@@ -34,7 +34,7 @@ export default class Modal extends React.Component {
 
     if (this.props.visible && !next.visible) {
       this.unrenderComponent()
-    } else if (!this.props.visible && next.visible) {
+    } else if (this.props.visible || next.visible) {
       this.renderComponent(next)
     }
 
@@ -66,7 +66,10 @@ export default class Modal extends React.Component {
             <button onClick={() => this.close()} className="braft-modal-close-button"><i className="icon-close"></i></button>
           </div>
           <div className="braft-modal-body">{children}</div>
-          <div className="braft-modal-footer"></div>
+          <div className="braft-modal-footer">
+            <button className="braft-modal-cancel">取消</button>
+            <button className="braft-modal-confirm">确定</button>
+          </div>
         </div>
       </div>
     )

@@ -6,8 +6,11 @@ export default class ImagePicker extends React.Component {
 
   state = {
     visible: false,
-    images: [],
-    selected: []
+    showDragUploader: true,
+    showURLUploader: false,
+    src: '',
+    width: '',
+    height: ''
   }
 
   componentDidMount () {
@@ -16,23 +19,37 @@ export default class ImagePicker extends React.Component {
 
   render () {
 
-    const { visible } = this.state
+    const { visible, src, showDragUploader, showURLUploader } = this.state
 
     return (
       <Modal
-        title="选取图像"
+        title={"选取图像"}
         width={640}
         height={480}
         visible={visible}
         onClose={() => this.hide()}
-        onConfirm={() => this.onChange()}
+        onConfirm={() => this.onConfirm()}
       >
         <div className="braft-image-picker">
           <div className="braft-image-uploader">
-            <div className="braft-image-upload-tip">
-              <i className="icon-image"></i>
-              <span>拖动文件至此或点击来上传图像.</span>
+          {showDragUploader ? (
+            <div className="braft-image-drag-uploader">
+              <span className="braft-image-upload-tip">点击或拖动图片至此</span>
+              <div className="braft-image-uploader-switch-type">
+                <button onClick={() => this.switchUploadType('url')}>输入图片地址</button>
+              </div>
             </div>
+          ) : null}
+          {showURLUploader ? (
+            <div className="braft-image-url-uploader">
+              <div className="braft-image-url-input">
+                <input value={src} onChange={(e) => this.setImageURL(e.target.value)} placeholder="输入图片地址并回车"/>
+              </div>
+              <div className="braft-image-uploader-switch-type">
+                <button onClick={() => this.switchUploadType('drag')}>选择本地图片</button>
+              </div>
+            </div>
+          ) : null}
           </div>
         </div>
       </Modal>
@@ -40,9 +57,30 @@ export default class ImagePicker extends React.Component {
 
   }
 
-  onChange () {
-    const { images, selected } = this.state
-    this.props.onChange && this.props.onChange(images, selected)
+  onConfirm () {
+
+    const { editorState, onChange } = this.state
+    const { src, width, height } = this.state
+    const entityData = { src, height, width }
+    const entityKey = editorState
+      .getCurrentContent()
+      .createEntity('IMAGE', 'MUTABLE', entityData)
+      .getLastCreatedEntityKey()
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock( editorState, entityKey, ' ')
+
+    onChange(newEditorState)
+
+  }
+
+  setImageURL (imageURL) {
+    this.setState({ imageURL })
+  }
+
+  switchUploadType (type) {
+    this.setState({
+      showDragUploader: type === 'drag',
+      showURLUploader: type === 'url'
+    })
   }
 
   show () {

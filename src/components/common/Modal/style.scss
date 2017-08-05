@@ -18,34 +18,34 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(#fff, .3);
+  background-color: rgba(#000, .1);
   opacity: 0;
-  transition: opacity .3s;
+  transition: opacity .2s;
 }
 .braft-modal-content{
   position: absolute;
   z-index: 2;
-  top: 45%;
+  top: 50%;
   left: 50%;
   max-width: 95%;
   max-height: 95%;
-  transform: translate(-50%, -50%), scale(.98);
-  background-color: $COLOR_DARK;
-  box-shadow: 0 0 .5px 0 rgba(#000, .2), 0 15px 30px rgba(#000, .1);
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 .5px rgba(#000, .2), 0 15px 30px rgba(#000, .1);
   opacity: 0;
-  transition: transform .3s, opacity .3s;
+  transform: translate(-50%, -55%);
+  transition: transform .2s, opacity .2s;
 }
 .braft-modal-header{
   height: 48px;
-  background-color: rgba(#fff, .05);
-  box-shadow: 0 .5px 0 0 rgba(#000, .3);
 }
 .braft-modal-caption{
   float: left;
   margin: 0;
   padding: 0 15px;
-  color: rgba(#fff, 1);
+  color: rgba(#999, 1);
   font-size: 14px;
+  font-weight: normal;
   line-height: 48px;
 }
 .braft-modal-close-button{
@@ -54,11 +54,12 @@
   height: 48px;
   background-color: transparent;
   border: none;
-  color: rgba(#fff, .4);
+  color: $COLOR_DANGER;
   font-size: 18px;
   cursor: pointer;
+  transition: transform .3s;
   &:hover{
-    color: $COLOR_DANGER;
+    transform: rotate(180deg);
   }
 }
 .braft-modal-body{
@@ -76,8 +77,34 @@
   left: 0;
   height: 60px;
   width: 100%;
-  background-color: rgba(#fff, .05);
-  box-shadow: 0 -.5px 0 0 rgba(#000, .3);
+  overflow: hidden;
+  text-align: center;
+}
+.braft-modal-cancel,
+.braft-modal-confirm{
+  height: 36px;
+  margin: 6px 10px;
+  padding: 0 30px;
+  border: none;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: .3s;
+}
+.braft-modal-cancel{
+  background-color: transparent;
+  box-shadow: inset 0 0 0 .5px rgba(#000, .5);
+  color: #999;
+  &:hover{
+    background-color: #f1f2f3;
+  }
+}
+.braft-modal-confirm{
+  background-color: $COLOR_ACTIVE;
+  color: #fff;
+  &:hover{
+    background-color: $COLOR_ACTIVE - 20;
+  }
 }
 
 .braft-modal-root.active{
@@ -86,6 +113,6 @@
   }
   .braft-modal-content{
     opacity: 1;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -60%);
   }
 }

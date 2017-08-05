@@ -48,6 +48,7 @@ export default class TextColor extends React.Component {
     return (
       <DropDown
         caption={caption}
+        hoverTitle="颜色"
         showDropDownArrow={false}
         componentId={this.dropDownId}
         ref={(instance) => this.dropDown = instance}

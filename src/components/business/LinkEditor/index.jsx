@@ -51,6 +51,7 @@ export default class LinkEditor extends React.Component {
       <div className="control-item-group">
         <DropDown
           caption={caption}
+          hoverTitle={'添加链接'}
           hideOnBlur={false}
           showDropDownArrow={false}
           ref={(instance) => this.dropDownComponent = instance}
@@ -92,7 +93,7 @@ export default class LinkEditor extends React.Component {
           </div>
         </DropDown>
         <button
-          title={'Unlink'}
+          title={'移除链接'}
           className="control-item button"
           onClick={() => this.handleUnlink()}
         >
