@@ -6,18 +6,10 @@ import { CompositeDecorator, Editor, EditorState, Modifier, RichUtils } from 'dr
 import { convertFromHTML, convertToHTML } from 'draft-convert'
 import defaultOptions from 'configs/options'
 import decorators from 'decorators'
-import mediaBlockRenderer from 'medias'
 import blockStyles from 'maps/blockStyles'
+import blockRenderers from 'maps/blockRenderers'
 import inlineStyles from 'maps/inlineStyles'
 import ControlBar from 'components/business/ControlBar'
-
-/**
- * TODOS
- * 1. Image Uploader, before Jul 20
- * 2. Video / Audio Uploader, before Jul 25
- * 3. Emoji Picker, before Jul 21
- * 4. Image Editor, before Aug 5
- */
 
 export default class BraftEditor extends React.Component {
 
@@ -61,10 +53,10 @@ export default class BraftEditor extends React.Component {
     const editorProps = {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
-      blockRendererFn: mediaBlockRenderer,
       onChange: this.onChange,
       customStyleMap: inlineStyles,
-      blockStyleFn: blockStyles
+      blockStyleFn: blockStyles,
+      blockRendererFn: blockRenderers
     }
 
     return (

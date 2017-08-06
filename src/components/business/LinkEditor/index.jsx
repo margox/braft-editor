@@ -87,7 +87,7 @@ export default class LinkEditor extends React.Component {
                 <i className="icon-delete"></i>
                 <span>移除链接</span>
               </a>
-              <button onClick={() => this.handleConfirm()} className="primary pull-right">确认</button>
+              <button onClick={() => this.handleConfirm()} className="primary pull-right">确定</button>
               <button onClick={() => this.handleCancel()} className="default pull-right">取消</button>
             </div>
           </div>

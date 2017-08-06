@@ -7,7 +7,6 @@
   "scripts": {
     "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 5998",
     "build": "rm -rf dist/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
-    "prepublish": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "license": "MIT",

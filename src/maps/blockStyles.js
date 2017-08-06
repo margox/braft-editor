@@ -6,6 +6,6 @@ export default function blockStyleFn (block) {
     return `braft-${blockAlignment}-aligned-block`
   }
 
-  return ''
+  return null
 
 }

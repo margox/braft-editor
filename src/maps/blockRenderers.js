@@ -3,11 +3,6 @@ import React from 'react'
 const Media = (props) => {
 
   const entityKey = props.block.getEntityAt(0)
-
-  if (typeof entityKey === 'undefined') {
-    return null
-  }
-
   const entity = props.contentState.getEntity(props.block.getEntityAt(0))
   const mediaData = entity.getData()
   const mediaType = entity.getType()
@@ -18,11 +13,15 @@ const Media = (props) => {
     )
   } else if (mediaType === 'AUDIO') {
      return (
-      <audio {...mediaData} />
+      <audio controls {...mediaData} />
     )
   } else if (mediaType === 'VIDEO') {
     return (
-      <video {...mediaData} />
+      <video controls {...mediaData} />
+    )
+  } else if (mediaType === 'FILE') {
+    return (
+      <a download={mediaData.title} {...mediaData}>{mediaData.title}</a>
     )
   }
 

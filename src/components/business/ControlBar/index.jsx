@@ -8,11 +8,11 @@ import TextColorPicker from 'components/business/TextColor'
 import FontSizePicker from 'components/business/FontSize'
 import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
-import ImagePicker from 'components/business/ImagePicker'
+import MediaPicker from 'components/business/MediaPicker'
 
 export default class ControlBar extends React.Component {
 
-  imagePicker = null
+  mediaPicker = null
   videoPicker = null
   audioPicker = null
 
@@ -26,10 +26,10 @@ export default class ControlBar extends React.Component {
 
     return (
       <div className="BraftEditor-controlBar">
-        <ImagePicker
+        <MediaPicker
           editorState={editorState}
           contentState={contentState}
-          ref={(instance) => this.imagePicker = instance}
+          ref={(instance) => this.mediaPicker = instance}
           onChange={(editorState) => this.applyEditorState(editorState)}
         />
         {
@@ -107,7 +107,7 @@ export default class ControlBar extends React.Component {
                   key={index}
                   title={controlItem.title}
                   className='control-item button'
-                  onClick={() => this.showImagePicker()}
+                  onClick={() => this.showMediaPicker()}
                 >
                   {controlItem.text}
                 </button>
@@ -176,8 +176,8 @@ export default class ControlBar extends React.Component {
     this.props.onChange(editorState)
   }
 
-  showImagePicker () {
-    this.imagePicker.show()
+  showMediaPicker () {
+    this.mediaPicker.show()
   }
 
 }
