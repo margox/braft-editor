@@ -10,14 +10,19 @@ export const UniqueIndex = () => {
 
 }
 
-export const imageToURL = (file) => {
+export const isPromise = (obj) => {
 
-  return new Promise((resolve, reject) => {
-    try {
-      resolve(URL.createObjectURL(file))
-    } catch (e) {
-      reject(e)
-    }
-  })
+  return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function'
+
+}
+
+export const imageToURL = (param) => {
+
+  setTimeout(() => {
+    param.onSuccess({
+      url: URL.createObjectURL(param.file),
+      name: param.file.name
+    })
+  }, 1000)
 
 }

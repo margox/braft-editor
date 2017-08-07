@@ -98,20 +98,10 @@ export default [
     title: '文本对齐',
     type: 'text-align'
   }, {
-    key: 'image',
+    key: 'media',
     title: '图像',
-    text: <i className="icon-image"></i>,
-    type: 'image'
-  }, {
-    key: 'video',
-    title: '视频',
-    text: <i className="icon-film"></i>,
-    type: 'video'
-  }, {
-    key: 'audio',
-    title: '音频',
-    text: <i className="icon-music"></i>,
-    type: 'audio'
+    text: <i className="icon-media"></i>,
+    type: 'media'
   }
 ]
 

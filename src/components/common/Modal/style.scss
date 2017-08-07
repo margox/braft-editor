@@ -37,7 +37,7 @@
   transition: transform .2s, opacity .2s;
 }
 .braft-modal-header{
-  height: 48px;
+  height: 50px;
 }
 .braft-modal-caption{
   float: left;
@@ -46,25 +46,24 @@
   color: rgba(#999, 1);
   font-size: 14px;
   font-weight: normal;
-  line-height: 48px;
+  line-height: 50px;
 }
 .braft-modal-close-button{
   float: right;
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   background-color: transparent;
   border: none;
-  color: $COLOR_DANGER;
+  color: #ccc;
   font-size: 18px;
   cursor: pointer;
-  transition: transform .3s;
   &:hover{
-    transform: rotate(180deg);
+    color: $COLOR_DANGER;
   }
 }
 .braft-modal-body{
   position: absolute;
-  top: 48px;
+  top: 50px;
   right: 0;
   bottom: 60px;
   left: 0;
@@ -76,20 +75,29 @@
   bottom: 0;
   left: 0;
   height: 60px;
-  width: 100%;
+  padding: 0 15px;
   overflow: hidden;
-  text-align: center;
+}
+.braft-modal-addon-text{
+  float: left;
+  height: 60px;
+  color: #999;
+  font-size: 12px;
+  line-height: 60px;
+}
+.braft-modal-buttons{
+  float: right;
+  height: 60px;
 }
 .braft-modal-cancel,
 .braft-modal-confirm{
   height: 36px;
-  margin: 12px 10px;
+  margin: 12px 0 0 15px;
   padding: 0 30px;
   border: none;
   border-radius: 3px;
   font-size: 14px;
   cursor: pointer;
-  transition: .3s;
 }
 .braft-modal-cancel{
   background-color: #e8e9ea;
@@ -105,8 +113,9 @@
     background-color: $COLOR_ACTIVE - 20;
   }
   &.disabled{
-    opacity: .5;
+    opacity: .3;
     pointer-events: none;
+    filter: grayscale(.4);
   }
 }
 

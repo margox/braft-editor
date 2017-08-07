@@ -29,26 +29,11 @@ $svgPath: '../icons/icomoon.svg?sirizn';
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-close:before {
-  content: "\e913";
-}
-.icon-align-center:before {
-  content: "\e028";
-}
-.icon-align-justify:before {
-  content: "\e026";
-}
-.icon-align-left:before {
-  content: "\e027";
-}
-.icon-align-right:before {
-  content: "\e029";
-}
 .icon-music:before {
   content: "\e90e";
 }
-.icon-image:before {
-  content: "\e90f";
+.icon-bin:before {
+  content: "\e9ac";
 }
 .icon-camera:before {
   content: "\e911";
@@ -56,38 +41,8 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 .icon-copy:before {
   content: "\e92c";
 }
-.icon-file-excel:before {
-  content: "\eae2";
-}
-.icon-file-music:before {
-  content: "\1f6ce";
-}
-.icon-file-openoffice:before {
-  content: "\eae0";
-}
-.icon-file-pdf:before {
-  content: "\eadf";
-}
-.icon-file-picture:before {
-  content: "\e927";
-}
-.icon-file-play:before {
-  content: "\e929";
-}
 .icon-file-text:before {
   content: "\e926";
-}
-.icon-file-video:before {
-  content: "\e92a";
-}
-.icon-file-word:before {
-  content: "\eae1";
-}
-.icon-file-zip:before {
-  content: "\e92b";
-}
-.icon-files-empty:before {
-  content: "\e925";
 }
 .icon-film:before {
   content: "\e91c";
@@ -134,6 +89,9 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 .icon-undo:before {
   content: "\e967";
 }
+.icon-media:before {
+  content: "\e90f";
+}
 .icon-add:before {
   content: "\e918";
 }
@@ -142,9 +100,6 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 }
 .icon-code:before {
   content: "\e903";
-}
-.icon-delete:before {
-  content: "\e914";
 }
 .icon-done:before {
   content: "\e912";
@@ -237,4 +192,19 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 }
 .icon-underlined:before {
   content: "\e91d";
+}
+.icon-close:before {
+  content: "\e913";
+}
+.icon-align-center:before {
+  content: "\e028";
+}
+.icon-align-justify:before {
+  content: "\e026";
+}
+.icon-align-left:before {
+  content: "\e027";
+}
+.icon-align-right:before {
+  content: "\e029";
 }

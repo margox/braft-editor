@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState } from 'draft-js'
-import SupportedControls from 'maps/controls'
+import SupportedControls from 'configs/controls'
 import LinkEditor from 'components/business/LinkEditor'
 import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
@@ -100,7 +100,7 @@ export default class ControlBar extends React.Component {
                 />
               )
 
-            } else if (controlItem.type === 'image') {
+            } else if (controlItem.type === 'media') {
 
               return (
                 <button

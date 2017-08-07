@@ -1,7 +1,8 @@
 @import '~sassinc';
 
 .braft-media-uploader{
-  margin: 0 15px;
+  height: 370px;
+  margin: 0;
   input::-webkit-input-placeholder{
     color: #ccc;
   }
@@ -13,20 +14,153 @@
   }
 }
 
-.braft-media-previewer{
+.braft-media-list-wrap{
+  height: 100%;
+  overflow: auto;
+  &::-webkit-scrollbar{
+    width: 5px;
+    height: 5px;
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-track{
+    background-color: #fff;
+  }
+  &::-webkit-scrollbar-thumb{
+    background-color: rgba(#000, .1);
+  }
+}
+.braft-media-list{
+  margin: 0;
+  padding: 0 10px;
+  list-style: none;
+  overflow: hidden;
+}
+
+.braft-media-item,
+.braft-media-add-item{
+  position: relative;
+  display: block;
+  float: left;
+  width: 113px;
+  height: 113px;
+  margin: 5px;
+  overflow: hidden;
+  border-radius: 3px;
+}
+
+.braft-media-add-item{
+  background-color: #ecedef;
+  color: #999;
+  &:hover{
+    background-color: #e1e2e3;
+    color: $COLOR_ACTIVE;
+  }
+  i{
+    display: block;
+    width: 113px;
+    height: 113px;
+    font-size: 48px;
+    line-height: 113px;
+    text-align: center;
+  }
+  input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.braft-media-item{
+  &::before{
+    display: none;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    width: 113px;
+    height: 113px;
+    color: #fff;
+    font-size: 48px;
+    font-family: 'icomoon';
+    line-height: 113px;
+    text-align: center;
+    content: "\e912";
+  }
+  &::after{
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba($COLOR_ACTIVE, 0);
+    content: '';
+  }
+  &:hover{
+    &::after{
+      background-color: rgba($COLOR_ACTIVE, .3);
+    }
+    .braft-media-item-remove{
+      display: block;
+    }
+  }
+  &.active{
+    &::before{
+      display: block;
+    }
+    &::after{
+      background-color: rgba($COLOR_ACTIVE, .6);
+    }
+    &:hover {
+      &::after{
+        background-color: rgba($COLOR_ACTIVE, .8);
+      }
+      .braft-media-item-remove{
+        display: none;
+      }
+    }
+  }
+}
+
+.braft-media-item-remove{
+  display: none;
   position: absolute;
   z-index: 2;
   top: 0;
-  right: 10px;
-  left: 10px;
-  height: 100%;
-  overflow: hidden;
-  background-color: #fff;
+  right: 0;
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  font-size: 18px;
+  line-height: 28px;
+  text-align: center;
+  &:hover{
+    color: $COLOR_DANGER;
+  }
 }
 
-.braft-media-preview-content{
+.braft-media-item-title{
+  display: none;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 2;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: 40px;
+  padding: 0 5px;
+  overflow: hidden;
+  background-image: linear-gradient(rgba(#000, 0), rgba(#000, 1));
+  color: #fff;
+  font-size: 12px;
+  line-height: 55px;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .braft-media-image{
@@ -35,79 +169,52 @@
   height: 100%;
   background-color: #eee;
   object-fit: cover;
+  user-select: none;
 }
 .braft-media-video{
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-color: #eee;
-  object-fit: contain;
+  background-color: #8e44ad;
 }
 .braft-media-audio{
-  display: block;
-  width: 500px;
-  height: 50%;
-  margin: 0 auto;
+  background-color: #2980b9;
 }
 .braft-media-file{
-
+  background-color: #34495e;
 }
-
-.braft-media-preview-tools{
-  visibility: hidden;
-  position: absolute;
-  z-index: 2;
-  top: 10px;
-  left: 50%;
-  opacity: 0;
-  transform: translate(-50%, -5px);
-  transition: transform .3s, opacity .3s, visibility .3s;
-  button{
-    display: inline-block;
-    width: 40px;
-    height: 40px;
-    margin: 0 10px;
-    background-color: rgba(#000, .7);
-    border: none;
-    border-radius: 50%;
-    outline: none;
-    color: #fff;
-    font-size: 18px;
-    line-height: 42px;
-    cursor: pointer;
-    transition: background .3s, color .3s;
-    &.active{
-      color: $COLOR_ACTIVE;
-    }
-    &:hover{
-      background-color: $COLOR_ACTIVE;
-      color: #fff;
-    }
+.braft-media-icon{
+  display: block;
+  width: 113px;
+  height: 113px;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  i, span{
+    display: block;
+  }
+  i{
+    margin-top: 35px;
+    font-size: 24px;
+  }
+  span{
+    width: 103px;
+    margin: 10px auto;
+    overflow: hidden;
+    font-size: 12px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 }
 
-.braft-media-previewer:hover .braft-media-preview-tools{
-  visibility: visible;
-  opacity: 1;
-  transform: translate(-50%, 0);
-}
-
 .braft-media-drag-uploader{
-  height: 370px;
-  margin: auto;
+  height: 368px;
+  margin: 0 15px;
   border: dashed 1px #bbb;
   border-radius: 3px;
   text-align: center;
-  transition: border .3s;
   &.active{
     border-color: rgba($COLOR_ACTIVE, 1);
     .braft-media-drag-tip{
-      position: static;
       color: $COLOR_ACTIVE;
-    }
-    .braft-media-uploader-switch-mode{
-      pointer-events: none;
-      opacity: 0;
     }
   }
 }
@@ -119,15 +226,13 @@
 }
 
 .braft-media-drag-tip{
-  position: relative;
   display: inline-block;
-  margin-top: 130px;
+  margin-top: 140px;
   color: #ccc;
   text-align: center;
   font-size: 28px;
-  font-weight: normal;
+  font-weight: lighter;
   line-height: 40px;
-  transition: color .3s;
   &:hover{
     color: $COLOR_ACTIVE;
   }
@@ -143,8 +248,25 @@
   }
 }
 
-.braft-media-url-input{
-  position: relative;
+.braft-media-toggle-external-mode{
+  color: #bbb;
+  cursor: pointer;
+  &:hover{
+    color: $COLOR_ACTIVE;
+  }
+}
+
+.braft-media-add-external{
+  position: absolute;
+  z-index: 3;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #fff;
+}
+
+.braft-media-external-form{
   width: 500px;
   max-width: 90%;
   margin: 91px auto 0 auto;
@@ -152,6 +274,7 @@
     box-sizing: border-box;
     width: 100%;
     height: 40px;
+    margin-bottom: 10px;
     padding: 0 10px;
     border: none;
     border-radius: 3px;
@@ -165,12 +288,11 @@
   }
 }
 
-.braft-media-switch-type{
+.braft-media-switch-external-type{
   height: 30px;
   margin-top: 10px;
   overflow: hidden;
   text-align: center;
-  transition: opacity .3s;
   button{
     width: 60px;
     height: 30px;
@@ -181,7 +303,6 @@
     color: #999;
     font-size: 12px;
     cursor: pointer;
-    transition: background .3s, color .3s;
     &:hover{
       background-color: #d8d9da;
     }
@@ -195,20 +316,10 @@
   }
 }
 
-.braft-media-uploader-switch-mode{
+.braft-media-external-tip{
+  display: block;
   margin-top: 15px;
+  color: #ccc;
+  font-size: 12px;
   text-align: center;
-  button{
-    display: inline-block;
-    margin: 0 5px;
-    background-color: transparent;
-    border: none;
-    color: #ccc;
-    font-size: 12px;
-    cursor: pointer;
-    transition: color .3s;
-    &:hover{
-      color: $COLOR_ACTIVE;
-    }
-  }
 }

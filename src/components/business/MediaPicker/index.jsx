@@ -2,84 +2,97 @@ import './style.scss'
 import React from 'react'
 import { AtomicBlockUtils, EditorState } from 'draft-js'
 import Modal from 'components/common/Modal'
-import { imageToURL } from 'utils/base'
+import Uploader from 'helpers/uploader'
+import { UniqueIndex } from 'utils/base'
 
 export default class MediaPicker extends React.Component {
 
   state = {
     visible: false,
-    showDragUploader: true,
-    showURLUploader: false,
-    showPreview: false,
+    showExternalForm: false,
     draging: false,
-    uploading: false,
     error: false,
-    inputedURL: '',
-    type: 'IMAGE',
-    src: '',
-    width: '',
-    height: ''
+    confirmable: false,
+    external: {
+      url: '',
+      type: 'IMAGE'
+    },
+    files: []
+  }
+
+  componentDidMount () {
+
+    this.uploader = new Uploader()
+    this.uploader.uploadFn = this.props.uploadFn || null
+    this.uploader.onChange = (files) => {
+      this.setState({
+        files,
+        confirmable: !!files.filter(item => item.selected).length
+      })
+    }
+
   }
 
   render () {
 
-    const {
-      visible,
-      type,
-      src,
-      inputedURL,
-      draging,
-      showPreview,
-      showDragUploader,
-      showURLUploader
-    } = this.state
+    const { files, visible, external, draging, confirmable, showExternalForm } = this.state
+    const bottomText = (
+      <span 
+        onClick={() => this.toggleExternalMode()}
+        className="braft-media-toggle-external-mode"
+      >
+        {showExternalForm ? (
+          <span><i className="icon-add"></i> 添加本地文件</span>
+        ) : (
+          <span><i className="icon-add"></i> 添加网络资源</span>
+        )}
+      </span>
+    )
 
     return (
       <Modal
-        title={"插入多媒体文件"}
+        title={"插入多媒体内容"}
         width={640}
         height={480}
         visible={visible}
         className="braft-media-picker-modal"
         showClose={true}
         showCancel={true}
-        confirmable={src}
+        bottomText={bottomText}
+        confirmable={confirmable && !showExternalForm}
         onClose={() => this.hide()}
         onCancel={() => this.hide()}
-        onConfirm={() => this.onConfirm()}
+        onConfirm={() => this.confirmInsertMedia()}
       >
         <div className="braft-media-picker">
           <div className="braft-media-uploader">
-          {showPreview ? this.buildPreviewer() : null}
-          {showDragUploader ? (
+          {files.length ? (
+            <div className="braft-media-list-wrap">
+              {this.buildMediaList()}
+            </div>
+          ) : (
             <div
               onDragEnter={(e) => this.handleDragEnter(e)}
               onDragLeave={(e) => this.handleDragLeave(e)}
-              onDrop={(e) => this.handleDrop(e)}
               className={"braft-media-drag-uploader " + (draging ? 'active' : '')}
             >
               <span className="braft-media-drag-tip">
-                <input onChange={(e) => this.handleMediaPicked(e.target.files)} type="file"/>
+                <input onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
                 {draging ? '松开鼠标以上传' : '点击或拖动文件至此'}
               </span>
-              <div className="braft-media-uploader-switch-mode">
-                <button onClick={() => this.switchUploadMode('url')}>或输入在线地址</button>
-              </div>
             </div>
-          ) : null}
-          {showURLUploader ? (
-            <div className="braft-media-url-uploader">
-              <div className="braft-media-url-input">
-                <input onKeyDown={(e) => this.confirmInput(e.keyCode)} value={inputedURL} onChange={(e) => this.inputURL(e.target.value)} placeholder="输入在线地址并回车"/>
-                <div data-type={type} className="braft-media-switch-type">
-                  <button onClick={(e) => this.switchMediaType(e)} data-type="IMAGE">图片</button>
-                  <button onClick={(e) => this.switchMediaType(e)} data-type="VIDEO">视频</button>
-                  <button onClick={(e) => this.switchMediaType(e)} data-type="AUDIO">音频</button>
-                  <button onClick={(e) => this.switchMediaType(e)} data-type="FILE">其他</button>
+          )}
+          {showExternalForm ? (
+            <div className="braft-media-add-external">
+              <div className="braft-media-external-form">
+                <input onKeyDown={(e) => this.confirmAddExternal(e.keyCode)} value={external.url} onChange={(e) => this.inputExternal(e.target.value)} placeholder="资源名称|资源地址"/>
+                <div data-type={external.type} className="braft-media-switch-external-type">
+                  <button onClick={() => this.switchExternalType('IMAGE')} data-type="IMAGE">图片</button>
+                  <button onClick={() => this.switchExternalType('VIDEO')} data-type="VIDEO">视频</button>
+                  <button onClick={() => this.switchExternalType('AUDIO')} data-type="AUDIO">音频</button>
+                  <button onClick={() => this.switchExternalType('FILE')} data-type="FILE">其他</button>
                 </div>
-              </div>
-              <div className="braft-media-uploader-switch-mode">
-                <button onClick={() => this.switchUploadMode('drag')}>或选择本地文件</button>
+                <span className="braft-media-external-tip">以竖线符(|)分隔资源名称和资源地址，输入后请按回车</span>
               </div>
             </div>
           ) : null}
@@ -90,42 +103,78 @@ export default class MediaPicker extends React.Component {
 
   }
 
-  onConfirm () {
+  buildMediaList () {
 
-    const { editorState, contentState, onChange } = this.props
-    const { type, src, width, height } = this.state
-
-    if (!src) {
-      return false
-    }
-
-    const entityData = { src, height, width }
-    const contentStateWithEntity = contentState.createEntity(type, 'IMMUTABLE', entityData)
-    const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
-
-    onChange(AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' '))
-
-    this.hide()
+    return (
+      <ul className="braft-media-list">
+        <li className="braft-media-add-item">
+          <i className="icon-add"></i>
+          <input onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
+        </li>
+        {this.state.files.map((file, index) => {
+          let previewerComponents = null
+          switch (file.type) {
+            case 'IMAGE': 
+              previewerComponents = <img className="braft-media-image" src={file.thumbnail} />
+            break
+            case 'VIDEO':
+              previewerComponents = (
+                <div className="braft-media-icon braft-media-video" title={file.url}>
+                  <i className="icon-film"></i>
+                  <span>{file.name || file.url}</span>
+                </div>
+              )
+            break
+            case 'AUDIO':
+              previewerComponents = (
+                <div className="braft-media-icon braft-media-audio" title={file.url}>
+                  <i className="icon-music"></i>
+                  <span>{file.name || file.url}</span>
+                </div>
+              )
+            break
+            case 'FILE': 
+              previewerComponents = (
+                <a className="braft-media-icon braft-media-file" title={file.url} href={file.url}>
+                  <i className="icon-file-text"></i>
+                  <span>{file.name || file.url}</span>
+                </a>
+              )
+            break
+            default:
+              previewerComponents = (
+                <a className="braft-media-icon braft-media-file" title={file.url} href={file.url}>
+                  <i className="icon-file-text"></i>
+                  <span>{file.name || file.url}</span>
+                </a>
+              )
+            break 
+          }
+          return (
+            <li
+              key={index}
+              title={file.name}
+              className={'braft-media-item ' + (file.selected ? 'active' : '')}
+              onClick={() => this.toggleFileSelected(file.id, !file.selected)}
+            >
+              {previewerComponents}
+              <span onClick={(e) => this.removeFileItem(e, file.id)} className="braft-media-item-remove icon-close"></span>
+              <span className="braft-media-item-title">{file.name}</span>
+            </li>
+          )
+        })}
+      </ul>
+    )
 
   }
 
-  inputURL (inputedURL) {
-    this.setState({ inputedURL })
+  toggleFileSelected (id, selected) {
+    this.uploader.setItemState(id, { selected })
   }
 
-  confirmInput (keyCode) {
-    if (keyCode === 13) {
-      this.setState({
-        src: this.state.inputedURL,
-        showPreview: true
-      })
-    }
-  }
-
-  handleDragEnter (e) {
-    this.setState({
-      draging: true
-    })
+  removeFileItem (e, id) {
+    this.uploader.removeItem(id)
+    e.stopPropagation()
   }
 
   handleDragLeave (e) {
@@ -134,96 +183,126 @@ export default class MediaPicker extends React.Component {
     })
   }
 
-  handleDrop (e) {
-    console.log(e)
-    e.preventDefault()
-  }
-
-  switchMediaType (e) {
+  handleDragEnter (e) {
     this.setState({
-      type: e.target.dataset.type
+      draging: true
     })
   }
 
-  resetMedia () {
-    this.setState({
-      showPreview: false,
-      src: '',
-      inputedURL: ''
-    })
-  }
+  handleFilesPicked (files) {
 
-  handleMediaPicked (files) {
+    let index = 0
+    let length = files.length
 
-    let file = files[0]
-    let uploadFn = this.props.uploadFn
-    let type = 'FILE'
+    const resolveFile = (index) => {
 
-    if (file.type.indexOf('image/') === 0) {
-      uploadFn = uploadFn || imageToURL
-      type = 'IMAGE'
-    } else if (file.type.indexOf('video/') === 0) {
-      if (!uploadFn) {
-        return false
+      if (index < length) {
+
+        let data = {
+          id: new Date().getTime() + '_' + UniqueIndex(),
+          file: files[index],
+          name: files[index].name,
+          size: files[index].size,
+          progress: 0,
+          uploading: false,
+          selected: false,
+          error: 0
+        }
+
+        if (files[index].type.indexOf('image/') === 0) {
+          data.type = 'IMAGE'
+        } else if (files[index].type.indexOf('video/') === 0) {
+          data.type = 'VIDEO'
+        } else if (files[index].type.indexOf('audio/') === 0) {
+          data.type = 'AUDIO'
+        } else {
+          data.type = 'FILE'
+        }
+
+        this.uploader.addItems([data])
+        setTimeout(() => {
+          resolveFile(index + 1)
+        }, 100)
+
       }
-      type = 'VIDEO'
-    } else if (file.type.indexOf('audio/') === 0) {
-      if (!uploadFn) {
-        return false
-      }
-      type = 'AUDIO'
-    } else {
-      if (!uploadFn) {
-        return false
-      }
-      type = 'FILE'
+
     }
 
-    this.setState({
-      uploading: true
-    })
+    resolveFile(0)
 
-    uploadFn(file).then((src) => {
-      this.setState({
+  }
+
+  inputExternal (url) {
+    this.setState({
+      external: { ...this.state.external, url }
+    })
+  }
+
+  switchExternalType (type) {
+    this.setState({
+      external: { ...this.state.external, type }
+    })
+  }
+
+  confirmAddExternal (keyCode) {
+    if (keyCode === 13) {
+      let { url, type } = this.state.external
+      url = url.split('|')
+      let name = url.length > 1 ? url[0] : '未命名项目'
+      url = url.length > 1 ? url[1] : url[0]
+      let thumbnail = type === 'IMAGE' ? url : null
+      this.uploader.addItems([{
+        thumbnail, url, name, type,
+        id: new Date().getTime() + '_' + UniqueIndex(),
         uploading: false,
-        showPreview: true,
-        type, src
+        progress: 1,
+        selected: false
+      }])
+      this.setState({
+        showExternalForm: false,
+        external: {
+          url: '',
+          type: 'IMAGE'
+        }
       })
-    })
-
+    }
   }
 
-  buildPreviewer () {
+  toggleExternalMode () {
+    this.setState({
+      showExternalForm: !this.state.showExternalForm,
+    })
+  }
 
-    let previewerComponents = null
-    const { type, src } = this.state
+  confirmInsertMedia () {
 
-    if (type === 'IMAGE') {
-      previewerComponents = <img className="braft-media-image" src={src} />
-    } else if (type === 'VIDEO') {
-      previewerComponents = <video className="braft-media-video" controls src={src} />
-    } else if (type === 'AUDIO') {
-      previewerComponents = <audio className="braft-media-audio" controls src={src} />
-    } else {
-      previewerComponents = <a className="braft-media-file" href={src}>{src}</a>
+    const { editorState, contentState, onChange } = this.props
+    const selectedFiles = this.state.files.filter(item => item.selected)
+
+    if (selectedFiles.length === 0) {
+      return false
     }
 
-    return (
-      <div className="braft-media-previewer">
-        <div className="braft-media-preview-content">{previewerComponents}</div>
-        <div className="braft-media-preview-tools">
-          <button onClick={() => this.resetMedia()}><i className="icon-close"></i></button>
-        </div>
-      </div>
-    )
+    let newEditorState = editorState
 
-  }
+    selectedFiles.forEach((file) => {
 
-  switchUploadMode (mode) {
-    this.setState({
-      showDragUploader: mode === 'drag',
-      showURLUploader: mode === 'url'
+      let entityData = {
+        url: file.url,
+        name: file.name,
+        type: file.type,
+        meta: file.meta
+      }
+
+      let contentStateWithEntity = contentState.createEntity(file.type, 'IMMUTABLE', entityData)
+      let entityKey = contentStateWithEntity.getLastCreatedEntityKey()
+      newEditorState = AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ')
+
     })
+
+    onChange(newEditorState)
+    this.hide()
+
   }
 
   show () {
@@ -235,6 +314,8 @@ export default class MediaPicker extends React.Component {
   hide () {
     this.setState({
       visible: false
+    }, () => {
+      this.uploader.unselectAllItem()
     })
   }
 

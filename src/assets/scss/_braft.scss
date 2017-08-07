@@ -39,7 +39,6 @@
       padding: 0 20px;
       color: #fff;
       font-size: 12px;
-      transition: .3s;
     }
     &.default{
       background-color: rgba(#fff, .15);
@@ -66,4 +65,12 @@
     }
   }
 
+}
+
+.braft-image-compress-canvas{
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+  width: 1280px;
+  height: 800px;
 }

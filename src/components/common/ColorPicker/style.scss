@@ -21,10 +21,9 @@
     background-color: currentColor;
     border: 3px solid transparent;
     border-radius: 50%;
-    transition: .3s;
+    cursor: pointer;
     &:hover{
       opacity: .8;
-      transform: scale(.98);
     }
     &.active{
       box-shadow: 0 0 0 2px $COLOR_ACTIVE;

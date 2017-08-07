@@ -84,7 +84,7 @@ export default class LinkEditor extends React.Component {
             </div>
             <div className="buttons">
               <a onClick={() => this.handleUnlink()} className="primary pull-left" href="javascript:void(0);">
-                <i className="icon-delete"></i>
+                <i className="icon-close"></i>
                 <span>移除链接</span>
               </a>
               <button onClick={() => this.handleConfirm()} className="primary pull-right">确定</button>

@@ -20,6 +20,7 @@
     font-size: 12px;
     font-weight: lighter;
     text-transform: uppercase;
+    cursor: pointer;
     &.active{
       background-color: $COLOR_ACTIVE;
     }

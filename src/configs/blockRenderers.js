@@ -6,22 +6,23 @@ const Media = (props) => {
   const entity = props.contentState.getEntity(props.block.getEntityAt(0))
   const mediaData = entity.getData()
   const mediaType = entity.getType()
+  const { url, meta } = mediaData
 
   if (mediaType === 'IMAGE') {
     return (
-      <img draggable="false" {...mediaData} />
+      <img draggable="false" src={url} {...meta} />
     )
   } else if (mediaType === 'AUDIO') {
      return (
-      <audio controls {...mediaData} />
+      <audio controls src={url} {...meta} />
     )
   } else if (mediaType === 'VIDEO') {
     return (
-      <video controls {...mediaData} />
+      <video controls src={url} {...meta} />
     )
   } else if (mediaType === 'FILE') {
     return (
-      <a download={mediaData.title} {...mediaData}>{mediaData.title}</a>
+      <a download={mediaData.name} href={url} {...meta}>{mediaData.name}</a>
     )
   }
 

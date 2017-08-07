@@ -6,9 +6,9 @@ import { CompositeDecorator, Editor, EditorState, Modifier, RichUtils } from 'dr
 import { convertFromHTML, convertToHTML } from 'draft-convert'
 import defaultOptions from 'configs/options'
 import decorators from 'decorators'
-import blockStyles from 'maps/blockStyles'
-import blockRenderers from 'maps/blockRenderers'
-import inlineStyles from 'maps/inlineStyles'
+import blockStyles from 'configs/blockStyles'
+import blockRenderers from 'configs/blockRenderers'
+import inlineStyles from 'configs/inlineStyles'
 import ControlBar from 'components/business/ControlBar'
 
 export default class BraftEditor extends React.Component {
