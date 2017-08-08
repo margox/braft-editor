@@ -2,7 +2,7 @@ import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { CompositeDecorator, Editor, EditorState, Modifier, RichUtils } from 'draft-js'
+import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, EditorState, Modifier, RichUtils } from 'draft-js'
 import { convertFromHTML, convertToHTML } from 'draft-convert'
 import defaultOptions from 'configs/options'
 import decorators from 'decorators'
@@ -10,6 +10,13 @@ import blockStyles from 'configs/blockStyles'
 import blockRenderers from 'configs/blockRenderers'
 import inlineStyles from 'configs/inlineStyles'
 import ControlBar from 'components/business/ControlBar'
+import { Map } from 'immutable'
+
+const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(Map({
+  'atomic': {
+    element: ''
+  }
+}))
 
 export default class BraftEditor extends React.Component {
 
@@ -44,17 +51,24 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    const { controls, height } = this.props
+    const { controls, height, media } = this.props
+    let mediaConfig = { ...defaultOptions.media, ...media }
+    if (!mediaConfig.uploadFn) {
+      mediaConfig.video = false
+      mediaConfig.audio = false
+    }
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
-      controls: controls || defaultOptions.controls
+      controls: controls || defaultOptions.controls,
+      media: mediaConfig
     }
     const editorProps = {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       onChange: this.onChange,
       customStyleMap: inlineStyles,
+      blockRenderMap: extendedBlockRenderMap,
       blockStyleFn: blockStyles,
       blockRendererFn: blockRenderers
     }

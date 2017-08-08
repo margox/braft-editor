@@ -75,7 +75,8 @@ export default class Uploader {
             url: res.url,
             name: res.name || item.name,
             uploadProgress: 1,
-            uploading: false
+            uploading: false,
+            selected: true
           })
         },
         onProgress: (progress) => {
@@ -109,7 +110,8 @@ export default class Uploader {
       this.setItemState(id, {
         url: result.url,
         uploading: false,
-        uploadProgress: 1
+        uploadProgress: 1,
+        selected: true
       })
     })
   }

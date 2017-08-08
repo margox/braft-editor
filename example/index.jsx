@@ -18,7 +18,7 @@ class Demo extends React.Component {
 
     return (
       <div className="demo">
-        <BraftEditor height={680} />
+        <BraftEditor height={600} />
       </div>
     )
 

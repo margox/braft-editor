@@ -18,7 +18,7 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState } = this.props
+    const { controls, editorState, media } = this.props
     const selection = editorState.getSelection()
     const contentState = editorState.getCurrentContent()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
@@ -27,6 +27,7 @@ export default class ControlBar extends React.Component {
     return (
       <div className="BraftEditor-controlBar">
         <MediaPicker
+          media={media}
           editorState={editorState}
           contentState={contentState}
           ref={(instance) => this.mediaPicker = instance}
@@ -101,6 +102,10 @@ export default class ControlBar extends React.Component {
               )
 
             } else if (controlItem.type === 'media') {
+
+              if (!media.image && !media.video && !media.audio) {
+                return null
+              }
 
               return (
                 <button

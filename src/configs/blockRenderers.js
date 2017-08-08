@@ -1,4 +1,5 @@
 import React from 'react'
+import { getVisibleSelectionRect } from 'draft-js'
 
 const Media = (props) => {
 
@@ -10,7 +11,9 @@ const Media = (props) => {
 
   if (mediaType === 'IMAGE') {
     return (
-      <img draggable="false" src={url} {...meta} />
+      <img onClick={(e) => {
+        console.log(e.target.getBoundingClientRect())
+      }} draggable="false" src={url} {...meta} />
     )
   } else if (mediaType === 'AUDIO') {
      return (
@@ -19,10 +22,6 @@ const Media = (props) => {
   } else if (mediaType === 'VIDEO') {
     return (
       <video controls src={url} {...meta} />
-    )
-  } else if (mediaType === 'FILE') {
-    return (
-      <a download={mediaData.name} href={url} {...meta}>{mediaData.name}</a>
     )
   }
 
@@ -33,7 +32,8 @@ const Media = (props) => {
 export default (block) => {
 
   return block.getType() === 'atomic' ? {
-    component: Media
+    component: Media,
+    editable: false
   } : null
 
 }

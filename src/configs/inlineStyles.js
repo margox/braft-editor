@@ -33,18 +33,6 @@ const styles = {
     bottom: '-8px',
     fontSize: '11px'
   },
-  'TEXTALIGN-LEFT': {
-    textAlign: 'left'
-  },
-  'TEXTALIGN-CENTER': {
-    textAlign: 'center'
-  },
-  'TEXTALIGN-RIGHT': {
-    textAlign: 'right'
-  },
-  'TEXTALIGN-JUSTIFY': {
-    textAlign: 'justify'
-  },
   ...colorStyles,
   ...bgColorStyles,
   ...fontSizeStyles,

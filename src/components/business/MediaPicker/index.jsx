@@ -5,6 +5,10 @@ import Modal from 'components/common/Modal'
 import Uploader from 'helpers/uploader'
 import { UniqueIndex } from 'utils/base'
 
+const imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng'
+const videoMediaType = 'video/mp4'
+const audioMediaType = 'audio/mp3'
+
 export default class MediaPicker extends React.Component {
 
   state = {
@@ -15,15 +19,24 @@ export default class MediaPicker extends React.Component {
     confirmable: false,
     external: {
       url: '',
-      type: 'IMAGE'
+      type: [
+        this.props.media.image ? 'IMAGE' : null,
+        this.props.media.video ? 'VIDEO' : null,
+        this.props.media.audio ? 'AUDIO' : null,
+      ].filter(item => item)[0]
     },
     files: []
   }
+  mediaFileAccept = [
+    this.props.media.image ? imageMediaType : null,
+    this.props.media.video ? videoMediaType : null,
+    this.props.media.audio ? audioMediaType : null
+  ].filter(item => item).join(',')
 
   componentDidMount () {
 
     this.uploader = new Uploader()
-    this.uploader.uploadFn = this.props.uploadFn || null
+    this.uploader.uploadFn = this.props.media.uploadFn || null
     this.uploader.onChange = (files) => {
       this.setState({
         files,
@@ -35,6 +48,7 @@ export default class MediaPicker extends React.Component {
 
   render () {
 
+    const { media } = this.props
     const { files, visible, external, draging, confirmable, showExternalForm } = this.state
     const bottomText = (
       <span 
@@ -77,7 +91,7 @@ export default class MediaPicker extends React.Component {
               className={"braft-media-drag-uploader " + (draging ? 'active' : '')}
             >
               <span className="braft-media-drag-tip">
-                <input onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
+                <input accept={this.mediaFileAccept} onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
                 {draging ? '松开鼠标以上传' : '点击或拖动文件至此'}
               </span>
             </div>
@@ -87,10 +101,9 @@ export default class MediaPicker extends React.Component {
               <div className="braft-media-external-form">
                 <input onKeyDown={(e) => this.confirmAddExternal(e.keyCode)} value={external.url} onChange={(e) => this.inputExternal(e.target.value)} placeholder="资源名称|资源地址"/>
                 <div data-type={external.type} className="braft-media-switch-external-type">
-                  <button onClick={() => this.switchExternalType('IMAGE')} data-type="IMAGE">图片</button>
-                  <button onClick={() => this.switchExternalType('VIDEO')} data-type="VIDEO">视频</button>
-                  <button onClick={() => this.switchExternalType('AUDIO')} data-type="AUDIO">音频</button>
-                  <button onClick={() => this.switchExternalType('FILE')} data-type="FILE">其他</button>
+                  {this.props.media.image && <button onClick={() => this.switchExternalType('IMAGE')} data-type="IMAGE">图片</button>}
+                  {this.props.media.video && <button onClick={() => this.switchExternalType('VIDEO')} data-type="VIDEO">视频</button>}
+                  {this.props.media.audio && <button onClick={() => this.switchExternalType('AUDIO')} data-type="AUDIO">音频</button>}
                 </div>
                 <span className="braft-media-external-tip">以竖线符(|)分隔资源名称和资源地址，输入后请按回车</span>
               </div>
@@ -109,7 +122,7 @@ export default class MediaPicker extends React.Component {
       <ul className="braft-media-list">
         <li className="braft-media-add-item">
           <i className="icon-add"></i>
-          <input onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
+          <input accept={this.mediaFileAccept} onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
         </li>
         {this.state.files.map((file, index) => {
           let previewerComponents = null
@@ -131,14 +144,6 @@ export default class MediaPicker extends React.Component {
                   <i className="icon-music"></i>
                   <span>{file.name || file.url}</span>
                 </div>
-              )
-            break
-            case 'FILE': 
-              previewerComponents = (
-                <a className="braft-media-icon braft-media-file" title={file.url} href={file.url}>
-                  <i className="icon-file-text"></i>
-                  <span>{file.name || file.url}</span>
-                </a>
               )
             break
             default:
@@ -209,17 +214,17 @@ export default class MediaPicker extends React.Component {
           error: 0
         }
 
-        if (files[index].type.indexOf('image/') === 0) {
+        if (files[index].type.indexOf('image/') === 0 && this.props.media.image) {
           data.type = 'IMAGE'
-        } else if (files[index].type.indexOf('video/') === 0) {
+          this.uploader.addItems([data])
+        } else if (files[index].type.indexOf('video/') === 0 && this.props.media.video) {
           data.type = 'VIDEO'
-        } else if (files[index].type.indexOf('audio/') === 0) {
+          this.uploader.addItems([data])
+        } else if (files[index].type.indexOf('audio/') === 0 && this.props.media.audio) {
           data.type = 'AUDIO'
-        } else {
-          data.type = 'FILE'
+          this.uploader.addItems([data])
         }
 
-        this.uploader.addItems([data])
         setTimeout(() => {
           resolveFile(index + 1)
         }, 100)
@@ -291,7 +296,8 @@ export default class MediaPicker extends React.Component {
         url: file.url,
         name: file.name,
         type: file.type,
-        meta: file.meta
+        meta: file.meta,
+        float: 'left'
       }
 
       let contentStateWithEntity = contentState.createEntity(file.type, 'IMMUTABLE', entityData)
