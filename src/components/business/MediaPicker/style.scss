@@ -224,7 +224,7 @@
 
 .braft-media-drag-tip{
   display: inline-block;
-  margin-top: 140px;
+  margin-top: 150px;
   color: #ccc;
   text-align: center;
   font-size: 28px;
@@ -286,14 +286,12 @@
 }
 
 .braft-media-switch-external-type{
-  height: 30px;
-  margin-top: 10px;
   overflow: hidden;
   text-align: center;
   button{
     width: 60px;
     height: 30px;
-    margin: 0 5px;
+    margin: 10px 5px;
     background-color: #e8e9ea;
     border: none;
     border-radius: 3px;
@@ -302,6 +300,9 @@
     cursor: pointer;
     &:hover{
       background-color: #d8d9da;
+    }
+    &:only-child{
+      display: none;
     }
   }
   &[data-type="IMAGE"] [data-type="IMAGE"],

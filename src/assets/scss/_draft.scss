@@ -1,3 +1,5 @@
+@import '~sassinc';
+
 .BraftEditor-container{
   .DraftEditor-editorContainer{
     box-sizing: border-box;
@@ -66,4 +68,36 @@
   .braft-float-right{
     float: right;
   }
+
+  .braft-embed-image{
+    display: inline-block;
+    position: relative;
+  }
+  .braft-embed-image-toolbar{
+    position: absolute;
+    z-index: 1;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    a{
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      margin: 0 5px;
+      background-color: rgba(#000, .7);
+      border-radius: 3px;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      line-height: 40px;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover{
+        background-color: $COLOR_ACTIVE;
+      }
+    }
+  }
+
 }

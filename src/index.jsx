@@ -6,9 +6,9 @@ import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, EditorState, Mo
 import { convertFromHTML, convertToHTML } from 'draft-convert'
 import defaultOptions from 'configs/options'
 import decorators from 'decorators'
-import blockStyles from 'configs/blockStyles'
-import blockRenderers from 'configs/blockRenderers'
-import inlineStyles from 'configs/inlineStyles'
+import getBlockRenderers from 'renderers'
+import blockStyles from 'styles/blockStyles'
+import inlineStyles from 'styles/inlineStyles'
 import ControlBar from 'components/business/ControlBar'
 import { Map } from 'immutable'
 
@@ -52,17 +52,27 @@ export default class BraftEditor extends React.Component {
   render() {
 
     const { controls, height, media } = this.props
+    let contentState = this.state.editorState.getCurrentContent()
     let mediaConfig = { ...defaultOptions.media, ...media }
+
     if (!mediaConfig.uploadFn) {
       mediaConfig.video = false
       mediaConfig.audio = false
     }
+
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
       controls: controls || defaultOptions.controls,
       media: mediaConfig
     }
+
+    const blockRenderers = getBlockRenderers({
+      onChange: this.onChange,
+      editorState: this.state.editorState,
+      contentState: contentState
+    })
+
     const editorProps = {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
