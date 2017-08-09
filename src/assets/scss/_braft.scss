@@ -65,4 +65,133 @@
     }
   }
 
+  .DraftEditor-editorContainer{
+    box-sizing: border-box;
+    background-color: #fff;
+    border: none;
+  }
+  .DraftEditor-root,
+  .public-DraftEditor-content{
+    height: 100%;
+  }
+  .public-DraftEditor-content{
+    box-sizing: border-box;
+    padding: 15px;
+    blockquote{
+      margin: 5px 0;
+      padding: 15px 20px;
+      background-color: #f1f2f3;
+      border-left: solid 5px #ccc;
+      color: #666;
+      font-style: italic;
+    }
+    pre{
+      max-width: 100%;
+      max-height: 100%;
+      margin: 5px 0;
+      padding: 15px;
+      overflow: auto;
+      background-color: #f1f2f3;
+      border-radius: 3px;
+      color: #666;
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: normal;
+      line-height: 16px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+      pre{
+        margin: 0;
+        padding: 0;
+      }
+    }
+  }
+  .braft-left-aligned-block {
+    text-align: left;
+  }
+  .braft-right-aligned-block {
+    text-align: right;
+  }
+  .braft-center-aligned-block {
+    text-align: center;
+  }
+  .braft-justify-aligned-block {
+    text-align: justify;
+  }
+  .braft-left-aligned-block,
+  .braft-right-aligned-block,
+  .braft-center-aligned-block,
+  .braft-justify-aligned-block{
+    & > div{
+      display: inline-block;
+    }
+  }
+  .braft-float-left{
+    float: left;
+  }
+  .braft-float-right{
+    float: right;
+  }
+
+  .braft-media-embeder{
+    position: relative;
+  }
+  .braft-embed-image{
+    position: relative;
+    img{
+      display: inline-block;
+      max-width: 100%;
+      height: auto;
+    }
+  }
+  .braft-embed-image-toolbar{
+    position: absolute;
+    z-index: 1;
+    top: 5px;
+    left: 50%;
+    height: 40px;
+    background-color: $COLOR_DARK;
+    border-radius: 3px;
+    text-align: center;
+    transform: translateX(-50%);
+    box-shadow: 2px 10px 30px rgba(#000, .3);
+    &::after{
+      position: absolute;
+      top: 40px;
+      left: 50%;
+      display: block;
+      margin-left: -5px;
+      border: solid 5px transparent;
+      border-top-color: $COLOR_DARK;
+      // content: '';
+    }
+    a{
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 40px;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover{
+        color: $COLOR_ACTIVE;
+      }
+      &:first-child{
+        border-radius: 3px 0 0 3px;
+      }
+      &:last-child{
+        border-radius: 0 3px 3px 0;
+      }
+    }
+    &[data-align="left"] [data-align="left"],
+    &[data-align="center"] [data-align="center"],
+    &[data-align="right"] [data-align="right"] {
+      color: $COLOR_ACTIVE;
+    }
+  }
+
 }

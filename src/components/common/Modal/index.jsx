@@ -44,7 +44,7 @@ export default class Modal extends React.Component {
     return null
   }
 
-  handleTransitionEnd () {
+  handleTransitionEnd = () => {
     if (!this.rootElement.classList.contains('active')) {
       ReactDOM.unmountComponentAtNode(this.rootElement)
     }
@@ -60,17 +60,17 @@ export default class Modal extends React.Component {
     const childComponent = (
       <div className={"braft-modal " + (className || '')}>
         <div className="braft-modal-mask"></div>
-        <div onTransitionEnd={() => this.handleTransitionEnd()} style={{width, height}} className="braft-modal-content">
+        <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className="braft-modal-content">
           <div className="braft-modal-header">
             <h3 className="braft-modal-caption">{title}</h3>
-            {showClose && <button onClick={() => this.close()} className="braft-modal-close-button"><i className="icon-close"></i></button>}
+            {showClose && <button onClick={this.close} className="braft-modal-close-button"><i className="icon-close"></i></button>}
           </div>
           <div className="braft-modal-body">{children}</div>
           <div className="braft-modal-footer">
             <div className="braft-modal-addon-text">{bottomText}</div>
             <div className="braft-modal-buttons">
-              {showCancel && <button onClick={() => this.handleCancel()} className="braft-modal-cancel">取消</button>}
-              <button onClick={() => this.handleConfirm()} className={"braft-modal-confirm " + (!confirmable ? 'disabled' : '')}>确定</button>
+              {showCancel && <button onClick={this.handleCancel} className="braft-modal-cancel">取消</button>}
+              <button onClick={this.handleConfirm} className={"braft-modal-confirm " + (!confirmable ? 'disabled' : '')}>确定</button>
             </div>
           </div>
         </div>
@@ -84,15 +84,15 @@ export default class Modal extends React.Component {
 
   }
 
-  handleCancel () {
+  handleCancel = () => {
     this.props.onCancel && this.props.onCancel()
   }
 
-  handleConfirm () {
+  handleConfirm = () => {
     this.props.onConfirm && this.props.onConfirm()
   }
 
-  close () {
+  close = () => {
     this.props.onClose && this.props.onClose()
   }
 

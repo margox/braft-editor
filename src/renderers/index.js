@@ -3,16 +3,15 @@ import ImageComponent from './image'
 import VideoComponent from './video'
 import AudioComponent from './audio'
 
-const getMediaComponent = (superProps) => (props) => {
+const getMediaComponent = (block, superProps) => (props) => {
 
-  const entityKey = props.block.getEntityAt(0)
-  const entity = props.contentState.getEntity(props.block.getEntityAt(0))
+  const entityKey = block.getEntityAt(0)
+  const entity = props.contentState.getEntity(entityKey)
   const mediaData = entity.getData()
   const mediaType = entity.getType()
   const mediaProps = {
     ...superProps,
-    mediaData,
-    entityKey
+    block, mediaData
   }
 
   if (mediaType === 'IMAGE') {
@@ -30,7 +29,7 @@ const getMediaComponent = (superProps) => (props) => {
 export default (props) => (block) => {
 
   return block.getType() === 'atomic' ? {
-    component: getMediaComponent(props),
+    component: getMediaComponent(block, props),
     editable: false
   } : null
 

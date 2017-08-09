@@ -11,6 +11,7 @@ export default class TextColor extends React.Component {
   state = {
     colorType: 'color'
   }
+
   dropDown = {}
   dropDownId = 'BRAFT-DROPDOWN-' + UniqueIndex()
 
@@ -57,16 +58,18 @@ export default class TextColor extends React.Component {
         <div className="text-color-picker-wrap">
           <div className="switch-buttons">
             <button
+              data-type="color"
               data-keep-active={true}
               data-braft-component-id={this.dropDownId}
               className={colorType === 'color' ? 'active' : ''}
-              onClick={(e) => this.switchColorType('color', e)}
+              onClick={this.switchColorType}
             >文字颜色</button>
             <button
+              data-type="backgroundColor"
               data-keep-active={true}
               data-braft-component-id={this.dropDownId}
               className={colorType === 'backgroundColor' ? 'active' : ''}
-              onClick={(e) => this.switchColorType('backgroundColor', e)}
+              onClick={this.switchColorType}
             >背景颜色</button>
           </div>
           <ColorPicker
@@ -74,7 +77,7 @@ export default class TextColor extends React.Component {
             current={currentIndex}
             disableAlpha={true}
             colors={presetColors}
-            onChange={(index) => this.toggleColor(index)}
+            onChange={this.toggleColor}
           />
         </div>
       </DropDown>
@@ -82,11 +85,13 @@ export default class TextColor extends React.Component {
 
   }
 
-  switchColorType (colorType, event) {
-    this.setState({ colorType })
+  switchColorType = (e) => {
+    this.setState({
+      colorType: e.target.dataset.type
+    })
   }
 
-  toggleColor (index) {
+  toggleColor = (index) => {
 
     const prefix = this.state.colorType === 'color' ? 'COLOR-' : 'BGCOLOR-'
     const toggledColor = prefix + index

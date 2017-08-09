@@ -38,7 +38,8 @@ export default class FontFamily extends React.Component {
               <li
                 key={index}
                 className={"menu-item " + (index === currentIndex ? 'active' : '')}
-                onClick={() => this.toggleFontFamily(index)}
+                data-index={index}
+                onClick={this.toggleFontFamily}
               >
                 <span
                   style={{
@@ -56,8 +57,9 @@ export default class FontFamily extends React.Component {
 
   }
 
-  toggleFontFamily (fontFamily) {
+  toggleFontFamily = (e) => {
 
+    const fontFamily = e.target.dataset.index
     const toggledFontFamily = 'FONTFAMILY-' + fontFamily
     const { editorState, selection, currentInlineStyle } = this.props
     const nextContentState = fontFamilies.reduce((contentState, item, index) => {

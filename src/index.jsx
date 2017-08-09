@@ -36,6 +36,10 @@ export default class BraftEditor extends React.Component {
     this.setState({ editorState })
   }
 
+  getEditorState () {
+    return this.state.editorState
+  }
+
   handleKeyCommand(command) {
 
     const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
@@ -63,6 +67,7 @@ export default class BraftEditor extends React.Component {
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
+      contentState: contentState,
       controls: controls || defaultOptions.controls,
       media: mediaConfig
     }
@@ -70,6 +75,7 @@ export default class BraftEditor extends React.Component {
     const blockRenderers = getBlockRenderers({
       onChange: this.onChange,
       editorState: this.state.editorState,
+      getEditorState: this.getEditorState.bind(this),
       contentState: contentState
     })
 

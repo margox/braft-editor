@@ -21,8 +21,9 @@ export default class TextAlign extends React.Component {
 
   }
 
-  setAlignment (alignment) {
+  setAlignment = (e) => {
 
+    const { alignment } = e.target.dataset
     const { editorState, onChange } = this.props
     const { currentAlignment } = this.state
 
@@ -50,8 +51,9 @@ export default class TextAlign extends React.Component {
               <button
                 key={index}
                 title={textAlignmentTitles[index]}
+                data-alignment={item}
                 className={'control-item button ' + (item === currentAlignment ? 'active' : null)}
-                onClick={() => this.setAlignment(item)}
+                onClick={this.setAlignment}
               >
                 <i className={"icon-align-" + item}></i>
               </button>

@@ -18,9 +18,8 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, media } = this.props
+    const { controls, editorState, contentState, media } = this.props
     const selection = editorState.getSelection()
-    const contentState = editorState.getCurrentContent()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
 
@@ -31,7 +30,7 @@ export default class ControlBar extends React.Component {
           editorState={editorState}
           contentState={contentState}
           ref={(instance) => this.mediaPicker = instance}
-          onChange={(editorState) => this.applyEditorState(editorState)}
+          onChange={this.applyEditorState}
         />
         {
           controls.map((item, index) => {
@@ -61,7 +60,7 @@ export default class ControlBar extends React.Component {
               return <TextColorPicker
                 key={index}
                 {...{selection, editorState, currentInlineStyle}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
+                onChange={this.applyEditorState}
               />
 
             } else if (controlItem.type === 'font-size') {
@@ -70,7 +69,7 @@ export default class ControlBar extends React.Component {
                 key={index}
                 defaultCaption={controlItem.title}
                 {...{selection, editorState, currentInlineStyle}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
+                onChange={this.applyEditorState}
               />
 
             } else if (controlItem.type === 'font-family') {
@@ -79,7 +78,7 @@ export default class ControlBar extends React.Component {
                 key={index}
                 defaultCaption={controlItem.title}
                 {...{selection, editorState, currentInlineStyle}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
+                onChange={this.applyEditorState}
               />
 
             } else if (controlItem.type === 'link') {
@@ -88,7 +87,7 @@ export default class ControlBar extends React.Component {
                 key={index}
                 defaultCaption={controlItem.title}
                 {...{selection, editorState, contentState}}
-                onChange={(editorState) => this.applyEditorState(editorState)}
+                onChange={this.applyEditorState}
               />
 
             } else if (controlItem.type === 'text-align') {
@@ -97,7 +96,7 @@ export default class ControlBar extends React.Component {
                 <TextAlign
                   key={index}
                   {...{selection, editorState, currentInlineStyle}}
-                  onChange={(editorState) => this.applyEditorState(editorState)}
+                  onChange={this.applyEditorState}
                 />
               )
 
@@ -112,7 +111,7 @@ export default class ControlBar extends React.Component {
                   key={index}
                   title={controlItem.title}
                   className='control-item button'
-                  onClick={() => this.showMediaPicker()}
+                  onClick={this.showMediaPicker}
                 >
                   {controlItem.text}
                 </button>
@@ -177,11 +176,11 @@ export default class ControlBar extends React.Component {
 
   }
 
-  applyEditorState (editorState) {
+  applyEditorState = (editorState) => {
     this.props.onChange(editorState)
   }
 
-  showMediaPicker () {
+  showMediaPicker = () => {
     this.mediaPicker.show()
   }
 

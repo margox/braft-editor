@@ -52,7 +52,7 @@ export default class MediaPicker extends React.Component {
     const { files, visible, external, draging, confirmable, showExternalForm } = this.state
     const bottomText = (
       <span 
-        onClick={() => this.toggleExternalMode()}
+        onClick={this.toggleExternalMode}
         className="braft-media-toggle-external-mode"
       >
         {showExternalForm ? (
@@ -74,9 +74,9 @@ export default class MediaPicker extends React.Component {
         showCancel={true}
         bottomText={bottomText}
         confirmable={confirmable && !showExternalForm}
-        onClose={() => this.hide()}
-        onCancel={() => this.hide()}
-        onConfirm={() => this.confirmInsertMedia()}
+        onClose={this.hide}
+        onCancel={this.hide}
+        onConfirm={this.confirmInsertMedia}
       >
         <div className="braft-media-picker">
           <div className="braft-media-uploader">
@@ -86,12 +86,12 @@ export default class MediaPicker extends React.Component {
             </div>
           ) : (
             <div
-              onDragEnter={(e) => this.handleDragEnter(e)}
-              onDragLeave={(e) => this.handleDragLeave(e)}
+              onDragEnter={this.handleDragEnter}
+              onDragLeave={this.handleDragLeave}
               className={"braft-media-drag-uploader " + (draging ? 'active' : '')}
             >
               <span className="braft-media-drag-tip">
-                <input accept={this.mediaFileAccept} onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
+                <input accept={this.mediaFileAccept} onChange={this.handleFilesPicked} multiple type="file"/>
                 {draging ? '松开鼠标以上传' : '点击或拖动文件至此'}
               </span>
             </div>
@@ -99,11 +99,11 @@ export default class MediaPicker extends React.Component {
           {showExternalForm ? (
             <div className="braft-media-add-external">
               <div className="braft-media-external-form">
-                <input onKeyDown={(e) => this.confirmAddExternal(e.keyCode)} value={external.url} onChange={(e) => this.inputExternal(e.target.value)} placeholder="资源名称|资源地址"/>
+                <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder="资源名称|资源地址"/>
                 <div data-type={external.type} className="braft-media-switch-external-type">
-                  {this.props.media.image && <button onClick={() => this.switchExternalType('IMAGE')} data-type="IMAGE">图片</button>}
-                  {this.props.media.video && <button onClick={() => this.switchExternalType('VIDEO')} data-type="VIDEO">视频</button>}
-                  {this.props.media.audio && <button onClick={() => this.switchExternalType('AUDIO')} data-type="AUDIO">音频</button>}
+                  {this.props.media.image && <button onClick={this.switchExternalType} data-type="IMAGE">图片</button>}
+                  {this.props.media.video && <button onClick={this.switchExternalType} data-type="VIDEO">视频</button>}
+                  {this.props.media.audio && <button onClick={this.switchExternalType} data-type="AUDIO">音频</button>}
                 </div>
                 <span className="braft-media-external-tip">以竖线符(|)分隔资源名称和资源地址，输入后请按回车</span>
               </div>
@@ -122,7 +122,7 @@ export default class MediaPicker extends React.Component {
       <ul className="braft-media-list">
         <li className="braft-media-add-item">
           <i className="icon-add"></i>
-          <input accept={this.mediaFileAccept} onChange={(e) => this.handleFilesPicked(e.target.files)} multiple type="file"/>
+          <input accept={this.mediaFileAccept} onChange={this.handleFilesPicked} multiple type="file"/>
         </li>
         {this.state.files.map((file, index) => {
           let previewerComponents = null
@@ -160,10 +160,12 @@ export default class MediaPicker extends React.Component {
               key={index}
               title={file.name}
               className={'braft-media-item ' + (file.selected ? 'active' : '')}
-              onClick={() => this.toggleFileSelected(file.id, !file.selected)}
+              data-id={file.id}
+              data-selected={!file.selected}
+              onClick={this.toggleFileSelected}
             >
               {previewerComponents}
-              <span onClick={(e) => this.removeFileItem(e, file.id)} className="braft-media-item-remove icon-close"></span>
+              <span data-id={file.id} onClick={this.removeFileItem} className="braft-media-item-remove icon-close"></span>
               <span className="braft-media-item-title">{file.name}</span>
             </li>
           )
@@ -173,30 +175,33 @@ export default class MediaPicker extends React.Component {
 
   }
 
-  toggleFileSelected (id, selected) {
+  toggleFileSelected = (e) => {
+    let { id, selected } = e.target.dataset
+    selected = selected == 'true'
     this.uploader.setItemState(id, { selected })
   }
 
-  removeFileItem (e, id) {
-    this.uploader.removeItem(id)
+  removeFileItem = (e) => {
+    this.uploader.removeItem(e.target.dataset.id)
     e.stopPropagation()
   }
 
-  handleDragLeave (e) {
+  handleDragLeave = (e) => {
     this.setState({
       draging: false
     })
   }
 
-  handleDragEnter (e) {
+  handleDragEnter = (e) => {
     this.setState({
       draging: true
     })
   }
 
-  handleFilesPicked (files) {
+  handleFilesPicked = (e) => {
 
     let index = 0
+    let { files } = e.target
     let length = files.length
 
     const resolveFile = (index) => {
@@ -237,20 +242,23 @@ export default class MediaPicker extends React.Component {
 
   }
 
-  inputExternal (url) {
+  inputExternal = (e) => {
     this.setState({
-      external: { ...this.state.external, url }
+      external: {
+        ...this.state.external,
+        url: e.target.value
+      }
     })
   }
 
-  switchExternalType (type) {
+  switchExternalType = (e) => {
     this.setState({
-      external: { ...this.state.external, type }
+      external: { ...this.state.external, type: e.target.dataset.type }
     })
   }
 
-  confirmAddExternal (keyCode) {
-    if (keyCode === 13) {
+  confirmAddExternal = (e) => {
+    if (e.keyCode === 13) {
       let { url, type } = this.state.external
       url = url.split('|')
       let name = url.length > 1 ? url[0] : '未命名项目'
@@ -273,13 +281,13 @@ export default class MediaPicker extends React.Component {
     }
   }
 
-  toggleExternalMode () {
+  toggleExternalMode = () => {
     this.setState({
       showExternalForm: !this.state.showExternalForm,
     })
   }
 
-  confirmInsertMedia () {
+  confirmInsertMedia = () => {
 
     const { editorState, contentState, onChange } = this.props
     const selectedFiles = this.state.files.filter(item => item.selected)
@@ -311,13 +319,13 @@ export default class MediaPicker extends React.Component {
 
   }
 
-  show () {
+  show = () => {
     this.setState({
       visible: true
     })
   }
 
-  hide () {
+  hide = () => {
     this.setState({
       visible: false
     }, () => {

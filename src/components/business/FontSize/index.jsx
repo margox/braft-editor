@@ -35,7 +35,8 @@ export default class FontSize extends React.Component {
               <li
                 key={index}
                 className={item === currentFontSize ? 'active' : null}
-                onClick={() => this.toggleFontSize(item)}
+                data-size={item}
+                onClick={this.toggleFontSize}
               >
                 {item + 'px'}
               </li>
@@ -47,8 +48,9 @@ export default class FontSize extends React.Component {
 
   }
 
-  toggleFontSize (fontSize) {
+  toggleFontSize = (e) => {
 
+    const fontSize = e.target.dataset.size
     const toggledFontSize = 'FONTSIZE-' + fontSize
     const { editorState, selection, currentInlineStyle } = this.props
     const nextContentState = fontSizes.reduce((contentState, item, index) => {
