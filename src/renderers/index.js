@@ -5,13 +5,13 @@ import AudioComponent from './audio'
 
 const getMediaComponent = (block, superProps) => (props) => {
 
-  const entityKey = block.getEntityAt(0)
+  const entityKey = props.block.getEntityAt(0)
   const entity = props.contentState.getEntity(entityKey)
   const mediaData = entity.getData()
   const mediaType = entity.getType()
   const mediaProps = {
     ...superProps,
-    block, mediaData
+    mediaData, entityKey
   }
 
   if (mediaType === 'IMAGE') {

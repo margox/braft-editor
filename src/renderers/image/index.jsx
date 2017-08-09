@@ -36,11 +36,11 @@ export default class Image extends React.Component {
       >
         <div style={imageStyles} className="braft-embed-image">
           {showToolbar && (
-            <div data-align={alignment} className="braft-embed-image-toolbar">
-              <a data-align="left" onClick={() => this.setImageAlignment('left')}><i className="icon-align-left"></i></a>
-              <a data-align="center" onClick={() => this.setImageAlignment('center')}><i className="icon-align-center"></i></a>
-              <a data-align="right" onClick={() => this.setImageAlignment('right')}><i className="icon-align-right"></i></a>
-            </div>
+          <div data-align={alignment} className="braft-embed-image-toolbar">
+              <a data-align="left" onClick={() => this.setImageAlignment('left')}>&#xe027;</a>
+              <a data-align="center" onClick={() => this.setImageAlignment('center')}>&#xe028;</a>
+              <a data-align="right" onClick={() => this.setImageAlignment('right')}>&#xe029;</a>
+          </div>
           )}
           <img src={url} width={width} height={height} />
         </div>
@@ -58,19 +58,14 @@ export default class Image extends React.Component {
       alignment = null
     }
 
-    const { block, contentState, getEditorState, onChange } = this.props
-    const entityKey = block.getEntityAt(0)
+    const { entityKey, contentState, editorState, onChange } = this.props
     contentState.mergeEntityData(entityKey,{ alignment },)
-    onChange(EditorState.push(getEditorState(), contentState, 'change-block-data'))
-
-    this.setState({
-      dummy: true
-    })
+    onChange(EditorState.push(editorState, contentState, 'change-block-data'))
 
   }
 
   showToolbar () {
-    !this.state.showToolbar && this.setState({
+    this.setState({
       showToolbar: true
     })
   }

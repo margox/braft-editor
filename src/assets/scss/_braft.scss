@@ -142,12 +142,16 @@
       display: inline-block;
       max-width: 100%;
       height: auto;
+      font-size: 0;
+    }
+    &:hover img{
+      outline: solid 3px rgba(#000, .5);
     }
   }
   .braft-embed-image-toolbar{
     position: absolute;
     z-index: 1;
-    top: 5px;
+    top: -30px;
     left: 50%;
     height: 40px;
     background-color: $COLOR_DARK;
@@ -163,15 +167,16 @@
       margin-left: -5px;
       border: solid 5px transparent;
       border-top-color: $COLOR_DARK;
-      // content: '';
+      content: '';
     }
     a{
       display: inline-block;
       width: 40px;
       height: 40px;
       color: #fff;
-      font-size: 20px;
-      font-weight: bold;
+      font-family: 'icomoon';
+      font-size: 18px;
+      font-weight: normal;
       line-height: 40px;
       text-align: center;
       text-decoration: none;
