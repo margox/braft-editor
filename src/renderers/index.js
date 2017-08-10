@@ -1,7 +1,7 @@
 import React from 'react'
-import ImageComponent from './Image'
-import VideoComponent from './Video'
-import AudioComponent from './Audio'
+import Image from './Image'
+import Video from './Video'
+import Audio from './Audio'
 
 const getMediaComponent = (block, superProps) => (props) => {
 
@@ -15,11 +15,11 @@ const getMediaComponent = (block, superProps) => (props) => {
   }
 
   if (mediaType === 'IMAGE') {
-    return <ImageComponent { ...mediaProps } />
+    return <Image { ...mediaProps } />
   } else if (mediaType === 'AUDIO') {
-    return <AudioComponent { ...mediaProps } />
+    return <Audio { ...mediaProps } />
   } else if (mediaType === 'VIDEO') {
-    return <VideoComponent { ...mediaProps } />
+    return <Video { ...mediaProps } />
   }
 
   return null

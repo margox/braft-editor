@@ -128,6 +128,13 @@ export default class Uploader {
 
       if (this.width > width || this.height > height) {
         scale = this.width > this.height ? width / this.width : height / this.height
+      } else {
+        callback({
+          url: url,
+          width: this.width,
+          height: this.height
+        })
+        return false
       }
 
       compressCanvas.width = this.width * scale

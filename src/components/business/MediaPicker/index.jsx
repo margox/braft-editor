@@ -5,7 +5,7 @@ import Modal from 'components/common/Modal'
 import Uploader from 'helpers/uploader'
 import { UniqueIndex } from 'utils/base'
 
-const imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng'
+const imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg'
 const videoMediaType = 'video/mp4'
 const audioMediaType = 'audio/mp3'
 
