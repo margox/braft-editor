@@ -29,6 +29,33 @@ $svgPath: '../icons/icomoon.svg?sirizn';
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icon-replay:before {
+  content: "\e042";
+}
+.icon-tune:before {
+  content: "\e429";
+}
+.icon-close:before {
+  content: "\e913";
+}
+.icon-align-center:before {
+  content: "\e028";
+}
+.icon-align-justify:before {
+  content: "\e026";
+}
+.icon-align-left:before {
+  content: "\e027";
+}
+.icon-align-right:before {
+  content: "\e029";
+}
+.icon-image-right:before {
+  content: "\e914";
+}
+.icon-image-left:before {
+  content: "\e91e";
+}
 .icon-music:before {
   content: "\e90e";
 }
@@ -192,19 +219,4 @@ $svgPath: '../icons/icomoon.svg?sirizn';
 }
 .icon-underlined:before {
   content: "\e91d";
-}
-.icon-close:before {
-  content: "\e913";
-}
-.icon-align-center:before {
-  content: "\e028";
-}
-.icon-align-justify:before {
-  content: "\e026";
-}
-.icon-align-left:before {
-  content: "\e027";
-}
-.icon-align-right:before {
-  content: "\e029";
 }

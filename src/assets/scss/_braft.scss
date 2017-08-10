@@ -127,10 +127,16 @@
     }
   }
   .braft-float-left{
+    position: relative;
+    z-index: 1;
     float: left;
+    margin: 0 10px 0 0;
   }
   .braft-float-right{
+    position: relative;
+    z-index: 1;
     float: right;
+    margin: 0 0 0 10px;
   }
 
   .braft-media-embeder{
@@ -151,11 +157,12 @@
   .braft-embed-image-toolbar{
     position: absolute;
     z-index: 1;
-    top: -30px;
+    bottom: 15px;
     left: 50%;
     height: 40px;
     background-color: $COLOR_DARK;
     border-radius: 3px;
+    font-weight: normal;
     text-align: center;
     transform: translateX(-50%);
     box-shadow: 2px 10px 30px rgba(#000, .3);
@@ -192,6 +199,8 @@
         border-radius: 0 3px 3px 0;
       }
     }
+    &[data-float="left"] [data-float="left"],
+    &[data-float="right"] [data-float="right"],
     &[data-align="left"] [data-align="left"],
     &[data-align="center"] [data-align="center"],
     &[data-align="right"] [data-align="right"] {

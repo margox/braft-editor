@@ -1,7 +1,7 @@
 import React from 'react'
-import ImageComponent from './image'
-import VideoComponent from './video'
-import AudioComponent from './audio'
+import ImageComponent from './Image'
+import VideoComponent from './Video'
+import AudioComponent from './Audio'
 
 const getMediaComponent = (block, superProps) => (props) => {
 
@@ -11,7 +11,7 @@ const getMediaComponent = (block, superProps) => (props) => {
   const mediaType = entity.getType()
   const mediaProps = {
     ...superProps,
-    mediaData, entityKey
+    block, mediaData, entityKey
   }
 
   if (mediaType === 'IMAGE') {
