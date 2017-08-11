@@ -9,7 +9,6 @@ module.exports = merge(baseConfigs, {
   entry: {
     index : './example/index.jsx'
   },
-  //入口文件输出配置
   output: {
     path: path.join(__dirname, './dist'),
     filename: '[name].js'
