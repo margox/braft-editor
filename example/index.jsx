@@ -7,7 +7,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      content: '<h1>Hello Braft!</h1>'
+      content: '<h1>Hello World!</h1>'
     }
   }
 
@@ -18,7 +18,11 @@ class Demo extends React.Component {
 
     return (
       <div className="demo">
-        <BraftEditor height={600} />
+        <BraftEditor
+          height={600}
+          initialContent={this.state.content}
+          onChange={(content) => console.log(content)}
+        />
       </div>
     )
 

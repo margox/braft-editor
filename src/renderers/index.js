@@ -1,4 +1,5 @@
 import React from 'react'
+import { Map } from 'immutable'
 import Image from './Image'
 import Video from './Video'
 import Audio from './Audio'
@@ -26,7 +27,7 @@ const getMediaComponent = (block, superProps) => (props) => {
 
 }
 
-export default (props) => (block) => {
+export const getBlockRenderers = (props) => (block) => {
 
   return block.getType() === 'atomic' ? {
     component: getMediaComponent(block, props),
@@ -34,3 +35,9 @@ export default (props) => (block) => {
   } : null
 
 }
+
+export const blockRenderMap = Map({
+  'atomic': {
+    element: ''
+  }
+})

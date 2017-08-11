@@ -9,6 +9,15 @@
     "build": "rm -rf dist/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "braft",
+    "draft",
+    "rich",
+    "text",
+    "editor",
+    "rich-text-editor",
+    "wyswyg"
+  ],
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.4.0",

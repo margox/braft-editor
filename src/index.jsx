@@ -2,21 +2,20 @@ import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, EditorState, Modifier, RichUtils } from 'draft-js'
-import { convertFromHTML, convertToHTML } from 'draft-convert'
+import {
+    CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState,
+    EditorState, RichUtils, convertFromRaw, convertFromHTML, convertToRaw
+} from 'draft-js'
+import { convertToHTML } from 'draft-convert'
 import defaultOptions from 'configs/options'
 import decorators from 'decorators'
-import getBlockRenderers from 'renderers'
+import { getBlockRenderers, blockRenderMap } from 'renderers'
 import blockStyles from 'styles/blockStyles'
 import inlineStyles from 'styles/inlineStyles'
 import ControlBar from 'components/business/ControlBar'
-import { Map } from 'immutable'
 
-const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(Map({
-  'atomic': {
-    element: ''
-  }
-}))
+const editorDecorators = new CompositeDecorator(decorators)
+const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap)
 
 export default class BraftEditor extends React.Component {
 
@@ -24,16 +23,78 @@ export default class BraftEditor extends React.Component {
 
     super(props)
 
+    let initialEditorState
+    let { initialContent, contentFormat } = this.props
+
+    contentFormat = contentFormat || 'html'
+    initialContent = initialContent || ''
+
+    if (!initialContent) {
+      initialEditorState = EditorState.createEmpty(editorDecorators)
+    } else {
+
+      let convertedContent
+      let initialContentState
+
+      if (contentFormat === 'html') {
+        convertedContent = convertFromHTML(initialContent)
+      } else if (contentFormat === 'raw') {
+        convertedContent = convertFromRaw(initialContent)
+      }
+
+      initialContentState = ContentState.createFromBlockArray(convertedContent.contentBlocks, convertedContent.entityMap)
+      initialEditorState = EditorState.createWithContent(initialContentState, editorDecorators)
+
+    }
+
     this.onChange = this.onChange.bind(this)
+    this.readyForSync = true
     this.handleKeyCommand = this.handleKeyCommand.bind(this)
     this.state = {
-      editorState: EditorState.createEmpty(new CompositeDecorator(decorators))
+      editorState: initialEditorState
     }
 
   }
 
   onChange(editorState) {
-    this.setState({ editorState })
+
+    this.setState({ editorState }, () => {
+
+      if (this.readyForSync) {
+
+        this.readyForSync = false
+
+        let { onChange } = this.props
+
+        if (typeof onChange === 'function') {
+          onChange(this.getFormatedContent())
+        }
+
+        setTimeout(() => {
+          this.readyForSync = true
+        }, 100)
+
+      }
+
+    })
+  
+  }
+
+  getFormatedContent (format) {
+
+    format = format || this.props.contentFormat || 'html'
+    const contentState = this.getContentState()
+
+    if (format === 'html') {
+      return convertToHTML(contentState)
+    } else if (format === 'raw') {
+      return convertToRaw(contentState)
+    }
+
+  }
+
+  getContentState () {
+    return this.state.editorState.getCurrentContent()
   }
 
   getEditorState () {
