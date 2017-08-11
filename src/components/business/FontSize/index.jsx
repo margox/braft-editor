@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
-import fontSizes from 'configs/fontSizes'
+import { fontSizes } from 'configs/controls'
 import DropDown from 'components/common/DropDown'
 
 export default class FontSize extends React.Component {

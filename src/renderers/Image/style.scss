@@ -1,0 +1,56 @@
+@import '~sassinc';
+
+.braft-embed-image-toolbar{
+  position: absolute;
+  z-index: 1;
+  bottom: 15px;
+  left: 50%;
+  width: auto;
+  height: 40px;
+  background-color: $COLOR_DARK;
+  border-radius: 3px;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  transform: translateX(-50%);
+  box-shadow: 2px 10px 30px rgba(#000, .3);
+  .braft-embed-image-toolbar-arrow{
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    display: block;
+    border: solid 5px transparent;
+    border-top-color: $COLOR_DARK;
+    transform: translateX(-5px);
+  }
+  a{
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    color: rgba(#fff, .5);
+    font-family: 'icomoon';
+    font-size: 18px;
+    font-weight: normal;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover{
+      color: #fff;
+    }
+    &:first-child{
+      border-radius: 3px 0 0 3px;
+    }
+    &:last-child{
+      border-radius: 0 3px 3px 0;
+    }
+  }
+  &[data-float="left"] [data-float="left"],
+  &[data-float="right"] [data-float="right"],
+  &[data-align="left"] [data-align="left"],
+  &[data-align="center"] [data-align="center"],
+  &[data-align="right"] [data-align="right"] {
+    color: $COLOR_ACTIVE;
+  }
+}

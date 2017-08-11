@@ -1,7 +1,9 @@
+import './style.scss'
 import React from 'react'
-import { EditorState, SelectionState, Modifier } from 'draft-js'
+import { List } from 'immutable'
+import { EditorState } from 'draft-js'
 import { setBlockData } from 'draftjs-utils'
-import { selectBlock, selectNextBlock, removeBlock } from 'utils/editor'
+import { selectBlock, removeBlock } from 'utils/editor'
 
 export default class Image extends React.Component {
 
@@ -61,7 +63,7 @@ export default class Image extends React.Component {
               <a data-align="left" onClick={() => this.setImageAlignment('left')}>&#xe027;</a>
               <a data-align="center" onClick={() => this.setImageAlignment('center')}>&#xe028;</a>
               <a data-align="right" onClick={() => this.setImageAlignment('right')}>&#xe029;</a>
-              <a data-align="right" onClick={() => this.removeImage()}>&#xe9ac;</a>
+              <a className="braft-danger-button" onClick={() => this.removeImage()}>&#xe9ac;</a>
               <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
           </div>
           )}
@@ -115,25 +117,21 @@ export default class Image extends React.Component {
   removeImage () {
 
     const { block, getEditorState, onChange } = this.props
-    onChange(removeBlock(getEditorState(), block.getKey()))
+    onChange(removeBlock(getEditorState(), block))
 
   }
 
   setImageFloat (float) {
 
-    const { block, getEditorState, onChange } = this.props
+    const { block, getEditorState, contentState, onChange } = this.props
     const blockData = block.getData()
-    const blockKey = block.getKey()
     const lastFloat = blockData.get('float')
 
     if (lastFloat === float) {
       float = null
     }
 
-    onChange(selectBlock(getEditorState(), blockKey))
-    setImmediate(() => {
-      onChange(setBlockData(getEditorState(), { float }))
-    })
+    onChange(setBlockData(selectBlock(getEditorState(), block), { float }))
 
   }
 

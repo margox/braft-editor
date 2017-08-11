@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
-import presetColors from 'configs/colors'
+import { colors } from 'configs/controls'
 import { UniqueIndex } from 'utils/base'
 import DropDown from 'components/common/DropDown'
 import ColorPicker from 'components/common/ColorPicker'
@@ -22,7 +22,7 @@ export default class TextColor extends React.Component {
     let { colorType } = this.state
     let { currentInlineStyle, onChange } = this.props
 
-    presetColors.forEach((item, index) => {
+    colors.forEach((item, index) => {
 
       if (currentInlineStyle.has('COLOR-' + index)) {
         captionStyle.color = item
@@ -76,7 +76,7 @@ export default class TextColor extends React.Component {
             width={200}
             current={currentIndex}
             disableAlpha={true}
-            colors={presetColors}
+            colors={colors}
             onChange={this.toggleColor}
           />
         </div>
@@ -96,7 +96,7 @@ export default class TextColor extends React.Component {
     const prefix = this.state.colorType === 'color' ? 'COLOR-' : 'BGCOLOR-'
     const toggledColor = prefix + index
     const { editorState, selection, currentInlineStyle } = this.props
-    const nextContentState = presetColors.reduce((contentState, item, index) => {
+    const nextContentState = colors.reduce((contentState, item, index) => {
       return Modifier.removeInlineStyle(contentState, selection, prefix + index) 
     }, editorState.getCurrentContent())
 

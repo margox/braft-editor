@@ -1,6 +1,4 @@
-import colors from 'configs/colors'
-import fontSizes from 'configs/fontSizes'
-import fontFamilies from 'configs/fontFamilies'
+import { colors, fontSizes, fontFamilies } from 'configs/controls'
 
 const colorStyles = {}
 const bgColorStyles = {}
