@@ -8,8 +8,8 @@ const convertAtomicBlock = (block, contentState) => {
   const entity = contentState.getEntity(entityKey)
   const mediaType = entity.getType().toLowerCase()
 
-  let { float } = block.data
-  let { url, width, height, alignment } = entity.getData()
+  let { float, alignment } = block.data
+  let { url, width, height } = entity.getData()
 
   if (mediaType === 'image') {
 
