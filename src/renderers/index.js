@@ -1,8 +1,11 @@
 import React from 'react'
 import { Map } from 'immutable'
-import Image from './Image'
-import Video from './Video'
-import Audio from './Audio'
+import Image from './atomic/Image'
+import Video from './atomic/Video'
+import Audio from './atomic/Audio'
+import _blockStyleFn from './styles/blockStyles'
+import _customStyleMap from './styles/inlineStyles'
+import _decorators from './decorators'
 
 const getMediaComponent = (block, superProps) => (props) => {
 
@@ -27,7 +30,7 @@ const getMediaComponent = (block, superProps) => (props) => {
 
 }
 
-export const getBlockRenderers = (props) => (block) => {
+export const getBlockRendererFn = (props) => (block) => {
 
   return block.getType() === 'atomic' ? {
     component: getMediaComponent(block, props),
@@ -41,3 +44,7 @@ export const blockRenderMap = Map({
     element: ''
   }
 })
+
+export const blockStyleFn = _blockStyleFn
+export const customStyleMap = _customStyleMap
+export const decorators = _decorators

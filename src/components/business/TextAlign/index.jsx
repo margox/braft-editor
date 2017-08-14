@@ -15,7 +15,7 @@ export default class TextAlign extends React.Component {
 
     if (this.props.editorState !== next.editorState) {
       this.setState({
-        currentAlignment: getSelectedBlocksMetadata(next.editorState).get('text-align')
+        currentAlignment: getSelectedBlocksMetadata(next.editorState).get('textAlign')
       })
     }
 
@@ -29,11 +29,11 @@ export default class TextAlign extends React.Component {
 
     if (alignment !== currentAlignment) {
       onChange(setBlockData(editorState, {
-        'text-align': alignment
+        'textAlign': alignment
       }))
     } else {
       onChange(setBlockData(editorState, {
-        'text-align': undefined
+        'textAlign': undefined
       }))
     }
 

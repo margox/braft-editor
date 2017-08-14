@@ -1,6 +1,6 @@
 import './style.scss'
 import React from 'react'
-import { headings } from 'configs/controls'
+import { headings } from 'configs/maps'
 import DropDown from 'components/common/DropDown'
 
 export default class Headings extends React.Component {

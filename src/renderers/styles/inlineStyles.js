@@ -1,4 +1,4 @@
-import { colors, fontSizes, fontFamilies } from 'configs/controls'
+import { colors, fontSizes, fontFamilies } from 'configs/maps'
 
 const colorStyles = {}
 const bgColorStyles = {}

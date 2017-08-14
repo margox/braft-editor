@@ -2,16 +2,11 @@ import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-    CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState,
-    EditorState, RichUtils, convertFromRaw, convertFromHTML, convertToRaw
-} from 'draft-js'
-import { convertToHTML } from 'draft-convert'
+import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
+import { convertToHTML, convertFromHTML } from 'draft-convert'
+import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
-import decorators from 'decorators'
-import { getBlockRenderers, blockRenderMap } from 'renderers'
-import blockStyles from 'styles/blockStyles'
-import inlineStyles from 'styles/inlineStyles'
+import { getBlockRendererFn, blockRenderMap, blockStyleFn, customStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 
 const editorDecorators = new CompositeDecorator(decorators)
@@ -26,7 +21,7 @@ export default class BraftEditor extends React.Component {
     let initialEditorState
     let { initialContent, contentFormat } = this.props
 
-    contentFormat = contentFormat || 'html'
+    contentFormat = contentFormat || 'raw'
     initialContent = initialContent || ''
 
     if (!initialContent) {
@@ -34,7 +29,6 @@ export default class BraftEditor extends React.Component {
     } else {
 
       let convertedContent
-      let initialContentState
 
       if (contentFormat === 'html') {
         convertedContent = convertFromHTML(initialContent)
@@ -42,8 +36,7 @@ export default class BraftEditor extends React.Component {
         convertedContent = convertFromRaw(initialContent)
       }
 
-      initialContentState = ContentState.createFromBlockArray(convertedContent.contentBlocks, convertedContent.entityMap)
-      initialEditorState = EditorState.createWithContent(initialContentState, editorDecorators)
+      initialEditorState = EditorState.createWithContent(convertedContent, editorDecorators)
 
     }
 
@@ -59,46 +52,39 @@ export default class BraftEditor extends React.Component {
   onChange(editorState) {
 
     this.setState({ editorState }, () => {
-
-      if (this.readyForSync) {
-
-        this.readyForSync = false
-
+      clearTimeout(this.syncTimer)
+      this.syncTimer = setTimeout(() => {
         let { onChange } = this.props
-
-        if (typeof onChange === 'function') {
-          onChange(this.getFormatedContent())
-        }
-
-        setTimeout(() => {
-          this.readyForSync = true
-        }, 100)
-
-      }
-
+        typeof onChange === 'function' && onChange(this.getContent())
+      }, 300)
     })
-  
+
   }
 
-  getFormatedContent (format) {
+  getHTMLContent () {
+    return this.getContent('html')
+  }
 
-    format = format || this.props.contentFormat || 'html'
+  getRawContent () {
+    return this.getContent('raw')
+  }
+
+  getContent (format) {
+    format = format || this.props.contentFormat || 'raw'
     const contentState = this.getContentState()
-
-    if (format === 'html') {
-      return convertToHTML(contentState)
-    } else if (format === 'raw') {
-      return convertToRaw(contentState)
-    }
-
+    return format === 'html' ? convertToHTML(getToHTMLConfig(contentState))(contentState) : convertToRaw(this.getContentState())
   }
 
   getContentState () {
-    return this.state.editorState.getCurrentContent()
+    return this.getEditorState().getCurrentContent()
   }
 
   getEditorState () {
     return this.state.editorState
+  }
+
+  getDraftInstance () {
+    return this.draftInstance
   }
 
   handleKeyCommand(command) {
@@ -116,7 +102,7 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    const { controls, height, media } = this.props
+    const { controls, height, media, addonControls } = this.props
     let contentState = this.state.editorState.getCurrentContent()
     let mediaConfig = { ...defaultOptions.media, ...media }
 
@@ -130,10 +116,11 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       contentState: contentState,
       controls: controls || defaultOptions.controls,
-      media: mediaConfig
+      media: mediaConfig,
+      addonControls: addonControls || []
     }
 
-    const blockRenderers = getBlockRenderers({
+    const blockRendererFn = getBlockRendererFn({
       onChange: this.onChange,
       editorState: this.state.editorState,
       getEditorState: this.getEditorState.bind(this),
@@ -141,13 +128,14 @@ export default class BraftEditor extends React.Component {
     })
 
     const editorProps = {
+      ref: instance => this.draftInstance = instance,
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       onChange: this.onChange,
-      customStyleMap: inlineStyles,
+      customStyleMap: customStyleMap,
       blockRenderMap: extendedBlockRenderMap,
-      blockStyleFn: blockStyles,
-      blockRendererFn: blockRenderers
+      blockStyleFn: blockStyleFn,
+      blockRendererFn: blockRendererFn
     }
 
     return (

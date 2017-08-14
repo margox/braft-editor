@@ -1,6 +1,6 @@
 export default function blockStyleFn (block) {
 
-  const blockAlignment = block.getData() && block.getData().get('text-align')
+  const blockAlignment = block.getData() && block.getData().get('textAlign')
   const blockFloat = block.getData() && block.getData().get('float')
 
   let result = null

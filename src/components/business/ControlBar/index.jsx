@@ -18,10 +18,27 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media } = this.props
+    const { controls, editorState, contentState, media, addonControls } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
+
+    const renderedAddonControls = addonControls.map((addonControlItem, index) => {
+      if (addonControlItem.type === 'split-line') {
+        return <span key={controls.length + index} className="split-line"></span>
+      } else {
+        return (
+          <button
+            key={controls.length + index}
+            title={addonControlItem.title}
+            className={'control-item button ' + addonControlItem.className}
+            onClick={() => addonControlItem.onClick(editorState)}
+          >
+          {addonControlItem.text}
+          </button>
+        )
+      }
+    })
 
     return (
       <div className="BraftEditor-controlBar">
@@ -140,6 +157,7 @@ export default class ControlBar extends React.Component {
 
           })
         }
+        {renderedAddonControls}
       </div>
     )
 

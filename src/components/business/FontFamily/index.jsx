@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
-import { fontFamilies } from 'configs/controls'
+import { fontFamilies } from 'configs/maps'
 import DropDown from 'components/common/DropDown'
 
 export default class FontFamily extends React.Component {

@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
-import { colors } from 'configs/controls'
+import { colors } from 'configs/maps'
 import { UniqueIndex } from 'utils/base'
 import DropDown from 'components/common/DropDown'
 import ColorPicker from 'components/common/ColorPicker'

@@ -8,8 +8,9 @@ import { selectBlock, removeBlock } from 'utils/editor'
 export default class Image extends React.Component {
 
   state = {
-    toolbarVisbile: false,
+    toolbarVisbile: true,
     toolbarOffset: 0,
+    linkEditorVisible: true,
     tempWidth: null,
     tempHeight: null
   }
@@ -17,10 +18,12 @@ export default class Image extends React.Component {
   render () {
 
     const { mediaData } = this.props
-    const { toolbarVisbile, toolbarOffset, tempWidth, tempHeight } = this.state
-    const float = this.props.block.getData().get('float')
+    const { toolbarVisbile, toolbarOffset, linkEditorVisible, tempWidth, tempHeight } = this.state
+    const blockData = this.props.block.getData()
+    const float = blockData.get('float')
+    const hash = blockData.get('hash')
 
-    let { url, width, height, alignment } = mediaData
+    let { url, link, width, height, alignment } = mediaData
     let imageStyles = {}
     let clearFix = false
 
@@ -47,27 +50,36 @@ export default class Image extends React.Component {
         <div
           style={imageStyles}
           className="braft-embed-image"
-          onMouseOver={() => this.showToolbar()}
-          onMouseLeave={() => this.hideToolbar()}
+          onMouseOver={this.showToolbar}
         >
           {toolbarVisbile && (
           <div
             style={{marginLeft: toolbarOffset}}
             ref={instance => this.toolbarElement = instance}
             data-float={float}
-            data-align={alignment}
+            data-alignment={alignment}
             className="braft-embed-image-toolbar"
           >
-              <a data-float="left" onClick={() => this.setImageFloat('left')}>&#xe91e;</a>
-              <a data-float="right" onClick={() => this.setImageFloat('right')}>&#xe914;</a>
-              <a data-align="left" onClick={() => this.setImageAlignment('left')}>&#xe027;</a>
-              <a data-align="center" onClick={() => this.setImageAlignment('center')}>&#xe028;</a>
-              <a data-align="right" onClick={() => this.setImageAlignment('right')}>&#xe029;</a>
-              <a className="braft-danger-button" onClick={() => this.removeImage()}>&#xe9ac;</a>
-              <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
+            {(link || linkEditorVisible) && (
+              <div onClick={this.preventDefault} className="braft-embed-image-link-editor">
+                <input type="text" placeholder="输入链接后回车" onClick={this.handleLinkInputClick} onKeyDown={this.setImageLink} defaultValue={link}/>
+              </div>
+            )}
+            <a data-float="left" onClick={this.setImageFloat}>&#xe91e;</a>
+            <a data-float="right" onClick={this.setImageFloat}>&#xe914;</a>
+            <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a>
+            <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a>
+            <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a>
+            <a data-float="left" onClick={this.toggleImageEditor}>&#xe91a;</a>
+            <a onClick={this.removeImage}>&#xe9ac;</a>
+            <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
           </div>
           )}
-          <img ref={instance => this.imageElement = instance} src={url} width={width} height={height} />
+          <img
+            data-hash={hash}
+            ref={instance => this.imageElement = instance}
+            src={url} width={width} height={height}
+          />
         </div>
         {clearFix && <div className="clearfix" style={{clear:'both'}}></div>}
       </div>
@@ -95,34 +107,29 @@ export default class Image extends React.Component {
 
   }
 
-  setSize (size) {
-
-    let { width, height } = size
-    const { entityKey, contentState, editorState, onChange } = this.props
-    contentState.mergeEntityData(entityKey,{ width, height })
-    onChange(EditorState.push(editorState, contentState, 'change-block-data'))
-
-  }
-
-  resetSize () {
-
-    const { entityKey, contentState, editorState, onChange } = this.props
-    const { naturalWidth: width, naturalHeight: height } = this.imageElement
-
-    contentState.mergeEntityData(entityKey,{ width, height })
-    onChange(EditorState.push(editorState, contentState, 'change-block-data'))
-
-  }
-
-  removeImage () {
+  removeImage = (e) => {
 
     const { block, getEditorState, onChange } = this.props
     onChange(removeBlock(getEditorState(), block))
 
   }
 
-  setImageFloat (float) {
+  setImageLink = (e) => {
 
+    if (e.keyCode !== 13) {
+      return false
+    }
+
+    const link = e.currentTarget.value.trim()
+    const { entityKey, contentState, editorState, onChange } = this.props
+    contentState.mergeEntityData(entityKey, { link })
+    onChange(EditorState.push(editorState, contentState, 'change-block-data'))
+
+  }
+
+  setImageFloat = (e) => {
+
+    let { float } = e.currentTarget.dataset
     const { block, getEditorState, contentState, onChange } = this.props
     const blockData = block.getData()
     const lastFloat = blockData.get('float')
@@ -135,21 +142,45 @@ export default class Image extends React.Component {
 
   }
 
-  setImageAlignment (alignment) {
+  setImageAlignment = (e) => {
 
-    let lastAlignment = this.props.mediaData.alignment
+    let { alignment } = e.currentTarget.dataset
+    const { alignment:lastAlignment } = this.props.mediaData
 
     if (lastAlignment === alignment) {
       alignment = null
     }
 
     const { entityKey, contentState, editorState, onChange } = this.props
-    contentState.mergeEntityData(entityKey,{ alignment })
+    contentState.mergeEntityData(entityKey, { alignment })
     onChange(EditorState.push(editorState, contentState, 'change-block-data'))
 
   }
 
-  showToolbar () {
+  preventDefault = (e) => {
+    console.log(1)
+    e.preventDefault()
+    e.stopPropagation()
+    return false
+  }
+  
+  handleLinkInputClick = (e) => {
+
+    console.log(1)
+    e.preventDefault()
+    e.stopPropagation()
+    return false
+
+  }
+
+  toggleImageEditor = () => {
+    this.setState({
+      linkEditorVisible: !this.state.linkEditorVisible
+    })
+  }
+
+  showToolbar = () => {
+
     if (!this.state.toolbarVisbile) {
       this.setState({
         toolbarVisbile: true
@@ -159,9 +190,10 @@ export default class Image extends React.Component {
         })
       })
     }
+
   }
 
-  hideToolbar () {
+  hideToolbar = () => {
     this.setState({
       toolbarVisbile: false
     })
