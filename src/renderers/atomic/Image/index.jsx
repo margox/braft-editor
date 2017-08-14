@@ -8,17 +8,15 @@ import { selectBlock, removeBlock } from 'utils/editor'
 export default class Image extends React.Component {
 
   state = {
-    toolbarVisbile: true,
+    toolbarVisbile: false,
     toolbarOffset: 0,
-    linkEditorVisible: true,
-    tempWidth: null,
-    tempHeight: null
+    linkEditorVisible: false
   }
 
   render () {
 
     const { mediaData } = this.props
-    const { toolbarVisbile, toolbarOffset, linkEditorVisible, tempWidth, tempHeight } = this.state
+    const { toolbarVisbile, toolbarOffset, linkEditorVisible } = this.state
     const blockData = this.props.block.getData()
     const float = blockData.get('float')
     const hash = blockData.get('hash')
@@ -26,9 +24,6 @@ export default class Image extends React.Component {
     let { url, link, width, height, alignment } = mediaData
     let imageStyles = {}
     let clearFix = false
-
-    width = tempWidth || width
-    height = tempHeight || height
 
     if (float) {
       alignment = null
@@ -155,28 +150,6 @@ export default class Image extends React.Component {
     contentState.mergeEntityData(entityKey, { alignment })
     onChange(EditorState.push(editorState, contentState, 'change-block-data'))
 
-  }
-
-  preventDefault = (e) => {
-    console.log(1)
-    e.preventDefault()
-    e.stopPropagation()
-    return false
-  }
-  
-  handleLinkInputClick = (e) => {
-
-    console.log(1)
-    e.preventDefault()
-    e.stopPropagation()
-    return false
-
-  }
-
-  toggleImageEditor = () => {
-    this.setState({
-      linkEditorVisible: !this.state.linkEditorVisible
-    })
   }
 
   showToolbar = () => {
