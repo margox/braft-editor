@@ -2,7 +2,7 @@
 
 .braft-embed-image-toolbar{
   position: absolute;
-  z-index: 1;
+  z-index: 3;
   bottom: 15px;
   left: 50%;
   width: auto;
@@ -24,7 +24,8 @@
     transform: translateX(-5px);
   }
   .braft-embed-image-link-editor{
-    height: 40px;
+    padding-bottom: 1px;
+    overflow: hidden;
     border-radius: 3px 3px 0 0;
     box-shadow: inset 0 -.5px 0 0 rgba(#fff, .1);
     input{
@@ -36,6 +37,7 @@
       background-color: rgba(#fff, .1);
       border: none;
       border-radius: 3px;
+      outline: none;
       box-shadow: inset 0 0 0 .5px rgba(#fff, .1);
       color: #fff;
       font-weight: bold;
@@ -44,6 +46,20 @@
       }
       &:focus{
         box-shadow: inset 0 0 0 .5px rgba($COLOR_ACTIVE, 1);
+      }
+    }
+    .switch-group{
+      height: 20px;
+      margin: 10px 10px;
+      .switch-button{
+        float: left;
+      }
+      label{
+        float: left;
+        margin-left: 15px;
+        color: #999;
+        font-size: 12px;
+        line-height: 20px;      
       }
     }
   }
@@ -68,6 +84,9 @@
     }
     &:last-child{
       border-radius: 0 3px 3px 0;
+    }
+    &.active{
+      color: $COLOR_ACTIVE;
     }
   }
   &[data-float="left"] [data-float="left"],

@@ -9,7 +9,7 @@ const convertAtomicBlock = (block, contentState) => {
   const mediaType = entity.getType().toLowerCase()
 
   let { float, alignment } = block.data
-  let { url, width, height } = entity.getData()
+  let { url, link, link_target, width, height } = entity.getData()
 
   if (mediaType === 'image') {
 
@@ -21,7 +21,21 @@ const convertAtomicBlock = (block, contentState) => {
       imageWrapStyle.textAlign = alignment
     }
 
-    return <div data-key={block.key} data-role="image-wrap" style={imageWrapStyle}><img src={url} width={width} height={height} /></div>
+    if (link) {
+      return (
+        <div data-key={block.key} data-role="image-wrap" style={imageWrapStyle}>
+          <a style={{display:'inline-block'}} href={link} target={link_target}>
+            <img src={url} width={width} height={height} />
+          </a>
+        </div>
+      )
+    } else {
+      return (
+        <div data-key={block.key} data-role="image-wrap" style={imageWrapStyle}>
+          <img src={url} width={width} height={height} />
+        </div>
+      )
+    }
 
   } else if (mediaType === 'audio') {
     return <audio controls src={url} />

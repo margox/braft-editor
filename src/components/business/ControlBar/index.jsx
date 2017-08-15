@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState } from 'draft-js'
-import SupportedControls from 'configs/controls'
+import getSupportedControls from 'configs/controls'
 import LinkEditor from 'components/business/LinkEditor'
 import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
@@ -18,10 +18,12 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls } = this.props
+    const { controls, editorState, contentState, media, addonControls, language } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
+    const supportedControls = getSupportedControls(language)
+    const commonProps = { language, editorState, contentState, currentInlineStyle, selection }
 
     const renderedAddonControls = addonControls.map((addonControlItem, index) => {
       if (addonControlItem.type === 'split-line') {
@@ -44,10 +46,9 @@ export default class ControlBar extends React.Component {
       <div className="BraftEditor-controlBar">
         <MediaPicker
           media={media}
-          editorState={editorState}
-          contentState={contentState}
           ref={(instance) => this.mediaPicker = instance}
           onChange={this.applyEditorState}
+          { ...commonProps }
         />
         {
           controls.map((item, index) => {
@@ -56,7 +57,7 @@ export default class ControlBar extends React.Component {
               return <span key={index} className="split-line"></span>
             }
 
-            let controlItem = SupportedControls.find((subItem) => {
+            let controlItem = supportedControls.find((subItem) => {
               return subItem.key.toLowerCase() === item.toLowerCase()
             })
 
@@ -70,14 +71,15 @@ export default class ControlBar extends React.Component {
                 key={index}
                 current={currentBlockType}
                 onChange={(command) => this.applyControl(command, 'block-type')}
+                { ...commonProps }
               />
 
             } else if (controlItem.type === 'text-color') {
 
               return <TextColorPicker
                 key={index}
-                {...{selection, editorState, currentInlineStyle}}
                 onChange={this.applyEditorState}
+                { ...commonProps }
               />
 
             } else if (controlItem.type === 'font-size') {
@@ -85,8 +87,8 @@ export default class ControlBar extends React.Component {
               return <FontSizePicker
                 key={index}
                 defaultCaption={controlItem.title}
-                {...{selection, editorState, currentInlineStyle}}
                 onChange={this.applyEditorState}
+                { ...commonProps }
               />
 
             } else if (controlItem.type === 'font-family') {
@@ -94,8 +96,8 @@ export default class ControlBar extends React.Component {
               return <FontFamilyPicker
                 key={index}
                 defaultCaption={controlItem.title}
-                {...{selection, editorState, currentInlineStyle}}
                 onChange={this.applyEditorState}
+                { ...commonProps }
               />
 
             } else if (controlItem.type === 'link') {
@@ -103,8 +105,8 @@ export default class ControlBar extends React.Component {
               return <LinkEditor
                 key={index}
                 defaultCaption={controlItem.title}
-                {...{selection, editorState, contentState}}
                 onChange={this.applyEditorState}
+                { ...commonProps }
               />
 
             } else if (controlItem.type === 'text-align') {
@@ -112,8 +114,8 @@ export default class ControlBar extends React.Component {
               return (
                 <TextAlign
                   key={index}
-                  {...{selection, editorState, currentInlineStyle}}
                   onChange={this.applyEditorState}
+                  { ...commonProps }
                 />
               )
 

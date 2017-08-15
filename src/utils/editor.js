@@ -1,4 +1,5 @@
-import { SelectionState, EditorState, Modifier } from 'draft-js';
+import { SelectionState, EditorState, Modifier } from 'draft-js'
+import DraftOffsetKey from 'draft-js/lib/DraftOffsetKey'
 
 export const selectBlock = (editorState, block) => {
 
@@ -11,6 +12,13 @@ export const selectBlock = (editorState, block) => {
   })
 
   return EditorState.forceSelection(editorState, targetRange)
+
+}
+
+export const selectNextBlock = (editorState, blockKey) => {
+
+  let nextBlock = editorState.getCurrentContent().getBlockAfter(blockKey)
+  return nextBlock ? selectBlock(editorState, nextBlock) : editorState
 
 }
 

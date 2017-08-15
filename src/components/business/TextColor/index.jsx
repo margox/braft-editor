@@ -20,7 +20,7 @@ export default class TextColor extends React.Component {
     let captionStyle = {}
     let currentIndex = null
     let { colorType } = this.state
-    let { currentInlineStyle, onChange } = this.props
+    let { currentInlineStyle, onChange, language } = this.props
 
     colors.forEach((item, index) => {
 
@@ -49,7 +49,7 @@ export default class TextColor extends React.Component {
     return (
       <DropDown
         caption={caption}
-        hoverTitle="颜色"
+        hoverTitle={language.controls.color}
         showDropDownArrow={false}
         componentId={this.dropDownId}
         ref={(instance) => this.dropDown = instance}
@@ -63,14 +63,14 @@ export default class TextColor extends React.Component {
               data-braft-component-id={this.dropDownId}
               className={colorType === 'color' ? 'active' : ''}
               onClick={this.switchColorType}
-            >文字颜色</button>
+            >{language.controls.textColor}</button>
             <button
               data-type="backgroundColor"
               data-keep-active={true}
               data-braft-component-id={this.dropDownId}
               className={colorType === 'backgroundColor' ? 'active' : ''}
               onClick={this.switchColorType}
-            >背景颜色</button>
+            >{language.controls.backgroundColor}</button>
           </div>
           <ColorPicker
             width={200}

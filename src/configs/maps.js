@@ -1,46 +1,46 @@
 import React from 'react'
 
-export const headings = [
+export const getHeadings = (lang) => [
   {
     key: 'header-one',
-    title: '标题 1',
-    text: <h1>标题 1</h1>,
+    title: lang.controls.header + ' 1',
+    text: <h1>{lang.controls.header} 1</h1>,
     type: 'block-type',
     command: 'header-one'
   }, {
     key: 'header-two',
-    title: '标题 2',
-    text: <h2>标题 2</h2>,
+    title: lang.controls.header + ' 2',
+    text: <h2>{lang.controls.header} 2</h2>,
     type: 'block-type',
     command: 'header-two'
   }, {
     key: 'header-three',
-    title: '标题 3',
-    text: <h3>标题 3</h3>,
+    title: lang.controls.header + ' 3',
+    text: <h3>{lang.controls.header} 3</h3>,
     type: 'block-type',
     command: 'header-three'
   }, {
     key: 'header-four',
-    title: '标题 4',
-    text: <h4>标题 4</h4>,
+    title: lang.controls.header + ' 4',
+    text: <h4>{lang.controls.header} 4</h4>,
     type: 'block-type',
     command: 'header-four'
   }, {
     key: 'header-five',
-    title: '标题 5',
-    text: <h5>标题 5</h5>,
+    title: lang.controls.header + ' 5',
+    text: <h5>{lang.controls.header} 5</h5>,
     type: 'block-type',
     command: 'header-five'
   }, {
     key: 'header-six',
-    title: '标题 6',
-    text: <h6>标题 6</h6>,
+    title: lang.controls.header + ' 6',
+    text: <h6>{lang.controls.header} 6</h6>,
     type: 'block-type',
     command: 'header-six'
   }, {
     key: 'unstyled',
-    title: '常规',
-    text: '常规',
+    title: lang.controls.normal,
+    text: lang.controls.normal,
     type: 'block-type',
     command: 'unstyled'
   }

@@ -2,11 +2,12 @@ import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
+import languages from 'languages'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
 import { convertToHTML, convertFromHTML } from 'draft-convert'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
-import { getBlockRendererFn, blockRenderMap, blockStyleFn, customStyleMap, decorators } from 'renderers'
+import { getBlockRendererFn, blockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 
 const editorDecorators = new CompositeDecorator(decorators)
@@ -44,7 +45,8 @@ export default class BraftEditor extends React.Component {
     this.readyForSync = true
     this.handleKeyCommand = this.handleKeyCommand.bind(this)
     this.state = {
-      editorState: initialEditorState
+      editorState: initialEditorState,
+      editorProps: {}
     }
 
   }
@@ -87,6 +89,24 @@ export default class BraftEditor extends React.Component {
     return this.draftInstance
   }
 
+  setEditorProp (key, name) {
+    let editorProps = {
+      ...this.state.editorProps,
+      [key]: name
+    }
+    this.setState({ editorProps })
+  }
+
+  forceRender () {
+
+    const editorState = this.state.editorState
+    const contentState = editorState.getCurrentContent()
+    const newEditorState = EditorState.createWithContent(contentState, editorDecorators)
+
+    this.setState({editorState: newEditorState})
+
+  }
+
   handleKeyCommand(command) {
 
     const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
@@ -102,9 +122,11 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    const { controls, height, media, addonControls } = this.props
+    let { controls, height, media, addonControls, language } = this.props
     let contentState = this.state.editorState.getCurrentContent()
     let mediaConfig = { ...defaultOptions.media, ...media }
+
+    language = languages[language] || languages['en']
 
     if (!mediaConfig.uploadFn) {
       mediaConfig.video = false
@@ -116,6 +138,7 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       contentState: contentState,
       controls: controls || defaultOptions.controls,
+      language: language,
       media: mediaConfig,
       addonControls: addonControls || []
     }
@@ -124,7 +147,10 @@ export default class BraftEditor extends React.Component {
       onChange: this.onChange,
       editorState: this.state.editorState,
       getEditorState: this.getEditorState.bind(this),
-      contentState: contentState
+      contentState: contentState,
+      language: language,
+      forceRender: this.forceRender.bind(this),
+      setEditorProp: this.setEditorProp.bind(this)
     })
 
     const editorProps = {
@@ -132,10 +158,11 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       onChange: this.onChange,
-      customStyleMap: customStyleMap,
+      customStyleMap: getCustomStyleMap(),
       blockRenderMap: extendedBlockRenderMap,
       blockStyleFn: blockStyleFn,
-      blockRendererFn: blockRendererFn
+      blockRendererFn: blockRendererFn,
+      ...this.state.editorProps
     }
 
     return (

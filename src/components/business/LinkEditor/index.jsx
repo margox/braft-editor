@@ -44,14 +44,14 @@ export default class LinkEditor extends React.Component {
   render () {
 
     const { href, target } = this.state
-    const { editorState, contentState, selection } = this.props
+    const { editorState, contentState, selection, language } = this.props
     const caption = <i className="icon-link"></i>
 
     return (
       <div className="control-item-group">
         <DropDown
           caption={caption}
-          hoverTitle={'添加链接'}
+          hoverTitle={language.controls.link}
           hideOnBlur={false}
           showDropDownArrow={false}
           ref={(instance) => this.dropDownComponent = instance}
@@ -63,7 +63,7 @@ export default class LinkEditor extends React.Component {
                 type="text"
                 value={href}
                 spellCheck={false}
-                placeholder="键入链接地址"
+                placeholder={language.linkEditor.inputPlaceHolder}
                 onChange={this.inputLink}
               />
             </div>
@@ -72,20 +72,20 @@ export default class LinkEditor extends React.Component {
                 active={target === '_blank'}
                 onClick={this.setTarget}
               />
-              <label>在新窗口打开此链接</label>
+              <label>{language.linkEditor.openInNewWindow}</label>
             </div>
             <div className="buttons">
               <a onClick={this.handleUnlink} className="primary pull-left" href="javascript:void(0);">
                 <i className="icon-close"></i>
-                <span>移除链接</span>
+                <span>{language.linkEditor.removeLink}</span>
               </a>
-              <button onClick={this.handleConfirm} className="primary pull-right">确定</button>
-              <button onClick={this.handleCancel} className="default pull-right">取消</button>
+              <button onClick={this.handleConfirm} className="primary pull-right">{language.base.confirm}</button>
+              <button onClick={this.handleCancel} className="default pull-right">{language.base.cancel}</button>
             </div>
           </div>
         </DropDown>
         <button
-          title={'移除链接'}
+          title={language.controls.unlink}
           className="control-item button"
           onClick={this.handleUnlink}
         >

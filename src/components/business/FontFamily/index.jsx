@@ -10,7 +10,7 @@ export default class FontFamily extends React.Component {
 
     let caption = null
     let currentIndex = null
-    let { defaultCaption, currentInlineStyle, onChange } = this.props
+    let { defaultCaption, currentInlineStyle, onChange, language } = this.props
 
     fontFamilies.find((item, index) => {
       if (currentInlineStyle.has('FONTFAMILY-' + index)) {
@@ -23,12 +23,12 @@ export default class FontFamily extends React.Component {
 
     let isFirstItemActive = currentIndex === 0
 
-    caption = caption || defaultCaption || 'Font Family'
+    caption = caption || defaultCaption || language.controls.fontFamily
 
     return (
       <DropDown
         caption={caption}
-        hoverTitle="字体"
+        hoverTitle={language.controls.fontFamily}
         arrowActive={isFirstItemActive}
         className={"control-item dropdown font-family-dropdown"}
       >

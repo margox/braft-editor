@@ -1,40 +1,42 @@
 import { colors, fontSizes, fontFamilies } from 'configs/maps'
 
-const colorStyles = {}
-const bgColorStyles = {}
-const fontSizeStyles = {}
-const fontFamilyStyles = {}
+export default (props) => {
 
-colors.forEach((color, index) => {
-  colorStyles['COLOR-' + index] = { color }
-  bgColorStyles['BGCOLOR-' + index] = { backgroundColor: color }
-})
+  const colorStyles = {}
+  const bgColorStyles = {}
+  const fontSizeStyles = {}
+  const fontFamilyStyles = {}
 
-fontSizes.forEach((fontSize) => {
-  fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize }
-})
+  colors.forEach((color, index) => {
+    colorStyles['COLOR-' + index] = { color }
+    bgColorStyles['BGCOLOR-' + index] = { backgroundColor: color }
+  })
 
-fontFamilies.forEach((fontFamily, index) => {
-  fontFamilyStyles['FONTFAMILY-' + index] = {
-    fontFamily: fontFamily.family
+  fontSizes.forEach((fontSize) => {
+    fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize }
+  })
+
+  fontFamilies.forEach((fontFamily, index) => {
+    fontFamilyStyles['FONTFAMILY-' + index] = {
+      fontFamily: fontFamily.family
+    }
+  })
+
+  return {
+    'SUPERSCRIPT': {
+      position: 'relative',
+      top: '-8px',
+      fontSize: '11px'
+    },
+    'SUBSCRIPT': {
+      position: 'relative',
+      bottom: '-8px',
+      fontSize: '11px'
+    },
+    ...colorStyles,
+    ...bgColorStyles,
+    ...fontSizeStyles,
+    ...fontFamilyStyles
   }
-})
 
-const styles = {
-  'SUPERSCRIPT': {
-    position: 'relative',
-    top: '-8px',
-    fontSize: '11px'
-  },
-  'SUBSCRIPT': {
-    position: 'relative',
-    bottom: '-8px',
-    fontSize: '11px'
-  },
-  ...colorStyles,
-  ...bgColorStyles,
-  ...fontSizeStyles,
-  ...fontFamilyStyles
 }
-
-export default styles

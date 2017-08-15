@@ -1,105 +1,105 @@
 import React from 'react'
 
-export default [
+export default (lang) => [
   {
     key: 'undo',
-    title: '撤销',
+    title: lang.controls.undo,
     text: <i className="icon-undo"></i>,
     type: 'editor-state-method',
     command: 'undo'
   }, {
     key: 'redo',
-    title: '重做',
+    title: lang.controls.redo,
     text: <i className="icon-redo"></i>,
     type: 'editor-state-method',
     command: 'redo'
   }, {
     key: 'bold',
-    title: '加粗',
+    title: lang.controls.bold,
     text: <i className="icon-bold"></i>,
     type: 'inline-style',
     command: 'bold'
   }, {
     key: 'italic',
-    title: '斜体',
+    title: lang.controls.italic,
     text: <i className="icon-italic"></i>,
     type: 'inline-style',
     command: 'italic'
   }, {
     key: 'underline',
-    title: '下划线',
+    title: lang.controls.underline,
     text: <i className="icon-underlined"></i>,
     type: 'inline-style',
     command: 'underline'
   }, {
     key: 'strike-through',
-    title: '删除线',
+    title: lang.controls.strikeThrough,
     text: <i className="icon-strikethrough"></i>,
     type: 'inline-style',
     command: 'strikethrough',
   }, {
     key: 'superscript',
-    title: '上标',
+    title: lang.controls.superScript,
     text: <i className="icon-superscript"></i>,
     type: 'inline-style',
     command: 'superscript'
   }, {
     key: 'subscript',
-    title: '下标',
+    title: lang.controls.subScript,
     text: <i className="icon-subscript"></i>,
     type: 'inline-style',
     command: 'subscript'
   }, {
     key: 'headings',
-    title: '标题',
+    title: lang.controls.headings,
     type: 'headings',
   }, {
     key: 'blockquote',
-    title: '引用',
+    title: lang.controls.blockQuote,
     text: <i className="icon-quote"></i>,
     type: 'block-type',
     command: 'blockquote',
   }, {
     key: 'code',
-    title: '代码块',
+    title: lang.controls.code,
     text: <i className="icon-code"></i>,
     type: 'block-type',
     command: 'code-block'
   }, {
     key: 'list_ul',
-    title: '无序列表',
+    title: lang.controls.unorderedList,
     text: <i className="icon-list"></i>,
     type: 'block-type',
     command: 'unordered-list-item'
   }, {
     key: 'list_ol',
-    title: '有序列表',
+    title: lang.controls.orderedList,
     text: <i className="icon-list-numbered"></i>,
     type: 'block-type',
     command: 'ordered-list-item'
   }, {
     key: 'link',
-    title: '超链接',
+    title: lang.controls.link,
     type: 'link'
   }, {
     key: 'text-color',
-    title: '颜色',
+    title: lang.controls.color,
     type: 'text-color'
   }, {
     key: 'font-size',
-    title: '字号',
+    title: lang.controls.fontSize,
     type: 'font-size'
   }, {
     key: 'font-family',
-    title: '字体',
+    title: lang.controls.fontFamily,
     type: 'font-family'
   }, {
     key: 'text-align',
-    title: '文本对齐',
+    title: lang.controls.textAlign,
     type: 'text-align'
   }, {
     key: 'media',
-    title: '图像',
+    title: lang.controls.media,
     text: <i className="icon-media"></i>,
     type: 'media'
   }

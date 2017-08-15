@@ -10,7 +10,7 @@ export default class FontSize extends React.Component {
 
     let caption = null
     let currentFontSize = null
-    let { defaultCaption, currentInlineStyle, onChange } = this.props
+    let { defaultCaption, currentInlineStyle, onChange, language } = this.props
 
     fontSizes.find((item) => {
       if (currentInlineStyle.has('FONTSIZE-' + item)) {
@@ -21,12 +21,12 @@ export default class FontSize extends React.Component {
       return false
     })
 
-    caption = caption || defaultCaption || 'Font Size'
+    caption = caption || defaultCaption || language.controls.fontSize
 
     return (
       <DropDown
         caption={caption}
-        hoverTitle="字号"
+        hoverTitle={language.controls.fontSize}
         className={"control-item dropdown font-size-dropdown"}
       >
         <ul className="font-sizes-wrap">

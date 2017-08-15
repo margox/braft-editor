@@ -2,9 +2,6 @@ import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
 import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils'
 
-const textAlignments = ['left', 'center', 'right', 'justify']
-const textAlignmentTitles = ['左对齐', '居中对齐', '右对齐', '两端对齐']
-
 export default class TextAlign extends React.Component {
 
   state = {
@@ -42,11 +39,18 @@ export default class TextAlign extends React.Component {
   render () {
 
     const { currentAlignment } = this.state
+    const { language } = this.props
+    const textAlignmentTitles = [
+      language.controls.alignLeft,
+      language.controls.alignCenter,
+      language.controls.alignRight,
+      language.controls.alignJustify
+    ]
 
     return (
       <div className="control-item-group">
         {
-          textAlignments.map((item, index) => {
+          ['left', 'center', 'right', 'justify'].map((item, index) => {
             return (
               <button
                 key={index}

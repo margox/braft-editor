@@ -4,6 +4,7 @@ import { AtomicBlockUtils, EditorState } from 'draft-js'
 import Modal from 'components/common/Modal'
 import Uploader from 'helpers/uploader'
 import { UniqueIndex } from 'utils/base'
+import { selectNextBlock } from 'utils/editor'
 
 const imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg'
 const videoMediaType = 'video/mp4'
@@ -48,7 +49,7 @@ export default class MediaPicker extends React.Component {
 
   render () {
 
-    const { media } = this.props
+    const { media, language } = this.props
     const { files, visible, external, draging, confirmable, showExternalForm } = this.state
     const bottomText = (
       <span 
@@ -56,19 +57,20 @@ export default class MediaPicker extends React.Component {
         className="braft-media-toggle-external-mode"
       >
         {showExternalForm ? (
-          <span><i className="icon-add"></i> 添加本地文件</span>
+          <span><i className="icon-add"></i> {language.mediaPicker.addLocalFile}</span>
         ) : (
-          <span><i className="icon-add"></i> 添加网络资源</span>
+          <span><i className="icon-add"></i> {language.mediaPicker.addExternalSource}</span>
         )}
       </span>
     )
 
     return (
       <Modal
-        title={"插入多媒体内容"}
+        title={language.mediaPicker.caption}
         width={640}
         height={480}
         visible={visible}
+        language={language}
         className="braft-media-picker-modal"
         showClose={true}
         showCancel={true}
@@ -92,20 +94,20 @@ export default class MediaPicker extends React.Component {
             >
               <span className="braft-media-drag-tip">
                 <input accept={this.mediaFileAccept} onChange={this.handleFilesPicked} multiple type="file"/>
-                {draging ? '松开鼠标以上传' : '点击或拖动文件至此'}
+                {draging ? language.mediaPicker.dropTip : language.mediaPicker.dragTip}
               </span>
             </div>
           )}
           {showExternalForm ? (
             <div className="braft-media-add-external">
               <div className="braft-media-external-form">
-                <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder="资源名称|资源地址"/>
+                <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
                 <div data-type={external.type} className="braft-media-switch-external-type">
-                  {this.props.media.image && <button onClick={this.switchExternalType} data-type="IMAGE">图片</button>}
-                  {this.props.media.video && <button onClick={this.switchExternalType} data-type="VIDEO">视频</button>}
-                  {this.props.media.audio && <button onClick={this.switchExternalType} data-type="AUDIO">音频</button>}
+                  {this.props.media.image && <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button>}
+                  {this.props.media.video && <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button>}
+                  {this.props.media.audio && <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button>}
                 </div>
-                <span className="braft-media-external-tip">以竖线符(|)分隔资源名称和资源地址，输入后请按回车</span>
+                <span className="braft-media-external-tip">{language.mediaPicker.externalInputTip}</span>
               </div>
             </div>
           ) : null}
@@ -261,7 +263,7 @@ export default class MediaPicker extends React.Component {
     if (e.keyCode === 13) {
       let { url, type } = this.state.external
       url = url.split('|')
-      let name = url.length > 1 ? url[0] : '未命名项目'
+      let name = url.length > 1 ? url[0] : this.props.language.mediaPicker.unnamedItem
       url = url.length > 1 ? url[1] : url[0]
       let thumbnail = type === 'IMAGE' ? url : null
       this.uploader.addItems([{
@@ -297,6 +299,11 @@ export default class MediaPicker extends React.Component {
     }
 
     let newEditorState = editorState
+    const currentSelectedBlockKey = editorState.getSelection().getAnchorKey()
+
+    if (currentSelectedBlockKey) {
+      newEditorState = selectNextBlock(editorState, currentSelectedBlockKey)
+    }
 
     selectedFiles.forEach((file) => {
 

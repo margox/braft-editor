@@ -175,9 +175,11 @@ class Demo extends React.Component {
             .container{
               box-sizing: border-box;
               width: 1000px;
+              max-width: 100%;
               min-height: 100%;
               margin: 0 auto;
               padding: 30px 20px;
+              overflow: hidden;
               background-color: #fff;
               border-right: solid 1px #eee;
               border-left: solid 1px #eee;
@@ -204,6 +206,7 @@ class Demo extends React.Component {
           height={600}
           ref={(instance) => this.editor = instance}
           initialContent={this.state.content}
+          language="en"
           onChange={this.handleChange}
           addonControls={[
             {

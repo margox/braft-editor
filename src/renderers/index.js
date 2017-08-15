@@ -4,7 +4,7 @@ import Image from './atomic/Image'
 import Video from './atomic/Video'
 import Audio from './atomic/Audio'
 import _blockStyleFn from './styles/blockStyles'
-import _customStyleMap from './styles/inlineStyles'
+import _getCustomStyleMap from './styles/inlineStyles'
 import _decorators from './decorators'
 
 const getMediaComponent = (block, superProps) => (props) => {
@@ -46,5 +46,5 @@ export const blockRenderMap = Map({
 })
 
 export const blockStyleFn = _blockStyleFn
-export const customStyleMap = _customStyleMap
+export const getCustomStyleMap = _getCustomStyleMap
 export const decorators = _decorators

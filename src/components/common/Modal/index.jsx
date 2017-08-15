@@ -56,7 +56,7 @@ export default class Modal extends React.Component {
 
   renderComponent (props) {
 
-    const { title, className, width, height, children, confirmable, showCancel, showClose, bottomText } = props
+    const { title, className, width, height, children, confirmable, showCancel, showClose, bottomText, language } = props
     const childComponent = (
       <div className={"braft-modal " + (className || '')}>
         <div className="braft-modal-mask"></div>
@@ -69,8 +69,8 @@ export default class Modal extends React.Component {
           <div className="braft-modal-footer">
             <div className="braft-modal-addon-text">{bottomText}</div>
             <div className="braft-modal-buttons">
-              {showCancel && <button onClick={this.handleCancel} className="braft-modal-cancel">取消</button>}
-              <button onClick={this.handleConfirm} className={"braft-modal-confirm " + (!confirmable ? 'disabled' : '')}>确定</button>
+              {showCancel && <button onClick={this.handleCancel} className="braft-modal-cancel">{language.base.cancel}</button>}
+              <button onClick={this.handleConfirm} className={"braft-modal-confirm " + (!confirmable ? 'disabled' : '')}>{language.base.confirm}</button>
             </div>
           </div>
         </div>
