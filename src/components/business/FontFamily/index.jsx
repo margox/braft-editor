@@ -1,7 +1,6 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
-import { fontFamilies } from 'configs/maps'
 import DropDown from 'components/common/DropDown'
 
 export default class FontFamily extends React.Component {
@@ -10,10 +9,10 @@ export default class FontFamily extends React.Component {
 
     let caption = null
     let currentIndex = null
-    let { defaultCaption, currentInlineStyle, onChange, language } = this.props
+    let { defaultCaption, currentInlineStyle, onChange, language, fontFamilies } = this.props
 
     fontFamilies.find((item, index) => {
-      if (currentInlineStyle.has('FONTFAMILY-' + index)) {
+      if (currentInlineStyle.has('FONTFAMILY-' + item.name)) {
         caption = item.name
         currentIndex = index
         return true
@@ -22,7 +21,6 @@ export default class FontFamily extends React.Component {
     })
 
     let isFirstItemActive = currentIndex === 0
-
     caption = caption || defaultCaption || language.controls.fontFamily
 
     return (
@@ -38,7 +36,7 @@ export default class FontFamily extends React.Component {
               <li
                 key={index}
                 className={"menu-item " + (index === currentIndex ? 'active' : '')}
-                data-index={index}
+                data-name={item.name}
                 onClick={this.toggleFontFamily}
               >
                 <span
@@ -59,11 +57,11 @@ export default class FontFamily extends React.Component {
 
   toggleFontFamily = (e) => {
 
-    const fontFamily = e.target.dataset.index
+    const fontFamily = e.currentTarget.dataset.name
     const toggledFontFamily = 'FONTFAMILY-' + fontFamily
-    const { editorState, selection, currentInlineStyle } = this.props
-    const nextContentState = fontFamilies.reduce((contentState, item, index) => {
-      return Modifier.removeInlineStyle(contentState, selection, 'FONTFAMILY-' + index) 
+    const { editorState, selection, currentInlineStyle, fontFamilies } = this.props
+    const nextContentState = fontFamilies.reduce((contentState, item) => {
+      return Modifier.removeInlineStyle(contentState, selection, 'FONTFAMILY-' + item.name) 
     }, editorState.getCurrentContent())
 
     let nextEditorState = EditorState.push(

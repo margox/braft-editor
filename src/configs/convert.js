@@ -1,5 +1,5 @@
 import React from 'react'
-import { colors, fontSizes, fontFamilies, blocks } from 'configs/maps'
+import { blocks } from 'configs/maps'
 
 const convertAtomicBlock = (block, contentState) => {
 
@@ -47,7 +47,7 @@ const convertAtomicBlock = (block, contentState) => {
 
 }
 
-const styleToHTML = (style) => {
+const styleToHTML = (props) => (style) => {
 
   style = style.toLowerCase()
 
@@ -66,13 +66,14 @@ const styleToHTML = (style) => {
       fontSize: '11px'
     }}/>
   } else if (style.indexOf('color-') === 0) {
-    return <span style={{color: colors[style.split('-')[1]]}}/> 
+    return <span style={{color: '#' + style.split('-')[1]}}/> 
   } else if (style.indexOf('bgcolor-') === 0) {
-    return <span style={{backgroundColor: colors[style.split('-')[1]]}}/> 
+    return <span style={{backgroundColor: '#' + style.split('-')[1]}}/> 
   } else if (style.indexOf('fontsize-') === 0) {
     return <span style={{fontSize: style.split('-')[1] + 'px'}}/> 
   } else if (style.indexOf('fontfamily-') === 0) {
-    return <span style={{fontFamily: fontFamilies[style.split('-')[1]].family}}/> 
+    let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
+    return <span style={{fontFamily: fontFamily.family}}/> 
   }
 
 }
@@ -116,12 +117,12 @@ const entityToHTML = (entity, originalText) => {
 
 }
 
-export const getToHTMLConfig = (contentState) => {
+export const getToHTMLConfig = (props) => {
 
   return {
-    styleToHTML: styleToHTML,
+    styleToHTML: styleToHTML(props),
     entityToHTML: entityToHTML,
-    blockToHTML: blockToHTML(contentState)
+    blockToHTML: blockToHTML(props.contentState)
   }
 
 }

@@ -72,9 +72,17 @@ export default class BraftEditor extends React.Component {
   }
 
   getContent (format) {
+
     format = format || this.props.contentFormat || 'raw'
     const contentState = this.getContentState()
-    return format === 'html' ? convertToHTML(getToHTMLConfig(contentState))(contentState) : convertToRaw(this.getContentState())
+    let { colors, fontSizes, fontFamilies } = this.props
+    colors = colors || defaultOptions.colors
+    fontSizes = fontSizes || defaultOptions.fontSizes
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
+
+    return format === 'html' ? convertToHTML(getToHTMLConfig({
+      contentState, colors, fontSizes, fontFamilies
+    }))(contentState) : convertToRaw(this.getContentState())
   }
 
   getContentState () {
@@ -122,25 +130,27 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    let { controls, height, media, addonControls, language } = this.props
+    let { controls, height, media, addonControls, language, colors, fontSizes, fontFamilies } = this.props
     let contentState = this.state.editorState.getCurrentContent()
-    let mediaConfig = { ...defaultOptions.media, ...media }
+    
+    media = { ...defaultOptions.media, ...media }
+    controls = controls || defaultOptions.controls
+    addonControls = addonControls || defaultOptions.addonControls
+    language = languages[language] || languages[defaultOptions.language]
+    colors = colors || defaultOptions.colors
+    fontSizes = fontSizes || defaultOptions.fontSizes
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
 
-    language = languages[language] || languages['en']
-
-    if (!mediaConfig.uploadFn) {
-      mediaConfig.video = false
-      mediaConfig.audio = false
+    if (!media.uploadFn) {
+      media.video = false
+      media.audio = false
     }
 
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
-      contentState: contentState,
-      controls: controls || defaultOptions.controls,
-      language: language,
-      media: mediaConfig,
-      addonControls: addonControls || []
+      media, controls, contentState, language,
+      addonControls, colors, fontSizes, fontFamilies
     }
 
     const blockRendererFn = getBlockRendererFn({
@@ -158,7 +168,7 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       onChange: this.onChange,
-      customStyleMap: getCustomStyleMap(),
+      customStyleMap: getCustomStyleMap({ colors, fontSizes, fontFamilies }),
       blockRenderMap: extendedBlockRenderMap,
       blockStyleFn: blockStyleFn,
       blockRendererFn: blockRendererFn,
@@ -172,7 +182,7 @@ export default class BraftEditor extends React.Component {
           className="BraftEditor-content"
           style = {{height: height|| defaultOptions.height}}
         >
-          <Editor {...editorProps}/>
+          <Editor { ...editorProps }/>
         </div>
       </div>
     )

@@ -18,7 +18,7 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls, language } = this.props
+    const { controls, editorState, contentState, media, addonControls, language, colors, fontSizes, fontFamilies } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
@@ -78,6 +78,7 @@ export default class ControlBar extends React.Component {
 
               return <TextColorPicker
                 key={index}
+                colors={colors}
                 onChange={this.applyEditorState}
                 { ...commonProps }
               />
@@ -86,6 +87,7 @@ export default class ControlBar extends React.Component {
 
               return <FontSizePicker
                 key={index}
+                fontSizes={fontSizes}
                 defaultCaption={controlItem.title}
                 onChange={this.applyEditorState}
                 { ...commonProps }
@@ -95,6 +97,7 @@ export default class ControlBar extends React.Component {
 
               return <FontFamilyPicker
                 key={index}
+                fontFamilies={fontFamilies}
                 defaultCaption={controlItem.title}
                 onChange={this.applyEditorState}
                 { ...commonProps }

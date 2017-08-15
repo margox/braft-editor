@@ -1,5 +1,3 @@
-import { colors, fontSizes, fontFamilies } from 'configs/maps'
-
 export default (props) => {
 
   const colorStyles = {}
@@ -7,17 +5,18 @@ export default (props) => {
   const fontSizeStyles = {}
   const fontFamilyStyles = {}
 
-  colors.forEach((color, index) => {
-    colorStyles['COLOR-' + index] = { color }
-    bgColorStyles['BGCOLOR-' + index] = { backgroundColor: color }
+  props.colors.forEach((color) => {
+    let color_id = color.replace('#', '')
+    colorStyles['COLOR-' + color_id] = { color }
+    bgColorStyles['BGCOLOR-' + color_id] = { backgroundColor: color }
   })
 
-  fontSizes.forEach((fontSize) => {
+  props.fontSizes.forEach((fontSize) => {
     fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize }
   })
 
-  fontFamilies.forEach((fontFamily, index) => {
-    fontFamilyStyles['FONTFAMILY-' + index] = {
+  props.fontFamilies.forEach((fontFamily) => {
+    fontFamilyStyles['FONTFAMILY-' + fontFamily.name] = {
       fontFamily: fontFamily.family
     }
   })

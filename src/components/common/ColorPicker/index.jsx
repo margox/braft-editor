@@ -18,6 +18,7 @@ export default class ColorPicker extends React.Component{
               className={className}
               style={{color: item}}
               data-index={index}
+              data-color={item.replace('#', '')}
               onClick={this.handleChange}
             >
             </li>
@@ -29,7 +30,7 @@ export default class ColorPicker extends React.Component{
   }
 
   handleChange = (e) => {
-    this.props.onChange(e.target.dataset.index * 1)
+    this.props.onChange(e.currentTarget.dataset.color)
   }
 
 }

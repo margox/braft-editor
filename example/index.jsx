@@ -208,6 +208,10 @@ class Demo extends React.Component {
           initialContent={this.state.content}
           language="en"
           onChange={this.handleChange}
+          colors={[
+            '#000', '#f00', '#0f0', '#00f'
+          ]}
+          fontSizes={[12, 14, 16, 18]}
           addonControls={[
             {
               type: 'split-line',

@@ -1,7 +1,6 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
-import { fontSizes } from 'configs/maps'
 import DropDown from 'components/common/DropDown'
 
 export default class FontSize extends React.Component {
@@ -10,7 +9,7 @@ export default class FontSize extends React.Component {
 
     let caption = null
     let currentFontSize = null
-    let { defaultCaption, currentInlineStyle, onChange, language } = this.props
+    let { defaultCaption, currentInlineStyle, onChange, language, fontSizes } = this.props
 
     fontSizes.find((item) => {
       if (currentInlineStyle.has('FONTSIZE-' + item)) {
@@ -52,7 +51,7 @@ export default class FontSize extends React.Component {
 
     const fontSize = e.target.dataset.size
     const toggledFontSize = 'FONTSIZE-' + fontSize
-    const { editorState, selection, currentInlineStyle } = this.props
+    const { editorState, selection, currentInlineStyle, fontSizes } = this.props
     const nextContentState = fontSizes.reduce((contentState, item, index) => {
       return Modifier.removeInlineStyle(contentState, selection, 'FONTSIZE-' + item) 
     }, editorState.getCurrentContent())
