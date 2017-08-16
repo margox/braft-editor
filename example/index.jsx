@@ -2,150 +2,13 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 
-const sampleContent = {
-  "entityMap":{
-    "0":{
-      "type":"IMAGE",
-      "mutability":"IMMUTABLE",
-      "data":{
-        "url":"http://image.uisdc.com/wp-content/uploads/2017/07/0-W81JP9zOSFNIBElV.jpg",
-        "name":"music_player_ui.png",
-        "type":"IMAGE",
-        "float":"left"
-      }
-    },
-    "1":{
-      "type":"LINK",
-      "mutability":"MUTABLE",
-      "data":{
-        "href":"adasdasd",
-        "target":"_blank"
-      }
-    },
-    "2":{
-      "type":"IMAGE",
-      "mutability":"IMMUTABLE",
-      "data":{
-        "url":"http://image.uisdc.com/wp-content/uploads/2017/07/0-W81JP9zOSFNIBElV.jpg",
-        "name":"music.png",
-        "type":"IMAGE",
-        "float":"left"
-      }
-    }
-  },
-  "blocks":[
-    {
-      "key":"oica",
-      "text":"",
-      "type":"unstyled",
-      "depth":0,
-      "inlineStyleRanges":[],
-      "entityRanges":[],
-      "data":{
-
-      }
-    },{
-      "key":"3e8f5",
-      "text":" ",
-      "type":"atomic",
-      "depth":0,
-      "inlineStyleRanges":[],
-      "entityRanges":[
-        {
-          "offset":0,
-          "length":1,
-          "key":0
-        }
-      ],
-      "data":{
-
-      }
-    },
-    {
-      "key":"6ruji",
-      "text":"",
-      "type":"unstyled",
-      "depth":0,
-      "inlineStyleRanges":[],
-      "entityRanges":[],
-      "data":{
-
-      }
-    },
-    {
-      "key":"94uiq",
-      "text":"Hello world!",
-      "type":"unstyled",
-      "depth":0,
-      "inlineStyleRanges":
-      [
-        {
-          "offset":0,
-          "length":12,
-          "style":"BOLD"
-        }
-      ],
-      "entityRanges":[
-        {
-          "offset":0,
-          "length":12,
-          "key":1
-        }
-      ],
-      "data":{
-
-      }
-    },
-    {
-      "key":"22o82",
-      "text":"",
-      "type":"unstyled",
-      "depth":0,
-      "inlineStyleRanges":[],
-      "entityRanges":[],
-      "data":{
-
-      }
-    },
-    {
-      "key":"damgf",
-      "text":" ",
-      "type":"atomic",
-      "depth":0,
-      "inlineStyleRanges":[],
-      "entityRanges":[
-        {
-          "offset":0,
-          "length":1,
-          "key":2
-        }
-      ],
-      "data":{
-
-      }
-    },
-    {
-      "key":"82laq",
-      "text":"",
-      "type":"unstyled",
-      "depth":0,
-      "inlineStyleRanges":[],
-      "entityRanges":[],
-      "data":{
-
-      }
-    }
-  ]
-}
-const htmlContent = '<p><a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a></p><p></p><p><span style="font-size:32px;"><span style="color:#f32784;"><span style="text-decoration:line-through;">Hello World!</span></span></span></p><p></p><p></p><div class="media-wrap image-wrap" style="text-align:center;"><a style="display:inline-block;" href="http://www.baidu.com" target="_blank"><img src="https://margox.cn/wp-content/uploads/2017/05/IMG_4985-480x285.jpg"/></a></div><p></p>'
+const htmlContent = '<p style="text-align:center;"><span style="color:#f32784;">百度一下你就惨了</span></p><p></p><p></p><div class="media-wrap image-wrap" style="text-align:center;"><a style="display:inline-block;" href="http://www.baidu.com/" target="_blank"><img src="https://margox.cn/wp-content/uploads/2017/05/IMG_4985-480x285.jpg" width="auto" height="auto"/></a></div><p></p>'
 
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      content: htmlContent
-    }
+    this.state = { htmlContent }
   }
 
   preview () {
@@ -158,7 +21,7 @@ class Demo extends React.Component {
 
   buildPreviewHtml () {
 
-    const content = this.editor.getHTMLContent()
+    const { htmlContent } = this.state 
 
     return `
       <!Doctype html>
@@ -192,7 +55,7 @@ class Demo extends React.Component {
           </style>
         </head>
         <body>
-            <div class="container">${content}</div>
+            <div class="container">${htmlContent}</div>
         </body>
       </html>
     `
@@ -206,10 +69,10 @@ class Demo extends React.Component {
         <BraftEditor
           height={600}
           ref={(instance) => this.editor = instance}
-          initialContent={this.state.content}
+          initialContent={this.state.htmlContent}
           language="zh"
           contentFormat="html"
-          onChange={this.handleChange}
+          onHTMLChange={this.handleHTMLChange}
           addonControls={[
             {
               type: 'split-line',
@@ -227,8 +90,13 @@ class Demo extends React.Component {
 
   }
 
-  handleChange  = (content) => {
-    console.log(this.editor.getHTMLContent())
+  handleHTMLChange = (htmlContent) => {
+    console.log(htmlContent)
+    this.setState({ htmlContent })
+  }
+
+  handleRawChange = (raw) => {
+    console.log(raw)
   }
 
 }

@@ -16,6 +16,21 @@ export const isPromise = (obj) => {
 
 }
 
+export const rgbToHex = (rgb) => {
+
+  if (rgb.indexOf('#') === 0) {
+    return rgb
+  }
+
+  let rgbArray = rgb.split(',')
+
+  return '#' + [rgbArray[0], rgbArray[1], rgbArray[2]].map(x => {
+    const hex = parseInt(x.replace(/\D/g, ''), 10).toString(16)
+    return hex.length === 1 ? '0' + hex : hex
+  }).join('')
+
+}
+
 export const imageToURL = (param) => {
 
   setTimeout(() => {

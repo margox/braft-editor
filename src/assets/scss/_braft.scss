@@ -77,6 +77,9 @@
   .public-DraftEditor-content{
     box-sizing: border-box;
     padding: 15px;
+    .braft-link{
+      color: #4078c0;
+    }
     blockquote{
       margin: 5px 0;
       padding: 15px 20px;
@@ -152,9 +155,6 @@
       font-size: 0;
       resize: both;
       outline-offset: -3px;
-    }
-    &:hover img{
-      outline: solid 3px rgba($COLOR_ACTIVE, 1);
     }
   }
 

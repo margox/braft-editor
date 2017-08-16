@@ -58,8 +58,8 @@ export default class BraftEditor extends React.Component {
       this.syncTimer = setTimeout(() => {
         const { onChange, onRawChange, onHTMLChange } = this.props
         onChange && onChange(this.getContent())
-        onRawChange && onRawChange(this.getHTMLContent())
-        onHTMLChange && onHTMLChange(this.getRawContent())
+        onHTMLChange && onHTMLChange(this.getHTMLContent())
+        onRawChange && onRawChange(this.getRawContent())
       }, 300)
     })
 

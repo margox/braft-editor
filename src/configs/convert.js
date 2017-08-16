@@ -1,6 +1,7 @@
 import React from 'react'
 import { Entity } from 'draft-js'
 import { blocks } from 'configs/maps'
+import { rgbToHex } from 'utils/base'
 
 const convertAtomicBlock = (block, contentState) => {
 
@@ -124,9 +125,11 @@ export const getToHTMLConfig = (props) => {
 const htmlToStyle = (nodeName, node, currentStyle) => {
 
   if (nodeName === 'span' && node.style.color) {
-    return currentStyle.add('COLOR-' + node.style.color)
+    let color = rgbToHex(node.style.color).replace('#', '')
+    return currentStyle.add('COLOR-' + color)
   } else if (nodeName === 'span' && node.style.backgroundColor) {
-    return currentStyle.add('BGCOLOR-' + node.style.color)
+    let color = rgbToHex(node.style.color).replace('#', '')
+    return currentStyle.add('BGCOLOR-' + color)
   } else if (nodeName === 'sup') {
     return currentStyle.add('SUPERSCRIPT')
   } else if (nodeName === 'sub') {
@@ -145,8 +148,8 @@ const htmlToEntity = (nodeName, node) => {
 
   if (nodeName === 'a' && !node.querySelectorAll('img').length) {
 
-    let { href:url, target } = node
-    return Entity.create('LINK', 'MUTABLE',{ url, target })
+    let { href, target } = node
+    return Entity.create('LINK', 'MUTABLE',{ href, target })
 
   } else if (nodeName === 'audio') {
     return Entity.create('AUDIO', 'IMMUTABLE',{ url: node.src }) 
@@ -173,15 +176,24 @@ const htmlToEntity = (nodeName, node) => {
 
 const htmlToBlock = (nodeName, node) => {
 
-  if (node.classList.contains('media-wrap')) {
+  let nodeStyle = node.style || {}
 
-    let nodeStyle = node.style || {}
+  if (node.classList.contains('media-wrap')) {
 
     return {
       type: 'atomic',
       data: {
         float: nodeStyle.float,
         alignment: nodeStyle.textAlign
+      }
+    }
+
+  } else if (nodeName === 'p' && nodeStyle.textAlign) {
+
+    return {
+      type: 'unstyled',
+      data: {
+        textAlign: nodeStyle.textAlign
       }
     }
 
