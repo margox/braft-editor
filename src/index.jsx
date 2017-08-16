@@ -32,7 +32,7 @@ export default class BraftEditor extends React.Component {
       let convertedContent
 
       if (contentFormat === 'html') {
-        convertedContent = convertFromHTML(initialContent)
+        convertedContent = convertFromHTML(getFromHTMLConfig())(initialContent)
       } else if (contentFormat === 'raw') {
         convertedContent = convertFromRaw(initialContent)
       }
@@ -56,8 +56,10 @@ export default class BraftEditor extends React.Component {
     this.setState({ editorState }, () => {
       clearTimeout(this.syncTimer)
       this.syncTimer = setTimeout(() => {
-        let { onChange } = this.props
-        typeof onChange === 'function' && onChange(this.getContent())
+        const { onChange, onRawChange, onHTMLChange } = this.props
+        onChange && onChange(this.getContent())
+        onRawChange && onRawChange(this.getHTMLContent())
+        onHTMLChange && onHTMLChange(this.getRawContent())
       }, 300)
     })
 
@@ -83,6 +85,7 @@ export default class BraftEditor extends React.Component {
     return format === 'html' ? convertToHTML(getToHTMLConfig({
       contentState, colors, fontSizes, fontFamilies
     }))(contentState) : convertToRaw(this.getContentState())
+
   }
 
   getContentState () {

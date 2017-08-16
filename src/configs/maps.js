@@ -37,12 +37,6 @@ export const getHeadings = (lang) => [
     text: <h6>{lang.controls.header} 6</h6>,
     type: 'block-type',
     command: 'header-six'
-  }, {
-    key: 'unstyled',
-    title: lang.controls.normal,
-    text: lang.controls.normal,
-    type: 'block-type',
-    command: 'unstyled'
   }
 ]
 

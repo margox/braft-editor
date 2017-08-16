@@ -2,9 +2,9 @@ export default {
   height: 500,
   language: 'en',
   controls: [
-    'undo', 'redo', 'split', 'font-size', 'font-family',
-    'text-color', 'bold', 'italic', 'underline', 'strike-through',
-    'text-align', 'split', 'headings', 'list_ul', 'list_ol',
+    'undo', 'redo', 'split', 'font-size', 'font-family', 'text-color',
+    'bold', 'italic', 'underline', 'strike-through', 'superscript',
+    'subscript', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
     'blockquote', 'code', 'split', 'link', 'split', 'media'
   ],
   addonControls: [],

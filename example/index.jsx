@@ -137,13 +137,14 @@ const sampleContent = {
     }
   ]
 }
+const htmlContent = '<p><a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a></p><p></p><p><span style="font-size:32px;"><span style="color:#f32784;"><span style="text-decoration:line-through;">Hello World!</span></span></span></p><p></p><p></p><div class="media-wrap image-wrap" style="text-align:center;"><a style="display:inline-block;" href="http://www.baidu.com" target="_blank"><img src="https://margox.cn/wp-content/uploads/2017/05/IMG_4985-480x285.jpg"/></a></div><p></p>'
 
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      content: ''
+      content: htmlContent
     }
   }
 
@@ -206,12 +207,9 @@ class Demo extends React.Component {
           height={600}
           ref={(instance) => this.editor = instance}
           initialContent={this.state.content}
-          language="en"
+          language="zh"
+          contentFormat="html"
           onChange={this.handleChange}
-          colors={[
-            '#000', '#f00', '#0f0', '#00f'
-          ]}
-          fontSizes={[12, 14, 16, 18]}
           addonControls={[
             {
               type: 'split-line',
@@ -230,7 +228,7 @@ class Demo extends React.Component {
   }
 
   handleChange  = (content) => {
-    // console.log(this.editor.getHTMLContent())
+    console.log(this.editor.getHTMLContent())
   }
 
 }

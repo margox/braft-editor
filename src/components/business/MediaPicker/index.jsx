@@ -103,9 +103,9 @@ export default class MediaPicker extends React.Component {
               <div className="braft-media-external-form">
                 <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
                 <div data-type={external.type} className="braft-media-switch-external-type">
-                  {this.props.media.image && <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button>}
-                  {this.props.media.video && <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button>}
-                  {this.props.media.audio && <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button>}
+                  <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button>
+                  <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button>
+                  <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button>
                 </div>
                 <span className="braft-media-external-tip">{language.mediaPicker.externalInputTip}</span>
               </div>
@@ -271,7 +271,7 @@ export default class MediaPicker extends React.Component {
         id: new Date().getTime() + '_' + UniqueIndex(),
         uploading: false,
         progress: 1,
-        selected: false
+        selected: true
       }])
       this.setState({
         showExternalForm: false,
@@ -311,8 +311,7 @@ export default class MediaPicker extends React.Component {
         url: file.url,
         name: file.name,
         type: file.type,
-        meta: file.meta,
-        float: 'left'
+        meta: file.meta
       }
 
       let contentStateWithEntity = contentState.createEntity(file.type, 'IMMUTABLE', entityData)

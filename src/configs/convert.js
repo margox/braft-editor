@@ -1,4 +1,5 @@
 import React from 'react'
+import { Entity } from 'draft-js'
 import { blocks } from 'configs/maps'
 
 const convertAtomicBlock = (block, contentState) => {
@@ -23,7 +24,7 @@ const convertAtomicBlock = (block, contentState) => {
 
     if (link) {
       return (
-        <div data-key={block.key} data-role="image-wrap" style={imageWrapStyle}>
+        <div className="media-wrap image-wrap" style={imageWrapStyle}>
           <a style={{display:'inline-block'}} href={link} target={link_target}>
             <img src={url} width={width} height={height} />
           </a>
@@ -38,9 +39,9 @@ const convertAtomicBlock = (block, contentState) => {
     }
 
   } else if (mediaType === 'audio') {
-    return <audio controls src={url} />
+    return <div className="media-wrap audio-wrap"><audio controls src={url} /></div>
   } else if (mediaType === 'video') {
-    return <video controls src={url} width={width} height={height} />
+    return <div className="media-wrap video-wrap"><video controls src={url} width={width} height={height} /></div>
   } else {
     return <p></p>
   }
@@ -54,17 +55,9 @@ const styleToHTML = (props) => (style) => {
   if (style === 'strikethrough') {
     return <span style={{textDecoration: 'line-through'}}/>
   } else if (style === 'superscript') {
-    return <span style={{
-      position: 'relative',
-      top: '-8px',
-      fontSize: '11px'
-    }}/>
+    return <sup/>
   } else if (style === 'subscript') {
-    return <span style={{
-      position: 'relative',
-      bottom: '-8px',
-      fontSize: '11px'
-    }}/>
+    return <sub/>
   } else if (style.indexOf('color-') === 0) {
     return <span style={{color: '#' + style.split('-')[1]}}/> 
   } else if (style.indexOf('bgcolor-') === 0) {
@@ -127,6 +120,75 @@ export const getToHTMLConfig = (props) => {
 
 }
 
-export const getFromHTMLConfig = (contentState) => {
 
+const htmlToStyle = (nodeName, node, currentStyle) => {
+
+  if (nodeName === 'span' && node.style.color) {
+    return currentStyle.add('COLOR-' + node.style.color)
+  } else if (nodeName === 'span' && node.style.backgroundColor) {
+    return currentStyle.add('BGCOLOR-' + node.style.color)
+  } else if (nodeName === 'sup') {
+    return currentStyle.add('SUPERSCRIPT')
+  } else if (nodeName === 'sub') {
+    return currentStyle.add('SUBSCRIPT')
+  } else if (nodeName === 'span' && node.style.fontSize) {
+    return currentStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10))
+  } else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
+    return currentStyle.add('STRIKETHROUGH')
+  } else {
+    return currentStyle
+  }
+
+}
+
+const htmlToEntity = (nodeName, node) => {
+
+  if (nodeName === 'a' && !node.querySelectorAll('img').length) {
+
+    let { href:url, target } = node
+    return Entity.create('LINK', 'MUTABLE',{ url, target })
+
+  } else if (nodeName === 'audio') {
+    return Entity.create('AUDIO', 'IMMUTABLE',{ url: node.src }) 
+  } else if (nodeName === 'video') {
+    return Entity.create('VIDEO', 'IMMUTABLE',{ url: node.src }) 
+  } else if (nodeName === 'img') {
+
+    let parentNode = node.parentNode
+    let { src:url, width, height } = node
+    width = width || 'auto'
+    height = height || 'auto'
+    let entityData = { url, width, height }
+
+    if (parentNode.nodeName.toLowerCase() === 'a') {
+      entityData.link = parentNode.href
+      entityData.link_target = parentNode.target
+    }
+
+    return Entity.create('IMAGE', 'IMMUTABLE', entityData) 
+
+  }
+
+}
+
+const htmlToBlock = (nodeName, node) => {
+
+  if (node.classList.contains('media-wrap')) {
+
+    let nodeStyle = node.style || {}
+
+    return {
+      type: 'atomic',
+      data: {
+        float: nodeStyle.float,
+        alignment: nodeStyle.textAlign
+      }
+    }
+
+  }
+
+}
+
+export const getFromHTMLConfig = (props) => {
+  return { htmlToStyle, htmlToEntity, htmlToBlock }
 }
