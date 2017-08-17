@@ -1,6 +1,6 @@
 {
   "name": "braft-editor",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Rich Text Editor Based On Draft.js",
   "main": "dist/braft.js",
   "author": "Margox",
@@ -9,6 +9,7 @@
     "build": "rm -rf dist/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": "https://github.com/margox/braft",
   "keywords": [
     "braft",
     "draft",
@@ -16,7 +17,7 @@
     "text",
     "editor",
     "rich-text-editor",
-    "wyswyg"
+    "wysiwyg"
   ],
   "license": "MIT",
   "devDependencies": {
