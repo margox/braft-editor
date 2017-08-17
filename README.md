@@ -21,6 +21,15 @@ yarn add braft-editor
 npm install braft-editor --save
 ```
 
+## 开发
+```bash
+# 运行dev-server
+yarn start
+open http://localhost:5998
+#  打包编译
+yarn build
+```
+
 ## 使用示例
 ```javascript
 import React from 'react'
@@ -196,7 +205,7 @@ class Demo extends React.Component {
 
 #### media.uploadFn:param [object]
 
-编辑器在调用该函数式，会传入一个包含文件体、进度回调、成功回调和失败回调的对象作为参数：
+编辑器在调用该函数时，会传入一个包含文件体、进度回调、成功回调和失败回调的对象作为参数：
 ```javascript
 {
   file: [File Object],
@@ -212,7 +221,7 @@ class Demo extends React.Component {
 }
 ```
 
-示例:
+uploadFn示例:
 ```javascript
 const uploadFn = (param) => {
 
