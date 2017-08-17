@@ -1,3 +1,4 @@
+import './style.scss'
 import React from 'react'
 
 export default class Audio extends React.Component {
@@ -7,7 +8,11 @@ export default class Audio extends React.Component {
     const { url, width, height, name } = this.props.mediaData
 
     return (
-      <audio controls src={url} width={width} height={height} />
+      <div className="braft-media-audio-holder">
+        <i className="icon-music"></i>
+        <h5>{name}</h5>
+        <h6>{url}</h6>
+      </div>
     )
 
   }

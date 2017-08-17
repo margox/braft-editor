@@ -50,7 +50,7 @@ export default class Uploader {
     let uploadFn
     this.items.forEach((item, index) => {
 
-      if (item.uploading || item.url) {
+      if (item.uploading || item.url || item.error) {
         return false
       }
 
@@ -66,26 +66,30 @@ export default class Uploader {
         return false
       }
 
-      this.setItemState(item.id, {uploading: true})
+      this.setItemState(item.id, {
+        uploading: true,
+        uploadProgress: 0
+      })
+
       this.uploadFn({
         file: item.file,
-        onSuccess: (res) => {
+        success: (res) => {
           this.setItemState(item.id, {
             file: null,
             url: res.url,
-            name: res.name || item.name,
+            // name: res.name || item.name,
             uploadProgress: 1,
             uploading: false,
             selected: true
           })
         },
-        onProgress: (progress) => {
+        progress: (progress) => {
           this.setItemState(item.id, {
             uploading: true,
             uploadProgress: progress
           })
         },
-        onError: (error) => {
+        error: (error) => {
           this.setItemState(item.id, {
             uploading: false,
             error: 2

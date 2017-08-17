@@ -1,0 +1,35 @@
+@import '~sassinc';
+
+.braft-media-video-holder{
+  display: block;
+  height: 300px;
+  margin: 10px;
+  overflow: hidden;
+  background-color: #f1f2f3;
+  border: dashed 1px #ccc;
+  color: #999;
+  text-align: center;
+  i{
+    display: inline-block;
+    margin-top: 90px;
+    font-size: 48px;
+  }
+  h5, h6{
+    max-width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  h5{
+    margin: 10px auto;
+    padding: 0;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  h6{
+    margin: 10px auto;
+    padding: 0;
+    font-size: 14px;
+    font-weight: normal;
+  }
+}

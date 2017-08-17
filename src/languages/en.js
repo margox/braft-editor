@@ -49,7 +49,7 @@ export default {
   },
   mediaPicker: {
     caption: 'Insert Media Item',
-    dragTip: 'Drag Files Here',
+    dragTip: 'Click Or Drag Files Here',
     dropTip: 'Drop To Upload',
     externalInputPlaceHolder: 'Source Name|Source URL',
     externalInputTip: 'Split source name and source URL with "|", confirm by hit Enter.',

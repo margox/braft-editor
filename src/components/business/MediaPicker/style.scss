@@ -48,6 +48,36 @@
   border-radius: 3px;
 }
 
+.braft-media-item{
+  &.uploading{
+    pointer-events: none;
+  }
+  &.error{
+    &::before{
+      display: block;
+      content: "\e901";
+    }
+    &::after{
+      position: absolute;
+      z-index: 1;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: rgba($COLOR_DANGER, .8);
+      content: '';
+    }
+    &:hover{
+      &::after{
+        background-color: rgba($COLOR_DANGER, .9);
+      }
+    }
+    .braft-media-item-uploading{
+      display: none;
+    }
+  }
+}
+
 .braft-media-add-item{
   background-color: #ecedef;
   color: #999;
@@ -88,7 +118,6 @@
     font-family: 'icomoon';
     line-height: 113px;
     text-align: center;
-    content: "\e912";
   }
   &::after{
     position: absolute;
@@ -111,6 +140,7 @@
   &.active{
     &::before{
       display: block;
+      content: "\e912";
     }
     &::after{
       background-color: rgba($COLOR_ACTIVE, .6);
@@ -126,6 +156,25 @@
   }
 }
 
+.braft-media-item-uploading{
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 3;
+  top: 52px;
+  left: 10px;
+  width: 93px;
+  height: 10px;
+  overflow: hidden;
+  background-color: rgba(#fff, .3);
+  border-radius: 5px;
+  box-shadow: 0 0 0 100px rgba(#000, .5);
+}
+.braft-media-item-uploading-bar{
+  height: 10px;
+  background-color: $COLOR_ACTIVE;
+  border-radius: 0;
+}
+
 .braft-media-item-remove{
   display: none;
   position: absolute;
@@ -138,9 +187,6 @@
   font-size: 18px;
   line-height: 28px;
   text-align: center;
-  &:hover{
-    color: $COLOR_DANGER;
-  }
 }
 
 .braft-media-item-title{
@@ -164,18 +210,22 @@
 }
 
 .braft-media-image{
-  display: block;
   width: 100%;
   height: 100%;
   background-color: #eee;
-  object-fit: cover;
   user-select: none;
+  img{
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 .braft-media-video{
   background-color: #8e44ad;
 }
 .braft-media-audio{
-  background-color: #2980b9;
+  background-color: #f39c12;
 }
 .braft-media-icon{
   display: block;

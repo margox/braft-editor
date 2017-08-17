@@ -2,7 +2,36 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 
-const htmlContent = '<p style="text-align:center;"><span style="color:#f32784;">百度一下你就惨了</span></p><p></p><p></p><div class="media-wrap image-wrap" style="text-align:center;"><a style="display:inline-block;" href="http://www.baidu.com/" target="_blank"><img src="https://margox.cn/wp-content/uploads/2017/05/IMG_4985-480x285.jpg" width="auto" height="auto"/></a></div><p></p>'
+const htmlContent = ''
+const uploadFn = (param) => {
+
+  const xhr = new XMLHttpRequest
+  const fd = new FormData()
+
+  const successFn = (response) => {
+    param.success(JSON.parse(xhr.responseText)[0])
+  }
+
+  const progressFn = (event) => {
+    param.progress(event.loaded / event.total * 100)
+  }
+
+  const errorFn = (response) => {
+    param.error({
+      msg: 'unable to upload.'
+    })
+  }
+
+  xhr.upload.addEventListener("progress", progressFn, false)
+  xhr.addEventListener("load", successFn, false)
+  xhr.addEventListener("error", errorFn, false)
+  xhr.addEventListener("abort", errorFn, false)
+
+  fd.append('file', param.file)
+  xhr.open('POST', 'http://localhost:9090', true)
+  xhr.send(fd)
+
+}
 
 class Demo extends React.Component {
 
@@ -48,7 +77,9 @@ class Demo extends React.Component {
               border-right: solid 1px #eee;
               border-left: solid 1px #eee;
             }
-            .container img{
+            .container img,
+            .container audio,
+            .container video{
               max-width: 100%;
               height: auto;
             }
@@ -71,7 +102,12 @@ class Demo extends React.Component {
           ref={(instance) => this.editor = instance}
           initialContent={this.state.htmlContent}
           language="zh"
-          contentFormat="html"
+          media={{
+            uploadFn: uploadFn,
+            video: true,
+            audio: true
+          }}
+          onRawChange={this.handleRawChange}
           onHTMLChange={this.handleHTMLChange}
           addonControls={[
             {

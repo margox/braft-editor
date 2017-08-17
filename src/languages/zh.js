@@ -49,7 +49,7 @@ export default {
   },
   mediaPicker: {
     caption: '插入多媒体内容',
-    dragTip: '拖动文件至此',
+    dragTip: '点击或拖动文件至此',
     dropTip: '松开鼠标以上传',
     externalInputPlaceHolder: '资源名称|资源地址',
     externalInputTip: '以竖线符("|")分割资源名和资源地址，按回车确认',

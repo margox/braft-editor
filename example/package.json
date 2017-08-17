@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "formidable": "^1.1.1"
+  }
+}

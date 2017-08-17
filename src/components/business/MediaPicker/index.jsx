@@ -127,14 +127,27 @@ export default class MediaPicker extends React.Component {
           <input accept={this.mediaFileAccept} onChange={this.handleFilesPicked} multiple type="file"/>
         </li>
         {this.state.files.map((file, index) => {
+
           let previewerComponents = null
+          let progressMarker = file.uploading ? (
+            <div className="braft-media-item-uploading">
+              <div className="braft-media-item-uploading-bar" style={{width: file.uploadProgress / 1 + '%'}}></div>
+            </div>
+          ) : ''
+
           switch (file.type) {
             case 'IMAGE': 
-              previewerComponents = <img className="braft-media-image" src={file.thumbnail} />
+              previewerComponents = (
+                <div className="braft-media-image">
+                  {progressMarker}
+                  <img src={file.thumbnail} />
+                </div>
+              )
             break
             case 'VIDEO':
               previewerComponents = (
                 <div className="braft-media-icon braft-media-video" title={file.url}>
+                  {progressMarker}
                   <i className="icon-film"></i>
                   <span>{file.name || file.url}</span>
                 </div>
@@ -143,6 +156,7 @@ export default class MediaPicker extends React.Component {
             case 'AUDIO':
               previewerComponents = (
                 <div className="braft-media-icon braft-media-audio" title={file.url}>
+                  {progressMarker}
                   <i className="icon-music"></i>
                   <span>{file.name || file.url}</span>
                 </div>
@@ -151,36 +165,49 @@ export default class MediaPicker extends React.Component {
             default:
               previewerComponents = (
                 <a className="braft-media-icon braft-media-file" title={file.url} href={file.url}>
+                  {progressMarker}
                   <i className="icon-file-text"></i>
                   <span>{file.name || file.url}</span>
                 </a>
               )
             break 
           }
+
+          let className = ['braft-media-item']
+          file.selected && className.push('active')
+          file.uploading && className.push('uploading')
+          file.error && className.push('error')
+
           return (
             <li
               key={index}
               title={file.name}
-              className={'braft-media-item ' + (file.selected ? 'active' : '')}
-              data-id={file.id}
-              data-selected={!file.selected}
-              onClick={this.toggleFileSelected}
+              className={className.join(' ')}
+              onClick={() => this.toggleFileSelected(file)}
             >
               {previewerComponents}
               <span data-id={file.id} onClick={this.removeFileItem} className="braft-media-item-remove icon-close"></span>
               <span className="braft-media-item-title">{file.name}</span>
             </li>
           )
+
         })}
       </ul>
     )
 
   }
 
-  toggleFileSelected = (e) => {
-    let { id, selected } = e.target.dataset
-    selected = selected == 'true'
+  toggleFileSelected = (file) => {
+
+    let { id, selected, error, uploading } = file
+
+    if (error || uploading) {
+      return false
+    }
+
+    selected = !selected
     this.uploader.setItemState(id, { selected })
+
   }
 
   removeFileItem = (e) => {
@@ -206,6 +233,8 @@ export default class MediaPicker extends React.Component {
     let { files } = e.target
     let length = files.length
 
+    e.persist()
+
     const resolveFile = (index) => {
 
       if (index < length) {
@@ -215,7 +244,7 @@ export default class MediaPicker extends React.Component {
           file: files[index],
           name: files[index].name,
           size: files[index].size,
-          progress: 0,
+          uploadProgress: 0,
           uploading: false,
           selected: false,
           error: 0
@@ -236,6 +265,8 @@ export default class MediaPicker extends React.Component {
           resolveFile(index + 1)
         }, 100)
 
+      } else {
+        e.target.value = null
       }
 
     }
@@ -270,7 +301,7 @@ export default class MediaPicker extends React.Component {
         thumbnail, url, name, type,
         id: new Date().getTime() + '_' + UniqueIndex(),
         uploading: false,
-        progress: 1,
+        uploadProgress: 1,
         selected: true
       }])
       this.setState({
@@ -301,7 +332,7 @@ export default class MediaPicker extends React.Component {
     let newEditorState = editorState
     const currentSelectedBlockKey = editorState.getSelection().getAnchorKey()
 
-    if (currentSelectedBlockKey) {
+    if (currentSelectedBlockKey && contentState.getBlockForKey(currentSelectedBlockKey).getType() === 'atomic') {
       newEditorState = selectNextBlock(editorState, currentSelectedBlockKey)
     }
 

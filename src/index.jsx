@@ -135,7 +135,7 @@ export default class BraftEditor extends React.Component {
 
     let { controls, height, media, addonControls, language, colors, fontSizes, fontFamilies } = this.props
     let contentState = this.state.editorState.getCurrentContent()
-    
+
     media = { ...defaultOptions.media, ...media }
     controls = controls || defaultOptions.controls
     addonControls = addonControls || defaultOptions.addonControls

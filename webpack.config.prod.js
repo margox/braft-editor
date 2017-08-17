@@ -13,7 +13,8 @@ module.exports = merge(baseConfigs, {
   output: {
     path: path.join(__dirname, './dist'),
     filename: 'braft.js',
-    publicPath: '/'
+    publicPath: '/',
+    libraryTarget: 'umd'
   },
   externals: {
     'react': 'react',

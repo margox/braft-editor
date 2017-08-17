@@ -1,4 +1,5 @@
 var path = require('path')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   module: {
@@ -6,32 +7,10 @@ module.exports = {
     rules: [
       { 
         test: /\.(scss|css)$/,
-        exclude: [path.resolve(__dirname, './src/assets')],
-        use: [
-          {
-            loader: 'style-loader',
-          }, {
-            loader: 'css-loader'
-          }, {
-            loader: 'postcss-loader'
-          }, {
-            loader: 'sass-loader'
-          }
-        ]
-      }, { 
-        test: /\.(scss|css)$/,
-        include: [path.resolve(__dirname, './src/assets')],
-        use: [
-          {
-            loader: 'style-loader',
-          }, {
-            loader: 'css-loader',
-          }, {
-            loader: 'postcss-loader'
-          }, {
-            loader: 'sass-loader'
-          }
-        ]
+        use: ExtractTextPlugin.extract([
+          'css-loader',
+          'sass-loader'
+        ])
       }, {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
@@ -53,7 +32,7 @@ module.exports = {
           {
             loader: 'url-loader',
             options: {
-              limit: 10,
+              limit: 12000,
               name: '[name]_[hash:6].[ext]'
             }
           }

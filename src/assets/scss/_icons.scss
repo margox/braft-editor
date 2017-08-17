@@ -1,15 +1,10 @@
 $eotPath: '../icons/icomoon.eot?sirizn';
 $ttfPath: '../icons/icomoon.ttf?sirizn';
-$woffPath: '../icons/icomoon.woff?sirizn';
-$svgPath: '../icons/icomoon.svg?sirizn';
 
 @font-face {
   font-family: 'icomoon';
-  src:  url($eotPath);
-  src:  url($eotPath) format('embedded-opentype'),
-    url($ttfPath) format('truetype'),
-    url($woffPath) format('woff'),
-    url($svgPath) format('svg');
+  src: url($eotPath);
+  src: url($ttfPath) format('truetype');
   font-weight: normal;
   font-style: normal;
 }
