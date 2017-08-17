@@ -26,7 +26,7 @@ export default class ControlBar extends React.Component {
     const commonProps = { language, editorState, contentState, currentInlineStyle, selection }
 
     const renderedAddonControls = addonControls.map((addonControlItem, index) => {
-      if (addonControlItem.type === 'split-line') {
+      if (addonControlItem.type === 'split') {
         return <span key={controls.length + index} className="split-line"></span>
       } else {
         return (

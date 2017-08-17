@@ -111,7 +111,7 @@ class Demo extends React.Component {
           onHTMLChange={this.handleHTMLChange}
           addonControls={[
             {
-              type: 'split-line',
+              type: 'split',
             },
             {
               type: 'button',

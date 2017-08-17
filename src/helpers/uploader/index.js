@@ -77,7 +77,6 @@ export default class Uploader {
           this.setItemState(item.id, {
             file: null,
             url: res.url,
-            // name: res.name || item.name,
             uploadProgress: 1,
             uploading: false,
             selected: true

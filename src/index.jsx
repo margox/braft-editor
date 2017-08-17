@@ -143,6 +143,7 @@ export default class BraftEditor extends React.Component {
     colors = colors || defaultOptions.colors
     fontSizes = fontSizes || defaultOptions.fontSizes
     fontFamilies = fontFamilies || defaultOptions.fontFamilies
+    height = height || defaultOptions.height
 
     if (!media.uploadFn) {
       media.video = false
@@ -183,7 +184,7 @@ export default class BraftEditor extends React.Component {
         <ControlBar {...controlBarProps}/>
         <div
           className="BraftEditor-content"
-          style = {{height: height|| defaultOptions.height}}
+          style = {{height}}
         >
           <Editor { ...editorProps }/>
         </div>

@@ -1,6 +1,6 @@
 export default {
   height: 500,
-  language: 'en',
+  language: 'zh',
   controls: [
     'undo', 'redo', 'split', 'font-size', 'font-family', 'text-color',
     'bold', 'italic', 'underline', 'strike-through', 'superscript',
