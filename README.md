@@ -34,6 +34,9 @@ node index.js
 yarn build
 ```
 
+## 在线演示
+移步: [http://margox.github.io/braft-editor/](http://margox.github.io/braft-editor/)
+
 ## 使用示例
 ```javascript
 import React from 'react'
@@ -275,3 +278,11 @@ const uploadFn = (param) => {
 
 }
 ```
+
+## 开发计划
+- 支持图片修改宽度
+- 完善多媒体插入工具
+- 扩展自定义控制组件的类型，包括下拉菜单和弹窗等
+
+## 已知问题
+1. 编辑器内容为空时插入列表，placeholder文本不消失，输入任意文本内容后placeholder文本消失

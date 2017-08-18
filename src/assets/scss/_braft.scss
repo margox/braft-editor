@@ -67,12 +67,10 @@
   .public-DraftEditorPlaceholder-root{
     top: 15px;
     left: 15px;
-    z-index: 2;
     pointer-events: none;
   }
   .DraftEditor-editorContainer{
     box-sizing: border-box;
-    background-color: #fff;
     border: none;
   }
   .DraftEditor-root,
@@ -86,7 +84,7 @@
       color: #4078c0;
     }
     blockquote{
-      margin: 5px 0;
+      margin: 0 0 10px 0;
       padding: 15px 20px;
       background-color: #f1f2f3;
       border-left: solid 5px #ccc;
@@ -96,7 +94,7 @@
     pre{
       max-width: 100%;
       max-height: 100%;
-      margin: 5px 0;
+      margin: 0 0 10px 0;
       padding: 15px;
       overflow: auto;
       background-color: #f1f2f3;
