@@ -7,11 +7,11 @@ import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, E
 import { convertToHTML, convertFromHTML } from 'draft-convert'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
-import { getBlockRendererFn, blockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
+import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 
 const editorDecorators = new CompositeDecorator(decorators)
-const extendedBlockRenderMap = DefaultDraftBlockRenderMap.merge(blockRenderMap)
+const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
 export default class BraftEditor extends React.Component {
 
@@ -133,8 +133,12 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    let { controls, height, media, addonControls, language, colors, fontSizes, fontFamilies, viewWrapper } = this.props
-    let contentState = this.state.editorState.getCurrentContent()
+    let {
+      controls, height, media, addonControls, language,
+      colors, fontSizes, fontFamilies, viewWrapper, placeholder
+    } = this.props
+
+    const contentState = this.state.editorState.getCurrentContent()
 
     media = { ...defaultOptions.media, ...media }
     controls = controls || defaultOptions.controls
@@ -166,15 +170,15 @@ export default class BraftEditor extends React.Component {
       language, contentState, viewWrapper
     })
 
+    const customStyleMap = getCustomStyleMap({ colors, fontSizes, fontFamilies })
+
     const editorProps = {
       ref: instance => this.draftInstance = instance,
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       onChange: this.onChange,
-      customStyleMap: getCustomStyleMap({ colors, fontSizes, fontFamilies }),
-      blockRenderMap: extendedBlockRenderMap,
-      blockStyleFn: blockStyleFn,
-      blockRendererFn: blockRendererFn,
+      customStyleMap, blockRenderMap, blockStyleFn,
+      blockRendererFn, blockRenderMap, placeholder,
       ...this.state.editorProps
     }
 

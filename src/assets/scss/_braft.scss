@@ -64,7 +64,12 @@
       }
     }
   }
-
+  .public-DraftEditorPlaceholder-root{
+    top: 15px;
+    left: 15px;
+    z-index: 2;
+    pointer-events: none;
+  }
   .DraftEditor-editorContainer{
     box-sizing: border-box;
     background-color: #fff;

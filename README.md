@@ -147,6 +147,12 @@ class Demo extends React.Component {
 
 
 
+### placeholder [string]
+
+设置placeholder文本
+
+
+
 ### viewWrapper [string]
 
 指定编辑器的包裹容器的选择器字符串（例如'#wrapper', '.container'），用于下拉菜单等组件的位置自适应，默认为body

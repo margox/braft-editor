@@ -100,6 +100,7 @@ class Demo extends React.Component {
         <BraftEditor
           height={600}
           viewWrapper={'#demo'}
+          placeholder={"Hello World!"}
           ref={(instance) => this.editor = instance}
           initialContent={this.state.htmlContent}
           language="zh"

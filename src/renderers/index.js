@@ -39,7 +39,7 @@ export const getBlockRendererFn = (props) => (block) => {
 
 }
 
-export const blockRenderMap = Map({
+export const customBlockRenderMap = Map({
   'atomic': {
     element: ''
   }
