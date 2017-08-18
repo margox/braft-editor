@@ -39,6 +39,7 @@ export default {
   },
   linkEditor: {
     inputPlaceHolder: 'Input link URL',
+    inputWithEnterPlaceHolder: 'Input link URL and press Enter',
     openInNewWindow: 'Open in new window',
     removeLink: 'Remove Link'
   },

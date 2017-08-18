@@ -59,7 +59,7 @@ export default class Image extends React.Component {
           >
             {(linkEditorVisible) && (
               <div onClick={this.preventDefault} className="braft-embed-image-link-editor">
-                <input type="text" placeholder={language.linkEditor.inputPlaceHolder} onKeyDown={this.setImageLink} defaultValue={link}/>
+                <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.setImageLink} defaultValue={link}/>
                 <div className="switch-group">
                   <Switch
                     active={link_target === '_blank'}

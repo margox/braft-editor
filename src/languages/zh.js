@@ -39,6 +39,7 @@ export default {
   },
   linkEditor: {
     inputPlaceHolder: '输入链接地址',
+    inputWithEnterPlaceHolder: '输入链接地址并回车',
     openInNewWindow: '在新窗口打开',
     removeLink: '移除链接'
   },
