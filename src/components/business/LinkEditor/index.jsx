@@ -44,7 +44,7 @@ export default class LinkEditor extends React.Component {
   render () {
 
     const { href, target } = this.state
-    const { editorState, contentState, selection, language } = this.props
+    const { editorState, contentState, selection, language, viewWrapper } = this.props
     const caption = <i className="icon-link"></i>
 
     return (
@@ -53,6 +53,7 @@ export default class LinkEditor extends React.Component {
           caption={caption}
           hoverTitle={language.controls.link}
           hideOnBlur={false}
+          viewWrapper={viewWrapper}
           showDropDownArrow={false}
           ref={(instance) => this.dropDownComponent = instance}
           className={"control-item dropdown link-editor-dropdown"}

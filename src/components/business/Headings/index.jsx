@@ -7,7 +7,7 @@ export default class Headings extends React.Component {
 
   render () {
 
-    const { current, onChange, language } = this.props
+    const { current, onChange, language, viewWrapper } = this.props
     const headings = getHeadings(language)
 
     let currentHeadingIndex = headings.findIndex((item) => item.command === current)
@@ -17,6 +17,7 @@ export default class Headings extends React.Component {
     return (
       <DropDown
         caption={caption}
+        viewWrapper={viewWrapper}
         hoverTitle={language.controls.headings}
         arrowActive={isFirstItemActive}
         className={"control-item dropdown headings-dropdown"}

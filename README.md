@@ -21,12 +21,16 @@ yarn add braft-editor
 npm install braft-editor --save
 ```
 
-## 开发
+## 开发环境
 ```bash
 # 运行dev-server
 yarn start
-open http://localhost:5998
-#  打包编译
+# 启动上传服务器
+cd example/server
+node index.js
+# 访问 http://localhost:5998
+
+# 打包编译
 yarn build
 ```
 
@@ -77,7 +81,7 @@ class Demo extends React.Component {
 
 ### contentFormat [string: raw | html]
 
-用于指定initialContent和onChange的内容格式，raw表示使用编辑器原始数据作为输入和输出类型, html表示使用HTML字符串作为输入和输入类型，默认为raw。
+用于指定initialContent和onChange的内容格式，raw表示使用编辑器原始数据作为输入和输出类型, html表示使用HTML字符串作为输入和输出类型，默认为raw。
 > 为了保证内容的可编辑性，强烈建议使用raw格式，并通过onHTMLChange获取HTML格式的内容
 
 
@@ -141,6 +145,11 @@ class Demo extends React.Component {
 
 指定编辑器的语言，目前支持zh和en，默认zh
 
+
+
+### viewWrapper [string]
+
+指定编辑器的包裹容器的选择器字符串（例如'#wrapper', '.container'），用于下拉菜单等组件的位置自适应，默认为body
 
 ### colors [array:[string]]
 

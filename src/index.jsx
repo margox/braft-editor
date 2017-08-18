@@ -133,7 +133,7 @@ export default class BraftEditor extends React.Component {
 
   render() {
 
-    let { controls, height, media, addonControls, language, colors, fontSizes, fontFamilies } = this.props
+    let { controls, height, media, addonControls, language, colors, fontSizes, fontFamilies, viewWrapper } = this.props
     let contentState = this.state.editorState.getCurrentContent()
 
     media = { ...defaultOptions.media, ...media }
@@ -153,7 +153,7 @@ export default class BraftEditor extends React.Component {
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
-      media, controls, contentState, language,
+      media, controls, contentState, language, viewWrapper,
       addonControls, colors, fontSizes, fontFamilies
     }
 
@@ -161,10 +161,9 @@ export default class BraftEditor extends React.Component {
       onChange: this.onChange,
       editorState: this.state.editorState,
       getEditorState: this.getEditorState.bind(this),
-      contentState: contentState,
-      language: language,
       forceRender: this.forceRender.bind(this),
-      setEditorProp: this.setEditorProp.bind(this)
+      setEditorProp: this.setEditorProp.bind(this),
+      language, contentState, viewWrapper
     })
 
     const editorProps = {

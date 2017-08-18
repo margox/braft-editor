@@ -96,9 +96,10 @@ class Demo extends React.Component {
   render() {
 
     return (
-      <div className="demo">
+      <div className="demo" id="demo">
         <BraftEditor
           height={600}
+          viewWrapper={'#demo'}
           ref={(instance) => this.editor = instance}
           initialContent={this.state.htmlContent}
           language="zh"

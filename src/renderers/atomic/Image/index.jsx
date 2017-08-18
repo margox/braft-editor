@@ -92,13 +92,21 @@ export default class Image extends React.Component {
 
   calcToolbarOffset () {
 
-    let viewWidth = document.body.getBoundingClientRect().width
+    let viewRect = null
+
+    if (this.props.viewWrapper) {
+      viewRect = document.querySelector(this.props.viewWrapper).getBoundingClientRect()
+    } else {
+      viewRect = document.body.getBoundingClientRect()
+    }
+
     let toolbarRect = this.toolbarElement.getBoundingClientRect()
     let imageRect = this.imageElement.getBoundingClientRect()
     let right = imageRect.right - imageRect.width / 2 + toolbarRect.width / 2
     let left = imageRect.left + imageRect.width / 2 - toolbarRect.width / 2
 
-    right = viewWidth - right
+    right = viewRect.right - right
+    left = left - viewRect.left
 
     if (right < 10) {
       return right - 10

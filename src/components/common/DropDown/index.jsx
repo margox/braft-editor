@@ -89,13 +89,21 @@ export default class DropDown extends React.Component {
   fixDropDownPosition () {
 
     let offset = 0
-    let viewWidth = document.body.getBoundingClientRect().width
+    let viewRect = null
+
+    if (this.props.viewWrapper) {
+      viewRect = document.querySelector(this.props.viewWrapper).getBoundingClientRect()
+    } else {
+      viewRect = document.body.getBoundingClientRect()
+    }
+
     let handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
     let contentRect = this.dropDownContentElement.getBoundingClientRect()
     let right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2
     let left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2
 
-    right = viewWidth - right
+    right = viewRect.right - right
+    left = left - viewRect.left
 
     if (right < 10) {
       offset = right - 10

@@ -19,7 +19,7 @@ export default class TextColor extends React.Component {
     let captionStyle = {}
     let currentIndex = null
     let { colorType } = this.state
-    let { currentInlineStyle, onChange, language, colors } = this.props
+    let { currentInlineStyle, onChange, language, colors, viewWrapper } = this.props
 
     colors.forEach((color, index) => {
 
@@ -52,6 +52,7 @@ export default class TextColor extends React.Component {
         caption={caption}
         hoverTitle={language.controls.color}
         showDropDownArrow={false}
+        viewWrapper={viewWrapper}
         componentId={this.dropDownId}
         ref={(instance) => this.dropDown = instance}
         className={"control-item dropdown text-color-dropdown"}
