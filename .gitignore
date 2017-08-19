@@ -13,7 +13,6 @@ node_modules
 *.vi
 *~
 *.sass-cache
-/dist/*
 /example/server/temp/*
 
 # OS or Editor folders
