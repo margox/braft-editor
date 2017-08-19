@@ -1,3 +1,4 @@
-import LinkDecorator from './Link'
+import Link from './Link'
+import Image from './Image'
 
-export default [LinkDecorator]
+export default [Link, Image]

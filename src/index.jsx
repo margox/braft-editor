@@ -3,8 +3,9 @@ import './assets/scss/_base.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import languages from 'languages'
-import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
+import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
 import { convertToHTML, convertFromHTML } from 'draft-convert'
+import { checkReturn } from 'utils/editor'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
@@ -41,9 +42,7 @@ export default class BraftEditor extends React.Component {
 
     }
 
-    this.onChange = this.onChange.bind(this)
     this.readyForSync = true
-    this.handleKeyCommand = this.handleKeyCommand.bind(this)
     this.state = {
       editorState: initialEditorState,
       editorProps: {}
@@ -51,7 +50,7 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  onChange(editorState) {
+  onChange = (editorState) => {
 
     this.setState({ editorState }, () => {
       clearTimeout(this.syncTimer)
@@ -65,15 +64,15 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  getHTMLContent () {
+  getHTMLContent = () => {
     return this.getContent('html')
   }
 
-  getRawContent () {
+  getRawContent = () => {
     return this.getContent('raw')
   }
 
-  getContent (format) {
+  getContent = (format) => {
 
     format = format || this.props.contentFormat || 'raw'
     const contentState = this.getContentState()
@@ -88,19 +87,19 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  getContentState () {
+  getContentState = () => {
     return this.getEditorState().getCurrentContent()
   }
 
-  getEditorState () {
+  getEditorState = () => {
     return this.state.editorState
   }
 
-  getDraftInstance () {
+  getDraftInstance = () => {
     return this.draftInstance
   }
 
-  setEditorProp (key, name) {
+  setEditorProp = (key, name)  =>{
     let editorProps = {
       ...this.state.editorProps,
       [key]: name
@@ -108,7 +107,7 @@ export default class BraftEditor extends React.Component {
     this.setState({ editorProps })
   }
 
-  forceRender () {
+  forceRender = () => {
 
     const editorState = this.state.editorState
     const contentState = editorState.getCurrentContent()
@@ -118,16 +117,41 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  handleKeyCommand(command) {
+  handleKeyCommand = (command) => {
 
     const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
 
     if (newState) {
       this.onChange(newState)
-      return 'handled'
+      return true
     }
 
-    return 'not-handled'
+    return false
+
+  }
+
+  handleReturn = (event) => {
+
+    const editorState = checkReturn(this.state.editorState, event);
+  
+    if (editorState) {
+      this.onChange(editorState)
+      return true
+    }
+  
+    return false
+  
+  }
+
+  handlePastedText = (text, html) => {
+
+    const { editorState } = this.state
+    const blockMap = convertFromHTML(getFromHTMLConfig())(html).blockMap
+    const newState = Modifier.replaceWithFragment(editorState.getCurrentContent(), editorState.getSelection(), blockMap)
+
+    this.onChange(EditorState.push(editorState, newState, 'insert-fragment'))
+
+    return true
 
   }
 
@@ -164,9 +188,9 @@ export default class BraftEditor extends React.Component {
     const blockRendererFn = getBlockRendererFn({
       onChange: this.onChange,
       editorState: this.state.editorState,
-      getEditorState: this.getEditorState.bind(this),
-      forceRender: this.forceRender.bind(this),
-      setEditorProp: this.setEditorProp.bind(this),
+      getEditorState: this.getEditorState,
+      forceRender: this.forceRender,
+      setEditorProp: this.setEditorProp,
       language, contentState, viewWrapper
     })
 
@@ -176,8 +200,10 @@ export default class BraftEditor extends React.Component {
       ref: instance => this.draftInstance = instance,
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
+      handleReturn: this.handleReturn,
+      handlePastedText: this.handlePastedText,
       onChange: this.onChange,
-      customStyleMap, blockRenderMap, blockStyleFn,
+      customStyleMap, blockStyleFn,
       blockRendererFn, blockRenderMap, placeholder,
       ...this.state.editorProps
     }

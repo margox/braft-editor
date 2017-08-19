@@ -2,6 +2,15 @@
 
 ### 一个基于darft-js开发的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
+## 更新内容
+- 2017-08-19 v0.2.5
+  - 支持列表模式下连续回车跳出列表
+  - 支持从网页复制图片粘贴到编辑器
+
+
+## 在线演示
+移步: [http://margox.github.io/braft-editor/](http://margox.github.io/braft-editor/)
+
 ## 特性
 - 完善的文本内容编辑功能
 - 允许插入图片、音视频等多媒体内容
@@ -33,9 +42,6 @@ node index.js
 # 打包编译
 yarn build
 ```
-
-## 在线演示
-移步: [http://margox.github.io/braft-editor/](http://margox.github.io/braft-editor/)
 
 ## 使用示例
 ```javascript

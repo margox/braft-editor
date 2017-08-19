@@ -188,6 +188,16 @@ const htmlToBlock = (nodeName, node) => {
       }
     }
 
+  } else if (nodeName === 'img') {
+
+    return {
+      type: 'atomic',
+      data: {
+        float: nodeStyle.float,
+        alignment: nodeStyle.textAlign
+      }
+    }
+
   } else if (nodeName === 'p' && nodeStyle.textAlign) {
 
     return {
