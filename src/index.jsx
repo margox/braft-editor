@@ -145,8 +145,12 @@ export default class BraftEditor extends React.Component {
 
   handlePastedText = (text, html) => {
 
+    if (!html) {
+      return false
+    }
+
     const { editorState } = this.state
-    const blockMap = convertFromHTML(getFromHTMLConfig())(html).blockMap
+    const blockMap = convertFromHTML(getFromHTMLConfig())(html || text).blockMap
     const newState = Modifier.replaceWithFragment(editorState.getCurrentContent(), editorState.getSelection(), blockMap)
 
     this.onChange(EditorState.push(editorState, newState, 'insert-fragment'))
