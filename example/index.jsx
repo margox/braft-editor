@@ -104,12 +104,6 @@ class Demo extends React.Component {
           ref={(instance) => this.editor = instance}
           initialContent={this.state.htmlContent}
           language="zh"
-          media={{
-            uploadFn: uploadFn,
-            video: true,
-            audio: true
-          }}
-          onRawChange={this.handleRawChange}
           onHTMLChange={this.handleHTMLChange}
           addonControls={[
             {
@@ -129,12 +123,8 @@ class Demo extends React.Component {
   }
 
   handleHTMLChange = (htmlContent) => {
-    console.log(htmlContent)
+    // console.log(htmlContent)
     this.setState({ htmlContent })
-  }
-
-  handleRawChange = (raw) => {
-    console.log(raw)
   }
 
 }

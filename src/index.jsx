@@ -185,6 +185,7 @@ export default class BraftEditor extends React.Component {
     const controlBarProps = {
       onChange: this.onChange,
       editorState: this.state.editorState,
+      editor: this.draftInstance,
       media, controls, contentState, language, viewWrapper,
       addonControls, colors, fontSizes, fontFamilies
     }

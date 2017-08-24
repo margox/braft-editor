@@ -13,6 +13,10 @@
   button{
     padding: 0;
     outline: none;
+    &[disabled]{
+      pointer-events: none;
+      opacity: .3;
+    }
   }
 
   input {

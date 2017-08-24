@@ -197,10 +197,17 @@ export default class ControlBar extends React.Component {
       this.props.onChange(EditorState[command](this.props.editorState))
     }
 
+    setImmediate(() => {
+      this.props.editor.focus()
+    })
+
   }
 
   applyEditorState = (editorState) => {
     this.props.onChange(editorState)
+    setImmediate(() => {
+      this.props.editor.focus()
+    })
   }
 
   showMediaPicker = () => {

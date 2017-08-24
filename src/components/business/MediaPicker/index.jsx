@@ -322,7 +322,7 @@ export default class MediaPicker extends React.Component {
 
   confirmInsertMedia = () => {
 
-    const { editorState, contentState, onChange } = this.props
+    const { editorState, contentState, selection, onChange } = this.props
     const selectedFiles = this.state.files.filter(item => item.selected)
 
     if (selectedFiles.length === 0) {
@@ -330,7 +330,7 @@ export default class MediaPicker extends React.Component {
     }
 
     let newEditorState = editorState
-    const currentSelectedBlockKey = editorState.getSelection().getAnchorKey()
+    const currentSelectedBlockKey = selection.getAnchorKey()
 
     if (currentSelectedBlockKey && contentState.getBlockForKey(currentSelectedBlockKey).getType() === 'atomic') {
       newEditorState = selectNextBlock(editorState, currentSelectedBlockKey)

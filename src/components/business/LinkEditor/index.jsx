@@ -46,6 +46,9 @@ export default class LinkEditor extends React.Component {
     const { href, target } = this.state
     const { editorState, contentState, selection, language, viewWrapper } = this.props
     const caption = <i className="icon-link"></i>
+    const currentSelectedBlockKey = selection.getAnchorKey()
+    const currentSelectedBlockType = contentState.getBlockForKey(currentSelectedBlockKey).getType()
+    const textSelected = !selection.isCollapsed() && currentSelectedBlockType !== 'atomic'
 
     return (
       <div className="control-item-group">
@@ -55,6 +58,7 @@ export default class LinkEditor extends React.Component {
           hideOnBlur={false}
           viewWrapper={viewWrapper}
           showDropDownArrow={false}
+          disabled={!textSelected}
           ref={(instance) => this.dropDownComponent = instance}
           className={"control-item dropdown link-editor-dropdown"}
         >
@@ -65,6 +69,7 @@ export default class LinkEditor extends React.Component {
                 value={href}
                 spellCheck={false}
                 placeholder={language.linkEditor.inputPlaceHolder}
+                onKeyDown={this.handeKeyDown}
                 onChange={this.inputLink}
               />
             </div>
@@ -89,12 +94,21 @@ export default class LinkEditor extends React.Component {
           title={language.controls.unlink}
           className="control-item button"
           onClick={this.handleUnlink}
+          disabled={!textSelected || !href}
         >
           <i className="icon-link-off"></i>
         </button>
       </div>
     )
 
+  }
+
+  handeKeyDown = (e) => {
+    if (e.keyCode === 13) {
+      this.handleConfirm()
+      e.preventDefault()
+      return false
+    }
   }
 
   inputLink = (e) => {
@@ -125,13 +139,29 @@ export default class LinkEditor extends React.Component {
   handleConfirm = () => {
 
     const { href, target } = this.state
-    const { editorState, contentState, onChange } = this.props
+
+    if (href.trim().length === 0) {
+      this.handleUnlink()
+      return false
+    }
+
+    const { editorState, contentState, onChange, selection } = this.props
     const currentContent = contentState.createEntity('LINK', 'MUTABLE', { href, target })
     const entityKey = currentContent.getLastCreatedEntityKey()
-    const newEditorState = EditorState.set(editorState,{ currentContent })
+
+    let newEditorState = EditorState.set(editorState, { currentContent })
+    newEditorState = RichUtils.toggleLink(newEditorState, newEditorState.getSelection(), entityKey)
+    newEditorState = EditorState.forceSelection(newEditorState, selection.merge({
+      anchorOffset: selection.getEndOffset(), 
+      focusOffset: selection.getEndOffset()
+    }))
+    newEditorState = EditorState.push(newEditorState, Modifier.insertText(
+      newEditorState.getCurrentContent(), newEditorState.getSelection(), ' '
+    ), 'insert-text')
+
+    onChange(newEditorState)
 
     this.dropDownComponent.hide()
-    onChange(RichUtils.toggleLink(newEditorState, newEditorState.getSelection(), entityKey))
 
   }
 
