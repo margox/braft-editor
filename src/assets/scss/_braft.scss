@@ -1,21 +1,21 @@
 @import '~sassinc';
 
+.BraftEditor-content{
+  overflow: auto;
+  font-size: 16px;
+  img{
+    user-select: none;
+  }
+  *{
+    line-height: initial;
+  }
+}
+
 .BraftEditor-container{
   position: relative;
   height: 100%;
   padding: 0;
   overflow: auto;
-
-  .BraftEditor-content{
-    overflow: auto;
-    font-size: 16px;
-    img{
-      user-select: none;
-    }
-    *{
-      line-height: initial;
-    }
-  }
 
   .input-group{
     display: block;
