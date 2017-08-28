@@ -8,8 +8,12 @@
 
   .BraftEditor-content{
     overflow: auto;
+    font-size: 16px;
     img{
       user-select: none;
+    }
+    *{
+      line-height: initial;
     }
   }
 
@@ -67,6 +71,7 @@
   .public-DraftEditorPlaceholder-root{
     top: 15px;
     left: 15px;
+    font-size: 16px;
     pointer-events: none;
   }
   .DraftEditor-editorContainer{

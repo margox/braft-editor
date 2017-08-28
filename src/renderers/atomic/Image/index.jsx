@@ -84,7 +84,7 @@ export default class Image extends React.Component {
             src={url} width={width} height={height}
           />
         </div>
-        {clearFix && <div className="clearfix" style={{clear:'both'}}></div>}
+        {clearFix && <div className="clearfix" style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}
       </div>
     )
 

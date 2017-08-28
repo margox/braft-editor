@@ -6,12 +6,14 @@
 }
 
 .braft-color-list{
+  box-sizing: content-box;
   list-style: none;
   width: 240px;
   margin: 0;
   padding: 5px;
   overflow: hidden;
   li{
+    box-sizing: content-box;
     display: block;
     float: left;
     width: 24px;
