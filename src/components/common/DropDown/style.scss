@@ -10,6 +10,7 @@
     opacity: .3;
   }
   .dropdown-content{
+    box-sizing: content-box;
     position: absolute;
     z-index: 10;
     top: 100%;
