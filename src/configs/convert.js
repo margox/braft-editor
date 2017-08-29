@@ -178,7 +178,7 @@ const htmlToBlock = (nodeName, node) => {
 
   let nodeStyle = node.style || {}
 
-  if (node.classList.contains('media-wrap')) {
+  if (node.classList && node.classList.contains('media-wrap')) {
 
     return {
       type: 'atomic',
