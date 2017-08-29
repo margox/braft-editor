@@ -323,19 +323,30 @@ this.editorInstance.setContent(content, format)
 
 ### getEditorState
 获取编辑器实例的editorState，一般情况下无需使用
+```javascript
+console.log(this.editorInstance.getEditorState())) //editorState object
+```
 
 ### forceRender
 强制编辑器内容重新渲染，一般情况下无需使用
+```javascript
+this.editorInstance.forceRender()
+```
 
 ### getDraftInstance
 获取draft内核的实例，用于调用draft的API
+```javascript
+const draftInstance = this.editorInstance.getDraftInstance()
+// 使编辑器获得焦点
+draftInstance.focus()
+```
 > 更多关于draft的资料，请参阅：https://draftjs.org/
 
 ### getMediaLibraryInstance
 获取内置媒体库实例，可用于外部操作媒体库内容
 ```javascript
 // 示例
-const mediaLibrary = this.editor.getMediaLibraryInstance()
+const mediaLibrary = this.editorInstance.getMediaLibraryInstance()
 const libraryId = new Date().getTime()
 // 往媒体库添加一个图片
 mediaLibrary.addItem({
