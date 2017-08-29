@@ -24,6 +24,10 @@ export const rgbToHex = (rgb) => {
 
   let rgbArray = rgb.split(',')
 
+  if (rgbArray.length < 3) {
+    return rgb
+  }
+
   return '#' + [rgbArray[0], rgbArray[1], rgbArray[2]].map(x => {
     const hex = parseInt(x.replace(/\D/g, ''), 10).toString(16)
     return hex.length === 1 ? '0' + hex : hex
