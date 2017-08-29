@@ -1,6 +1,4 @@
-import { imageToURL } from 'utils/base'
-
-export default class Uploader {
+export default class MediaLibrary {
 
   constructor () {
     this.items = []
@@ -10,6 +8,10 @@ export default class Uploader {
     this.items = items || []
     this.triggerChange()
     this.uploadItems()
+  }
+
+  addItem (item) {
+    this.addItems([item])
   }
 
   addItems (items) {
@@ -73,6 +75,7 @@ export default class Uploader {
 
       this.uploadFn({
         file: item.file,
+        libraryId: item.id,
         success: (res) => {
           this.setItemState(item.id, {
             file: null,

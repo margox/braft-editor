@@ -18,7 +18,7 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls, language, colors, fontSizes, fontFamilies, viewWrapper } = this.props
+    const { controls, editorState, contentState, media, addonControls, language, colors, fontSizes, fontFamilies, viewWrapper, mediaLibrary } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
@@ -48,6 +48,7 @@ export default class ControlBar extends React.Component {
           media={media}
           ref={(instance) => this.mediaPicker = instance}
           onChange={this.applyEditorState}
+          mediaLibrary={mediaLibrary}
           { ...commonProps }
         />
         {

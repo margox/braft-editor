@@ -3,6 +3,10 @@
 ### 一个基于darft-js开发的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
 ## 更新内容
+- 2017-08-29 v0.3.0
+  - 增加setContent等实例方法
+  - 支持外部操作媒体库内容
+  - 部分文案调整
 - 2017-08-28 v0.2.9
   - 部分CSS权重调整，减少与其他UI框架的冲突
 - 2017-08-28 v0.2.8
@@ -227,9 +231,9 @@ class Demo extends React.Component {
 ```javascript
 {
   image: true, // 开启图片插入功能
-  video: false, // 开启视频插入功能
+  video: true, // 开启视频插入功能
   audio: true, // 开启音频插入功能
-  uploadFn: null // 说明见下文
+  uploadFn: null // 指定上传函数，说明见下文
 }
 ```
 #### media.uploadFn [function]
@@ -238,13 +242,14 @@ class Demo extends React.Component {
 
 #### media.uploadFn:param [object]
 
-编辑器在调用该函数时，会传入一个包含文件体、进度回调、成功回调和失败回调的对象作为参数：
+编辑器在调用该函数时，会传入一个包含文件体、文件在媒体库的ID、进度回调、成功回调和失败回调的对象作为参数：
 ```javascript
 {
   file: [File Object],
   progress: function (progress) {
     // progress为0到100
   },
+  libraryId: 'XXXXX',
   success: function (res) {
     // res须为一个包含已上传文件url属性的对象：
   },
@@ -261,6 +266,9 @@ const uploadFn = (param) => {
   const serverURL = 'http://upload-server'
   const xhr = new XMLHttpRequest
   const fd = new FormData()
+
+  // libraryId可用于通过mediaLibrary示例来操作对应的媒体内容
+  console.log(param.libraryId)
 
   const successFn = (response) => {
     // 假设服务端直接返回文件上传后的地址
@@ -293,6 +301,55 @@ const uploadFn = (param) => {
 
 }
 ```
+
+## 实例方法
+
+### 获取实例
+```javascript
+<BraftEditor ref={instance => this.editorInstance = instance}/>
+```
+
+### getContent
+```javascript
+// 获取指定格式的内容，format为获取内容的格式，默认与contentFormat一致， 另有getHTMLContent和getRawContent方法可用
+this.editorInstance.getContent(format)
+```
+
+### setContent
+```javascript
+// 设置编辑器内容，用于需要异步填入编辑器内容的场景，format为填入内容的格式，默认与contentFormat一致
+this.editorInstance.setContent(content, format)
+```
+
+### getEditorState
+获取编辑器实例的editorState，一般情况下无需使用
+
+### forceRender
+强制编辑器内容重新渲染，一般情况下无需使用
+
+### getDraftInstance
+获取draft内核的实例，用于调用draft的API
+> 更多关于draft的资料，请参阅：https://draftjs.org/
+
+### getMediaLibraryInstance
+获取内置媒体库实例，可用于外部操作媒体库内容
+```javascript
+// 示例
+const mediaLibrary = this.editor.getMediaLibraryInstance()
+const libraryId = new Date().getTime()
+// 往媒体库添加一个图片
+mediaLibrary.addItem({
+  id: libraryId,
+  type: 'IMAGE',
+  name: 'Foo',
+  url: 'http://path/to/image'
+})
+// 从媒体库删除先前插入的图片
+setTimeout(() => {
+  mediaLibrary.removeItem(libraryId)
+}, 1000)
+```
+> 媒体库实例的具体使用请参阅：https://github.com/margox/braft-editor/tree/master/src/helpers/MediaLibrary/index.js
 
 ## 开发计划
 - 支持图片修改宽度

@@ -33,7 +33,7 @@ const convertAtomicBlock = (block, contentState) => {
       )
     } else {
       return (
-        <div data-key={block.key} data-role="image-wrap" style={imageWrapStyle}>
+        <div className="media-wrap image-wrap" style={imageWrapStyle}>
           <img src={url} width={width} height={height} />
         </div>
       )

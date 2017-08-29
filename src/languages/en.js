@@ -49,7 +49,7 @@ export default {
     audio: 'Audio'
   },
   mediaPicker: {
-    caption: 'Insert Media Item',
+    caption: 'Media Library',
     dragTip: 'Click Or Drag Files Here',
     dropTip: 'Drop To Upload',
     externalInputPlaceHolder: 'Source Name|Source URL',

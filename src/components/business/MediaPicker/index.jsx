@@ -2,7 +2,6 @@ import './style.scss'
 import React from 'react'
 import { AtomicBlockUtils, EditorState } from 'draft-js'
 import Modal from 'components/common/Modal'
-import Uploader from 'helpers/uploader'
 import { UniqueIndex } from 'utils/base'
 import { selectNextBlock } from 'utils/editor'
 
@@ -28,6 +27,7 @@ export default class MediaPicker extends React.Component {
     },
     files: []
   }
+
   mediaFileAccept = [
     this.props.media.image ? imageMediaType : null,
     this.props.media.video ? videoMediaType : null,
@@ -36,9 +36,9 @@ export default class MediaPicker extends React.Component {
 
   componentDidMount () {
 
-    this.uploader = new Uploader()
-    this.uploader.uploadFn = this.props.media.uploadFn || null
-    this.uploader.onChange = (files) => {
+    this.mediaLibrary = this.props.mediaLibrary
+    this.mediaLibrary.uploadFn = this.props.media.uploadFn || null
+    this.mediaLibrary.onChange = (files) => {
       this.setState({
         files,
         confirmable: !!files.filter(item => item.selected).length
@@ -206,12 +206,12 @@ export default class MediaPicker extends React.Component {
     }
 
     selected = !selected
-    this.uploader.setItemState(id, { selected })
+    this.mediaLibrary.setItemState(id, { selected })
 
   }
 
   removeFileItem = (e) => {
-    this.uploader.removeItem(e.target.dataset.id)
+    this.mediaLibrary.removeItem(e.target.dataset.id)
     e.stopPropagation()
   }
 
@@ -252,13 +252,13 @@ export default class MediaPicker extends React.Component {
 
         if (files[index].type.indexOf('image/') === 0 && this.props.media.image) {
           data.type = 'IMAGE'
-          this.uploader.addItems([data])
+          this.mediaLibrary.addItems([data])
         } else if (files[index].type.indexOf('video/') === 0 && this.props.media.video) {
           data.type = 'VIDEO'
-          this.uploader.addItems([data])
+          this.mediaLibrary.addItems([data])
         } else if (files[index].type.indexOf('audio/') === 0 && this.props.media.audio) {
           data.type = 'AUDIO'
-          this.uploader.addItems([data])
+          this.mediaLibrary.addItems([data])
         }
 
         setTimeout(() => {
@@ -297,7 +297,7 @@ export default class MediaPicker extends React.Component {
       let name = url.length > 1 ? url[0] : this.props.language.mediaPicker.unnamedItem
       url = url.length > 1 ? url[1] : url[0]
       let thumbnail = type === 'IMAGE' ? url : null
-      this.uploader.addItems([{
+      this.mediaLibrary.addItems([{
         thumbnail, url, name, type,
         id: new Date().getTime() + '_' + UniqueIndex(),
         uploading: false,
@@ -366,7 +366,7 @@ export default class MediaPicker extends React.Component {
     this.setState({
       visible: false
     }, () => {
-      this.uploader.unselectAllItem()
+      this.mediaLibrary.unselectAllItem()
     })
   }
 

@@ -3,35 +3,6 @@ import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 
 const htmlContent = ''
-const uploadFn = (param) => {
-
-  const xhr = new XMLHttpRequest
-  const fd = new FormData()
-
-  const successFn = (response) => {
-    param.success(JSON.parse(xhr.responseText)[0])
-  }
-
-  const progressFn = (event) => {
-    param.progress(event.loaded / event.total * 100)
-  }
-
-  const errorFn = (response) => {
-    param.error({
-      msg: 'unable to upload.'
-    })
-  }
-
-  xhr.upload.addEventListener("progress", progressFn, false)
-  xhr.addEventListener("load", successFn, false)
-  xhr.addEventListener("error", errorFn, false)
-  xhr.addEventListener("abort", errorFn, false)
-
-  fd.append('file', param.file)
-  xhr.open('POST', 'http://localhost:9090', true)
-  xhr.send(fd)
-
-}
 
 class Demo extends React.Component {
 
@@ -46,6 +17,39 @@ class Demo extends React.Component {
     }
     window.previewWindow = window.open()
     window.previewWindow.document.write(this.buildPreviewHtml())
+  }
+
+  uploadFn = (param) => {
+
+    const xhr = new XMLHttpRequest
+    const fd = new FormData()
+    const mediaLibrary = this.editor.getMediaLibraryInstance()
+
+    const successFn = (response) => {
+      param.success(JSON.parse(xhr.responseText)[0])
+    }
+
+    const progressFn = (event) => {
+      param.progress(event.loaded / event.total * 100)
+    }
+
+    const errorFn = (response) => {
+      // 自动从媒体库移除上传失败的内容
+      mediaLibrary.removeItem(param.libraryId)
+      param.error({
+        msg: 'unable to upload.'
+      })
+    }
+
+    xhr.upload.addEventListener("progress", progressFn, false)
+    xhr.addEventListener("load", successFn, false)
+    xhr.addEventListener("error", errorFn, false)
+    xhr.addEventListener("abort", errorFn, false)
+
+    fd.append('file', param.file)
+    xhr.open('POST', 'http://localhost:9090', true)
+    xhr.send(fd)
+
   }
 
   buildPreviewHtml () {
@@ -93,6 +97,14 @@ class Demo extends React.Component {
 
   }
 
+  setContent = () => {
+    this.editor.setContent('<h1>Hell<span style="color:#f32784;">o World!</span></h1>', 'html')
+  }
+
+  clearContent = () => {
+    this.editor.setContent('', 'html')
+  }
+
   render() {
 
     return (
@@ -105,6 +117,9 @@ class Demo extends React.Component {
           initialContent={this.state.htmlContent}
           language="zh"
           onHTMLChange={this.handleHTMLChange}
+          media={{
+            uploadFn: this.uploadFn
+          }}
           addonControls={[
             {
               type: 'split',

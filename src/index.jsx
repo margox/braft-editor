@@ -10,6 +10,7 @@ import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
+import MediaLibrary from 'helpers/MediaLibrary'
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -47,6 +48,8 @@ export default class BraftEditor extends React.Component {
       editorState: initialEditorState,
       editorProps: {}
     }
+
+    this.mediaLibrary = new MediaLibrary()
 
   }
 
@@ -97,6 +100,29 @@ export default class BraftEditor extends React.Component {
 
   getDraftInstance = () => {
     return this.draftInstance
+  }
+
+  getMediaLibraryInstance = () => {
+    return this.mediaLibrary
+  }
+
+  setContent = (content, format) => {
+
+    let convertedContent
+    let { contentFormat } = this.props
+
+    contentFormat = format || contentFormat || 'raw'
+
+    if (contentFormat === 'html') {
+      convertedContent = convertFromHTML(getFromHTMLConfig())(content)
+    } else if (contentFormat === 'raw') {
+      convertedContent = convertFromRaw(content)
+    }
+
+    this.setState({
+      editorState: EditorState.createWithContent(convertedContent, editorDecorators)
+    })
+
   }
 
   setEditorProp = (key, name)  =>{
@@ -186,8 +212,9 @@ export default class BraftEditor extends React.Component {
       onChange: this.onChange,
       editorState: this.state.editorState,
       editor: this.draftInstance,
+      mediaLibrary: this.mediaLibrary,
       media, controls, contentState, language, viewWrapper,
-      addonControls, colors, fontSizes, fontFamilies
+      addonControls, colors, fontSizes, fontFamilies,
     }
 
     const blockRendererFn = getBlockRendererFn({
