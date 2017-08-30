@@ -43,10 +43,13 @@ export default class BraftEditor extends React.Component {
 
     }
 
-    this.readyForSync = true
+    this.detectedColors = []
     this.state = {
       editorState: initialEditorState,
-      editorProps: {}
+      editorProps: {},
+      extendedData: {
+        colors: []
+      }
     }
 
     this.mediaLibrary = new MediaLibrary()
@@ -98,6 +101,23 @@ export default class BraftEditor extends React.Component {
     return format === 'html' ? convertToHTML(getToHTMLConfig({
       contentState, colors, fontSizes, fontFamilies
     }))(contentState) : convertToRaw(this.getContentState())
+
+  }
+
+  onColorsDetected (color) {
+
+    this.detectedColors.push(color)
+    clearTimeout(this.syncColorTimer)
+
+    this.syncColorTimer = setTimeout(() => {
+      this.setState({
+        extendedData: {
+          ...this.state.extendedData,
+          colors: [ ...this.state.extendedData.colors, ...this.detectedColors ]
+        }
+      })
+      this.detectedColors = []
+    }, 100)
 
   }
 
@@ -224,6 +244,7 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       editor: this.draftInstance,
       mediaLibrary: this.mediaLibrary,
+      forceRender: this.forceRender,
       media, controls, contentState, language, viewWrapper,
       addonControls, colors, fontSizes, fontFamilies,
     }

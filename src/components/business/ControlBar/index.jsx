@@ -18,12 +18,12 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls, language, colors, fontSizes, fontFamilies, viewWrapper, mediaLibrary } = this.props
+    const { controls, editorState, contentState, media, addonControls, language, colors, fontSizes, fontFamilies, viewWrapper, mediaLibrary, forceRender } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
     const supportedControls = getSupportedControls(language)
-    const commonProps = { language, editorState, contentState, currentInlineStyle, selection, viewWrapper }
+    const commonProps = { language, editorState, contentState, currentInlineStyle, selection, viewWrapper, forceRender }
 
     const renderedAddonControls = addonControls.map((addonControlItem, index) => {
       if (addonControlItem.type === 'split') {

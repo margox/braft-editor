@@ -1,6 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
+import { getSelectionEntity } from 'draftjs-utils'
 import { UniqueIndex } from 'utils/base'
 import DropDown from 'components/common/DropDown'
 import ColorPicker from 'components/common/ColorPicker'
@@ -8,30 +9,59 @@ import ColorPicker from 'components/common/ColorPicker'
 export default class TextColor extends React.Component {
 
   state = {
-    colorType: 'color'
+    colorType: 'color',
+    entityKey: null,
+    color: null,
+    backgroundColor: null
   }
 
-  dropDown = {}
   dropDownId = 'BRAFT-DROPDOWN-' + UniqueIndex()
+
+  componentWillReceiveProps (next) {
+
+    const { contentState, editorState: nextEditorState } = next
+
+    if (nextEditorState && this.props.editorState !== nextEditorState) {
+      let entityKey = getSelectionEntity(nextEditorState)
+      if (entityKey) {
+        let currentEntity = contentState.getEntity(entityKey)
+        if (currentEntity && currentEntity.get('type') === 'COLORED-TEXT') {
+          let { color, backgroundColor } = currentEntity.getData()
+          this.setState({ color, backgroundColor, entityKey })
+        } else {
+          this.setState({
+            color: null,
+            backgroundColor: null,
+            entityKey: null
+          })
+        }
+      } else {
+        this.setState({
+          color: null,
+          backgroundColor: null,
+          entityKey: null
+        })
+      }
+    }
+
+  }
 
   render () {
 
     let captionStyle = {}
     let currentIndex = null
-    let { colorType } = this.state
-    let { currentInlineStyle, onChange, language, colors, viewWrapper } = this.props
+    let { colorType, color, backgroundColor } = this.state
+    let { onChange, language, colors, viewWrapper } = this.props
 
-    colors.forEach((color, index) => {
+    colors.forEach((item, index) => {
 
-      let color_id = color.replace('#', '')
-
-      if (currentInlineStyle.has('COLOR-' + color_id)) {
-        captionStyle.color = color
+      if (item === color) {
+        captionStyle.color = item
         colorType === 'color' && (currentIndex = index)
       }
 
-      if (currentInlineStyle.has('BGCOLOR-' + color_id)) {
-        captionStyle.backgroundColor = color
+      if (item === backgroundColor) {
+        captionStyle.backgroundColor = item
         colorType === 'backgroundColor' && (currentIndex = index)
       }
 
@@ -54,7 +84,7 @@ export default class TextColor extends React.Component {
         showDropDownArrow={false}
         viewWrapper={viewWrapper}
         componentId={this.dropDownId}
-        ref={(instance) => this.dropDown = instance}
+        ref={(instance) => this.dropDownComponent = instance}
         className={"control-item dropdown text-color-dropdown"}
       >
         <div className="braft-text-color-picker-wrap">
@@ -93,7 +123,37 @@ export default class TextColor extends React.Component {
     })
   }
 
-  toggleColor = (color) => {
+  toggleColor = (newColor) => {
+
+    const { colorType, color, backgroundColor, entityKey } = this.state
+    const { editorState, contentState, selection, onChange, forceRender } = this.props
+
+    let newEditorState = editorState
+    const entityData = {}
+    if (colorType === 'color') {
+      entityData.color = newColor === color ? null : newColor
+    } else {
+      entityData.backgroundColor = newColor === color ? null : newColor
+    }
+
+    if (!entityKey) {
+      const newContentState = contentState.createEntity('COLORED-TEXT', 'MUTABLE', entityData)
+      let entityKey = newContentState.getLastCreatedEntityKey()
+      newEditorState = EditorState.set(editorState, {
+        currentContent: Modifier.applyEntity(newContentState, selection, entityKey)
+      })
+    } else {
+      const newContentState = contentState.mergeEntityData(entityKey, entityData)
+      newEditorState = EditorState.push(editorState, newContentState, 'change-block-data')
+    }
+
+    this.dropDownComponent.hide()
+    onChange(newEditorState)
+    setImmediate(forceRender)
+
+  }
+
+  toggleColorOld = (color) => {
 
     const prefix = this.state.colorType === 'color' ? 'COLOR-' : 'BGCOLOR-'
     const toggledColor = prefix + color
@@ -122,7 +182,7 @@ export default class TextColor extends React.Component {
     }
 
     this.props.onChange(nextEditorState)
-    this.dropDown.hide()
+    this.dropDownComponent.hide()
 
   }
 

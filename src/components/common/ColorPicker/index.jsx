@@ -18,7 +18,7 @@ export default class ColorPicker extends React.Component{
               className={className}
               style={{color: item}}
               data-index={index}
-              data-color={item.replace('#', '')}
+              data-color={item}
               onClick={this.handleChange}
             >
             </li>
