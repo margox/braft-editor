@@ -1,15 +1,24 @@
 @import '~sassinc';
 
-.text-color-picker-wrap{
+.braft-text-color-picker-wrap{
   margin: 10px;
   overflow: hidden;
 }
-.switch-buttons{
+
+.browser-chrome .braft-color-switch-buttons{
+  box-shadow: inset 0 0 0 .5px $COLOR_ACTIVE;
+}
+.browser-safari .braft-color-switch-buttons{
+  border: solid .5px $COLOR_ACTIVE;
+  box-shadow: none;
+}
+
+.braft-color-switch-buttons{
   height: 30px;
   margin: 10px;
   overflow: hidden;
   border-radius: 3px;
-  box-shadow: inset 0 0 0 .5px $COLOR_ACTIVE;
+  box-shadow: inset 0 0 0 1px $COLOR_ACTIVE;
   button{
     float: left;
     width: 50%;

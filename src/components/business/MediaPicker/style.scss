@@ -313,6 +313,21 @@
   background-color: #fff;
 }
 
+.browser-chrome .braft-media-external-form input{
+  box-shadow: inset 0 0 0 .5px rgba(#000, .3);
+  &:focus{
+    box-shadow: inset 0 0 0 .5px $COLOR_ACTIVE;
+  }
+}
+.browser-safari .braft-media-external-form input{
+  border: solid .5px rgba(#000, .3);
+  box-shadow: none;
+  &:focus{
+    border-color: $COLOR_ACTIVE;
+    box-shadow: none;
+  }
+}
+
 .braft-media-external-form{
   width: 500px;
   max-width: 90%;
@@ -326,11 +341,11 @@
     border: none;
     border-radius: 3px;
     outline: none;
-    box-shadow: inset 0 0 0 .5px rgba(#000, .3);
+    box-shadow: inset 0 0 0 1px rgba(#000, .3);
     color: #999;
     font-size: 18px;
     &:focus{
-      border-color: $COLOR_ACTIVE;
+      box-shadow: inset 0 0 0 1px $COLOR_ACTIVE;
     }
   }
 }

@@ -8,7 +8,6 @@ const $ = window.$ || document.querySelector.bind(document)
 export default class Modal extends React.Component {
 
   componentId = 'BRAFT-MODAL-' + UniqueIndex()
-  rootElement = $('#' + this.componentId)
   state = {
     visible: false
   }
@@ -20,6 +19,8 @@ export default class Modal extends React.Component {
         visible: true
       })
     }
+
+    this.rootElement = $('#' + this.componentId)
 
     if (!this.rootElement) {
       this.rootElement = document.createElement('div')
@@ -45,9 +46,15 @@ export default class Modal extends React.Component {
   }
 
   handleTransitionEnd = () => {
+
+    if (!this.rootElement || !this.rootElement.classList) {
+      return false
+    }
+
     if (!this.rootElement.classList.contains('active')) {
       ReactDOM.unmountComponentAtNode(this.rootElement)
     }
+
   }
 
   unrenderComponent () {

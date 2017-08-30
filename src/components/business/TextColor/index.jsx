@@ -57,8 +57,8 @@ export default class TextColor extends React.Component {
         ref={(instance) => this.dropDown = instance}
         className={"control-item dropdown text-color-dropdown"}
       >
-        <div className="text-color-picker-wrap">
-          <div className="switch-buttons">
+        <div className="braft-text-color-picker-wrap">
+          <div className="braft-color-switch-buttons">
             <button
               data-type="color"
               data-keep-active={true}

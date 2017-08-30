@@ -62,7 +62,7 @@ export default class LinkEditor extends React.Component {
           ref={(instance) => this.dropDownComponent = instance}
           className={"control-item dropdown link-editor-dropdown"}
         >
-          <div className="link-editor">
+          <div className="braft-link-editor">
             <div className="input-group">
               <input
                 type="text"

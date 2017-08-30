@@ -35,7 +35,6 @@ class Demo extends React.Component {
 
     const errorFn = (response) => {
       // 自动从媒体库移除上传失败的内容
-      mediaLibrary.removeItem(param.libraryId)
       param.error({
         msg: 'unable to upload.'
       })

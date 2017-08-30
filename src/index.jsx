@@ -51,6 +51,17 @@ export default class BraftEditor extends React.Component {
 
     this.mediaLibrary = new MediaLibrary()
 
+    let browser = null
+    if (window.chrome) {
+      browser = 'chrome'
+    } else if (window.safari) {
+      browser = 'safari'
+    } else if (navigator.userAgent.indexOf('Firefox') > 0) {
+      browser = 'firefox'
+    }
+
+    document.body.classList.add('browser-' + browser)
+
   }
 
   onChange = (editorState) => {
