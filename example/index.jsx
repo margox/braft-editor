@@ -7,7 +7,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialContent: '',
+      initialContent: '<p>Hello World!</p>',
       htmlContent: '',
     }
   }
@@ -95,6 +95,14 @@ class Demo extends React.Component {
       </html>
     `
 
+  }
+
+  componentDidMount () {
+    setTimeout(() => {
+      this.setState({
+        initialContent: '<h1>Hello Braft!</h1>'
+      })
+    }, 1000)
   }
 
   render() {

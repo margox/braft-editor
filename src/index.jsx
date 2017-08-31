@@ -43,9 +43,18 @@ export default class BraftEditor extends React.Component {
 
   }
 
+  componentDidMount () {
+
+    if (this.props.initialContent) {
+      this.setContent(this.props.initialContent)
+      this.contentInitialized = true
+    }
+
+  }
+
   componentWillReceiveProps = (next) => {
 
-    if (!this.props.initialContent && next.initialContent) {
+    if (!this.contentInitialized && !this.props.initialContent && next.initialContent) {
       this.setContent(next.initialContent)
     }
 
