@@ -2,10 +2,14 @@
 
 ### 一个基于darft-js开发的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
-## 最近更新 [[查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)]
+## 最近更新 
+- 2017-08-31 v0.3.3
+  - 增强颜色功能，支持从粘贴的内容中识别临时颜色
+  - 修复了一些bug，引入了一些新的未知bug
 - 2017-08-30 v0.3.2
   - 修复极细分割线在部分浏览器下不显示的问题
 
+[查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
 ## 在线演示
 移步: [http://margox.github.io/braft-editor/](http://margox.github.io/braft-editor/)
