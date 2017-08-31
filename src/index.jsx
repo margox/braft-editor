@@ -11,6 +11,7 @@ import defaultOptions from 'configs/options'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 import MediaLibrary from 'helpers/MediaLibrary'
+import { detectColorsFromHTML } from 'helpers/colors'
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -21,31 +22,9 @@ export default class BraftEditor extends React.Component {
 
     super(props)
 
-    let initialEditorState
-    let { initialContent, contentFormat } = this.props
-
-    contentFormat = contentFormat || 'raw'
-    initialContent = initialContent || ''
-
-    if (!initialContent) {
-      initialEditorState = EditorState.createEmpty(editorDecorators)
-    } else {
-
-      let convertedContent
-
-      if (contentFormat === 'html') {
-        convertedContent = convertFromHTML(getFromHTMLConfig())(initialContent)
-      } else if (contentFormat === 'raw') {
-        convertedContent = convertFromRaw(initialContent)
-      }
-
-      initialEditorState = EditorState.createWithContent(convertedContent, editorDecorators)
-
-    }
-
-    this.readyForSync = true
     this.state = {
-      editorState: initialEditorState,
+      tempColors: [],
+      editorState: EditorState.createEmpty(editorDecorators),
       editorProps: {}
     }
 
@@ -64,16 +43,27 @@ export default class BraftEditor extends React.Component {
 
   }
 
+  componentWillReceiveProps = (next) => {
+
+    if (!this.props.initialContent && next.initialContent) {
+      this.setContent(next.initialContent)
+    }
+
+  }
+
   onChange = (editorState) => {
 
     this.setState({ editorState }, () => {
+
       clearTimeout(this.syncTimer)
+
       this.syncTimer = setTimeout(() => {
         const { onChange, onRawChange, onHTMLChange } = this.props
         onChange && onChange(this.getContent())
         onHTMLChange && onHTMLChange(this.getHTMLContent())
         onRawChange && onRawChange(this.getRawContent())
       }, 300)
+
     })
 
   }
@@ -90,13 +80,11 @@ export default class BraftEditor extends React.Component {
 
     format = format || this.props.contentFormat || 'raw'
     const contentState = this.getContentState()
-    let { colors, fontSizes, fontFamilies } = this.props
-    colors = colors || defaultOptions.colors
-    fontSizes = fontSizes || defaultOptions.fontSizes
+    let { fontFamilies } = this.props
     fontFamilies = fontFamilies || defaultOptions.fontFamilies
 
     return format === 'html' ? convertToHTML(getToHTMLConfig({
-      contentState, colors, fontSizes, fontFamilies
+      contentState, fontFamilies
     }))(contentState) : convertToRaw(this.getContentState())
 
   }
@@ -120,19 +108,21 @@ export default class BraftEditor extends React.Component {
   setContent = (content, format) => {
 
     let convertedContent
-    let { contentFormat } = this.props
+    let newState = {}
+    let { contentFormat, colors } = this.props
+    const presetColors = colors || defaultOptions.colors
 
     contentFormat = format || contentFormat || 'raw'
 
     if (contentFormat === 'html') {
+      newState.tempColors = [ ...this.state.tempColors, ...detectColorsFromHTML(content) ].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
       convertedContent = convertFromHTML(getFromHTMLConfig())(content)
     } else if (contentFormat === 'raw') {
       convertedContent = convertFromRaw(content)
     }
 
-    this.setState({
-      editorState: EditorState.createWithContent(convertedContent, editorDecorators)
-    })
+    newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
+    this.setState(newState)
 
   }
 
@@ -186,11 +176,16 @@ export default class BraftEditor extends React.Component {
       return false
     }
 
-    const { editorState } = this.state
+    const { editorState, tempColors } = this.state
     const blockMap = convertFromHTML(getFromHTMLConfig())(html || text).blockMap
     const newState = Modifier.replaceWithFragment(editorState.getCurrentContent(), editorState.getSelection(), blockMap)
+    const presetColors = this.props.colors || defaultOptions.colors
 
-    this.onChange(EditorState.push(editorState, newState, 'insert-fragment'))
+    this.setState({
+      tempColors: [ ...tempColors, ...detectColorsFromHTML(html) ].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+    }, () => {
+      this.onChange(EditorState.push(editorState, newState, 'insert-fragment'))
+    })
 
     return true
 
@@ -203,6 +198,7 @@ export default class BraftEditor extends React.Component {
       colors, fontSizes, fontFamilies, viewWrapper, placeholder
     } = this.props
 
+    const { tempColors } = this.state
     const contentState = this.state.editorState.getCurrentContent()
 
     media = { ...defaultOptions.media, ...media }
@@ -224,8 +220,9 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       editor: this.draftInstance,
       mediaLibrary: this.mediaLibrary,
+      forceRender: this.forceRender,
       media, controls, contentState, language, viewWrapper,
-      addonControls, colors, fontSizes, fontFamilies,
+      addonControls, colors, tempColors, fontSizes, fontFamilies,
     }
 
     const blockRendererFn = getBlockRendererFn({
@@ -237,7 +234,10 @@ export default class BraftEditor extends React.Component {
       language, contentState, viewWrapper
     })
 
-    const customStyleMap = getCustomStyleMap({ colors, fontSizes, fontFamilies })
+    const customStyleMap = getCustomStyleMap({
+      colors: [ ...colors, ...tempColors ],
+      fontSizes, fontFamilies
+    })
 
     const editorProps = {
       ref: instance => this.draftInstance = instance,
@@ -254,10 +254,7 @@ export default class BraftEditor extends React.Component {
     return (
       <div className="BraftEditor-container">
         <ControlBar {...controlBarProps}/>
-        <div
-          className="BraftEditor-content"
-          style = {{height}}
-        >
+        <div className="BraftEditor-content" style={{height}}>
           <Editor { ...editorProps }/>
         </div>
       </div>

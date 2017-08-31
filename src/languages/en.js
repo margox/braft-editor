@@ -11,6 +11,7 @@ export default {
     fontSize: 'Font Size',
     color: 'Color',
     textColor: 'Text',
+    tempColors: 'Temp Colors',
     backgroundColor: 'Background',
     bold: 'Bold',
     italic: 'Italic',

@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { RichUtils, EditorState, Modifier } from 'draft-js'
-import { getSelectionText, getEntityRange, getSelectionEntity } from 'draftjs-utils'
+import { getSelectionEntity } from 'draftjs-utils'
 import Switch from 'components/common/Switch'
 import DropDown from 'components/common/DropDown'
 

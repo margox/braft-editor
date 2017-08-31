@@ -1,6 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { Modifier, EditorState, RichUtils } from 'draft-js'
+import { getSelectionEntity } from 'draftjs-utils'
 import { UniqueIndex } from 'utils/base'
 import DropDown from 'components/common/DropDown'
 import ColorPicker from 'components/common/ColorPicker'
@@ -11,37 +12,31 @@ export default class TextColor extends React.Component {
     colorType: 'color'
   }
 
-  dropDown = {}
-  dropDownId = 'BRAFT-DROPDOWN-' + UniqueIndex()
+  dropDownComponentId = 'BRAFT-DROPDOWN-' + UniqueIndex()
 
   render () {
 
     let captionStyle = {}
-    let currentIndex = null
+    let currentColor = null
     let { colorType } = this.state
-    let { currentInlineStyle, onChange, language, colors, viewWrapper } = this.props
+    let { currentInlineStyle, onChange, language, colors, tempColors, viewWrapper } = this.props
 
-    colors.forEach((color, index) => {
-
+    ;[ ...colors, ...tempColors ].forEach((color) => {
       let color_id = color.replace('#', '')
-
       if (currentInlineStyle.has('COLOR-' + color_id)) {
         captionStyle.color = color
-        colorType === 'color' && (currentIndex = index)
+        colorType === 'color' && (currentColor = color)
       }
 
       if (currentInlineStyle.has('BGCOLOR-' + color_id)) {
         captionStyle.backgroundColor = color
-        colorType === 'backgroundColor' && (currentIndex = index)
+        colorType === 'backgroundColor' && (currentColor = color)
       }
 
     })
 
     let caption = (
-      <i
-        style={captionStyle}
-        className="icon-text-color"
-      >
+      <i style={captionStyle} className="icon-text-color">
         <span className="path1"></span>
         <span className="path2"></span>
       </i>
@@ -53,8 +48,8 @@ export default class TextColor extends React.Component {
         hoverTitle={language.controls.color}
         showDropDownArrow={false}
         viewWrapper={viewWrapper}
-        componentId={this.dropDownId}
-        ref={(instance) => this.dropDown = instance}
+        componentId={this.dropDownComponentId}
+        ref={(instance) => this.dropDownComponent = instance}
         className={"control-item dropdown text-color-dropdown"}
       >
         <div className="braft-text-color-picker-wrap">
@@ -62,23 +57,25 @@ export default class TextColor extends React.Component {
             <button
               data-type="color"
               data-keep-active={true}
-              data-braft-component-id={this.dropDownId}
+              data-braft-component-id={this.dropDownComponentId}
               className={colorType === 'color' ? 'active' : ''}
               onClick={this.switchColorType}
             >{language.controls.textColor}</button>
             <button
               data-type="backgroundColor"
               data-keep-active={true}
-              data-braft-component-id={this.dropDownId}
+              data-braft-component-id={this.dropDownComponentId}
               className={colorType === 'backgroundColor' ? 'active' : ''}
               onClick={this.switchColorType}
             >{language.controls.backgroundColor}</button>
           </div>
           <ColorPicker
             width={200}
-            current={currentIndex}
+            language={language}
+            current={currentColor}
             disableAlpha={true}
             colors={colors}
+            tempColors={tempColors}
             onChange={this.toggleColor}
           />
         </div>
@@ -97,8 +94,8 @@ export default class TextColor extends React.Component {
 
     const prefix = this.state.colorType === 'color' ? 'COLOR-' : 'BGCOLOR-'
     const toggledColor = prefix + color
-    const { editorState, selection, currentInlineStyle, colors } = this.props
-    const nextContentState = colors.reduce((contentState, item, index) => {
+    const { editorState, selection, currentInlineStyle, colors, tempColors } = this.props
+    const nextContentState = [ ...colors, ...tempColors ].reduce((contentState, item, index) => {
       return Modifier.removeInlineStyle(contentState, selection, prefix + item.replace('#', '')) 
     }, editorState.getCurrentContent())
 
@@ -118,11 +115,11 @@ export default class TextColor extends React.Component {
       nextEditorState = RichUtils.toggleInlineStyle(
         nextEditorState,
         toggledColor
-      );
+      )
     }
 
     this.props.onChange(nextEditorState)
-    this.dropDown.hide()
+    this.dropDownComponent.hide()
 
   }
 

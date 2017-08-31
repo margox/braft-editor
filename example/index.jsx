@@ -113,7 +113,6 @@ class Demo extends React.Component {
           viewWrapper={'#demo'}
           placeholder={"Hello World!"}
           ref={(instance) => this.editor = instance}
-          initialContent={this.state.htmlContent}
           language="zh"
           onHTMLChange={this.handleHTMLChange}
           media={{
