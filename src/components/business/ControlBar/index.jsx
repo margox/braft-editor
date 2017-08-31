@@ -18,7 +18,7 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, viewWrapper, mediaLibrary } = this.props
+    const { controls, editorState, contentState, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, viewWrapper, mediaLibrary, forceRender } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()

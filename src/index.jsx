@@ -89,23 +89,6 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  onColorsDetected (color) {
-
-    this.detectedColors.push(color)
-    clearTimeout(this.syncColorTimer)
-
-    this.syncColorTimer = setTimeout(() => {
-      this.setState({
-        extendedData: {
-          ...this.state.extendedData,
-          colors: [ ...this.state.extendedData.colors, ...this.detectedColors ]
-        }
-      })
-      this.detectedColors = []
-    }, 100)
-
-  }
-
   getContentState = () => {
     return this.getEditorState().getCurrentContent()
   }
@@ -271,10 +254,7 @@ export default class BraftEditor extends React.Component {
     return (
       <div className="BraftEditor-container">
         <ControlBar {...controlBarProps}/>
-        <div
-          className="BraftEditor-content"
-          style = {{height}}
-        >
+        <div className="BraftEditor-content" style={{height}}>
           <Editor { ...editorProps }/>
         </div>
       </div>
