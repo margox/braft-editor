@@ -2,13 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 
-const htmlContent = ''
-
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = { htmlContent }
+    this.state = {
+      initialContent: '',
+      htmlContent: '',
+    }
   }
 
   preview () {
@@ -96,12 +97,12 @@ class Demo extends React.Component {
 
   }
 
-  setContent = () => {
-    this.editor.setContent('<h1>Hell<span style="color:#f32784;">o World!</span></h1>', 'html')
-  }
-
-  clearContent = () => {
-    this.editor.setContent('', 'html')
+  componentDidMount () {
+    setTimeout(() => {
+      this.setState({
+        initialContent: '<h1>Hell<span style="color:#f32784;">o World!</span></h1><p><img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/></p><p><span style="color:blue;">Blue</span></p>'
+      })
+    }, 5000)
   }
 
   render() {
@@ -114,6 +115,8 @@ class Demo extends React.Component {
           placeholder={"Hello World!"}
           ref={(instance) => this.editor = instance}
           language="zh"
+          contentFormat="html"
+          initialContent={this.state.initialContent}
           onHTMLChange={this.handleHTMLChange}
           media={{
             uploadFn: this.uploadFn
@@ -136,7 +139,6 @@ class Demo extends React.Component {
   }
 
   handleHTMLChange = (htmlContent) => {
-    // console.log(htmlContent)
     this.setState({ htmlContent })
   }
 
