@@ -173,9 +173,6 @@ export const detectColorsFromHTML = (html) => {
   }
 
   const matchResult = html.match(/color:[^;]{3,24};/g) || []
-  console.log(matchResult)
-  return matchResult.map(color => {
-    return getHexColor(color)
-  }).filter(color => color)
+  return matchResult.map(color => getHexColor(color)).filter(color => color)
 
 }

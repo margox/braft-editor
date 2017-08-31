@@ -97,14 +97,6 @@ class Demo extends React.Component {
 
   }
 
-  componentDidMount () {
-    setTimeout(() => {
-      this.setState({
-        initialContent: '<h1>Hell<span style="color:#f32784;">o World!</span></h1><p><img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png"/></p><p><span style="color:blue;">Blue</span></p>'
-      })
-    }, 5000)
-  }
-
   render() {
 
     return (

@@ -18,7 +18,9 @@ const Link = (props) => {
   const { href, target } = contentState.getEntity(entityKey).getData()
 
   return (
-    <span><a className="braft-link" href={href} target={target}>{children}</a></span>
+    <span className="braft-link-wrap">
+      <a className="braft-link" href={href} target={target}>{children}</a>
+    </span>
   )
 
 }
