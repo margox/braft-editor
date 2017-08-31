@@ -49,20 +49,22 @@ export default class TextColor extends React.Component {
   render () {
 
     let captionStyle = {}
-    let currentIndex = null
-    let { colorType, color, backgroundColor } = this.state
-    let { onChange, language, colors, viewWrapper } = this.props
+    let currentColor = null
+    let { colorType } = this.state
+    let { currentInlineStyle, onChange, language, colors, tempColors, viewWrapper } = this.props;
+
+    [ ...colors, ...tempColors ].forEach((color) => {
 
     colors.forEach((item, index) => {
 
-      if (item === color) {
-        captionStyle.color = item
-        colorType === 'color' && (currentIndex = index)
+      if (currentInlineStyle.has('COLOR-' + color_id)) {
+        captionStyle.color = color
+        colorType === 'color' && (currentColor = color)
       }
 
-      if (item === backgroundColor) {
-        captionStyle.backgroundColor = item
-        colorType === 'backgroundColor' && (currentIndex = index)
+      if (currentInlineStyle.has('BGCOLOR-' + color_id)) {
+        captionStyle.backgroundColor = color
+        colorType === 'backgroundColor' && (currentColor = color)
       }
 
     })
@@ -106,9 +108,11 @@ export default class TextColor extends React.Component {
           </div>
           <ColorPicker
             width={200}
-            current={currentIndex}
+            language={language}
+            current={currentColor}
             disableAlpha={true}
             colors={colors}
+            tempColors={tempColors}
             onChange={this.toggleColor}
           />
         </div>
@@ -157,8 +161,8 @@ export default class TextColor extends React.Component {
 
     const prefix = this.state.colorType === 'color' ? 'COLOR-' : 'BGCOLOR-'
     const toggledColor = prefix + color
-    const { editorState, selection, currentInlineStyle, colors } = this.props
-    const nextContentState = colors.reduce((contentState, item, index) => {
+    const { editorState, selection, currentInlineStyle, colors, tempColors } = this.props
+    const nextContentState = [ ...colors, ...tempColors ].reduce((contentState, item, index) => {
       return Modifier.removeInlineStyle(contentState, selection, prefix + item.replace('#', '')) 
     }, editorState.getCurrentContent())
 

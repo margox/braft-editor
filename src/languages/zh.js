@@ -12,6 +12,7 @@ export default {
     color: '颜色',
     textColor: '文字颜色',
     backgroundColor: '背景颜色',
+    tempColors: '临时颜色',
     bold: '加粗',
     italic: '斜体',
     underline: '下划线',
