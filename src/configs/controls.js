@@ -102,5 +102,10 @@ export default (lang) => [
     title: lang.controls.media,
     text: <i className="icon-media"></i>,
     type: 'media'
+  }, {
+    key: 'emoji',
+    title: lang.controls.emoji,
+    text: <i className="icon-emoji"></i>,
+    type: 'emoji'
   }
 ]

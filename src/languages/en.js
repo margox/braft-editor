@@ -36,7 +36,8 @@ export default {
     code: 'Code',
     link: 'Link',
     unlink: 'Unlink',
-    media: 'Media'
+    media: 'Media',
+    emoji: 'Emoji'
   },
   linkEditor: {
     inputPlaceHolder: 'Input link URL',

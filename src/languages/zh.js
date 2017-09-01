@@ -36,7 +36,8 @@ export default {
     code: '代码',
     link: '链接',
     unlink: '清除链接',
-    media: '媒体'
+    media: '媒体',
+    emoji: '小表情'
   },
   linkEditor: {
     inputPlaceHolder: '输入链接地址',

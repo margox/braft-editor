@@ -203,8 +203,8 @@ export default class BraftEditor extends React.Component {
   render() {
 
     let {
-      controls, height, media, addonControls, language,
-      colors, fontSizes, fontFamilies, viewWrapper, placeholder
+      controls, height, media, addonControls, language, colors,
+      fontSizes, fontFamilies, emojis, viewWrapper, placeholder
     } = this.props
 
     const { tempColors } = this.state
@@ -217,6 +217,7 @@ export default class BraftEditor extends React.Component {
     colors = colors || defaultOptions.colors
     fontSizes = fontSizes || defaultOptions.fontSizes
     fontFamilies = fontFamilies || defaultOptions.fontFamilies
+    emojis = emojis || defaultOptions.emojis
     height = height || defaultOptions.height
 
     if (!media.uploadFn) {
@@ -230,8 +231,8 @@ export default class BraftEditor extends React.Component {
       editor: this.draftInstance,
       mediaLibrary: this.mediaLibrary,
       forceRender: this.forceRender,
-      media, controls, contentState, language, viewWrapper,
-      addonControls, colors, tempColors, fontSizes, fontFamilies,
+      media, controls, contentState, language, viewWrapper, addonControls,
+      colors, tempColors, fontSizes, fontFamilies, emojis
     }
 
     const blockRendererFn = getBlockRendererFn({

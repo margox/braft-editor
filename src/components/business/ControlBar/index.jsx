@@ -8,6 +8,7 @@ import TextColorPicker from 'components/business/TextColor'
 import FontSizePicker from 'components/business/FontSize'
 import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
+import EmojiPicker from 'components/business/EmojiPicker'
 import MediaPicker from 'components/business/MediaPicker'
 
 export default class ControlBar extends React.Component {
@@ -18,7 +19,7 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, viewWrapper, mediaLibrary, forceRender } = this.props
+    const { controls, editorState, contentState, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, mediaLibrary, forceRender } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
@@ -105,11 +106,20 @@ export default class ControlBar extends React.Component {
                 { ...commonProps }
               />
 
+            } else if (controlItem.type === 'emoji') {
+
+              return <EmojiPicker
+                key={index}
+                emojis={emojis}
+                defaultCaption={controlItem.text}
+                onChange={this.applyEditorState}
+                { ...commonProps }
+              />
+
             } else if (controlItem.type === 'link') {
 
               return <LinkEditor
                 key={index}
-                defaultCaption={controlItem.title}
                 onChange={this.applyEditorState}
                 { ...commonProps }
               />

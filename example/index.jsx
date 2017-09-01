@@ -7,7 +7,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialContent: '<p>Hello World!</p>',
+      initialContent: '',
       htmlContent: '',
     }
   }
@@ -54,7 +54,7 @@ class Demo extends React.Component {
 
   buildPreviewHtml () {
 
-    const { htmlContent } = this.state 
+    const htmlContent = this.editor.getHTMLContent()
 
     return `
       <!Doctype html>
@@ -97,14 +97,6 @@ class Demo extends React.Component {
 
   }
 
-  componentDidMount () {
-    setTimeout(() => {
-      this.setState({
-        initialContent: '<h1>Hello Braft!</h1>'
-      })
-    }, 1000)
-  }
-
   render() {
 
     return (
@@ -117,7 +109,6 @@ class Demo extends React.Component {
           language="zh"
           contentFormat="html"
           initialContent={this.state.initialContent}
-          onHTMLChange={this.handleHTMLChange}
           media={{
             uploadFn: this.uploadFn
           }}
@@ -136,10 +127,6 @@ class Demo extends React.Component {
       </div>
     )
 
-  }
-
-  handleHTMLChange = (htmlContent) => {
-    this.setState({ htmlContent })
   }
 
 }
