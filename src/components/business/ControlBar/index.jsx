@@ -10,6 +10,7 @@ import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
 import MediaPicker from 'components/business/MediaPicker'
+import DropDown from 'components/common/DropDown'
 
 export default class ControlBar extends React.Component {
 
@@ -26,21 +27,41 @@ export default class ControlBar extends React.Component {
     const supportedControls = getSupportedControls(language)
     const commonProps = { language, editorState, contentState, currentInlineStyle, selection, viewWrapper, forceRender }
 
-    const renderedAddonControls = addonControls.map((addonControlItem, index) => {
-      if (addonControlItem.type === 'split') {
+    const renderedAddonControls = addonControls.map((item, index) => {
+
+      if (item.type === 'split') {
         return <span key={controls.length + index} className="split-line"></span>
+      } else if (item.type === 'dropdown') {
+
+        let { text, className, showDropDownArrow, hoverTitle, component } = item
+
+        return (
+          <DropDown
+            className={"control-item dropdown " + className}
+            caption={text}
+            showDropDownArrow={showDropDownArrow}
+            viewWrapper={viewWrapper}
+            hoverTitle={hoverTitle}
+          >
+            {component}
+          </DropDown>
+        )
+
       } else {
+
         return (
           <button
             key={controls.length + index}
-            title={addonControlItem.title}
-            className={'control-item button ' + addonControlItem.className}
-            onClick={() => addonControlItem.onClick(editorState)}
+            title={item.title}
+            className={'control-item button ' + item.className}
+            onClick={() => item.onClick(editorState)}
           >
-          {addonControlItem.text}
+          {item.text}
           </button>
         )
+
       }
+
     })
 
     return (

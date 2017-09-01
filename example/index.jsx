@@ -99,6 +99,22 @@ class Demo extends React.Component {
 
   render() {
 
+    const addonControls = [
+      {
+        type: 'split',
+      }, {
+        type: 'button',
+        text: '预览',
+        className: 'preview-button',
+        onClick: this.preview.bind(this)
+      }, {
+        type: 'dropdown',
+        text: <i className="icon-emoji"></i>,
+        showDropDownArrow: false,
+        component: <h1></h1>
+      }
+    ]
+
     return (
       <div className="demo" id="demo">
         <BraftEditor
@@ -112,17 +128,7 @@ class Demo extends React.Component {
           media={{
             uploadFn: this.uploadFn
           }}
-          addonControls={[
-            {
-              type: 'split',
-            },
-            {
-              type: 'button',
-              text: '预览',
-              className: 'preview-button',
-              onClick: this.preview.bind(this)
-            }
-          ]}
+          addonControls={addonControls}
         />
       </div>
     )
