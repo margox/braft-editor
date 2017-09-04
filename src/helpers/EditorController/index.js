@@ -124,13 +124,19 @@ export default class EditorHelper {
 
     const currentSelectedBlockType = this.__getBlockType()
 
-    if(!this.selectionState.isCollapsed() || currentSelectedBlockType === 'atomic') {
+    if(currentSelectedBlockType === 'atomic') {
       return this
     }
 
-    return this.triggerChange(EditorState.push(this.editorState, Modifier.insertText(
-      this.contentState, this.selectionState, text
-    ), 'insert-text'))
+    if (!this.selectionState.isCollapsed()) {
+      return this.triggerChange(EditorState.push(this.editorState, Modifier.replaceText(
+        this.contentState, this.selectionState, text
+      ), 'replace-text'))
+    } else {
+      return this.triggerChange(EditorState.push(this.editorState, Modifier.insertText(
+        this.contentState, this.selectionState, text
+      ), 'insert-text'))
+    }
 
   }
 
