@@ -12,28 +12,14 @@ export default class TextAlign extends React.Component {
 
     if (this.props.editorState !== next.editorState) {
       this.setState({
-        currentAlignment: getSelectedBlocksMetadata(next.editorState).get('textAlign')
+        currentAlignment: next.editorController.getBlockData('textAlign')
       })
     }
 
   }
 
   setAlignment = (e) => {
-
-    const { alignment } = e.target.dataset
-    const { editorState, onChange } = this.props
-    const { currentAlignment } = this.state
-
-    if (alignment !== currentAlignment) {
-      onChange(setBlockData(editorState, {
-        'textAlign': alignment
-      }))
-    } else {
-      onChange(setBlockData(editorState, {
-        'textAlign': undefined
-      }))
-    }
-
+    this.props.editorController.toggleAlignment(e.target.dataset.alignment)
   }
 
   render () {

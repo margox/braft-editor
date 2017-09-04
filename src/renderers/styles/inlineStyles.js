@@ -6,7 +6,7 @@ export default (props) => {
   const fontFamilyStyles = {}
 
   props.colors.forEach((color) => {
-    let color_id = color.replace('#', '')
+    let color_id = color.replace('#', '').toUpperCase()
     colorStyles['COLOR-' + color_id] = { color }
     bgColorStyles['BGCOLOR-' + color_id] = { backgroundColor: color }
   })
@@ -16,7 +16,7 @@ export default (props) => {
   })
 
   props.fontFamilies.forEach((fontFamily) => {
-    fontFamilyStyles['FONTFAMILY-' + fontFamily.name] = {
+    fontFamilyStyles['FONTFAMILY-' + fontFamily.name.toUpperCase()] = {
       fontFamily: fontFamily.family
     }
   })

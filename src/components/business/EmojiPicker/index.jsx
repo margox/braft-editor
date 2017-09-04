@@ -1,6 +1,6 @@
 import './style.scss'
 import React from 'react'
-import { Modifier, EditorState, RichUtils } from 'draft-js'
+import { Modifier, EditorState } from 'draft-js'
 import DropDown from 'components/common/DropDown'
 
 export default class Emojis extends React.Component {
@@ -11,7 +11,7 @@ export default class Emojis extends React.Component {
 
   render () {
 
-    let { defaultCaption, currentInlineStyle, onChange, language, emojis, viewWrapper } = this.props
+    let { defaultCaption, onChange, language, emojis, viewWrapper } = this.props
     let caption = defaultCaption || language.controls.emoji
 
     return (
@@ -43,20 +43,7 @@ export default class Emojis extends React.Component {
   }
 
   insertEmoji = (e) => {
-
-    const { emoji } = e.target.dataset
-    const { editorState, contentState, onChange, selection } = this.props
-    const currentSelectedBlockKey = selection.getAnchorKey()
-    const currentSelectedBlockType = contentState.getBlockForKey(currentSelectedBlockKey).getType()
-
-    if(!selection.isCollapsed() || currentSelectedBlockType === 'atomic') {
-      return false
-    }
-
-    onChange(EditorState.push(editorState, Modifier.insertText(
-      contentState, selection, emoji
-    ), 'insert-text'))
-
+    this.props.editorController.insertText(e.target.dataset.emoji)
   }
 
 }

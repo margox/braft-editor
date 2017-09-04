@@ -9,10 +9,10 @@ export default class FontFamily extends React.Component {
 
     let caption = null
     let currentIndex = null
-    let { defaultCaption, currentInlineStyle, onChange, language, fontFamilies, viewWrapper } = this.props
+    let { defaultCaption, editorController, onChange, language, fontFamilies, viewWrapper } = this.props
 
     fontFamilies.find((item, index) => {
-      if (currentInlineStyle.has('FONTFAMILY-' + item.name)) {
+      if (editorController.hasStyle('FONTFAMILY-' + item.name)) {
         caption = item.name
         currentIndex = index
         return true
@@ -57,35 +57,7 @@ export default class FontFamily extends React.Component {
   }
 
   toggleFontFamily = (e) => {
-
-    const fontFamily = e.currentTarget.dataset.name
-    const toggledFontFamily = 'FONTFAMILY-' + fontFamily
-    const { editorState, selection, currentInlineStyle, fontFamilies } = this.props
-    const nextContentState = fontFamilies.reduce((contentState, item) => {
-      return Modifier.removeInlineStyle(contentState, selection, 'FONTFAMILY-' + item.name) 
-    }, editorState.getCurrentContent())
-
-    let nextEditorState = EditorState.push(
-      editorState,
-      nextContentState,
-      'change-inline-style'
-    )
-
-    if (selection.isCollapsed()) {
-      nextEditorState = currentInlineStyle.reduce((state, fontFamily) => {
-        return RichUtils.toggleInlineStyle(state, fontFamily)
-      }, nextEditorState)
-    }
-
-    if (!currentInlineStyle.has(toggledFontFamily)) {
-      nextEditorState = RichUtils.toggleInlineStyle(
-        nextEditorState,
-        toggledFontFamily
-      );
-    }
-
-    this.props.onChange(nextEditorState)
-
+    this.props.editorController.toggleFontFamily(e.currentTarget.dataset.name)
   }
 
 }

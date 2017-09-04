@@ -11,6 +11,7 @@ import defaultOptions from 'configs/options'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 import MediaLibrary from 'helpers/MediaLibrary'
+import EditorController from 'helpers/EditorController'
 import { detectColorsFromHTML } from 'helpers/colors'
 
 const editorDecorators = new CompositeDecorator(decorators)
@@ -29,6 +30,8 @@ export default class BraftEditor extends React.Component {
     }
 
     this.mediaLibrary = new MediaLibrary()
+    this.editorController = new EditorController(this.state.editorState)
+    this.editorController.onChange = this.onChange
 
     let browser = null
     if (window.chrome) {
@@ -62,17 +65,15 @@ export default class BraftEditor extends React.Component {
 
   onChange = (editorState) => {
 
+    this.editorController.setEditorState(editorState)
     this.setState({ editorState }, () => {
-
       clearTimeout(this.syncTimer)
-
       this.syncTimer = setTimeout(() => {
         const { onChange, onRawChange, onHTMLChange } = this.props
         onChange && onChange(this.getContent())
         onHTMLChange && onHTMLChange(this.getHTMLContent())
         onRawChange && onRawChange(this.getRawContent())
       }, 300)
-
     })
 
   }
@@ -220,12 +221,18 @@ export default class BraftEditor extends React.Component {
     emojis = emojis || defaultOptions.emojis
     height = height || defaultOptions.height
 
+    this.editorController
+      .setColorList([...colors, ...tempColors])
+      .setFontSizeList(fontSizes)
+      .setFontFamilyList(fontFamilies)
+
     if (!media.uploadFn) {
       media.video = false
       media.audio = false
     }
 
     const controlBarProps = {
+      editorController: this.editorController,
       onChange: this.onChange,
       editorState: this.state.editorState,
       editor: this.draftInstance,
@@ -250,7 +257,7 @@ export default class BraftEditor extends React.Component {
     })
 
     const editorProps = {
-      ref: instance => this.draftInstance = instance,
+      ref: instance => {this.draftInstance = instance, this.editorController.setBraftInstance(instance)},
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       handleReturn: this.handleReturn,

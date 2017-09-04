@@ -1,6 +1,5 @@
 import './style.scss'
 import React from 'react'
-import { Modifier, EditorState, RichUtils } from 'draft-js'
 import DropDown from 'components/common/DropDown'
 
 export default class FontSize extends React.Component {
@@ -9,10 +8,10 @@ export default class FontSize extends React.Component {
 
     let caption = null
     let currentFontSize = null
-    let { defaultCaption, currentInlineStyle, language, fontSizes, viewWrapper } = this.props
+    let { defaultCaption, editorController, language, fontSizes, viewWrapper } = this.props
 
     fontSizes.find((item) => {
-      if (currentInlineStyle.has('FONTSIZE-' + item)) {
+      if (editorController.hasStyle('FONTSIZE-' + item)) {
         caption = item + 'px'
         currentFontSize = item
         return true
@@ -49,35 +48,7 @@ export default class FontSize extends React.Component {
   }
 
   toggleFontSize = (e) => {
-
-    const fontSize = e.target.dataset.size
-    const toggledFontSize = 'FONTSIZE-' + fontSize
-    const { editorState, selection, currentInlineStyle, fontSizes } = this.props
-    const nextContentState = fontSizes.reduce((contentState, item, index) => {
-      return Modifier.removeInlineStyle(contentState, selection, 'FONTSIZE-' + item) 
-    }, editorState.getCurrentContent())
-
-    let nextEditorState = EditorState.push(
-      editorState,
-      nextContentState,
-      'change-inline-style'
-    )
-
-    if (selection.isCollapsed()) {
-      nextEditorState = currentInlineStyle.reduce((state, fontSize) => {
-        return RichUtils.toggleInlineStyle(state, fontSize)
-      }, nextEditorState)
-    }
-
-    if (!currentInlineStyle.has(toggledFontSize)) {
-      nextEditorState = RichUtils.toggleInlineStyle(
-        nextEditorState,
-        toggledFontSize
-      );
-    }
-
-    this.props.onChange(nextEditorState)
-
+    this.props.editorController.toggleFontSize(e.target.dataset.size)
   }
 
 }

@@ -20,12 +20,16 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, mediaLibrary, forceRender } = this.props
+    const { editorController, controls, editorState, contentState, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, mediaLibrary, forceRender } = this.props
     const selection = editorState.getSelection()
     const currentInlineStyle = editorState.getCurrentInlineStyle()
     const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
     const supportedControls = getSupportedControls(language)
-    const commonProps = { language, editorState, contentState, currentInlineStyle, selection, viewWrapper, forceRender }
+    const commonProps = {
+      editorController, language, editorState,
+      contentState, currentInlineStyle, selection,
+      viewWrapper, forceRender
+    }
 
     const renderedAddonControls = addonControls.map((item, index) => {
 
@@ -37,6 +41,7 @@ export default class ControlBar extends React.Component {
 
         return (
           <DropDown
+            key={index}
             className={"control-item dropdown " + className}
             caption={text}
             showDropDownArrow={showDropDownArrow}
@@ -103,7 +108,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 colors={colors}
                 tempColors={tempColors}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -113,7 +117,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 fontSizes={fontSizes}
                 defaultCaption={controlItem.title}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -123,7 +126,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 fontFamilies={fontFamilies}
                 defaultCaption={controlItem.title}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -133,7 +135,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 emojis={emojis}
                 defaultCaption={controlItem.text}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -141,7 +142,6 @@ export default class ControlBar extends React.Component {
 
               return <LinkEditor
                 key={index}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -150,7 +150,6 @@ export default class ControlBar extends React.Component {
               return (
                 <TextAlign
                   key={index}
-                  onChange={this.applyEditorState}
                   { ...commonProps }
                 />
               )
@@ -204,16 +203,12 @@ export default class ControlBar extends React.Component {
   getControlItemClassName (data) {
 
     let className = 'control-item button'
-    let { type, command, currentBlockType, currentInlineStyle } = data
+    let { type, command } = data
 
-    if (type === 'inline-style') {
-      if (currentInlineStyle.has(command.toUpperCase())) {
-        className += ' active'
-      }
-    } else if (type === 'block-type') {
-      if (currentBlockType === command) {
-        className += ' active'
-      }
+    if (type === 'inline-style' && this.props.editorController.hasStyle(command)) {
+      className += ' active'
+    } else if (type === 'block-type' && this.props.editorController.getBlockType() === command) {
+      className += ' active'
     }
 
     return className
@@ -223,15 +218,15 @@ export default class ControlBar extends React.Component {
   applyControl (command, type) {
 
     if (type === 'inline-style') {
-      this.props.onChange(RichUtils.toggleInlineStyle(this.props.editorState, command.toUpperCase()))
+      this.props.editorController.toggleStyle(command)
     } else if (type === 'block-type') {
-      this.props.onChange(RichUtils.toggleBlockType(this.props.editorState, command))
+      this.props.editorController.toggleBlock(command)
     } else if (type === 'editor-state-method') {
-      this.props.onChange(EditorState[command](this.props.editorState))
+      this.props.editorController[command] && this.props.editorController[command]()
     }
 
     setImmediate(() => {
-      this.props.editor.focus()
+      this.props.editorController.focus()
     })
 
   }
@@ -239,7 +234,7 @@ export default class ControlBar extends React.Component {
   applyEditorState = (editorState) => {
     this.props.onChange(editorState)
     setImmediate(() => {
-      this.props.editor.focus()
+      this.props.editorController.focus()
     })
   }
 
