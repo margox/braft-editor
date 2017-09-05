@@ -1,9 +1,5 @@
 import './style.scss'
 import React from 'react'
-import { List } from 'immutable'
-import { EditorState } from 'draft-js'
-import { setBlockData } from 'draftjs-utils'
-import { selectBlock, removeBlock } from 'utils/editor'
 import Switch from 'components/common/Switch'
 
 export default class Image extends React.Component {
@@ -119,11 +115,8 @@ export default class Image extends React.Component {
   }
 
   removeImage = (e) => {
-
-    const { block, getEditorState, onChange } = this.props
-    onChange(removeBlock(getEditorState(), block))
+    this.props.editorController.removeBlock(this.props.block)
     this.props.setEditorProp('readOnly', false)
-
   }
 
   toggleLinkEditor = () => {
@@ -139,53 +132,31 @@ export default class Image extends React.Component {
     }
 
     const link = e.currentTarget.value.trim()
-    const { entityKey, contentState, editorState, onChange } = this.props
-    contentState.mergeEntityData(entityKey, { link })
-
-    onChange(EditorState.push(editorState, contentState, 'change-block-data'))
+    this.props.editorController.setMediaData(this.props.entityKey, { link })
     setImmediate(this.props.forceRender)
 
   }
 
   setImageLinkTarget (link_target) {
 
-    const { entityKey, contentState, editorState, onChange } = this.props
     link_target = link_target === '_blank' ? '' : '_blank'
-    contentState.mergeEntityData(entityKey, { link_target })
-
-    onChange(EditorState.push(editorState, contentState, 'change-block-data'))
+    this.props.editorController.setMediaData(this.props.entityKey, { link_target })
     setImmediate(this.props.forceRender)
 
   }
 
   setImageFloat = (e) => {
 
-    let { float } = e.currentTarget.dataset
-    const { block, getEditorState, contentState, onChange } = this.props
-    const blockData = block.getData()
-    const lastFloat = blockData.get('float')
-
-    if (lastFloat === float) {
-      float = null
-    }
-
-    onChange(setBlockData(selectBlock(getEditorState(), block), { float }))
+    const { float } = e.currentTarget.dataset
+    this.props.editorController.setMediaPosition(this.props.block, { float })
     this.props.setEditorProp('readOnly', false)
 
   }
 
   setImageAlignment = (e) => {
 
-    let { alignment } = e.currentTarget.dataset
-    const { block, getEditorState, contentState, onChange } = this.props
-    const blockData = block.getData()
-    const lastAlignment = blockData.get('alignment')
-
-    if (lastAlignment === alignment) {
-      alignment = null
-    }
-
-    onChange(setBlockData(selectBlock(getEditorState(), block), { alignment }))
+    const { alignment } = e.currentTarget.dataset
+    this.props.editorController.setMediaPosition(this.props.block, { alignment })
     this.props.setEditorProp('readOnly', false)
 
   }

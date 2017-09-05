@@ -1,6 +1,5 @@
 import './style.scss'
 import React from 'react'
-import { Modifier, EditorState } from 'draft-js'
 import DropDown from 'components/common/DropDown'
 
 export default class Emojis extends React.Component {

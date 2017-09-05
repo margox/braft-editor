@@ -1,6 +1,4 @@
 import React from 'react'
-import { Modifier, EditorState, RichUtils } from 'draft-js'
-import { getSelectedBlocksMetadata, setBlockData } from 'draftjs-utils'
 
 export default class TextAlign extends React.Component {
 
@@ -9,13 +7,9 @@ export default class TextAlign extends React.Component {
   }
 
   componentWillReceiveProps (next) {
-
-    if (this.props.editorState !== next.editorState) {
-      this.setState({
-        currentAlignment: next.editorController.getBlockData('textAlign')
-      })
-    }
-
+    this.setState({
+      currentAlignment: next.editorController.getBlockData('textAlign')
+    })
   }
 
   setAlignment = (e) => {

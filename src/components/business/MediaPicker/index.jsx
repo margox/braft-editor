@@ -1,6 +1,5 @@
 import './style.scss'
 import React from 'react'
-import { AtomicBlockUtils, EditorState } from 'draft-js'
 import Modal from 'components/common/Modal'
 import { UniqueIndex } from 'utils/base'
 

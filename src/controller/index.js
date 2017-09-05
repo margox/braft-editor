@@ -1,8 +1,7 @@
-import { Modifier, EditorState, RichUtils, AtomicBlockUtils } from 'draft-js'
-import { getSelectedBlocksMetadata, setBlockData, getSelectionEntity } from 'draftjs-utils'
-import { selectNextBlock } from 'utils/editor'
+import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } from 'draft-js'
+import { setBlockData, getSelectionEntity } from 'draftjs-utils'
 
-export default class EditorHelper {
+export default class EditorController {
 
   constructor (editorState) {
 
@@ -22,7 +21,7 @@ export default class EditorHelper {
   }
 
   setBraftInstance (braftInstance) {
-    this.__braftInstance = braftInstance
+    this.braftInstance = braftInstance
   }
 
   triggerChange (editorState) {
@@ -33,7 +32,24 @@ export default class EditorHelper {
 
   }
 
-  __getEntityData (type) {
+  checkReturn = (event) => {
+
+    const currentBlock = this.getBlock()
+    const currentBlockType = currentBlock.getType()
+
+    if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
+      if (currentBlock.getLength() === 0) {
+        this.toggleBlock('unstyled')
+        return true
+      }
+      return false
+    }
+
+    return false
+
+  }
+
+  getEntityData (type) {
 
     const entityKey = getSelectionEntity(this.editorState)
 
@@ -51,20 +67,24 @@ export default class EditorHelper {
 
   }
 
-  __setBlockData (blockData) {
+  setBlockData (blockData) {
     return this.triggerChange(setBlockData(this.editorState, blockData))
   }
 
-  __getBlockData (name) {
-    const blockData = getSelectedBlocksMetadata(this.editorState)
+  getBlock () {
+    return this.contentState.getBlockForKey(this.selectionState.getAnchorKey())
+  }
+
+  getBlockData (name) {
+    const blockData = this.getBlock().getData()
     return name ? blockData.get(name) : blockData
   }
 
-  __getBlockType () {
-    return this.contentState.getBlockForKey(this.selectionState.getAnchorKey()).getType()
+  getBlockType () {
+    return this.getBlock().getType()
   }
 
-  __selectBlock (block) {
+  selectBlock (block) {
 
     const blockKey = block.getKey()
 
@@ -77,14 +97,12 @@ export default class EditorHelper {
 
   }
 
-  __selectNextBlock (block) {
-
+  selectNextBlock (block) {
     const nextBlock = this.contentState.getBlockAfter(block.getKey())
-    return this.triggerChange(nextBlock ? this.__selectBlock(nextBlock) : this.editorState)
-
+    return this.triggerChange(nextBlock ? this.selectBlock(nextBlock) : this.editorState)
   }
 
-  __removeBlock (block) {
+  removeBlock (block) {
 
     let nextContentState, nextEditorState
     const blockKey = block.getKey()
@@ -104,25 +122,13 @@ export default class EditorHelper {
 
   }
 
-  getBlockData (name) {
-    return this.__getBlockData(name)
-  }
-
-  getEntityData (type) {
-    return this.__getEntityData(type)
-  }
-
-  getBlockType () {
-    return this.__getBlockType()
-  }
-
   getStyles () {
     return this.editorState.getCurrentInlineStyle()
   }
 
   insertText (text) {
 
-    const currentSelectedBlockType = this.__getBlockType()
+    const currentSelectedBlockType = this.getBlockType()
 
     if(currentSelectedBlockType === 'atomic') {
       return this
@@ -172,8 +178,8 @@ export default class EditorHelper {
   }
 
   toggleAlignment (alignment) {
-    return this.__setBlockData({
-      textAlign: this.__getBlockData('textAlign') !== alignment ? alignment : undefined
+    return this.setBlockData({
+      textAlign: this.getBlockData('textAlign') !== alignment ? alignment : undefined
     })
   }
 
@@ -214,8 +220,8 @@ export default class EditorHelper {
       return this
     }
 
-    if (this.__getBlockType() === 'atomic') {
-      this.__selectNextBlock()
+    if (this.getBlockType() === 'atomic') {
+      this.selectNextBlock()
     }
 
     const newEditorState = medias.reduce((editorState, media) => {
@@ -234,7 +240,7 @@ export default class EditorHelper {
   }
 
   removeMedia (mediaBlock) {
-    return this.__removeBlock(mediaBlock)
+    return this.removeBlock(mediaBlock)
   }
 
   setMediaPosition (mediaBlock, position) {
@@ -243,20 +249,20 @@ export default class EditorHelper {
     const { float, alignment } = position
 
     if (typeof float !== 'undefined') {
-      newPosition.float = mediaBlock.get('float') === float ? null : float
+      newPosition.float = mediaBlock.getData().get('float') === float ? null : float
     }
 
     if (typeof alignment !== 'undefined') {
-      newPosition.alignment = mediaBlock.get('alignment') === alignment ? null : alignment
+      newPosition.alignment = mediaBlock.getData().get('alignment') === alignment ? null : alignment
     }
 
-    return this.__selectBlock(mediaBlock).__setBlockData(newPosition)
+    return this.selectBlock(mediaBlock).setBlockData(newPosition)
 
   }
 
   toggleLink (href, target) {
 
-    if (this.selectionState.isCollapsed() || this.__getBlockType() === 'atomic') {
+    if (this.selectionState.isCollapsed() || this.getBlockType() === 'atomic') {
       return this
     }
 
@@ -294,12 +300,12 @@ export default class EditorHelper {
   }
 
   focus () {
-    this.__braftInstance.focus()
+    this.braftInstance.focus()
     return this
   }
 
   blur () {
-    this.__braftInstance.blur()
+    this.braftInstance.blur()
     return this
   }
 

@@ -8,10 +8,10 @@ import { convertToHTML, convertFromHTML } from 'draft-convert'
 import { checkReturn } from 'utils/editor'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
+import EditorController from 'controller'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 import MediaLibrary from 'helpers/MediaLibrary'
-import EditorController from 'helpers/EditorController'
 import { detectColorsFromHTML } from 'helpers/colors'
 
 const editorDecorators = new CompositeDecorator(decorators)
@@ -115,6 +115,10 @@ export default class BraftEditor extends React.Component {
     return this.mediaLibrary
   }
 
+  getEditorController = () => {
+    return this.editorController
+  }
+
   setContent = (content, format) => {
 
     let convertedContent
@@ -168,16 +172,7 @@ export default class BraftEditor extends React.Component {
   }
 
   handleReturn = (event) => {
-
-    const editorState = checkReturn(this.state.editorState, event);
-  
-    if (editorState) {
-      this.onChange(editorState)
-      return true
-    }
-  
-    return false
-  
+    return this.editorController.checkReturn(event)
   }
 
   handlePastedText = (text, html) => {
@@ -209,7 +204,6 @@ export default class BraftEditor extends React.Component {
     } = this.props
 
     const { tempColors } = this.state
-    const contentState = this.state.editorState.getCurrentContent()
 
     media = { ...defaultOptions.media, ...media }
     controls = controls || defaultOptions.controls
@@ -233,22 +227,17 @@ export default class BraftEditor extends React.Component {
 
     const controlBarProps = {
       editorController: this.editorController,
-      onChange: this.onChange,
-      editorState: this.state.editorState,
-      editor: this.draftInstance,
       mediaLibrary: this.mediaLibrary,
       forceRender: this.forceRender,
-      media, controls, contentState, language, viewWrapper, addonControls,
+      media, controls, language, viewWrapper, addonControls,
       colors, tempColors, fontSizes, fontFamilies, emojis
     }
 
     const blockRendererFn = getBlockRendererFn({
-      onChange: this.onChange,
-      editorState: this.state.editorState,
-      getEditorState: this.getEditorState,
+      editorController: this.editorController,
       forceRender: this.forceRender,
       setEditorProp: this.setEditorProp,
-      language, contentState, viewWrapper
+      language, viewWrapper
     })
 
     const customStyleMap = getCustomStyleMap({
