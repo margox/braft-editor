@@ -17,16 +17,16 @@ export default class TextColor extends React.Component {
     let captionStyle = {}
     let currentColor = null
     let { colorType } = this.state
-    let { editorController, language, colors, tempColors, viewWrapper } = this.props
+    let { editor, language, colors, tempColors, viewWrapper } = this.props
 
     ;[ ...colors, ...tempColors ].forEach((color) => {
       let color_id = color.replace('#', '')
-      if (editorController.hasStyle('COLOR-' + color_id)) {
+      if (editor.hasStyle('COLOR-' + color_id)) {
         captionStyle.color = color
         colorType === 'color' && (currentColor = color)
       }
 
-      if (editorController.hasStyle('BGCOLOR-' + color_id)) {
+      if (editor.hasStyle('BGCOLOR-' + color_id)) {
         captionStyle.backgroundColor = color
         colorType === 'backgroundColor' && (currentColor = color)
       }
@@ -93,9 +93,9 @@ export default class TextColor extends React.Component {
   toggleColor = (color) => {
 
     if (this.state.colorType === 'color') {
-      this.props.editorController.toggleColor(color)
+      this.props.editor.toggleColor(color)
     } else {
-      this.props.editorController.toggleBackgroundColor(color)
+      this.props.editor.toggleBackgroundColor(color)
     }
 
     this.dropDownComponent.hide()

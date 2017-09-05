@@ -1,52 +1,12 @@
+import React from 'react'
 import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } from 'draft-js'
 import { setBlockData, getSelectionEntity } from 'draftjs-utils'
 
-export default class EditorController {
-
-  constructor (editorState) {
-
-    this.editorState = editorState
-    this.contentState = editorState.getCurrentContent()
-    this.selectionState = editorState.getSelection()
-
-  }
-
-  setEditorState (editorState) {
-
-    this.editorState = editorState
-    this.contentState = editorState.getCurrentContent()
-    this.selectionState = editorState.getSelection()
-    return this
-
-  }
-
-  setBraftInstance (braftInstance) {
-    this.braftInstance = braftInstance
-  }
+export default class EditorController extends React.Component{
 
   triggerChange (editorState) {
-
-    this.setEditorState(editorState)
     this.onChange(editorState)
     return this
-
-  }
-
-  checkReturn = (event) => {
-
-    const currentBlock = this.getBlock()
-    const currentBlockType = currentBlock.getType()
-
-    if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
-      if (currentBlock.getLength() === 0) {
-        this.toggleBlock('unstyled')
-        return true
-      }
-      return false
-    }
-
-    return false
-
   }
 
   getEntityData (type) {
@@ -183,21 +143,6 @@ export default class EditorController {
     })
   }
 
-  setColorList (colorList = []) {
-    this.colorList = colorList
-    return this
-  }
-
-  setFontSizeList (fontSizeList = []) {
-    this.fontSizeList = fontSizeList
-    return this
-  }
-
-  setFontFamilyList (fontFamilyList = []) {
-    this.fontFamilyList = fontFamilyList
-    return this
-  }
-
   toggleColor (color) {
     return this.toggleStyle('COLOR-' + color.replace('#', ''), this.colorList.map(item => 'COLOR-' + item.replace('#', '').toUpperCase()))
   }
@@ -300,12 +245,12 @@ export default class EditorController {
   }
 
   focus () {
-    this.braftInstance.focus()
+    this.draftInstance.focus()
     return this
   }
 
   blur () {
-    this.braftInstance.blur()
+    this.draftInstance.blur()
     return this
   }
 

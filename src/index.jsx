@@ -5,7 +5,6 @@ import ReactDOM from 'react-dom'
 import languages from 'languages'
 import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
 import { convertToHTML, convertFromHTML } from 'draft-convert'
-import { checkReturn } from 'utils/editor'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
 import EditorController from 'controller'
@@ -17,21 +16,23 @@ import { detectColorsFromHTML } from 'helpers/colors'
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
-export default class BraftEditor extends React.Component {
+export default class BraftEditor extends EditorController {
 
   constructor(props) {
 
     super(props)
 
+    const editorState = EditorState.createEmpty(editorDecorators)
+    this.editorState = editorState
+    this.contentState = editorState.getCurrentContent()
+    this.selectionState = editorState.getSelection()
+    this.mediaLibrary = new MediaLibrary()
+
     this.state = {
       tempColors: [],
-      editorState: EditorState.createEmpty(editorDecorators),
+      editorState: editorState,
       editorProps: {}
     }
-
-    this.mediaLibrary = new MediaLibrary()
-    this.editorController = new EditorController(this.state.editorState)
-    this.editorController.onChange = this.onChange
 
     let browser = null
     if (window.chrome) {
@@ -65,7 +66,9 @@ export default class BraftEditor extends React.Component {
 
   onChange = (editorState) => {
 
-    this.editorController.setEditorState(editorState)
+    this.editorState = editorState
+    this.contentState = editorState.getCurrentContent()
+    this.selectionState = editorState.getSelection()
     this.setState({ editorState }, () => {
       clearTimeout(this.syncTimer)
       this.syncTimer = setTimeout(() => {
@@ -113,10 +116,6 @@ export default class BraftEditor extends React.Component {
 
   getMediaLibraryInstance = () => {
     return this.mediaLibrary
-  }
-
-  getEditorController = () => {
-    return this.editorController
   }
 
   setContent = (content, format) => {
@@ -172,7 +171,20 @@ export default class BraftEditor extends React.Component {
   }
 
   handleReturn = (event) => {
-    return this.editorController.checkReturn(event)
+
+    const currentBlock = this.getBlock()
+    const currentBlockType = currentBlock.getType()
+
+    if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
+      if (currentBlock.getLength() === 0) {
+        this.toggleBlock('unstyled')
+        return true
+      }
+      return false
+    }
+
+    return false
+
   }
 
   handlePastedText = (text, html) => {
@@ -215,10 +227,9 @@ export default class BraftEditor extends React.Component {
     emojis = emojis || defaultOptions.emojis
     height = height || defaultOptions.height
 
-    this.editorController
-      .setColorList([...colors, ...tempColors])
-      .setFontSizeList(fontSizes)
-      .setFontFamilyList(fontFamilies)
+    this.colorList = [ ...colors, ...tempColors ]
+    this.fontSizeList = fontSizes
+    this.fontFamilyList = fontFamilies
 
     if (!media.uploadFn) {
       media.video = false
@@ -226,17 +237,13 @@ export default class BraftEditor extends React.Component {
     }
 
     const controlBarProps = {
-      editorController: this.editorController,
-      mediaLibrary: this.mediaLibrary,
-      forceRender: this.forceRender,
+      editor: this,
       media, controls, language, viewWrapper, addonControls,
       colors, tempColors, fontSizes, fontFamilies, emojis
     }
 
     const blockRendererFn = getBlockRendererFn({
-      editorController: this.editorController,
-      forceRender: this.forceRender,
-      setEditorProp: this.setEditorProp,
+      editor: this,
       language, viewWrapper
     })
 
@@ -246,7 +253,7 @@ export default class BraftEditor extends React.Component {
     })
 
     const editorProps = {
-      ref: instance => {this.draftInstance = instance, this.editorController.setBraftInstance(instance)},
+      ref: instance => {this.draftInstance = instance},
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       handleReturn: this.handleReturn,

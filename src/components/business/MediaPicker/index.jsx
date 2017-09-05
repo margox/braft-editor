@@ -319,7 +319,7 @@ export default class MediaPicker extends React.Component {
   }
 
   confirmInsertMedia = () => {
-    this.props.editorController.insertMedias(this.state.files.filter(item => item.selected))
+    this.props.editor.insertMedias(this.state.files.filter(item => item.selected))
     this.hide()
   }
 

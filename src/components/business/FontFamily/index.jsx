@@ -8,10 +8,10 @@ export default class FontFamily extends React.Component {
 
     let caption = null
     let currentIndex = null
-    let { defaultCaption, editorController, onChange, language, fontFamilies, viewWrapper } = this.props
+    let { defaultCaption, editor, onChange, language, fontFamilies, viewWrapper } = this.props
 
     fontFamilies.find((item, index) => {
-      if (editorController.hasStyle('FONTFAMILY-' + item.name)) {
+      if (editor.hasStyle('FONTFAMILY-' + item.name)) {
         caption = item.name
         currentIndex = index
         return true
@@ -56,7 +56,7 @@ export default class FontFamily extends React.Component {
   }
 
   toggleFontFamily = (e) => {
-    this.props.editorController.toggleFontFamily(e.currentTarget.dataset.name)
+    this.props.editor.toggleFontFamily(e.currentTarget.dataset.name)
   }
 
 }

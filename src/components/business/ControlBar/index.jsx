@@ -19,10 +19,10 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { editorController, controls, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, mediaLibrary, forceRender } = this.props
-    const currentBlockType = editorController.getBlockType()
+    const { editor, controls, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper } = this.props
+    const currentBlockType = editor.getBlockType()
     const supportedControls = getSupportedControls(language)
-    const commonProps = { editorController, language, viewWrapper, forceRender }
+    const commonProps = { editor, language, viewWrapper }
 
     const renderedAddonControls = addonControls.map((item, index) => {
 
@@ -67,7 +67,7 @@ export default class ControlBar extends React.Component {
         <MediaPicker
           media={media}
           ref={(instance) => this.mediaPicker = instance}
-          mediaLibrary={mediaLibrary}
+          mediaLibrary={editor.mediaLibrary}
           { ...commonProps }
         />
         {
@@ -196,9 +196,9 @@ export default class ControlBar extends React.Component {
     let className = 'control-item button'
     let { type, command } = data
 
-    if (type === 'inline-style' && this.props.editorController.hasStyle(command)) {
+    if (type === 'inline-style' && this.props.editor.hasStyle(command)) {
       className += ' active'
-    } else if (type === 'block-type' && this.props.editorController.getBlockType() === command) {
+    } else if (type === 'block-type' && this.props.editor.getBlockType() === command) {
       className += ' active'
     }
 
@@ -209,15 +209,15 @@ export default class ControlBar extends React.Component {
   applyControl (command, type) {
 
     if (type === 'inline-style') {
-      this.props.editorController.toggleStyle(command)
+      this.props.editor.toggleStyle(command)
     } else if (type === 'block-type') {
-      this.props.editorController.toggleBlock(command)
+      this.props.editor.toggleBlock(command)
     } else if (type === 'editor-state-method') {
-      this.props.editorController[command] && this.props.editorController[command]()
+      this.props.editor[command] && this.props.editor[command]()
     }
 
     setImmediate(() => {
-      this.props.editorController.focus()
+      this.props.editor.focus()
     })
 
   }

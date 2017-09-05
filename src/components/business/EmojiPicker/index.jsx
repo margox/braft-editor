@@ -42,7 +42,7 @@ export default class Emojis extends React.Component {
   }
 
   insertEmoji = (e) => {
-    this.props.editorController.insertText(e.target.dataset.emoji)
+    this.props.editor.insertText(e.target.dataset.emoji)
   }
 
 }

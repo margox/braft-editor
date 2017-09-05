@@ -115,8 +115,8 @@ export default class Image extends React.Component {
   }
 
   removeImage = (e) => {
-    this.props.editorController.removeBlock(this.props.block)
-    this.props.setEditorProp('readOnly', false)
+    this.props.editor.removeBlock(this.props.block)
+    this.props.editor.setEditorProp('readOnly', false)
   }
 
   toggleLinkEditor = () => {
@@ -132,32 +132,32 @@ export default class Image extends React.Component {
     }
 
     const link = e.currentTarget.value.trim()
-    this.props.editorController.setMediaData(this.props.entityKey, { link })
-    setImmediate(this.props.forceRender)
+    this.props.editor.setMediaData(this.props.entityKey, { link })
+    setImmediate(this.props.editor.forceRender)
 
   }
 
   setImageLinkTarget (link_target) {
 
     link_target = link_target === '_blank' ? '' : '_blank'
-    this.props.editorController.setMediaData(this.props.entityKey, { link_target })
-    setImmediate(this.props.forceRender)
+    this.props.editor.setMediaData(this.props.entityKey, { link_target })
+    setImmediate(this.props.editor.forceRender)
 
   }
 
   setImageFloat = (e) => {
 
     const { float } = e.currentTarget.dataset
-    this.props.editorController.setMediaPosition(this.props.block, { float })
-    this.props.setEditorProp('readOnly', false)
+    this.props.editor.setMediaPosition(this.props.block, { float })
+    this.props.editor.setEditorProp('readOnly', false)
 
   }
 
   setImageAlignment = (e) => {
 
     const { alignment } = e.currentTarget.dataset
-    this.props.editorController.setMediaPosition(this.props.block, { alignment })
-    this.props.setEditorProp('readOnly', false)
+    this.props.editor.setMediaPosition(this.props.block, { alignment })
+    this.props.editor.setEditorProp('readOnly', false)
 
   }
 
@@ -167,7 +167,7 @@ export default class Image extends React.Component {
       this.setState({
         toolbarVisbile: true
       }, () => {
-        this.props.setEditorProp('readOnly', true)
+        this.props.editor.setEditorProp('readOnly', true)
         this.setState({
           toolbarOffset: this.calcToolbarOffset()
         })
@@ -180,7 +180,7 @@ export default class Image extends React.Component {
     this.setState({
       toolbarVisbile: false
     }, () => {
-      this.props.setEditorProp('readOnly', false)
+      this.props.editor.setEditorProp('readOnly', false)
     })
   }
 

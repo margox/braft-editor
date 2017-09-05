@@ -14,7 +14,7 @@ export default class LinkEditor extends React.Component {
 
   componentWillReceiveProps (next) {
 
-    const { href, target } = next.editorController.getEntityData('LINK')
+    const { href, target } = next.editor.getEntityData('LINK')
     this.setState({
       href: href || '',
       target: target || ''
@@ -25,9 +25,9 @@ export default class LinkEditor extends React.Component {
   render () {
 
     const { href, target } = this.state
-    const { editorController, language, viewWrapper } = this.props
+    const { editor, language, viewWrapper } = this.props
     const caption = <i className="icon-link"></i>
-    const textSelected = !editorController.isSelectionCollapsed() && editorController.getBlockType() !== 'atomic'
+    const textSelected = !editor.isSelectionCollapsed() && editor.getBlockType() !== 'atomic'
 
     return (
       <div className="control-item-group">
@@ -108,13 +108,13 @@ export default class LinkEditor extends React.Component {
 
   handleUnlink = () => {
     this.dropDownComponent.hide()
-    this.props.editorController.toggleLink()
+    this.props.editor.toggleLink()
   }
 
   handleConfirm = () => {
 
     const { href, target } = this.state
-    this.props.editorController.toggleLink(href, target)
+    this.props.editor.toggleLink(href, target)
     this.dropDownComponent.hide()
 
   }

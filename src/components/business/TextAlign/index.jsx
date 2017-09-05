@@ -8,12 +8,12 @@ export default class TextAlign extends React.Component {
 
   componentWillReceiveProps (next) {
     this.setState({
-      currentAlignment: next.editorController.getBlockData('textAlign')
+      currentAlignment: next.editor.getBlockData('textAlign')
     })
   }
 
   setAlignment = (e) => {
-    this.props.editorController.toggleAlignment(e.target.dataset.alignment)
+    this.props.editor.toggleAlignment(e.target.dataset.alignment)
   }
 
   render () {

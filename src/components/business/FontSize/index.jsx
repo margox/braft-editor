@@ -8,10 +8,10 @@ export default class FontSize extends React.Component {
 
     let caption = null
     let currentFontSize = null
-    let { defaultCaption, editorController, language, fontSizes, viewWrapper } = this.props
+    let { defaultCaption, editor, language, fontSizes, viewWrapper } = this.props
 
     fontSizes.find((item) => {
-      if (editorController.hasStyle('FONTSIZE-' + item)) {
+      if (editor.hasStyle('FONTSIZE-' + item)) {
         caption = item + 'px'
         currentFontSize = item
         return true
@@ -48,7 +48,7 @@ export default class FontSize extends React.Component {
   }
 
   toggleFontSize = (e) => {
-    this.props.editorController.toggleFontSize(e.target.dataset.size)
+    this.props.editor.toggleFontSize(e.target.dataset.size)
   }
 
 }
