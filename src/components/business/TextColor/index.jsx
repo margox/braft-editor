@@ -1,7 +1,5 @@
 import './style.scss'
 import React from 'react'
-import { Modifier, EditorState, RichUtils } from 'draft-js'
-import { getSelectionEntity } from 'draftjs-utils'
 import { UniqueIndex } from 'utils/base'
 import DropDown from 'components/common/DropDown'
 import ColorPicker from 'components/common/ColorPicker'
@@ -19,16 +17,16 @@ export default class TextColor extends React.Component {
     let captionStyle = {}
     let currentColor = null
     let { colorType } = this.state
-    let { currentInlineStyle, onChange, language, colors, tempColors, viewWrapper } = this.props
+    let { editor, language, colors, tempColors, viewWrapper } = this.props
 
     ;[ ...colors, ...tempColors ].forEach((color) => {
       let color_id = color.replace('#', '')
-      if (currentInlineStyle.has('COLOR-' + color_id)) {
+      if (editor.selectionHasInlineStyle('COLOR-' + color_id)) {
         captionStyle.color = color
         colorType === 'color' && (currentColor = color)
       }
 
-      if (currentInlineStyle.has('BGCOLOR-' + color_id)) {
+      if (editor.selectionHasInlineStyle('BGCOLOR-' + color_id)) {
         captionStyle.backgroundColor = color
         colorType === 'backgroundColor' && (currentColor = color)
       }
@@ -85,40 +83,21 @@ export default class TextColor extends React.Component {
   }
 
   switchColorType = (e) => {
+
     this.setState({
       colorType: e.target.dataset.type
     })
+
   }
 
   toggleColor = (color) => {
 
-    const prefix = this.state.colorType === 'color' ? 'COLOR-' : 'BGCOLOR-'
-    const toggledColor = prefix + color
-    const { editorState, selection, currentInlineStyle, colors, tempColors } = this.props
-    const nextContentState = [ ...colors, ...tempColors ].reduce((contentState, item, index) => {
-      return Modifier.removeInlineStyle(contentState, selection, prefix + item.replace('#', '')) 
-    }, editorState.getCurrentContent())
-
-    let nextEditorState = EditorState.push(
-      editorState,
-      nextContentState,
-      'change-inline-style'
-    )
-
-    if (selection.isCollapsed()) {
-      nextEditorState = currentInlineStyle.reduce((state, color) => {
-        return RichUtils.toggleInlineStyle(state, color)
-      }, nextEditorState)
+    if (this.state.colorType === 'color') {
+      this.props.editor.toggleSelectionColor(color)
+    } else {
+      this.props.editor.toggleSelectionBackgroundColor(color)
     }
 
-    if (!currentInlineStyle.has(toggledColor)) {
-      nextEditorState = RichUtils.toggleInlineStyle(
-        nextEditorState,
-        toggledColor
-      )
-    }
-
-    this.props.onChange(nextEditorState)
     this.dropDownComponent.hide()
 
   }

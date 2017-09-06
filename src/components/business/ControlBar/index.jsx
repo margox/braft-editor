@@ -1,6 +1,5 @@
 import './style.scss'
 import React from 'react'
-import { RichUtils, EditorState } from 'draft-js'
 import getSupportedControls from 'configs/controls'
 import LinkEditor from 'components/business/LinkEditor'
 import HeadingPicker from 'components/business/Headings'
@@ -20,12 +19,10 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { controls, editorState, contentState, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, mediaLibrary, forceRender } = this.props
-    const selection = editorState.getSelection()
-    const currentInlineStyle = editorState.getCurrentInlineStyle()
-    const currentBlockType = contentState.getBlockForKey(selection.getStartKey()).getType()
+    const { editor, controls, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper } = this.props
+    const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
-    const commonProps = { language, editorState, contentState, currentInlineStyle, selection, viewWrapper, forceRender }
+    const commonProps = { editor, language, viewWrapper }
 
     const renderedAddonControls = addonControls.map((item, index) => {
 
@@ -37,6 +34,7 @@ export default class ControlBar extends React.Component {
 
         return (
           <DropDown
+            key={index}
             className={"control-item dropdown " + className}
             caption={text}
             showDropDownArrow={showDropDownArrow}
@@ -54,7 +52,7 @@ export default class ControlBar extends React.Component {
             key={controls.length + index}
             title={item.title}
             className={'control-item button ' + item.className}
-            onClick={() => item.onClick(editorState)}
+            onClick={() => item.onClick()}
           >
           {item.text}
           </button>
@@ -69,8 +67,7 @@ export default class ControlBar extends React.Component {
         <MediaPicker
           media={media}
           ref={(instance) => this.mediaPicker = instance}
-          onChange={this.applyEditorState}
-          mediaLibrary={mediaLibrary}
+          mediaLibrary={editor.mediaLibrary}
           { ...commonProps }
         />
         {
@@ -103,7 +100,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 colors={colors}
                 tempColors={tempColors}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -113,7 +109,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 fontSizes={fontSizes}
                 defaultCaption={controlItem.title}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -123,7 +118,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 fontFamilies={fontFamilies}
                 defaultCaption={controlItem.title}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -133,7 +127,6 @@ export default class ControlBar extends React.Component {
                 key={index}
                 emojis={emojis}
                 defaultCaption={controlItem.text}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -141,7 +134,6 @@ export default class ControlBar extends React.Component {
 
               return <LinkEditor
                 key={index}
-                onChange={this.applyEditorState}
                 { ...commonProps }
               />
 
@@ -150,7 +142,6 @@ export default class ControlBar extends React.Component {
               return (
                 <TextAlign
                   key={index}
-                  onChange={this.applyEditorState}
                   { ...commonProps }
                 />
               )
@@ -176,8 +167,7 @@ export default class ControlBar extends React.Component {
 
               let buttonClassName = this.getControlItemClassName({
                 type: controlItem.type,
-                command: controlItem.command,
-                currentBlockType, currentInlineStyle
+                command: controlItem.command
               })
 
               return (
@@ -204,16 +194,12 @@ export default class ControlBar extends React.Component {
   getControlItemClassName (data) {
 
     let className = 'control-item button'
-    let { type, command, currentBlockType, currentInlineStyle } = data
+    let { type, command } = data
 
-    if (type === 'inline-style') {
-      if (currentInlineStyle.has(command.toUpperCase())) {
-        className += ' active'
-      }
-    } else if (type === 'block-type') {
-      if (currentBlockType === command) {
-        className += ' active'
-      }
+    if (type === 'inline-style' && this.props.editor.selectionHasInlineStyle(command)) {
+      className += ' active'
+    } else if (type === 'block-type' && this.props.editor.getSelectionBlockType() === command) {
+      className += ' active'
     }
 
     return className
@@ -223,24 +209,17 @@ export default class ControlBar extends React.Component {
   applyControl (command, type) {
 
     if (type === 'inline-style') {
-      this.props.onChange(RichUtils.toggleInlineStyle(this.props.editorState, command.toUpperCase()))
+      this.props.editor.toggleSelectionInlineStyle(command)
     } else if (type === 'block-type') {
-      this.props.onChange(RichUtils.toggleBlockType(this.props.editorState, command))
+      this.props.editor.toggleSelectionBlockType(command)
     } else if (type === 'editor-state-method') {
-      this.props.onChange(EditorState[command](this.props.editorState))
+      this.props.editor[command] && this.props.editor[command]()
     }
 
     setImmediate(() => {
       this.props.editor.focus()
     })
 
-  }
-
-  applyEditorState = (editorState) => {
-    this.props.onChange(editorState)
-    setImmediate(() => {
-      this.props.editor.focus()
-    })
   }
 
   showMediaPicker = () => {

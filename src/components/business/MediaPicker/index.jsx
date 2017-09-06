@@ -1,9 +1,7 @@
 import './style.scss'
 import React from 'react'
-import { AtomicBlockUtils, EditorState } from 'draft-js'
 import Modal from 'components/common/Modal'
 import { UniqueIndex } from 'utils/base'
-import { selectNextBlock } from 'utils/editor'
 
 const imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg'
 const videoMediaType = 'video/mp4'
@@ -321,39 +319,8 @@ export default class MediaPicker extends React.Component {
   }
 
   confirmInsertMedia = () => {
-
-    const { editorState, contentState, selection, onChange } = this.props
-    const selectedFiles = this.state.files.filter(item => item.selected)
-
-    if (selectedFiles.length === 0) {
-      return false
-    }
-
-    let newEditorState = editorState
-    const currentSelectedBlockKey = selection.getAnchorKey()
-
-    if (currentSelectedBlockKey && contentState.getBlockForKey(currentSelectedBlockKey).getType() === 'atomic') {
-      newEditorState = selectNextBlock(editorState, currentSelectedBlockKey)
-    }
-
-    selectedFiles.forEach((file) => {
-
-      let entityData = {
-        url: file.url,
-        name: file.name,
-        type: file.type,
-        meta: file.meta
-      }
-
-      let contentStateWithEntity = contentState.createEntity(file.type, 'IMMUTABLE', entityData)
-      let entityKey = contentStateWithEntity.getLastCreatedEntityKey()
-      newEditorState = AtomicBlockUtils.insertAtomicBlock(newEditorState, entityKey, ' ')
-
-    })
-
-    onChange(newEditorState)
+    this.props.editor.insertMedias(this.state.files.filter(item => item.selected))
     this.hide()
-
   }
 
   show = () => {

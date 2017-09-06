@@ -24,7 +24,7 @@ class Demo extends React.Component {
 
     const xhr = new XMLHttpRequest
     const fd = new FormData()
-    const mediaLibrary = this.editor.getMediaLibraryInstance()
+    const mediaLibrary = window.editor.getMediaLibraryInstance()
 
     const successFn = (response) => {
       param.success(JSON.parse(xhr.responseText)[0])
@@ -54,7 +54,7 @@ class Demo extends React.Component {
 
   buildPreviewHtml () {
 
-    const htmlContent = this.editor.getHTMLContent()
+    const htmlContent = window.editor.getHTMLContent()
 
     return `
       <!Doctype html>
@@ -109,7 +109,7 @@ class Demo extends React.Component {
         onClick: this.preview.bind(this)
       }, {
         type: 'dropdown',
-        text: <i className="icon-emoji"></i>,
+        text: 'Hi',
         showDropDownArrow: false,
         component: <h1></h1>
       }
@@ -121,7 +121,7 @@ class Demo extends React.Component {
           height={600}
           viewWrapper={'#demo'}
           placeholder={"Hello World!"}
-          ref={(instance) => this.editor = instance}
+          ref={(instance) => window.editor = instance}
           language="zh"
           contentFormat="html"
           initialContent={this.state.initialContent}

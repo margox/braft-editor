@@ -168,11 +168,6 @@ export const getHexColor = (color) => {
 
 export const detectColorsFromHTML = (html) => {
 
-  if (typeof html !== 'string') {
-    return []
-  }
-
-  const matchResult = html.match(/color:[^;]{3,24};/g) || []
-  return matchResult.map(color => getHexColor(color)).filter(color => color)
+  return typeof html !== 'string' ? [] : (html.match(/color:[^;]{3,24};/g) || []).map(getHexColor).filter(color => color)
 
 }
