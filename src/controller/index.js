@@ -9,39 +9,8 @@ export default class EditorController extends React.Component{
     return this
   }
 
-  getEntityData = (type) => {
-
-    const entityKey = getSelectionEntity(this.editorState)
-
-    if (entityKey) {
-      let entity = this.contentState.getEntity(entityKey)
-      if (entity && entity.get('type') === type) {
-        let { href, target } = entity.getData()
-        return { href, target }
-      } else {
-        return {}
-      }
-    } else {
-      return {}
-    }
-
-  }
-
-  setDataForSelectedBlock = (blockData) => {
-    return this.triggerChange(setBlockData(this.editorState, blockData))
-  }
-
-  getSelectiondBlock = () => {
-    return this.contentState.getBlockForKey(this.selectionState.getAnchorKey())
-  }
-
-  getSelectionBlockData = (name) => {
-    const blockData = this.getSelectiondBlock().getData()
-    return name ? blockData.get(name) : blockData
-  }
-
-  getSelectionBlockType = () => {
-    return this.getSelectiondBlock().getType()
+  selectionCollapsed = () => {
+    return this.selectionState.isCollapsed()
   }
 
   selectBlock = (block) => {
@@ -82,8 +51,92 @@ export default class EditorController extends React.Component{
 
   }
 
-  getCurrentInlineStyle = () => {
+  getSelectionBlock = () => {
+    return this.contentState.getBlockForKey(this.selectionState.getAnchorKey())
+  }
+
+  setSelectionBlockData = (blockData) => {
+    return this.triggerChange(setBlockData(this.editorState, blockData))
+  }
+
+  getSelectionBlockData = (name) => {
+    const blockData = this.getSelectionBlock().getData()
+    return name ? blockData.get(name) : blockData
+  }
+
+  getSelectionBlockType = () => {
+    return this.getSelectionBlock().getType()
+  }
+
+  toggleSelectionBlockType = (blockType) => {
+    return this.triggerChange(RichUtils.toggleBlockType(this.editorState, blockType))
+  }
+
+  getSelectionEntityData = (type) => {
+
+    const entityKey = getSelectionEntity(this.editorState)
+
+    if (entityKey) {
+      let entity = this.contentState.getEntity(entityKey)
+      if (entity && entity.get('type') === type) {
+        let { href, target } = entity.getData()
+        return { href, target }
+      } else {
+        return {}
+      }
+    } else {
+      return {}
+    }
+
+  }
+
+  getSelectionInlineStyle = () => {
     return this.editorState.getCurrentInlineStyle()
+  }
+
+  selectionHasInlineStyle = (style) => {
+    return this.getSelectionInlineStyle().has(style.toUpperCase())
+  }
+
+  toggleSelectionInlineStyle = (style, stylesToBeRemoved = []) => {
+
+    if (this.selectionState.isCollapsed()) {
+      return this
+    }
+
+    style = style.toUpperCase()
+    stylesToBeRemoved = stylesToBeRemoved.filter(item => item !== style)
+
+    const currentInlineStyle = this.getSelectionInlineStyle()
+    const nextContentState = stylesToBeRemoved.length ? stylesToBeRemoved.reduce((contentState, item) => {
+      return Modifier.removeInlineStyle(contentState, this.selectionState, item) 
+    }, this.contentState) : this.contentState
+
+    const nextEditorState = stylesToBeRemoved.length ? EditorState.push(this.editorState, nextContentState, 'change-inline-style') : this.editorState
+    return this.triggerChange(RichUtils.toggleInlineStyle(nextEditorState, style))
+
+  }
+
+  toggleSelectionAlignment = (alignment) => {
+    return this.setSelectionBlockData({
+      textAlign: this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
+    })
+  }
+
+  toggleSelectionColor = (color) => {
+    return this.toggleSelectionInlineStyle('COLOR-' + color.replace('#', ''), this.colorList.map(item => 'COLOR-' + item.replace('#', '').toUpperCase()))
+  }
+
+  toggleSelectionBackgroundColor = (color) => {
+    return this.toggleSelectionInlineStyle('BGCOLOR-' + color.replace('#', ''), this.colorList.map(item => 'BGCOLOR-' + item.replace('#', '').toUpperCase()))
+  }
+
+  toggleSelectionFontSize = (fontSize) => {
+    return this.toggleSelectionInlineStyle('FONTSIZE-' + fontSize, this.fontSizeList.map(item => 'FONTSIZE-' + item))
+  }
+
+  toggleSelectionFontFamily = (fontFamily) => {
+    return this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
 
   insertText = (text) => {
@@ -107,59 +160,6 @@ export default class EditorController extends React.Component{
   }
 
   replaceText = (text) => this.insertText(text)
-
-  selectionCollapsed = () => {
-    return this.selectionState.isCollapsed()
-  }
-
-  selectionHasInlineStyle = (style) => {
-    return this.getCurrentInlineStyle().has(style.toUpperCase())
-  }
-
-  toggleInlineStyleForSelection = (style, stylesToBeRemoved = []) => {
-
-    if (this.selectionState.isCollapsed()) {
-      return this
-    }
-
-    style = style.toUpperCase()
-    stylesToBeRemoved = stylesToBeRemoved.filter(item => item !== style)
-
-    const currentInlineStyle = this.editorState.getCurrentInlineStyle()
-    const nextContentState = stylesToBeRemoved.length ? stylesToBeRemoved.reduce((contentState, item) => {
-      return Modifier.removeInlineStyle(contentState, this.selectionState, item) 
-    }, this.contentState) : this.contentState
-
-    const nextEditorState = stylesToBeRemoved.length ? EditorState.push(this.editorState, nextContentState, 'change-inline-style') : this.editorState
-    return this.triggerChange(RichUtils.toggleInlineStyle(nextEditorState, style))
-
-  }
-
-  toggleBlockTypeForSelection = (blockType) => {
-    return this.triggerChange(RichUtils.toggleBlockType(this.editorState, blockType))
-  }
-
-  toggleSelectionAlignment = (alignment) => {
-    return this.setDataForSelectedBlock({
-      textAlign: this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
-    })
-  }
-
-  toggleSelectionColor = (color) => {
-    return this.toggleInlineStyleForSelection('COLOR-' + color.replace('#', ''), this.colorList.map(item => 'COLOR-' + item.replace('#', '').toUpperCase()))
-  }
-
-  toggleSelectionBackgroundColor = (color) => {
-    return this.toggleInlineStyleForSelection('BGCOLOR-' + color.replace('#', ''), this.colorList.map(item => 'BGCOLOR-' + item.replace('#', '').toUpperCase()))
-  }
-
-  toggleSelectionFontSize = (fontSize) => {
-    return this.toggleInlineStyleForSelection('FONTSIZE-' + fontSize, this.fontSizeList.map(item => 'FONTSIZE-' + item))
-  }
-
-  toggleSelectionFontFamily = (fontFamily) => {
-    return this.toggleInlineStyleForSelection('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
-  }
 
   insertMedias = (medias = []) => {
 
@@ -203,7 +203,7 @@ export default class EditorController extends React.Component{
       newPosition.alignment = mediaBlock.getData().get('alignment') === alignment ? null : alignment
     }
 
-    return this.selectBlock(mediaBlock).setDataForSelectedBlock(newPosition)
+    return this.selectBlock(mediaBlock).setSelectionBlockData(newPosition)
 
   }
 

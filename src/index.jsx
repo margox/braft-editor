@@ -235,7 +235,7 @@ export default class BraftEditor extends EditorController {
 
   handleReturn = (event) => {
 
-    const currentBlock = this.getBlock()
+    const currentBlock = this.getSelectionBlock()
     const currentBlockType = currentBlock.getType()
 
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {

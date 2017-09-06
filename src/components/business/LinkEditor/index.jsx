@@ -14,7 +14,7 @@ export default class LinkEditor extends React.Component {
 
   componentWillReceiveProps (next) {
 
-    const { href, target } = next.editor.getEntityData('LINK')
+    const { href, target } = next.editor.getSelectionEntityData('LINK')
     this.setState({
       href: href || '',
       target: target || ''

@@ -121,7 +121,7 @@ class Demo extends React.Component {
           height={600}
           viewWrapper={'#demo'}
           placeholder={"Hello World!"}
-          ref={(instance) => this.editor = instance}
+          ref={(instance) => window.editor = instance}
           language="zh"
           contentFormat="html"
           initialContent={this.state.initialContent}

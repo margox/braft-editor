@@ -209,9 +209,9 @@ export default class ControlBar extends React.Component {
   applyControl (command, type) {
 
     if (type === 'inline-style') {
-      this.props.editor.toggleInlineStyleForSelection(command)
+      this.props.editor.toggleSelectionInlineStyle(command)
     } else if (type === 'block-type') {
-      this.props.editor.toggleBlockTypeForSelection(command)
+      this.props.editor.toggleSelectionBlockType(command)
     } else if (type === 'editor-state-method') {
       this.props.editor[command] && this.props.editor[command]()
     }
