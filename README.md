@@ -374,9 +374,9 @@ this.editorInstance.getSelectionBlockType()
 ```
 
 ### toggleSelectionBlockType():editorInstance
-切换选中内容的区块类型
+切换选中内容的区块类型，可用的区块类型请参见[可用区块类型](#可用区块类型)
 ```javascript
-this.editorInstance.toggleSelectionBlockType()
+this.editorInstance.toggleSelectionBlockType('blockquote')
 ```
 
 ### getSelectionInlineStyle():DraftInlineStyle
@@ -495,3 +495,22 @@ this.editorInstance.blur()
 1. 使用html作为contentFormat时，文字字体(fontFamily)的的转换难以实现
 2. 从外部复制HTML内容粘贴到编辑器时，文字字体(fontFamily)的识别难以实现
 3. 编辑器内容为空时插入列表，placeholder文本不消失，输入任意文本内容后placeholder文本消失
+
+## 附录
+
+### 可用区块类型
+```javascript
+[
+  'header-one',
+  'header-two',
+  'header-three',
+  'header-four',
+  'header-five',
+  'header-six',
+  'unstyled',
+  'blockquote',
+  'code-block',
+  'unordered-list-item',
+  'ordered-list-item'
+]
+```
