@@ -11,7 +11,7 @@ export default class FontFamily extends React.Component {
     let { defaultCaption, editor, onChange, language, fontFamilies, viewWrapper } = this.props
 
     fontFamilies.find((item, index) => {
-      if (editor.hasStyle('FONTFAMILY-' + item.name)) {
+      if (editor.selectionHasInlineStyle('FONTFAMILY-' + item.name)) {
         caption = item.name
         currentIndex = index
         return true
@@ -56,7 +56,7 @@ export default class FontFamily extends React.Component {
   }
 
   toggleFontFamily = (e) => {
-    this.props.editor.toggleFontFamily(e.currentTarget.dataset.name)
+    this.props.editor.toggleSelectionFontFamily(e.currentTarget.dataset.name)
   }
 
 }

@@ -27,7 +27,7 @@ export default class LinkEditor extends React.Component {
     const { href, target } = this.state
     const { editor, language, viewWrapper } = this.props
     const caption = <i className="icon-link"></i>
-    const textSelected = !editor.isSelectionCollapsed() && editor.getBlockType() !== 'atomic'
+    const textSelected = !editor.selectionCollapsed() && editor.getSelectionBlockType() !== 'atomic'
 
     return (
       <div className="control-item-group">
@@ -108,13 +108,13 @@ export default class LinkEditor extends React.Component {
 
   handleUnlink = () => {
     this.dropDownComponent.hide()
-    this.props.editor.toggleLink()
+    this.props.editor.toggleSelectionLink()
   }
 
   handleConfirm = () => {
 
     const { href, target } = this.state
-    this.props.editor.toggleLink(href, target)
+    this.props.editor.toggleSelectionLink(href, target)
     this.dropDownComponent.hide()
 
   }

@@ -4,12 +4,12 @@ import { setBlockData, getSelectionEntity } from 'draftjs-utils'
 
 export default class EditorController extends React.Component{
 
-  triggerChange (editorState) {
+  triggerChange = (editorState) => {
     this.onChange(editorState)
     return this
   }
 
-  getEntityData (type) {
+  getEntityData = (type) => {
 
     const entityKey = getSelectionEntity(this.editorState)
 
@@ -27,24 +27,24 @@ export default class EditorController extends React.Component{
 
   }
 
-  setBlockData (blockData) {
+  setDataForSelectedBlock = (blockData) => {
     return this.triggerChange(setBlockData(this.editorState, blockData))
   }
 
-  getBlock () {
+  getSelectiondBlock = () => {
     return this.contentState.getBlockForKey(this.selectionState.getAnchorKey())
   }
 
-  getBlockData (name) {
-    const blockData = this.getBlock().getData()
+  getSelectionBlockData = (name) => {
+    const blockData = this.getSelectiondBlock().getData()
     return name ? blockData.get(name) : blockData
   }
 
-  getBlockType () {
-    return this.getBlock().getType()
+  getSelectionBlockType = () => {
+    return this.getSelectiondBlock().getType()
   }
 
-  selectBlock (block) {
+  selectBlock = (block) => {
 
     const blockKey = block.getKey()
 
@@ -57,12 +57,12 @@ export default class EditorController extends React.Component{
 
   }
 
-  selectNextBlock (block) {
+  selectNextBlock = (block) => {
     const nextBlock = this.contentState.getBlockAfter(block.getKey())
     return this.triggerChange(nextBlock ? this.selectBlock(nextBlock) : this.editorState)
   }
 
-  removeBlock (block) {
+  removeBlock = (block) => {
 
     let nextContentState, nextEditorState
     const blockKey = block.getKey()
@@ -82,13 +82,13 @@ export default class EditorController extends React.Component{
 
   }
 
-  getStyles () {
+  getCurrentInlineStyle = () => {
     return this.editorState.getCurrentInlineStyle()
   }
 
-  insertText (text) {
+  insertText = (text) => {
 
-    const currentSelectedBlockType = this.getBlockType()
+    const currentSelectedBlockType = this.getSelectionBlockType()
 
     if(currentSelectedBlockType === 'atomic') {
       return this
@@ -106,15 +106,17 @@ export default class EditorController extends React.Component{
 
   }
 
-  isSelectionCollapsed () {
+  replaceText = (text) => this.insertText(text)
+
+  selectionCollapsed = () => {
     return this.selectionState.isCollapsed()
   }
 
-  hasStyle (style) {
-    return this.getStyles().has(style.toUpperCase())
+  selectionHasInlineStyle = (style) => {
+    return this.getCurrentInlineStyle().has(style.toUpperCase())
   }
 
-  toggleStyle (style, stylesToBeRemoved = []) {
+  toggleInlineStyleForSelection = (style, stylesToBeRemoved = []) => {
 
     if (this.selectionState.isCollapsed()) {
       return this
@@ -133,39 +135,39 @@ export default class EditorController extends React.Component{
 
   }
 
-  toggleBlock (blockType) {
+  toggleBlockTypeForSelection = (blockType) => {
     return this.triggerChange(RichUtils.toggleBlockType(this.editorState, blockType))
   }
 
-  toggleAlignment (alignment) {
-    return this.setBlockData({
-      textAlign: this.getBlockData('textAlign') !== alignment ? alignment : undefined
+  toggleSelectionAlignment = (alignment) => {
+    return this.setDataForSelectedBlock({
+      textAlign: this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
     })
   }
 
-  toggleColor (color) {
-    return this.toggleStyle('COLOR-' + color.replace('#', ''), this.colorList.map(item => 'COLOR-' + item.replace('#', '').toUpperCase()))
+  toggleSelectionColor = (color) => {
+    return this.toggleInlineStyleForSelection('COLOR-' + color.replace('#', ''), this.colorList.map(item => 'COLOR-' + item.replace('#', '').toUpperCase()))
   }
 
-  toggleBackgroundColor (color) {
-    return this.toggleStyle('BGCOLOR-' + color.replace('#', ''), this.colorList.map(item => 'BGCOLOR-' + item.replace('#', '').toUpperCase()))
+  toggleSelectionBackgroundColor = (color) => {
+    return this.toggleInlineStyleForSelection('BGCOLOR-' + color.replace('#', ''), this.colorList.map(item => 'BGCOLOR-' + item.replace('#', '').toUpperCase()))
   }
 
-  toggleFontSize (fontSize) {
-    return this.toggleStyle('FONTSIZE-' + fontSize, this.fontSizeList.map(item => 'FONTSIZE-' + item))
+  toggleSelectionFontSize = (fontSize) => {
+    return this.toggleInlineStyleForSelection('FONTSIZE-' + fontSize, this.fontSizeList.map(item => 'FONTSIZE-' + item))
   }
 
-  toggleFontFamily (fontFamily) {
-    return this.toggleStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
+  toggleSelectionFontFamily = (fontFamily) => {
+    return this.toggleInlineStyleForSelection('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
 
-  insertMedias (medias = []) {
+  insertMedias = (medias = []) => {
 
     if (!medias.length) {
       return this
     }
 
-    if (this.getBlockType() === 'atomic') {
+    if (this.getSelectionBlockType() === 'atomic') {
       this.selectNextBlock()
     }
 
@@ -180,15 +182,15 @@ export default class EditorController extends React.Component{
 
   }
 
-  setMediaData (entityKey, data) {
+  setMediaData = (entityKey, data) => {
     return this.triggerChange(EditorState.push(this.editorState, this.contentState.mergeEntityData(entityKey, data), 'change-block-data'))
   }
 
-  removeMedia (mediaBlock) {
+  removeMedia = (mediaBlock) => {
     return this.removeBlock(mediaBlock)
   }
 
-  setMediaPosition (mediaBlock, position) {
+  setMediaPosition = (mediaBlock, position) => {
 
     let newPosition = {}
     const { float, alignment } = position
@@ -201,13 +203,13 @@ export default class EditorController extends React.Component{
       newPosition.alignment = mediaBlock.getData().get('alignment') === alignment ? null : alignment
     }
 
-    return this.selectBlock(mediaBlock).setBlockData(newPosition)
+    return this.selectBlock(mediaBlock).setDataForSelectedBlock(newPosition)
 
   }
 
-  toggleLink (href, target) {
+  toggleSelectionLink = (href, target) => {
 
-    if (this.selectionState.isCollapsed() || this.getBlockType() === 'atomic') {
+    if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return this
     }
 
@@ -236,20 +238,20 @@ export default class EditorController extends React.Component{
 
   }
 
-  undo () {
+  undo = () => {
     return this.triggerChange(EditorState.undo(this.editorState))
   }
 
-  redo () {
+  redo = () => {
     return this.triggerChange(EditorState.redo(this.editorState))
   }
 
-  focus () {
+  focus = () => {
     this.draftInstance.focus()
     return this
   }
 
-  blur () {
+  blur = () => {
     this.draftInstance.blur()
     return this
   }

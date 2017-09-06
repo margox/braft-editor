@@ -20,7 +20,7 @@ export default class ControlBar extends React.Component {
   render () {
 
     const { editor, controls, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper } = this.props
-    const currentBlockType = editor.getBlockType()
+    const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, language, viewWrapper }
 
@@ -196,9 +196,9 @@ export default class ControlBar extends React.Component {
     let className = 'control-item button'
     let { type, command } = data
 
-    if (type === 'inline-style' && this.props.editor.hasStyle(command)) {
+    if (type === 'inline-style' && this.props.editor.selectionHasInlineStyle(command)) {
       className += ' active'
-    } else if (type === 'block-type' && this.props.editor.getBlockType() === command) {
+    } else if (type === 'block-type' && this.props.editor.getSelectionBlockType() === command) {
       className += ' active'
     }
 
@@ -209,9 +209,9 @@ export default class ControlBar extends React.Component {
   applyControl (command, type) {
 
     if (type === 'inline-style') {
-      this.props.editor.toggleStyle(command)
+      this.props.editor.toggleInlineStyleForSelection(command)
     } else if (type === 'block-type') {
-      this.props.editor.toggleBlock(command)
+      this.props.editor.toggleBlockTypeForSelection(command)
     } else if (type === 'editor-state-method') {
       this.props.editor[command] && this.props.editor[command]()
     }

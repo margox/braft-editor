@@ -56,155 +56,11 @@ export default class BraftEditor extends EditorController {
 
   }
 
-  componentWillReceiveProps = (next) => {
+  componentWillReceiveProps (next) {
 
     if (!this.contentInitialized && !this.props.initialContent && next.initialContent) {
       this.setContent(next.initialContent)
     }
-
-  }
-
-  onChange = (editorState) => {
-
-    this.editorState = editorState
-    this.contentState = editorState.getCurrentContent()
-    this.selectionState = editorState.getSelection()
-    this.setState({ editorState }, () => {
-      clearTimeout(this.syncTimer)
-      this.syncTimer = setTimeout(() => {
-        const { onChange, onRawChange, onHTMLChange } = this.props
-        onChange && onChange(this.getContent())
-        onHTMLChange && onHTMLChange(this.getHTMLContent())
-        onRawChange && onRawChange(this.getRawContent())
-      }, 300)
-    })
-
-  }
-
-  getHTMLContent = () => {
-    return this.getContent('html')
-  }
-
-  getRawContent = () => {
-    return this.getContent('raw')
-  }
-
-  getContent = (format) => {
-
-    format = format || this.props.contentFormat || 'raw'
-    const contentState = this.getContentState()
-    let { fontFamilies } = this.props
-    fontFamilies = fontFamilies || defaultOptions.fontFamilies
-
-    return format === 'html' ? convertToHTML(getToHTMLConfig({
-      contentState, fontFamilies
-    }))(contentState) : convertToRaw(this.getContentState())
-
-  }
-
-  getContentState = () => {
-    return this.getEditorState().getCurrentContent()
-  }
-
-  getEditorState = () => {
-    return this.state.editorState
-  }
-
-  getDraftInstance = () => {
-    return this.draftInstance
-  }
-
-  getMediaLibraryInstance = () => {
-    return this.mediaLibrary
-  }
-
-  setContent = (content, format) => {
-
-    let convertedContent
-    let newState = {}
-    let { contentFormat, colors } = this.props
-    const presetColors = colors || defaultOptions.colors
-
-    contentFormat = format || contentFormat || 'raw'
-
-    if (contentFormat === 'html') {
-      newState.tempColors = [ ...this.state.tempColors, ...detectColorsFromHTML(content) ].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-      convertedContent = convertFromHTML(getFromHTMLConfig())(content)
-    } else if (contentFormat === 'raw') {
-      convertedContent = convertFromRaw(content)
-    }
-
-    newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
-    this.setState(newState)
-
-  }
-
-  setEditorProp = (key, name)  =>{
-    let editorProps = {
-      ...this.state.editorProps,
-      [key]: name
-    }
-    this.setState({ editorProps })
-  }
-
-  forceRender = () => {
-
-    const editorState = this.state.editorState
-    const contentState = editorState.getCurrentContent()
-    const newEditorState = EditorState.createWithContent(contentState, editorDecorators)
-
-    this.setState({editorState: newEditorState})
-
-  }
-
-  handleKeyCommand = (command) => {
-
-    const newState = RichUtils.handleKeyCommand(this.state.editorState, command)
-
-    if (newState) {
-      this.onChange(newState)
-      return true
-    }
-
-    return false
-
-  }
-
-  handleReturn = (event) => {
-
-    const currentBlock = this.getBlock()
-    const currentBlockType = currentBlock.getType()
-
-    if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
-      if (currentBlock.getLength() === 0) {
-        this.toggleBlock('unstyled')
-        return true
-      }
-      return false
-    }
-
-    return false
-
-  }
-
-  handlePastedText = (text, html) => {
-
-    if (!html) {
-      return false
-    }
-
-    const { editorState, tempColors } = this.state
-    const blockMap = convertFromHTML(getFromHTMLConfig())(html || text).blockMap
-    const newState = Modifier.replaceWithFragment(editorState.getCurrentContent(), editorState.getSelection(), blockMap)
-    const presetColors = this.props.colors || defaultOptions.colors
-
-    this.setState({
-      tempColors: [ ...tempColors, ...detectColorsFromHTML(html) ].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-    }, () => {
-      this.onChange(EditorState.push(editorState, newState, 'insert-fragment'))
-    })
-
-    return true
 
   }
 
@@ -272,6 +128,147 @@ export default class BraftEditor extends EditorController {
         </div>
       </div>
     )
+  }
+
+  onChange = (editorState) => {
+
+    this.editorState = editorState
+    this.contentState = editorState.getCurrentContent()
+    this.selectionState = editorState.getSelection()
+    this.setState({ editorState }, () => {
+      clearTimeout(this.syncTimer)
+      this.syncTimer = setTimeout(() => {
+        const { onChange, onRawChange, onHTMLChange } = this.props
+        onChange && onChange(this.getContent())
+        onHTMLChange && onHTMLChange(this.getHTMLContent())
+        onRawChange && onRawChange(this.getRawContent())
+      }, 300)
+    })
+
+  }
+
+  getHTMLContent = () => {
+    return this.getContent('html')
+  }
+
+  getRawContent = () => {
+    return this.getContent('raw')
+  }
+
+  getContent = (format) => {
+
+    format = format || this.props.contentFormat || 'raw'
+    const contentState = this.contentState
+    let { fontFamilies } = this.props
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
+
+    return format === 'html' ? convertToHTML(getToHTMLConfig({
+      contentState, fontFamilies
+    }))(contentState) : convertToRaw(contentState)
+
+  }
+
+  getContentState = () => {
+    return this.contentState
+  }
+
+  getEditorState = () => {
+    return this.editorState
+  }
+
+  getDraftInstance = () => {
+    return this.draftInstance
+  }
+
+  getMediaLibraryInstance = () => {
+    return this.mediaLibrary
+  }
+
+  setContent = (content, format) => {
+
+    let convertedContent
+    let newState = {}
+    let { contentFormat, colors } = this.props
+    const presetColors = colors || defaultOptions.colors
+
+    contentFormat = format || contentFormat || 'raw'
+
+    if (contentFormat === 'html') {
+      newState.tempColors = [ ...this.state.tempColors, ...detectColorsFromHTML(content) ].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+      convertedContent = convertFromHTML(getFromHTMLConfig())(content)
+    } else if (contentFormat === 'raw') {
+      convertedContent = convertFromRaw(content)
+    }
+
+    newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
+    this.setState(newState)
+
+  }
+
+  setEditorProp = (key, name)  =>{
+    this.setState({
+      editorProps: {
+        ...this.state.editorProps,
+        [key]: name
+      }
+    })
+  }
+
+  forceRender = () => {
+    this.setState({
+      editorState: EditorState.createWithContent(this.contentState, editorDecorators)
+    })
+  }
+
+  handleKeyCommand = (command) => {
+
+    const nextEditorState = RichUtils.handleKeyCommand(this.editorState, command)
+
+    if (nextEditorState) {
+      this.onChange(nextEditorState)
+      return true
+    }
+
+    return false
+
+  }
+
+  handleReturn = (event) => {
+
+    const currentBlock = this.getBlock()
+    const currentBlockType = currentBlock.getType()
+
+    if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
+      if (currentBlock.getLength() === 0) {
+        this.toggleBlock('unstyled')
+        return true
+      }
+      return false
+    }
+
+    return false
+
+  }
+
+  handlePastedText = (text, html) => {
+
+    if (!html) {
+      return false
+    }
+
+    const { tempColors } = this.state
+    const blockMap = convertFromHTML(getFromHTMLConfig())(html || text).blockMap
+    const nextContentState = Modifier.replaceWithFragment(this.contentState, this.selectionState, blockMap)
+    const presetColors = this.props.colors || defaultOptions.colors
+
+    this.setState({
+      tempColors: [ ...tempColors, ...detectColorsFromHTML(html) ].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+    }, () => {
+      this.onChange(EditorState.push(this.editorState, nextContentState, 'insert-fragment'))
+    })
+
+    return true
+
   }
 
 }
