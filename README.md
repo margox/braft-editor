@@ -318,7 +318,7 @@ this.editorInstance.setContent(content, format)
 ### getEditorState():editorState
 获取编辑器实例的editorState，一般情况下无需使用
 ```javascript
-console.log(this.editorInstance.getEditorState())) //editorState object
+this.editorInstance.getEditorState()
 ```
 
 ### forceRender():editorInstance
@@ -358,57 +358,84 @@ setTimeout(() => {
 
 ### selectionCollapsed():Boolean
 判断当前是否选中内容
-
+```javascript
+this.editorInstance.selectionCollapsed()
+```
 
 ### getSelectionBlockType():String
 获取选中内容的区块类型
-
+```javascript
+this.editorInstance.getSelectionBlockType()
+```
 
 ### toggleSelectionBlockType():editorInstance
 切换选中内容的区块类型
-
+```javascript
+this.editorInstance.toggleSelectionBlockType()
+```
 
 ### getSelectionInlineStyle():DraftInlineStyle
 获取选中内容的行内样式
-
+```javascript
+this.editorInstance.getSelectionInlineStyle()
+```
 
 ### selectionHasInlineStyle():Boolean
 判断选中内容是否包含指定的行内样式
-
+```javascript
+this.editorInstance.selectionHasInlineStyle('BOLD')
+```
 
 ### toggleSelectionInlineStyle(style:String, ?stylesToBeRemoved:Array):editorInstance
 切换选中内容的行内样式, 同时可传入一个需要移除的样式数组
-
+```javascript
+// 加粗文字，同时移除文字斜体样式
+this.editorInstance.toggleSelectionInlineStyle('BOLD', ['ITALIC'])
+```
 
 ### toggleSelectionAlignment(alignment):editorInstance
-切换选中内容的文本对齐方式
-
+切换选中内容的文本对齐方式，参数可以是left/center/right
+```javascript
+this.editorInstance.toggleSelectionAlignment('center')
+```
 
 ### toggleSelectionColor(hexColor:String):editorInstance
 切换选中内容的文字颜色，参数为可用颜色中的一个
-
+```javascript
+this.editorInstance.toggleSelectionColor('#ffffff')
+```
 
 ### toggleSelectionBackgroundColor(hexColor:String):editorInstance
 切换选中内容的文字背景颜色，参数为可用颜色中的一个
-
+```javascript
+this.editorInstance.toggleSelectionBackgroundColor('#000000')
+```
 
 ### toggleSelectionFontSize(fontSize:Number):editorInstance
 切换选中内容的文字大小，参数为可用字号中的一个
-
+```javascript
+this.editorInstance.toggleSelectionFontSize(24)
+```
 
 ### toggleSelectionFontFamily(fontFamily:String):editorInstance
 切换选中内容的文字字体，参数为可用字体中的一个(name)
-
+```javascript
+this.editorInstance.toggleSelectionFontFamily('Impact')
+```
 
 ### toggleSelectionLink(href:String, target:String):editorInstance
 为选中内容添加超链接
-如果href === false，则清除选中内容的超链接
-如果href === null，则只设置target
-
+```javascript
+this.editorInstance.toggleSelectionLink('http://www.baidu.com', '_blank')
+// 移除所选内容的超链接
+this.editorInstance.toggleSelectionLink(false)
+```
 
 ### insertText(text:String, replace:Boolean):editorInstance
 插入内容到光标之后，如果当前已选中内容并且replace为true，则会替换被选中内容，replace默认为true
-
+```javascript
+this.editorInstance.insertText('Hello World!')
+```
 
 ### insertMedias(medias:Array):editorInstance
 插入媒体内容到编辑器，medias为数组，格式如下：
@@ -432,19 +459,27 @@ this.editorInstance.insertMedias([
 
 ### undo():editorInstance
 插销一次操作
-
+```javascript
+this.editorInstance.undo()
+```
 
 ### redo():editorInstance
 重做一次操作
-
+```javascript
+this.editorInstance.redo()
+```
 
 ### focus():editorInstance
 使编辑器获得焦点
-
+```javascript
+this.editorInstance.focus()
+```
 
 ### blur():editorInstance
 使编辑器失去焦点
-
+```javascript
+this.editorInstance.blur()
+```
 
 ## 开发计划
 - 支持图片修改宽度
