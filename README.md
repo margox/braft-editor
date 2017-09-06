@@ -135,7 +135,7 @@ class Demo extends React.Component {
 
 ### addonControls [array:[object]]
 
-指定自定义控制组件，目前仅支持分割线和按钮。 示例：
+指定自定义控制组件，目前仅支持分割线和按钮以及下拉框。 示例：
 ```javascript
 [
   {
@@ -146,6 +146,11 @@ class Demo extends React.Component {
     text: 'Hello',
     className: 'preview-button',
     onClick: () => console.log('Hello World!')
+  }, {
+    type: 'dropdown',
+    text: 'Hi',
+    showDropDownArrow: false,
+    component: <YourComponent />
   }
 ]
 ```

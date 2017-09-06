@@ -109,7 +109,7 @@ class Demo extends React.Component {
         onClick: this.preview.bind(this)
       }, {
         type: 'dropdown',
-        text: <i className="icon-emoji"></i>,
+        text: 'Hi',
         showDropDownArrow: false,
         component: <h1></h1>
       }
