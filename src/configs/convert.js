@@ -129,11 +129,11 @@ export const getToHTMLConfig = (props) => {
 const htmlToStyle = (nodeName, node, currentStyle) => {
 
   if (nodeName === 'span' && node.style.color) {
-    let color = getHexColor(node.style.color).toUpperCase()
-    return color ? currentStyle.add('COLOR-' + color.replace('#', '')) : currentStyle
+    let color = getHexColor(node.style.color)
+    return color ? currentStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
   } else if (nodeName === 'span' && node.style.backgroundColor) {
-    let color = getHexColor(node.style.color).toUpperCase()
-    return color ? currentStyle.add('BGCOLOR-' + color.replace('#', '')) : currentStyle
+    let color = getHexColor(node.style.color)
+    return color ? currentStyle.add('BGCOLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
   } else if (nodeName === 'sup') {
     return currentStyle.add('SUPERSCRIPT')
   } else if (nodeName === 'sub') {
