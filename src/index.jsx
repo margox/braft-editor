@@ -203,6 +203,8 @@ export default class BraftEditor extends EditorController {
     newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
     this.setState(newState)
 
+    return this
+
   }
 
   setEditorProp = (key, name)  =>{
@@ -212,12 +214,14 @@ export default class BraftEditor extends EditorController {
         [key]: name
       }
     })
+    return this
   }
 
   forceRender = () => {
     this.setState({
       editorState: EditorState.createWithContent(this.contentState, editorDecorators)
     })
+    return this
   }
 
   handleKeyCommand = (command) => {

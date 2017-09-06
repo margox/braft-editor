@@ -139,7 +139,45 @@ export default class EditorController extends React.Component{
     return this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
 
-  insertText = (text) => {
+  toggleSelectionLink = (href, target) => {
+
+    let entityData = { href, target }
+
+    if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
+      return this
+    }
+
+    if (href === false) {
+      this.triggerChange(RichUtils.toggleLink(this.editorState, this.selectionState, null))
+      return this
+    }
+
+    if (href === null) {
+      delete entityData.href
+    }
+
+    const nextContentState = this.contentState.createEntity('LINK', 'MUTABLE', entityData)
+    const entityKey = nextContentState.getLastCreatedEntityKey()
+
+    let nextEditorState = EditorState.set(this.editorState, {
+      currentContent: nextContentState
+    })
+
+    nextEditorState = RichUtils.toggleLink(nextEditorState, this.selectionState, entityKey)
+    nextEditorState = EditorState.forceSelection(nextEditorState, this.selectionState.merge({
+      anchorOffset: this.selectionState.getEndOffset(), 
+      focusOffset: this.selectionState.getEndOffset()
+    }))
+    nextEditorState = EditorState.push(nextEditorState, Modifier.insertText(
+      nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '
+    ), 'insert-text')
+
+    return this.triggerChange(nextEditorState)
+
+  }
+
+
+  insertText = (text, replace = true) => {
 
     const currentSelectedBlockType = this.getSelectionBlockType()
 
@@ -148,9 +186,9 @@ export default class EditorController extends React.Component{
     }
 
     if (!this.selectionState.isCollapsed()) {
-      return this.triggerChange(EditorState.push(this.editorState, Modifier.replaceText(
+      return replace ? this.triggerChange(EditorState.push(this.editorState, Modifier.replaceText(
         this.contentState, this.selectionState, text
-      ), 'replace-text'))
+      ), 'replace-text')) : this
     } else {
       return this.triggerChange(EditorState.push(this.editorState, Modifier.insertText(
         this.contentState, this.selectionState, text
@@ -204,37 +242,6 @@ export default class EditorController extends React.Component{
     }
 
     return this.selectBlock(mediaBlock).setSelectionBlockData(newPosition)
-
-  }
-
-  toggleSelectionLink = (href, target) => {
-
-    if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
-      return this
-    }
-
-    if (!href || href.trim() === '') {
-      this.triggerChange(RichUtils.toggleLink(this.editorState, this.selectionState, null))
-      return this
-    }
-
-    const nextContentState = this.contentState.createEntity('LINK', 'MUTABLE', { href, target })
-    const entityKey = nextContentState.getLastCreatedEntityKey()
-
-    let nextEditorState = EditorState.set(this.editorState, {
-      currentContent: nextContentState
-    })
-
-    nextEditorState = RichUtils.toggleLink(nextEditorState, this.selectionState, entityKey)
-    nextEditorState = EditorState.forceSelection(nextEditorState, this.selectionState.merge({
-      anchorOffset: this.selectionState.getEndOffset(), 
-      focusOffset: this.selectionState.getEndOffset()
-    }))
-    nextEditorState = EditorState.push(nextEditorState, Modifier.insertText(
-      nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '
-    ), 'insert-text')
-
-    return this.triggerChange(nextEditorState)
 
   }
 

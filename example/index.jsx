@@ -24,7 +24,7 @@ class Demo extends React.Component {
 
     const xhr = new XMLHttpRequest
     const fd = new FormData()
-    const mediaLibrary = this.editor.getMediaLibraryInstance()
+    const mediaLibrary = window.editor.getMediaLibraryInstance()
 
     const successFn = (response) => {
       param.success(JSON.parse(xhr.responseText)[0])
@@ -54,7 +54,7 @@ class Demo extends React.Component {
 
   buildPreviewHtml () {
 
-    const htmlContent = this.editor.getHTMLContent()
+    const htmlContent = window.editor.getHTMLContent()
 
     return `
       <!Doctype html>

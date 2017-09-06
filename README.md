@@ -18,6 +18,7 @@
 
 ## 特性
 - 完善的文本内容编辑功能
+- 诸多开放的编辑接口，良好的可扩展性
 - 允许插入图片、音视频等多媒体内容
 - 允许自定义多媒体内容的上传接口
 - 允许设置图片的左右浮动（即文字绕排功能）
@@ -149,7 +150,6 @@ class Demo extends React.Component {
 ]
 ```
 
-
 ### height [number]
 
 指定编辑区域的高度，不包括控制栏，默认是500
@@ -160,16 +160,15 @@ class Demo extends React.Component {
 指定编辑器的语言，目前支持zh和en，默认zh
 
 
-
 ### placeholder [string]
 
 设置placeholder文本
 
 
-
 ### viewWrapper [string]
 
 指定编辑器的包裹容器的选择器字符串（例如'#wrapper', '.container'），用于下拉菜单等组件的位置自适应，默认为body
+
 
 ### colors [array:[string]]
 
@@ -181,6 +180,7 @@ class Demo extends React.Component {
   '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'
 ]
 ```
+
 
 ### fontSizes [array:[number]]
 
@@ -295,37 +295,39 @@ const uploadFn = (param) => {
 ```
 
 ## 实例方法
+> 绝大多数的非get类方法都会返回编辑器实例，即支持链式调用
+
 
 ### 获取实例
 ```javascript
 <BraftEditor ref={instance => this.editorInstance = instance}/>
 ```
 
-### getContent
+### getContent(?format):HTMLContent | RawContent
 ```javascript
 // 获取指定格式的内容，format为获取内容的格式，默认与contentFormat一致， 另有getHTMLContent和getRawContent方法可用
 this.editorInstance.getContent(format)
 ```
 
-### setContent
+### setContent(HTMLContent | RawContent, ?format):editorInstance
 ```javascript
 // 设置编辑器内容，用于需要异步填入编辑器内容的场景，format为填入内容的格式，默认与contentFormat一致
 this.editorInstance.setContent(content, format)
 ```
 
-### getEditorState
+### getEditorState():editorState
 获取编辑器实例的editorState，一般情况下无需使用
 ```javascript
 console.log(this.editorInstance.getEditorState())) //editorState object
 ```
 
-### forceRender
+### forceRender():editorInstance
 强制编辑器内容重新渲染，一般情况下无需使用
 ```javascript
 this.editorInstance.forceRender()
 ```
 
-### getDraftInstance
+### getDraftInstance():draftInstance
 获取draft内核的实例，用于调用draft的API
 ```javascript
 const draftInstance = this.editorInstance.getDraftInstance()
@@ -334,7 +336,7 @@ draftInstance.focus()
 ```
 > 更多关于draft的资料，请参阅：https://draftjs.org/
 
-### getMediaLibraryInstance
+### getMediaLibraryInstance():mediaLibraryInstance
 获取内置媒体库实例，可用于外部操作媒体库内容
 ```javascript
 // 示例
@@ -354,10 +356,102 @@ setTimeout(() => {
 ```
 > 媒体库实例的具体使用请参阅：https://github.com/margox/braft-editor/tree/master/src/helpers/MediaLibrary/index.js
 
+### selectionCollapsed():Boolean
+判断当前是否选中内容
+
+
+### getSelectionBlockType():String
+获取选中内容的区块类型
+
+
+### toggleSelectionBlockType():editorInstance
+切换选中内容的区块类型
+
+
+### getSelectionInlineStyle():DraftInlineStyle
+获取选中内容的行内样式
+
+
+### selectionHasInlineStyle():Boolean
+判断选中内容是否包含指定的行内样式
+
+
+### toggleSelectionInlineStyle(style:String, ?stylesToBeRemoved:Array):editorInstance
+切换选中内容的行内样式, 同时可传入一个需要移除的样式数组
+
+
+### toggleSelectionAlignment(alignment):editorInstance
+切换选中内容的文本对齐方式
+
+
+### toggleSelectionColor(hexColor:String):editorInstance
+切换选中内容的文字颜色，参数为可用颜色中的一个
+
+
+### toggleSelectionBackgroundColor(hexColor:String):editorInstance
+切换选中内容的文字背景颜色，参数为可用颜色中的一个
+
+
+### toggleSelectionFontSize(fontSize:Number):editorInstance
+切换选中内容的文字大小，参数为可用字号中的一个
+
+
+### toggleSelectionFontFamily(fontFamily:String):editorInstance
+切换选中内容的文字字体，参数为可用字体中的一个(name)
+
+
+### toggleSelectionLink(href:String, target:String):editorInstance
+为选中内容添加超链接
+如果href === false，则清除选中内容的超链接
+如果href === null，则只设置target
+
+
+### insertText(text:String, replace:Boolean):editorInstance
+插入内容到光标之后，如果当前已选中内容并且replace为true，则会替换被选中内容，replace默认为true
+
+
+### insertMedias(medias:Array):editorInstance
+插入媒体内容到编辑器，medias为数组，格式如下：
+```javascript
+this.editorInstance.insertMedias([
+  {
+    type: 'IMAGE',
+    name: 'New Photo',
+    url: 'http://path/to/image.png'
+  }, {
+    type: 'VIDEO',
+    name: 'New Video',
+    url: 'http://path/to/image-2.mp4'
+  }, {
+    type: 'AUDIO',
+    name: 'New Audio',
+    url: 'http://path/to/image-2.mp3'
+  }
+])
+```
+
+### undo():editorInstance
+插销一次操作
+
+
+### redo():editorInstance
+重做一次操作
+
+
+### focus():editorInstance
+使编辑器获得焦点
+
+
+### blur():editorInstance
+使编辑器失去焦点
+
+
 ## 开发计划
 - 支持图片修改宽度
 - 完善多媒体插入工具
 - 扩展自定义控制组件的类型，包括下拉菜单和弹窗等
 
 ## 已知问题
-1. 编辑器内容为空时插入列表，placeholder文本不消失，输入任意文本内容后placeholder文本消失
+1. 使用html作为contentFormat时，文字字体(fontFamily)的的转换难以实现
+2. 从外部复制HTML内容粘贴到编辑器时，文字字体(fontFamily)的识别难以实现
+3. 编辑器内容为空时插入列表，placeholder文本不消失，输入任意文本内容后placeholder文本消失
