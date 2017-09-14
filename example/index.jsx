@@ -12,7 +12,7 @@ class Demo extends React.Component {
     }
   }
 
-  preview () {
+  preview = () => {
     if (window.previewWindow) {
       window.previewWindow.close()
     }
@@ -106,7 +106,7 @@ class Demo extends React.Component {
         type: 'button',
         text: '预览',
         className: 'preview-button',
-        onClick: this.preview.bind(this)
+        onClick: this.preview
       }, {
         type: 'dropdown',
         text: 'Hi',
@@ -125,9 +125,6 @@ class Demo extends React.Component {
           language="zh"
           contentFormat="html"
           initialContent={this.state.initialContent}
-          media={{
-            uploadFn: this.uploadFn
-          }}
           addonControls={addonControls}
         />
       </div>
