@@ -66,12 +66,9 @@ export default class MediaPicker extends React.Component {
       <Modal
         title={language.mediaPicker.caption}
         width={640}
-        height={480}
         visible={visible}
         language={language}
         className="braft-media-picker-modal"
-        showClose={true}
-        showCancel={true}
         bottomText={bottomText}
         confirmable={confirmable && !showExternalForm}
         onClose={this.hide}

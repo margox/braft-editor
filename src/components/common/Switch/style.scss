@@ -13,7 +13,7 @@
       left: 20px;
     }
   }
-  span{
+  &::before{
     position: absolute;
     left: 0;
     display: block;
@@ -21,6 +21,7 @@
     height: 20px;
     border-radius: 10px;
     background-color: #eee;
+    content: '';
     transform: scale(1.2);
     transition: .3s;
   }

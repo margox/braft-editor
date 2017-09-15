@@ -123,6 +123,9 @@ class Demo extends React.Component {
           placeholder={"Hello World!"}
           ref={(instance) => window.editor = instance}
           language="zh"
+          media={{
+            uploadFn: this.uploadFn
+          }}
           contentFormat="html"
           initialContent={this.state.initialContent}
           addonControls={addonControls}

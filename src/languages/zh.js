@@ -45,6 +45,12 @@ export default {
     openInNewWindow: '在新窗口打开',
     removeLink: '移除链接'
   },
+  audioPlayer: {
+    title: '播放音频文件'
+  },
+  videoPlayer: {
+    title: '播放视频文件'
+  },
   media: {
     image: '图像',
     video: '视频',

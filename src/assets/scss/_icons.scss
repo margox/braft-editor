@@ -24,7 +24,15 @@ $ttfPath: '../icons/icomoon.ttf?sirizn';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-
+  .icon-pause:before {
+    content: "\e034";
+  }
+  .icon-play_arrow:before {
+    content: "\e037";
+  }
+  .icon-bin:before {
+    content: "\e9ac";
+  }
   .icon-replay:before {
     content: "\e042";
   }
@@ -54,9 +62,6 @@ $ttfPath: '../icons/icomoon.ttf?sirizn';
   }
   .icon-music:before {
     content: "\e90e";
-  }
-  .icon-bin:before {
-    content: "\e9ac";
   }
   .icon-camera:before {
     content: "\e911";

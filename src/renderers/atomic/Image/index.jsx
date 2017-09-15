@@ -5,7 +5,7 @@ import Switch from 'components/common/Switch'
 export default class Image extends React.Component {
 
   state = {
-    toolbarVisbile: false,
+    toolbarVisible: false,
     toolbarOffset: 0,
     linkEditorVisible: false
   }
@@ -13,7 +13,7 @@ export default class Image extends React.Component {
   render () {
 
     const { mediaData, language } = this.props
-    const { toolbarVisbile, toolbarOffset, linkEditorVisible } = this.state
+    const { toolbarVisible, toolbarOffset, linkEditorVisible } = this.state
     const blockData = this.props.block.getData()
 
     let float = blockData.get('float')
@@ -45,7 +45,7 @@ export default class Image extends React.Component {
           onMouseOver={this.showToolbar}
           onMouseLeave={this.hideToolbar}
         >
-          {toolbarVisbile && (
+          {toolbarVisible && (
           <div
             style={{marginLeft: toolbarOffset}}
             ref={instance => this.toolbarElement = instance}
@@ -163,9 +163,9 @@ export default class Image extends React.Component {
 
   showToolbar = () => {
 
-    if (!this.state.toolbarVisbile) {
+    if (!this.state.toolbarVisible) {
       this.setState({
-        toolbarVisbile: true
+        toolbarVisible: true
       }, () => {
         this.props.editor.setEditorProp('readOnly', true)
         this.setState({
@@ -178,7 +178,7 @@ export default class Image extends React.Component {
 
   hideToolbar = () => {
     this.setState({
-      toolbarVisbile: false
+      toolbarVisible: false
     }, () => {
       this.props.editor.setEditorProp('readOnly', false)
     })

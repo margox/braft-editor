@@ -10,7 +10,7 @@ export default {
   addonControls: [],
   media: {
     image: true,
-    video: false,
+    video: true,
     audio: true,
     uploadFn: null,
     sourceFn: null

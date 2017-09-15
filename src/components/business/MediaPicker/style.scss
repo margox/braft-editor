@@ -1,6 +1,7 @@
 @import '~sassinc';
 
 .braft-media-uploader{
+  position: relative;
   height: 370px;
   margin: 0;
   input::-webkit-input-placeholder{
@@ -15,7 +16,7 @@
 }
 
 .braft-media-list-wrap{
-  height: 100%;
+  height: 370px;
   overflow: auto;
   &::-webkit-scrollbar{
     width: 5px;

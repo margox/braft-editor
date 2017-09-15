@@ -168,6 +168,7 @@ export default class EditorController extends React.Component{
       anchorOffset: this.selectionState.getEndOffset(), 
       focusOffset: this.selectionState.getEndOffset()
     }))
+
     nextEditorState = EditorState.push(nextEditorState, Modifier.insertText(
       nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '
     ), 'insert-text')
@@ -176,12 +177,11 @@ export default class EditorController extends React.Component{
 
   }
 
-
   insertText = (text, replace = true) => {
 
     const currentSelectedBlockType = this.getSelectionBlockType()
 
-    if(currentSelectedBlockType === 'atomic') {
+    if (currentSelectedBlockType === 'atomic') {
       return this
     }
 

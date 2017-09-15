@@ -10,6 +10,7 @@ import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
 import MediaPicker from 'components/business/MediaPicker'
 import DropDown from 'components/common/DropDown'
+import { showModal } from 'components/common/Modal'
 
 export default class ControlBar extends React.Component {
 
@@ -43,6 +44,23 @@ export default class ControlBar extends React.Component {
           >
             {component}
           </DropDown>
+        )
+
+      } else if (item.type === 'modal') {
+
+        return (
+          <button
+            key={controls.length + index}
+            title={item.title}
+            className={'control-item button ' + item.className}
+            onClick={() => {
+              item.modal && showModal({
+                ...item.modal, language
+              })
+            }}
+          >
+          {item.text}
+          </button>
         )
 
       } else {

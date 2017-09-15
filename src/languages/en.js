@@ -45,6 +45,12 @@ export default {
     openInNewWindow: 'Open in new window',
     removeLink: 'Remove Link'
   },
+  audioPlayer: {
+    title: 'Play Audio'
+  },
+  videoPlayer: {
+    title: 'Play Video'
+  },
   media: {
     image: 'Image',
     video: 'Video',
