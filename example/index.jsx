@@ -121,8 +121,19 @@ class Demo extends React.Component {
         text: '弹出框',
         className: 'modal-button',
         modal: {
-          title: 'Hello World！',
-          children: <h1 style={{padding: 30, width: 640, height: 300}}>Hello World!</h1>
+          title: '这是一个弹出框',
+          showClose: true,
+          showCancel: true,
+          showConfirm: true,
+          confirmable: true,
+          onConfirm: () => console.log(1),
+          onCancel: () => console.log(2),
+          onClose: () => console.log(3),
+          children: (
+            <div style={{width: 480, height: 320, padding: 30}}>
+              <span>Hello World！</span>
+            </div>
+          )
         }
       }
     ]

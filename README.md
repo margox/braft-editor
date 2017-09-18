@@ -3,6 +3,11 @@
 ### 一个基于darft-js开发的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
 ## 最近更新
+- 2017-09-18 v1.1.0
+  - addonControls更名为extendControls
+  - extendControls支持弹出框控件
+  - 增加media.validateFn属性，用于在选择本地文件时进行校验
+  - 音频和视频内容增加删除按钮和简单预览功能
 - 2017-09-06 v1.0.0
   - 升级架构，抽象编辑器操作模块，大幅提升可扩展性
 - 2017-08-31 v0.3.4
@@ -151,9 +156,27 @@ class Demo extends React.Component {
     onClick: () => console.log('Hello World!')
   }, {
     type: 'dropdown',
-    text: 'Hi',
+    text: 'Foo',
     showDropDownArrow: false,
     component: <YourComponent />
+  }, {
+    type: 'modal',
+    text: 'Bar',
+    modal: {
+      title: '这是一个弹出框',
+      showClose: true,
+      showCancel: true,
+      showConfirm: true,
+      confirmable: true,
+      onConfirm: () => console.log(1),
+      onCancel: () => console.log(2),
+      onClose: () => console.log(3),
+      children: (
+        <div style={{width: 480, height: 320, padding: 30}}>
+          <span>Hello World！</span>
+        </div>
+      )
+    }
   }
 ]
 ```
@@ -233,9 +256,20 @@ class Demo extends React.Component {
   image: true, // 开启图片插入功能
   video: true, // 开启视频插入功能
   audio: true, // 开启音频插入功能
+  validateFn: null, // 指定本地校验函数，说明见下文
   uploadFn: null // 指定上传函数，说明见下文
 }
 ```
+#### media.validateFn [function]
+
+在选择文件之后，编辑器会调用此函数对每一个选择的文件进行校验，如果该函数返回false，则对应的文件不会被添加到媒体库：
+```javascript
+// 示例，不允许选择大于100K的文件
+const validateFn = (file) => {
+  return file.size < 1024 * 100
+}
+```
+
 #### media.uploadFn [function]
 
 指定上传函数，未指定时无法上传视频和音频，可上传图片，但只限本地预览。
