@@ -1,5 +1,14 @@
 @import '~sassinc';
 
+.text-color-dropdown .dropdown-handler {
+  span{
+    width: 36px;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 3px;
+  }
+}
+
 .braft-text-color-picker-wrap{
   margin: 10px;
   overflow: hidden;

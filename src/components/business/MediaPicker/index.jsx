@@ -6,6 +6,7 @@ import { UniqueIndex } from 'utils/base'
 const imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg'
 const videoMediaType = 'video/mp4'
 const audioMediaType = 'audio/mp3'
+const defaultValidateFn = () => true
 
 export default class MediaPicker extends React.Component {
 
@@ -36,6 +37,7 @@ export default class MediaPicker extends React.Component {
 
     this.mediaLibrary = this.props.mediaLibrary
     this.mediaLibrary.uploadFn = this.props.media.uploadFn || null
+    this.validateFn = this.props.media.validateFn || defaultValidateFn
     this.mediaLibrary.onChange = (files) => {
       this.setState({
         files,
@@ -234,26 +236,30 @@ export default class MediaPicker extends React.Component {
 
       if (index < length) {
 
-        let data = {
-          id: new Date().getTime() + '_' + UniqueIndex(),
-          file: files[index],
-          name: files[index].name,
-          size: files[index].size,
-          uploadProgress: 0,
-          uploading: false,
-          selected: false,
-          error: 0
-        }
+        if (this.validateFn(files[index])) {
 
-        if (files[index].type.indexOf('image/') === 0 && this.props.media.image) {
-          data.type = 'IMAGE'
-          this.mediaLibrary.addItems([data])
-        } else if (files[index].type.indexOf('video/') === 0 && this.props.media.video) {
-          data.type = 'VIDEO'
-          this.mediaLibrary.addItems([data])
-        } else if (files[index].type.indexOf('audio/') === 0 && this.props.media.audio) {
-          data.type = 'AUDIO'
-          this.mediaLibrary.addItems([data])
+          let data = {
+            id: new Date().getTime() + '_' + UniqueIndex(),
+            file: files[index],
+            name: files[index].name,
+            size: files[index].size,
+            uploadProgress: 0,
+            uploading: false,
+            selected: false,
+            error: 0
+          }
+
+          if (files[index].type.indexOf('image/') === 0 && this.props.media.image) {
+            data.type = 'IMAGE'
+            this.mediaLibrary.addItems([data])
+          } else if (files[index].type.indexOf('video/') === 0 && this.props.media.video) {
+            data.type = 'VIDEO'
+            this.mediaLibrary.addItems([data])
+          } else if (files[index].type.indexOf('audio/') === 0 && this.props.media.audio) {
+            data.type = 'AUDIO'
+            this.mediaLibrary.addItems([data])
+          }
+
         }
 
         setTimeout(() => {

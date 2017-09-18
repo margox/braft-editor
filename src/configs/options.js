@@ -7,7 +7,7 @@ export default {
     'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
     'blockquote', 'code', 'split', 'link', 'split', 'media'
   ],
-  addonControls: [],
+  extendControls: [],
   media: {
     image: true,
     video: true,

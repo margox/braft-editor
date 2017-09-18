@@ -10,7 +10,7 @@
 
 .Braft-dropdown{
   position: relative;
-  min-width: 36px;
+  width: auto;
   height: 36px;
   margin: 0;
   &.disabled{
@@ -93,7 +93,7 @@
     }
     > span{
       float: left;
-      padding-left: 10px;
+      padding: 0 10px;
       font-size: 14px;
       line-height: 36px;
       pointer-events: none;
@@ -105,10 +105,8 @@
         text-align: center;
       }
     }
-    > i{
-      position: absolute;
-      top: 0;
-      right: 0;
+    .icon-drop-down{
+      float: right;
       width: 30px;
       height: 36px;
       font-size: 16px;

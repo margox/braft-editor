@@ -20,12 +20,12 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { editor, controls, media, addonControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper } = this.props
+    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper } = this.props
     const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, language, viewWrapper }
 
-    const renderedAddonControls = addonControls.map((item, index) => {
+    const renderedextendControls = extendControls.map((item, index) => {
 
       if (item.type === 'split') {
         return <span key={controls.length + index} className="split-line"></span>
@@ -203,7 +203,7 @@ export default class ControlBar extends React.Component {
 
           })
         }
-        {renderedAddonControls}
+        {renderedextendControls}
       </div>
     )
 

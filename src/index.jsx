@@ -67,7 +67,7 @@ export default class BraftEditor extends EditorController {
   render() {
 
     let {
-      controls, height, media, addonControls, language, colors,
+      controls, extendControls, height, media, language, colors,
       fontSizes, fontFamilies, emojis, viewWrapper, placeholder
     } = this.props
 
@@ -75,7 +75,7 @@ export default class BraftEditor extends EditorController {
 
     media = { ...defaultOptions.media, ...media }
     controls = controls || defaultOptions.controls
-    addonControls = addonControls || defaultOptions.addonControls
+    extendControls = extendControls || defaultOptions.extendControls
     language = languages[language] || languages[defaultOptions.language]
     colors = colors || defaultOptions.colors
     fontSizes = fontSizes || defaultOptions.fontSizes
@@ -94,7 +94,7 @@ export default class BraftEditor extends EditorController {
 
     const controlBarProps = {
       editor: this,
-      media, controls, language, viewWrapper, addonControls,
+      media, controls, language, viewWrapper, extendControls,
       colors, tempColors, fontSizes, fontFamilies, emojis
     }
 

@@ -87,7 +87,7 @@
       background-color: transparent;
       border: none;
       color: $COLOR_GRAY;
-      font-size: 18px;
+      font-size: 14px;
       &:hover{
         background-color: rgba(#000, .05);
       }
@@ -98,11 +98,14 @@
         display: block;
         width: 36px;
         height: 36px;
+        font-size: 18px;
         line-height: 36px;
       }
       .icon-undo,
       .icon-redo{
-        font-size: 14px;
+        &::before{
+          font-size: 14px;
+        }
       }
     }
   }

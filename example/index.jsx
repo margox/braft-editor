@@ -52,6 +52,10 @@ class Demo extends React.Component {
 
   }
 
+  validateFn = (file) => {
+    return file.size <= 1024 * 100
+  }
+
   buildPreviewHtml () {
 
     const htmlContent = window.editor.getHTMLContent()
@@ -99,7 +103,7 @@ class Demo extends React.Component {
 
   render() {
 
-    const addonControls = [
+    const extendControls = [
       {
         type: 'split',
       }, {
@@ -109,9 +113,17 @@ class Demo extends React.Component {
         onClick: this.preview
       }, {
         type: 'dropdown',
-        text: 'Hi',
-        showDropDownArrow: false,
-        component: <h1></h1>
+        width: 80,
+        text: <span>下拉菜单</span>,
+        component: <h1 style={{width: 200, color: '#ffffff', padding: 10, margin: 0}}>Hello World!</h1>
+      }, {
+        type: 'modal',
+        text: '弹出框',
+        className: 'modal-button',
+        modal: {
+          title: 'Hello World！',
+          children: <h1 style={{padding: 30, width: 640, height: 300}}>Hello World!</h1>
+        }
       }
     ]
 
@@ -124,11 +136,12 @@ class Demo extends React.Component {
           ref={(instance) => window.editor = instance}
           language="zh"
           media={{
-            uploadFn: this.uploadFn
+            uploadFn: this.uploadFn,
+            validateFn: this.validateFn
           }}
           contentFormat="html"
           initialContent={this.state.initialContent}
-          addonControls={addonControls}
+          extendControls={extendControls}
         />
       </div>
     )
