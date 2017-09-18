@@ -4,7 +4,7 @@ import DropDown from 'components/common/DropDown'
 
 export default (props) => {
 
-  let { defaultCaption, onChange, language, emojis, viewWrapper } = props
+  let { defaultCaption, onChange, language, emojis, viewWrapper, editor } = props
   let caption = defaultCaption || language.controls.emoji
 
   return (

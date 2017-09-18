@@ -1,4 +1,6 @@
 ## 更新记录
+- 2017-09-18 v1.1.1
+  - 修复一些无法插入表情和无法清除超链接的bug
 - 2017-09-18 v1.1.0
   - addonControls更名为extendControls
   - extendControls支持弹出框控件

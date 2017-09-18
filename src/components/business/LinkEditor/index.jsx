@@ -108,7 +108,7 @@ export default class LinkEditor extends React.Component {
 
   handleUnlink = () => {
     this.dropDownComponent.hide()
-    this.props.editor.toggleSelectionLink()
+    this.props.editor.toggleSelectionLink(false)
   }
 
   handleConfirm = () => {

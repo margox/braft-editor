@@ -144,7 +144,7 @@ class Demo extends React.Component {
           height={600}
           viewWrapper={'#demo'}
           placeholder={"Hello World!"}
-          ref={(instance) => window.editor = instance}
+          ref={(instance) => window.editor = instance} 
           language="zh"
           media={{
             uploadFn: this.uploadFn,
