@@ -133,7 +133,7 @@ export default class Image extends React.Component {
 
     const link = e.currentTarget.value.trim()
     this.props.editor.setMediaData(this.props.entityKey, { link })
-    setImmediate(this.props.editor.forceRender)
+    window.setImmediate(this.props.editor.forceRender)
 
   }
 
@@ -141,7 +141,7 @@ export default class Image extends React.Component {
 
     link_target = link_target === '_blank' ? '' : '_blank'
     this.props.editor.setMediaData(this.props.entityKey, { link_target })
-    setImmediate(this.props.editor.forceRender)
+    window.setImmediate(this.props.editor.forceRender)
 
   }
 

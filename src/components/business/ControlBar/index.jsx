@@ -234,7 +234,7 @@ export default class ControlBar extends React.Component {
       this.props.editor[command] && this.props.editor[command]()
     }
 
-    setImmediate(() => {
+    window.setImmediate(() => {
       this.props.editor.focus()
     })
 

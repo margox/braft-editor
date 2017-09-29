@@ -93,7 +93,7 @@ export default class Modal extends React.Component {
 
     ReactDOM.render(childComponent, this.rootElement)
 
-    setImmediate(() => {
+    window.setImmediate(() => {
       this.rootElement.classList.add('active')
     })
 
