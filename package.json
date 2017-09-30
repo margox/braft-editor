@@ -47,7 +47,9 @@
   "dependencies": {
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",
-    "draftjs-utils": "^0.8.7",
+    "draftjs-utils": "^0.8.7"
+  },
+  "peerDependencies": {
     "react": "^16.0.0",
     "react-dom": "^16.0.0"
   }
