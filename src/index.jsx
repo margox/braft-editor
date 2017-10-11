@@ -128,6 +128,7 @@ export default class BraftEditor extends EditorController {
         </div>
       </div>
     )
+
   }
 
   onChange = (editorState) => {

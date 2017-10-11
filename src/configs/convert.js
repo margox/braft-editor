@@ -1,5 +1,4 @@
 import React from 'react'
-import { Entity } from 'draft-js'
 import { blocks } from 'configs/maps'
 import { getHexColor } from 'helpers/colors'
 
@@ -148,17 +147,17 @@ const htmlToStyle = (nodeName, node, currentStyle) => {
 
 }
 
-const htmlToEntity = (nodeName, node) => {
+const htmlToEntity = (nodeName, node, createEntity) => {
 
   if (nodeName === 'a' && !node.querySelectorAll('img').length) {
 
     let { href, target } = node
-    return Entity.create('LINK', 'MUTABLE',{ href, target })
+    return createEntity('LINK', 'MUTABLE',{ href, target })
 
   } else if (nodeName === 'audio') {
-    return Entity.create('AUDIO', 'IMMUTABLE',{ url: node.src }) 
+    return createEntity('AUDIO', 'IMMUTABLE',{ url: node.src }) 
   } else if (nodeName === 'video') {
-    return Entity.create('VIDEO', 'IMMUTABLE',{ url: node.src }) 
+    return createEntity('VIDEO', 'IMMUTABLE',{ url: node.src }) 
   } else if (nodeName === 'img') {
 
     let parentNode = node.parentNode
@@ -172,7 +171,7 @@ const htmlToEntity = (nodeName, node) => {
       entityData.link_target = parentNode.target
     }
 
-    return Entity.create('IMAGE', 'IMMUTABLE', entityData) 
+    return createEntity('IMAGE', 'IMMUTABLE', entityData) 
 
   }
 
