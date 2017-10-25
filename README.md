@@ -3,14 +3,8 @@
 ### 一个基于darft-js开发的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
 ## 最近更新
-- 2017-10-11 v1.1.5
-  - 升级draft-convert
-- 2017-09-30 v1.1.3
-  - 支持react16
-- 2017-09-29 v1.1.2
-  - 增加稳定性
-- 2017-09-18 v1.1.1
-  - 修复一些无法插入表情和无法清除超链接的bug
+- 2017-10-25 v1.1.6
+  - 修复SwitchButton激活状态显示异常的bug
 - 2017-09-18 v1.1.0
   - addonControls更名为extendControls
   - extendControls支持弹出框控件

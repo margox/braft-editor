@@ -9,7 +9,7 @@
   transition: background .3s;
   &.active{
     background-color: $COLOR_ACTIVE;
-    span{
+    &::before{
       left: 20px;
     }
   }

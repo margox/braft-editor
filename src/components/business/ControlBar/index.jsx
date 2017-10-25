@@ -28,7 +28,7 @@ export default class ControlBar extends React.Component {
     const renderedextendControls = extendControls.map((item, index) => {
 
       if (item.type === 'split') {
-        return <span key={controls.length + index} className="split-line"></span>
+        return <span key={controls.length * 2 + index} className="split-line"></span>
       } else if (item.type === 'dropdown') {
 
         let { text, className, showDropDownArrow, hoverTitle, component } = item
@@ -50,7 +50,7 @@ export default class ControlBar extends React.Component {
 
         return (
           <button
-            key={controls.length + index}
+            key={controls.length * 2 + index}
             title={item.title}
             className={'control-item button ' + item.className}
             onClick={() => {
@@ -67,7 +67,7 @@ export default class ControlBar extends React.Component {
 
         return (
           <button
-            key={controls.length + index}
+            key={controls.length * 2 + index}
             title={item.title}
             className={'control-item button ' + item.className}
             onClick={() => item.onClick()}
