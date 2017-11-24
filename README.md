@@ -1,6 +1,6 @@
 # Braft Editor
 
-### 一个基于darft-js开发的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
+### 一个基于[draft-js](https://draftjs.org/)的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
 ## 最近更新
 - 2017-10-25 v1.1.6
