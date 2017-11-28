@@ -131,7 +131,7 @@ const htmlToStyle = (nodeName, node, currentStyle) => {
     let color = getHexColor(node.style.color)
     return color ? currentStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
   } else if (nodeName === 'span' && node.style.backgroundColor) {
-    let color = getHexColor(node.style.color)
+    let color = getHexColor(node.style.backgroundColor)
     return color ? currentStyle.add('BGCOLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
   } else if (nodeName === 'sup') {
     return currentStyle.add('SUPERSCRIPT')
