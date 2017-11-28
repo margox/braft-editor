@@ -1,6 +1,6 @@
 {
-  "name": "braft-editor",
-  "version": "1.1.6",
+  "name": "jc-braft-editor",
+  "version": "0.0.1",
   "description": "Rich Text Editor Based On Draft.js",
   "main": "dist/braft.js",
   "author": "Margox",
@@ -9,7 +9,7 @@
     "build": "rm -rf dist/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": "https://github.com/margox/braft",
+  "repository": "https://github.com/sunhongfeiraven/braft",
   "keywords": [
     "braft",
     "draft",
