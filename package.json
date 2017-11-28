@@ -1,9 +1,9 @@
 {
   "name": "jc-braft-editor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Rich Text Editor Based On Draft.js",
   "main": "dist/braft.js",
-  "author": "Margox",
+  "author": "sunhongfeiraven",
   "scripts": {
     "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 5998",
     "build": "rm -rf dist/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
