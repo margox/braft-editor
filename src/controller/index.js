@@ -28,7 +28,7 @@ export default class EditorController extends React.Component{
 
   selectNextBlock = (block) => {
     const nextBlock = this.contentState.getBlockAfter(block.getKey())
-    return this.triggerChange(nextBlock ? this.selectBlock(nextBlock) : this.editorState)
+    return nextBlock ? this.selectBlock(nextBlock) : this.triggerChange(this.editorState)
   }
 
   removeBlock = (block) => {
@@ -206,7 +206,7 @@ export default class EditorController extends React.Component{
     }
 
     if (this.getSelectionBlockType() === 'atomic') {
-      this.selectNextBlock()
+      this.selectNextBlock(this.getSelectionBlock())
     }
 
     const newEditorState = medias.reduce((editorState, media) => {

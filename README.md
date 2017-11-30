@@ -3,6 +3,9 @@
 ### 一个基于[draft-js](https://draftjs.org/)的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
 ## 最近更新
+- 2017-11-30 v1.1.7
+  - 修复bug [#13](https://github.com/margox/braft-editor/issues/13)，感谢[@melissaloves](https://github.com/melissaloves)反馈
+  - 修复粘贴内容时文字背景颜色显示错误的问题，感谢[@sunhongfeiraven](https://github.com/sunhongfeiraven)反馈
 - 2017-10-25 v1.1.6
   - 修复SwitchButton激活状态显示异常的bug
 - 2017-09-18 v1.1.0
