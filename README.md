@@ -2,6 +2,8 @@
 
 ### 一个基于[draft-js](https://draftjs.org/)的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
+#### 现已支持在typescript项目中使用本组件，使用npm或者yarn安装@types/braft-editor即可，墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
+
 ## 最近更新
 - 2017-11-30 v1.1.7
   - 修复bug [#13](https://github.com/margox/braft-editor/issues/13)，感谢[@melissaloves](https://github.com/melissaloves)反馈
