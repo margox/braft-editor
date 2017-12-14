@@ -6,6 +6,8 @@
 #### 墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2017-12-14 v1.1.8
+  - 修复与jquery等库存在冲突的问题
 - 2017-11-30 v1.1.7
   - 修复bug [#13](https://github.com/margox/braft-editor/issues/13)，感谢[@melissaloves](https://github.com/melissaloves)反馈
   - 修复粘贴内容时文字背景颜色显示错误的问题，感谢[@sunhongfeiraven](https://github.com/sunhongfeiraven)反馈

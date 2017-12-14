@@ -43,7 +43,9 @@ export default class BraftEditor extends EditorController {
       browser = 'firefox'
     }
 
-    document.body.classList.add('browser-' + browser)
+    if (!document.body.classList.contains('browser-' + browser)) {
+      document.body.classList.add('browser-' + browser)
+    }
 
   }
 

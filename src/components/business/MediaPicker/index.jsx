@@ -98,7 +98,10 @@ export default class MediaPicker extends React.Component {
           {showExternalForm ? (
             <div className="braft-media-add-external">
               <div className="braft-media-external-form">
-                <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
+                <div className="braft-media-external-input">
+                  <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
+                  <button onClick={this.confirmAddExternal} disabled={!external.url.trim().length}>{language.base.confirm}</button>
+                </div>
                 <div data-type={external.type} className="braft-media-switch-external-type">
                   <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button>
                   <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button>
@@ -292,7 +295,7 @@ export default class MediaPicker extends React.Component {
   }
 
   confirmAddExternal = (e) => {
-    if (e.keyCode === 13) {
+    if (e.target.nodeName.toLowerCase() === 'button' || e.keyCode === 13) {
       let { url, type } = this.state.external
       url = url.split('|')
       let name = url.length > 1 ? url[0] : this.props.language.mediaPicker.unnamedItem

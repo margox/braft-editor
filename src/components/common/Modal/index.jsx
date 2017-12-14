@@ -3,8 +3,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import { UniqueIndex } from 'utils/base'
 
-const $ = window.$ || document.querySelector.bind(document)
-
 export default class Modal extends React.Component {
 
   componentId = 'BRAFT-MODAL-' + UniqueIndex()
@@ -82,7 +80,7 @@ export default class Modal extends React.Component {
       </div>
     )
 
-    this.rootElement = $('#' + this.componentId)
+    this.rootElement = document.querySelector('#' + this.componentId)
 
     if (!this.rootElement) {
       this.rootElement = document.createElement('div')
