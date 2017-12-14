@@ -528,8 +528,7 @@ this.editorInstance.blur()
 
 ## 开发计划
 - 支持图片修改宽度
-- 完善多媒体插入工具
-- 扩展自定义控制组件的类型，包括下拉菜单和弹窗等
+- 支持多实例共存
 
 ## 已知问题
 1. 使用html作为contentFormat时，文字字体(fontFamily)的的转换难以实现
