@@ -64,7 +64,7 @@ yarn build
 
 ## 鸣谢
 - 感谢[Jyoti Puri](https://github.com/jpuri) 开发的[draftjs-utils](https://github.com/jpuri/draftjs-utils) 提供的帮助和[react-draft-wysiwyg](https://github.com/jpuri/react-draft-wysiwyg) 提供的参考，Thanks！
-- 感谢[HubSpot] 开发的[draft-convert](https://github.com/hubspot/draft-convert)，Thanks！
+- 感谢[HubSpot](https://github.com/HubSpot) 开发的[draft-convert](https://github.com/hubspot/draft-convert)，Thanks！
 
 ## 使用示例
 ```javascript
