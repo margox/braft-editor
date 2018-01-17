@@ -6,6 +6,9 @@
 #### 墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-01-17 v1.1.9
+  - 修复列表模式下连续按回车出现脚本报错的问题
+  - 支持Ctrl|Shift + Enter实现软换行，感谢[@qjp88995](https://github.com/qjp88995)反馈
 - 2017-12-14 v1.1.8
   - 修复与jquery等库存在冲突的问题，感谢[@juyongxia](https://github.com/juyongxia)反馈
 - 2017-11-30 v1.1.7
@@ -58,6 +61,10 @@ node index.js
 # 打包编译
 yarn build
 ```
+
+## 鸣谢
+- 感谢[Jyoti Puri](https://github.com/jpuri) 开发的[draftjs-utils](https://github.com/jpuri/draftjs-utils) 提供的帮助和[react-draft-wysiwyg](https://github.com/jpuri/react-draft-wysiwyg) 提供的参考，Thanks！
+- 感谢[HubSpot] 开发的[draft-convert](https://github.com/hubspot/draft-convert)，Thanks！
 
 ## 使用示例
 ```javascript

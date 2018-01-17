@@ -139,21 +139,23 @@ class Demo extends React.Component {
     ]
 
     return (
-      <div className="demo" id="demo">
-        <BraftEditor
-          height={600}
-          viewWrapper={'#demo'}
-          placeholder={"Hello World!"}
-          ref={(instance) => window.editor = instance} 
-          language="zh"
-          media={{
-            uploadFn: this.uploadFn,
-            validateFn: this.validateFn
-          }}
-          contentFormat="html"
-          initialContent={this.state.initialContent}
-          extendControls={extendControls}
-        />
+      <div>
+        <div className="demo" id="demo">
+          <BraftEditor
+            height={400}
+            viewWrapper={'#demo'}
+            placeholder={"Hello World!"}
+            ref={(instance) => window.editor = instance} 
+            language="zh"
+            media={{
+              uploadFn: this.uploadFn,
+              validateFn: this.validateFn
+            }}
+            contentFormat="html"
+            initialContent={this.state.initialContent}
+            extendControls={extendControls}
+          />
+        </div>
       </div>
     )
 

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom'
 import languages from 'languages'
 import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
 import { convertToHTML, convertFromHTML } from 'draft-convert'
+import { handleNewLine } from 'draftjs-utils'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import defaultOptions from 'configs/options'
 import EditorController from 'controller'
@@ -247,7 +248,14 @@ export default class BraftEditor extends EditorController {
 
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
       if (currentBlock.getLength() === 0) {
-        this.toggleBlock('unstyled')
+        this.toggleSelectionBlockType('unstyled')
+        return true
+      }
+      return false
+    } else {
+      const nextEditorState = handleNewLine(this.state.editorState, event)
+      if (nextEditorState) {
+        this.onChange(nextEditorState)
         return true
       }
       return false
