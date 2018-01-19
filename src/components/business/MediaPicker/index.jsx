@@ -76,6 +76,7 @@ export default class MediaPicker extends React.Component {
         onClose={this.hide}
         onCancel={this.hide}
         onConfirm={this.confirmInsertMedia}
+        confirmText={language.mediaPicker.confirmInsert}
       >
         <div className="braft-media-picker">
           <div className="braft-media-uploader">
@@ -211,7 +212,7 @@ export default class MediaPicker extends React.Component {
   }
 
   removeFileItem = (e) => {
-    this.mediaLibrary.removeItem(e.target.dataset.id)
+    this.mediaLibrary.removeItem(e.currentTarget.dataset.id)
     e.stopPropagation()
   }
 

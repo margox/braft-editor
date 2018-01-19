@@ -85,7 +85,7 @@ export default class TextColor extends React.Component {
   switchColorType = (e) => {
 
     this.setState({
-      colorType: e.target.dataset.type
+      colorType: e.currentTarget.dataset.type
     })
 
   }

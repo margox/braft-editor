@@ -64,6 +64,7 @@ export default {
     externalInputTip: 'Split source name and source URL with "|", confirm by hit Enter.',
     addLocalFile: 'Add from local',
     addExternalSource: 'Add from Internet',
-    unnamedItem: 'Unnamed Item'
+    unnamedItem: 'Unnamed Item',
+    confirmInsert: 'Insert selected items'
   }
 }

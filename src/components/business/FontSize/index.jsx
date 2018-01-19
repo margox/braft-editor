@@ -33,7 +33,7 @@ export default (props) => {
               key={index}
               className={item === currentFontSize ? 'active' : null}
               data-size={item}
-              onClick={(e) => editor.toggleSelectionFontSize(e.target.dataset.size)}
+              onClick={(e) => editor.toggleSelectionFontSize(e.currentTarget.dataset.size)}
             >
               {item + 'px'}
             </li>

@@ -64,6 +64,7 @@ export default {
     externalInputTip: '以竖线符("|")分割资源名和资源地址，按回车确认',
     addLocalFile: '添加本地文件',
     addExternalSource: '添加网络资源',
-    unnamedItem: '未命名项目'
+    unnamedItem: '未命名项目',
+    confirmInsert: '插入所选项目'
   }
 }

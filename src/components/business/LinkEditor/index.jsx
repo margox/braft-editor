@@ -92,7 +92,7 @@ export default class LinkEditor extends React.Component {
 
   inputLink = (e) => {
     this.setState({
-      href: e.target.value
+      href: e.currentTarget.value
     })
   }
 

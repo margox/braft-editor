@@ -118,6 +118,7 @@ export default class EditorController extends React.Component{
   }
 
   toggleSelectionAlignment = (alignment) => {
+    console.log(alignment)
     return this.setSelectionBlockData({
       textAlign: this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
     })

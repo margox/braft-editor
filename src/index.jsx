@@ -252,6 +252,17 @@ export default class BraftEditor extends EditorController {
         return true
       }
       return false
+    } else if (currentBlockType === 'code-block') {
+      if (
+        event.which === 13 && (
+        event.getModifierState('Shift') ||
+        event.getModifierState('Alt') ||
+        event.getModifierState('Control')
+      )) {
+        this.toggleSelectionBlockType('unstyled')
+        return true
+      }
+      return false
     } else {
       const nextEditorState = handleNewLine(this.state.editorState, event)
       if (nextEditorState) {
