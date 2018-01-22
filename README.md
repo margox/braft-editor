@@ -157,7 +157,7 @@ class Demo extends React.Component {
 ### extendControls [array:[object]]
 > 原addonControls已更名为extendControls
 
-指定自定义控制组件，目前仅支持分割线和按钮以及下拉框。 示例：
+指定自定义控制组件，目前支持分割线[split]、按钮[button]、下拉框[dropdown]和模态框[modal]。 示例：
 ```javascript
 [
   {
