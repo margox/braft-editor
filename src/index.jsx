@@ -205,6 +205,11 @@ export default class BraftEditor extends EditorController {
     }
 
     newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
+
+    this.editorState = newState.editorState
+    this.contentState = newState.editorState.getCurrentContent()
+    this.selectionState = newState.editorState.getSelection()
+
     this.setState(newState)
 
     return this
