@@ -50,7 +50,9 @@ export default class Modal extends React.Component {
 
   unrenderComponent () {
     this.activeId && window.clearImmediate(this.activeId)
-    this.rootElement.classList.remove('active')
+    if (this.rootElement && this.rootElement.classList) {
+      this.rootElement.classList.remove('active')
+    }
   }
 
   renderComponent (props) {

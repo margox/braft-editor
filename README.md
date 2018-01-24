@@ -6,6 +6,8 @@
 #### 墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-01-24 v1.1.13
+  - 部分BUG修复+UI优化
 - 2018-01-24 v1.1.12
   - 增强与Ant.Design的兼容性
 - 2018-01-22 v1.1.11
