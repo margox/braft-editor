@@ -2,10 +2,11 @@
 
 ### 一个基于[draft-js](https://draftjs.org/)的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
-#### 现已支持在typescript项目中使用本组件，使用npm或者yarn安装@types/braft-editor即可
-#### 墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
+#### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-01-24 v1.1.14
+  - 支持纯文本粘贴(感谢[@IveChen](https://github.com/IveChen)建议) + 部分细节优化
 - 2018-01-24 v1.1.13
   - 部分BUG修复+UI优化
 - 2018-01-24 v1.1.12
@@ -14,9 +15,6 @@
   - 修复内容初始化时候的错误
 - 2018-01-19 v1.1.10
   - 修复safari等浏览器下部分操作无效的问题
-- 2018-01-17 v1.1.9
-  - 修复列表模式下连续按回车出现脚本报错的问题
-  - 支持Ctrl|Shift + Enter实现软换行，感谢[@qjp88995](https://github.com/qjp88995)反馈
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -276,6 +274,9 @@ class Demo extends React.Component {
 ```
 > 此默认列表不保证全平台正常显示，请按需调整
 
+### pasteMode ['text' | '']
+指定粘贴模式，如果为text，则粘贴的时候会过滤掉HTML格式，默认为空
+
 ### media [object]
 
 配置编辑器的多媒体插入功能:
@@ -417,7 +418,8 @@ mediaLibrary.addItem({
   id: libraryId,
   type: 'IMAGE',
   name: 'Foo',
-  url: 'http://path/to/image'
+  url: 'http://path/to/image',
+  thumbnail: 'http://path/to/thumbnail'
 })
 // 从媒体库删除先前插入的图片
 setTimeout(() => {

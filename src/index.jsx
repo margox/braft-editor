@@ -287,6 +287,17 @@ export default class BraftEditor extends EditorController {
       return false
     }
 
+    const pasteMode = this.tmpPasteMode || this.props.pasteMode || 'normal'
+
+    if (pasteMode === 'text') {
+      this.tmpPasteMode = 'normal'
+      const tmpTextHolder = document.createElement('div')
+      tmpTextHolder.innerHTML = html
+      return this.handlePastedText(text, tmpTextHolder.textContent || tmpTextHolder.innerText || '')
+    } else {
+      this.tmpPasteMode = null
+    }
+
     const { tempColors } = this.state
     const blockMap = convertFromHTML(getFromHTMLConfig())(html || text).blockMap
     const nextContentState = Modifier.replaceWithFragment(this.contentState, this.selectionState, blockMap)

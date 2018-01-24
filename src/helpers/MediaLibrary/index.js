@@ -5,7 +5,7 @@ export default class MediaLibrary {
   }
 
   setItems (items) {
-    this.items = items || []
+    this.items = items.map(item => ({ ...item, id: item.id.toString() })) || []
     this.triggerChange()
     this.uploadItems()
   }
@@ -15,7 +15,7 @@ export default class MediaLibrary {
   }
 
   addItems (items) {
-    this.items = [ ...this.items, ...items ]
+    this.items = [ ...this.items, ...items.map(item => ({ ...item, id: item.id.toString()})) ]
     this.triggerChange()
     this.uploadItems()
   }
