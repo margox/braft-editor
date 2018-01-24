@@ -9,6 +9,10 @@ export default class Audio extends React.Component {
     playerVisible: false
   }
 
+  componentWillUnmount () {
+    this.playerModal && this.playerModal.close()
+  }
+
   render () {
 
     const { toolbarVisible, playerVisible } = this.state
@@ -40,13 +44,14 @@ export default class Audio extends React.Component {
 
   showPlayer = () => {
 
-    showModal({
+    this.playerModal = showModal({
       title: this.props.language.audioPlayer.title,
       width: 480,
       confirmable: true,
       language: this.props.language,
       showCancel: false,
       onClose: this.handlePlayerClose,
+      onConfirm: this.handlePlayerClose,
       children: <audio className="braft-embed-audio-player" src={this.props.mediaData.url} controls/>
     })
 
@@ -69,7 +74,8 @@ export default class Audio extends React.Component {
   }
 
   handlePlayerClose = () => {
-    this.props.editor.focus()
+    this.playerModal = null
+    this.props.editor && this.props.editor.focus()
   }
 
 }

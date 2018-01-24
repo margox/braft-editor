@@ -6,6 +6,8 @@
 #### 墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-01-24 v1.1.12
+  - 增强与Ant.Design的兼容性
 - 2018-01-22 v1.1.11
   - 修复内容初始化时候的错误
 - 2018-01-19 v1.1.10
@@ -13,20 +15,6 @@
 - 2018-01-17 v1.1.9
   - 修复列表模式下连续按回车出现脚本报错的问题
   - 支持Ctrl|Shift + Enter实现软换行，感谢[@qjp88995](https://github.com/qjp88995)反馈
-- 2017-12-14 v1.1.8
-  - 修复与jquery等库存在冲突的问题，感谢[@juyongxia](https://github.com/juyongxia)反馈
-- 2017-11-30 v1.1.7
-  - 修复bug [#13](https://github.com/margox/braft-editor/issues/13)，感谢[@melissaloves](https://github.com/melissaloves)反馈
-  - 修复粘贴内容时文字背景颜色显示错误的问题，感谢[@sunhongfeiraven](https://github.com/sunhongfeiraven)反馈
-- 2017-10-25 v1.1.6
-  - 修复SwitchButton激活状态显示异常的bug
-- 2017-09-18 v1.1.0
-  - addonControls更名为extendControls
-  - extendControls支持弹出框控件
-  - 增加media.validateFn属性，用于在选择本地文件时进行校验
-  - 音频和视频内容增加删除按钮和简单预览功能
-- 2017-09-06 v1.0.0
-  - 升级架构，抽象编辑器操作模块，大幅提升可扩展性
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 

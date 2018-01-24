@@ -38,6 +38,14 @@ export default class DropDown extends React.Component {
 
   }
 
+  componentDidUpdate (prevState) {
+
+    if (!prevState.active && this.state.active) {
+      this.fixDropDownPosition()
+    }
+
+  }
+
   componentWillUnmount () {
 
     document.body.removeEventListener('click', (event) => {

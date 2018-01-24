@@ -49,6 +49,7 @@ export default class Modal extends React.Component {
   }
 
   unrenderComponent () {
+    this.activeId && window.clearImmediate(this.activeId)
     this.rootElement.classList.remove('active')
   }
 
@@ -91,7 +92,7 @@ export default class Modal extends React.Component {
 
     ReactDOM.render(childComponent, this.rootElement)
 
-    window.setImmediate(() => {
+    this.activeId = window.setImmediate(() => {
       this.rootElement.classList.add('active')
     })
 

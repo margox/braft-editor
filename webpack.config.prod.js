@@ -32,10 +32,13 @@ module.exports = merge(baseConfigs, {
     }),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /.css$/,
+      cssProcessor: require('cssnano'),
       cssProcessorOptions: {
         discardComments: {
           removeAll: true
-        }
+        },
+        zindex: false,
+        safe: true
       }
     }),
     new webpack.optimize.UglifyJsPlugin({

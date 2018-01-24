@@ -47,6 +47,10 @@ export default class MediaPicker extends React.Component {
 
   }
 
+  componentWillUnmount () {
+    this.pickerModal && this.pickerModal.close()
+  }
+
   render () {
 
     const { media, language } = this.props
@@ -77,6 +81,7 @@ export default class MediaPicker extends React.Component {
         onCancel={this.hide}
         onConfirm={this.confirmInsertMedia}
         confirmText={language.mediaPicker.confirmInsert}
+        ref={instance => this.pickerModal = instance}
       >
         <div className="braft-media-picker">
           <div className="braft-media-uploader">
@@ -100,7 +105,9 @@ export default class MediaPicker extends React.Component {
             <div className="braft-media-add-external">
               <div className="braft-media-external-form">
                 <div className="braft-media-external-input">
-                  <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
+                  <div>
+                    <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
+                  </div>
                   <button onClick={this.confirmAddExternal} disabled={!external.url.trim().length}>{language.base.confirm}</button>
                 </div>
                 <div data-type={external.type} className="braft-media-switch-external-type">

@@ -118,7 +118,6 @@ export default class EditorController extends React.Component{
   }
 
   toggleSelectionAlignment = (alignment) => {
-    console.log(alignment)
     return this.setSelectionBlockData({
       textAlign: this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
     })
@@ -255,12 +254,12 @@ export default class EditorController extends React.Component{
   }
 
   focus = () => {
-    this.draftInstance.focus()
+    this.draftInstance && this.draftInstance.focus()
     return this
   }
 
   blur = () => {
-    this.draftInstance.blur()
+    this.draftInstance && this.draftInstance.blur()
     return this
   }
 

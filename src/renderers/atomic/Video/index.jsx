@@ -9,6 +9,10 @@ export default class Video extends React.Component {
     playerVisible: false
   }
 
+  componentWillUnmount () {
+    this.playerModal && this.playerModal.close()
+  }
+
   render () {
 
     const { toolbarVisible, playerVisible } = this.state
@@ -40,7 +44,7 @@ export default class Video extends React.Component {
 
   showPlayer = () => {
 
-    showModal({
+    this.playerModal = showModal({
       title: this.props.language.videoPlayer.title,
       width: 480,
       confirmable: true,
@@ -69,7 +73,7 @@ export default class Video extends React.Component {
   }
 
   handlePlayerClose = () => {
-    this.props.editor.focus()
+    this.props.editor && this.props.editor.focus()
   }
 
 }
