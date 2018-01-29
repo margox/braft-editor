@@ -18,11 +18,7 @@ export default class MediaPicker extends React.Component {
     confirmable: false,
     external: {
       url: '',
-      type: [
-        this.props.media.image ? 'IMAGE' : null,
-        this.props.media.video ? 'VIDEO' : null,
-        this.props.media.audio ? 'AUDIO' : null,
-      ].filter(item => item)[0]
+      type: 'IMAGE'
     },
     files: []
   }
@@ -34,6 +30,15 @@ export default class MediaPicker extends React.Component {
   ].filter(item => item).join(',')
 
   componentDidMount () {
+
+    const { media } = this.props
+
+    this.setState({
+      external: {
+        url: '',
+        type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : ''
+      }
+    })
 
     this.mediaLibrary = this.props.mediaLibrary
     this.mediaLibrary.uploadFn = this.props.media.uploadFn || null
@@ -47,6 +52,19 @@ export default class MediaPicker extends React.Component {
 
   }
 
+  componentWillReceiveProps (nextProps) {
+
+    const { media } = nextProps
+
+    this.setState({
+      external: {
+        url: '',
+        type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : ''
+      }
+    })
+
+  }
+
   componentWillUnmount () {
     this.pickerModal && this.pickerModal.close()
   }
@@ -55,7 +73,10 @@ export default class MediaPicker extends React.Component {
 
     const { media, language } = this.props
     const { files, visible, external, draging, confirmable, showExternalForm } = this.state
-    const bottomText = (
+
+    const allowExternalMedia = media.externalMedias &&  (media.externalMedias.image || media.externalMedias.audio || media.externalMedias.video)
+
+    const bottomText = allowExternalMedia ? (
       <span 
         onClick={this.toggleExternalMode}
         className="braft-media-toggle-external-mode"
@@ -66,7 +87,7 @@ export default class MediaPicker extends React.Component {
           <span><i className="icon-add"></i> {language.mediaPicker.addExternalSource}</span>
         )}
       </span>
-    )
+    ) : null
 
     return (
       <Modal
@@ -101,7 +122,7 @@ export default class MediaPicker extends React.Component {
               </span>
             </div>
           )}
-          {showExternalForm ? (
+          {showExternalForm && allowExternalMedia ? (
             <div className="braft-media-add-external">
               <div className="braft-media-external-form">
                 <div className="braft-media-external-input">
@@ -111,9 +132,9 @@ export default class MediaPicker extends React.Component {
                   <button onClick={this.confirmAddExternal} disabled={!external.url.trim().length}>{language.base.confirm}</button>
                 </div>
                 <div data-type={external.type} className="braft-media-switch-external-type">
-                  <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button>
-                  <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button>
-                  <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button>
+                  {media.externalMedias.image ? <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button> : null}
+                  {media.externalMedias.audio ? <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button> : null}
+                  {media.externalMedias.video ? <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button> : null}
                 </div>
                 <span className="braft-media-external-tip">{language.mediaPicker.externalInputTip}</span>
               </div>
@@ -148,7 +169,7 @@ export default class MediaPicker extends React.Component {
               previewerComponents = (
                 <div className="braft-media-image">
                   {progressMarker}
-                  <img src={file.thumbnail} />
+                  <img src={file.thumbnail || file.url} />
                 </div>
               )
             break

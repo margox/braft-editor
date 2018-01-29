@@ -12,7 +12,7 @@ export default class Image extends React.Component {
 
   render () {
 
-    const { mediaData, language } = this.props
+    const { mediaData, language, imageControls } = this.props
     const { toolbarVisible, toolbarOffset, linkEditorVisible } = this.state
     const blockData = this.props.block.getData()
 
@@ -65,13 +65,13 @@ export default class Image extends React.Component {
                 </div>
               </div>
             )}
-            <a data-float="left" onClick={this.setImageFloat}>&#xe91e;</a>
-            <a data-float="right" onClick={this.setImageFloat}>&#xe914;</a>
-            <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a>
-            <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a>
-            <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a>
-            <a className={link ? 'active' : ''} onClick={this.toggleLinkEditor}>&#xe91a;</a>
-            <a onClick={this.removeImage}>&#xe9ac;</a>
+            {imageControls.floatLeft ? <a data-float="left" onClick={this.setImageFloat}>&#xe91e;</a> : null}
+            {imageControls.floatRight ? <a data-float="right" onClick={this.setImageFloat}>&#xe914;</a> : null}
+            {imageControls.alignLeft ? <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a> : null}
+            {imageControls.alignCenter ? <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a> : null}
+            {imageControls.alignRight ? <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a> : null}
+            {imageControls.link ? <a className={link ? 'active' : ''} onClick={this.toggleLinkEditor}>&#xe91a;</a> : null}
+            {imageControls.remove ? <a onClick={this.removeImage}>&#xe9ac;</a> : null}
             <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
           </div>
           )}

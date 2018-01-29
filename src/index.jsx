@@ -71,12 +71,11 @@ export default class BraftEditor extends EditorController {
 
     let {
       controls, extendControls, height, media, language, colors,
-      fontSizes, fontFamilies, emojis, viewWrapper, placeholder
+      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls
     } = this.props
 
     const { tempColors } = this.state
 
-    media = { ...defaultOptions.media, ...media }
     controls = controls || defaultOptions.controls
     extendControls = extendControls || defaultOptions.extendControls
     language = languages[language] || languages[defaultOptions.language]
@@ -85,6 +84,18 @@ export default class BraftEditor extends EditorController {
     fontFamilies = fontFamilies || defaultOptions.fontFamilies
     emojis = emojis || defaultOptions.emojis
     height = height || defaultOptions.height
+
+    const externalMedias = media && media.externalMedias ? {
+      ...defaultOptions.media.externalMedias,
+      ...media.externalMedias
+    } : defaultOptions.media.externalMedias
+
+    media = { ...defaultOptions.media, ...media, externalMedias }
+
+    imageControls = imageControls ? {
+      ...defaultOptions.imageControls,
+      ...imageControls
+    } : defaultOptions.imageControls
 
     this.colorList = [ ...colors, ...tempColors ]
     this.fontSizeList = fontSizes
@@ -102,7 +113,7 @@ export default class BraftEditor extends EditorController {
     }
 
     const blockRendererFn = getBlockRendererFn({
-      editor: this,
+      editor: this, imageControls,
       language, viewWrapper
     })
 

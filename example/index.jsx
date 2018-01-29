@@ -7,7 +7,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialContent: '',
+      initialContent: 'hello world!',
       htmlContent: '',
     }
   }
@@ -148,8 +148,15 @@ class Demo extends React.Component {
             ref={(instance) => window.editor = instance} 
             language="zh"
             media={{
-              uploadFn: this.uploadFn,
-              validateFn: this.validateFn
+              // uploadFn: this.uploadFn,
+              // validateFn: this.validateFn
+              externalMedias: {
+                image: false
+              }
+            }}
+            imageControls={{
+              floatLeft: false,
+              floatRight: false
             }}
             contentFormat="html"
             initialContent={this.state.initialContent}

@@ -13,7 +13,21 @@ export default {
     video: true,
     audio: true,
     uploadFn: null,
-    sourceFn: null
+    sourceFn: null,
+    externalMedias: {
+      audio: true,
+      video: true,
+      image: true
+    }
+  },
+  imageControls: {
+    floatLeft: true,
+    floatRight: true,
+    alignLeft: true,
+    alignCenter: true,
+    alignRight: true,
+    link: true,
+    remove: true
   },
   colors: [
     '#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff',

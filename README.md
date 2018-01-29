@@ -5,6 +5,10 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-01-29 v1.2.0
+  - 支持配置可插入的外部媒体类型(感谢[@jane900618](https://github.com/jane900618)建议)
+  - 支持配置图片的工具栏按钮(感谢[@jane900618](https://github.com/jane900618)建议)
+  - 部分细节优化
 - 2018-01-24 v1.1.14
   - 支持纯文本粘贴(感谢[@IveChen](https://github.com/IveChen)建议) + 部分细节优化
 - 2018-01-24 v1.1.13
@@ -362,6 +366,30 @@ const uploadFn = (param) => {
   xhr.open('POST', serverURL, true)
   xhr.send(fd)
 
+}
+```
+
+#### media.externalMedias [object]
+配置编辑器可插入的外部网络媒体类型，默认值如下：
+```javascript
+{
+  image: true,
+  audio: true,
+  video: true
+}
+// 如果以上三个值皆为false，则不允许插入任何外部媒体，也不会显示插入外部媒体的入口
+```
+
+#### imageControls [object]
+配置图片工具栏(tooltip)可用的按钮，默认值如下：
+```javascript
+{
+  floatLeft: true,
+  floatRight: true,
+  alignLeft: true,
+  alignCenter: true,
+  alignRight: true,
+  link: true
 }
 ```
 
