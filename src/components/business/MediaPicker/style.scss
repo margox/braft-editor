@@ -4,6 +4,12 @@
   position: relative;
   height: 370px;
   margin: 0;
+  &.draging{
+    .braft-media-list-wrap,
+    .braft-media-add-external{
+      pointer-events: none;
+    }
+  }
   input::-webkit-input-placeholder{
     color: #ccc;
   }
@@ -31,6 +37,8 @@
   }
 }
 .braft-media-list{
+  position: relative;
+  z-index: 1;
   margin: 0;
   padding: 0 10px;
   list-style: none;
@@ -84,7 +92,6 @@
   color: #999;
   &:hover{
     background-color: #e1e2e3;
-    color: $COLOR_ACTIVE;
   }
   i{
     display: block;
@@ -188,6 +195,10 @@
   font-size: 18px;
   line-height: 28px;
   text-align: center;
+  cursor: pointer;
+  &:hover{
+    color: $COLOR_DANGER;
+  }
 }
 
 .braft-media-item-title{
@@ -254,16 +265,25 @@
 }
 
 .braft-media-drag-uploader{
-  height: 368px;
-  margin: 0 15px;
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 15px;
+  left: 15px;
+  height: 100%;
+  background-color: #fff;
   border: dashed 1px #bbb;
-  border-radius: 3px;
   text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  &:hover,
+  &.draging{
+    background-color: #f1f2f3;
+  }
   &.active{
-    border-color: rgba($COLOR_ACTIVE, 1);
-    .braft-media-drag-tip{
-      color: $COLOR_ACTIVE;
-    }
+    opacity: 1;
+    pointer-events: auto;
   }
 }
 
@@ -281,9 +301,6 @@
   font-size: 28px;
   font-weight: normal;
   line-height: 40px;
-  &:hover{
-    color: $COLOR_ACTIVE;
-  }
   input{
     position: absolute;
     top: 0;

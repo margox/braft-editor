@@ -35,7 +35,6 @@ class Demo extends React.Component {
     }
 
     const errorFn = (response) => {
-      // 自动从媒体库移除上传失败的内容
       param.error({
         msg: 'unable to upload.'
       })
@@ -147,17 +146,6 @@ class Demo extends React.Component {
             placeholder={"Hello World!"}
             ref={(instance) => window.editor = instance} 
             language="zh"
-            media={{
-              // uploadFn: this.uploadFn,
-              // validateFn: this.validateFn
-              externalMedias: {
-                image: false
-              }
-            }}
-            imageControls={{
-              floatLeft: false,
-              floatRight: false
-            }}
             contentFormat="html"
             initialContent={this.state.initialContent}
             extendControls={extendControls}

@@ -95,6 +95,20 @@ const blockToHTML = (contentState) => (block) => {
       start: `<${blocks[blockType]}${blockStyle}>`,
       end: `</${blocks[blockType]}>`
     }
+  } else if (blockType === 'unordered-list-item') {
+    return {
+      start: `<li${blockStyle}>`,
+      end: '</li>',
+      nestStart: '<ul>',
+      nestEnd: '</ul>'
+    }
+  } else if (blockType === 'ordered-list-item') {
+    return {
+      start: `<li${blockStyle}>`,
+      end: '</li>',
+      nestStart: '<ol>',
+      nestEnd: '</ol>'
+    }
   }
 
 }

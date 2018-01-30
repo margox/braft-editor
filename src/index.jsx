@@ -7,12 +7,17 @@ import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, Conte
 import { convertToHTML, convertFromHTML } from 'draft-convert'
 import { handleNewLine } from 'draftjs-utils'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
+import keyBindingFn from 'configs/keybindings'
 import defaultOptions from 'configs/options'
 import EditorController from 'controller'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 import MediaLibrary from 'helpers/MediaLibrary'
 import { detectColorsFromHTML } from 'helpers/colors'
+
+// TODO
+// 允许直接拖放媒体到编辑器区域
+// 允许直接粘贴图片到编辑器
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -129,7 +134,8 @@ export default class BraftEditor extends EditorController {
       handleReturn: this.handleReturn,
       handlePastedText: this.handlePastedText,
       onChange: this.onChange,
-      customStyleMap, blockStyleFn,
+      onTab: this.onTab,
+      customStyleMap, blockStyleFn, keyBindingFn,
       blockRendererFn, blockRenderMap, placeholder,
       ...this.state.editorProps
     }
@@ -246,14 +252,33 @@ export default class BraftEditor extends EditorController {
 
   handleKeyCommand = (command) => {
 
+    if (command === 'braft-save') {
+      this.props.onSave && this.props.onSave()
+      return 'handled'
+    }
+
     const nextEditorState = RichUtils.handleKeyCommand(this.editorState, command)
 
     if (nextEditorState) {
       this.onChange(nextEditorState)
-      return true
+      return 'handled'
     }
 
-    return false
+    return 'not-handled'
+
+  }
+
+  onTab = (event) => {
+
+    const currentBlock = this.getSelectionBlock()
+    const currentBlockType = currentBlock.getType()
+    const tabIndents = this.props.tabIndents || defaultOptions.tabIndents
+
+    if (currentBlockType === 'code-block') {
+      this.insertText(' '.repeat(tabIndents), false)
+      event.preventDefault()
+      return false
+    }
 
   }
 

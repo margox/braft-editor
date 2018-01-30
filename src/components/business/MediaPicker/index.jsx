@@ -3,6 +3,9 @@ import React from 'react'
 import Modal from 'components/common/Modal'
 import { UniqueIndex } from 'utils/base'
 
+// TODO
+// 允许删除所选项目
+
 const imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg'
 const videoMediaType = 'video/mp4'
 const audioMediaType = 'audio/mp3'
@@ -22,6 +25,8 @@ export default class MediaPicker extends React.Component {
     },
     files: []
   }
+
+  dragCounter = 0
 
   mediaFileAccept = [
     this.props.media.image ? imageMediaType : null,
@@ -105,41 +110,41 @@ export default class MediaPicker extends React.Component {
         ref={instance => this.pickerModal = instance}
       >
         <div className="braft-media-picker">
-          <div className="braft-media-uploader">
-          {files.length ? (
-            <div className="braft-media-list-wrap">
-              {this.buildMediaList()}
-            </div>
-          ) : (
-            <div
-              onDragEnter={this.handleDragEnter}
-              onDragLeave={this.handleDragLeave}
-              className={"braft-media-drag-uploader " + (draging ? 'active' : '')}
-            >
+          <div
+            onDragEnter={this.handleDragEnter}
+            onDragLeave={this.handleDragLeave}
+            onDrop={this.handleDragDrop}
+            className="braft-media-uploader"
+          >
+            <div className={"braft-media-drag-uploader " + (draging || !files.length ? 'active ' : ' ') + (draging ? 'draging' : '')}>
               <span className="braft-media-drag-tip">
                 <input accept={this.mediaFileAccept} onChange={this.handleFilesPicked} multiple type="file"/>
                 {draging ? language.mediaPicker.dropTip : language.mediaPicker.dragTip}
               </span>
             </div>
-          )}
-          {showExternalForm && allowExternalMedia ? (
-            <div className="braft-media-add-external">
-              <div className="braft-media-external-form">
-                <div className="braft-media-external-input">
-                  <div>
-                    <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
-                  </div>
-                  <button onClick={this.confirmAddExternal} disabled={!external.url.trim().length}>{language.base.confirm}</button>
-                </div>
-                <div data-type={external.type} className="braft-media-switch-external-type">
-                  {media.externalMedias.image ? <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button> : null}
-                  {media.externalMedias.audio ? <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button> : null}
-                  {media.externalMedias.video ? <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button> : null}
-                </div>
-                <span className="braft-media-external-tip">{language.mediaPicker.externalInputTip}</span>
+            {files.length ? (
+              <div className="braft-media-list-wrap">
+                {this.buildMediaList()}
               </div>
-            </div>
-          ) : null}
+            ) : null}
+            {showExternalForm && allowExternalMedia ? (
+              <div className="braft-media-add-external">
+                <div className="braft-media-external-form">
+                  <div className="braft-media-external-input">
+                    <div>
+                      <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
+                    </div>
+                    <button onClick={this.confirmAddExternal} disabled={!external.url.trim().length}>{language.base.confirm}</button>
+                  </div>
+                  <div data-type={external.type} className="braft-media-switch-external-type">
+                    {media.externalMedias.image ? <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button> : null}
+                    {media.externalMedias.audio ? <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button> : null}
+                    {media.externalMedias.video ? <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button> : null}
+                  </div>
+                  <span className="braft-media-external-tip">{language.mediaPicker.externalInputTip}</span>
+                </div>
+              </div>
+            ) : null}
           </div>
         </div>
       </Modal>
@@ -245,12 +250,22 @@ export default class MediaPicker extends React.Component {
   }
 
   handleDragLeave = (e) => {
+    this.dragCounter --
+    this.dragCounter === 0 && this.setState({
+      draging: false
+    })
+  }
+
+  handleDragDrop = (e) => {
+    this.dragCounter = 0
     this.setState({
       draging: false
     })
   }
 
   handleDragEnter = (e) => {
+    e.preventDefault()
+    this.dragCounter ++
     this.setState({
       draging: true
     })
