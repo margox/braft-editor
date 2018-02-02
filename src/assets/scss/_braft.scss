@@ -17,6 +17,12 @@
   padding: 0;
   overflow: hidden;
 
+  &.disabled{
+    pointer-events: none;
+    opacity: .7;
+    filter: grayscale(70%);
+  }
+
   .input-group{
     display: block;
     input{

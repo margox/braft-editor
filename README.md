@@ -5,8 +5,10 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-02-02 v1.3.1
+  - 新增disabled属性，用以禁用编辑功能
 - 2018-01-30 v1.3.0
-  - 支持编辑代码块是按tab插入缩进，并可配置缩进空格数(感谢[@atmjs](https://github.com/atmjs)建议)
+  - 支持编辑代码块时按tab插入缩进，并可配置缩进空格数(感谢[@atmjs](https://github.com/atmjs)建议)
   - 支持列表项目的文字居中\居右显示(感谢[@ug1989](https://github.com/ug1989)反馈)
   - 修复媒体库拖放上传功能异常的问题(感谢[@jane900618](https://github.com/jane900618)反馈)
   - 部分细节优化
@@ -190,6 +192,11 @@ class Demo extends React.Component {
   }
 ]
 ```
+
+### disabled [boolean]
+
+是否禁用编辑功能，默认false
+
 
 ### height [number]
 

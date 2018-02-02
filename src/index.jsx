@@ -75,7 +75,7 @@ export default class BraftEditor extends EditorController {
   render() {
 
     let {
-      controls, extendControls, height, media, language, colors,
+      controls, extendControls, disabled, height, media, language, colors,
       fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls
     } = this.props
 
@@ -135,13 +135,14 @@ export default class BraftEditor extends EditorController {
       handlePastedText: this.handlePastedText,
       onChange: this.onChange,
       onTab: this.onTab,
+      readOnly: disabled,
       customStyleMap, blockStyleFn, keyBindingFn,
       blockRendererFn, blockRenderMap, placeholder,
       ...this.state.editorProps
     }
 
     return (
-      <div className="BraftEditor-container">
+      <div className={"BraftEditor-container " + (disabled ? 'disabled' : '')}>
         <ControlBar {...controlBarProps}/>
         <div className="BraftEditor-content" style={{height}}>
           <Editor { ...editorProps }/>
