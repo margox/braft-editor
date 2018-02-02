@@ -1,4 +1,9 @@
 import en from './en'
 import zh from './zh'
+import zhHant from './zh-hant'
 
-export default { en, zh }
+export default {
+  "en": en,
+  "zh": zh,
+  "zh-hant": zhHant
+}

@@ -5,6 +5,8 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-02-02 v1.3.2
+  - 新增繁体中文语言[zh-hant]，感谢[@JackLam](https://github.com/lamjack)的贡献
 - 2018-02-02 v1.3.1
   - 新增disabled属性，用以禁用编辑功能
 - 2018-01-30 v1.3.0
@@ -41,7 +43,7 @@
 - 允许设置编辑器可用的颜色列表、字号以及字体
 - 允许自定义需要展示的控制按钮和展示顺序
 - 允许增加额外的自定义按钮
-- 多语言支持（目前已支持简体中文和英文）
+- 多语言支持（目前已支持简体中文、繁体中文和英文）
 - ...更多特性开发中
 
 ## 安装
@@ -205,7 +207,7 @@ class Demo extends React.Component {
 
 ### language [string]
 
-指定编辑器的语言，目前支持zh和en，默认zh
+指定编辑器的语言，目前支持zh、zh-hant和en，默认zh
 
 
 ### placeholder [string]
