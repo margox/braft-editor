@@ -5,19 +5,14 @@ import { UniqueIndex } from 'utils/base'
 
 export default class Modal extends React.Component {
 
+  active = false
   componentId = 'BRAFT-MODAL-' + UniqueIndex()
-  state = {
-    visible: false
-  }
 
   componentDidMount () {
 
     if (this.props.visible) {
-      this.setState({
-        visible: true
-      }, () => {
-        this.renderComponent(this.props)
-      })
+      this.active = true
+      this.renderComponent(this.props)
     }
 
   }
@@ -27,6 +22,7 @@ export default class Modal extends React.Component {
     if (this.props.visible && !next.visible) {
       this.unrenderComponent()
     } else if (this.props.visible || next.visible) {
+      this.active = true
       this.renderComponent(next)
     }
 
@@ -49,6 +45,7 @@ export default class Modal extends React.Component {
   }
 
   unrenderComponent () {
+    this.active = false
     this.activeId && window.clearImmediate(this.activeId)
     if (this.rootElement && this.rootElement.classList) {
       this.rootElement.classList.remove('active')
@@ -56,6 +53,10 @@ export default class Modal extends React.Component {
   }
 
   renderComponent (props) {
+
+    if (!this.active) {
+      return false
+    }
 
     let { title, className, width, height, children, confirmable, showCancel, showConfirm, showClose, cancelText, confirmText, bottomText, language } = props
 
@@ -149,8 +150,10 @@ export const showModal = (props) => {
     closeOnCancel: true
   }
 
-  ReactDOM.render(<Modal {...props} {...extProps}/>, host)
+  const modalInstance = ReactDOM.render(<Modal { ...props } { ...extProps }/>, host)
+  modalInstance.destroy = close
+  modalInstance.update = modalInstance.renderComponent
 
-  return { close }
+  return modalInstance
 
 }

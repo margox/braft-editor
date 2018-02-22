@@ -5,6 +5,9 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-02-22 v1.4.0
+  - 尝试修复自定义弹窗(extendControls/modal)内容无法动态更新的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
+  - 修复代码块转换出错的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
 - 2018-02-02 v1.3.2
   - 新增繁体中文语言[zh-hant]，感谢[@JackLam](https://github.com/lamjack)的贡献
 - 2018-02-02 v1.3.1
@@ -18,16 +21,6 @@
   - 支持配置可插入的外部媒体类型(感谢[@jane900618](https://github.com/jane900618)建议)
   - 支持配置图片的工具栏按钮(感谢[@jane900618](https://github.com/jane900618)建议)
   - 部分细节优化
-- 2018-01-24 v1.1.14
-  - 支持纯文本粘贴(感谢[@IveChen](https://github.com/IveChen)建议) + 部分细节优化
-- 2018-01-24 v1.1.13
-  - 部分BUG修复+UI优化
-- 2018-01-24 v1.1.12
-  - 增强与Ant.Design的兼容性
-- 2018-01-22 v1.1.11
-  - 修复内容初始化时候的错误
-- 2018-01-19 v1.1.10
-  - 修复safari等浏览器下部分操作无效的问题
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -177,6 +170,7 @@ class Demo extends React.Component {
     type: 'modal',
     text: 'Bar',
     modal: {
+      id: 'test-modal', // v1.4.0新增
       title: '这是一个弹出框',
       showClose: true,
       showCancel: true,
@@ -194,6 +188,7 @@ class Demo extends React.Component {
   }
 ]
 ```
+> 使用自定义的弹窗组件时，必须为modal指定一个id，以保证modal内容能动态更新
 
 ### disabled [boolean]
 

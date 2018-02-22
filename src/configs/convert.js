@@ -86,10 +86,34 @@ const blockToHTML = (contentState) => (block) => {
   if (blockType === 'atomic') {
     return convertAtomicBlock(block, contentState)
   } else if (blockType === 'code-block') {
-    return {
-      start: `<pre><code${blockStyle}>`,
-      end: '</code></pre>'
+
+    const previousBlock = contentState.getBlockBefore(block.key)
+    const nextBlock = contentState.getBlockAfter(block.key)
+    const previousBlockType = previousBlock && previousBlock.getType()
+    const nextBlockType = nextBlock && nextBlock.getType()
+
+    if (previousBlockType === 'code-block' && nextBlockType === 'code-block') {
+      return {
+        start: `<code${blockStyle}><div>`,
+        end: '</div></code>'
+      }
+    } else if (previousBlockType === 'code-block') {
+      return {
+        start: `<code${blockStyle}><div>`,
+        end: '</div></code></pre>'
+      }
+    } else if (nextBlockType === 'code-block') {
+      return {
+        start: `<pre><code${blockStyle}><div>`,
+        end: '</div></code>'
+      }
+    } else {
+      return {
+        start: `<pre><code${blockStyle}><div>`,
+        end: '</div></code></pre>'
+      }
     }
+
   } else if (blocks[blockType]) {
     return {
       start: `<${blocks[blockType]}${blockStyle}>`,

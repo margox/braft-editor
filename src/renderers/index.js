@@ -1,5 +1,6 @@
 import React from 'react'
 import { Map } from 'immutable'
+import { DefaultDraftBlockRenderMap } from 'draft-js'
 import Image from './atomic/Image'
 import Video from './atomic/Video'
 import Audio from './atomic/Audio'
@@ -42,6 +43,10 @@ export const getBlockRendererFn = (props) => (block) => {
 export const customBlockRenderMap = Map({
   'atomic': {
     element: ''
+  },
+  'code-block': {
+    element: 'code',
+    wrapper: DefaultDraftBlockRenderMap.get('code-block').wrapper
   }
 })
 

@@ -17,6 +17,23 @@ export default class ControlBar extends React.Component {
   mediaPicker = null
   videoPicker = null
   audioPicker = null
+  extendedModals = {}
+
+  componentDidUpdate () {
+
+    const { extendControls, language } = this.props
+
+    extendControls.forEach(item => {
+
+      if (item.type === 'modal') {
+        if (item.modal && item.modal.id && this.extendedModals[item.modal.id]) {
+          this.extendedModals[item.modal.id].update({ ...item.modal, language })
+        }
+      }
+
+    })
+
+  }
 
   render () {
 
@@ -25,7 +42,7 @@ export default class ControlBar extends React.Component {
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, language, viewWrapper }
 
-    const renderedextendControls = extendControls.map((item, index) => {
+    const renderedExtendControls = extendControls.map((item, index) => {
 
       if (item.type === 'split') {
         return <span key={controls.length * 2 + index} className="split-line"></span>
@@ -54,9 +71,14 @@ export default class ControlBar extends React.Component {
             title={item.title}
             className={'control-item button ' + item.className}
             onClick={() => {
-              item.modal && showModal({
-                ...item.modal, language
-              })
+              if (item.modal && item.modal.id) {
+                if (this.extendedModals[item.modal.id]) {
+                  this.extendedModals[item.modal.id].active = true
+                  this.extendedModals[item.modal.id].update({ ...item.modal, language })
+                } else {
+                  this.extendedModals[item.modal.id] = showModal({ ...item.modal, language })
+                }
+              }
             }}
           >
           {item.text}
@@ -203,7 +225,7 @@ export default class ControlBar extends React.Component {
 
           })
         }
-        {renderedextendControls}
+        {renderedExtendControls}
       </div>
     )
 

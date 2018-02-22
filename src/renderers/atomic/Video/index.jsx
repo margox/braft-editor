@@ -10,7 +10,7 @@ export default class Video extends React.Component {
   }
 
   componentWillUnmount () {
-    this.playerModal && this.playerModal.close()
+    this.playerModal && this.playerModal.destroy()
   }
 
   render () {

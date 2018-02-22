@@ -9,6 +9,7 @@ class Demo extends React.Component {
     this.state = {
       initialContent: 'hello world!',
       htmlContent: '',
+      modalContent: 1
     }
   }
 
@@ -100,6 +101,14 @@ class Demo extends React.Component {
 
   }
 
+  componentDidMount () {
+    setInterval(() => {
+      this.setState({
+        modalContent: this.state.modalContent + 1
+      })
+    }, 5000)
+  }
+
   render() {
 
     const extendControls = [
@@ -120,6 +129,7 @@ class Demo extends React.Component {
         text: '弹出框',
         className: 'modal-button',
         modal: {
+          id: 'test-modal',
           title: '这是一个弹出框',
           showClose: true,
           showCancel: true,
@@ -130,7 +140,7 @@ class Demo extends React.Component {
           onClose: () => console.log(3),
           children: (
             <div style={{width: 480, height: 320, padding: 30}}>
-              <span>Hello World！</span>
+              <span>{this.state.modalContent}</span>
             </div>
           )
         }

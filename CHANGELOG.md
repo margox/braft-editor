@@ -1,4 +1,7 @@
 ## 更新记录
+- 2018-02-22 v1.4.0
+  - 修复自定义弹窗(extendControls/modal)内容无法动态更新的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
+  - 修复代码块转换出错的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
 - 2018-02-02 v1.3.2
   - 新增繁体中文语言[zh-hant]，感谢[@JackLam](https://github.com/lamjack)的贡献
 - 2018-02-02 v1.3.1
