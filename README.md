@@ -6,7 +6,7 @@
 
 ## 最近更新
 - 2018-02-23 v1.4.1
-  - 修复在Ant.Design中会导致表单非正常提交的问题，感谢(@tgy931)[https://github.com/tgy931]提交的PR
+  - 修复在Ant.Design中会导致表单非正常提交的问题，感谢[@tgy9310](https://github.com/tgy931)提交的PR
 - 2018-02-22 v1.4.0
   - 尝试修复自定义弹窗(extendControls/modal)内容无法动态更新的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
   - 修复代码块转换出错的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
