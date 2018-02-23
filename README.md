@@ -5,6 +5,8 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-02-23 v1.4.1
+  - 修复在Ant.Design中会导致表单非正常提交的问题，感谢(@tgy931)[https://github.com/tgy931]提交的PR
 - 2018-02-22 v1.4.0
   - 尝试修复自定义弹窗(extendControls/modal)内容无法动态更新的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
   - 修复代码块转换出错的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
@@ -16,10 +18,6 @@
   - 支持编辑代码块时按tab插入缩进，并可配置缩进空格数(感谢[@atmjs](https://github.com/atmjs)建议)
   - 支持列表项目的文字居中\居右显示(感谢[@ug1989](https://github.com/ug1989)反馈)
   - 修复媒体库拖放上传功能异常的问题(感谢[@jane900618](https://github.com/jane900618)反馈)
-  - 部分细节优化
-- 2018-01-29 v1.2.0
-  - 支持配置可插入的外部媒体类型(感谢[@jane900618](https://github.com/jane900618)建议)
-  - 支持配置图片的工具栏按钮(感谢[@jane900618](https://github.com/jane900618)建议)
   - 部分细节优化
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
