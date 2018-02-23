@@ -67,6 +67,7 @@ export default class ControlBar extends React.Component {
 
         return (
           <button
+            type="button"
             key={controls.length * 2 + index}
             title={item.title}
             className={'control-item button ' + item.className}
@@ -89,6 +90,7 @@ export default class ControlBar extends React.Component {
 
         return (
           <button
+            type="button"
             key={controls.length * 2 + index}
             title={item.title}
             className={'control-item button ' + item.className}
@@ -194,6 +196,7 @@ export default class ControlBar extends React.Component {
 
               return (
                 <button
+                  type="button"
                   key={index}
                   title={controlItem.title}
                   className='control-item button'
@@ -212,6 +215,7 @@ export default class ControlBar extends React.Component {
 
               return (
                 <button
+                  type="button"
                   key={index}
                   title={controlItem.title}
                   className={buttonClassName}
