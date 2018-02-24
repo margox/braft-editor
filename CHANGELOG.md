@@ -1,4 +1,6 @@
 ## 更新记录
+- 2018-02-24 v1.4.2
+  - 修复在IE11浏览器中无法选择多媒体文件的问题(感谢[@Errshao](https://github.com/Errshao)反馈)
 - 2018-02-23 v1.4.1
   - 修复在Ant.Design中会导致表单非正常提交的问题，感谢[@tgy9310](https://github.com/tgy931)提交的PR
 - 2018-02-22 v1.4.0
