@@ -8,7 +8,7 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialContent: 'hello world!',
+      initialContent: `<pre><code><div><code>function foo () {</code></div></code><code><div><code>  console.log('Hello World!')</code></div></code><code><div><code>}</code></div></code><code><div><br></div></code><code><div><code>console.log(123)</code></div></code></pre>`,
       htmlContent: '',
       modalContent: 1
     }

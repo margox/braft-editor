@@ -6,7 +6,7 @@ import languages from 'languages'
 import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
 import { convertToHTML, convertFromHTML } from 'draft-convert'
 import { handleNewLine } from 'draftjs-utils'
-import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
+import { getToHTMLConfig, getFromHTMLConfig, convertCodeBlock } from 'configs/convert'
 import keyBindingFn from 'configs/keybindings'
 import defaultOptions from 'configs/options'
 import EditorController from 'controller'
@@ -216,8 +216,9 @@ export default class BraftEditor extends EditorController {
     contentFormat = format || contentFormat || 'raw'
 
     if (contentFormat === 'html') {
+      content = content
       newState.tempColors = [ ...this.state.tempColors, ...detectColorsFromHTML(content) ].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-      convertedContent = convertFromHTML(getFromHTMLConfig())(content)
+      convertedContent = convertFromHTML(getFromHTMLConfig())(convertCodeBlock(content))
     } else if (contentFormat === 'raw') {
       convertedContent = convertFromRaw(content)
     }
@@ -336,7 +337,7 @@ export default class BraftEditor extends EditorController {
     }
 
     const { tempColors } = this.state
-    const blockMap = convertFromHTML(getFromHTMLConfig())(html || text).blockMap
+    const blockMap = convertFromHTML(getFromHTMLConfig())(convertCodeBlock(html || text)).blockMap
     const nextContentState = Modifier.replaceWithFragment(this.contentState, this.selectionState, blockMap)
     const presetColors = this.props.colors || defaultOptions.colors
 

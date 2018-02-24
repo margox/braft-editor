@@ -5,6 +5,8 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-02-24 v1.4.3
+  - 提升代码块功能稳定性
 - 2018-02-24 v1.4.2
   - 修复在IE11浏览器中无法选择多媒体文件的问题(感谢[@Errshao](https://github.com/Errshao)反馈)
 - 2018-02-23 v1.4.1
