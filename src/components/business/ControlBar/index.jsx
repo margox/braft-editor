@@ -49,16 +49,21 @@ export default class ControlBar extends React.Component {
         return <span key={controls.length * 2 + index} className="split-line"></span>
       } else if (item.type === 'dropdown') {
 
-        let { text, className, showDropDownArrow, hoverTitle, component } = item
+        let { disabled, autoHide, html, text, className, showDropDownArrow, hoverTitle, component, arrowActive, ref } = item
 
         return (
           <DropDown
             key={index}
             className={"control-item dropdown " + className}
             caption={text}
+            htmlCaption={html}
             showDropDownArrow={showDropDownArrow}
             viewWrapper={viewWrapper}
             hoverTitle={hoverTitle}
+            arrowActive={arrowActive}
+            autoHide={autoHide}
+            disabled={disabled}
+            ref={ref}
           >
             {component}
           </DropDown>
@@ -70,8 +75,9 @@ export default class ControlBar extends React.Component {
           <button
             type="button"
             key={controls.length * 2 + index}
-            title={item.title}
+            title={item.hoverTitle}
             className={'control-item button ' + item.className}
+            dangerouslySetInnerHTML={item.html ? {__html: item.html} : null}
             onClick={() => {
               if (item.modal && item.modal.id) {
                 if (this.extendedModals[item.modal.id]) {
@@ -83,7 +89,7 @@ export default class ControlBar extends React.Component {
               }
             }}
           >
-          {item.text}
+          {!item.html ? item.text : null}
           </button>
         )
 
@@ -93,11 +99,12 @@ export default class ControlBar extends React.Component {
           <button
             type="button"
             key={controls.length * 2 + index}
-            title={item.title}
+            title={item.hoverTitle}
             className={'control-item button ' + item.className}
+            dangerouslySetInnerHTML={item.html ? {__html: item.html} : null}
             onClick={() => item.onClick()}
           >
-          {item.text}
+          {!item.html ? item.text : null}
           </button>
         )
 

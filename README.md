@@ -5,6 +5,11 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 
 ## 最近更新
+- 2018-02-27 v1.5.0
+  - 支持简单设置图片的宽度和高度
+  - 支持设置扩展控制按钮的html和hoverTitle（感谢[@TnWah](https://github.com/TnWah)反馈）
+  - 优化扩展DropDown组件（感谢[@Belial](https://github.com/cpu220)反馈）
+  - 增强与Ant.Design的兼容性（感谢[@Belial](https://github.com/cpu220)反馈）
 - 2018-02-24 v1.4.3
   - 提升代码块功能稳定性
 - 2018-02-24 v1.4.2
@@ -14,15 +19,6 @@
 - 2018-02-22 v1.4.0
   - 尝试修复自定义弹窗(extendControls/modal)内容无法动态更新的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
   - 修复代码块转换出错的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
-- 2018-02-02 v1.3.2
-  - 新增繁体中文语言[zh-hant]，感谢[@JackLam](https://github.com/lamjack)的贡献
-- 2018-02-02 v1.3.1
-  - 新增disabled属性，用以禁用编辑功能
-- 2018-01-30 v1.3.0
-  - 支持编辑代码块时按tab插入缩进，并可配置缩进空格数(感谢[@atmjs](https://github.com/atmjs)建议)
-  - 支持列表项目的文字居中\居右显示(感谢[@ug1989](https://github.com/ug1989)反馈)
-  - 修复媒体库拖放上传功能异常的问题(感谢[@jane900618](https://github.com/jane900618)反馈)
-  - 部分细节优化
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -161,16 +157,23 @@ class Demo extends React.Component {
   {
     type: 'button',
     text: 'Hello',
+    html: '<span style="color:red;">Hello</span>',
+    hoverTitle: 'Hello World!',
     className: 'preview-button',
     onClick: () => console.log('Hello World!')
   }, {
     type: 'dropdown',
     text: 'Foo',
-    showDropDownArrow: false,
+    html: '<span style="color:blue;">Foo</span>',
+    hoverTitle: 'Hello World!',
+    showDropDownArrow: false, // 是否展示下拉组件顶部的小箭头
+    autoHide: false, // 是否在下拉组件失去焦点后自动关闭下拉组件
     component: <YourComponent />
   }, {
     type: 'modal',
     text: 'Bar',
+    html: '<span style="color:green;">Bar</span>',
+    hoverTitle: 'Hello World!',
     modal: {
       id: 'test-modal', // v1.4.0新增
       title: '这是一个弹出框',
@@ -410,7 +413,8 @@ const uploadFn = (param) => {
   alignLeft: true,
   alignCenter: true,
   alignRight: true,
-  link: true
+  link: true,
+  size: true
 }
 ```
 

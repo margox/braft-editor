@@ -34,7 +34,7 @@ export default class LinkEditor extends React.Component {
         <DropDown
           caption={caption}
           hoverTitle={language.controls.link}
-          hideOnBlur={false}
+          autoHide={false}
           viewWrapper={viewWrapper}
           showDropDownArrow={false}
           disabled={!textSelected}

@@ -8,9 +8,8 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialContent: `<pre><code><div><code>function foo () {</code></div></code><code><div><code>  console.log('Hello World!')</code></div></code><code><div><code>}</code></div></code><code><div><br></div></code><code><div><code>console.log(123)</code></div></code></pre>`,
-      htmlContent: '',
-      modalContent: 1
+      initialContent: '',
+      htmlContent: ''
     }
   }
 
@@ -102,14 +101,6 @@ class Demo extends React.Component {
 
   }
 
-  componentDidMount () {
-    setInterval(() => {
-      this.setState({
-        modalContent: this.state.modalContent + 1
-      })
-    }, 5000)
-  }
-
   render() {
 
     const extendControls = [
@@ -117,16 +108,30 @@ class Demo extends React.Component {
         type: 'split',
       }, {
         type: 'button',
-        text: '预览',
         className: 'preview-button',
+        text: <span>预览</span>,
+        html: '<span style="color:#00f;">预览</span>',
         onClick: this.preview
+      }, {
+        type: 'button',
+        className: 'preview-button',
+        text: <span>增加颜色</span>,
+        onClick: () => {
+          window.editor.addTempColors(['#0099ae', '#0049ae', '#4099ae', '#00c9fe'])
+        }
       }, {
         type: 'dropdown',
         width: 80,
-        text: <span>下拉菜单</span>,
+        disabled: false,
+        arrowActive: false,
+        text: <span>下拉框</span>,
+        html: '<span style="color:#0f0;">下拉框</span>',
+        autoHide: false,
+        ref: instance => window.customDropDown = instance,
         component: <h1 style={{width: 200, color: '#ffffff', padding: 10, margin: 0}}>Hello World!</h1>
       }, {
         type: 'modal',
+        html: '<span style="color:#f00;">弹出框</span>',
         text: '弹出框',
         className: 'modal-button',
         modal: {
@@ -141,7 +146,7 @@ class Demo extends React.Component {
           onClose: () => console.log(3),
           children: (
             <div style={{width: 480, height: 320, padding: 30}}>
-              <span>{this.state.modalContent}</span>
+              <span>Hello World!</span>
             </div>
           )
         }
@@ -157,8 +162,9 @@ class Demo extends React.Component {
             placeholder={"Hello World!"}
             ref={(instance) => window.editor = instance} 
             language="zh-hant"
-            contentFormat="html"
+            contentFormat='html'
             initialContent={this.state.initialContent}
+            onHTMLChange={console.log}
             extendControls={extendControls}
           />
         </div>

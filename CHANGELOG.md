@@ -1,4 +1,9 @@
 ## 更新记录
+- 2018-02-27 v1.5.0
+  - 支持简单设置图片的宽度和高度
+  - 支持设置扩展控制按钮的html和hoverTitle（感谢[@TnWah](https://github.com/TnWah)反馈）
+  - 优化扩展DropDown组件（感谢[@Belial](https://github.com/cpu220)反馈）
+  - 增强与Ant.Design的兼容性（感谢[@Belial](https://github.com/cpu220)反馈）
 - 2018-02-24 v1.4.3
   - 提升代码块功能稳定性
 - 2018-02-24 v1.4.2

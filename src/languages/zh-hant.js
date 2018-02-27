@@ -3,7 +3,9 @@ export default {
     remove: '刪除',
     cancel: '取消',
     confirm: '確定',
-    inert: '插入'
+    inert: '插入',
+    width: '宽度',
+    height: '高度'
   },
   controls: {
     undo: '撤銷',
