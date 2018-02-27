@@ -3,7 +3,9 @@ export default {
     remove: 'Remove',
     cancel: 'Cancel',
     confirm: 'Confirm',
-    inert: 'Insert'
+    inert: 'Insert',
+    width: 'Width',
+    height: 'Height'
   },
   controls: {
     undo: 'Undo',

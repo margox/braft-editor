@@ -18,6 +18,9 @@ import { detectColorsFromHTML } from 'helpers/colors'
 // TODO
 // 允许直接拖放媒体到编辑器区域
 // 允许直接粘贴图片到编辑器
+// 强化图片尺寸编辑功能
+// 增加取色器
+// 尝试支持mention功能
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -348,6 +351,16 @@ export default class BraftEditor extends EditorController {
     })
 
     return true
+
+  }
+
+  addTempColors = (colors, callback) => {
+
+    const presetColors = this.props.colors || defaultOptions.colors
+
+    this.setState({
+      tempColors: [...this.state.tempColors, ...colors].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+    }, callback)
 
   }
 

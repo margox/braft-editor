@@ -28,6 +28,7 @@ export default {
     alignCenter: true,
     alignRight: true,
     link: true,
+    size: true,
     remove: true
   },
   colors: [

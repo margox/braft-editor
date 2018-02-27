@@ -60,7 +60,7 @@ export default class DropDown extends React.Component {
   render () {
 
     let { active, offset } = this.state
-    let { caption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children } = this.props
+    let { caption, htmlCaption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children } = this.props
 
     disabled && (active = false)
 
@@ -69,15 +69,25 @@ export default class DropDown extends React.Component {
         id={this.componentId}
         className={"Braft-dropdown " + (active ? "active " : "") + (disabled ? "disabled " : "") + className}
       >
-        <button
-          className="dropdown-handler"
-          title={hoverTitle}
-          data-braft-component-id={this.componentId}
-          ref={(instance) => this.dropDownHandlerElement = instance}
-        >
-          <span>{caption}</span>
-          {showDropDownArrow !== false && <i className="icon-drop-down"></i>}
-        </button>
+        {htmlCaption ? (
+          <button
+            className="dropdown-handler"
+            title={hoverTitle}
+            data-braft-component-id={this.componentId}
+            dangerouslySetInnerHTML={htmlCaption ? {__html: htmlCaption} : null}
+            ref={(instance) => this.dropDownHandlerElement = instance}
+          ></button>
+        ) : (
+          <button
+            className="dropdown-handler"
+            title={hoverTitle}
+            data-braft-component-id={this.componentId}
+            ref={(instance) => this.dropDownHandlerElement = instance}
+          >
+            <span>{caption}</span>
+            {showDropDownArrow !== false ? <i className="icon-drop-down"></i> : null}
+          </button>
+        )}
         <div
           className="dropdown-content"
           style={{marginLeft: offset + 'px'}}
@@ -125,12 +135,12 @@ export default class DropDown extends React.Component {
 
   registerClickEvent (event) {
 
-    let { hideOnBlur } = this.props
+    let { autoHide } = this.props
     let active = false
 
     if (event.target.dataset.braftComponentId === this.componentId) {
       active = event.target.dataset.keepActive ? true : !this.state.active
-    } else if (hideOnBlur === false) {
+    } else if (autoHide === false) {
       active = this.state.active
     }
 

@@ -1,31 +1,37 @@
 @import '~sassinc';
 
-.browser-chrome .braft-embed-image-toolbar .braft-embed-image-link-editor{
-  box-shadow: inset 0 -.5px 0 0 rgba(#fff, .1);
-  input{
-    box-shadow: inset 0 0 0 .5px rgba(#fff, .1);
-    &:hover{
-      box-shadow: inset 0 0 0 .5px rgba($COLOR_ACTIVE, .5);
-    }
-    &:focus{
-      box-shadow: inset 0 0 0 .5px rgba($COLOR_ACTIVE, 1);
+.browser-chrome .braft-embed-image-toolbar {
+  .braft-embed-image-size-editor,
+  .braft-embed-image-link-editor{
+    box-shadow: inset 0 -.5px 0 0 rgba(#fff, .1);
+    input{
+      box-shadow: inset 0 0 0 .5px rgba(#fff, .1);
+      &:hover{
+        box-shadow: inset 0 0 0 .5px rgba($COLOR_ACTIVE, .5);
+      }
+      &:focus{
+        box-shadow: inset 0 0 0 .5px rgba($COLOR_ACTIVE, 1);
+      }
     }
   }
 }
 
-.browser-safari .braft-embed-image-toolbar .braft-embed-image-link-editor{
-  border-bottom: solid .5px rgba(#fff, .1);
-  box-shadow: none;
-  input{
-    border: solid .5px rgba(#fff, .1);
+.browser-safari .braft-embed-image-toolbar {
+  .braft-embed-image-size-editor,
+  .braft-embed-image-link-editor{
+    border-bottom: solid .5px rgba(#fff, .1);
     box-shadow: none;
-    &:hover{
-      border-color: rgba($COLOR_ACTIVE, .5);
+    input{
+      border: solid .5px rgba(#fff, .1);
       box-shadow: none;
-    }
-    &:focus{
-      border-color: rgba($COLOR_ACTIVE, 1);
-      box-shadow: none;
+      &:hover{
+        border-color: rgba($COLOR_ACTIVE, .5);
+        box-shadow: none;
+      }
+      &:focus{
+        border-color: rgba($COLOR_ACTIVE, 1);
+        box-shadow: none;
+      }
     }
   }
 }
@@ -53,17 +59,23 @@
     border-top-color: $COLOR_DARK;
     transform: translateX(-5px);
   }
+  .braft-embed-image-size-editor,
   .braft-embed-image-link-editor{
     padding-bottom: 1px;
     overflow: hidden;
     border-radius: 3px 3px 0 0;
     box-shadow: inset 0 -1px 0 0 rgba(#fff, .1);
+    .editor-input-group{
+      width: 300px;
+      margin: 8px 10px;
+      overflow: hidden;
+    }
     input{
       display: block;
+      float: left;
       box-sizing: content-box;
-      width: 240px;
       height: 32px;
-      margin: 8px 10px 0 10px;
+      margin: 0 5px 0 0;
       padding: 0 10px;
       background-color: rgba(#fff, .1);
       border: none;
@@ -78,6 +90,32 @@
       &:focus{
         box-shadow: inset 0 0 0 1px rgba($COLOR_ACTIVE, 1);
       }
+    }
+    button{
+      float: left;
+      width: 60px;
+      height: 32px;
+      margin: 0;
+      padding: 0 20px;
+      background-color: $COLOR_ACTIVE;
+      border: none;
+      color: #fff;
+      font-size: 12px;
+      border-radius: 3px;
+      cursor: pointer;
+      &:hover{
+        background-color: $COLOR_ACTIVE - 20;
+      }
+    }
+  }
+  .braft-embed-image-size-editor{
+    input{
+      width: 95px;      
+    }
+  }
+  .braft-embed-image-link-editor{
+    input{
+      width: 215px;
     }
     .switch-group{
       height: 20px;

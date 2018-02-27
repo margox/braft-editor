@@ -7,13 +7,17 @@ export default class Image extends React.Component {
   state = {
     toolbarVisible: false,
     toolbarOffset: 0,
-    linkEditorVisible: false
+    linkEditorVisible: false,
+    sizeEditorVisible: false,
+    tempLink: null,
+    tempWidth: null,
+    tempHeight: null
   }
 
   render () {
 
     const { mediaData, language, imageControls } = this.props
-    const { toolbarVisible, toolbarOffset, linkEditorVisible } = this.state
+    const { toolbarVisible, toolbarOffset, linkEditorVisible, sizeEditorVisible } = this.state
     const blockData = this.props.block.getData()
 
     let float = blockData.get('float')
@@ -53,9 +57,12 @@ export default class Image extends React.Component {
             data-alignment={alignment}
             className="braft-embed-image-toolbar"
           >
-            {(linkEditorVisible) && (
+            {linkEditorVisible ? (
               <div onClick={this.preventDefault} className="braft-embed-image-link-editor">
-                <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.setImageLink} defaultValue={link}/>
+                <div className="editor-input-group">
+                  <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
+                  <button onClick={this.comfirmImageLink}>{language.base.confirm}</button>
+                </div>
                 <div className="switch-group">
                   <Switch
                     active={link_target === '_blank'}
@@ -64,12 +71,22 @@ export default class Image extends React.Component {
                   <label>{language.linkEditor.openInNewWindow}</label>
                 </div>
               </div>
-            )}
+            ) : null}
+            {sizeEditorVisible ? (
+              <div onClick={this.preventDefault} className="braft-embed-image-size-editor">
+                <div className="editor-input-group">
+                  <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
+                  <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
+                  <button onClick={this.comfirmImageSize}>{language.base.confirm}</button>
+                </div>
+              </div>
+            ) : null}
             {imageControls.floatLeft ? <a data-float="left" onClick={this.setImageFloat}>&#xe91e;</a> : null}
             {imageControls.floatRight ? <a data-float="right" onClick={this.setImageFloat}>&#xe914;</a> : null}
             {imageControls.alignLeft ? <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a> : null}
             {imageControls.alignCenter ? <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a> : null}
             {imageControls.alignRight ? <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a> : null}
+            {imageControls.size ? <a onClick={this.toggleSizeEditor}>&#xe910;</a> : null}
             {imageControls.link ? <a className={link ? 'active' : ''} onClick={this.toggleLinkEditor}>&#xe91a;</a> : null}
             {imageControls.remove ? <a onClick={this.removeImage}>&#xe9ac;</a> : null}
             <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
@@ -77,7 +94,7 @@ export default class Image extends React.Component {
           )}
           <img
             ref={instance => this.imageElement = instance}
-            src={url} width={width} height={height}
+            src={url} style={{width, height}} width={width} height={height}
           />
         </div>
         {clearFix && <div className="clearfix" style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}
@@ -121,19 +138,35 @@ export default class Image extends React.Component {
 
   toggleLinkEditor = () => {
     this.setState({
-      linkEditorVisible: !this.state.linkEditorVisible
+      linkEditorVisible: !this.state.linkEditorVisible,
+      sizeEditorVisible: false
     })
+  }
+
+  toggleSizeEditor = () => {
+    this.setState({
+      linkEditorVisible: false,
+      sizeEditorVisible: !this.state.sizeEditorVisible
+    })
+  }
+
+  handleLinkInputKeyDown = (e) => {
+
+    if (e.keyCode === 13) {
+      this.comfirmImageLink()
+    } else {
+      return
+    }
+
   }
 
   setImageLink = (e) => {
 
-    if (e.keyCode !== 13) {
-      return
-    }
+    this.setState({
+      tempLink: e.currentTarget.value
+    })
 
-    const link = e.currentTarget.value.trim()
-    this.props.editor.setMediaData(this.props.entityKey, { link })
-    window.setImmediate(this.props.editor.forceRender)
+    return
 
   }
 
@@ -141,6 +174,60 @@ export default class Image extends React.Component {
 
     link_target = link_target === '_blank' ? '' : '_blank'
     this.props.editor.setMediaData(this.props.entityKey, { link_target })
+    window.setImmediate(this.props.editor.forceRender)
+
+  }
+
+  comfirmImageLink = () => {
+
+    const { tempLink: link } = this.state
+
+    if (link !== null) {
+      this.props.editor.setMediaData(this.props.entityKey, { link })
+      window.setImmediate(this.props.editor.forceRender)
+    }
+
+  }
+
+  handleSizeInputKeyDown = (e) => {
+
+    if (e.keyCode === 13) {
+      this.comfirmImageSize()
+    } else {
+      return
+    }
+
+  }
+
+  setImageWidth = (e) => {
+
+    this.setState({
+      tempWidth: e.currentTarget.value
+    })
+
+    return
+
+  }
+
+  setImageHeight = (e) => {
+
+    this.setState({
+      tempHeight: e.currentTarget.value
+    })
+
+    return
+
+  }
+
+  comfirmImageSize = () => {
+
+    const { tempWidth: width, tempHeight: height } = this.state
+    const newImageSize = {}
+
+    width !== null && (newImageSize.width = width);
+    height !== null && (newImageSize.height = height);
+
+    this.props.editor.setMediaData(this.props.entityKey, newImageSize)
     window.setImmediate(this.props.editor.forceRender)
 
   }

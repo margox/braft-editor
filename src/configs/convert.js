@@ -26,14 +26,14 @@ const convertAtomicBlock = (block, contentState) => {
       return (
         <div className="media-wrap image-wrap" style={imageWrapStyle}>
           <a style={{display:'inline-block'}} href={link} target={link_target}>
-            <img src={url} width={width} height={height} />
+            <img src={url} width={width} height={height} style={{width, height}} />
           </a>
         </div>
       )
     } else {
       return (
         <div className="media-wrap image-wrap" style={imageWrapStyle}>
-          <img src={url} width={width} height={height} />
+          <img src={url} width={width} height={height} style={{width, height}}/>
         </div>
       )
     }
@@ -200,9 +200,10 @@ const htmlToEntity = (nodeName, node, createEntity) => {
   } else if (nodeName === 'img') {
 
     let parentNode = node.parentNode
-    let { src:url, width, height } = node
+    let { src: url, width, height } = node
     width = width || 'auto'
     height = height || 'auto'
+
     let entityData = { url, width, height }
 
     if (parentNode.nodeName.toLowerCase() === 'a') {
