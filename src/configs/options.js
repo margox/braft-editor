@@ -2,8 +2,8 @@ export default {
   height: 500,
   language: 'zh',
   controls: [
-    'undo', 'redo', 'split', 'font-size', 'font-family', 'text-color',
-    'bold', 'italic', 'underline', 'strike-through', 'superscript',
+    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'text-color',
+    'bold',  'italic', 'underline', 'strike-through', 'superscript',
     'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
     'blockquote', 'code', 'split', 'link', 'split', 'media'
   ],
@@ -34,6 +34,9 @@ export default {
     '#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff',
     '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784',
     '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'
+  ],
+  lineHeights:[
+    '1','1.5','2','2.5'
   ],
   fontSizes: [
     12, 14, 16, 18, 20, 24,

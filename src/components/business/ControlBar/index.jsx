@@ -5,6 +5,7 @@ import LinkEditor from 'components/business/LinkEditor'
 import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
 import FontSizePicker from 'components/business/FontSize'
+import LineHeightPicker from 'components/business/LineHeight'
 import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
@@ -37,7 +38,7 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper } = this.props
+    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights  } = this.props
     const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, language, viewWrapper }
@@ -150,6 +151,15 @@ export default class ControlBar extends React.Component {
               return <FontSizePicker
                 key={index}
                 fontSizes={fontSizes}
+                defaultCaption={controlItem.title}
+                { ...commonProps }
+              />
+
+            } else if (controlItem.type === 'line-height') {
+
+              return <LineHeightPicker
+                key={index}
+                lineHeights={lineHeights}
                 defaultCaption={controlItem.title}
                 { ...commonProps }
               />

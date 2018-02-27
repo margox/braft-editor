@@ -9,6 +9,7 @@ export default {
     undo: '撤销',
     redo: '重做',
     fontSize: '字号',
+    lineHeight: '行高',
     color: '颜色',
     textColor: '文字颜色',
     backgroundColor: '背景颜色',
