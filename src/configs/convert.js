@@ -59,11 +59,13 @@ const styleToHTML = (props) => (style) => {
   } else if (style === 'subscript') {
     return <sub/>
   } else if (style.indexOf('color-') === 0) {
-    return <span style={{color: '#' + style.split('-')[1]}}/> 
+    return <span style={{color: '#' + style.split('-')[1]}}/>
   } else if (style.indexOf('bgcolor-') === 0) {
-    return <span style={{backgroundColor: '#' + style.split('-')[1]}}/> 
+    return <span style={{backgroundColor: '#' + style.split('-')[1]}}/>
   } else if (style.indexOf('fontsize-') === 0) {
-    return <span style={{fontSize: style.split('-')[1] + 'px'}}/> 
+    return <span style={{fontSize: style.split('-')[1] + 'px'}}/>
+  } else if (style.indexOf('lineheight-') === 0) {
+    return <span style={{lineHeight: style.split('-')[1]}}/> 
   } else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     return <span style={{fontFamily: fontFamily.family}}/> 
@@ -178,6 +180,8 @@ const htmlToStyle = (nodeName, node, currentStyle) => {
     return currentStyle.add('SUBSCRIPT')
   } else if (nodeName === 'span' && node.style.fontSize) {
     return currentStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10))
+  } else if (nodeName === 'span' && node.style.lineHeight) {
+    return currentStyle.add('LINEHEIGHT-' + node.style.lineHeight)
   } else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
     return currentStyle.add('STRIKETHROUGH')
   } else {

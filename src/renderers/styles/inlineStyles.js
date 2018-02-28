@@ -21,10 +21,10 @@ export default (props) => {
       fontFamily: fontFamily.family
     }
   })
+
   props.lineHeights.forEach((lineHeight) => {
     lineHeightStyles['LINEHEIGHT-' + lineHeight] = { lineHeight: lineHeight }
   })
-
 
   return {
     'SUPERSCRIPT': {

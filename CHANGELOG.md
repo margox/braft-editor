@@ -1,4 +1,6 @@
 ## 更新记录
+- 2018-02-28 v1.6.0
+  - 支持行高设置，此功能由[@Belial](https://github.com/cpu220)贡献，非常感谢
 - 2018-02-27 v1.5.0
   - 支持简单设置图片的宽度和高度
   - 支持设置扩展控制按钮的html和hoverTitle（感谢[@TnWah](https://github.com/TnWah)反馈）

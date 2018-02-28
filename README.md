@@ -3,8 +3,12 @@
 ### 一个基于[draft-js](https://draftjs.org/)的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
+#### 使用braft-convert的同学请将braft-convert升级到v1.2.0以确保功能同步
+
 
 ## 最近更新
+- 2018-02-28 v1.6.0
+  - 支持行高设置，此功能由[@Belial](https://github.com/cpu220)贡献，非常感谢
 - 2018-02-27 v1.5.0
   - 支持简单设置图片的宽度和高度
   - 支持设置扩展控制按钮的html和hoverTitle（感谢[@TnWah](https://github.com/TnWah)反馈）
@@ -16,9 +20,6 @@
   - 修复在IE11浏览器中无法选择多媒体文件的问题(感谢[@Errshao](https://github.com/Errshao)反馈)
 - 2018-02-23 v1.4.1
   - 修复在Ant.Design中会导致表单非正常提交的问题，感谢[@tgy9310](https://github.com/tgy931)提交的PR
-- 2018-02-22 v1.4.0
-  - 尝试修复自定义弹窗(extendControls/modal)内容无法动态更新的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
-  - 修复代码块转换出错的问题(感谢[@SadCreeper](https://github.com/SadCreeper)反馈)
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -138,13 +139,12 @@ class Demo extends React.Component {
 指定控制栏组件，默认值如下：
 ```javascript
 [
-  'undo', 'redo', 'split', 'font-size', 'font-family', 'text-color',
+  'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'text-color',
   'bold', 'italic', 'underline', 'strike-through', 'superscript',
   'subscript', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
   'blockquote', 'code', 'split', 'link', 'split', 'media'
 ]
 ```
-
 
 ### extendControls [array:[object]]
 
@@ -251,6 +251,16 @@ class Demo extends React.Component {
   28, 30, 32, 36, 40, 48,
   56, 64, 72, 96, 120, 144
 ]
+```
+
+### lineHeights [array:[number]] 
+
+指定编辑器可用的行高列表，用于设定文本内容的行高，默认可用行高：
+```javascript
+[
+  '1', '1.2', '1.5', '1.75',
+  '2', '2.5', '3', '4'
+],
 ```
 
 ### fontFamilies [array:[object]]
