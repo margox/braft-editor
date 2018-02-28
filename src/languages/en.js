@@ -16,6 +16,7 @@ export default {
     tempColors: 'Temp Colors',
     backgroundColor: 'Background',
     bold: 'Bold',
+    lineHeight:'Line Height',
     italic: 'Italic',
     underline: 'Underline',
     strikeThrough: 'Strike Through',

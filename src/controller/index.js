@@ -102,8 +102,8 @@ export default class EditorController extends React.Component{
 
     if (this.selectionState.isCollapsed()) {
       return this
-    }
-
+    } 
+     
     style = style.toUpperCase()
     stylesToBeRemoved = stylesToBeRemoved.filter(item => item !== style)
 
@@ -133,6 +133,9 @@ export default class EditorController extends React.Component{
 
   toggleSelectionFontSize = (fontSize) => {
     return this.toggleSelectionInlineStyle('FONTSIZE-' + fontSize, this.fontSizeList.map(item => 'FONTSIZE-' + item))
+  }
+  toggleSelectionLineHeight = (lineHeight) => {
+    return this.toggleSelectionInlineStyle('LINEHEIGHT-' + lineHeight, this.lineHeightList.map(item => 'LINEHEIGHT-' + item))
   }
 
   toggleSelectionFontFamily = (fontFamily) => {

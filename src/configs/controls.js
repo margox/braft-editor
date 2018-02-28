@@ -19,7 +19,7 @@ export default (lang) => [
     text: <i className="icon-bold"></i>,
     type: 'inline-style',
     command: 'bold'
-  }, {
+  },{
     key: 'italic',
     title: lang.controls.italic,
     text: <i className="icon-italic"></i>,
@@ -85,6 +85,10 @@ export default (lang) => [
     key: 'text-color',
     title: lang.controls.color,
     type: 'text-color'
+  },  {
+    key: 'line-height',
+    title: lang.controls.lineHeight, 
+    type: 'line-height'
   }, {
     key: 'font-size',
     title: lang.controls.fontSize,

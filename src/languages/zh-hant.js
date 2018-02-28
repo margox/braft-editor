@@ -16,6 +16,7 @@ export default {
     backgroundColor: '背景顏色',
     tempColors: '臨時顏色',
     bold: '加粗',
+    lineHeight: '行高',
     italic: '斜體',
     underline: '下劃線',
     strikeThrough: '刪除線',
