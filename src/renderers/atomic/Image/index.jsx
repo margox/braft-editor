@@ -86,7 +86,7 @@ export default class Image extends React.Component {
             {imageControls.alignLeft ? <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a> : null}
             {imageControls.alignCenter ? <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a> : null}
             {imageControls.alignRight ? <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a> : null}
-            {imageControls.size ? <a onClick={this.toggleSizeEditor}>&#xe910;</a> : null}
+            {imageControls.size ? <a onClick={this.toggleSizeEditor}>&#xe3c2;</a> : null}
             {imageControls.link ? <a className={link ? 'active' : ''} onClick={this.toggleLinkEditor}>&#xe91a;</a> : null}
             {imageControls.remove ? <a onClick={this.removeImage}>&#xe9ac;</a> : null}
             <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>

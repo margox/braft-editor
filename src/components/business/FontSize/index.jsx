@@ -6,7 +6,7 @@ export default (props) => {
 
   let caption = null
   let currentFontSize = null
-  let { defaultCaption, editor, language, fontSizes, viewWrapper } = props
+  let { defaultCaption, editor, language, fontSizes, viewWrapper, editorHeight } = props
 
   fontSizes.find((item) => {
     if (editor.selectionHasInlineStyle('FONTSIZE-' + item)) {
@@ -22,6 +22,7 @@ export default (props) => {
   return (
     <DropDown
       caption={caption}
+      editorHeight={editorHeight}
       viewWrapper={viewWrapper}
       hoverTitle={language.controls.fontSize}
       className={"control-item dropdown braft-font-size-dropdown"}

@@ -38,10 +38,10 @@ export default class ControlBar extends React.Component {
 
   render () {
 
-    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights  } = this.props
+    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, editorHeight  } = this.props
     const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
-    const commonProps = { editor, language, viewWrapper }
+    const commonProps = { editor, editorHeight, language, viewWrapper }
 
     const renderedExtendControls = extendControls.map((item, index) => {
 
@@ -56,6 +56,7 @@ export default class ControlBar extends React.Component {
             key={index}
             className={"control-item dropdown " + className}
             caption={text}
+            editorHeight={editorHeight}
             htmlCaption={html}
             showDropDownArrow={showDropDownArrow}
             viewWrapper={viewWrapper}
@@ -91,6 +92,15 @@ export default class ControlBar extends React.Component {
           >
           {!item.html ? item.text : null}
           </button>
+        )
+
+      } else if (item.type === 'component') {
+
+        return (
+          <div
+            key={controls.length * 2 + index}
+            className={'control-item component-wrapper ' + item.className}
+          >{item.component}</div>
         )
 
       } else {

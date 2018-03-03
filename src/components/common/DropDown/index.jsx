@@ -60,7 +60,7 @@ export default class DropDown extends React.Component {
   render () {
 
     let { active, offset } = this.state
-    let { caption, htmlCaption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children } = this.props
+    let { caption, htmlCaption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children, editorHeight } = this.props
 
     disabled && (active = false)
 
@@ -97,7 +97,12 @@ export default class DropDown extends React.Component {
             style={{marginLeft: offset * -1}}
             className={'dropdown-arrow' + (arrowActive ? ' active' : '')}
           ></i>
-          {children}
+          <div
+            className="dropdown-content-inner"
+            style={{maxHeight: editorHeight - 30 + 'px'}}
+          >
+            {children}
+          </div>
         </div>
       </div>
     )

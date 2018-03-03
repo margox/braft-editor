@@ -27,7 +27,7 @@ const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
 export default class BraftEditor extends EditorController {
 
-  constructor(props) {
+  constructor (props) {
 
     super(props)
 
@@ -36,6 +36,7 @@ export default class BraftEditor extends EditorController {
     this.contentState = editorState.getCurrentContent()
     this.selectionState = editorState.getSelection()
     this.mediaLibrary = new MediaLibrary()
+    this.isFocused = false
 
     this.state = {
       tempColors: [],
@@ -58,16 +59,18 @@ export default class BraftEditor extends EditorController {
 
   }
 
-  componentDidMount() {
+  componentDidMount () {
 
     if (this.props.initialContent) {
       this.setContent(this.props.initialContent)
       this.contentInitialized = true
     }
 
+    document.addEventListener('paste', this.handlePaste, false)
+
   }
 
-  componentWillReceiveProps(next) {
+  componentWillReceiveProps (next) {
 
     if (!this.contentInitialized && !this.props.initialContent && next.initialContent) {
       this.setContent(next.initialContent)
@@ -75,7 +78,13 @@ export default class BraftEditor extends EditorController {
 
   }
 
-  render() {
+  componentWillUnmount () {
+
+    document.removeEventListener('paste', this.handlePaste, false)
+
+  }
+
+  render () {
 
     let {
       controls, extendControls, disabled, height, media, language, colors,
@@ -118,6 +127,7 @@ export default class BraftEditor extends EditorController {
 
     const controlBarProps = {
       editor: this,
+      editorHeight: height,
       media, controls, language, viewWrapper, extendControls,
       colors, tempColors, fontSizes, fontFamilies, emojis, lineHeights
     }
@@ -140,6 +150,8 @@ export default class BraftEditor extends EditorController {
       handlePastedText: this.handlePastedText,
       onChange: this.onChange,
       onTab: this.onTab,
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
       readOnly: disabled,
       customStyleMap, blockStyleFn, keyBindingFn,
       blockRendererFn, blockRenderMap, placeholder,
@@ -289,6 +301,16 @@ export default class BraftEditor extends EditorController {
 
   }
 
+  onFocus = () => {
+    this.isFocused = true
+    this.props.onFocus && this.props.onFocus()
+  }
+
+  onBlur = () => {
+    this.isFocused = false
+    this.props.onBlur && this.props.onBlur()
+  }
+
   handleReturn = (event) => {
 
     const currentBlock = this.getSelectionBlock()
@@ -321,6 +343,16 @@ export default class BraftEditor extends EditorController {
     }
 
     return false
+
+  }
+
+  handlePaste = (event) => {
+
+    if (this.isFocused && this.props.allowPasteImage !== false) {
+      this.mediaLibrary.resolvePastedData(event, image => {
+        this.insertMedias([image])
+      })
+    }
 
   }
 

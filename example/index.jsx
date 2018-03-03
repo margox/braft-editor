@@ -130,6 +130,9 @@ class Demo extends React.Component {
         ref: instance => window.customDropDown = instance,
         component: <h1 style={{width: 200, color: '#ffffff', padding: 10, margin: 0}}>Hello World!</h1>
       }, {
+        type: 'component',
+        component: <div>123</div>
+      }, {
         type: 'modal',
         html: '<span style="color:#f00;">弹出框</span>',
         text: '弹出框',
@@ -157,7 +160,6 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            height={400}
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
             ref={(instance) => window.editor = instance} 

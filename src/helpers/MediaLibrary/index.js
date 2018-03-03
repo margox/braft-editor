@@ -1,7 +1,13 @@
+import { UniqueIndex } from 'utils/base'
+
 export default class MediaLibrary {
 
   constructor () {
     this.items = []
+  }
+
+  getItem (id) {
+    return this.items.find(item => item.id === id)
   }
 
   setItems (items) {
@@ -77,13 +83,7 @@ export default class MediaLibrary {
         file: item.file,
         libraryId: item.id,
         success: (res) => {
-          this.setItemState(item.id, {
-            file: null,
-            url: res.url,
-            uploadProgress: 1,
-            uploading: false,
-            selected: true
-          })
+          this.handleUploadSuccess (item.id, res.url)
         },
         progress: (progress) => {
           this.setItemState(item.id, {
@@ -113,13 +113,23 @@ export default class MediaLibrary {
 
   createInlineImage (id, url) {
     this.compressImage(url, 1280, 800, (result) => {
-      this.setItemState(id, {
-        url: result.url,
-        uploading: false,
-        uploadProgress: 1,
-        selected: true
-      })
+      this.handleUploadSuccess(id, result.url)
     })
+  }
+
+  handleUploadSuccess (id, url) {
+
+    this.setItemState(id, {
+      file: null,
+      url: url,
+      uploadProgress: 1,
+      uploading: false,
+      selected: false
+    })
+
+    const item = this.getItem(id)
+    item.onReadyToInsert && item.onReadyToInsert(item)
+
   }
 
   compressImage (url, width, height, callback) {
@@ -161,6 +171,30 @@ export default class MediaLibrary {
 
   triggerChange (changeType) {
     this.onChange(this.items)
+  }
+
+  resolvePastedData ({ clipboardData }, callback) {
+
+    if (clipboardData && clipboardData.items && clipboardData.items[0].type.indexOf('image') > -1) {
+
+      const file = clipboardData.items[0].getAsFile()
+      const fileId = new Date().getTime() + '_' + UniqueIndex()
+
+      this.addItem({
+        type: 'IMAGE',
+        id: fileId,
+        file: file,
+        name: fileId,
+        size: file.size,
+        uploadProgress: 0,
+        uploading: false,
+        selected: false,
+        error: 0,
+        onReadyToInsert: callback
+      })
+
+    }
+
   }
 
   onChange (items) {}

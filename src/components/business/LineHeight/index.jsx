@@ -6,7 +6,7 @@ export default (props) => {
 
   let caption = null
   let currentLineHeight = null
-  let { defaultCaption, editor, language, lineHeights, viewWrapper } = props
+  let { defaultCaption, editor, language, lineHeights, viewWrapper, editorHeight } = props
 
   lineHeights.find((item) => {
     if (editor.selectionHasInlineStyle('LINEHEIGHT-' + item)) {
@@ -23,6 +23,7 @@ export default (props) => {
     <DropDown
       caption={caption}
       viewWrapper={viewWrapper}
+      editorHeight={editorHeight}
       hoverTitle={language.controls.lineHeight}
       className={"control-item dropdown braft-line-height-dropdown"}
     >

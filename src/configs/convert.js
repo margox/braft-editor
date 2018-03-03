@@ -266,7 +266,7 @@ export const convertCodeBlock = (htmlContent) => {
   const result = htmlContent
     .replace(/\<code\>\<div\>\<br\>\<\/div\>\<\/code\>/g, `<code><div></div></code>`)
     .replace(/\<pre\>\<code\>\<div\>/g, '<code><div>')
-    .replace(/\<\/div\>\<\/code\>\<\/pre\>/g, '<div><code>')
+    .replace(/\<\/div\>\<\/code\>\<\/pre\>/g, '</div></code>')
     .replace(/\<code\>\<div\>/g, '<pre><code>')
     .replace(/\<\/div\>\<\/code\>/g, '</code></pre>')
   return result

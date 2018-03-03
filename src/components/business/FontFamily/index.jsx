@@ -6,7 +6,7 @@ export default (props) => {
 
   let caption = null
   let currentIndex = null
-  let { defaultCaption, editor, onChange, language, fontFamilies, viewWrapper } = props
+  let { defaultCaption, editor, onChange, language, fontFamilies, viewWrapper, editorHeight } = props
 
   fontFamilies.find((item, index) => {
     if (editor.selectionHasInlineStyle('FONTFAMILY-' + item.name)) {
@@ -24,6 +24,7 @@ export default (props) => {
     <DropDown
       caption={caption}
       viewWrapper={viewWrapper}
+      editorHeight={editorHeight}
       hoverTitle={language.controls.fontFamily}
       arrowActive={isFirstItemActive}
       className={"control-item dropdown font-family-dropdown"}

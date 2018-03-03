@@ -5,7 +5,7 @@ import DropDown from 'components/common/DropDown'
 
 export default (props) => {
 
-  const { current, onChange, language, viewWrapper } = props
+  const { current, onChange, language, viewWrapper, editorHeight } = props
   const headings = getHeadings(language)
 
   let currentHeadingIndex = headings.findIndex((item) => item.command === current)
@@ -16,6 +16,7 @@ export default (props) => {
     <DropDown
       caption={caption}
       viewWrapper={viewWrapper}
+      editorHeight={editorHeight}
       hoverTitle={language.controls.headings}
       arrowActive={isFirstItemActive}
       className={"control-item dropdown headings-dropdown"}

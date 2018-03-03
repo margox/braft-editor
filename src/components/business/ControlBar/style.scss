@@ -79,6 +79,9 @@
     margin: 5px 0 5px 3px;
     border-radius: 3px;
     cursor: pointer;
+    &.component-wrapper{
+      cursor: default;
+    }
     &:first-child{
       margin-left: 0;
     }

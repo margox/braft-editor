@@ -17,7 +17,7 @@ export default class TextColor extends React.Component {
     let captionStyle = {}
     let currentColor = null
     let { colorType } = this.state
-    let { editor, language, colors, tempColors, viewWrapper } = this.props
+    let { editor, language, colors, tempColors, viewWrapper, editorHeight } = this.props
 
     ;[ ...colors, ...tempColors ].forEach((color) => {
       let color_id = color.replace('#', '')
@@ -46,6 +46,7 @@ export default class TextColor extends React.Component {
         hoverTitle={language.controls.color}
         showDropDownArrow={false}
         viewWrapper={viewWrapper}
+        editorHeight={editorHeight}
         componentId={this.dropDownComponentId}
         ref={(instance) => this.dropDownComponent = instance}
         className={"control-item dropdown text-color-dropdown"}
