@@ -11,6 +11,8 @@
 ## 最近更新
 - 2018-03-03 v1.6.1
   - 支持直接粘贴截图到编辑器（目前仅支持chrome浏览器和微软EDGE浏览器，其他浏览器支持请期待后续更新）
+  - 增加自定义控制栏组件类型[component],允许直接将一个React组件添加到工具栏（感谢[@avdbg](https://github.com/avdbg)的建议）
+  - 增加onFocus/onBlur属性
   - 修复代码块转换错误的问题
   - 其他优化
 - 2018-02-28 v1.6.0
@@ -154,7 +156,7 @@ class Demo extends React.Component {
 
 ### extendControls [array:[object]]
 
-指定自定义控制组件，目前支持分割线[split]、按钮[button]、下拉框[dropdown]和模态框[modal]。 示例：
+指定自定义控制组件，目前支持分割线[split]、按钮[button]、下拉框[dropdown]、模态框[modal]和完全自定义的组件[component]。 示例：
 ```javascript
 [
   {
@@ -175,6 +177,9 @@ class Demo extends React.Component {
     showDropDownArrow: false, // 是否展示下拉组件顶部的小箭头
     autoHide: false, // 是否在下拉组件失去焦点后自动关闭下拉组件
     component: <YourComponent />
+  }, {
+    type: 'component',
+    component: <YourComponent/> // 此处指定的组件将会直接渲染到工具栏中
   }, {
     type: 'modal',
     text: 'Bar',
@@ -420,6 +425,11 @@ const uploadFn = (param) => {
 // 如果以上三个值皆为false，则不允许插入任何外部媒体，也不会显示插入外部媒体的入口
 ```
 
+### allowPasteImage [boolean]
+是否允许直接粘贴剪贴板图片（例如QQ截图等）到编辑器
+> 粘贴的图片依然会通过media.uploadFn上传到服务器，但是暂时不会调用media.validateFn来进行校验
+
+
 #### imageControls [object]
 配置图片工具栏(tooltip)可用的按钮，默认值如下：
 ```javascript
@@ -433,6 +443,12 @@ const uploadFn = (param) => {
   size: true
 }
 ```
+
+#### onFocus [function]
+指定编辑器获得焦点时的回调
+
+#### onBlur [function]
+指定编辑器失去焦点时的回调
 
 ## 实例方法
 > 绝大多数的非get类方法都会返回编辑器实例，即支持链式调用
