@@ -168,6 +168,8 @@ class Demo extends React.Component {
             initialContent={this.state.initialContent}
             onHTMLChange={console.log}
             extendControls={extendControls}
+            textAlignMaps = {['left','center']}
+            needTextBgcolor = {'N'}
           />
         </div>
       </div>

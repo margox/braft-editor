@@ -141,6 +141,9 @@ export default class EditorController extends React.Component{
   toggleSelectionFontFamily = (fontFamily) => {
     return this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
+  toggleSelectionSplitLine = () => {
+    return this.toggleSelectionInlineStyle()
+  }
 
   toggleSelectionLink = (href, target) => {
 

@@ -8,6 +8,8 @@ export default {
     'blockquote', 'code', 'split', 'link', 'split', 'media'
   ],
   tabIndents: 2,
+  textAlignMaps: ['left', 'center', 'right', 'justify'],
+  needTextBgcolor: 'Y',
   extendControls: [],
   media: {
     image: true,
