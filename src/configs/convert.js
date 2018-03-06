@@ -66,6 +66,8 @@ const styleToHTML = (props) => (style) => {
     return <span style={{fontSize: style.split('-')[1] + 'px'}}/>
   } else if (style.indexOf('lineheight-') === 0) {
     return <span style={{lineHeight: style.split('-')[1]}}/> 
+  } else if (style.indexOf('letterspacing-') === 0) {
+    return <span style={{ letterSpacing: style.split('-')[1] + 'px'}} />
   } else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     return <span style={{fontFamily: fontFamily.family}}/> 
@@ -167,7 +169,8 @@ export const getToHTMLConfig = (props) => {
 
 
 const htmlToStyle = (nodeName, node, currentStyle) => {
-
+  console.log(nodeName, node.style, currentStyle);
+  console.log(currentStyle);
   if (nodeName === 'span' && node.style.color) {
     let color = getHexColor(node.style.color)
     return color ? currentStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
@@ -182,12 +185,13 @@ const htmlToStyle = (nodeName, node, currentStyle) => {
     return currentStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10))
   } else if (nodeName === 'span' && node.style.lineHeight) {
     return currentStyle.add('LINEHEIGHT-' + node.style.lineHeight)
+  } else if (nodeName === 'span' && node.style.letterSpacing) {
+    return currentStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10))
   } else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
     return currentStyle.add('STRIKETHROUGH')
   } else {
     return currentStyle
   }
-
 }
 
 const htmlToEntity = (nodeName, node, createEntity) => {

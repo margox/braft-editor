@@ -113,6 +113,7 @@ export default class EditorController extends React.Component{
     }, this.contentState) : this.contentState
 
     const nextEditorState = stylesToBeRemoved.length ? EditorState.push(this.editorState, nextContentState, 'change-inline-style') : this.editorState
+    console.log('111',RichUtils.toggleInlineStyle);
     return this.triggerChange(RichUtils.toggleInlineStyle(nextEditorState, style))
 
   }
@@ -141,7 +142,10 @@ export default class EditorController extends React.Component{
   toggleSelectionFontFamily = (fontFamily) => {
     return this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
-
+  toggleSelectionLetSpacing = (letterSpacing) => {
+    return this.toggleSelectionInlineStyle('LETTERSPACING-' + letterSpacing, this.letterSpacingList.map(item => 'LETTERSPACING-' + item))
+  }
+  
   toggleSelectionLink = (href, target) => {
 
     let entityData = { href, target }

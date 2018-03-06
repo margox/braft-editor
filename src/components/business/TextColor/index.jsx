@@ -17,7 +17,7 @@ export default class TextColor extends React.Component {
     let captionStyle = {}
     let currentColor = null
     let { colorType } = this.state
-    let { editor, language, colors, tempColors, viewWrapper, editorHeight } = this.props
+    let { editor, language, colors, tempColors, viewWrapper, editorHeight, needTextBgcolor} = this.props
 
     ;[ ...colors, ...tempColors ].forEach((color) => {
       let color_id = color.replace('#', '')
@@ -52,7 +52,7 @@ export default class TextColor extends React.Component {
         className={"control-item dropdown text-color-dropdown"}
       >
         <div className="braft-text-color-picker-wrap">
-          <div className="braft-color-switch-buttons">
+          <div className="braft-color-switch-buttons" style={needTextBgcolor === 'Y'? {} : {display: 'none'}}>
             <button
               data-type="color"
               data-keep-active={true}

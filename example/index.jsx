@@ -109,9 +109,11 @@ class Demo extends React.Component {
       }, {
         type: 'button',
         className: 'preview-button',
-        text: <span>预览</span>,
-        html: '<span style="color:#00f;">预览</span>',
-        onClick: this.preview
+        text: <span>按钮</span>,
+        html: '<span style="color:#00f;">按钮</span>',
+        onClick: ()=>{
+          editor.toggleSelectionLetSpacing()
+        }
       }, {
         type: 'button',
         className: 'preview-button',
@@ -163,11 +165,13 @@ class Demo extends React.Component {
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
             ref={(instance) => window.editor = instance} 
-            language="zh-hant"
+            language="zh"
             contentFormat='html'
             initialContent={this.state.initialContent}
             onHTMLChange={console.log}
             extendControls={extendControls}
+            textAlignMaps = {['left','center']}
+            needTextBgcolor = {'N'}
           />
         </div>
       </div>

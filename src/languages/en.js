@@ -17,6 +17,7 @@ export default {
     backgroundColor: 'Background',
     bold: 'Bold',
     lineHeight:'Line Height',
+    letterSpacing:'Letter Spacing',
     italic: 'Italic',
     underline: 'Underline',
     strikeThrough: 'Strike Through',

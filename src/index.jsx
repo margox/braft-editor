@@ -84,91 +84,6 @@ export default class BraftEditor extends EditorController {
 
   }
 
-  render () {
-
-    let {
-      controls, extendControls, disabled, height, media, language, colors,
-      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights
-    } = this.props
-
-    const { tempColors } = this.state
-
-    controls = controls || defaultOptions.controls
-    extendControls = extendControls || defaultOptions.extendControls
-    language = languages[language] || languages[defaultOptions.language]
-    colors = colors || defaultOptions.colors
-    fontSizes = fontSizes || defaultOptions.fontSizes
-    fontFamilies = fontFamilies || defaultOptions.fontFamilies
-    lineHeights = lineHeights || defaultOptions.lineHeights
-    emojis = emojis || defaultOptions.emojis
-    height = height || defaultOptions.height
-
-    const externalMedias = media && media.externalMedias ? {
-      ...defaultOptions.media.externalMedias,
-      ...media.externalMedias
-    } : defaultOptions.media.externalMedias
-
-    media = { ...defaultOptions.media, ...media, externalMedias }
-
-    imageControls = imageControls ? {
-      ...defaultOptions.imageControls,
-      ...imageControls
-    } : defaultOptions.imageControls
-
-    this.colorList = [...colors, ...tempColors]
-    this.fontSizeList = fontSizes
-    this.fontFamilyList = fontFamilies
-    this.lineHeightList = lineHeights
-
-    if (!media.uploadFn) {
-      media.video = false
-      media.audio = false
-    }
-
-    const controlBarProps = {
-      editor: this,
-      editorHeight: height,
-      media, controls, language, viewWrapper, extendControls,
-      colors, tempColors, fontSizes, fontFamilies, emojis, lineHeights
-    }
-
-    const blockRendererFn = getBlockRendererFn({
-      editor: this, imageControls,
-      language, viewWrapper
-    })
-
-    const customStyleMap = getCustomStyleMap({
-      colors: [...colors, ...tempColors],
-      fontSizes, fontFamilies, lineHeights
-    })
-
-    const editorProps = {
-      ref: instance => { this.draftInstance = instance },
-      editorState: this.state.editorState,
-      handleKeyCommand: this.handleKeyCommand,
-      handleReturn: this.handleReturn,
-      handlePastedText: this.handlePastedText,
-      onChange: this.onChange,
-      onTab: this.onTab,
-      onFocus: this.onFocus,
-      onBlur: this.onBlur,
-      readOnly: disabled,
-      customStyleMap, blockStyleFn, keyBindingFn,
-      blockRendererFn, blockRenderMap, placeholder,
-      ...this.state.editorProps
-    }
-
-    return (
-      <div className={"BraftEditor-container " + (disabled ? 'disabled' : '')}>
-        <ControlBar {...controlBarProps} />
-        <div className="BraftEditor-content" style={{ height }}>
-          <Editor {...editorProps} />
-        </div>
-      </div>
-    )
-
-  }
-
   onChange = (editorState) => {
 
     this.editorState = editorState
@@ -397,5 +312,91 @@ export default class BraftEditor extends EditorController {
     }, callback)
 
   }
+  render() {
 
+    let {
+      controls, extendControls, disabled, height, media, language, colors,
+      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights, letterSpacings, textAlignMaps, needTextBgcolor
+    } = this.props
+
+    const { tempColors } = this.state
+    controls = controls || defaultOptions.controls
+    extendControls = extendControls || defaultOptions.extendControls
+    language = languages[language] || languages[defaultOptions.language]
+    colors = colors || defaultOptions.colors
+    fontSizes = fontSizes || defaultOptions.fontSizes
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
+    lineHeights = lineHeights || defaultOptions.lineHeights
+    emojis = emojis || defaultOptions.emojis
+    height = height || defaultOptions.height
+    letterSpacings = letterSpacings || defaultOptions.letterSpacings
+    textAlignMaps = textAlignMaps || defaultOptions.textAlignMaps
+    needTextBgcolor = needTextBgcolor || defaultOptions.needTextBgcolor
+    
+    const externalMedias = media && media.externalMedias ? {
+      ...defaultOptions.media.externalMedias,
+      ...media.externalMedias
+    } : defaultOptions.media.externalMedias
+
+    media = { ...defaultOptions.media, ...media, externalMedias }
+
+    imageControls = imageControls ? {
+      ...defaultOptions.imageControls,
+      ...imageControls
+    } : defaultOptions.imageControls
+
+    this.colorList = [...colors, ...tempColors]
+    this.fontSizeList = fontSizes
+    this.fontFamilyList = fontFamilies
+    this.lineHeightList = lineHeights
+    this.letterSpacingList = letterSpacings
+
+    if (!media.uploadFn) {
+      media.video = false
+      media.audio = false
+    }
+
+    const controlBarProps = {
+      editor: this,
+      editorHeight: height,
+      media, controls, language, viewWrapper, extendControls,
+      colors, tempColors, fontSizes, fontFamilies, emojis, lineHeights, letterSpacings, textAlignMaps, needTextBgcolor
+    }
+
+    const blockRendererFn = getBlockRendererFn({
+      editor: this, imageControls,
+      language, viewWrapper
+    })
+
+    const customStyleMap = getCustomStyleMap({
+      colors: [...colors, ...tempColors],
+      fontSizes, fontFamilies, lineHeights, letterSpacings
+    })
+    console.log(customStyleMap);
+    const editorProps = {
+      ref: instance => { this.draftInstance = instance },
+      editorState: this.state.editorState,
+      handleKeyCommand: this.handleKeyCommand,
+      handleReturn: this.handleReturn,
+      handlePastedText: this.handlePastedText,
+      onChange: this.onChange,
+      onTab: this.onTab,
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
+      readOnly: disabled,
+      customStyleMap, blockStyleFn, keyBindingFn,
+      blockRendererFn, blockRenderMap, placeholder,
+      ...this.state.editorProps
+    }
+
+    return (
+      <div className={"BraftEditor-container " + (disabled ? 'disabled' : '')}>
+        <ControlBar {...controlBarProps} />
+        <div className="BraftEditor-content" style={{ height }}>
+          <Editor {...editorProps} />
+        </div>
+      </div>
+    )
+
+  }
 }
