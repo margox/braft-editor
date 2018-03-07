@@ -3,7 +3,6 @@ import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } fr
 import { setBlockData, getSelectionEntity } from 'draftjs-utils'
 
 export default class EditorController extends React.Component{
-
   triggerChange = (editorState) => {
     this.onChange(editorState)
     return this
@@ -113,7 +112,6 @@ export default class EditorController extends React.Component{
     }, this.contentState) : this.contentState
 
     const nextEditorState = stylesToBeRemoved.length ? EditorState.push(this.editorState, nextContentState, 'change-inline-style') : this.editorState
-    console.log('111',RichUtils.toggleInlineStyle);
     return this.triggerChange(RichUtils.toggleInlineStyle(nextEditorState, style))
 
   }
@@ -144,6 +142,9 @@ export default class EditorController extends React.Component{
   }
   toggleSelectionLetSpacing = (letterSpacing) => {
     return this.toggleSelectionInlineStyle('LETTERSPACING-' + letterSpacing, this.letterSpacingList.map(item => 'LETTERSPACING-' + item))
+  }
+  toggleSelectionIndent = (indent) => {
+    return this.toggleSelectionInlineStyle('INDENT-' + indent, this.indentList.map(item => 'INDENT-' + item))
   }
   
   toggleSelectionLink = (href, target) => {

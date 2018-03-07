@@ -6,6 +6,7 @@ export default (props) => {
   const fontFamilyStyles = {}
   const lineHeightStyles = {}
   const letterSpacingtStyles = {}
+  const indentStyles = {}
 
   props.colors.forEach((color) => {
     let color_id = color.replace('#', '').toUpperCase()
@@ -30,6 +31,10 @@ export default (props) => {
   props.letterSpacings.forEach((letterSpacing) => {
     letterSpacingtStyles['LETTERSPACING-' + letterSpacing] = { letterSpacing: letterSpacing }
   })
+  props.indents.forEach((indent) => {
+    indentStyles['INDENT-' + indent] = { paddingLeft: indent, paddingRight: indent}
+  })
+  
   return {
     'SUPERSCRIPT': {
       position: 'relative',
@@ -46,7 +51,8 @@ export default (props) => {
     ...fontSizeStyles,
     ...fontFamilyStyles,
     ...lineHeightStyles,
-    ...letterSpacingtStyles
+    ...letterSpacingtStyles,
+    ...indentStyles
   }
 
 }

@@ -68,9 +68,11 @@ const styleToHTML = (props) => (style) => {
     return <span style={{lineHeight: style.split('-')[1]}}/> 
   } else if (style.indexOf('letterspacing-') === 0) {
     return <span style={{ letterSpacing: style.split('-')[1] + 'px'}} />
-  } else if (style.indexOf('fontfamily-') === 0) {
+  } else if (style.indexOf('indent-') === 0) {
+    return <span style={{ paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} />
+  }else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
-    return <span style={{fontFamily: fontFamily.family}}/> 
+    return <span style={{fontFamily: fontFamily.family}}/>
   }
 
 }
@@ -157,20 +159,10 @@ const entityToHTML = (entity, originalText) => {
 
 }
 
-export const getToHTMLConfig = (props) => {
-
-  return {
-    styleToHTML: styleToHTML(props),
-    entityToHTML: entityToHTML,
-    blockToHTML: blockToHTML(props.contentState)
-  }
-
-}
 
 
-const htmlToStyle = (nodeName, node, currentStyle) => {
-  console.log(nodeName, node.style, currentStyle);
-  console.log(currentStyle);
+
+const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
   if (nodeName === 'span' && node.style.color) {
     let color = getHexColor(node.style.color)
     return color ? currentStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
@@ -187,9 +179,14 @@ const htmlToStyle = (nodeName, node, currentStyle) => {
     return currentStyle.add('LINEHEIGHT-' + node.style.lineHeight)
   } else if (nodeName === 'span' && node.style.letterSpacing) {
     return currentStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10))
-  } else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
+  } else if (nodeName === 'span' && node.style.indent) {
+    return currentStyle.add('INDENT-' + parseInt(node.style.indent, 10))
+  }else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
     return currentStyle.add('STRIKETHROUGH')
-  } else {
+  } else if (nodeName === 'span' && node.style.fontFamily) {
+    let fontFamily = props.fontFamilies.find((item) => item.family.toLowerCase() === node.style.fontFamily.toLowerCase())
+    return currentStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
+  }else {
     return currentStyle
   }
 }
@@ -262,8 +259,21 @@ const htmlToBlock = (nodeName, node) => {
 
 }
 
+export const getToHTMLConfig = (props) => {
+
+  return {
+    styleToHTML: styleToHTML(props),
+    entityToHTML: entityToHTML,
+    blockToHTML: blockToHTML(props.contentState)
+  }
+
+}
 export const getFromHTMLConfig = (props) => {
-  return { htmlToStyle, htmlToEntity, htmlToBlock }
+  return { 
+    htmlToStyle: htmlToStyle(props),
+    htmlToEntity,
+    htmlToBlock 
+  }
 }
 
 export const convertCodeBlock = (htmlContent) => {

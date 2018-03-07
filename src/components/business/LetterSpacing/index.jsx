@@ -25,9 +25,9 @@ export default (props) => {
       viewWrapper={viewWrapper}
       editorHeight={editorHeight}
       hoverTitle={language.controls.letterSpacing}
-      className={"control-item dropdown braft-line-height-dropdown"}
+      className={"control-item dropdown braft-letter-spacing-dropdown"}
     >
-      <ul className="braft-line-heights-wrap">
+      <ul className="braft-letter-spacings-wrap">
         {letterSpacings.map((item, index) => {
           return (
             <li
