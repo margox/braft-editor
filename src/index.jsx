@@ -21,11 +21,24 @@ import { detectColorsFromHTML } from 'helpers/colors'
 // 强化图片尺寸编辑功能
 // 增加取色器
 // 尝试支持mention功能
+// 图片宽度自动加px
+// 增加content属性
+// 允许插入相册功能
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
 export default class BraftEditor extends EditorController {
+
+  static defaultProps = {
+    ...defaultOptions,
+    onChange: null,
+    onHTMLChange: null,
+    onRawChange: null,
+    onFocus: null,
+    onBlur: null,
+    onSave: null
+  }
 
   constructor (props) {
 
@@ -70,18 +83,16 @@ export default class BraftEditor extends EditorController {
 
   }
 
-  componentWillReceiveProps (next) {
+  componentWillReceiveProps (nextProps) {
 
-    if (!this.contentInitialized && !this.props.initialContent && next.initialContent) {
-      this.setContent(next.initialContent)
+    if (JSON.stringify(nextProps.initialContent) !== JSON.stringify(this.props.initialContent)) {
+      this.setContent(nextProps.initialContent)
     }
 
   }
 
   componentWillUnmount () {
-
     document.removeEventListener('paste', this.handlePaste, false)
-
   }
 
   render () {
@@ -93,15 +104,7 @@ export default class BraftEditor extends EditorController {
 
     const { tempColors } = this.state
 
-    controls = controls || defaultOptions.controls
-    extendControls = extendControls || defaultOptions.extendControls
     language = languages[language] || languages[defaultOptions.language]
-    colors = colors || defaultOptions.colors
-    fontSizes = fontSizes || defaultOptions.fontSizes
-    fontFamilies = fontFamilies || defaultOptions.fontFamilies
-    lineHeights = lineHeights || defaultOptions.lineHeights
-    emojis = emojis || defaultOptions.emojis
-    height = height || defaultOptions.height
 
     const externalMedias = media && media.externalMedias ? {
       ...defaultOptions.media.externalMedias,
@@ -198,8 +201,7 @@ export default class BraftEditor extends EditorController {
 
     format = format || this.props.contentFormat || 'raw'
     const contentState = this.contentState
-    let { fontFamilies } = this.props
-    fontFamilies = fontFamilies || defaultOptions.fontFamilies
+    const { fontFamilies } = this.props
 
     return format === 'html' ? convertToHTML(getToHTMLConfig({
       contentState, fontFamilies
@@ -228,13 +230,11 @@ export default class BraftEditor extends EditorController {
     let convertedContent
     let newState = {}
     let { contentFormat, colors } = this.props
-    const presetColors = colors || defaultOptions.colors
-
     contentFormat = format || contentFormat || 'raw'
 
     if (contentFormat === 'html') {
       content = content
-      newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+      newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
       convertedContent = convertFromHTML(getFromHTMLConfig())(convertCodeBlock(content))
     } else if (contentFormat === 'raw') {
       convertedContent = convertFromRaw(content)
@@ -291,7 +291,7 @@ export default class BraftEditor extends EditorController {
 
     const currentBlock = this.getSelectionBlock()
     const currentBlockType = currentBlock.getType()
-    const tabIndents = this.props.tabIndents || defaultOptions.tabIndents
+    const tabIndents = this.props.tabIndents
 
     if (currentBlockType === 'code-block') {
       this.insertText(' '.repeat(tabIndents), false)
@@ -348,7 +348,7 @@ export default class BraftEditor extends EditorController {
 
   handlePaste = (event) => {
 
-    if (this.isFocused && this.props.allowPasteImage !== false) {
+    if (this.isFocused && this.props.media && this.props.media.allowPasteImage) {
       this.mediaLibrary.resolvePastedData(event, image => {
         this.insertMedias([image])
       })
@@ -376,7 +376,7 @@ export default class BraftEditor extends EditorController {
     const { tempColors } = this.state
     const blockMap = convertFromHTML(getFromHTMLConfig())(convertCodeBlock(html || text)).blockMap
     const nextContentState = Modifier.replaceWithFragment(this.contentState, this.selectionState, blockMap)
-    const presetColors = this.props.colors || defaultOptions.colors
+    const presetColors = this.props.colors
 
     this.setState({
       tempColors: [...tempColors, ...detectColorsFromHTML(html)].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
@@ -390,7 +390,7 @@ export default class BraftEditor extends EditorController {
 
   addTempColors = (colors, callback) => {
 
-    const presetColors = this.props.colors || defaultOptions.colors
+    const presetColors = this.props.colors
 
     this.setState({
       tempColors: [...this.state.tempColors, ...colors].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)

@@ -331,6 +331,7 @@ class Demo extends React.Component {
 配置编辑器的多媒体插入功能:
 ```javascript
 {
+  allowPasteImage: true, // 是否允许直接粘贴剪贴板图片（例如QQ截图等）到编辑器
   image: true, // 开启图片插入功能
   video: true, // 开启视频插入功能
   audio: true, // 开启音频插入功能
@@ -338,6 +339,8 @@ class Demo extends React.Component {
   uploadFn: null // 指定上传函数，说明见下文
 }
 ```
+> 粘贴的图片依然会通过media.uploadFn上传到服务器，但是暂时不会调用media.validateFn来进行校验
+
 #### media.validateFn [function]
 
 在选择文件之后，编辑器会调用此函数对每一个选择的文件进行校验，如果该函数返回false，则对应的文件不会被添加到媒体库：
@@ -424,11 +427,6 @@ const uploadFn = (param) => {
 }
 // 如果以上三个值皆为false，则不允许插入任何外部媒体，也不会显示插入外部媒体的入口
 ```
-
-### allowPasteImage [boolean]
-是否允许直接粘贴剪贴板图片（例如QQ截图等）到编辑器
-> 粘贴的图片依然会通过media.uploadFn上传到服务器，但是暂时不会调用media.validateFn来进行校验
-
 
 #### imageControls [object]
 配置图片工具栏(tooltip)可用的按钮，默认值如下：

@@ -291,7 +291,10 @@ export default class MediaPicker extends React.Component {
             uploadProgress: 0,
             uploading: false,
             selected: false,
-            error: 0
+            error: 0,
+            onReadyToInsert: ({ id }) => {
+              this.mediaLibrary.selectItem(id)
+            }
           }
 
           if (files[index].type.indexOf('image/') === 0 && this.props.media.image) {

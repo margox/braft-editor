@@ -10,6 +10,7 @@ export default {
   tabIndents: 2,
   extendControls: [],
   media: {
+    allowPasteImage: true,
     image: true,
     video: true,
     audio: true,

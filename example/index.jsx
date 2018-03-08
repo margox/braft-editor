@@ -8,9 +8,9 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      initialContent: '',
-      htmlContent: ''
+      htmlContent: '',
     }
+    this.editorInstance = null
   }
 
   preview = () => {
@@ -25,7 +25,7 @@ class Demo extends React.Component {
 
     const xhr = new XMLHttpRequest
     const fd = new FormData()
-    const mediaLibrary = window.editor.getMediaLibraryInstance()
+    const mediaLibrary = this.editorInstance.getMediaLibraryInstance()
 
     const successFn = (response) => {
       param.success(JSON.parse(xhr.responseText)[0])
@@ -58,7 +58,7 @@ class Demo extends React.Component {
 
   buildPreviewHtml () {
 
-    const htmlContent = window.editor.getHTMLContent()
+    const { htmlContent } = this.state
 
     return `
       <!Doctype html>
@@ -110,14 +110,13 @@ class Demo extends React.Component {
         type: 'button',
         className: 'preview-button',
         text: <span>预览</span>,
-        html: '<span style="color:#00f;">预览</span>',
         onClick: this.preview
       }, {
         type: 'button',
         className: 'preview-button',
         text: <span>增加颜色</span>,
         onClick: () => {
-          window.editor.addTempColors(['#0099ae', '#0049ae', '#4099ae', '#00c9fe'])
+          this.editorInstance.addTempColors(['#0099ae', '#0049ae', '#4099ae', '#00c9fe'])
         }
       }, {
         type: 'dropdown',
@@ -130,9 +129,6 @@ class Demo extends React.Component {
         ref: instance => window.customDropDown = instance,
         component: <h1 style={{width: 200, color: '#ffffff', padding: 10, margin: 0}}>Hello World!</h1>
       }, {
-        type: 'component',
-        component: <div>123</div>
-      }, {
         type: 'modal',
         html: '<span style="color:#f00;">弹出框</span>',
         text: '弹出框',
@@ -144,9 +140,6 @@ class Demo extends React.Component {
           showCancel: true,
           showConfirm: true,
           confirmable: true,
-          onConfirm: () => console.log(1),
-          onCancel: () => console.log(2),
-          onClose: () => console.log(3),
           children: (
             <div style={{width: 480, height: 320, padding: 30}}>
               <span>Hello World!</span>
@@ -162,11 +155,10 @@ class Demo extends React.Component {
           <BraftEditor
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
-            ref={(instance) => window.editor = instance} 
+            ref={instance => this.editorInstance = instance} 
             language="zh-hant"
             contentFormat='html'
-            initialContent={this.state.initialContent}
-            onHTMLChange={console.log}
+            onHTMLChange={htmlContent => this.setState({ htmlContent })}
             extendControls={extendControls}
           />
         </div>

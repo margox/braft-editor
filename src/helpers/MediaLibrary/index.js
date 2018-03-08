@@ -83,7 +83,7 @@ export default class MediaLibrary {
         file: item.file,
         libraryId: item.id,
         success: (res) => {
-          this.handleUploadSuccess (item.id, res.url)
+          this.handleUploadSuccess(item.id, res.url)
         },
         progress: (progress) => {
           this.setItemState(item.id, {

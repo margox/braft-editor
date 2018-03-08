@@ -61,7 +61,7 @@ export default class Image extends React.Component {
               <div onClick={this.preventDefault} className="braft-embed-image-link-editor">
                 <div className="editor-input-group">
                   <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
-                  <button onClick={this.comfirmImageLink}>{language.base.confirm}</button>
+                  <button onClick={this.confirmImageLink}>{language.base.confirm}</button>
                 </div>
                 <div className="switch-group">
                   <Switch
@@ -77,7 +77,7 @@ export default class Image extends React.Component {
                 <div className="editor-input-group">
                   <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
                   <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
-                  <button onClick={this.comfirmImageSize}>{language.base.confirm}</button>
+                  <button onClick={this.confirmImageSize}>{language.base.confirm}</button>
                 </div>
               </div>
             ) : null}
@@ -153,7 +153,7 @@ export default class Image extends React.Component {
   handleLinkInputKeyDown = (e) => {
 
     if (e.keyCode === 13) {
-      this.comfirmImageLink()
+      this.confirmImageLink()
     } else {
       return
     }
@@ -178,7 +178,7 @@ export default class Image extends React.Component {
 
   }
 
-  comfirmImageLink = () => {
+  confirmImageLink = () => {
 
     const { tempLink: link } = this.state
 
@@ -192,34 +192,42 @@ export default class Image extends React.Component {
   handleSizeInputKeyDown = (e) => {
 
     if (e.keyCode === 13) {
-      this.comfirmImageSize()
+      this.confirmImageSize()
     } else {
       return
     }
 
   }
 
-  setImageWidth = (e) => {
+  setImageWidth = ({ currentTarget }) => {
+
+    let { value } = currentTarget
+
+    value && !isNaN(value) && (value = value + 'px')
 
     this.setState({
-      tempWidth: e.currentTarget.value
+      tempWidth: value
     })
 
     return
 
   }
 
-  setImageHeight = (e) => {
+  setImageHeight = ({ currentTarget }) => {
+
+    let { value } = currentTarget
+
+    value && !isNaN(value) && (value = value + 'px')
 
     this.setState({
-      tempHeight: e.currentTarget.value
+      tempHeight: value
     })
 
     return
 
   }
 
-  comfirmImageSize = () => {
+  confirmImageSize = () => {
 
     const { tempWidth: width, tempHeight: height } = this.state
     const newImageSize = {}
