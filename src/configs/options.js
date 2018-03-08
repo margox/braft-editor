@@ -43,6 +43,7 @@ export default {
   lineHeights: [
     '1', '1.2', '1.5', '1.75', '2', '2.5', '3', '4'
   ],
+  splitLines:['DASHED','SOLID'],
   fontSizes: [
     12, 14, 16, 18, 20, 24,
     28, 30, 32, 36, 40, 48,

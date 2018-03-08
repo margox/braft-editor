@@ -51,7 +51,7 @@ const convertAtomicBlock = (block, contentState) => {
 const styleToHTML = (props) => (style) => {
 
   style = style.toLowerCase()
-
+  console.log(style)
   if (style === 'strikethrough') {
     return <span style={{textDecoration: 'line-through'}}/>
   } else if (style === 'superscript') {
@@ -73,6 +73,8 @@ const styleToHTML = (props) => (style) => {
   }else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     return <span style={{fontFamily: fontFamily.family}}/>
+  } else if (style.indexOf('splitline-') === 0) {
+    return <p style={{ border: '1px '+style.split('-')[1]+' #666',display:'block'}} ></p>
   }
 
 }
@@ -160,8 +162,6 @@ const entityToHTML = (entity, originalText) => {
 }
 
 
-
-
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
   if (nodeName === 'span' && node.style.color) {
     let color = getHexColor(node.style.color)
@@ -186,6 +186,9 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
   } else if (nodeName === 'span' && node.style.fontFamily) {
     let fontFamily = props.fontFamilies.find((item) => item.family.toLowerCase() === node.style.fontFamily.toLowerCase())
     return currentStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
+  } else if (nodeName === 'p' && node.style.border) {
+    const borderType = (node.style.border.indexOf('solid') > -1)? 'solid':'dashed';
+    return currentStyle.add('SPLITLINE-' + borderType.toUpperCase())
   }else {
     return currentStyle
   }

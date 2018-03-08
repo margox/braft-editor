@@ -113,7 +113,7 @@ class Demo extends React.Component {
         html: '<span style="color:#00f;">按钮</span>',
         onClick: ()=>{
           const currentHTML = editor.getContent('html')
-          let newCurrentHTML = currentHTML + '<p style="border:1px"></p><p style="text-align:center;"><span style="color:#f39c12"><strong><span style="letter-spacing:2px"><span style="font-size:30px">123123123</span></span></strong></span></p><br/><a href="http://www.facebook.com">Example link</a>';
+          let newCurrentHTML = currentHTML + '<p style="border:1px solid #666;">&nbsp;</p><p style="text-align:center;"><span style="color:#f39c12"><strong><span style="letter-spacing:2px"><span style="font-size:30px">123123123</span></span></strong></span></p><br/><a href="http://www.facebook.com">Example link</a>';
           editor.setContent(newCurrentHTML,'html')
         }
       }, {

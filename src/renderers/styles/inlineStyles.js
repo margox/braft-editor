@@ -7,6 +7,7 @@ export default (props) => {
   const lineHeightStyles = {}
   const letterSpacingtStyles = {}
   const indentStyles = {}
+  const splitLineStyles = {}
 
   props.colors.forEach((color) => {
     let color_id = color.replace('#', '').toUpperCase()
@@ -34,6 +35,10 @@ export default (props) => {
   props.indents.forEach((indent) => {
     indentStyles['INDENT-' + indent] = { paddingLeft: indent, paddingRight: indent}
   })
+
+  props.splitLines.forEach((splitLine) => {
+    splitLineStyles['SPLITLINE-' + splitLine] = { border: '1px ' + splitLine.toLowerCase() + ' #666',display: 'block'}
+  })
   
   return {
     'SUPERSCRIPT': {
@@ -52,7 +57,8 @@ export default (props) => {
     ...fontFamilyStyles,
     ...lineHeightStyles,
     ...letterSpacingtStyles,
-    ...indentStyles
+    ...indentStyles,
+    ...splitLineStyles
   }
 
 }
