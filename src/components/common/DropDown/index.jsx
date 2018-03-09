@@ -71,6 +71,7 @@ export default class DropDown extends React.Component {
       >
         {htmlCaption ? (
           <button
+            type="button"
             className="dropdown-handler"
             title={hoverTitle}
             data-braft-component-id={this.componentId}
@@ -79,6 +80,7 @@ export default class DropDown extends React.Component {
           ></button>
         ) : (
           <button
+            type="button"
             className="dropdown-handler"
             title={hoverTitle}
             data-braft-component-id={this.componentId}

@@ -70,14 +70,14 @@ export default class Modal extends React.Component {
         <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className="braft-modal-content">
           <div className="braft-modal-header">
             <h3 className="braft-modal-caption">{title}</h3>
-            {showClose && <button onClick={this.close} className="braft-modal-close-button"><i className="icon-close"></i></button>}
+            {showClose && <button type="button" onClick={this.close} className="braft-modal-close-button"><i className="icon-close"></i></button>}
           </div>
           <div className="braft-modal-body">{children}</div>
           <div className="braft-modal-footer">
             <div className="braft-modal-addon-text">{bottomText}</div>
             <div className="braft-modal-buttons">
-              {showCancel && <button onClick={this.handleCancel} className="braft-modal-cancel">{cancelText || language.base.cancel}</button>}
-              {showConfirm && <button onClick={this.handleConfirm} className={"braft-modal-confirm " + (!confirmable ? 'disabled' : '')}>{confirmText || language.base.confirm}</button>}
+              {showCancel && <button type="button" onClick={this.handleCancel} className="braft-modal-cancel">{cancelText || language.base.cancel}</button>}
+              {showConfirm && <button type="button" onClick={this.handleConfirm} className={"braft-modal-confirm " + (!confirmable ? 'disabled' : '')}>{confirmText || language.base.confirm}</button>}
             </div>
           </div>
         </div>

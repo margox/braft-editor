@@ -3,12 +3,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 
+const initialContent = '<p><span style="color:#0099ff;">Hello World!</span></p>'
+
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      htmlContent: '',
+      htmlContent: ''
     }
     this.editorInstance = null
   }
@@ -158,6 +160,7 @@ class Demo extends React.Component {
             ref={instance => this.editorInstance = instance} 
             language="zh-hant"
             contentFormat='html'
+            initialContent={initialContent}
             onHTMLChange={htmlContent => this.setState({ htmlContent })}
             extendControls={extendControls}
           />

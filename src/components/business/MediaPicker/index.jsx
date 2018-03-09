@@ -132,12 +132,12 @@ export default class MediaPicker extends React.Component {
                     <div>
                       <input onKeyDown={this.confirmAddExternal} value={external.url} onChange={this.inputExternal} placeholder={language.mediaPicker.externalInputPlaceHolder}/>
                     </div>
-                    <button onClick={this.confirmAddExternal} disabled={!external.url.trim().length}>{language.base.confirm}</button>
+                    <button type="button" onClick={this.confirmAddExternal} disabled={!external.url.trim().length}>{language.base.confirm}</button>
                   </div>
                   <div data-type={external.type} className="braft-media-switch-external-type">
-                    {media.externalMedias.image ? <button onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button> : null}
-                    {media.externalMedias.audio ? <button onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button> : null}
-                    {media.externalMedias.video ? <button onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button> : null}
+                    {media.externalMedias.image ? <button type="button" onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button> : null}
+                    {media.externalMedias.audio ? <button type="button" onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button> : null}
+                    {media.externalMedias.video ? <button type="button" onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button> : null}
                   </div>
                   <span className="braft-media-external-tip">{language.mediaPicker.externalInputTip}</span>
                 </div>

@@ -85,7 +85,7 @@ export default class BraftEditor extends EditorController {
 
   componentWillReceiveProps (nextProps) {
 
-    if (JSON.stringify(nextProps.initialContent) !== JSON.stringify(this.props.initialContent)) {
+    if (!this.contentInitialized) {
       this.setContent(nextProps.initialContent)
     }
 

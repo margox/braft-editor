@@ -33,6 +33,7 @@ export default class TextAlign extends React.Component {
           ['left', 'center', 'right', 'justify'].map((item, index) => {
             return (
               <button
+                type="button"
                 key={index}
                 title={textAlignmentTitles[index]}
                 data-alignment={item}

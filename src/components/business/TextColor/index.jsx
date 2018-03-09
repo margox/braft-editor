@@ -54,6 +54,7 @@ export default class TextColor extends React.Component {
         <div className="braft-text-color-picker-wrap">
           <div className="braft-color-switch-buttons">
             <button
+              type="button"
               data-type="color"
               data-keep-active={true}
               data-braft-component-id={this.dropDownComponentId}
@@ -61,6 +62,7 @@ export default class TextColor extends React.Component {
               onClick={this.switchColorType}
             >{language.controls.textColor}</button>
             <button
+              type="button"
               data-type="backgroundColor"
               data-keep-active={true}
               data-braft-component-id={this.dropDownComponentId}

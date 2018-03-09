@@ -64,12 +64,13 @@ export default class LinkEditor extends React.Component {
                 <i className="icon-close"></i>
                 <span>{language.linkEditor.removeLink}</span>
               </a>
-              <button onClick={this.handleConfirm} className="primary pull-right">{language.base.confirm}</button>
-              <button onClick={this.handleCancel} className="default pull-right">{language.base.cancel}</button>
+              <button type="button" onClick={this.handleConfirm} className="primary pull-right">{language.base.confirm}</button>
+              <button type="button" onClick={this.handleCancel} className="default pull-right">{language.base.cancel}</button>
             </div>
           </div>
         </DropDown>
         <button
+          type="button"
           title={language.controls.unlink}
           className="control-item button"
           onClick={this.handleUnlink}

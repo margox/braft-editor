@@ -61,7 +61,7 @@ export default class Image extends React.Component {
               <div onClick={this.preventDefault} className="braft-embed-image-link-editor">
                 <div className="editor-input-group">
                   <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
-                  <button onClick={this.confirmImageLink}>{language.base.confirm}</button>
+                  <button type="button" onClick={this.confirmImageLink}>{language.base.confirm}</button>
                 </div>
                 <div className="switch-group">
                   <Switch
@@ -77,7 +77,7 @@ export default class Image extends React.Component {
                 <div className="editor-input-group">
                   <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
                   <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
-                  <button onClick={this.confirmImageSize}>{language.base.confirm}</button>
+                  <button type="button" onClick={this.confirmImageSize}>{language.base.confirm}</button>
                 </div>
               </div>
             ) : null}

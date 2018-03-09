@@ -9,6 +9,10 @@
 
 
 ## 最近更新
+- 2018-03-09 v1.6.2
+  - 增加与Ant.Design的兼容性
+  - allowPasteImage属性更改为media属性的子属性
+  - 图片宽高填写数字时自动加px
 - 2018-03-03 v1.6.1
   - 支持直接粘贴截图到编辑器（目前仅支持chrome浏览器和微软EDGE浏览器，其他浏览器支持请期待后续更新）
   - 增加自定义控制栏组件类型[component],允许直接将一个React组件添加到工具栏（感谢[@avdbg](https://github.com/avdbg)的建议）
