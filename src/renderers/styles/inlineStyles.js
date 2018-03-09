@@ -36,8 +36,8 @@ export default (props) => {
     indentStyles['INDENT-' + indent] = { paddingLeft: indent, paddingRight: indent}
   })
 
-  props.splitLines.forEach((splitLine) => {
-    splitLineStyles['SPLITLINE-' + splitLine] = { border: '1px ' + splitLine.toLowerCase() + ' #666',display: 'block'}
+  props.borders.forEach((border) => {
+    splitLineStyles['BORDER-' + border.name] = { border: border.value.toLowerCase(),display: 'block', width: '100%', height: '0px',overflow:'hidden',marginTop:'15px'}
   })
   
   return {

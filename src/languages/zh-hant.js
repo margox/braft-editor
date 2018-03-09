@@ -19,6 +19,7 @@ export default {
     lineHeight: '行高',
     letterSpacing: '字間距',
     indent: '縮進',
+    border: '邊框',
     italic: '斜體',
     underline: '下劃線',
     strikeThrough: '刪除線',

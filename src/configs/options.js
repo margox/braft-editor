@@ -2,7 +2,7 @@ export default {
   height: 500,
   language: 'zh',
   controls: [
-    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing','indent','text-color',
+    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'border','text-color',
     'bold', 'italic', 'underline', 'strike-through', 'superscript',
     'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
     'blockquote', 'code', 'split', 'link', 'split', 'media'
@@ -43,7 +43,13 @@ export default {
   lineHeights: [
     '1', '1.2', '1.5', '1.75', '2', '2.5', '3', '4'
   ],
-  splitLines:['DASHED','SOLID'],
+  borders: [{ 
+    name: 'SOLID', 
+    value: '1px solid #ccc'
+  },{ 
+    name: 'DASHED',
+    value: '1px dashed #ccc'
+  }],
   fontSizes: [
     12, 14, 16, 18, 20, 24,
     28, 30, 32, 36, 40, 48,

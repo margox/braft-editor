@@ -72,9 +72,12 @@ const styleToHTML = (props) => (style) => {
     return <span style={{ paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} />
   }else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
+    if (!fontFamily) return
     return <span style={{fontFamily: fontFamily.family}}/>
-  } else if (style.indexOf('splitline-') === 0) {
-    return <p style={{ border: '1px '+style.split('-')[1]+' #666',display:'block'}} ></p>
+  } else if (style.indexOf('border-') === 0) {
+    let border = props.borders.find((item) => item.name.toLowerCase() === style.split('-')[1])
+    if (!border) return
+    return <span style={{ border: border.value.toLowerCase(), display: 'block', width: '100%', height: '0', overflow: 'hidden', marginTop: '15px'}} />
   }
 
 }
@@ -185,10 +188,12 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
     return currentStyle.add('STRIKETHROUGH')
   } else if (nodeName === 'span' && node.style.fontFamily) {
     let fontFamily = props.fontFamilies.find((item) => item.family.toLowerCase() === node.style.fontFamily.toLowerCase())
+    if (!fontFamily) return currentStyle
     return currentStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
-  } else if (nodeName === 'p' && node.style.border) {
-    const borderType = (node.style.border.indexOf('solid') > -1)? 'solid':'dashed';
-    return currentStyle.add('SPLITLINE-' + borderType.toUpperCase())
+  } else if (nodeName === 'span' || nodeName === 'p' && node.style.borderStyle) {
+    let border = props.borders.find((item) => item.name.toLowerCase() === node.style.borderStyle.toLowerCase())
+    if (!border) return currentStyle
+    return currentStyle.add('BORDER-' + border.name.toUpperCase())
   }else {
     return currentStyle
   }

@@ -18,6 +18,7 @@ export default {
     bold: 'Bold',
     lineHeight:'Line Height',
     letterSpacing:'Letter Spacing',
+    border: 'border',
     indent:'Indent',
     italic: 'Italic',
     underline: 'Underline',

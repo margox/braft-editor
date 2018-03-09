@@ -4,6 +4,7 @@ import { setBlockData, getSelectionEntity } from 'draftjs-utils'
 
 export default class EditorController extends React.Component{
   triggerChange = (editorState) => {
+    console.log(Modifier.insertText)
     this.onChange(editorState)
     return this
   }
@@ -68,13 +69,13 @@ export default class EditorController extends React.Component{
   }
 
   toggleSelectionBlockType = (blockType) => {
+    console.log(RichUtils.toggleBlockType);
     return this.triggerChange(RichUtils.toggleBlockType(this.editorState, blockType))
   }
 
   getSelectionEntityData = (type) => {
 
     const entityKey = getSelectionEntity(this.editorState)
-
     if (entityKey) {
       let entity = this.contentState.getEntity(entityKey)
       if (entity && entity.get('type') === type) {
@@ -146,6 +147,9 @@ export default class EditorController extends React.Component{
   toggleSelectionIndent = (indent) => {
     return this.toggleSelectionInlineStyle('INDENT-' + indent, this.indentList.map(item => 'INDENT-' + item))
   }
+  toggleSelectionBorder = (border) => {
+    return this.toggleSelectionInlineStyle('BORDER-' + border, this.borderList.map(item => 'BORDER-' + item.name.toUpperCase()))
+  }
   
   toggleSelectionLink = (href, target) => {
 
@@ -184,7 +188,6 @@ export default class EditorController extends React.Component{
     return this.triggerChange(nextEditorState)
 
   }
-
   insertText = (text, replace = true) => {
 
     const currentSelectedBlockType = this.getSelectionBlockType()

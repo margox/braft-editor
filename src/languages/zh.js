@@ -14,6 +14,7 @@ export default {
     lineHeight: '行高',
     letterSpacing: '字间距',
     indent: '缩进',
+    border: '边框',
     color: '颜色',
     textColor: '文字颜色',
     backgroundColor: '背景颜色',

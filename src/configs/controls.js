@@ -93,6 +93,10 @@ export default (lang) => [
     key: 'letter-spacing',
     title: lang.controls.letterSpacing,
     type: 'letter-spacing'
+  }, {
+    key: 'border',
+    title: lang.controls.border,
+    type: 'border'
   },{
     key: 'indent',
     title: lang.controls.indent,

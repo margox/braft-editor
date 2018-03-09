@@ -11,3 +11,14 @@ defaultValue: ['left', 'center', 'right', 'justify']
 ```javascript
 defaultValue: 'Y' // 'Y''N'
 ```
+##### letterSpacings[ARRAY]
+字间距
+```javascript
+defaultValue: [0, 2, 4, 6]
+```
+
+##### indents[ARRAY]
+两端缩进
+```javascript
+defaultValue: [0, 14, 21, 28]
+```
