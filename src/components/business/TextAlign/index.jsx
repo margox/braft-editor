@@ -19,7 +19,7 @@ export default class TextAlign extends React.Component {
   render () {
 
     const { currentAlignment } = this.state
-    const { language } = this.props
+    const { language, textAlignMaps} = this.props
     const textAlignmentTitles = [
       language.controls.alignLeft,
       language.controls.alignCenter,
@@ -30,7 +30,7 @@ export default class TextAlign extends React.Component {
     return (
       <div className="control-item-group">
         {
-          ['left', 'center', 'right', 'justify'].map((item, index) => {
+          textAlignMaps.map((item, index) => {
             return (
               <button
                 type="button"

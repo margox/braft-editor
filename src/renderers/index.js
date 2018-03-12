@@ -49,7 +49,6 @@ export const customBlockRenderMap = Map({
     wrapper: DefaultDraftBlockRenderMap.get('code-block').wrapper
   }
 })
-
 export const blockStyleFn = _blockStyleFn
 export const getCustomStyleMap = _getCustomStyleMap
 export const decorators = _decorators

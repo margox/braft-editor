@@ -2,12 +2,16 @@ export default {
   height: 500,
   language: 'zh',
   controls: [
-    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'text-color',
+    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'border','text-color',
     'bold', 'italic', 'underline', 'strike-through', 'superscript',
     'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
     'blockquote', 'code', 'split', 'link', 'split', 'media'
   ],
   tabIndents: 2,
+  textAlignMaps: ['left', 'center', 'right', 'justify'],
+  needTextBgcolor: 'Y',
+  letterSpacings:[0, 2, 4, 6],
+  indents: [0, 14, 21, 28],
   extendControls: [],
   media: {
     allowPasteImage: true,

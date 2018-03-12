@@ -111,8 +111,18 @@ class Demo extends React.Component {
       }, {
         type: 'button',
         className: 'preview-button',
+<<<<<<< HEAD
         text: <span>预览</span>,
         onClick: this.preview
+=======
+        text: <span>按钮</span>,
+        html: '<span style="color:#00f;">按钮</span>',
+        onClick: ()=>{
+          const currentHTML = editor.getContent('html')
+          let newCurrentHTML = currentHTML + '<p style="border-style:dashed;height:20px;width:100%;">123</p>';
+          editor.setContent(newCurrentHTML,'html')
+        }
+>>>>>>> dev
       }, {
         type: 'button',
         className: 'preview-button',
@@ -155,14 +165,25 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            controls = {[
+              'undo', 'redo',  'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'border','text-color',
+              'bold','text-align','list_ul', 'list_ol','media'
+            ]}
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
+<<<<<<< HEAD
             ref={instance => this.editorInstance = instance} 
             language="zh-hant"
+=======
+            ref={(instance) => window.editor = instance} 
+            language="zh"
+>>>>>>> dev
             contentFormat='html'
             initialContent={initialContent}
             onHTMLChange={htmlContent => this.setState({ htmlContent })}
             extendControls={extendControls}
+            textAlignMaps = {['left','center']}
+            needTextBgcolor = {'N'}
           />
         </div>
       </div>

@@ -3,8 +3,9 @@ import './assets/scss/_base.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import languages from 'languages'
-import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw } from 'draft-js'
-import { convertToHTML, convertFromHTML } from 'draft-convert'
+import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw, convertFromHTML as originConvertFromHTML} from 'draft-js'
+import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor'
+import { convertToHTML, convertFromHTML} from 'draft-convert'
 import { handleNewLine } from 'draftjs-utils'
 import { getToHTMLConfig, getFromHTMLConfig, convertCodeBlock } from 'configs/convert'
 import keyBindingFn from 'configs/keybindings'
@@ -95,83 +96,6 @@ export default class BraftEditor extends EditorController {
     document.removeEventListener('paste', this.handlePaste, false)
   }
 
-  render () {
-
-    let {
-      controls, extendControls, disabled, height, media, language, colors,
-      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights
-    } = this.props
-
-    const { tempColors } = this.state
-
-    language = languages[language] || languages[defaultOptions.language]
-
-    const externalMedias = media && media.externalMedias ? {
-      ...defaultOptions.media.externalMedias,
-      ...media.externalMedias
-    } : defaultOptions.media.externalMedias
-
-    media = { ...defaultOptions.media, ...media, externalMedias }
-
-    imageControls = imageControls ? {
-      ...defaultOptions.imageControls,
-      ...imageControls
-    } : defaultOptions.imageControls
-
-    this.colorList = [...colors, ...tempColors]
-    this.fontSizeList = fontSizes
-    this.fontFamilyList = fontFamilies
-    this.lineHeightList = lineHeights
-
-    if (!media.uploadFn) {
-      media.video = false
-      media.audio = false
-    }
-
-    const controlBarProps = {
-      editor: this,
-      editorHeight: height,
-      media, controls, language, viewWrapper, extendControls,
-      colors, tempColors, fontSizes, fontFamilies, emojis, lineHeights
-    }
-
-    const blockRendererFn = getBlockRendererFn({
-      editor: this, imageControls,
-      language, viewWrapper
-    })
-
-    const customStyleMap = getCustomStyleMap({
-      colors: [...colors, ...tempColors],
-      fontSizes, fontFamilies, lineHeights
-    })
-
-    const editorProps = {
-      ref: instance => { this.draftInstance = instance },
-      editorState: this.state.editorState,
-      handleKeyCommand: this.handleKeyCommand,
-      handleReturn: this.handleReturn,
-      handlePastedText: this.handlePastedText,
-      onChange: this.onChange,
-      onTab: this.onTab,
-      onFocus: this.onFocus,
-      onBlur: this.onBlur,
-      readOnly: disabled,
-      customStyleMap, blockStyleFn, keyBindingFn,
-      blockRendererFn, blockRenderMap, placeholder,
-      ...this.state.editorProps
-    }
-
-    return (
-      <div className={"BraftEditor-container " + (disabled ? 'disabled' : '')}>
-        <ControlBar {...controlBarProps} />
-        <div className="BraftEditor-content" style={{ height }}>
-          <Editor {...editorProps} />
-        </div>
-      </div>
-    )
-
-  }
-
   onChange = (editorState) => {
 
     this.editorState = editorState
@@ -201,7 +125,8 @@ export default class BraftEditor extends EditorController {
 
     format = format || this.props.contentFormat || 'raw'
     const contentState = this.contentState
-    const { fontFamilies } = this.props
+    let { fontFamilies} = this.props
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
 
     return format === 'html' ? convertToHTML(getToHTMLConfig({
       contentState, fontFamilies
@@ -229,13 +154,15 @@ export default class BraftEditor extends EditorController {
 
     let convertedContent
     let newState = {}
-    let { contentFormat, colors } = this.props
-    contentFormat = format || contentFormat || 'raw'
+    let { contentFormat, colors, fontFamilies} = this.props
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
+    const presetColors = colors || defaultOptions.colors
 
+    contentFormat = format || contentFormat || 'raw'
     if (contentFormat === 'html') {
       content = content
-      newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-      convertedContent = convertFromHTML(getFromHTMLConfig())(convertCodeBlock(content))
+      newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+      convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies}))(convertCodeBlock(content))
     } else if (contentFormat === 'raw') {
       convertedContent = convertFromRaw(content)
     }
@@ -372,9 +299,10 @@ export default class BraftEditor extends EditorController {
     } else {
       this.tmpPasteMode = null
     }
-
+    let { fontFamilies } = this.props
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
     const { tempColors } = this.state
-    const blockMap = convertFromHTML(getFromHTMLConfig())(convertCodeBlock(html || text)).blockMap
+    const blockMap = convertFromHTML(getFromHTMLConfig({ fontFamilies }))(convertCodeBlock(html || text)).blockMap
     const nextContentState = Modifier.replaceWithFragment(this.contentState, this.selectionState, blockMap)
     const presetColors = this.props.colors
 
@@ -397,5 +325,101 @@ export default class BraftEditor extends EditorController {
     }, callback)
 
   }
+  insertHtmlBlock(html) {
+    const blocksFromHTML = originConvertFromHTML(this.getHTMLContent() + html);
+    const newContentState = ContentState.createFromBlockArray(
+      blocksFromHTML.contentBlocks,
+      blocksFromHTML.entityMap
+    );
+    this.setState({ editorState: EditorState.push(this.editorState, newContentState, 'insert-fragment') });
+  }
+  render() {
 
+    let {
+      controls, extendControls, disabled, height, media, language, colors,
+      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights, letterSpacings, indents, textAlignMaps, needTextBgcolor
+    } = this.props
+
+    const { tempColors } = this.state
+    controls = controls || defaultOptions.controls
+    extendControls = extendControls || defaultOptions.extendControls
+    language = languages[language] || languages[defaultOptions.language]
+    colors = colors || defaultOptions.colors
+    fontSizes = fontSizes || defaultOptions.fontSizes
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies
+    lineHeights = lineHeights || defaultOptions.lineHeights
+    emojis = emojis || defaultOptions.emojis
+    height = height || defaultOptions.height
+    letterSpacings = letterSpacings || defaultOptions.letterSpacings
+    textAlignMaps = textAlignMaps || defaultOptions.textAlignMaps
+    needTextBgcolor = needTextBgcolor || defaultOptions.needTextBgcolor
+    indents = indents || defaultOptions.indents
+    
+    const externalMedias = media && media.externalMedias ? {
+      ...defaultOptions.media.externalMedias,
+      ...media.externalMedias
+    } : defaultOptions.media.externalMedias
+
+    media = { ...defaultOptions.media, ...media, externalMedias }
+
+    imageControls = imageControls ? {
+      ...defaultOptions.imageControls,
+      ...imageControls
+    } : defaultOptions.imageControls
+
+    this.colorList = [...colors, ...tempColors]
+    this.fontSizeList = fontSizes
+    this.fontFamilyList = fontFamilies
+    this.lineHeightList = lineHeights
+    this.letterSpacingList = letterSpacings
+    this.indentList = indents
+
+
+    if (!media.uploadFn) {
+      media.video = false
+      media.audio = false
+    }
+
+    const controlBarProps = {
+      editor: this,
+      editorHeight: height,
+      media, controls, language, viewWrapper, extendControls,
+      colors, tempColors, fontSizes, fontFamilies, emojis, lineHeights, letterSpacings, indents, textAlignMaps, needTextBgcolor
+    }
+
+    const blockRendererFn = getBlockRendererFn({
+      editor: this, imageControls,
+      language, viewWrapper
+    })
+
+    const customStyleMap = getCustomStyleMap({
+      colors: [...colors, ...tempColors],
+      fontSizes, fontFamilies, lineHeights, letterSpacings, indents
+    })
+    const editorProps = {
+      ref: instance => { this.draftInstance = instance },
+      editorState: this.state.editorState,
+      handleKeyCommand: this.handleKeyCommand,
+      handleReturn: this.handleReturn,
+      handlePastedText: this.handlePastedText,
+      onChange: this.onChange,
+      onTab: this.onTab,
+      onFocus: this.onFocus,
+      onBlur: this.onBlur,
+      readOnly: disabled,
+      customStyleMap, blockStyleFn, keyBindingFn,
+      blockRendererFn, blockRenderMap, placeholder,
+      ...this.state.editorProps
+    }
+
+    return (
+      <div className={"BraftEditor-container " + (disabled ? 'disabled' : '')}>
+        <ControlBar {...controlBarProps} />
+        <div className="BraftEditor-content" style={{ height }}>
+          <Editor {...editorProps} />
+        </div>
+      </div>
+    )
+
+  }
 }

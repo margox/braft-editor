@@ -90,6 +90,14 @@ export default (lang) => [
     title: lang.controls.lineHeight, 
     type: 'line-height'
   }, {
+    key: 'letter-spacing',
+    title: lang.controls.letterSpacing,
+    type: 'letter-spacing'
+  }, {
+    key: 'indent',
+    title: lang.controls.indent,
+    type: 'indent'
+  },{
     key: 'font-size',
     title: lang.controls.fontSize,
     type: 'font-size'
