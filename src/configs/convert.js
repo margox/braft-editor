@@ -74,12 +74,7 @@ const styleToHTML = (props) => (style) => {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     if (!fontFamily) return
     return <span style={{fontFamily: fontFamily.family}}/>
-  } else if (style.indexOf('border-') === 0) {
-    let border = props.borders.find((item) => item.name.toLowerCase() === style.split('-')[1])
-    if (!border) return
-    return <span style={{ border: border.value.toLowerCase(), display: 'block', width: '100%', height: '0', overflow: 'hidden', marginTop: '15px'}} />
-  }
-
+  } 
 }
 
 const blockToHTML = (contentState) => (block) => {
@@ -190,11 +185,7 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
     let fontFamily = props.fontFamilies.find((item) => item.family.toLowerCase() === node.style.fontFamily.toLowerCase())
     if (!fontFamily) return currentStyle
     return currentStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
-  } else if (nodeName === 'span' || nodeName === 'p' && node.style.borderStyle) {
-    let border = props.borders.find((item) => item.name.toLowerCase() === node.style.borderStyle.toLowerCase())
-    if (!border) return currentStyle
-    return currentStyle.add('BORDER-' + border.name.toUpperCase())
-  }else {
+  } else {
     return currentStyle
   }
 }

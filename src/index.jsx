@@ -114,12 +114,11 @@ export default class BraftEditor extends EditorController {
 
     format = format || this.props.contentFormat || 'raw'
     const contentState = this.contentState
-    let { fontFamilies, borders} = this.props
+    let { fontFamilies} = this.props
     fontFamilies = fontFamilies || defaultOptions.fontFamilies
-    borders = borders || defaultOptions.borders
 
     return format === 'html' ? convertToHTML(getToHTMLConfig({
-      contentState, fontFamilies, borders
+      contentState, fontFamilies
     }))(contentState) : convertToRaw(contentState)
 
   }
@@ -144,16 +143,15 @@ export default class BraftEditor extends EditorController {
 
     let convertedContent
     let newState = {}
-    let { contentFormat, colors, fontFamilies, borders} = this.props
+    let { contentFormat, colors, fontFamilies} = this.props
     fontFamilies = fontFamilies || defaultOptions.fontFamilies
-    borders = borders || defaultOptions.borders
     const presetColors = colors || defaultOptions.colors
 
     contentFormat = format || contentFormat || 'raw'
     if (contentFormat === 'html') {
       content = content
       newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => presetColors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-      convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies, borders}))(convertCodeBlock(content))
+      convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies}))(convertCodeBlock(content))
     } else if (contentFormat === 'raw') {
       convertedContent = convertFromRaw(content)
     }
@@ -328,7 +326,7 @@ export default class BraftEditor extends EditorController {
 
     let {
       controls, extendControls, disabled, height, media, language, colors,
-      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights, letterSpacings, indents, textAlignMaps, needTextBgcolor, borders
+      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights, letterSpacings, indents, textAlignMaps, needTextBgcolor
     } = this.props
 
     const { tempColors } = this.state
@@ -345,7 +343,6 @@ export default class BraftEditor extends EditorController {
     textAlignMaps = textAlignMaps || defaultOptions.textAlignMaps
     needTextBgcolor = needTextBgcolor || defaultOptions.needTextBgcolor
     indents = indents || defaultOptions.indents
-    borders = borders || defaultOptions.borders
     
     const externalMedias = media && media.externalMedias ? {
       ...defaultOptions.media.externalMedias,
@@ -365,7 +362,6 @@ export default class BraftEditor extends EditorController {
     this.lineHeightList = lineHeights
     this.letterSpacingList = letterSpacings
     this.indentList = indents
-    this.borderList = borders
 
 
     if (!media.uploadFn) {
@@ -377,7 +373,7 @@ export default class BraftEditor extends EditorController {
       editor: this,
       editorHeight: height,
       media, controls, language, viewWrapper, extendControls,
-      colors, tempColors, fontSizes, fontFamilies, emojis, lineHeights, letterSpacings, indents, borders, textAlignMaps, needTextBgcolor
+      colors, tempColors, fontSizes, fontFamilies, emojis, lineHeights, letterSpacings, indents, textAlignMaps, needTextBgcolor
     }
 
     const blockRendererFn = getBlockRendererFn({
@@ -387,7 +383,7 @@ export default class BraftEditor extends EditorController {
 
     const customStyleMap = getCustomStyleMap({
       colors: [...colors, ...tempColors],
-      fontSizes, fontFamilies, lineHeights, letterSpacings, indents, borders
+      fontSizes, fontFamilies, lineHeights, letterSpacings, indents
     })
     const editorProps = {
       ref: instance => { this.draftInstance = instance },

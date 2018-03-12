@@ -11,7 +11,6 @@ import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
 import MediaPicker from 'components/business/MediaPicker'
 import LetterSpacingPicker from 'components/business/letterSpacing'
-import BorderPicker from 'components/business/Border'
 import IndentPicker from 'components/business/indent'
 import DropDown from 'components/common/DropDown'
 import { showModal } from 'components/common/Modal'
@@ -56,7 +55,7 @@ export default class ControlBar extends React.Component {
     this.mediaPicker.show()
   }
   render() {
-    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignMaps, needTextBgcolor, indents, borders} = this.props
+    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignMaps, needTextBgcolor, indents} = this.props
     const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, editorHeight, language, viewWrapper }
@@ -189,14 +188,7 @@ export default class ControlBar extends React.Component {
                 defaultCaption={controlItem.title}
                 {...commonProps}
               />
-            } else if (controlItem.type === 'border') {
-              return <BorderPicker
-                key={index}
-                borders={borders}
-                defaultCaption={controlItem.title}
-                {...commonProps}
-              />
-            }else if (controlItem.type === 'font-family') {
+            } else if (controlItem.type === 'font-family') {
               return <FontFamilyPicker
                 key={index}
                 fontFamilies={fontFamilies}

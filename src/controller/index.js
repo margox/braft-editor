@@ -147,23 +147,16 @@ export default class EditorController extends React.Component{
   toggleSelectionIndent = (indent) => {
     return this.toggleSelectionInlineStyle('INDENT-' + indent, this.indentList.map(item => 'INDENT-' + item))
   }
-  toggleSelectionBorder = (border) => {
-    return this.toggleSelectionInlineStyle('BORDER-' + border, this.borderList.map(item => 'BORDER-' + item.name.toUpperCase()))
-  }
   
   toggleSelectionLink = (href, target) => {
-
     let entityData = { href, target }
-
     if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return this
     }
-
     if (href === false) {
       this.triggerChange(RichUtils.toggleLink(this.editorState, this.selectionState, null))
       return this
     }
-
     if (href === null) {
       delete entityData.href
     }

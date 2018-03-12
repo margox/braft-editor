@@ -164,6 +164,10 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            controls = {[
+              'undo', 'redo',  'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'border','text-color',
+              'bold','text-align','list_ul', 'list_ol','media'
+            ]}
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
             ref={(instance) => window.editor = instance} 
