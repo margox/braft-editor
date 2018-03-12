@@ -1,0 +1,34 @@
+@import '~sassinc';
+
+.braft-indent-dropdown{
+  min-width: 95px;
+}
+.braft-indents-wrap{
+  box-sizing: content-box;
+  width: 210px;
+  list-style: none;
+  margin: 0;
+  padding: 5px;
+  overflow: hidden;
+  li{
+    display: block;
+    float: left;
+    width: 60px;
+    height: 30px;
+    background-color: rgba(#fff, .1);
+    border-radius: 3px;
+    margin: 5px;
+    color: #fff;
+    font-size: 12px;
+    line-height: 30px;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover{
+      background-color: rgba(#fff, .2);
+    }
+    &.active{
+      background-color: $COLOR_ACTIVE;
+    }
+  }
+}
