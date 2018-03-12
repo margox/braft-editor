@@ -17,13 +17,12 @@ import { detectColorsFromHTML } from 'helpers/colors'
 
 // TODO
 // 允许直接拖放媒体到编辑器区域
-// 允许直接粘贴图片到编辑器
 // 强化图片尺寸编辑功能
 // 增加取色器
 // 尝试支持mention功能
-// 图片宽度自动加px
-// 增加content属性
 // 允许插入相册功能
+// 增加插入水平分割线功能
+// 增加媒体文件的删除回调
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -86,6 +85,7 @@ export default class BraftEditor extends EditorController {
   componentWillReceiveProps (nextProps) {
 
     if (!this.contentInitialized) {
+      this.contentInitialized = true
       this.setContent(nextProps.initialContent)
     }
 
