@@ -163,6 +163,7 @@ const entityToHTML = (entity, originalText) => {
 }
 
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
+
   if (nodeName === 'span' && node.style.color) {
     let color = getHexColor(node.style.color)
     return color ? currentStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
@@ -181,7 +182,7 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
     return currentStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10))
   } else if (nodeName === 'span' && node.style.indent) {
     return currentStyle.add('INDENT-' + parseInt(node.style.indent, 10))
-  }else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
+  } else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
     return currentStyle.add('STRIKETHROUGH')
   } else if (nodeName === 'span' && node.style.fontFamily) {
     let fontFamily = props.fontFamilies.find((item) => item.family.toLowerCase() === node.style.fontFamily.toLowerCase())
@@ -190,6 +191,7 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
   } else {
     return currentStyle
   }
+
 }
 
 const htmlToEntity = (nodeName, node, createEntity) => {
