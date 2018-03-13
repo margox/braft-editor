@@ -71,7 +71,7 @@ export default class BraftEditor extends EditorController {
 
   componentDidMount () {
 
-    if (this.props.initialContent) {
+    if (typeof this.props.initialContent !== 'undefined') {
       this.setContent(this.props.initialContent)
       this.contentInitialized = true
     }
@@ -82,11 +82,13 @@ export default class BraftEditor extends EditorController {
 
   componentWillReceiveProps (nextProps) {
 
-    if (!this.contentInitialized) {
-      this.contentInitialized = true
-      this.setContent(nextProps.initialContent)
-    } else if (nextProps.contentId !== this.props.contentId) {
-      this.setContent(nextProps.initialContent)
+    if (typeof nextProps.initialContent !== 'undefined') {
+      if (!this.contentInitialized) {
+        this.contentInitialized = true
+        this.setContent(nextProps.initialContent)
+      } else if (nextProps.contentId !== this.props.contentId) {
+        this.setContent(nextProps.initialContent)
+      }
     }
 
   }

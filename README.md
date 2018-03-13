@@ -9,6 +9,9 @@
 
 
 ## 最近更新
+- 2018-03-13 v1.7.1
+  - 新增contentId属性，用于支持动态更新initialContent属性
+  - 其他优化
 - 2018-03-13 v1.7.0
   - 新增插入水平线功能
   - 支持设置文字间距与段落的两端缩进，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
@@ -33,12 +36,7 @@
   - 支持设置扩展控制按钮的html和hoverTitle（感谢[@TnWah](https://github.com/TnWah)反馈）
   - 优化扩展DropDown组件（感谢[@Belial](https://github.com/cpu220)反馈）
   - 增强与Ant.Design的兼容性（感谢[@Belial](https://github.com/cpu220)反馈）
-- 2018-02-24 v1.4.3
-  - 提升代码块功能稳定性
-- 2018-02-24 v1.4.2
-  - 修复在IE11浏览器中无法选择多媒体文件的问题(感谢[@Errshao](https://github.com/Errshao)反馈)
-- 2018-02-23 v1.4.1
-  - 修复在Ant.Design中会导致表单非正常提交的问题，感谢[@tgy9310](https://github.com/tgy931)提交的PR
+
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -135,8 +133,15 @@ class Demo extends React.Component {
 
 ### initialContent [string]
 
-编辑器的初始内容，根据contentFormat类型传入html字符串或者raw字符串
+编辑器的初始内容，根据contentFormat类型传入html字符串或者raw字符串。
+在默认情况下initialContent值只会在第一次传入的时候生效，如果需要多次生效，需要与contentId属性配合使用。
+> 由于编辑器默认的contentFormat为'raw',如果需要传入html格式的initialContent，请将contentFormat指定为'html'
 
+
+### contentId [string|number]
+
+指定当前内容的唯一id，只有contentId发生变化时，编辑器才会使用新的initialContent。
+> 建议直接传入文章id等类似的内容，确保编辑不同内容时，传入的initialContent能生效
 
 ### onChange [function(html|raw)]
 

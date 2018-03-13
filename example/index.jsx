@@ -2,14 +2,14 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
-
-const initialContent = '<p><span style="color:#0099ff;">Hello World!</span></p><hr/><p></p>'
-
+ 
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      contentId: 0,
+      initialContent: '<p><span style="color:#0099ff;">Hello World!</span></p><hr/><p></p>',
       htmlContent: ''
     }
     this.editorInstance = null
@@ -103,6 +103,20 @@ class Demo extends React.Component {
 
   }
 
+  setContent1 = () => {
+    this.setState({
+      contentId: 1,
+      initialContent: '<h1>Hello World!</h1>'
+    })
+  }
+
+  setContent2 = () => {
+    this.setState({
+      contentId: 2,
+      initialContent: '<p>Hello World!</p><hr/><p>Hello Braft!</p>'
+    })
+  }
+
   render() {
 
     const extendControls = [
@@ -152,6 +166,7 @@ class Demo extends React.Component {
     ]
 
     const mediaProps = {
+      uploadFn: this.uploadFn,
       onChange: console.log,
       onRemove: console.log
     }
@@ -165,13 +180,15 @@ class Demo extends React.Component {
             ref={instance => this.editorInstance = instance} 
             language="zh-hant"
             contentFormat='html'
-            initialContent={initialContent}
-            onHTMLChange={console.log}
+            contentId={this.state.contentId}
+            initialContent={this.state.initialContent}
+            onHTMLChange={htmlContent => this.setState({ htmlContent })}
             extendControls={extendControls}
             media={mediaProps}
             allowSetTextBackgroundColor={true}
           />
         </div>
+        <div><a href="javascript:void(0);" onClick={this.setContent1}>设置内容1</a>&emsp;&emsp;<a href="javascript:void(0);" onClick={this.setContent2}>设置内容2</a></div>
       </div>
     )
 
