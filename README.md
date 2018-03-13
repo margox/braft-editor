@@ -131,7 +131,7 @@ class Demo extends React.Component {
 > 为了保证内容的可编辑性，强烈建议使用raw格式，并通过onHTMLChange获取HTML格式的内容
 
 
-### initialContent [string]
+### initialContent [raw|string]
 
 编辑器的初始内容，根据contentFormat类型传入html字符串或者raw字符串。
 在默认情况下initialContent值只会在第一次传入的时候生效，如果需要多次生效，需要与contentId属性配合使用。
