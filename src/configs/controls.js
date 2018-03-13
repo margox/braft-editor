@@ -14,6 +14,12 @@ export default (lang) => [
     type: 'editor-state-method',
     command: 'redo'
   }, {
+    key: 'hr',
+    title: lang.controls.hr,
+    text: <i className="icon-hr"></i>,
+    type: 'editor-state-method',
+    command: 'insertHorizontalLine'
+  }, {
     key: 'bold',
     title: lang.controls.bold,
     text: <i className="icon-bold"></i>,

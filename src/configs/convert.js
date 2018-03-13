@@ -42,6 +42,8 @@ const convertAtomicBlock = (block, contentState) => {
     return <div className="media-wrap audio-wrap"><audio controls src={url} /></div>
   } else if (mediaType === 'video') {
     return <div className="media-wrap video-wrap"><video controls src={url} width={width} height={height} /></div>
+  } else if (mediaType === 'hr') {
+    return <hr></hr>
   } else {
     return <p></p>
   }
@@ -51,7 +53,7 @@ const convertAtomicBlock = (block, contentState) => {
 const styleToHTML = (props) => (style) => {
 
   style = style.toLowerCase()
-  console.log(style)
+
   if (style === 'strikethrough') {
     return <span style={{textDecoration: 'line-through'}}/>
   } else if (style === 'superscript') {
@@ -70,11 +72,12 @@ const styleToHTML = (props) => (style) => {
     return <span style={{ letterSpacing: style.split('-')[1] + 'px'}} />
   } else if (style.indexOf('indent-') === 0) {
     return <span style={{ paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} />
-  }else if (style.indexOf('fontfamily-') === 0) {
+  } else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     if (!fontFamily) return
     return <span style={{fontFamily: fontFamily.family}}/>
-  } 
+  }
+
 }
 
 const blockToHTML = (contentState) => (block) => {
@@ -159,7 +162,6 @@ const entityToHTML = (entity, originalText) => {
 
 }
 
-
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
   if (nodeName === 'span' && node.style.color) {
     let color = getHexColor(node.style.color)
@@ -193,10 +195,8 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 const htmlToEntity = (nodeName, node, createEntity) => {
 
   if (nodeName === 'a' && !node.querySelectorAll('img').length) {
-
     let { href, target } = node
     return createEntity('LINK', 'MUTABLE',{ href, target })
-
   } else if (nodeName === 'audio') {
     return createEntity('AUDIO', 'IMMUTABLE',{ url: node.src }) 
   } else if (nodeName === 'video') {
@@ -217,6 +217,8 @@ const htmlToEntity = (nodeName, node, createEntity) => {
 
     return createEntity('IMAGE', 'IMMUTABLE', entityData) 
 
+  } else if (nodeName === 'hr') {
+    return createEntity('HR', 'IMMUTABLE', {}) 
   }
 
 }
@@ -245,6 +247,13 @@ const htmlToBlock = (nodeName, node) => {
       }
     }
 
+  } else if (nodeName === 'hr') {
+
+    return {
+      type: 'atomic',
+      data: {}
+    }
+
   } else if (nodeName === 'p' && nodeStyle.textAlign) {
 
     return {
@@ -267,12 +276,15 @@ export const getToHTMLConfig = (props) => {
   }
 
 }
+
 export const getFromHTMLConfig = (props) => {
+
   return { 
     htmlToStyle: htmlToStyle(props),
     htmlToEntity,
     htmlToBlock 
   }
+
 }
 
 export const convertCodeBlock = (htmlContent) => {

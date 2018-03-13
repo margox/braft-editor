@@ -53,6 +53,7 @@ export default class MediaPicker extends React.Component {
         files,
         confirmable: !!files.filter(item => item.selected).length
       })
+      media.onChange && media.onChange(files)
     }
 
   }
@@ -242,13 +243,13 @@ export default class MediaPicker extends React.Component {
 
   }
 
-  removeFileItem = ({ currentTarget }) => {
+  removeFileItem = (event) => {
 
-    const mediaId = currentTarget.dataset.id
+    const mediaId = event.currentTarget.dataset.id
 
     this.mediaLibrary.removeItem(mediaId)
     this.props.media.onRemove && this.props.media.onRemove(mediaId)
-    e.stopPropagation()
+    event.stopPropagation()
 
   }
 

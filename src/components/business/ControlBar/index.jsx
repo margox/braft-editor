@@ -14,13 +14,18 @@ import LetterSpacingPicker from 'components/business/letterSpacing'
 import IndentPicker from 'components/business/indent'
 import DropDown from 'components/common/DropDown'
 import { showModal } from 'components/common/Modal'
+
 export default class ControlBar extends React.Component {
+
   mediaPicker = null
   videoPicker = null
   audioPicker = null
   extendedModals = {}
+
   componentDidUpdate () {
+
     const { extendControls, language } = this.props
+
     extendControls.forEach(item => {
       if (item.type === 'modal') {
         if (item.modal && item.modal.id && this.extendedModals[item.modal.id]) {
@@ -28,18 +33,26 @@ export default class ControlBar extends React.Component {
         }
       }
     })
+
   }
+
   getControlItemClassName (data) {
+
     let className = 'control-item button'
     let { type, command } = data
+
     if (type === 'inline-style' && this.props.editor.selectionHasInlineStyle(command)) {
       className += ' active'
     } else if (type === 'block-type' && this.props.editor.getSelectionBlockType() === command) {
       className += ' active'
     }
+
     return className
+
   }
+
   applyControl (command, type) {
+
     if (type === 'inline-style') {
       this.props.editor.toggleSelectionInlineStyle(command)
     } else if (type === 'block-type') {
@@ -47,18 +60,24 @@ export default class ControlBar extends React.Component {
     } else if (type === 'editor-state-method') {
       this.props.editor[command] && this.props.editor[command]()
     }
+
     window.setImmediate(() => {
       this.props.editor.focus()
     })
+
   }
+
   showMediaPicker = () => {
     this.mediaPicker.show()
   }
+
   render() {
-    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignMaps, needTextBgcolor, indents} = this.props
+
+    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignOptions, allowSetTextBackgroundColor, indents} = this.props
     const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, editorHeight, language, viewWrapper }
+
     const renderedExtendControls = extendControls.map((item, index) => {
       if (item.type === 'split') {
         return <span key={controls.length * 2 + index} className="split-line"></span>
@@ -126,6 +145,7 @@ export default class ControlBar extends React.Component {
         )
       }
     })
+
     return (
       <div className="BraftEditor-controlBar">
         <MediaPicker
@@ -136,15 +156,19 @@ export default class ControlBar extends React.Component {
         />
         {
           controls.map((item, index) => {
+
             if (item.toLowerCase() === 'split') {
               return <span key={index} className="split-line"></span>
             }
+
             let controlItem = supportedControls.find((subItem) => {
               return subItem.key.toLowerCase() === item.toLowerCase()
             })
+
             if (!controlItem) {
               return null
             }
+
             if (controlItem.type === 'headings') {
               return <HeadingPicker
                 key={index}
@@ -157,7 +181,7 @@ export default class ControlBar extends React.Component {
                 key={index}
                 colors={colors}
                 tempColors={tempColors}
-                needTextBgcolor={needTextBgcolor}
+                allowSetTextBackgroundColor={allowSetTextBackgroundColor}
                 {...commonProps}
               />
             } else if (controlItem.type === 'font-size') {
@@ -211,7 +235,7 @@ export default class ControlBar extends React.Component {
               return (
                 <TextAlign
                   key={index}
-                  textAlignMaps={textAlignMaps}
+                  textAlignOptions={textAlignOptions}
                   {...commonProps}
                 />
               )
@@ -247,10 +271,13 @@ export default class ControlBar extends React.Component {
                 </button>
               )
             }
+
           })
         }
         {renderedExtendControls}
       </div>
     )
+
   }
+
 }

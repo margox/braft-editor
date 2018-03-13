@@ -3,7 +3,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 
-const initialContent = '<p><span style="color:#0099ff;">Hello World!</span></p>'
+const initialContent = '<p><span style="color:#0099ff;">Hello World!</span></p><hr/><p></p>'
 
 class Demo extends React.Component {
 
@@ -151,24 +151,25 @@ class Demo extends React.Component {
       }
     ]
 
+    const mediaProps = {
+      onChange: console.log,
+      onRemove: console.log
+    }
+
     return (
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            controls = {[
-              'undo', 'redo',  'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'border','text-color',
-              'bold','text-align','list_ul', 'list_ol','media'
-            ]}
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
             ref={instance => this.editorInstance = instance} 
             language="zh-hant"
             contentFormat='html'
             initialContent={initialContent}
-            onHTMLChange={htmlContent => this.setState({ htmlContent })}
+            onHTMLChange={console.log}
             extendControls={extendControls}
-            textAlignMaps = {['left','center']}
-            needTextBgcolor = {'N'}
+            media={mediaProps}
+            allowSetTextBackgroundColor={true}
           />
         </div>
       </div>

@@ -1,4 +1,11 @@
 ## 更新记录
+- 2018-03-13 v1.7.0
+  - 新增插入水平线功能
+  - 支持设置文字间距与段落的两端缩进，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增textAlignOptions属性，用于设置文本对齐选项，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增allowSetTextBackgroundColor属性，用于开启/关闭文字背景色设置功能，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增media.onRemove和media.onChange子属性，用于增强媒体库的扩展性
+  - 其他优化
 - 2018-03-09 v1.6.2
   - 增加与Ant.Design的兼容性
   - allowPasteImage属性更改为media属性的子属性

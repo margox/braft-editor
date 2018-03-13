@@ -24,6 +24,9 @@ $ttfPath: '../icons/icomoon.ttf?sirizn';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  .icon-hr:before {
+    content: "\e925";
+  }
   .icon-colorize:before {
     content: "\e3b8";
   }

@@ -41,6 +41,7 @@ export default {
     code: 'Code',
     link: 'Link',
     unlink: 'Unlink',
+    hr: 'Horizontal Line',
     media: 'Media',
     emoji: 'Emoji'
   },

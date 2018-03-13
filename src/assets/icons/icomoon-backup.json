@@ -1,6 +1,11 @@
 {
   "selection": [
     {
+      "order": 0,
+      "name": "hr",
+      "prevSize": 32
+    },
+    {
       "ligatures": "colorize",
       "order": 0,
       "prevSize": 24,
@@ -365,11 +370,20 @@
       "width": 24,
       "height": 24
     },
-    "iconsHash": 1856376556
+    "iconsHash": 1141080637
   },
   "height": 1024,
   "prevSize": 32,
   "icons": [
+    {
+      "paths": [
+        "M0 448h1024v128h-1024z"
+      ],
+      "grid": 0,
+      "tags": [
+        "hr"
+      ]
+    },
     {
       "paths": [
         "M296 810l344-344-82-82-344 344zM884 240c16 16 18 42 0 60l-134 134 82 82-60 60-60-60-382 380h-202v-202l380-382-60-60 60-60 82 82 134-134c16-16 44-16 60 0z"

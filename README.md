@@ -9,6 +9,13 @@
 
 
 ## 最近更新
+- 2018-03-13 v1.7.0
+  - 新增插入水平线功能
+  - 支持设置文字间距与段落的两端缩进，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增textAlignOptions属性，用于设置文本对齐选项，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增allowSetTextBackgroundColor属性，用于开启/关闭文字背景色设置功能，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增media.onRemove和media.onChange子属性，用于增强媒体库的扩展性
+  - 其他优化
 - 2018-03-09 v1.6.2
   - 增加与Ant.Design的兼容性
   - allowPasteImage属性更改为media属性的子属性
@@ -145,16 +152,19 @@ class Demo extends React.Component {
 
 指定编辑器内容发生变化时候的回调，参数为HTML格式的编辑器内容
 
+### onSave [function]
+
+指定一个函数，通常用于保存操作，在编辑器处于焦点时按下command/ctrl + s会执行此函数
 
 ### controls [array:[string]]
 
 指定控制栏组件，默认值如下：
 ```javascript
 [
-  'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'text-color',
-  'bold', 'italic', 'underline', 'strike-through', 'superscript',
-  'subscript', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
-  'blockquote', 'code', 'split', 'link', 'split', 'media'
+  'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
+  'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
+  'superscript', 'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
+  'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
 ]
 ```
 
@@ -240,10 +250,12 @@ class Demo extends React.Component {
 指定编辑器编辑代码块时按下tab插入的缩进空格数，默认是2
 
 
-### onSave [function]
+### textAlignOptions [array]
 
-指定一个函数，通常用于保存操作，在编辑器处于焦点时按下command/ctrl + s会执行此函数
-
+指定可使用的文字对齐方式，默认值如下：
+```javascript
+['left', 'center', 'right', 'justify']
+```
 
 ### colors [array:[string]]
 
@@ -256,6 +268,9 @@ class Demo extends React.Component {
 ]
 ```
 
+### allowSetTextBackgroundColor [boolean]
+
+是否允许设置文本的背景颜色，默认是true
 
 ### fontSizes [array:[number]]
 
@@ -276,6 +291,20 @@ class Demo extends React.Component {
   '1', '1.2', '1.5', '1.75',
   '2', '2.5', '3', '4'
 ],
+```
+
+### letterSpacings [array:[number]]
+
+指定编辑器可用的字符间隔列表，用于设定文本的字符间隔，默认可用间隔值：
+```javascript
+[0, 2, 4, 6]
+```
+
+### indents [array:[number]]
+
+指定编辑器可用的两端缩进列表，用于设定文本段落的两端缩进，默认可用缩进值：
+```javascript
+[0, 14, 21, 28]
 ```
 
 ### fontFamilies [array:[object]]
@@ -340,7 +369,9 @@ class Demo extends React.Component {
   video: true, // 开启视频插入功能
   audio: true, // 开启音频插入功能
   validateFn: null, // 指定本地校验函数，说明见下文
-  uploadFn: null // 指定上传函数，说明见下文
+  uploadFn: null, // 指定上传函数，说明见下文
+  onRemove: null, // 指定媒体库文件被删除时的回调，参数为媒体文件的id
+  onChange: null, // 指定媒体库文件列表发生变化时的回调，参数为媒体库文件列表
 }
 ```
 > 粘贴的图片依然会通过media.uploadFn上传到服务器，但是暂时不会调用media.validateFn来进行校验

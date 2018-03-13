@@ -83,7 +83,8 @@ export default class MediaLibrary {
         file: item.file,
         libraryId: item.id,
         success: (res) => {
-          this.handleUploadSuccess(item.id, res.url)
+          const serverId = res.id || item.id
+          this.handleUploadSuccess(item.id, res.url, serverId)
         },
         progress: (progress) => {
           this.setItemState(item.id, {
@@ -113,13 +114,14 @@ export default class MediaLibrary {
 
   createInlineImage (id, url) {
     this.compressImage(url, 1280, 800, (result) => {
-      this.handleUploadSuccess(id, result.url)
+      this.handleUploadSuccess(id, result.url, id)
     })
   }
 
-  handleUploadSuccess (id, url) {
+  handleUploadSuccess (id, url, newId) {
 
     this.setItemState(id, {
+      id: newId || id,
       file: null,
       url: url,
       uploadProgress: 1,
@@ -127,7 +129,7 @@ export default class MediaLibrary {
       selected: false
     })
 
-    const item = this.getItem(id)
+    const item = this.getItem(newId || id)
     item.onReadyToInsert && item.onReadyToInsert(item)
 
   }

@@ -42,6 +42,7 @@ export default {
     code: '代码',
     link: '链接',
     unlink: '清除链接',
+    hr: '水平线',
     media: '媒体',
     emoji: '小表情'
   },

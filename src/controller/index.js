@@ -3,8 +3,8 @@ import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } fr
 import { setBlockData, getSelectionEntity } from 'draftjs-utils'
 
 export default class EditorController extends React.Component{
+
   triggerChange = (editorState) => {
-    console.log(Modifier.insertText)
     this.onChange(editorState)
     return this
   }
@@ -69,13 +69,13 @@ export default class EditorController extends React.Component{
   }
 
   toggleSelectionBlockType = (blockType) => {
-    console.log(RichUtils.toggleBlockType);
     return this.triggerChange(RichUtils.toggleBlockType(this.editorState, blockType))
   }
 
   getSelectionEntityData = (type) => {
 
     const entityKey = getSelectionEntity(this.editorState)
+
     if (entityKey) {
       let entity = this.contentState.getEntity(entityKey)
       if (entity && entity.get('type') === type) {
@@ -134,6 +134,7 @@ export default class EditorController extends React.Component{
   toggleSelectionFontSize = (fontSize) => {
     return this.toggleSelectionInlineStyle('FONTSIZE-' + fontSize, this.fontSizeList.map(item => 'FONTSIZE-' + item))
   }
+
   toggleSelectionLineHeight = (lineHeight) => {
     return this.toggleSelectionInlineStyle('LINEHEIGHT-' + lineHeight, this.lineHeightList.map(item => 'LINEHEIGHT-' + item))
   }
@@ -141,22 +142,42 @@ export default class EditorController extends React.Component{
   toggleSelectionFontFamily = (fontFamily) => {
     return this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
+
   toggleSelectionLetSpacing = (letterSpacing) => {
     return this.toggleSelectionInlineStyle('LETTERSPACING-' + letterSpacing, this.letterSpacingList.map(item => 'LETTERSPACING-' + item))
   }
+
   toggleSelectionIndent = (indent) => {
     return this.toggleSelectionInlineStyle('INDENT-' + indent, this.indentList.map(item => 'INDENT-' + item))
   }
-  
+
+  insertHorizontalLine = () => {
+
+    if (!this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
+      return this
+    }
+
+    const contentStateWithEntity = this.editorState.getCurrentContent().createEntity('HR', 'IMMUTABLE', {})
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock(this.editorState, entityKey, ' ')
+
+    return this.triggerChange(newEditorState)
+
+  }
+
   toggleSelectionLink = (href, target) => {
+
     let entityData = { href, target }
+
     if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return this
     }
+
     if (href === false) {
       this.triggerChange(RichUtils.toggleLink(this.editorState, this.selectionState, null))
       return this
     }
+
     if (href === null) {
       delete entityData.href
     }
@@ -181,6 +202,7 @@ export default class EditorController extends React.Component{
     return this.triggerChange(nextEditorState)
 
   }
+
   insertText = (text, replace = true) => {
 
     const currentSelectedBlockType = this.getSelectionBlockType()
