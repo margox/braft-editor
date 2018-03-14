@@ -91,17 +91,14 @@ import 'braft-editor/dist/braft.css'
 
 class Demo extends React.Component {
 
-  state = {
-    content: null
-  }
-
   render () {
 
     const editorProps = {
       height: 500,
-      initialContent: this.state.content,
+      contentFormat: 'html',
+      initialContent: '<p>Hello World!</p>',
       onChange: this.handleChange,
-      onHTMLChange: this.handleHTMLChange
+      onRawChange: this.handleRawChange
     }
 
     return (
@@ -116,8 +113,8 @@ class Demo extends React.Component {
     console.log(content)
   }
 
-  handleHTMLChange = (html) => {
-    console.log(html)
+  handleRawChange = (rawContent) => {
+    console.log(rawContent)
   }
 
 }
