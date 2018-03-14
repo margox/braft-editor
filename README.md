@@ -9,6 +9,9 @@
 
 
 ## 最近更新
+- 2018-03-14 v1.7.2
+  - 优化media.onRemove传参
+  - 支持height属性设置为0
 - 2018-03-13 v1.7.1
   - 新增contentId属性，用于支持动态更新initialContent属性
   - 其他优化
@@ -229,7 +232,8 @@ class Demo extends React.Component {
 
 ### height [number]
 
-指定编辑区域的高度，不包括控制栏，默认是500
+指定编辑区域的高度，不包括控制栏，默认是500。
+> 如果需要编辑器自动适应内容高度，可以将此属性设置为0，同时通过外部CSS设置编辑器的最小与最大高度以免下拉菜单工具展示异常。
 
 
 ### language [string]
@@ -372,7 +376,7 @@ class Demo extends React.Component {
   audio: true, // 开启音频插入功能
   validateFn: null, // 指定本地校验函数，说明见下文
   uploadFn: null, // 指定上传函数，说明见下文
-  onRemove: null, // 指定媒体库文件被删除时的回调，参数为媒体文件的id
+  onRemove: null, // 指定媒体库文件被删除时的回调，参数为媒体文件对象
   onChange: null, // 指定媒体库文件列表发生变化时的回调，参数为媒体库文件列表
 }
 ```

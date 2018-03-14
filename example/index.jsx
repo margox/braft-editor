@@ -166,7 +166,7 @@ class Demo extends React.Component {
     ]
 
     const mediaProps = {
-      uploadFn: this.uploadFn,
+      // uploadFn: this.uploadFn,
       onChange: console.log,
       onRemove: console.log
     }
@@ -182,9 +182,11 @@ class Demo extends React.Component {
             contentFormat='html'
             contentId={this.state.contentId}
             initialContent={this.state.initialContent}
-            onHTMLChange={htmlContent => this.setState({ htmlContent })}
+            onChange={console.log}
+            onHTMLChange={console.log}
             extendControls={extendControls}
             media={mediaProps}
+            height={0}
             allowSetTextBackgroundColor={true}
           />
         </div>

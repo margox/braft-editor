@@ -1,4 +1,7 @@
 ## 更新记录
+- 2018-03-14 v1.7.2
+  - 优化media.onRemove传参
+  - 支持height属性设置为0
 - 2018-03-13 v1.7.1
   - 新增contentId属性，用于支持动态更新initialContent属性
   - 其他优化

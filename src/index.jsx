@@ -71,7 +71,7 @@ export default class BraftEditor extends EditorController {
 
   componentDidMount () {
 
-    if (typeof this.props.initialContent !== 'undefined') {
+    if (typeof this.props.initialContent !== 'undefined' && this.props.initialContent !== null) {
       this.setContent(this.props.initialContent)
       this.contentInitialized = true
     }
@@ -82,7 +82,7 @@ export default class BraftEditor extends EditorController {
 
   componentWillReceiveProps (nextProps) {
 
-    if (typeof nextProps.initialContent !== 'undefined') {
+    if (typeof nextProps.initialContent !== 'undefined' && nextProps.initialContent !== null) {
       if (!this.contentInitialized) {
         this.contentInitialized = true
         this.setContent(nextProps.initialContent)
@@ -163,6 +163,7 @@ export default class BraftEditor extends EditorController {
       newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
       convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies }))(convertCodeBlock(content))
     } else if (contentFormat === 'raw') {
+      content = content || {}
       convertedContent = convertFromRaw(content)
     }
 
@@ -320,6 +321,7 @@ export default class BraftEditor extends EditorController {
     }, callback)
 
   }
+
   insertHtmlBlock(html) {
     const blocksFromHTML = originConvertFromHTML(this.getHTMLContent() + html);
     const newContentState = ContentState.createFromBlockArray(
@@ -328,6 +330,7 @@ export default class BraftEditor extends EditorController {
     );
     this.setState({ editorState: EditorState.push(this.editorState, newContentState, 'insert-fragment') });
   }
+
   render() {
 
     let {
@@ -398,7 +401,7 @@ export default class BraftEditor extends EditorController {
     return (
       <div className={"BraftEditor-container " + (disabled ? 'disabled' : '')}>
         <ControlBar {...controlBarProps} />
-        <div className="BraftEditor-content" style={{ height }}>
+        <div className="BraftEditor-content" style={height ? { height } : {}}>
           <Editor {...editorProps} />
         </div>
       </div>
