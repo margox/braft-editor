@@ -9,7 +9,8 @@ class Demo extends React.Component {
     super(props)
     this.state = {
       contentId: 0,
-      initialContent: '<p><span style="color:#0099ff;">Hello World!</span></p><hr/><p></p>',
+      contentFormat: 'raw',
+      initialContent: '',
       htmlContent: ''
     }
     this.editorInstance = null
@@ -106,13 +107,15 @@ class Demo extends React.Component {
   setContent1 = () => {
     this.setState({
       contentId: 1,
-      initialContent: '<h1>Hello World!</h1>'
+      contentFormat: 'raw',
+      initialContent: {"blocks":[{"key":"9v7io","text":"\"links\": {\n    \"self\": \"https://api.unsplash.com/users/jimmyexample\",\n    \"html\": \"http","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":7,"style":"COLOR-660066"},{"offset":15,"length":6,"style":"COLOR-660066"},{"offset":74,"length":6,"style":"COLOR-660066"},{"offset":0,"length":1,"style":"COLOR-440044"},{"offset":6,"length":1,"style":"COLOR-440044"},{"offset":15,"length":1,"style":"COLOR-440044"},{"offset":20,"length":1,"style":"COLOR-440044"},{"offset":74,"length":1,"style":"COLOR-440044"},{"offset":79,"length":1,"style":"COLOR-440044"},{"offset":23,"length":45,"style":"BGCOLOR-FF0000"},{"offset":82,"length":5,"style":"BGCOLOR-FF0000"},{"offset":23,"length":1,"style":"COLOR-771100"},{"offset":67,"length":1,"style":"COLOR-771100"},{"offset":82,"length":1,"style":"COLOR-771100"},{"offset":24,"length":43,"style":"COLOR-DD2200"},{"offset":83,"length":4,"style":"COLOR-DD2200"}],"entityRanges":[],"data":{}}],"entityMap":{}},
     })
   }
 
   setContent2 = () => {
     this.setState({
       contentId: 2,
+      contentFormat: 'html',
       initialContent: '<p>Hello World!</p><hr/><p>Hello Braft!</p>'
     })
   }
@@ -165,12 +168,6 @@ class Demo extends React.Component {
       }
     ]
 
-    const mediaProps = {
-      // uploadFn: this.uploadFn,
-      onChange: console.log,
-      onRemove: console.log
-    }
-
     return (
       <div>
         <div className="demo" id="demo">
@@ -179,14 +176,12 @@ class Demo extends React.Component {
             placeholder={"Hello World!"}
             ref={instance => this.editorInstance = instance} 
             language="zh-hant"
-            contentFormat='html'
+            contentFormat={this.state.contentFormat}
             contentId={this.state.contentId}
             initialContent={this.state.initialContent}
-            onChange={console.log}
-            onHTMLChange={console.log}
             extendControls={extendControls}
-            media={mediaProps}
-            height={0}
+            onChange={raw => console.log(JSON.stringify(raw))}
+            onHTMLChange={htmlContent => this.setState({ htmlContent })}
             allowSetTextBackgroundColor={true}
           />
         </div>

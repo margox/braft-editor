@@ -14,7 +14,7 @@ import EditorController from 'controller'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 import MediaLibrary from 'helpers/MediaLibrary'
-import { detectColorsFromHTML } from 'helpers/colors'
+import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
 
 // TODO
 // 允许直接拖放媒体到编辑器区域
@@ -85,9 +85,9 @@ export default class BraftEditor extends EditorController {
     if (typeof nextProps.initialContent !== 'undefined' && nextProps.initialContent !== null) {
       if (!this.contentInitialized) {
         this.contentInitialized = true
-        this.setContent(nextProps.initialContent)
+        this.setContent(nextProps.initialContent, nextProps.contentFormat)
       } else if (nextProps.contentId !== this.props.contentId) {
-        this.setContent(nextProps.initialContent)
+        this.setContent(nextProps.initialContent, nextProps.contentFormat)
       }
     }
 
@@ -158,12 +158,16 @@ export default class BraftEditor extends EditorController {
     let { contentFormat, colors, fontFamilies} = this.props
 
     contentFormat = format || contentFormat || 'raw'
+
     if (contentFormat === 'html') {
       content = content || ''
       newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
       convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies }))(convertCodeBlock(content))
     } else if (contentFormat === 'raw') {
-      content = content || {}
+      if (!content || !content.blocks) {
+        return false
+      }
+      newState.tempColors = [...this.state.tempColors, ...detectColorsFromRaw(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
       convertedContent = convertFromRaw(content)
     }
 
