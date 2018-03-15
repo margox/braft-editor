@@ -4,7 +4,7 @@ export default {
   controls: [
     'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
     'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
-    'superscript', 'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
+    'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
     'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
   ],
   tabIndents: 2,

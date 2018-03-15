@@ -33,6 +33,7 @@ export default {
     floatRight: '右浮动',
     superScript: '上标',
     subScript: '下标',
+    removeStyles: '清除样式',
     headings: '标题',
     header: '标题',
     normal: '常规',

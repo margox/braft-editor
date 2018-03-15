@@ -14,6 +14,12 @@ export default (lang) => [
     type: 'editor-state-method',
     command: 'redo'
   }, {
+    key: 'remove-styles',
+    title: lang.controls.removeStyles,
+    text: <i className="icon-format_clear"></i>,
+    type: 'editor-state-method',
+    command: 'removeSelectionInlineStyles'
+  }, {
     key: 'hr',
     title: lang.controls.hr,
     text: <i className="icon-hr"></i>,

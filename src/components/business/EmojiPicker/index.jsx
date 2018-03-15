@@ -23,10 +23,11 @@ export default (props) => {
               <li
                 key={index}
                 data-emoji={item}
-                onClick={(e) => editor.insertText(e.currentTarget.dataset.emoji)}
-              >
-                {item}
-              </li>
+                onClick={(e) => {
+                  editor.insertText(e.currentTarget.dataset.emoji)
+                  editor.requestFocus()
+                }}
+              >{item}</li>
             )
           })}
         </ul>

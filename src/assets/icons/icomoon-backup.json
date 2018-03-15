@@ -1,350 +1,356 @@
 {
   "selection": [
     {
-      "order": 0,
+      "ligatures": "format_clear",
+      "order": 187,
+      "prevSize": 24,
+      "name": "format_clear"
+    },
+    {
+      "order": 188,
       "name": "hr",
       "prevSize": 32
     },
     {
       "ligatures": "colorize",
-      "order": 0,
+      "order": 189,
       "prevSize": 24,
       "name": "colorize"
     },
     {
       "ligatures": "crop_free",
-      "order": 0,
+      "order": 190,
       "prevSize": 24,
       "name": "crop_free"
     },
     {
       "ligatures": "pause",
-      "order": 0,
+      "order": 191,
       "prevSize": 24,
       "name": "pause"
     },
     {
       "ligatures": "play_arrow",
-      "order": 0,
+      "order": 192,
       "prevSize": 24,
       "name": "play_arrow"
     },
     {
-      "order": 0,
+      "order": 193,
       "prevSize": 24,
       "name": "bin"
     },
     {
       "ligatures": "replay",
-      "order": 0,
+      "order": 194,
       "prevSize": 24,
       "name": "replay"
     },
     {
       "ligatures": "tune",
-      "order": 0,
+      "order": 195,
       "prevSize": 24,
       "name": "tune"
     },
     {
-      "order": 0,
+      "order": 196,
       "name": "image-right",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 197,
       "name": "image-left",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 198,
       "name": "music",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 199,
       "name": "media",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 200,
       "prevSize": 24,
       "name": "close"
     },
     {
-      "order": 0,
+      "order": 201,
       "name": "add",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 202,
       "prevSize": 24,
       "name": "align-center"
     },
     {
-      "order": 0,
+      "order": 203,
       "prevSize": 24,
       "name": "align-justify"
     },
     {
-      "order": 0,
+      "order": 204,
       "prevSize": 24,
       "name": "align-left"
     },
     {
-      "order": 0,
+      "order": 205,
       "prevSize": 24,
       "name": "align-right"
     },
     {
-      "order": 0,
+      "order": 206,
       "name": "bold",
       "prevSize": 32
     },
     {
       "ligatures": "camera, photo",
       "name": "camera",
-      "order": 0,
+      "order": 207,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 208,
       "name": "code",
       "prevSize": 32
     },
     {
       "ligatures": "copy, duplicate",
       "name": "copy",
-      "order": 0,
+      "order": 209,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 210,
       "name": "done",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 211,
       "name": "drop-down",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 212,
       "name": "drop-up",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 213,
       "name": "emoji",
       "prevSize": 32
     },
     {
       "ligatures": "file-text2, file4",
       "name": "file-text",
-      "order": 0,
+      "order": 214,
       "prevSize": 32
     },
     {
       "ligatures": "film, video2",
       "name": "film",
-      "order": 0,
+      "order": 215,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 216,
       "name": "font-size",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 217,
       "name": "fullscreen",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 218,
       "name": "fullscreen-exit",
       "prevSize": 32
     },
     {
       "ligatures": "github, brand40",
       "name": "github",
-      "order": 0,
+      "order": 219,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 220,
       "name": "help",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 221,
       "name": "indent-decrease",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 222,
       "name": "indent-increase",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 223,
       "name": "info",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 224,
       "name": "italic",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 225,
       "name": "link",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 226,
       "name": "link-off",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 227,
       "name": "list",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 228,
       "name": "list-numbered",
       "prevSize": 32
     },
     {
       "ligatures": "ltr, wysiwyg22",
       "name": "ltr",
-      "order": 0,
+      "order": 229,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 230,
       "name": "menu",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 231,
       "name": "more-horiz",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 232,
       "name": "more-vert",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 233,
       "name": "not-disturb",
       "prevSize": 32
     },
     {
       "ligatures": "page-break, wysiwyg10",
       "name": "page-break",
-      "order": 0,
+      "order": 234,
       "prevSize": 32
     },
     {
       "ligatures": "pagebreak, wysiwyg16",
       "name": "pagebreak",
-      "order": 0,
+      "order": 235,
       "prevSize": 32
     },
     {
       "ligatures": "paint-format, format",
       "name": "paint-format",
-      "order": 0,
+      "order": 236,
       "prevSize": 32
     },
     {
       "ligatures": "paste, clipboard-file",
       "name": "paste",
-      "order": 0,
+      "order": 237,
       "prevSize": 32
     },
     {
       "ligatures": "pilcrow, wysiwyg21",
       "name": "pilcrow",
-      "order": 0,
+      "order": 238,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 239,
       "name": "print",
       "prevSize": 32
     },
     {
       "ligatures": "pushpin, pin",
       "name": "pushpin",
-      "order": 0,
+      "order": 240,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 241,
       "name": "quote",
       "prevSize": 32
     },
     {
       "ligatures": "redo2, right",
       "name": "redo",
-      "order": 0,
+      "order": 242,
       "prevSize": 32
     },
     {
       "ligatures": "rtl, wysiwyg23",
       "name": "rtl",
-      "order": 0,
+      "order": 243,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 244,
       "name": "search",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 245,
       "name": "settingsx",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 246,
       "name": "share",
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 247,
       "name": "share-square",
       "prevSize": 32
     },
     {
       "ligatures": "spinner7, loading8",
       "name": "spinner",
-      "order": 0,
+      "order": 248,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 249,
       "name": "strikethrough",
       "prevSize": 32
     },
     {
       "ligatures": "subscript2, wysiwyg14",
       "name": "subscript",
-      "order": 0,
+      "order": 250,
       "prevSize": 32
     },
     {
       "ligatures": "superscript2, wysiwyg13",
       "name": "superscript",
-      "order": 0,
+      "order": 251,
       "prevSize": 32
     },
     {
-      "order": 0,
+      "order": 252,
       "name": "text-color",
       "prevSize": 32,
       "codes": [
@@ -353,14 +359,14 @@
       ]
     },
     {
-      "order": 0,
+      "order": 253,
       "name": "underlined",
       "prevSize": 32
     },
     {
       "ligatures": "undo2, left",
       "name": "undo",
-      "order": 0,
+      "order": 254,
       "prevSize": 32
     }
   ],
@@ -370,11 +376,21 @@
       "width": 24,
       "height": 24
     },
-    "iconsHash": 1141080637
+    "iconsHash": 1785818334
   },
   "height": 1024,
   "prevSize": 32,
   "icons": [
+    {
+      "paths": [
+        "M256 214h598v128h-248l-68 160-90-88 30-72h-102l-120-120v-8zM140 214l12 10 616 618-54 54-242-242-66 156h-128l104-246-296-296z"
+      ],
+      "tags": [
+        "format_clear"
+      ],
+      "defaultCode": 57913,
+      "grid": 24
+    },
     {
       "paths": [
         "M0 448h1024v128h-1024z"
@@ -382,7 +398,8 @@
       "grid": 0,
       "tags": [
         "hr"
-      ]
+      ],
+      "defaultCode": 59685
     },
     {
       "paths": [

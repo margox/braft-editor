@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } from 'draft-js'
-import { setBlockData, getSelectionEntity } from 'draftjs-utils'
+import { setBlockData, getSelectionEntity, removeAllInlineStyles } from 'draftjs-utils'
 
 export default class EditorController extends React.Component{
 
@@ -115,6 +115,10 @@ export default class EditorController extends React.Component{
     const nextEditorState = stylesToBeRemoved.length ? EditorState.push(this.editorState, nextContentState, 'change-inline-style') : this.editorState
     return this.triggerChange(RichUtils.toggleInlineStyle(nextEditorState, style))
 
+  }
+
+  removeSelectionInlineStyles = () => {
+    return this.triggerChange(removeAllInlineStyles(this.editorState))
   }
 
   toggleSelectionAlignment = (alignment) => {
@@ -287,6 +291,18 @@ export default class EditorController extends React.Component{
   blur = () => {
     this.draftInstance && this.draftInstance.blur()
     return this
+  }
+
+  requestFocus = () => {
+    window.setImmediate(() => {
+      this.focus()
+    })
+  }
+
+  requestBlur = () => {
+    window.setImmediate(() => {
+      this.blur()
+    })
   }
 
 }

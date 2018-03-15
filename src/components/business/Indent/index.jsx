@@ -34,10 +34,11 @@ export default (props) => {
               key={index}
               className={item === currentIndent ? 'active' : null}
               data-size={item}
-              onClick={(e) => editor.toggleSelectionIndent(e.currentTarget.dataset.size)}
-            >
-              {item}
-            </li>
+              onClick={(e) => {
+                editor.toggleSelectionIndent(e.currentTarget.dataset.size)
+                editor.requestFocus()
+              }}
+            >{item}</li>
           )
         })}
       </ul>

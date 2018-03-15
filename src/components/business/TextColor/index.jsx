@@ -102,6 +102,7 @@ export default class TextColor extends React.Component {
     }
 
     this.dropDownComponent.hide()
+    this.props.editor.requestFocus()
 
   }
 

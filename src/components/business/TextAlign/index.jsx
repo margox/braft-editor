@@ -14,6 +14,7 @@ export default class TextAlign extends React.Component {
 
   setAlignment = (e) => {
     this.props.editor.toggleSelectionAlignment(e.currentTarget.dataset.alignment)
+    this.props.editor.requestFocus()
   }
 
   render () {

@@ -36,15 +36,12 @@ export default (props) => {
               key={index}
               className={"menu-item " + (index === currentIndex ? 'active' : '')}
               data-name={item.name}
-              onClick={(e) => editor.toggleSelectionFontFamily(e.currentTarget.dataset.name)}
+              onClick={(e) => {
+                editor.toggleSelectionFontFamily(e.currentTarget.dataset.name)
+                editor.requestFocus()
+              }}
             >
-              <span
-                style={{
-                  fontFamily: item.family
-                }}
-              >
-                {item.name}
-              </span>
+              <span style={{fontFamily: item.family}}>{item.name}</span>
             </li>
           )
         })}

@@ -9,6 +9,9 @@
 
 
 ## 最近更新
+- 2018-03-15 v1.7.4
+  - 新增清除样式工具
+  - 修复进行部分操作后编辑器没有重新获得焦点的问题
 - 2018-03-15 v1.7.3
   - 修复raw格式在使用未包含在颜色列表内的颜色时，无法正常显示颜色的问题
   - 其他优化
@@ -25,23 +28,6 @@
   - 新增allowSetTextBackgroundColor属性，用于开启/关闭文字背景色设置功能，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
   - 新增media.onRemove和media.onChange子属性，用于增强媒体库的扩展性
   - 其他优化
-- 2018-03-09 v1.6.2
-  - 增加与Ant.Design的兼容性
-  - allowPasteImage属性更改为media属性的子属性
-  - 图片宽高填写数字时自动加px
-- 2018-03-03 v1.6.1
-  - 支持直接粘贴截图到编辑器（目前仅支持chrome浏览器和微软EDGE浏览器，其他浏览器支持请期待后续更新）
-  - 增加自定义控制栏组件类型[component],允许直接将一个React组件添加到工具栏（感谢[@avdbg](https://github.com/avdbg)的建议）
-  - 增加onFocus/onBlur属性
-  - 修复代码块转换错误的问题
-  - 其他优化
-- 2018-02-28 v1.6.0
-  - 支持行高设置，此功能由[@Belial](https://github.com/cpu220)贡献，非常感谢
-- 2018-02-27 v1.5.0
-  - 支持简单设置图片的宽度和高度
-  - 支持设置扩展控制按钮的html和hoverTitle（感谢[@TnWah](https://github.com/TnWah)反馈）
-  - 优化扩展DropDown组件（感谢[@Belial](https://github.com/cpu220)反馈）
-  - 增强与Ant.Design的兼容性（感谢[@Belial](https://github.com/cpu220)反馈）
 
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
@@ -171,7 +157,7 @@ class Demo extends React.Component {
 [
   'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
   'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
-  'superscript', 'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
+  'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
   'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
 ]
 ```
