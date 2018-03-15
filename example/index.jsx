@@ -116,7 +116,7 @@ class Demo extends React.Component {
     this.setState({
       contentId: 2,
       contentFormat: 'html',
-      initialContent: '<p>Hello World!</p><hr/><p>Hello Braft!</p>'
+      initialContent: '<h1 style="text-align:center;">Hello World!</h1><hr/><p style="text-align:right;">Hello Braft!</p>'
     })
   }
 

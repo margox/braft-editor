@@ -5,10 +5,12 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.7.0以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.7.5以确保功能同步
 
 
 ## 最近更新
+- 2018-03-15 v1.7.5
+  - 修复特殊区块文本居左/中/右后再次编辑时失效的问题
 - 2018-03-15 v1.7.4
   - 新增清除样式工具
   - 修复进行部分操作后编辑器没有重新获得焦点的问题

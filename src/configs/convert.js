@@ -2,6 +2,9 @@ import React from 'react'
 import { blocks } from 'configs/maps'
 import { getHexColor } from 'helpers/colors'
 
+const blockTypes = Object.keys(blocks)
+const blockNames = blockTypes.map(key => blocks[key])
+
 const convertAtomicBlock = (block, contentState) => {
 
   const contentBlock = contentState.getBlockForKey(block.key)
@@ -256,10 +259,10 @@ const htmlToBlock = (nodeName, node) => {
       data: {}
     }
 
-  } else if (nodeName === 'p' && nodeStyle.textAlign) {
+  } else if (nodeStyle.textAlign && blockNames.indexOf(nodeName) > -1) {
 
     return {
-      type: 'unstyled',
+      type: blockTypes[blockNames.indexOf(nodeName)],
       data: {
         textAlign: nodeStyle.textAlign
       }
