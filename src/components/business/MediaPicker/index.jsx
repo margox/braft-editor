@@ -377,7 +377,9 @@ export default class MediaPicker extends React.Component {
   }
 
   confirmInsertMedia = () => {
-    this.props.editor.insertMedias(this.state.files.filter(item => item.selected))
+    const selectedMedias = this.mediaLibrary.getSelectedItems()
+    this.props.editor.insertMedias(selectedMedias)
+    this.props.media.onInsert && this.props.media.onInsert(selectedMedias)
     this.hide()
   }
 

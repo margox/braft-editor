@@ -10,6 +10,10 @@ export default class MediaLibrary {
     return this.items.find(item => item.id === id)
   }
 
+  getSelectedItems () {
+    return this.items.filter(item => item.selected)
+  }
+
   setItems (items) {
     this.items = items.map(item => ({ ...item, id: item.id.toString() })) || []
     this.triggerChange()
@@ -27,9 +31,18 @@ export default class MediaLibrary {
   }
 
   selectItem (id) {
+    const item = this.getItem(id)
+    if (item && (item.uploading || item.error)) {
+      return false
+    }
     this.setItemState(id, {
       selected: true
     })
+  }
+
+  selectAllItems () {
+    this.items = this.items.filter(item => !item.error && !item.uploading).map(item => ({ ...item, selected: true}))
+    this.triggerChange()
   }
 
   unselectItem (id) {
@@ -39,12 +52,27 @@ export default class MediaLibrary {
   }
 
   unselectAllItem () {
-    this.items = this.items.map(item => {return { ...item, selected: false}})
+    this.items = this.items.map(item => ({ ...item, selected: false}))
     this.triggerChange()
   }
 
   removeItem (id) {
     this.items = this.items.filter(item => item.id !== id)
+    this.triggerChange()
+  }
+
+  removeSelectedItems () {
+    this.items = this.items.filter(item => !item.selected)
+    this.triggerChange()
+  }
+
+  removeErrorItems () {
+    this.items = this.items.filter(item => !item.error)
+    this.triggerChange()
+  }
+
+  removeAllItems () {
+    this.items = []
     this.triggerChange()
   }
 

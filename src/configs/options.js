@@ -7,6 +7,7 @@ export default {
     'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
     'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
   ],
+  excludeControls: [],
   tabIndents: 2,
   textAlignOptions: ['left', 'center', 'right', 'justify'],
   allowSetTextBackgroundColor: true,
@@ -22,6 +23,7 @@ export default {
     sourceFn: null,
     onRemove: null,
     onChange: null,
+    onInsert: null,
     externalMedias: {
       audio: true,
       video: true,

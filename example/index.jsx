@@ -174,13 +174,16 @@ class Demo extends React.Component {
           <BraftEditor
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
-            ref={instance => this.editorInstance = instance} 
+            ref={instance => {
+              window.braftEditor = instance
+              this.editorInstance = instance
+            }}
             language="zh-hant"
+            excludeControls={['emoji', 'font-size', 'bold', 'text-align']}
             contentFormat={this.state.contentFormat}
             contentId={this.state.contentId}
             initialContent={this.state.initialContent}
             extendControls={extendControls}
-            onChange={raw => console.log(JSON.stringify(raw))}
             onHTMLChange={htmlContent => this.setState({ htmlContent })}
             allowSetTextBackgroundColor={true}
           />
