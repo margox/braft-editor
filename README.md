@@ -5,33 +5,32 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.2.0以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.7.5以确保功能同步
 
 
 ## 最近更新
-- 2018-03-09 v1.6.2
-  - 增加与Ant.Design的兼容性
-  - allowPasteImage属性更改为media属性的子属性
-  - 图片宽高填写数字时自动加px
-- 2018-03-03 v1.6.1
-  - 支持直接粘贴截图到编辑器（目前仅支持chrome浏览器和微软EDGE浏览器，其他浏览器支持请期待后续更新）
-  - 增加自定义控制栏组件类型[component],允许直接将一个React组件添加到工具栏（感谢[@avdbg](https://github.com/avdbg)的建议）
-  - 增加onFocus/onBlur属性
-  - 修复代码块转换错误的问题
+- 2018-03-15 v1.7.5
+  - 修复特殊区块文本居左/中/右后再次编辑时失效的问题
+- 2018-03-15 v1.7.4
+  - 新增清除样式工具
+  - 修复进行部分操作后编辑器没有重新获得焦点的问题
+- 2018-03-15 v1.7.3
+  - 修复raw格式在使用未包含在颜色列表内的颜色时，无法正常显示颜色的问题
   - 其他优化
-- 2018-02-28 v1.6.0
-  - 支持行高设置，此功能由[@Belial](https://github.com/cpu220)贡献，非常感谢
-- 2018-02-27 v1.5.0
-  - 支持简单设置图片的宽度和高度
-  - 支持设置扩展控制按钮的html和hoverTitle（感谢[@TnWah](https://github.com/TnWah)反馈）
-  - 优化扩展DropDown组件（感谢[@Belial](https://github.com/cpu220)反馈）
-  - 增强与Ant.Design的兼容性（感谢[@Belial](https://github.com/cpu220)反馈）
-- 2018-02-24 v1.4.3
-  - 提升代码块功能稳定性
-- 2018-02-24 v1.4.2
-  - 修复在IE11浏览器中无法选择多媒体文件的问题(感谢[@Errshao](https://github.com/Errshao)反馈)
-- 2018-02-23 v1.4.1
-  - 修复在Ant.Design中会导致表单非正常提交的问题，感谢[@tgy9310](https://github.com/tgy931)提交的PR
+- 2018-03-14 v1.7.2
+  - 优化media.onRemove传参
+  - 支持height属性设置为0
+- 2018-03-13 v1.7.1
+  - 新增contentId属性，用于支持动态更新initialContent属性
+  - 其他优化
+- 2018-03-13 v1.7.0
+  - 新增插入水平线功能
+  - 支持设置文字间距与段落的两端缩进，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增textAlignOptions属性，用于设置文本对齐选项，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增allowSetTextBackgroundColor属性，用于开启/关闭文字背景色设置功能，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增media.onRemove和media.onChange子属性，用于增强媒体库的扩展性
+  - 其他优化
+
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -86,17 +85,14 @@ import 'braft-editor/dist/braft.css'
 
 class Demo extends React.Component {
 
-  state = {
-    content: null
-  }
-
   render () {
 
     const editorProps = {
       height: 500,
-      initialContent: this.state.content,
+      contentFormat: 'html',
+      initialContent: '<p>Hello World!</p>',
       onChange: this.handleChange,
-      onHTMLChange: this.handleHTMLChange
+      onRawChange: this.handleRawChange
     }
 
     return (
@@ -111,8 +107,8 @@ class Demo extends React.Component {
     console.log(content)
   }
 
-  handleHTMLChange = (html) => {
-    console.log(html)
+  handleRawChange = (rawContent) => {
+    console.log(rawContent)
   }
 
 }
@@ -126,10 +122,17 @@ class Demo extends React.Component {
 > 为了保证内容的可编辑性，强烈建议使用raw格式，并通过onHTMLChange获取HTML格式的内容
 
 
-### initialContent [string]
+### initialContent [raw|string]
 
-编辑器的初始内容，根据contentFormat类型传入html字符串或者raw字符串
+编辑器的初始内容，根据contentFormat类型传入html字符串或者raw字符串。
+在默认情况下initialContent值只会在第一次传入的时候生效，如果需要多次生效，需要与contentId属性配合使用。
+> 由于编辑器默认的contentFormat为'raw',如果需要传入html格式的initialContent，请将contentFormat指定为'html'
 
+
+### contentId [string|number]
+
+指定当前内容的唯一id，只有contentId发生变化时，编辑器才会使用新的initialContent。
+> 建议直接传入文章id等类似的内容，确保编辑不同内容时，传入的initialContent能生效
 
 ### onChange [function(html|raw)]
 
@@ -145,16 +148,19 @@ class Demo extends React.Component {
 
 指定编辑器内容发生变化时候的回调，参数为HTML格式的编辑器内容
 
+### onSave [function]
+
+指定一个函数，通常用于保存操作，在编辑器处于焦点时按下command/ctrl + s会执行此函数
 
 ### controls [array:[string]]
 
 指定控制栏组件，默认值如下：
 ```javascript
 [
-  'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'text-color',
-  'bold', 'italic', 'underline', 'strike-through', 'superscript',
-  'subscript', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
-  'blockquote', 'code', 'split', 'link', 'split', 'media'
+  'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
+  'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
+  'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
+  'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
 ]
 ```
 
@@ -217,7 +223,8 @@ class Demo extends React.Component {
 
 ### height [number]
 
-指定编辑区域的高度，不包括控制栏，默认是500
+指定编辑区域的高度，不包括控制栏，默认是500。
+> 如果需要编辑器自动适应内容高度，可以将此属性设置为0，同时通过外部CSS设置编辑器的最小与最大高度以免下拉菜单工具展示异常。
 
 
 ### language [string]
@@ -240,10 +247,12 @@ class Demo extends React.Component {
 指定编辑器编辑代码块时按下tab插入的缩进空格数，默认是2
 
 
-### onSave [function]
+### textAlignOptions [array]
 
-指定一个函数，通常用于保存操作，在编辑器处于焦点时按下command/ctrl + s会执行此函数
-
+指定可使用的文字对齐方式，默认值如下：
+```javascript
+['left', 'center', 'right', 'justify']
+```
 
 ### colors [array:[string]]
 
@@ -256,6 +265,9 @@ class Demo extends React.Component {
 ]
 ```
 
+### allowSetTextBackgroundColor [boolean]
+
+是否允许设置文本的背景颜色，默认是true
 
 ### fontSizes [array:[number]]
 
@@ -276,6 +288,20 @@ class Demo extends React.Component {
   '1', '1.2', '1.5', '1.75',
   '2', '2.5', '3', '4'
 ],
+```
+
+### letterSpacings [array:[number]]
+
+指定编辑器可用的字符间隔列表，用于设定文本的字符间隔，默认可用间隔值：
+```javascript
+[0, 2, 4, 6]
+```
+
+### indents [array:[number]]
+
+指定编辑器可用的两端缩进列表，用于设定文本段落的两端缩进，默认可用缩进值：
+```javascript
+[0, 14, 21, 28]
 ```
 
 ### fontFamilies [array:[object]]
@@ -340,7 +366,9 @@ class Demo extends React.Component {
   video: true, // 开启视频插入功能
   audio: true, // 开启音频插入功能
   validateFn: null, // 指定本地校验函数，说明见下文
-  uploadFn: null // 指定上传函数，说明见下文
+  uploadFn: null, // 指定上传函数，说明见下文
+  onRemove: null, // 指定媒体库文件被删除时的回调，参数为媒体文件对象
+  onChange: null, // 指定媒体库文件列表发生变化时的回调，参数为媒体库文件列表
 }
 ```
 > 粘贴的图片依然会通过media.uploadFn上传到服务器，但是暂时不会调用media.validateFn来进行校验

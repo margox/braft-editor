@@ -2,14 +2,15 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
-
-const initialContent = '<p><span style="color:#0099ff;">Hello World!</span></p>'
-
+ 
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
+      contentId: 0,
+      contentFormat: 'raw',
+      initialContent: '',
       htmlContent: ''
     }
     this.editorInstance = null
@@ -103,6 +104,22 @@ class Demo extends React.Component {
 
   }
 
+  setContent1 = () => {
+    this.setState({
+      contentId: 1,
+      contentFormat: 'raw',
+      initialContent: {"blocks":[{"key":"9v7io","text":"\"links\": {\n    \"self\": \"https://api.unsplash.com/users/jimmyexample\",\n    \"html\": \"http","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":7,"style":"COLOR-660066"},{"offset":15,"length":6,"style":"COLOR-660066"},{"offset":74,"length":6,"style":"COLOR-660066"},{"offset":0,"length":1,"style":"COLOR-440044"},{"offset":6,"length":1,"style":"COLOR-440044"},{"offset":15,"length":1,"style":"COLOR-440044"},{"offset":20,"length":1,"style":"COLOR-440044"},{"offset":74,"length":1,"style":"COLOR-440044"},{"offset":79,"length":1,"style":"COLOR-440044"},{"offset":23,"length":45,"style":"BGCOLOR-FF0000"},{"offset":82,"length":5,"style":"BGCOLOR-FF0000"},{"offset":23,"length":1,"style":"COLOR-771100"},{"offset":67,"length":1,"style":"COLOR-771100"},{"offset":82,"length":1,"style":"COLOR-771100"},{"offset":24,"length":43,"style":"COLOR-DD2200"},{"offset":83,"length":4,"style":"COLOR-DD2200"}],"entityRanges":[],"data":{}}],"entityMap":{}},
+    })
+  }
+
+  setContent2 = () => {
+    this.setState({
+      contentId: 2,
+      contentFormat: 'html',
+      initialContent: '<h1 style="text-align:center;">Hello World!</h1><hr/><p style="text-align:right;">Hello Braft!</p>'
+    })
+  }
+
   render() {
 
     const extendControls = [
@@ -163,14 +180,16 @@ class Demo extends React.Component {
             placeholder={"Hello World!"}
             ref={instance => this.editorInstance = instance} 
             language="zh-hant"
-            contentFormat='html'
-            initialContent={initialContent}
-            onHTMLChange={htmlContent => this.setState({ htmlContent })}
+            contentFormat={this.state.contentFormat}
+            contentId={this.state.contentId}
+            initialContent={this.state.initialContent}
             extendControls={extendControls}
-            textAlignMaps = {['left','center']}
-            needTextBgcolor = {'N'}
+            onChange={raw => console.log(JSON.stringify(raw))}
+            onHTMLChange={htmlContent => this.setState({ htmlContent })}
+            allowSetTextBackgroundColor={true}
           />
         </div>
+        <div><a href="javascript:void(0);" onClick={this.setContent1}>设置内容1</a>&emsp;&emsp;<a href="javascript:void(0);" onClick={this.setContent2}>设置内容2</a></div>
       </div>
     )
 

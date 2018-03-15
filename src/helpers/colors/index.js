@@ -171,3 +171,25 @@ export const detectColorsFromHTML = (html) => {
   return typeof html !== 'string' ? [] : (html.match(/color:[^;]{3,24};/g) || []).map(getHexColor).filter(color => color)
 
 }
+
+export const detectColorsFromRaw = (raw) => {
+
+  let result = []
+
+  if (!raw || !raw.blocks || !raw.blocks.length) {
+    return result
+  }
+
+  raw.blocks.forEach((block) => {
+    if (block && block.inlineStyleRanges && block.inlineStyleRanges.length) {
+      block.inlineStyleRanges.forEach((inlineStyle) => {
+        if (inlineStyle.style && inlineStyle.style.indexOf('COLOR-') >= 0) {
+          result.push('#' + inlineStyle.style.split('COLOR-')[1])
+        }
+      }) 
+    }
+  })
+
+  return result.filter(color => color)
+
+}

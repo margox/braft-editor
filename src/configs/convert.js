@@ -2,6 +2,9 @@ import React from 'react'
 import { blocks } from 'configs/maps'
 import { getHexColor } from 'helpers/colors'
 
+const blockTypes = Object.keys(blocks)
+const blockNames = blockTypes.map(key => blocks[key])
+
 const convertAtomicBlock = (block, contentState) => {
 
   const contentBlock = contentState.getBlockForKey(block.key)
@@ -42,6 +45,8 @@ const convertAtomicBlock = (block, contentState) => {
     return <div className="media-wrap audio-wrap"><audio controls src={url} /></div>
   } else if (mediaType === 'video') {
     return <div className="media-wrap video-wrap"><video controls src={url} width={width} height={height} /></div>
+  } else if (mediaType === 'hr') {
+    return <hr></hr>
   } else {
     return <p></p>
   }
@@ -70,11 +75,12 @@ const styleToHTML = (props) => (style) => {
     return <span style={{ letterSpacing: style.split('-')[1] + 'px'}} />
   } else if (style.indexOf('indent-') === 0) {
     return <span style={{ paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} />
-  }else if (style.indexOf('fontfamily-') === 0) {
+  } else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     if (!fontFamily) return
     return <span style={{fontFamily: fontFamily.family}}/>
-  } 
+  }
+
 }
 
 const blockToHTML = (contentState) => (block) => {
@@ -193,10 +199,8 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 const htmlToEntity = (nodeName, node, createEntity) => {
 
   if (nodeName === 'a' && !node.querySelectorAll('img').length) {
-
     let { href, target } = node
     return createEntity('LINK', 'MUTABLE',{ href, target })
-
   } else if (nodeName === 'audio') {
     return createEntity('AUDIO', 'IMMUTABLE',{ url: node.src }) 
   } else if (nodeName === 'video') {
@@ -217,6 +221,8 @@ const htmlToEntity = (nodeName, node, createEntity) => {
 
     return createEntity('IMAGE', 'IMMUTABLE', entityData) 
 
+  } else if (nodeName === 'hr') {
+    return createEntity('HR', 'IMMUTABLE', {}) 
   }
 
 }
@@ -245,10 +251,17 @@ const htmlToBlock = (nodeName, node) => {
       }
     }
 
-  } else if (nodeName === 'p' && nodeStyle.textAlign) {
+  } else if (nodeName === 'hr') {
 
     return {
-      type: 'unstyled',
+      type: 'atomic',
+      data: {}
+    }
+
+  } else if (nodeStyle.textAlign && blockNames.indexOf(nodeName) > -1) {
+
+    return {
+      type: blockTypes[blockNames.indexOf(nodeName)],
       data: {
         textAlign: nodeStyle.textAlign
       }

@@ -33,6 +33,7 @@ export default {
     floatRight: '右浮動',
     superScript: '上標',
     subScript: '下標',
+    removeStyles: '清除样式',
     headings: '標題',
     header: '標題',
     normal: '常規',
@@ -42,6 +43,7 @@ export default {
     code: '代碼',
     link: '鏈接',
     unlink: '清除鏈接',
+    hr: '水平线',
     media: '媒體',
     emoji: '小表情'
   },

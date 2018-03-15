@@ -28,18 +28,26 @@ export default class ControlBar extends React.Component {
         }
       }
     })
+
   }
+
   getControlItemClassName (data) {
+
     let className = 'control-item button'
     let { type, command } = data
+
     if (type === 'inline-style' && this.props.editor.selectionHasInlineStyle(command)) {
       className += ' active'
     } else if (type === 'block-type' && this.props.editor.getSelectionBlockType() === command) {
       className += ' active'
     }
+
     return className
+
   }
+
   applyControl (command, type) {
+
     if (type === 'inline-style') {
       this.props.editor.toggleSelectionInlineStyle(command)
     } else if (type === 'block-type') {
@@ -47,15 +55,19 @@ export default class ControlBar extends React.Component {
     } else if (type === 'editor-state-method') {
       this.props.editor[command] && this.props.editor[command]()
     }
+
     window.setImmediate(() => {
       this.props.editor.focus()
     })
   }
+
   showMediaPicker = () => {
     this.mediaPicker.show()
   }
+
   render() {
-    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignMaps, needTextBgcolor, indents} = this.props
+
+    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignOptions, allowSetTextBackgroundColor, indents} = this.props
     const currentBlockType = editor.getSelectionBlockType()
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, editorHeight, language, viewWrapper }
@@ -157,7 +169,7 @@ export default class ControlBar extends React.Component {
                 key={index}
                 colors={colors}
                 tempColors={tempColors}
-                needTextBgcolor={needTextBgcolor}
+                allowSetTextBackgroundColor={allowSetTextBackgroundColor}
                 {...commonProps}
               />
             } else if (controlItem.type === 'font-size') {
@@ -211,7 +223,7 @@ export default class ControlBar extends React.Component {
               return (
                 <TextAlign
                   key={index}
-                  textAlignMaps={textAlignMaps}
+                  textAlignOptions={textAlignOptions}
                   {...commonProps}
                 />
               )
@@ -252,5 +264,7 @@ export default class ControlBar extends React.Component {
         {renderedExtendControls}
       </div>
     )
+
   }
+
 }

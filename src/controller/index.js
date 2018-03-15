@@ -1,6 +1,6 @@
 import React from 'react'
 import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } from 'draft-js'
-import { setBlockData, getSelectionEntity } from 'draftjs-utils'
+import { setBlockData, getSelectionEntity, removeAllInlineStyles } from 'draftjs-utils'
 
 export default class EditorController extends React.Component{
   triggerChange = (editorState) => {
@@ -117,6 +117,10 @@ export default class EditorController extends React.Component{
 
   }
 
+  removeSelectionInlineStyles = () => {
+    return this.triggerChange(removeAllInlineStyles(this.editorState))
+  }
+
   toggleSelectionAlignment = (alignment) => {
     return this.setSelectionBlockData({
       textAlign: this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
@@ -134,6 +138,7 @@ export default class EditorController extends React.Component{
   toggleSelectionFontSize = (fontSize) => {
     return this.toggleSelectionInlineStyle('FONTSIZE-' + fontSize, this.fontSizeList.map(item => 'FONTSIZE-' + item))
   }
+
   toggleSelectionLineHeight = (lineHeight) => {
     return this.toggleSelectionInlineStyle('LINEHEIGHT-' + lineHeight, this.lineHeightList.map(item => 'LINEHEIGHT-' + item))
   }
@@ -141,13 +146,29 @@ export default class EditorController extends React.Component{
   toggleSelectionFontFamily = (fontFamily) => {
     return this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
+
   toggleSelectionLetSpacing = (letterSpacing) => {
     return this.toggleSelectionInlineStyle('LETTERSPACING-' + letterSpacing, this.letterSpacingList.map(item => 'LETTERSPACING-' + item))
   }
+
   toggleSelectionIndent = (indent) => {
     return this.toggleSelectionInlineStyle('INDENT-' + indent, this.indentList.map(item => 'INDENT-' + item))
   }
-  
+
+  insertHorizontalLine = () => {
+
+    if (!this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
+      return this
+    }
+
+    const contentStateWithEntity = this.editorState.getCurrentContent().createEntity('HR', 'IMMUTABLE', {})
+    const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock(this.editorState, entityKey, ' ')
+
+    return this.triggerChange(newEditorState)
+
+  }
+
   toggleSelectionLink = (href, target) => {
     let entityData = { href, target }
     if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
@@ -265,6 +286,18 @@ export default class EditorController extends React.Component{
   blur = () => {
     this.draftInstance && this.draftInstance.blur()
     return this
+  }
+
+  requestFocus = () => {
+    window.setImmediate(() => {
+      this.focus()
+    })
+  }
+
+  requestBlur = () => {
+    window.setImmediate(() => {
+      this.blur()
+    })
   }
 
 }

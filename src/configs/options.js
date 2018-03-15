@@ -2,15 +2,15 @@ export default {
   height: 500,
   language: 'zh',
   controls: [
-    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'border','text-color',
-    'bold', 'italic', 'underline', 'strike-through', 'superscript',
-    'subscript', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol',
-    'blockquote', 'code', 'split', 'link', 'split', 'media'
+    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
+    'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
+    'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
+    'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
   ],
   tabIndents: 2,
-  textAlignMaps: ['left', 'center', 'right', 'justify'],
-  needTextBgcolor: 'Y',
-  letterSpacings:[0, 2, 4, 6],
+  textAlignOptions: ['left', 'center', 'right', 'justify'],
+  allowSetTextBackgroundColor: true,
+  letterSpacings: [0, 2, 4, 6],
   indents: [0, 14, 21, 28],
   extendControls: [],
   media: {
@@ -20,6 +20,8 @@ export default {
     audio: true,
     uploadFn: null,
     sourceFn: null,
+    onRemove: null,
+    onChange: null,
     externalMedias: {
       audio: true,
       video: true,

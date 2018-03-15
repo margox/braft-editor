@@ -64,6 +64,10 @@ export default class DropDown extends React.Component {
 
     disabled && (active = false)
 
+    const dropDownContentInnerStyle = !isNaN(editorHeight) && editorHeight > 0 ? {
+      maxHeight: editorHeight - 30 + 'px'
+    } : {}
+
     return (
       <div
         id={this.componentId}
@@ -101,7 +105,7 @@ export default class DropDown extends React.Component {
           ></i>
           <div
             className="dropdown-content-inner"
-            style={{maxHeight: editorHeight - 30 + 'px'}}
+            style={dropDownContentInnerStyle}
           >
             {children}
           </div>

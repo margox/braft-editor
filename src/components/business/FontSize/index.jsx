@@ -34,10 +34,11 @@ export default (props) => {
               key={index}
               className={item === currentFontSize ? 'active' : null}
               data-size={item}
-              onClick={(e) => editor.toggleSelectionFontSize(e.currentTarget.dataset.size)}
-            >
-              {item + 'px'}
-            </li>
+              onClick={(e) => {
+                editor.toggleSelectionFontSize(e.currentTarget.dataset.size)
+                editor.requestFocus()
+              }}
+            >{item + 'px'}</li>
           )
         })}
       </ul>

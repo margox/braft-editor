@@ -117,6 +117,7 @@ export default class LinkEditor extends React.Component {
     const { href, target } = this.state
     this.props.editor.toggleSelectionLink(href, target)
     this.dropDownComponent.hide()
+    this.props.editor.requestFocus()
 
   }
 

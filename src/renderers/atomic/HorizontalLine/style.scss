@@ -1,0 +1,66 @@
+@import '~sassinc';
+
+.braft-horizontal-line{
+  position: relative;
+  box-sizing: content-box;
+  height: 15px;
+  padding-top: 15px;
+  text-align: center;
+  &::before{
+    display: block;
+    height: 1px;
+    background-color: rgba(#000, .1);
+    content: '';
+  }
+  &:hover {
+    &::before {
+      background-color: rgba(#000, .3);
+    }
+    .braft-horizontal-line-toolbar{
+      display: block;
+    }
+  }
+  .braft-horizontal-line-toolbar{
+    display: none;
+    position: absolute;
+    z-index: 3;
+    bottom: 25px;
+    left: 50%;
+    width: auto;
+    background-color: $COLOR_DARK;
+    border-radius: 3px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 15px rgba(#000, .2);
+    user-select: none;
+    &::before{
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      display: block;
+      border: solid 5px transparent;
+      border-top-color: $COLOR_DARK;
+      content: '';
+      transform: translateX(-5px);
+    }
+    a{
+      display: inline-block;
+      width: 36px;
+      height: 36px;
+      color: rgba(#fff, .5);
+      font-family: 'icomoon';
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 36px;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover{
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,4 +1,25 @@
 ## 更新记录
+- 2018-03-15 v1.7.5
+  - 修复特殊区块文本居左/中/右后再次编辑时失效的问题
+- 2018-03-15 v1.7.4
+  - 新增清除样式工具
+  - 修复进行部分操作后编辑器没有重新获得焦点的问题
+- 2018-03-15 v1.7.3
+  - 修复raw格式在使用未包含在颜色列表内的颜色时，无法正常显示颜色的问题
+  - 其他优化
+- 2018-03-14 v1.7.2
+  - 优化media.onRemove传参
+  - 支持height属性设置为0
+- 2018-03-13 v1.7.1
+  - 新增contentId属性，用于支持动态更新initialContent属性
+  - 其他优化
+- 2018-03-13 v1.7.0
+  - 新增插入水平线功能
+  - 支持设置文字间距与段落的两端缩进，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增textAlignOptions属性，用于设置文本对齐选项，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增allowSetTextBackgroundColor属性，用于开启/关闭文字背景色设置功能，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增media.onRemove和media.onChange子属性，用于增强媒体库的扩展性
+  - 其他优化
 - 2018-03-09 v1.6.2
   - 增加与Ant.Design的兼容性
   - allowPasteImage属性更改为media属性的子属性

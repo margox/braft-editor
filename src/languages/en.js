@@ -32,6 +32,7 @@ export default {
     floatRight: 'Right Float',
     superScript: 'Super Script',
     subScript: 'Sub Script',
+    removeStyles: 'Remove Styles',
     headings: 'Headings',
     header: 'Header',
     normal: 'Normal',
@@ -41,6 +42,7 @@ export default {
     code: 'Code',
     link: 'Link',
     unlink: 'Unlink',
+    hr: 'Horizontal Line',
     media: 'Media',
     emoji: 'Emoji'
   },
