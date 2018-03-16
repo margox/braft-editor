@@ -12,6 +12,7 @@
 - 2018-03-16 v1.8.0
   - 新增excludeControls属性，用于指定不需要显示的控制栏按钮
   - 媒体库增加快捷选取/删除工具栏
+  - 新增media.onInsert子属性
   - 新增media.removeConfirmFn子属性，用于实现删除媒体库内容前的确认操作
   - 新增清除内容工具和editorInstance.clear()方法
   - 新增editorInstance.isEmpty()方法
@@ -382,6 +383,7 @@ class Demo extends React.Component {
   removeConfirmFn: null, // 指定删除前的确认函数，说明见下文
   onRemove: null, // 指定媒体库文件被删除时的回调，参数为被删除的媒体文件列表(数组)
   onChange: null, // 指定媒体库文件列表发生变化时的回调，参数为媒体库文件列表(数组)
+  onInsert: null, // 指定从媒体库插入文件到编辑器时的回调，参数为被插入的媒体文件列表(数组)
 }
 ```
 > 粘贴的图片依然会通过media.uploadFn上传到服务器，但是暂时不会调用media.validateFn来进行校验
