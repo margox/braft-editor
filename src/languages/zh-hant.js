@@ -8,6 +8,7 @@ export default {
     height: '高度'
   },
   controls: {
+    clear: '清除内容',
     undo: '撤銷',
     redo: '重做',
     fontSize: '字號',
@@ -68,6 +69,9 @@ export default {
     caption: '多媒體資源庫',
     dragTip: '點擊或拖動文件至此',
     dropTip: '鬆開鼠標以上傳',
+    selectAll: '全選',
+    deselect: '取消選择',
+    removeSelected: '删除所選项目',
     externalInputPlaceHolder: '資源名稱|資源地址',
     externalInputTip: '以豎線符("|")分割資源名和資源地址，按回車確認',
     addLocalFile: '添加本地文件',

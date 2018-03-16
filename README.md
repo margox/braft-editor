@@ -9,6 +9,14 @@
 
 
 ## 最近更新
+- 2018-03-16 v1.8.0
+  - 新增excludeControls属性，用于指定不需要显示的控制栏按钮
+  - 媒体库增加快捷选取/删除工具栏
+  - 新增media.removeConfirmFn子属性，用于实现删除媒体库内容前的确认操作
+  - 新增清除内容工具和editorInstance.clear()方法
+  - 新增editorInstance.isEmpty()方法
+  - media.onRemove参数类型更改为数组
+  - 增加多个媒体库(mediaLibrary)实例方法实例方法
 - 2018-03-15 v1.7.5
   - 修复特殊区块文本居左/中/右后再次编辑时失效的问题
 - 2018-03-15 v1.7.4
@@ -164,6 +172,10 @@ class Demo extends React.Component {
 ]
 ```
 
+### excludeControls [array:[string]]
+
+指定不需要显示的控制栏组件，默认为空`[]`
+
 ### extendControls [array:[object]]
 
 指定自定义控制组件，目前支持分割线[split]、按钮[button]、下拉框[dropdown]、模态框[modal]和完全自定义的组件[component]。 示例：
@@ -196,7 +208,7 @@ class Demo extends React.Component {
     html: '<span style="color:green;">Bar</span>',
     hoverTitle: 'Hello World!',
     modal: {
-      id: 'test-modal', // v1.4.0新增
+      id: 'test-modal', // v1.4.0新增，必选
       title: '这是一个弹出框',
       showClose: true,
       showCancel: true,
@@ -367,8 +379,9 @@ class Demo extends React.Component {
   audio: true, // 开启音频插入功能
   validateFn: null, // 指定本地校验函数，说明见下文
   uploadFn: null, // 指定上传函数，说明见下文
-  onRemove: null, // 指定媒体库文件被删除时的回调，参数为媒体文件对象
-  onChange: null, // 指定媒体库文件列表发生变化时的回调，参数为媒体库文件列表
+  removeConfirmFn: null, // 指定删除前的确认函数，说明见下文
+  onRemove: null, // 指定媒体库文件被删除时的回调，参数为被删除的媒体文件列表(数组)
+  onChange: null, // 指定媒体库文件列表发生变化时的回调，参数为媒体库文件列表(数组)
 }
 ```
 > 粘贴的图片依然会通过media.uploadFn上传到服务器，但是暂时不会调用media.validateFn来进行校验
@@ -389,7 +402,7 @@ const validateFn = (file) => {
 
 #### media.uploadFn:param [object]
 
-编辑器在调用该函数时，会传入一个包含文件体、文件在媒体库的ID、进度回调、成功回调和失败回调的对象作为参数：
+编辑器在调用media.uploadFn时，会传入一个包含文件体、文件在媒体库的ID、进度回调、成功回调和失败回调的对象作为参数：
 ```javascript
 {
   file: [File Object],
@@ -445,6 +458,37 @@ const uploadFn = (param) => {
   fd.append('file', param.file)
   xhr.open('POST', serverURL, true)
   xhr.send(fd)
+
+}
+```
+
+#### media.removeConfirmFn [function]
+
+指定媒体库文件的删除确认函数，未指定时，删除单个和多个媒体库文件都不需要确认
+
+#### media.removeConfirmFn:param [object]
+
+编辑器在调用media.removeConfirmFn时，会将待删除的文件和确认删除回调作为参数传过来，以下是一个删除确认函数示例:
+```javascript
+const removeConfirmFn = (param) => {
+
+  if (param.items.length > 1) {
+
+    // 调用原生confirm对话框
+    if (confirm('确认删除这些文件么?')) {
+      // 告知编辑器确认删除文件
+      param.confirm()
+    }
+
+  } else if (param.items.length === 1) {
+
+    // 调用原生confirm对话框
+    if (confirm('确认删除这个文件么?')) {
+      // 告知编辑器确认删除文件
+      param.confirm()
+    }
+
+  } 
 
 }
 ```
@@ -643,6 +687,20 @@ this.editorInstance.insertMedias([
   }
 ])
 ```
+
+### isEmpty():Boolean
+判断编辑器内容是否为空
+```javascript
+this.editorInstance.isEmpty()
+```
+> 由于draft框架的原因，该方法返回true时，依然可以从编辑器获取到一对空的p标签`<p></p>`，反之亦然
+
+### clear():editorInstance
+情况编辑器内容
+```javascript
+this.editorInstance.clear()
+```
+> 通过此方法进行清空后，可以通过撤销操作来还原编辑器内容，若需要不可撤销地清空，请使用`editorInstance.setContent('', 'html')`
 
 ### undo():editorInstance
 插销一次操作
