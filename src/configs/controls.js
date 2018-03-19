@@ -131,5 +131,11 @@ export default (lang) => [
     title: lang.controls.emoji,
     text: <i className="icon-emoji"></i>,
     type: 'emoji'
+  }, {
+    key: 'clear',
+    title: lang.controls.clear,
+    text: <span className="braft-control-text">{lang.controls.clear}</span>,
+    type: 'editor-state-method',
+    command: 'clear'
   }
 ]

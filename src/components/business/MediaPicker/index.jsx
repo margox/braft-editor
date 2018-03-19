@@ -86,9 +86,9 @@ export default class MediaPicker extends React.Component {
         className="braft-media-toggle-external-mode"
       >
         {showExternalForm ? (
-          <span><i className="icon-add"></i> {language.mediaPicker.addLocalFile}</span>
+          <span className="braft-media-bottom-text"><i className="icon-add"></i> {language.mediaPicker.addLocalFile}</span>
         ) : (
-          <span><i className="icon-add"></i> {language.mediaPicker.addExternalSource}</span>
+          <span className="braft-media-bottom-text"><i className="icon-add"></i> {language.mediaPicker.addExternalSource}</span>
         )}
       </span>
     ) : null
@@ -123,6 +123,11 @@ export default class MediaPicker extends React.Component {
             </div>
             {files.length ? (
               <div className="braft-media-list-wrap">
+                <div className="braft-media-list-tools">
+                  <span onClick={this.selectAllItems} className="braft-media-select-all"><i className="icon-done"></i> {language.mediaPicker.selectAll}</span>
+                  <span onClick={this.deselectAllItems} disabled={!confirmable} className="braft-media-deselect-all"><i className="icon-close"></i> {language.mediaPicker.deselect}</span>
+                  <span onClick={this.removeSelectedItems} disabled={!confirmable} className="braft-media-remove-selected"><i className="icon-bin"></i> {language.mediaPicker.removeSelected}</span>
+                </div>
                 {this.buildMediaList()}
               </div>
             ) : null}
@@ -216,10 +221,10 @@ export default class MediaPicker extends React.Component {
               key={index}
               title={file.name}
               className={className.join(' ')}
-              onClick={() => this.toggleFileSelected(file)}
+              onClick={() => this.selectItem(file)}
             >
               {previewerComponents}
-              <span data-id={file.id} onClick={this.removeFileItem} className="braft-media-item-remove icon-close"></span>
+              <span data-id={file.id} onClick={this.removeItem} className="braft-media-item-remove icon-close"></span>
               <span className="braft-media-item-title">{file.name}</span>
             </li>
           )
@@ -230,7 +235,7 @@ export default class MediaPicker extends React.Component {
 
   }
 
-  toggleFileSelected = (file) => {
+  selectItem = (file) => {
 
     let { id, selected, error, uploading } = file
 
@@ -243,15 +248,57 @@ export default class MediaPicker extends React.Component {
 
   }
 
-  removeFileItem = (event) => {
+  removeItem = (event) => {
 
     const mediaId = event.currentTarget.dataset.id
     const mediaItem = this.mediaLibrary.getItem(mediaId)
 
-    this.mediaLibrary.removeItem(mediaId)
-    this.props.media.onRemove && this.props.media.onRemove(mediaItem)
+    if (!mediaItem) {
+      return false
+    }
+
+    if (this.props.media.removeConfirmFn) {
+      this.props.media.removeConfirmFn({
+        items: [mediaItem],
+        confirm: () => {
+          this.mediaLibrary.removeItem(mediaId)
+          this.props.media.onRemove && this.props.media.onRemove([mediaItem])
+        }
+      })
+    } else {
+      this.mediaLibrary.removeItem(mediaId)
+      this.props.media.onRemove && this.props.media.onRemove([mediaItem])
+    }
+
     event.stopPropagation()
 
+  }
+
+  removeSelectedItems = () => {
+
+    const selectedItems = this.mediaLibrary.getSelectedItems()
+
+    if (this.props.media.removeConfirmFn) {
+      this.props.media.removeConfirmFn({
+        items: selectedItems,
+        confirm: () => {
+          this.mediaLibrary.removeSelectedItems()
+          this.props.media.onRemove && this.props.media.onRemove(selectedItems)
+        }
+      })
+    } else {
+      this.mediaLibrary.removeSelectedItems()
+      this.props.media.onRemove && this.props.media.onRemove(selectedItems)
+    }
+
+  }
+
+  selectAllItems = () => {
+    this.mediaLibrary.selectAllItems()
+  }
+
+  deselectAllItems = () => {
+    this.mediaLibrary.deselectAllItems()
   }
 
   handleDragLeave = (e) => {
@@ -377,7 +424,9 @@ export default class MediaPicker extends React.Component {
   }
 
   confirmInsertMedia = () => {
-    this.props.editor.insertMedias(this.state.files.filter(item => item.selected))
+    const selectedMedias = this.mediaLibrary.getSelectedItems()
+    this.props.editor.insertMedias(selectedMedias)
+    this.props.media.onInsert && this.props.media.onInsert(selectedMedias)
     this.hide()
   }
 
@@ -391,7 +440,7 @@ export default class MediaPicker extends React.Component {
     this.setState({
       visible: false
     }, () => {
-      this.mediaLibrary.unselectAllItem()
+      this.mediaLibrary.deselectAllItems()
     })
   }
 

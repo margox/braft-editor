@@ -10,9 +10,13 @@ export default class MediaLibrary {
     return this.items.find(item => item.id === id)
   }
 
+  getSelectedItems () {
+    return this.items.filter(item => item.selected)
+  }
+
   setItems (items) {
     this.items = items.map(item => ({ ...item, id: item.id.toString() })) || []
-    this.triggerChange()
+    this.applyChange()
     this.uploadItems()
   }
 
@@ -22,43 +26,74 @@ export default class MediaLibrary {
 
   addItems (items) {
     this.items = [ ...this.items, ...items.map(item => ({ ...item, id: item.id.toString()})) ]
-    this.triggerChange()
+    this.applyChange()
     this.uploadItems()
   }
 
   selectItem (id) {
+    const item = this.getItem(id)
+    if (item && (item.uploading || item.error)) {
+      return false
+    }
     this.setItemState(id, {
       selected: true
     })
   }
 
-  unselectItem (id) {
+  selectAllItems () {
+    this.items = this.items.filter(item => !item.error && !item.uploading).map(item => ({ ...item, selected: true}))
+    this.applyChange()
+  }
+
+  deselectItem (id) {
     this.setItemState(id, {
       selected: false
     })
   }
 
-  unselectAllItem () {
-    this.items = this.items.map(item => {return { ...item, selected: false}})
-    this.triggerChange()
+  deselectAllItems () {
+    this.items = this.items.map(item => ({ ...item, selected: false}))
+    this.applyChange()
   }
 
   removeItem (id) {
     this.items = this.items.filter(item => item.id !== id)
-    this.triggerChange()
+    this.applyChange()
+  }
+
+  removeSelectedItems () {
+    this.items = this.items.filter(item => !item.selected)
+    this.applyChange()
+  }
+
+  removeErrorItems () {
+    this.items = this.items.filter(item => !item.error)
+    this.applyChange()
+  }
+
+  removeAllItems () {
+    this.items = []
+    this.applyChange()
   }
 
   setItemState (id, state) {
     this.items = this.items.map(item => item.id === id ? { ...item, ...state } : item)
-    this.triggerChange()
+    this.applyChange()
   }
 
-  uploadItems () {
+  reuploadErrorItems () {
+    this.uploadItems(true)
+  }
 
-    let uploadFn
+  uploadItems (ignoreError = false) {
+
     this.items.forEach((item, index) => {
 
-      if (item.uploading || item.url || item.error) {
+      if (item.uploading || item.url) {
+        return false
+      }
+
+      if (!ignoreError && item.error) {
         return false
       }
 
@@ -76,7 +111,8 @@ export default class MediaLibrary {
 
       this.setItemState(item.id, {
         uploading: true,
-        uploadProgress: 0
+        uploadProgress: 0,
+        error: 0
       })
 
       this.uploadFn({
@@ -105,17 +141,21 @@ export default class MediaLibrary {
   }
 
   createThumbnail (id, url) {
+
     this.compressImage(url, 226, 226, (result) => {
       this.setItemState(id, {
         thumbnail: result.url
       })
     })
+
   }
 
   createInlineImage (id, url) {
+
     this.compressImage(url, 1280, 800, (result) => {
       this.handleUploadSuccess(id, result.url, id)
     })
+
   }
 
   handleUploadSuccess (id, url, newId) {
@@ -171,7 +211,7 @@ export default class MediaLibrary {
 
   }
 
-  triggerChange (changeType) {
+  applyChange (changeType) {
     this.onChange(this.items)
   }
 

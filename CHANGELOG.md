@@ -1,4 +1,13 @@
 ## 更新记录
+- 2018-03-16 v1.8.0
+  - 新增excludeControls属性，用于指定不需要显示的控制栏按钮
+  - 媒体库增加快捷选取/删除工具栏
+  - 新增media.onInsert子属性
+  - 新增media.removeConfirmFn子属性，用于实现删除媒体库内容前的确认操作
+  - 新增清除内容工具和editorInstance.clear()方法
+  - 新增editorInstance.isEmpty()方法
+  - media.onRemove参数类型更改为数组
+  - 增加多个媒体库(mediaLibrary)实例方法实例方法
 - 2018-03-15 v1.7.5
   - 修复特殊区块文本居左/中/右后再次编辑时失效的问题
 - 2018-03-15 v1.7.4

@@ -168,6 +168,17 @@ class Demo extends React.Component {
       }
     ]
 
+    const mediaProps = {
+      onRemove: console.log,
+      removeConfirmFn: (param) => {
+        console.log('items to be removed')
+        console.log(param.items)
+        if (confirm('确认删除所选项目么?')) {
+          param.confirm()
+        }
+      }
+    }
+
     return (
       <div>
         <div className="demo" id="demo">
@@ -178,15 +189,19 @@ class Demo extends React.Component {
             ]}
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
-            ref={instance => this.editorInstance = instance} 
+            ref={instance => {
+              window.braftEditor = instance
+              this.editorInstance = instance
+            }}
             language="zh-hant"
+            excludeControls={['emoji', 'font-size', 'bold', 'text-align']}
             contentFormat={this.state.contentFormat}
             contentId={this.state.contentId}
             initialContent={this.state.initialContent}
             extendControls={extendControls}
-            onChange={raw => console.log(JSON.stringify(raw))}
             onHTMLChange={htmlContent => this.setState({ htmlContent })}
             allowSetTextBackgroundColor={true}
+            media={mediaProps}
           />
         </div>
         <div><a href="javascript:void(0);" onClick={this.setContent1}>设置内容1</a>&emsp;&emsp;<a href="javascript:void(0);" onClick={this.setContent2}>设置内容2</a></div>

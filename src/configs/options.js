@@ -5,8 +5,9 @@ export default {
     'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
     'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
     'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
-    'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
+    'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media', 'split', 'clear'
   ],
+  excludeControls: [],
   tabIndents: 2,
   textAlignOptions: ['left', 'center', 'right', 'justify'],
   allowSetTextBackgroundColor: true,
@@ -22,6 +23,7 @@ export default {
     sourceFn: null,
     onRemove: null,
     onChange: null,
+    onInsert: null,
     externalMedias: {
       audio: true,
       video: true,

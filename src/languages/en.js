@@ -8,6 +8,7 @@ export default {
     height: 'Height'
   },
   controls: {
+    clear: 'Clear',
     undo: 'Undo',
     redo: 'Redo',
     fontSize: 'Font Size',
@@ -67,6 +68,9 @@ export default {
     caption: 'Media Library',
     dragTip: 'Click Or Drag Files Here',
     dropTip: 'Drop To Upload',
+    selectAll: 'Select All',
+    deselect: 'Deselect',
+    removeSelected: 'Remove Selected Items',
     externalInputPlaceHolder: 'Source Name|Source URL',
     externalInputTip: 'Split source name and source URL with "|", confirm by hit Enter.',
     addLocalFile: 'Add from local',

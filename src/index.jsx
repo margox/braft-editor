@@ -135,6 +135,10 @@ export default class BraftEditor extends EditorController {
 
   }
 
+  isEmpty = () => {
+    return this.getHTMLContent() === '<p></p>'
+  }
+
   getContentState = () => {
     return this.contentState
   }
@@ -347,13 +351,15 @@ export default class BraftEditor extends EditorController {
   render() {
 
     let {
-      controls, extendControls, disabled, height, media, language, colors,
+      controls, excludeControls, extendControls, disabled, height, media, language, colors,
       fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights, letterSpacings, indents, textAlignOptions, allowSetTextBackgroundColor
     } = this.props
 
+    controls = controls.filter(item => excludeControls.indexOf(item) === -1)
+
     const { tempColors } = this.state
     language = languages[language] || languages[defaultOptions.language]
-    
+
     const externalMedias = media && media.externalMedias ? {
       ...defaultOptions.media.externalMedias,
       ...media.externalMedias
