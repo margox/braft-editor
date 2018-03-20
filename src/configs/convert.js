@@ -18,16 +18,19 @@ const convertAtomicBlock = (block, contentState) => {
   if (mediaType === 'image') {
 
     let imageWrapStyle = {}
+    let styledClassName = ''
 
     if (float) {
       imageWrapStyle.float = float
+      styledClassName += ' float-' + float
     } else if (alignment) {
       imageWrapStyle.textAlign = alignment
+      styledClassName += ' align-' + alignment
     }
 
     if (link) {
       return (
-        <div className="media-wrap image-wrap" style={imageWrapStyle}>
+        <div className={"media-wrap image-wrap" + styledClassName} style={imageWrapStyle}>
           <a style={{display:'inline-block'}} href={link} target={link_target}>
             <img src={url} width={width} height={height} style={{width, height}} />
           </a>
@@ -35,7 +38,7 @@ const convertAtomicBlock = (block, contentState) => {
       )
     } else {
       return (
-        <div className="media-wrap image-wrap" style={imageWrapStyle}>
+        <div className={"media-wrap image-wrap" + styledClassName} style={imageWrapStyle}>
           <img src={url} width={width} height={height} style={{width, height}}/>
         </div>
       )

@@ -41,12 +41,12 @@ module.exports = merge(baseConfigs, {
         safe: true
       }
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        unused: true,
-        dead_code: true,
-        warnings: false
-      }
-    })
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     unused: true,
+    //     dead_code: true,
+    //     warnings: false
+    //   }
+    // })
   ]
 })

@@ -9,9 +9,14 @@ import _blockStyleFn from './styles/blockStyles'
 import _getCustomStyleMap from './styles/inlineStyles'
 import _decorators from './decorators'
 
-const getMediaComponent = (block, superProps) => (props) => {
+const getAtomicBlockComponent = (block, superProps) => (props) => {
 
   const entityKey = props.block.getEntityAt(0)
+
+  if (!entityKey) {
+    return null
+  }
+
   const entity = props.contentState.getEntity(entityKey)
   const mediaData = entity.getData()
   const mediaType = entity.getType()
@@ -37,7 +42,7 @@ const getMediaComponent = (block, superProps) => (props) => {
 export const getBlockRendererFn = (props) => (block) => {
 
   return block.getType() === 'atomic' ? {
-    component: getMediaComponent(block, props),
+    component: getAtomicBlockComponent(block, props),
     editable: false
   } : null
 
