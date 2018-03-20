@@ -116,7 +116,7 @@ class Demo extends React.Component {
     this.setState({
       contentId: 2,
       contentFormat: 'html',
-      initialContent: '<h1 style="text-align:center;">Hello World!</h1><hr/><p style="text-align:right;">Hello Braft!</p>'
+      initialContent: '<h1 style="text-align:center;font-size:18px;text-align:right;letter-spacing:6;">Hello World!</h1><hr/><p style="text-align:right;">Hello Braft!</p>'
     })
   }
 
@@ -126,6 +126,13 @@ class Demo extends React.Component {
       {
         type: 'split',
       }, {
+        type: 'button',
+        className: 'preview-button',
+        text: <span>测试</span>,
+        onClick:()=>{
+          braftEditor.setContent('<p style="text-align:center;"><strong><span style="font-size:30px;font-family:Impact, serif;color:#003ba5;">313123123</span></strong></p>','html')
+        }
+      },{
         type: 'button',
         className: 'preview-button',
         text: <span>预览</span>,
@@ -184,8 +191,8 @@ class Demo extends React.Component {
         <div className="demo" id="demo">
           <BraftEditor
             controls = {[
-              'undo', 'redo',  'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'border','text-color',
-              'bold','text-align','list_ul', 'list_ol','media'
+              'undo', 'redo', 'media', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'text-color',
+              'bold','text-align','list_ul', 'list_ol'
             ]}
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
@@ -194,12 +201,15 @@ class Demo extends React.Component {
               this.editorInstance = instance
             }}
             language="zh-hant"
-            excludeControls={['emoji', 'font-size', 'bold', 'text-align']}
+            excludeControls={[]}
             contentFormat={this.state.contentFormat}
             contentId={this.state.contentId}
             initialContent={this.state.initialContent}
             extendControls={extendControls}
-            onHTMLChange={htmlContent => this.setState({ htmlContent })}
+            onHTMLChange={htmlContent => { 
+              console.log(htmlContent)
+              this.setState({ htmlContent })
+            } }
             allowSetTextBackgroundColor={true}
             media={mediaProps}
           />

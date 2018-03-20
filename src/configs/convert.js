@@ -167,33 +167,37 @@ const entityToHTML = (entity, originalText) => {
 
 
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
-  if (nodeName === 'span' && node.style.color) {
-    let color = getHexColor(node.style.color)
-    return color ? currentStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
-  } else if (nodeName === 'span' && node.style.backgroundColor) {
-    let color = getHexColor(node.style.backgroundColor)
-    return color ? currentStyle.add('BGCOLOR-' + color.replace('#', '').toUpperCase()) : currentStyle
-  } else if (nodeName === 'sup') {
-    return currentStyle.add('SUPERSCRIPT')
-  } else if (nodeName === 'sub') {
-    return currentStyle.add('SUBSCRIPT')
-  } else if (nodeName === 'span' && node.style.fontSize) {
-    return currentStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10))
-  } else if (nodeName === 'span' && node.style.lineHeight) {
-    return currentStyle.add('LINEHEIGHT-' + node.style.lineHeight)
-  } else if (nodeName === 'span' && node.style.letterSpacing) {
-    return currentStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10))
-  } else if (nodeName === 'span' && node.style.indent) {
-    return currentStyle.add('INDENT-' + parseInt(node.style.indent, 10))
-  }else if (nodeName === 'span' && node.style.textDecoration === 'line-through') {
-    return currentStyle.add('STRIKETHROUGH')
-  } else if (nodeName === 'span' && node.style.fontFamily) {
-    let fontFamily = props.fontFamilies.find((item) => item.family.toLowerCase() === node.style.fontFamily.toLowerCase())
-    if (!fontFamily) return currentStyle
-    return currentStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
-  } else {
-    return currentStyle
+  let newStyle = currentStyle
+  for (let i = 0; i < node.style.length;i++){
+    console.log(node.style[i]);
+    if (nodeName === 'span' && node.style[i] === 'color') {
+      let color = getHexColor(node.style.color)
+      newStyle = color ? newStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : newStyle
+    } else if (nodeName === 'span' && node.style[i] === 'backgroundColor') {
+      let color = getHexColor(node.style.backgroundColor)
+      newStyle = color ? newStyle.add('BGCOLOR-' + color.replace('#', '').toUpperCase()) : newStyle
+    } else if (nodeName === 'sup') {
+      newStyle = newStyle.add('SUPERSCRIPT')
+    } else if (nodeName === 'sub') {
+      newStyle = newStyle.add('SUBSCRIPT')
+    } else if (nodeName === 'span' && node.style[i] === 'font-size') {
+      newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10))
+    } else if (nodeName === 'span' && node.style[i] === 'line-height') {
+      newStyle = newStyle.add('LINEHEIGHT-' + node.style.lineHeight)
+    } else if (nodeName === 'span' && node.style[i] === 'letter-spacing') {
+      newStyle = newStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10))
+    } else if (nodeName === 'span' && (node.style[i] === 'padding-left' || node.style[i] === 'padding-right')) {
+      newStyle = newStyle.add('INDENT-' + parseInt(node.style.paddingLeft, 10))
+    } else if (nodeName === 'span' && node.style[i] === 'text-decoration' && node.style.textDecoration === 'line-through') {
+      newStyle = newStyle.add('STRIKETHROUGH')
+    } else if (nodeName === 'span' && node.style[i] === 'font-family') {
+      let fontFamily = props.fontFamilies.find((item) => item.family.toLowerCase() === node.style.fontFamily.toLowerCase())
+      if (!fontFamily) continue;
+      newStyle = newStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
+    }
   }
+  console.log(newStyle)
+  return newStyle;
 }
 
 const htmlToEntity = (nodeName, node, createEntity) => {
