@@ -160,9 +160,7 @@ export default class BraftEditor extends EditorController {
     let convertedContent
     let newState = {}
     let { contentFormat, colors, fontFamilies} = this.props
-
     contentFormat = format || contentFormat || 'raw'
-
     if (contentFormat === 'html') {
       content = content || ''
       newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
@@ -175,6 +173,28 @@ export default class BraftEditor extends EditorController {
       convertedContent = convertFromRaw(content)
     }
 
+    newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
+
+    this.editorState = newState.editorState
+    this.contentState = newState.editorState.getCurrentContent()
+    this.selectionState = newState.editorState.getSelection()
+
+    this.setState(newState)
+
+    return this
+
+  }
+
+  setContent = (content, format) => {
+
+    let convertedContent
+    let newState = {}
+    let { contentFormat, colors, fontFamilies } = this.props
+
+    content = content || ''
+    newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+    convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies }))(convertCodeBlock(content))
+    
     newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
 
     this.editorState = newState.editorState
@@ -329,7 +349,6 @@ export default class BraftEditor extends EditorController {
     }, callback)
 
   }
-
   insertHtmlBlock(html) {
     const blocksFromHTML = originConvertFromHTML(this.getHTMLContent() + html);
     const newContentState = ContentState.createFromBlockArray(

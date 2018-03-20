@@ -12,7 +12,6 @@ export default function blockStyleFn (block) {
   if (blockFloat) {
     result += ` braft-float-${blockFloat}`
   }
-
   return result
 
 }

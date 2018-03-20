@@ -75,7 +75,6 @@ export default class EditorController extends React.Component{
   getSelectionEntityData = (type) => {
 
     const entityKey = getSelectionEntity(this.editorState)
-
     if (entityKey) {
       let entity = this.contentState.getEntity(entityKey)
       if (entity && entity.get('type') === type) {
@@ -170,18 +169,14 @@ export default class EditorController extends React.Component{
   }
 
   toggleSelectionLink = (href, target) => {
-
     let entityData = { href, target }
-
     if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return this
     }
-
     if (href === false) {
       this.applyChange(RichUtils.toggleLink(this.editorState, this.selectionState, null))
       return this
     }
-
     if (href === null) {
       delete entityData.href
     }
@@ -206,7 +201,6 @@ export default class EditorController extends React.Component{
     return this.applyChange(nextEditorState)
 
   }
-
   insertText = (text, replace = true) => {
 
     const currentSelectedBlockType = this.getSelectionBlockType()
