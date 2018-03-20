@@ -209,7 +209,7 @@ class Demo extends React.Component {
             onHTMLChange={htmlContent => { 
               console.log(htmlContent)
               this.setState({ htmlContent })
-            } }
+            }}
             allowSetTextBackgroundColor={true}
             media={mediaProps}
             onTab={(e) => e.preventDefault()}

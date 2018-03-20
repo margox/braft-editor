@@ -1,7 +1,6 @@
 import 'draft-js/dist/Draft.css'
 import './assets/scss/_base.scss'
 import React from 'react'
-// import ReactDOM from 'react-dom'
 import languages from 'languages'
 import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw, convertFromHTML as originConvertFromHTML} from 'draft-js'
 import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor'
@@ -23,6 +22,7 @@ import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
 // 支持mention功能
 // 支持hashtag功能
 // 增加取色器
+// 增加insertHTML API
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -162,7 +162,9 @@ export default class BraftEditor extends EditorController {
     let convertedContent
     let newState = {}
     let { contentFormat, colors, fontFamilies} = this.props
+
     contentFormat = format || contentFormat || 'raw'
+
     if (contentFormat === 'html') {
       content = content || ''
       newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
@@ -175,28 +177,6 @@ export default class BraftEditor extends EditorController {
       convertedContent = convertFromRaw(content)
     }
 
-    newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
-
-    this.editorState = newState.editorState
-    this.contentState = newState.editorState.getCurrentContent()
-    this.selectionState = newState.editorState.getSelection()
-
-    this.setState(newState)
-
-    return this
-
-  }
-
-  setContent = (content, format) => {
-
-    let convertedContent
-    let newState = {}
-    let { contentFormat, colors, fontFamilies } = this.props
-
-    content = content || ''
-    newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-    convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies }))(convertCodeBlock(content))
-    
     newState.editorState = EditorState.createWithContent(convertedContent, editorDecorators)
 
     this.editorState = newState.editorState
@@ -353,14 +333,6 @@ export default class BraftEditor extends EditorController {
     }, callback)
 
   }
-  insertHtmlBlock(html) {
-    const blocksFromHTML = originConvertFromHTML(this.getHTMLContent() + html);
-    const newContentState = ContentState.createFromBlockArray(
-      blocksFromHTML.contentBlocks,
-      blocksFromHTML.entityMap
-    );
-    this.setState({ editorState: EditorState.push(this.editorState, newContentState, 'insert-fragment') });
-  }
 
   render() {
 
@@ -392,7 +364,6 @@ export default class BraftEditor extends EditorController {
     this.lineHeightList = lineHeights
     this.letterSpacingList = letterSpacings
     this.indentList = indents
-
 
     if (!media.uploadFn) {
       media.video = false

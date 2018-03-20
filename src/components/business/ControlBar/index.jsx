@@ -15,12 +15,16 @@ import IndentPicker from 'components/business/indent'
 import DropDown from 'components/common/DropDown'
 import { showModal } from 'components/common/Modal'
 export default class ControlBar extends React.Component {
+
   mediaPicker = null
   videoPicker = null
   audioPicker = null
   extendedModals = {}
+
   componentDidUpdate () {
+
     const { extendControls, language } = this.props
+
     extendControls.forEach(item => {
       if (item.type === 'modal') {
         if (item.modal && item.modal.id && this.extendedModals[item.modal.id]) {
@@ -59,6 +63,7 @@ export default class ControlBar extends React.Component {
     window.setImmediate(() => {
       this.props.editor.focus()
     })
+
   }
 
   showMediaPicker = () => {
@@ -138,6 +143,7 @@ export default class ControlBar extends React.Component {
         )
       }
     })
+
     return (
       <div className="BraftEditor-controlBar">
         <MediaPicker

@@ -146,7 +146,7 @@ export default class EditorController extends React.Component{
     return this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, this.fontFamilyList.map(item => 'FONTFAMILY-' + item.name.toUpperCase()))
   }
 
-  toggleSelectionLetSpacing = (letterSpacing) => {
+  toggleSelectionLetterSpacing = (letterSpacing) => {
     return this.toggleSelectionInlineStyle('LETTERSPACING-' + letterSpacing, this.letterSpacingList.map(item => 'LETTERSPACING-' + item))
   }
 
@@ -169,14 +169,18 @@ export default class EditorController extends React.Component{
   }
 
   toggleSelectionLink = (href, target) => {
+
     let entityData = { href, target }
+
     if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return this
     }
+
     if (href === false) {
       this.applyChange(RichUtils.toggleLink(this.editorState, this.selectionState, null))
       return this
     }
+
     if (href === null) {
       delete entityData.href
     }
@@ -201,6 +205,7 @@ export default class EditorController extends React.Component{
     return this.applyChange(nextEditorState)
 
   }
+
   insertText = (text, replace = true) => {
 
     const currentSelectedBlockType = this.getSelectionBlockType()

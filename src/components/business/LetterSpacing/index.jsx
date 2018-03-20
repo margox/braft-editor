@@ -35,7 +35,7 @@ export default (props) => {
               className={item === currentLetterSpacing ? 'active' : null}
               data-size={item}
               onClick={(e) => {
-                editor.toggleSelectionLetSpacing(e.currentTarget.dataset.size)
+                editor.toggleSelectionLetterSpacing(e.currentTarget.dataset.size)
                 editor.requestFocus()
               }}
             >{item}</li>

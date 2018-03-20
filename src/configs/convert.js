@@ -59,6 +59,7 @@ const convertAtomicBlock = (block, contentState) => {
 const styleToHTML = (props) => (style) => {
 
   style = style.toLowerCase()
+
   if (style === 'strikethrough') {
     return <span style={{textDecoration: 'line-through'}}/>
   } else if (style === 'superscript') {
@@ -169,7 +170,9 @@ const entityToHTML = (entity, originalText) => {
 
 
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
+
   let newStyle = currentStyle
+
   for (let i = 0; i < node.style.length;i++){
     if (nodeName === 'span' && node.style[i] === 'color') {
       let color = getHexColor(node.style.color)
@@ -197,7 +200,9 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
       newStyle = newStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
     }
   }
-  return newStyle;
+
+  return newStyle
+
 }
 
 const htmlToEntity = (nodeName, node, createEntity) => {
@@ -284,15 +289,19 @@ export const getToHTMLConfig = (props) => {
   }
 
 }
+
 export const getFromHTMLConfig = (props) => {
+
   return { 
     htmlToStyle: htmlToStyle(props),
     htmlToEntity,
     htmlToBlock 
   }
+
 }
 
 export const convertCodeBlock = (htmlContent) => {
+
   const result = htmlContent
     .replace(/\<code\>\<div\>\<br\>\<\/div\>\<\/code\>/g, `<code><div></div></code>`)
     .replace(/\<pre\>\<code\>\<div\>/g, '<code><div>')
@@ -300,4 +309,5 @@ export const convertCodeBlock = (htmlContent) => {
     .replace(/\<code\>\<div\>/g, '<pre><code>')
     .replace(/\<\/div\>\<\/code\>/g, '</code></pre>')
   return result
+
 }
