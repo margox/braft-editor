@@ -130,7 +130,7 @@ class Demo extends React.Component {
         className: 'preview-button',
         text: <span>测试</span>,
         onClick:()=>{
-          braftEditor.setContent('<p style="text-align:center;"><strong><span style="font-size:30px;font-family:Impact, serif;color:#003ba5;">313123123</span></strong></p>','html')
+          braftEditor.setContent('<p>asd<span style="font-size:14px;color:#8e44ad;background-color:#f32784;line-height:1.2;letter-spacing:6px;font-family:&quot;Courier New&quot;, Courier, monospace;">asdasdasdasdasd</span></span></span>asd</p>','html')
         }
       },{
         type: 'button',

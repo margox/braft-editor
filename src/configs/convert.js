@@ -61,27 +61,27 @@ const styleToHTML = (props) => (style) => {
   style = style.toLowerCase()
 
   if (style === 'strikethrough') {
-    return <span style={{textDecoration: 'line-through'}}/>
+    return <braftspan style={{textDecoration: 'line-through'}} isbrafttag="1"/>
   } else if (style === 'superscript') {
     return <sup/>
   } else if (style === 'subscript') {
     return <sub/>
   } else if (style.indexOf('color-') === 0) {
-    return <span style={{color: '#' + style.split('-')[1]}}/>
+    return <braftspan style={{color: '#' + style.split('-')[1]}} isbrafttag="1"/>
   } else if (style.indexOf('bgcolor-') === 0) {
-    return <span style={{backgroundColor: '#' + style.split('-')[1]}}/>
+    return <braftspan style={{backgroundColor: '#' + style.split('-')[1]}} isbrafttag="1"/>
   } else if (style.indexOf('fontsize-') === 0) {
-    return <span style={{fontSize: style.split('-')[1] + 'px'}}/>
+    return <braftspan style={{fontSize: style.split('-')[1] + 'px'}} isbrafttag="1"/>
   } else if (style.indexOf('lineheight-') === 0) {
-    return <span style={{lineHeight: style.split('-')[1]}}/> 
+    return <braftspan style={{lineHeight: style.split('-')[1]}} isbrafttag="1"/> 
   } else if (style.indexOf('letterspacing-') === 0) {
-    return <span style={{ letterSpacing: style.split('-')[1] + 'px'}} />
+    return <braftspan style={{ letterSpacing: style.split('-')[1] + 'px'}} isbrafttag="1"/>
   } else if (style.indexOf('indent-') === 0) {
-    return <span style={{ paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} />
+    return <braftspan style={{ paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} isbrafttag="1"/>
   } else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     if (!fontFamily) return
-    return <span style={{fontFamily: fontFamily.family}}/>
+    return <braftspan style={{fontFamily: fontFamily.family}} isbrafttag="1"/>
   }
 
 }
@@ -300,6 +300,19 @@ export const getFromHTMLConfig = (props) => {
 
 }
 
+export const mergeStyledSpans = (htmlContent) => {
+
+  const result = htmlContent
+    .replace(/" isbrafttag="1"><braftspan style="/g, ';')
+    .replace(/<\/braftspan><\/braftspan>/g, '</span>')
+    .replace(/<braftspan/g, '<span')
+    .replace(/" isbrafttag="1"/g, ';"')
+    .replace(/<\/braftspan>/g, '')
+
+  return result
+
+}
+
 export const convertCodeBlock = (htmlContent) => {
 
   const result = htmlContent
@@ -308,6 +321,7 @@ export const convertCodeBlock = (htmlContent) => {
     .replace(/\<\/div\>\<\/code\>\<\/pre\>/g, '</div></code>')
     .replace(/\<code\>\<div\>/g, '<pre><code>')
     .replace(/\<\/div\>\<\/code\>/g, '</code></pre>')
+
   return result
 
 }

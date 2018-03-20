@@ -6,7 +6,7 @@ import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, Conte
 import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor'
 import { convertToHTML, convertFromHTML} from 'draft-convert'
 import { handleNewLine } from 'draftjs-utils'
-import { getToHTMLConfig, getFromHTMLConfig, convertCodeBlock } from 'configs/convert'
+import { getToHTMLConfig, getFromHTMLConfig, mergeStyledSpans, convertCodeBlock } from 'configs/convert'
 import keyBindingFn from 'configs/keybindings'
 import defaultOptions from 'configs/options'
 import EditorController from 'controller'
@@ -131,9 +131,9 @@ export default class BraftEditor extends EditorController {
     const contentState = this.contentState
     const { fontFamilies} = this.props
 
-    return format === 'html' ? convertToHTML(getToHTMLConfig({
+    return format === 'html' ? mergeStyledSpans(convertToHTML(getToHTMLConfig({
       contentState, fontFamilies
-    }))(contentState) : convertToRaw(contentState)
+    }))(contentState)) : convertToRaw(contentState)
 
   }
 
