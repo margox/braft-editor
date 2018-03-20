@@ -56,7 +56,6 @@ const convertAtomicBlock = (block, contentState) => {
 const styleToHTML = (props) => (style) => {
 
   style = style.toLowerCase()
-  console.log(style)
   if (style === 'strikethrough') {
     return <span style={{textDecoration: 'line-through'}}/>
   } else if (style === 'superscript') {
@@ -169,7 +168,6 @@ const entityToHTML = (entity, originalText) => {
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
   let newStyle = currentStyle
   for (let i = 0; i < node.style.length;i++){
-    console.log(node.style[i]);
     if (nodeName === 'span' && node.style[i] === 'color') {
       let color = getHexColor(node.style.color)
       newStyle = color ? newStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : newStyle
@@ -196,7 +194,6 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
       newStyle = newStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
     }
   }
-  console.log(newStyle)
   return newStyle;
 }
 
