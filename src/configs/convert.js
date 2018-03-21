@@ -75,9 +75,9 @@ const styleToHTML = (props) => (style) => {
   } else if (style.indexOf('lineheight-') === 0) {
     return <braftspan style={{lineHeight: style.split('-')[1]}} isbrafttag="1"/> 
   } else if (style.indexOf('letterspacing-') === 0) {
-    return <braftspan style={{ letterSpacing: style.split('-')[1] + 'px'}} isbrafttag="1"/>
+    return <braftspan style={{letterSpacing: style.split('-')[1] + 'px'}} isbrafttag="1"/>
   } else if (style.indexOf('indent-') === 0) {
-    return <braftspan style={{ paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} isbrafttag="1"/>
+    return <braftspan style={{paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }} isbrafttag="1"/>
   } else if (style.indexOf('fontfamily-') === 0) {
     let fontFamily = props.fontFamilies.find((item) => item.name.toLowerCase() === style.split('-')[1])
     if (!fontFamily) return
@@ -173,11 +173,11 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 
   let newStyle = currentStyle
 
-  for (let i = 0; i < node.style.length;i++){
+  for (let i = 0; i < node.style.length; i++) {
     if (nodeName === 'span' && node.style[i] === 'color') {
       let color = getHexColor(node.style.color)
       newStyle = color ? newStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : newStyle
-    } else if (nodeName === 'span' && node.style[i] === 'backgroundColor') {
+    } else if (nodeName === 'span' && node.style[i] === 'background-color') {
       let color = getHexColor(node.style.backgroundColor)
       newStyle = color ? newStyle.add('BGCOLOR-' + color.replace('#', '').toUpperCase()) : newStyle
     } else if (nodeName === 'sup') {
@@ -304,10 +304,9 @@ export const mergeStyledSpans = (htmlContent) => {
 
   const result = htmlContent
     .replace(/" isbrafttag="1"><braftspan style="/g, ';')
-    .replace(/<\/braftspan><\/braftspan>/g, '</span>')
+    .replace(/(\<\/braftspan>)+/g, '</span>')
     .replace(/<braftspan/g, '<span')
     .replace(/" isbrafttag="1"/g, ';"')
-    .replace(/<\/braftspan>/g, '')
 
   return result
 

@@ -5,10 +5,14 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.7.5以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.8.1以确保功能同步
 
 
 ## 最近更新
+- 2018-03-21 v1.8.1
+  - 修复了html与raw的相互转换的一些问题，部分功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 新增onTab属性
+  - 在输出的html中为设置了float和alignment的图片增加对应的className属性
 - 2018-03-16 v1.8.0
   - 新增excludeControls属性，用于指定不需要显示的控制栏按钮
   - 媒体库增加快捷选取/删除工具栏
@@ -157,6 +161,11 @@ class Demo extends React.Component {
 
 指定编辑器内容发生变化时候的回调，参数为HTML格式的编辑器内容
 
+### onTab [function]
+
+指定在编辑器内按下tab键时的回调，参数为按键事件对象
+> 在编辑器内的代码块中按tab键不会触发此回调
+
 ### onSave [function]
 
 指定一个函数，通常用于保存操作，在编辑器处于焦点时按下command/ctrl + s会执行此函数
@@ -169,7 +178,7 @@ class Demo extends React.Component {
   'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
   'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
   'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
-  'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media'
+  'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media', 'clear'
 ]
 ```
 

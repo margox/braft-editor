@@ -1,4 +1,8 @@
 ## 更新记录
+- 2018-03-21 v1.8.1
+  - 修复了html与raw的相互转换的一些问题，部分功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
+  - 在输出的html中为设置了float和alignment的图片增加对应的className属性
+  - 新增onTab属性
 - 2018-03-16 v1.8.0
   - 新增excludeControls属性，用于指定不需要显示的控制栏按钮
   - 媒体库增加快捷选取/删除工具栏

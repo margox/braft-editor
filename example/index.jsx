@@ -116,7 +116,7 @@ class Demo extends React.Component {
     this.setState({
       contentId: 2,
       contentFormat: 'html',
-      initialContent: '<h1 style="text-align:center;font-size:18px;text-align:right;letter-spacing:6;">Hello World!</h1><hr/><p style="text-align:right;">Hello Braft!</p>'
+      initialContent: '<p>asdasdas<u><span style="text-decoration:line-through;"><strong>da<em><span style="font-size:32px;color:#fdda00;background-color:#07a9fe;">s</span>d</em>ad</strong>asdas</span></u>d</p>'
     })
   }
 
@@ -190,10 +190,6 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            controls = {[
-              'undo', 'redo', 'media', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'text-color',
-              'bold','text-align','list_ul', 'list_ol'
-            ]}
             viewWrapper={'#demo'}
             placeholder={"Hello World!"}
             ref={instance => {
