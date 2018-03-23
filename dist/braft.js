@@ -7354,6 +7354,10 @@ var entityToHTML = function entityToHTML(entity, originalText) {
 var htmlToStyle = function htmlToStyle(props) {
   return function (nodeName, node, currentStyle) {
 
+    if (!node.style) {
+      return currentStyle;
+    }
+
     var newStyle = currentStyle;
 
     for (var i = 0; i < node.style.length; i++) {
@@ -7483,7 +7487,13 @@ var getFromHTMLConfig = exports.getFromHTMLConfig = function getFromHTMLConfig(p
 
 var mergeStyledSpans = exports.mergeStyledSpans = function mergeStyledSpans(htmlContent) {
 
-  var result = htmlContent.replace(/" isbrafttag="1"><braftspan style="/g, ';').replace(/(\<\/braftspan>)+/g, '</span>').replace(/<braftspan/g, '<span').replace(/" isbrafttag="1"/g, ';"');
+  // const result = htmlContent
+  //   .replace(/" isbrafttag="1"><braftspan style="/g, ';')
+  //   .replace(/(\<\/braftspan>)+/g, '</span>')
+  //   .replace(/<braftspan/g, '<span')
+  //   .replace(/" isbrafttag="1"/g, ';"')
+
+  var result = htmlContent.replace(/<\/braftspan>/g, '</span>').replace(/<braftspan/g, '<span').replace(/" isbrafttag="1"/g, ';"');
 
   return result;
 };

@@ -171,6 +171,10 @@ const entityToHTML = (entity, originalText) => {
 
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 
+  if (!node.style) {
+    return currentStyle
+  }
+
   let newStyle = currentStyle
 
   for (let i = 0; i < node.style.length; i++) {
@@ -302,9 +306,14 @@ export const getFromHTMLConfig = (props) => {
 
 export const mergeStyledSpans = (htmlContent) => {
 
+  // const result = htmlContent
+  //   .replace(/" isbrafttag="1"><braftspan style="/g, ';')
+  //   .replace(/(\<\/braftspan>)+/g, '</span>')
+  //   .replace(/<braftspan/g, '<span')
+  //   .replace(/" isbrafttag="1"/g, ';"')
+
   const result = htmlContent
-    .replace(/" isbrafttag="1"><braftspan style="/g, ';')
-    .replace(/(\<\/braftspan>)+/g, '</span>')
+    .replace(/<\/braftspan>/g, '</span>')
     .replace(/<braftspan/g, '<span')
     .replace(/" isbrafttag="1"/g, ';"')
 
