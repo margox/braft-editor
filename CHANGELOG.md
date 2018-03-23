@@ -1,4 +1,6 @@
 ## 更新记录
+- 2018-03-21 v1.8.2
+  - 修复了图标样式名可能会与宿主项目冲突的问题
 - 2018-03-21 v1.8.1
   - 修复了html与raw的相互转换的一些问题，部分功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
   - 在输出的html中为设置了float和alignment的图片增加对应的className属性

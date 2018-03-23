@@ -91,7 +91,7 @@ export default class DropDown extends React.Component {
             ref={(instance) => this.dropDownHandlerElement = instance}
           >
             <span>{caption}</span>
-            {showDropDownArrow !== false ? <i className="icon-drop-down"></i> : null}
+            {showDropDownArrow !== false ? <i className="braft-icon-drop-down"></i> : null}
           </button>
         )}
         <div

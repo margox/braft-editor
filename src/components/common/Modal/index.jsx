@@ -70,7 +70,7 @@ export default class Modal extends React.Component {
         <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className="braft-modal-content">
           <div className="braft-modal-header">
             <h3 className="braft-modal-caption">{title}</h3>
-            {showClose && <button type="button" onClick={this.close} className="braft-modal-close-button"><i className="icon-close"></i></button>}
+            {showClose && <button type="button" onClick={this.close} className="braft-modal-close-button"><i className="braft-icon-close"></i></button>}
           </div>
           <div className="braft-modal-body">{children}</div>
           <div className="braft-modal-footer">

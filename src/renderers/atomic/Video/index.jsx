@@ -25,7 +25,7 @@ export default class Video extends React.Component {
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
-        <i className="icon-film"></i>
+        <i className="braft-icon-film"></i>
         <h5>{name}</h5>
         <h6>{url}</h6>
         {toolbarVisible ? (

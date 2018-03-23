@@ -7,8 +7,9 @@
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 #### 使用braft-convert的同学请将braft-convert升级到v1.8.1以确保功能同步
 
-
 ## 最近更新
+- 2018-03-21 v1.8.2
+  - 修复了图标样式名可能会与宿主项目冲突的问题
 - 2018-03-21 v1.8.1
   - 修复了html与raw的相互转换的一些问题，部分功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
   - 新增onTab属性
@@ -22,28 +23,12 @@
   - 新增editorInstance.isEmpty()方法
   - media.onRemove参数类型更改为数组
   - 增加多个媒体库(mediaLibrary)实例方法实例方法
-- 2018-03-15 v1.7.5
-  - 修复特殊区块文本居左/中/右后再次编辑时失效的问题
-- 2018-03-15 v1.7.4
-  - 新增清除样式工具
-  - 修复进行部分操作后编辑器没有重新获得焦点的问题
-- 2018-03-15 v1.7.3
-  - 修复raw格式在使用未包含在颜色列表内的颜色时，无法正常显示颜色的问题
-  - 其他优化
-- 2018-03-14 v1.7.2
-  - 优化media.onRemove传参
-  - 支持height属性设置为0
-- 2018-03-13 v1.7.1
-  - 新增contentId属性，用于支持动态更新initialContent属性
-  - 其他优化
-- 2018-03-13 v1.7.0
-  - 新增插入水平线功能
-  - 支持设置文字间距与段落的两端缩进，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
-  - 新增textAlignOptions属性，用于设置文本对齐选项，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
-  - 新增allowSetTextBackgroundColor属性，用于开启/关闭文字背景色设置功能，此功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
-  - 新增media.onRemove和media.onChange子属性，用于增强媒体库的扩展性
-  - 其他优化
 
+## 已知问题
+1. 使用html作为contentFormat时，文字字体(fontFamily)的的转换难以实现
+2. 从外部复制HTML内容粘贴到编辑器时，文字字体(fontFamily)的识别难以实现
+3. 编辑器内容为空时插入列表，placeholder文本不消失，输入任意文本内容后placeholder文本消失
+4. 编辑器内容转换为HTML时可能会存在部分样式作用范围不正确（会尽快修复）
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -740,11 +725,6 @@ this.editorInstance.blur()
 ## 开发计划
 - 支持图片修改宽度
 - 支持多实例共存
-
-## 已知问题
-1. 使用html作为contentFormat时，文字字体(fontFamily)的的转换难以实现
-2. 从外部复制HTML内容粘贴到编辑器时，文字字体(fontFamily)的识别难以实现
-3. 编辑器内容为空时插入列表，placeholder文本不消失，输入任意文本内容后placeholder文本消失
 
 ## 附录
 

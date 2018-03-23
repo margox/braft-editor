@@ -26,7 +26,7 @@ export default class LinkEditor extends React.Component {
 
     const { href, target } = this.state
     const { editor, language, viewWrapper } = this.props
-    const caption = <i className="icon-link"></i>
+    const caption = <i className="braft-icon-link"></i>
     const textSelected = !editor.selectionCollapsed() && editor.getSelectionBlockType() !== 'atomic'
 
     return (
@@ -61,7 +61,7 @@ export default class LinkEditor extends React.Component {
             </div>
             <div className="buttons">
               <a onClick={this.handleUnlink} className="primary pull-left" href="javascript:void(0);">
-                <i className="icon-close"></i>
+                <i className="braft-icon-close"></i>
                 <span>{language.linkEditor.removeLink}</span>
               </a>
               <button type="button" onClick={this.handleConfirm} className="primary pull-right">{language.base.confirm}</button>
@@ -76,7 +76,7 @@ export default class LinkEditor extends React.Component {
           onClick={this.handleUnlink}
           disabled={!textSelected || !href}
         >
-          <i className="icon-link-off"></i>
+          <i className="braft-icon-link-off"></i>
         </button>
       </div>
     )

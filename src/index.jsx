@@ -131,9 +131,11 @@ export default class BraftEditor extends EditorController {
     const contentState = this.contentState
     const { fontFamilies} = this.props
 
-    return format === 'html' ? mergeStyledSpans(convertToHTML(getToHTMLConfig({
-      contentState, fontFamilies
-    }))(contentState)) : convertToRaw(contentState)
+    if (format === 'html') {
+      return mergeStyledSpans(convertToHTML(getToHTMLConfig({contentState, fontFamilies}))(contentState))
+    } else {
+      return convertToRaw(contentState)
+    }
 
   }
 

@@ -34,7 +34,7 @@ export default class TextColor extends React.Component {
     })
 
     let caption = (
-      <i style={captionStyle} className="icon-text-color">
+      <i style={captionStyle} className="braft-icon-text-color">
         <span className="path1"></span>
         <span className="path2"></span>
       </i>

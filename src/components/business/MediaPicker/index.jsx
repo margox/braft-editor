@@ -86,9 +86,9 @@ export default class MediaPicker extends React.Component {
         className="braft-media-toggle-external-mode"
       >
         {showExternalForm ? (
-          <span className="braft-media-bottom-text"><i className="icon-add"></i> {language.mediaPicker.addLocalFile}</span>
+          <span className="braft-media-bottom-text"><i className="braft-icon-add"></i> {language.mediaPicker.addLocalFile}</span>
         ) : (
-          <span className="braft-media-bottom-text"><i className="icon-add"></i> {language.mediaPicker.addExternalSource}</span>
+          <span className="braft-media-bottom-text"><i className="braft-icon-add"></i> {language.mediaPicker.addExternalSource}</span>
         )}
       </span>
     ) : null
@@ -124,9 +124,9 @@ export default class MediaPicker extends React.Component {
             {files.length ? (
               <div className="braft-media-list-wrap">
                 <div className="braft-media-list-tools">
-                  <span onClick={this.selectAllItems} className="braft-media-select-all"><i className="icon-done"></i> {language.mediaPicker.selectAll}</span>
-                  <span onClick={this.deselectAllItems} disabled={!confirmable} className="braft-media-deselect-all"><i className="icon-close"></i> {language.mediaPicker.deselect}</span>
-                  <span onClick={this.removeSelectedItems} disabled={!confirmable} className="braft-media-remove-selected"><i className="icon-bin"></i> {language.mediaPicker.removeSelected}</span>
+                  <span onClick={this.selectAllItems} className="braft-media-select-all"><i className="braft-icon-done"></i> {language.mediaPicker.selectAll}</span>
+                  <span onClick={this.deselectAllItems} disabled={!confirmable} className="braft-media-deselect-all"><i className="braft-icon-close"></i> {language.mediaPicker.deselect}</span>
+                  <span onClick={this.removeSelectedItems} disabled={!confirmable} className="braft-media-remove-selected"><i className="braft-icon-bin"></i> {language.mediaPicker.removeSelected}</span>
                 </div>
                 {this.buildMediaList()}
               </div>
@@ -161,7 +161,7 @@ export default class MediaPicker extends React.Component {
     return (
       <ul className="braft-media-list">
         <li className="braft-media-add-item">
-          <i className="icon-add"></i>
+          <i className="braft-icon-add"></i>
           <input accept={this.mediaFileAccept} onChange={this.handleFilesPicked} multiple type="file"/>
         </li>
         {this.state.files.map((file, index) => {
@@ -186,7 +186,7 @@ export default class MediaPicker extends React.Component {
               previewerComponents = (
                 <div className="braft-media-icon braft-media-video" title={file.url}>
                   {progressMarker}
-                  <i className="icon-film"></i>
+                  <i className="braft-icon-film"></i>
                   <span>{file.name || file.url}</span>
                 </div>
               )
@@ -195,7 +195,7 @@ export default class MediaPicker extends React.Component {
               previewerComponents = (
                 <div className="braft-media-icon braft-media-audio" title={file.url}>
                   {progressMarker}
-                  <i className="icon-music"></i>
+                  <i className="braft-icon-music"></i>
                   <span>{file.name || file.url}</span>
                 </div>
               )
@@ -204,7 +204,7 @@ export default class MediaPicker extends React.Component {
               previewerComponents = (
                 <a className="braft-media-icon braft-media-file" title={file.url} href={file.url}>
                   {progressMarker}
-                  <i className="icon-file-text"></i>
+                  <i className="braft-icon-file-text"></i>
                   <span>{file.name || file.url}</span>
                 </a>
               )
@@ -224,7 +224,7 @@ export default class MediaPicker extends React.Component {
               onClick={() => this.selectItem(file)}
             >
               {previewerComponents}
-              <span data-id={file.id} onClick={this.removeItem} className="braft-media-item-remove icon-close"></span>
+              <span data-id={file.id} onClick={this.removeItem} className="braft-media-item-remove braft-icon-close"></span>
               <span className="braft-media-item-title">{file.name}</span>
             </li>
           )

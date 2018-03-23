@@ -4,61 +4,61 @@ export default (lang) => [
   {
     key: 'undo',
     title: lang.controls.undo,
-    text: <i className="icon-undo"></i>,
+    text: <i className="braft-icon-undo"></i>,
     type: 'editor-state-method',
     command: 'undo'
   }, {
     key: 'redo',
     title: lang.controls.redo,
-    text: <i className="icon-redo"></i>,
+    text: <i className="braft-icon-redo"></i>,
     type: 'editor-state-method',
     command: 'redo'
   }, {
     key: 'remove-styles',
     title: lang.controls.removeStyles,
-    text: <i className="icon-format_clear"></i>,
+    text: <i className="braft-icon-format_clear"></i>,
     type: 'editor-state-method',
     command: 'removeSelectionInlineStyles'
   }, {
     key: 'hr',
     title: lang.controls.hr,
-    text: <i className="icon-hr"></i>,
+    text: <i className="braft-icon-hr"></i>,
     type: 'editor-state-method',
     command: 'insertHorizontalLine'
   }, {
     key: 'bold',
     title: lang.controls.bold,
-    text: <i className="icon-bold"></i>,
+    text: <i className="braft-icon-bold"></i>,
     type: 'inline-style',
     command: 'bold'
   },{
     key: 'italic',
     title: lang.controls.italic,
-    text: <i className="icon-italic"></i>,
+    text: <i className="braft-icon-italic"></i>,
     type: 'inline-style',
     command: 'italic'
   }, {
     key: 'underline',
     title: lang.controls.underline,
-    text: <i className="icon-underlined"></i>,
+    text: <i className="braft-icon-underlined"></i>,
     type: 'inline-style',
     command: 'underline'
   }, {
     key: 'strike-through',
     title: lang.controls.strikeThrough,
-    text: <i className="icon-strikethrough"></i>,
+    text: <i className="braft-icon-strikethrough"></i>,
     type: 'inline-style',
     command: 'strikethrough',
   }, {
     key: 'superscript',
     title: lang.controls.superScript,
-    text: <i className="icon-superscript"></i>,
+    text: <i className="braft-icon-superscript"></i>,
     type: 'inline-style',
     command: 'superscript'
   }, {
     key: 'subscript',
     title: lang.controls.subScript,
-    text: <i className="icon-subscript"></i>,
+    text: <i className="braft-icon-subscript"></i>,
     type: 'inline-style',
     command: 'subscript'
   }, {
@@ -68,25 +68,25 @@ export default (lang) => [
   }, {
     key: 'blockquote',
     title: lang.controls.blockQuote,
-    text: <i className="icon-quote"></i>,
+    text: <i className="braft-icon-quote"></i>,
     type: 'block-type',
     command: 'blockquote',
   }, {
     key: 'code',
     title: lang.controls.code,
-    text: <i className="icon-code"></i>,
+    text: <i className="braft-icon-code"></i>,
     type: 'block-type',
     command: 'code-block'
   }, {
     key: 'list_ul',
     title: lang.controls.unorderedList,
-    text: <i className="icon-list"></i>,
+    text: <i className="braft-icon-list"></i>,
     type: 'block-type',
     command: 'unordered-list-item'
   }, {
     key: 'list_ol',
     title: lang.controls.orderedList,
-    text: <i className="icon-list-numbered"></i>,
+    text: <i className="braft-icon-list-numbered"></i>,
     type: 'block-type',
     command: 'ordered-list-item'
   }, {
@@ -124,12 +124,12 @@ export default (lang) => [
   }, {
     key: 'media',
     title: lang.controls.media,
-    text: <i className="icon-media"></i>,
+    text: <i className="braft-icon-media"></i>,
     type: 'media'
   }, {
     key: 'emoji',
     title: lang.controls.emoji,
-    text: <i className="icon-emoji"></i>,
+    text: <i className="braft-icon-emoji"></i>,
     type: 'emoji'
   }, {
     key: 'clear',

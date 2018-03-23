@@ -203,7 +203,6 @@ class Demo extends React.Component {
             initialContent={this.state.initialContent}
             extendControls={extendControls}
             onHTMLChange={htmlContent => { 
-              console.log(htmlContent)
               this.setState({ htmlContent })
             }}
             allowSetTextBackgroundColor={true}

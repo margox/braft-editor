@@ -25,7 +25,7 @@ export default class Audio extends React.Component {
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
-        <i className="icon-music"></i>
+        <i className="braft-icon-music"></i>
         <h5>{name}</h5>
         <h6>{url}</h6>
         {toolbarVisible ? (

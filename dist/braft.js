@@ -236,7 +236,7 @@ var DropDown = function (_React$Component) {
             null,
             caption
           ),
-          showDropDownArrow !== false ? _react2.default.createElement('i', { className: 'icon-drop-down' }) : null
+          showDropDownArrow !== false ? _react2.default.createElement('i', { className: 'braft-icon-drop-down' }) : null
         ),
         _react2.default.createElement(
           'div',
@@ -5492,7 +5492,7 @@ var Modal = function (_React$Component) {
             showClose && _react2.default.createElement(
               'button',
               { type: 'button', onClick: this.close, className: 'braft-modal-close-button' },
-              _react2.default.createElement('i', { className: 'icon-close' })
+              _react2.default.createElement('i', { className: 'braft-icon-close' })
             )
           ),
           _react2.default.createElement(
@@ -8932,7 +8932,7 @@ var LinkEditor = function (_React$Component) {
           language = _props.language,
           viewWrapper = _props.viewWrapper;
 
-      var caption = _react2.default.createElement('i', { className: 'icon-link' });
+      var caption = _react2.default.createElement('i', { className: 'braft-icon-link' });
       var textSelected = !editor.selectionCollapsed() && editor.getSelectionBlockType() !== 'atomic';
 
       return _react2.default.createElement(
@@ -8986,7 +8986,7 @@ var LinkEditor = function (_React$Component) {
               _react2.default.createElement(
                 'a',
                 { onClick: this.handleUnlink, className: 'primary pull-left', href: 'javascript:void(0);' },
-                _react2.default.createElement('i', { className: 'icon-close' }),
+                _react2.default.createElement('i', { className: 'braft-icon-close' }),
                 _react2.default.createElement(
                   'span',
                   null,
@@ -9015,7 +9015,7 @@ var LinkEditor = function (_React$Component) {
             onClick: this.handleUnlink,
             disabled: !textSelected || !href
           },
-          _react2.default.createElement('i', { className: 'icon-link-off' })
+          _react2.default.createElement('i', { className: 'braft-icon-link-off' })
         )
       );
     }
@@ -9351,13 +9351,13 @@ var MediaPicker = function (_React$Component) {
         showExternalForm ? _react2.default.createElement(
           'span',
           { className: 'braft-media-bottom-text' },
-          _react2.default.createElement('i', { className: 'icon-add' }),
+          _react2.default.createElement('i', { className: 'braft-icon-add' }),
           ' ',
           language.mediaPicker.addLocalFile
         ) : _react2.default.createElement(
           'span',
           { className: 'braft-media-bottom-text' },
-          _react2.default.createElement('i', { className: 'icon-add' }),
+          _react2.default.createElement('i', { className: 'braft-icon-add' }),
           ' ',
           language.mediaPicker.addExternalSource
         )
@@ -9411,21 +9411,21 @@ var MediaPicker = function (_React$Component) {
                 _react2.default.createElement(
                   'span',
                   { onClick: this.selectAllItems, className: 'braft-media-select-all' },
-                  _react2.default.createElement('i', { className: 'icon-done' }),
+                  _react2.default.createElement('i', { className: 'braft-icon-done' }),
                   ' ',
                   language.mediaPicker.selectAll
                 ),
                 _react2.default.createElement(
                   'span',
                   { onClick: this.deselectAllItems, disabled: !confirmable, className: 'braft-media-deselect-all' },
-                  _react2.default.createElement('i', { className: 'icon-close' }),
+                  _react2.default.createElement('i', { className: 'braft-icon-close' }),
                   ' ',
                   language.mediaPicker.deselect
                 ),
                 _react2.default.createElement(
                   'span',
                   { onClick: this.removeSelectedItems, disabled: !confirmable, className: 'braft-media-remove-selected' },
-                  _react2.default.createElement('i', { className: 'icon-bin' }),
+                  _react2.default.createElement('i', { className: 'braft-icon-bin' }),
                   ' ',
                   language.mediaPicker.removeSelected
                 )
@@ -9493,7 +9493,7 @@ var MediaPicker = function (_React$Component) {
         _react2.default.createElement(
           'li',
           { className: 'braft-media-add-item' },
-          _react2.default.createElement('i', { className: 'icon-add' }),
+          _react2.default.createElement('i', { className: 'braft-icon-add' }),
           _react2.default.createElement('input', { accept: this.mediaFileAccept, onChange: this.handleFilesPicked, multiple: true, type: 'file' })
         ),
         this.state.files.map(function (file, index) {
@@ -9519,7 +9519,7 @@ var MediaPicker = function (_React$Component) {
                 'div',
                 { className: 'braft-media-icon braft-media-video', title: file.url },
                 progressMarker,
-                _react2.default.createElement('i', { className: 'icon-film' }),
+                _react2.default.createElement('i', { className: 'braft-icon-film' }),
                 _react2.default.createElement(
                   'span',
                   null,
@@ -9532,7 +9532,7 @@ var MediaPicker = function (_React$Component) {
                 'div',
                 { className: 'braft-media-icon braft-media-audio', title: file.url },
                 progressMarker,
-                _react2.default.createElement('i', { className: 'icon-music' }),
+                _react2.default.createElement('i', { className: 'braft-icon-music' }),
                 _react2.default.createElement(
                   'span',
                   null,
@@ -9545,7 +9545,7 @@ var MediaPicker = function (_React$Component) {
                 'a',
                 { className: 'braft-media-icon braft-media-file', title: file.url, href: file.url },
                 progressMarker,
-                _react2.default.createElement('i', { className: 'icon-file-text' }),
+                _react2.default.createElement('i', { className: 'braft-icon-file-text' }),
                 _react2.default.createElement(
                   'span',
                   null,
@@ -9571,7 +9571,7 @@ var MediaPicker = function (_React$Component) {
               }
             },
             previewerComponents,
-            _react2.default.createElement('span', { 'data-id': file.id, onClick: _this4.removeItem, className: 'braft-media-item-remove icon-close' }),
+            _react2.default.createElement('span', { 'data-id': file.id, onClick: _this4.removeItem, className: 'braft-media-item-remove braft-icon-close' }),
             _react2.default.createElement(
               'span',
               { className: 'braft-media-item-title' },
@@ -9668,7 +9668,7 @@ var TextAlign = function (_React$Component) {
               className: 'control-item button ' + (item === currentAlignment ? 'active' : null),
               onClick: _this2.setAlignment
             },
-            _react2.default.createElement('i', { className: "icon-align-" + item })
+            _react2.default.createElement('i', { className: "braft-icon-align-" + item })
           );
         })
       );
@@ -9784,7 +9784,7 @@ var TextColor = function (_React$Component) {
 
       var caption = _react2.default.createElement(
         'i',
-        { style: captionStyle, className: 'icon-text-color' },
+        { style: captionStyle, className: 'braft-icon-text-color' },
         _react2.default.createElement('span', { className: 'path1' }),
         _react2.default.createElement('span', { className: 'path2' })
       );
@@ -10104,61 +10104,61 @@ exports.default = function (lang) {
   return [{
     key: 'undo',
     title: lang.controls.undo,
-    text: _react2.default.createElement('i', { className: 'icon-undo' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-undo' }),
     type: 'editor-state-method',
     command: 'undo'
   }, {
     key: 'redo',
     title: lang.controls.redo,
-    text: _react2.default.createElement('i', { className: 'icon-redo' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-redo' }),
     type: 'editor-state-method',
     command: 'redo'
   }, {
     key: 'remove-styles',
     title: lang.controls.removeStyles,
-    text: _react2.default.createElement('i', { className: 'icon-format_clear' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-format_clear' }),
     type: 'editor-state-method',
     command: 'removeSelectionInlineStyles'
   }, {
     key: 'hr',
     title: lang.controls.hr,
-    text: _react2.default.createElement('i', { className: 'icon-hr' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-hr' }),
     type: 'editor-state-method',
     command: 'insertHorizontalLine'
   }, {
     key: 'bold',
     title: lang.controls.bold,
-    text: _react2.default.createElement('i', { className: 'icon-bold' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-bold' }),
     type: 'inline-style',
     command: 'bold'
   }, {
     key: 'italic',
     title: lang.controls.italic,
-    text: _react2.default.createElement('i', { className: 'icon-italic' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-italic' }),
     type: 'inline-style',
     command: 'italic'
   }, {
     key: 'underline',
     title: lang.controls.underline,
-    text: _react2.default.createElement('i', { className: 'icon-underlined' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-underlined' }),
     type: 'inline-style',
     command: 'underline'
   }, {
     key: 'strike-through',
     title: lang.controls.strikeThrough,
-    text: _react2.default.createElement('i', { className: 'icon-strikethrough' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-strikethrough' }),
     type: 'inline-style',
     command: 'strikethrough'
   }, {
     key: 'superscript',
     title: lang.controls.superScript,
-    text: _react2.default.createElement('i', { className: 'icon-superscript' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-superscript' }),
     type: 'inline-style',
     command: 'superscript'
   }, {
     key: 'subscript',
     title: lang.controls.subScript,
-    text: _react2.default.createElement('i', { className: 'icon-subscript' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-subscript' }),
     type: 'inline-style',
     command: 'subscript'
   }, {
@@ -10168,25 +10168,25 @@ exports.default = function (lang) {
   }, {
     key: 'blockquote',
     title: lang.controls.blockQuote,
-    text: _react2.default.createElement('i', { className: 'icon-quote' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-quote' }),
     type: 'block-type',
     command: 'blockquote'
   }, {
     key: 'code',
     title: lang.controls.code,
-    text: _react2.default.createElement('i', { className: 'icon-code' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-code' }),
     type: 'block-type',
     command: 'code-block'
   }, {
     key: 'list_ul',
     title: lang.controls.unorderedList,
-    text: _react2.default.createElement('i', { className: 'icon-list' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-list' }),
     type: 'block-type',
     command: 'unordered-list-item'
   }, {
     key: 'list_ol',
     title: lang.controls.orderedList,
-    text: _react2.default.createElement('i', { className: 'icon-list-numbered' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-list-numbered' }),
     type: 'block-type',
     command: 'ordered-list-item'
   }, {
@@ -10224,12 +10224,12 @@ exports.default = function (lang) {
   }, {
     key: 'media',
     title: lang.controls.media,
-    text: _react2.default.createElement('i', { className: 'icon-media' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-media' }),
     type: 'media'
   }, {
     key: 'emoji',
     title: lang.controls.emoji,
-    text: _react2.default.createElement('i', { className: 'icon-emoji' }),
+    text: _react2.default.createElement('i', { className: 'braft-icon-emoji' }),
     type: 'emoji'
   }, {
     key: 'clear',
@@ -10595,9 +10595,11 @@ var _initialiseProps = function _initialiseProps() {
     var fontFamilies = _this3.props.fontFamilies;
 
 
-    return format === 'html' ? (0, _convert.mergeStyledSpans)((0, _draftConvert.convertToHTML)((0, _convert.getToHTMLConfig)({
-      contentState: contentState, fontFamilies: fontFamilies
-    }))(contentState)) : (0, _draftJs.convertToRaw)(contentState);
+    if (format === 'html') {
+      return (0, _convert.mergeStyledSpans)((0, _draftConvert.convertToHTML)((0, _convert.getToHTMLConfig)({ contentState: contentState, fontFamilies: fontFamilies }))(contentState));
+    } else {
+      return (0, _draftJs.convertToRaw)(contentState);
+    }
   };
 
   this.isEmpty = function () {
@@ -11187,7 +11189,7 @@ var Audio = function (_React$Component) {
           onMouseOver: this.showToolbar,
           onMouseLeave: this.hideToolbar
         },
-        _react2.default.createElement('i', { className: 'icon-music' }),
+        _react2.default.createElement('i', { className: 'braft-icon-music' }),
         _react2.default.createElement(
           'h5',
           null,
@@ -11764,7 +11766,7 @@ var Video = function (_React$Component) {
           onMouseOver: this.showToolbar,
           onMouseLeave: this.hideToolbar
         },
-        _react2.default.createElement('i', { className: 'icon-film' }),
+        _react2.default.createElement('i', { className: 'braft-icon-film' }),
         _react2.default.createElement(
           'h5',
           null,

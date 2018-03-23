@@ -41,7 +41,7 @@ export default class TextAlign extends React.Component {
                 className={'control-item button ' + (item === currentAlignment ? 'active' : null)}
                 onClick={this.setAlignment}
               >
-                <i className={"icon-align-" + item}></i>
+                <i className={"braft-icon-align-" + item}></i>
               </button>
             )
           })
