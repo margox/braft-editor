@@ -114,6 +114,7 @@ export default class ControlBar extends React.Component {
                   this.extendedModals[item.modal.id].update({ ...item.modal, language })
                 } else {
                   this.extendedModals[item.modal.id] = showModal({ ...item.modal, language })
+                  item.modal.onCreate && item.modal.onCreate(this.extendedModals[item.modal.id])
                 }
               }
             }}

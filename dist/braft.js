@@ -5771,103 +5771,6 @@ module.exports = invariant;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
@@ -6069,6 +5972,103 @@ var detectColorsFromRaw = exports.detectColorsFromRaw = function detectColorsFro
     return color;
   });
 };
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*
+object-assign
+(c) Sindre Sorhus
+@license MIT
+*/
+
+
+/* eslint-disable no-unused-vars */
+var getOwnPropertySymbols = Object.getOwnPropertySymbols;
+var hasOwnProperty = Object.prototype.hasOwnProperty;
+var propIsEnumerable = Object.prototype.propertyIsEnumerable;
+
+function toObject(val) {
+	if (val === null || val === undefined) {
+		throw new TypeError('Object.assign cannot be called with null or undefined');
+	}
+
+	return Object(val);
+}
+
+function shouldUseNative() {
+	try {
+		if (!Object.assign) {
+			return false;
+		}
+
+		// Detect buggy property enumeration order in older V8 versions.
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
+		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+		test1[5] = 'de';
+		if (Object.getOwnPropertyNames(test1)[0] === '5') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test2 = {};
+		for (var i = 0; i < 10; i++) {
+			test2['_' + String.fromCharCode(i)] = i;
+		}
+		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
+			return test2[n];
+		});
+		if (order2.join('') !== '0123456789') {
+			return false;
+		}
+
+		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
+		var test3 = {};
+		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
+			test3[letter] = letter;
+		});
+		if (Object.keys(Object.assign({}, test3)).join('') !==
+				'abcdefghijklmnopqrst') {
+			return false;
+		}
+
+		return true;
+	} catch (err) {
+		// We don't expect any of the above to throw, but better to be safe.
+		return false;
+	}
+}
+
+module.exports = shouldUseNative() ? Object.assign : function (target, source) {
+	var from;
+	var to = toObject(target);
+	var symbols;
+
+	for (var s = 1; s < arguments.length; s++) {
+		from = Object(arguments[s]);
+
+		for (var key in from) {
+			if (hasOwnProperty.call(from, key)) {
+				to[key] = from[key];
+			}
+		}
+
+		if (getOwnPropertySymbols) {
+			symbols = getOwnPropertySymbols(from);
+			for (var i = 0; i < symbols.length; i++) {
+				if (propIsEnumerable.call(from, symbols[i])) {
+					to[symbols[i]] = from[symbols[i]];
+				}
+			}
+		}
+	}
+
+	return to;
+};
+
 
 /***/ }),
 /* 10 */
@@ -6972,6 +6972,7 @@ var ControlBar = function (_React$Component) {
                     _this4.extendedModals[item.modal.id].update(_extends({}, item.modal, { language: language }));
                   } else {
                     _this4.extendedModals[item.modal.id] = (0, _Modal.showModal)(_extends({}, item.modal, { language: language }));
+                    item.modal.onCreate && item.modal.onCreate(_this4.extendedModals[item.modal.id]);
                   }
                 }
               }
@@ -7148,7 +7149,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _maps = __webpack_require__(12);
 
-var _colors = __webpack_require__(9);
+var _colors = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7230,29 +7231,29 @@ var styleToHTML = function styleToHTML(props) {
     style = style.toLowerCase();
 
     if (style === 'strikethrough') {
-      return _react2.default.createElement('braftspan', { style: { textDecoration: 'line-through' }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { textDecoration: 'line-through' } });
     } else if (style === 'superscript') {
       return _react2.default.createElement('sup', null);
     } else if (style === 'subscript') {
       return _react2.default.createElement('sub', null);
     } else if (style.indexOf('color-') === 0) {
-      return _react2.default.createElement('braftspan', { style: { color: '#' + style.split('-')[1] }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { color: '#' + style.split('-')[1] } });
     } else if (style.indexOf('bgcolor-') === 0) {
-      return _react2.default.createElement('braftspan', { style: { backgroundColor: '#' + style.split('-')[1] }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { backgroundColor: '#' + style.split('-')[1] } });
     } else if (style.indexOf('fontsize-') === 0) {
-      return _react2.default.createElement('braftspan', { style: { fontSize: style.split('-')[1] + 'px' }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { fontSize: style.split('-')[1] + 'px' } });
     } else if (style.indexOf('lineheight-') === 0) {
-      return _react2.default.createElement('braftspan', { style: { lineHeight: style.split('-')[1] }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { lineHeight: style.split('-')[1] } });
     } else if (style.indexOf('letterspacing-') === 0) {
-      return _react2.default.createElement('braftspan', { style: { letterSpacing: style.split('-')[1] + 'px' }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { letterSpacing: style.split('-')[1] + 'px' } });
     } else if (style.indexOf('indent-') === 0) {
-      return _react2.default.createElement('braftspan', { style: { paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' } });
     } else if (style.indexOf('fontfamily-') === 0) {
       var fontFamily = props.fontFamilies.find(function (item) {
         return item.name.toLowerCase() === style.split('-')[1];
       });
       if (!fontFamily) return;
-      return _react2.default.createElement('braftspan', { style: { fontFamily: fontFamily.family }, isbrafttag: '1' });
+      return _react2.default.createElement('span', { style: { fontFamily: fontFamily.family } });
     }
   };
 };
@@ -7354,7 +7355,7 @@ var entityToHTML = function entityToHTML(entity, originalText) {
 var htmlToStyle = function htmlToStyle(props) {
   return function (nodeName, node, currentStyle) {
 
-    if (!node.style) {
+    if (!node || !node.style) {
       return currentStyle;
     }
 
@@ -7375,7 +7376,7 @@ var htmlToStyle = function htmlToStyle(props) {
         newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10));
       } else if (nodeName === 'span' && node.style[i] === 'line-height') {
         newStyle = newStyle.add('LINEHEIGHT-' + node.style.lineHeight);
-      } else if (nodeName === 'span' && node.style[i] === 'letter-spacing') {
+      } else if (nodeName === 'span' && node.style[i] === 'letter-spacing' && !isNaN(node.style.letterSpacing)) {
         newStyle = newStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10));
       } else if (nodeName === 'span' && (node.style[i] === 'padding-left' || node.style[i] === 'padding-right')) {
         newStyle = newStyle.add('INDENT-' + parseInt(node.style.paddingLeft, 10));
@@ -7493,9 +7494,12 @@ var mergeStyledSpans = exports.mergeStyledSpans = function mergeStyledSpans(html
   //   .replace(/<braftspan/g, '<span')
   //   .replace(/" isbrafttag="1"/g, ';"')
 
-  var result = htmlContent.replace(/<\/braftspan>/g, '</span>').replace(/<braftspan/g, '<span').replace(/" isbrafttag="1"/g, ';"');
+  // const result = htmlContent
+  //   .replace(/<\/braftspan>/g, '</span>')
+  //   .replace(/<braftspan/g, '<span')
+  //   .replace(/" isbrafttag="1"/g, ';"')
 
-  return result;
+  return htmlContent;
 };
 
 var convertCodeBlock = exports.convertCodeBlock = function convertCodeBlock(htmlContent) {
@@ -7617,6 +7621,8 @@ var _react2 = _interopRequireDefault(_react);
 var _draftJs = __webpack_require__(4);
 
 var _draftjsUtils = __webpack_require__(10);
+
+var _colors = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7823,6 +7829,23 @@ var EditorController = function (_React$Component) {
       }
     }, _this.replaceText = function (text) {
       return _this.insertText(text);
+    }, _this.insertHTML = function (htmlString) {
+
+      if (!htmlString) {
+        return _this;
+      }
+
+      try {
+        var rawContent = _this.convertHTML(htmlString);
+        var blockMap = rawContent.blockMap;
+
+        var tempColors = (0, _colors.detectColorsFromHTML)(htmlString);
+        _this.addTempColors(tempColors);
+        _this.requestFocus();
+        return _this.focus().applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.replaceWithFragment(_this.contentState, _this.selectionState, blockMap), 'insert-fragment'));
+      } catch (error) {
+        return _this;
+      }
     }, _this.insertMedias = function () {
       var medias = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
 
@@ -8380,7 +8403,7 @@ var decorators = exports.decorators = _decorators3.default;
 
 
 
-var _assign = __webpack_require__(8);
+var _assign = __webpack_require__(9);
 
 var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -10361,7 +10384,7 @@ var _MediaLibrary = __webpack_require__(26);
 
 var _MediaLibrary2 = _interopRequireDefault(_MediaLibrary);
 
-var _colors = __webpack_require__(9);
+var _colors = __webpack_require__(8);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10383,6 +10406,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // 支持hashtag功能
 // 增加取色器
 // 增加insertHTML API
+// 修复超过一行的文本无法居中的问题
+// 增加设置音/视频封面的功能
+// 增加编辑期内超链接快速访问的功能
+// 增加插入iframe的功能
 
 var editorDecorators = new _draftJs.CompositeDecorator(_renderers.decorators);
 var blockRenderMap = _draftJs.DefaultDraftBlockRenderMap.merge(_renderers.customBlockRenderMap);
@@ -10511,6 +10538,9 @@ var BraftEditor = function (_EditorController) {
       var controlBarProps = {
         editor: this,
         editorHeight: height,
+        ref: function ref(instance) {
+          return _this2.controlBarInstance = instance;
+        },
         media: media, controls: controls, language: language, viewWrapper: viewWrapper, extendControls: extendControls, colors: colors, tempColors: tempColors, fontSizes: fontSizes, fontFamilies: fontFamilies,
         emojis: emojis, lineHeights: lineHeights, letterSpacings: letterSpacings, indents: indents, textAlignOptions: textAlignOptions, allowSetTextBackgroundColor: allowSetTextBackgroundColor
       };
@@ -10524,6 +10554,7 @@ var BraftEditor = function (_EditorController) {
         colors: [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors)),
         fontSizes: fontSizes, fontFamilies: fontFamilies, lineHeights: lineHeights, letterSpacings: letterSpacings, indents: indents
       });
+
       var editorProps = _extends({
         ref: function ref(instance) {
           _this2.draftInstance = instance;
@@ -10632,14 +10663,19 @@ var _initialiseProps = function _initialiseProps() {
     return _this3.mediaLibrary;
   };
 
+  this.convertHTML = function (htmlString) {
+    var fontFamilies = _this3.props.fontFamilies;
+
+    return (0, _draftConvert.convertFromHTML)((0, _convert.getFromHTMLConfig)({ fontFamilies: fontFamilies }))((0, _convert.convertCodeBlock)(htmlString));
+  };
+
   this.setContent = function (content, format) {
 
     var convertedContent = void 0;
     var newState = {};
     var _props3 = _this3.props,
         contentFormat = _props3.contentFormat,
-        colors = _props3.colors,
-        fontFamilies = _props3.fontFamilies;
+        colors = _props3.colors;
 
 
     contentFormat = format || contentFormat || 'raw';
@@ -10651,7 +10687,7 @@ var _initialiseProps = function _initialiseProps() {
       }).filter(function (item, index, array) {
         return array.indexOf(item) === index;
       });
-      convertedContent = (0, _draftConvert.convertFromHTML)((0, _convert.getFromHTMLConfig)({ fontFamilies: fontFamilies }))((0, _convert.convertCodeBlock)(content));
+      convertedContent = _this3.convertHTML(content);
     } else if (contentFormat === 'raw') {
       if (!content || !content.blocks) {
         return false;
@@ -11854,10 +11890,21 @@ var Link = function Link(props) {
     { className: 'braft-link-wrap' },
     _react2.default.createElement(
       'a',
-      { className: 'braft-link', href: href, target: target },
+      { onClick: function onClick(event) {
+          return viewLink(event, href);
+        }, className: 'braft-link', href: href, target: target },
       children
     )
   );
+};
+
+var viewLink = function viewLink(event, link) {
+  if (event.getModifierState('Shift')) {
+    var tempLink = document.createElement('a');
+    tempLink.href = link;
+    tempLink.target = '_blank';
+    tempLink.click();
+  }
 };
 
 exports.default = {
@@ -12060,7 +12107,7 @@ module.exports = DefaultDraftBlockRenderMap;
 "use strict";
 
 
-var _assign = __webpack_require__(8);
+var _assign = __webpack_require__(9);
 
 var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -12381,7 +12428,7 @@ module.exports = DraftFeatureFlags;
 var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 var _knownListItemDepthCl,
-    _assign = __webpack_require__(8);
+    _assign = __webpack_require__(9);
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 

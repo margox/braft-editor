@@ -23,6 +23,10 @@ import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
 // 支持hashtag功能
 // 增加取色器
 // 增加insertHTML API
+// 修复超过一行的文本无法居中的问题
+// 增加设置音/视频封面的功能
+// 增加编辑期内超链接快速访问的功能
+// 增加插入iframe的功能
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -159,18 +163,23 @@ export default class BraftEditor extends EditorController {
     return this.mediaLibrary
   }
 
+  convertHTML = (htmlString) => {
+    const { fontFamilies } = this.props
+    return convertFromHTML(getFromHTMLConfig({ fontFamilies }))(convertCodeBlock(htmlString))
+  }
+
   setContent = (content, format) => {
 
     let convertedContent
     let newState = {}
-    let { contentFormat, colors, fontFamilies} = this.props
+    let { contentFormat, colors } = this.props
 
     contentFormat = format || contentFormat || 'raw'
 
     if (contentFormat === 'html') {
       content = content || ''
       newState.tempColors = [...this.state.tempColors, ...detectColorsFromHTML(content)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-      convertedContent = convertFromHTML(getFromHTMLConfig({ fontFamilies }))(convertCodeBlock(content))
+      convertedContent = this.convertHTML(content)
     } else if (contentFormat === 'raw') {
       if (!content || !content.blocks) {
         return false
@@ -375,6 +384,7 @@ export default class BraftEditor extends EditorController {
     const controlBarProps = {
       editor: this,
       editorHeight: height,
+      ref: instance => this.controlBarInstance = instance,
       media, controls, language, viewWrapper, extendControls, colors, tempColors, fontSizes, fontFamilies,
       emojis, lineHeights, letterSpacings, indents, textAlignOptions, allowSetTextBackgroundColor
     }
@@ -388,6 +398,7 @@ export default class BraftEditor extends EditorController {
       colors: [...colors, ...tempColors],
       fontSizes, fontFamilies, lineHeights, letterSpacings, indents
     })
+
     const editorProps = {
       ref: instance => { this.draftInstance = instance },
       editorState: this.state.editorState,
