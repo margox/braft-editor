@@ -231,6 +231,47 @@ class Demo extends React.Component {
 ```
 > 使用自定义的弹窗组件时，必须为modal指定一个id，以保证modal内容能动态更新
 
+### extendAtomics [array:[object]]
+添加自定义的编辑器显示组件，用来支持一些比较复杂的编辑需求。通过这种方式编辑的内容，只能通过raw方式读取和存储。
+
+```javascript
+  class CustomAtomic extends React.Component {
+    // 需要通过设置readonly来保证组件内部文本框可交互
+    onMouseOver() {
+      this.props.editor.setEditorProp('readOnly', true)
+    }
+    onMouseLeave() {
+      this.props.editor.setEditorProp('readOnly', false)
+    }
+    render() {
+      return (
+        <div className="braft-custom-atomic"
+            onMouseOver={this.onMouseOver.bind(this)}
+            onMouseLeave={this.onMouseLeave.bind(this)}>
+          hello world
+          <input type="text"/>
+        </div>
+      )
+    }
+  }
+  const extendAtomics = [
+    {
+      // mediaType是这个组件的标识符
+      mediaType: 'CUSTOM', 
+      // 传入一个react组件，在编辑器中会作为一个不可拆分的独立元素
+      component: CustomAtomic
+    },
+  ]
+  // 然后将extendAtomics作为props传入即可使用
+  <BraftEditor extendAtomics={extendAtomics} ref={(instance) => this.editorInstance = instance}  {...otherProps} />
+
+  // 添加组件
+  this.editorInstance.insertMedias([{
+    type: 'CUSTOM',
+    name: 'CustomElement',
+  }]);
+```
+
 ### disabled [boolean]
 
 是否禁用编辑功能，默认false

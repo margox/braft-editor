@@ -34,6 +34,16 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
   } else if (mediaType === 'HR') {
     return <HorizontalLine { ...mediaProps } />
   }
+  // 支持自定义的atomic
+  if (superProps.extendAtomics) {
+    const atomics = superProps.extendAtomics;
+    for (let i = 0; i < atomics.length; i++) {
+      if (mediaType === atomics[i].type) {
+        const Component = atomics[i].component;
+        return <Component {...mediaProps} />
+      }
+    }
+  }
 
   return null
 

@@ -2,7 +2,8 @@ import 'babel-polyfill'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
- 
+import CustomAtomic from './CustomAtomic';
+
 class Demo extends React.Component {
 
   constructor(props) {
@@ -180,7 +181,23 @@ class Demo extends React.Component {
             </div>
           )
         }
+      }, {
+        type: 'button',
+        text: <span>添加自定义组件</span>,
+        onClick: () => {
+          this.editorInstance.insertMedias([{
+            type: 'HELLO',
+            name: 'BalBla',
+          }]);
+        }
       }
+    ]
+
+    const extendAtomics = [
+      {
+        mediaType: 'HELLO', 
+        component: CustomAtomic
+      },
     ]
 
     const mediaProps = {
@@ -201,6 +218,7 @@ class Demo extends React.Component {
             contentFormat='html'
             ref={instance => this.editorInstance = instance}
             extendControls={extendControls}
+            extendAtomics={extendAtomics}
           />
         </div>
         <div><a href="javascript:void(0);" onClick={this.setContent1}>设置内容1</a>&emsp;&emsp;<a href="javascript:void(0);" onClick={this.setContent2}>设置内容2</a></div>
