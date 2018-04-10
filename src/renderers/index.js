@@ -38,8 +38,10 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
   if (superProps.extendAtomics) {
     const atomics = superProps.extendAtomics;
     for (let i = 0; i < atomics.length; i++) {
-      const Component = atomics[i].component;
-      return <Component { ...mediaProps } />
+      if (mediaType === atomics[i].type) {
+        const Component = atomics[i].component;
+        return <Component {...mediaProps} />
+      }
     }
   }
 

@@ -8360,8 +8360,10 @@ var getAtomicBlockComponent = function getAtomicBlockComponent(block, superProps
     if (superProps.extendAtomics) {
       var atomics = superProps.extendAtomics;
       for (var i = 0; i < atomics.length; i++) {
-        var Component = atomics[i].component;
-        return _react2.default.createElement(Component, mediaProps);
+        if (mediaType === atomics[i].type) {
+          var Component = atomics[i].component;
+          return _react2.default.createElement(Component, mediaProps);
+        }
       }
     }
 
