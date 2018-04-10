@@ -7596,7 +7596,8 @@ exports.default = {
     name: 'Tahoma',
     family: "tahoma, arial, 'Hiragino Sans GB', 宋体, sans-serif"
   }],
-  emojis: ["🤣", "🙌", "💚", "💛", "👏", "😉", "💯", "💕", "💞", "💘", "💙", "💝", "🖤", "💜", "❤️", "😍", "😻", "💓", "💗", "😋", "😇", "😂", "😹", "😘", "💖", "😁", "😀", "🤞", "😲", "😄", "😊", "👍", "😌", "😃", "😅", "✌️", "🤗", "💋", "😗", "😽", "😚", "🤠", "😙", "😺", "👄", "😸", "😏", "😼", "👌", "😎", "😆", "😛", "🙏", "🤝", "🙂", "🤑", "😝", "😐", "😑", "🤤", "😤", "🙃", "🤡", "😶", "😪", "😴", "😵", "😓", "👊", "😦", "😷", "🤐", "😜", "🤓", "👻", "😥", "🙄", "🤔", "🤒", "🙁", "😔", "😯", "☹️", "☠️", "😰", "😩", "😖", "😕", "😒", "😣", "😢", "😮", "😿", "🤧", "😫", "🤥", "😞", "😬", "👎", "💀", "😳", "😨", "🤕", "🤢", "😱", "😭", "😠", "😈", "😧", "💔", "😟", "🙀", "💩", "👿", "😡", "😾", "🖕"]
+  emojis: ["🤣", "🙌", "💚", "💛", "👏", "😉", "💯", "💕", "💞", "💘", "💙", "💝", "🖤", "💜", "❤️", "😍", "😻", "💓", "💗", "😋", "😇", "😂", "😹", "😘", "💖", "😁", "😀", "🤞", "😲", "😄", "😊", "👍", "😌", "😃", "😅", "✌️", "🤗", "💋", "😗", "😽", "😚", "🤠", "😙", "😺", "👄", "😸", "😏", "😼", "👌", "😎", "😆", "😛", "🙏", "🤝", "🙂", "🤑", "😝", "😐", "😑", "🤤", "😤", "🙃", "🤡", "😶", "😪", "😴", "😵", "😓", "👊", "😦", "😷", "🤐", "😜", "🤓", "👻", "😥", "🙄", "🤔", "🤒", "🙁", "😔", "😯", "☹️", "☠️", "😰", "😩", "😖", "😕", "😒", "😣", "😢", "😮", "😿", "🤧", "😫", "🤥", "😞", "😬", "👎", "💀", "😳", "😨", "🤕", "🤢", "😱", "😭", "😠", "😈", "😧", "💔", "😟", "🙀", "💩", "👿", "😡", "😾", "🖕"],
+  extendAtomics: []
 };
 
 /***/ }),
@@ -8331,6 +8332,14 @@ var getAtomicBlockComponent = function getAtomicBlockComponent(block, superProps
       return _react2.default.createElement(_Video2.default, mediaProps);
     } else if (mediaType === 'HR') {
       return _react2.default.createElement(_HorizontalLine2.default, mediaProps);
+    }
+    // 支持自定义的atomic
+    if (superProps.extendAtomics) {
+      var atomics = superProps.extendAtomics;
+      for (var i = 0; i < atomics.length; i++) {
+        var Component = atomics[i].component;
+        return _react2.default.createElement(Component, mediaProps);
+      }
     }
 
     return null;
@@ -10479,7 +10488,8 @@ var BraftEditor = function (_EditorController) {
           letterSpacings = _props.letterSpacings,
           indents = _props.indents,
           textAlignOptions = _props.textAlignOptions,
-          allowSetTextBackgroundColor = _props.allowSetTextBackgroundColor;
+          allowSetTextBackgroundColor = _props.allowSetTextBackgroundColor,
+          extendAtomics = _props.extendAtomics;
 
 
       controls = controls.filter(function (item) {
@@ -10517,7 +10527,8 @@ var BraftEditor = function (_EditorController) {
 
       var blockRendererFn = (0, _renderers.getBlockRendererFn)({
         editor: this, imageControls: imageControls,
-        language: language, viewWrapper: viewWrapper
+        language: language, viewWrapper: viewWrapper,
+        extendAtomics: extendAtomics
       });
 
       var customStyleMap = (0, _renderers.getCustomStyleMap)({
