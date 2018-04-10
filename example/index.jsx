@@ -32,7 +32,7 @@ class Demo extends React.Component {
     const mediaLibrary = this.editorInstance.getMediaLibraryInstance()
 
     const successFn = (response) => {
-      param.success(JSON.parse(xhr.responseText)[0])
+      param.success({url: JSON.parse(xhr.responseText)[0]})
     }
 
     const progressFn = (event) => {
@@ -131,7 +131,7 @@ class Demo extends React.Component {
         className: 'preview-button',
         text: <span>测试</span>,
         onClick:()=>{
-          braftEditor.setContent('<p>asd<span style="font-size:14px;color:#8e44ad;background-color:#f32784;line-height:1.2;letter-spacing:6px;font-family:&quot;Courier New&quot;, Courier, monospace;">asdasdasdasdasd</span></span></span>asd</p>','html')
+          this.editorInstance.setContent('<p>asd<span style="font-size:14px;color:#8e44ad;background-color:#f32784;line-height:1.2;letter-spacing:6px;font-family:&quot;Courier New&quot;, Courier, monospace;">asdasdasdasdasd</span></span></span>asd</p>','html')
         }
       },{
         type: 'button',
@@ -156,6 +156,13 @@ class Demo extends React.Component {
         ref: instance => window.customDropDown = instance,
         component: <h1 style={{width: 200, color: '#ffffff', padding: 10, margin: 0}}>Hello World!</h1>
       }, {
+        type: 'button',
+        className: 'preview-button',
+        text: '插入内容',
+        onClick: () => {
+          this.editorInstance.insertHTML('<span>123123</span>')
+        }
+      }, {
         type: 'modal',
         html: '<span style="color:#f00;">弹出框</span>',
         text: '弹出框',
@@ -167,6 +174,7 @@ class Demo extends React.Component {
           showCancel: true,
           showConfirm: true,
           confirmable: true,
+          onCreate: modal => this.myModal = modal,
           children: (
             <div style={{width: 480, height: 320, padding: 30}}>
               <span>Hello World!</span>
@@ -195,8 +203,6 @@ class Demo extends React.Component {
     const mediaProps = {
       onRemove: console.log,
       removeConfirmFn: (param) => {
-        console.log('items to be removed')
-        console.log(param.items)
         if (confirm('确认删除所选项目么?')) {
           param.confirm()
         }
@@ -207,25 +213,12 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            viewWrapper={'#demo'}
-            placeholder={"Hello World!"}
-            ref={instance => {
-              window.braftEditor = instance
-              this.editorInstance = instance
-            }}
-            language="zh-hant"
-            excludeControls={[]}
-            contentFormat={this.state.contentFormat}
-            contentId={this.state.contentId}
             initialContent={this.state.initialContent}
+            onHTMLChange={htmlContent => this.setState({ htmlContent })}
+            contentFormat='html'
+            ref={instance => this.editorInstance = instance}
             extendControls={extendControls}
             extendAtomics={extendAtomics}
-            onHTMLChange={htmlContent => { 
-              this.setState({ htmlContent })
-            }}
-            allowSetTextBackgroundColor={true}
-            media={mediaProps}
-            onTab={(e) => e.preventDefault()}
           />
         </div>
         <div><a href="javascript:void(0);" onClick={this.setContent1}>设置内容1</a>&emsp;&emsp;<a href="javascript:void(0);" onClick={this.setContent2}>设置内容2</a></div>

@@ -95,6 +95,8 @@
   .public-DraftEditor-content{
     box-sizing: border-box;
     padding: 15px;
+    word-wrap: break-word;
+    word-break: break-all;
     .braft-link{
       color: #4078c0;
     }
@@ -129,15 +131,27 @@
   }
   .braft-left-aligned-block {
     text-align: left;
+    .public-DraftStyleDefault-ltr{
+      text-align: left;
+    }
   }
   .braft-right-aligned-block {
     text-align: right;
+    .public-DraftStyleDefault-ltr{
+      text-align: right;
+    }
   }
   .braft-center-aligned-block {
     text-align: center;
+    .public-DraftStyleDefault-ltr{
+      text-align: center;
+    }
   }
   .braft-justify-aligned-block {
     text-align: justify;
+    .public-DraftStyleDefault-ltr{
+      text-align: justify;
+    }
   }
   .braft-left-aligned-block,
   .braft-right-aligned-block,

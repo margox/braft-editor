@@ -1,6 +1,7 @@
 import React from 'react'
 import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } from 'draft-js'
 import { setBlockData, getSelectionEntity, removeAllInlineStyles } from 'draftjs-utils'
+import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
 
 export default class EditorController extends React.Component{
 
@@ -227,6 +228,27 @@ export default class EditorController extends React.Component{
   }
 
   replaceText = (text) => this.insertText(text)
+
+  insertHTML = (htmlString) => {
+
+    if (!htmlString) {
+      return this
+    }
+
+    try {
+      const rawContent = this.convertHTML(htmlString)
+      const { blockMap } = rawContent
+      const tempColors = detectColorsFromHTML(htmlString)
+      this.addTempColors(tempColors)
+      this.requestFocus()
+      return this.focus().applyChange(EditorState.push(this.editorState, Modifier.replaceWithFragment(
+        this.contentState, this.selectionState, blockMap
+      ), 'insert-fragment'))
+    } catch (error) {
+      return this
+    }
+
+  }
 
   insertMedias = (medias = []) => {
 

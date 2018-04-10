@@ -19,10 +19,19 @@ const Link = (props) => {
 
   return (
     <span className="braft-link-wrap">
-      <a className="braft-link" href={href} target={target}>{children}</a>
+      <a onClick={(event) => viewLink(event, href)} className="braft-link" href={href} target={target}>{children}</a>
     </span>
   )
 
+}
+
+const viewLink = (event, link) => {
+  if (event.getModifierState('Shift')) {
+    const tempLink = document.createElement('a')
+    tempLink.href = link
+    tempLink.target = '_blank'
+    tempLink.click()
+  }
 }
 
 export default {
