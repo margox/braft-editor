@@ -8,6 +8,8 @@
 #### 使用braft-convert的同学请将braft-convert升级到v1.8.1以确保功能同步
 
 ## 最近更新
+- 2018-04-11 v1.8.5
+  - 新增extendAtomics属性，用于在编辑器中插入自定义组件，该功能由[@filow](https://github.com/filow)贡献，非常感谢
 - 2018-04-09 v1.8.4
   - 修复换行文本设置居中/右异常的问题
   - modal类型的自定义组件增加onCreate属性，用于获取modal实例
