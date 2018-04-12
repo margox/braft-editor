@@ -1,4 +1,6 @@
 ## 更新记录
+- 2018-04-12 v1.8.6
+  - 修改项目所用的字体图标font-family名称以防止与同名font-family冲突
 - 2018-04-11 v1.8.5
   - 新增extendAtomics属性，用于在编辑器中插入自定义组件，该功能由[@filow](https://github.com/filow)贡献，非常感谢
 - 2018-04-09 v1.8.4

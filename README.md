@@ -5,9 +5,11 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.8.1以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.8.5以确保功能同步
 
 ## 最近更新
+- 2018-04-12 v1.8.6
+  - 修改项目所用的字体图标font-family名称以防止与同名font-family冲突
 - 2018-04-11 v1.8.5
   - 新增extendAtomics属性，用于在编辑器中插入自定义组件，该功能由[@filow](https://github.com/filow)贡献，非常感谢
 - 2018-04-09 v1.8.4

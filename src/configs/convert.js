@@ -305,20 +305,7 @@ export const getFromHTMLConfig = (props) => {
 }
 
 export const mergeStyledSpans = (htmlContent) => {
-
-  // const result = htmlContent
-  //   .replace(/" isbrafttag="1"><braftspan style="/g, ';')
-  //   .replace(/(\<\/braftspan>)+/g, '</span>')
-  //   .replace(/<braftspan/g, '<span')
-  //   .replace(/" isbrafttag="1"/g, ';"')
-
-  // const result = htmlContent
-  //   .replace(/<\/braftspan>/g, '</span>')
-  //   .replace(/<braftspan/g, '<span')
-  //   .replace(/" isbrafttag="1"/g, ';"')
-
   return htmlContent
-
 }
 
 export const convertCodeBlock = (htmlContent) => {

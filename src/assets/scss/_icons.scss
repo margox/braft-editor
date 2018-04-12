@@ -2,7 +2,7 @@ $eotPath: '../icons/icomoon.eot?sirizn';
 $ttfPath: '../icons/icomoon.ttf?sirizn';
 
 @font-face {
-  font-family: 'icomoon';
+  font-family: 'braft-icons';
   src: url($eotPath);
   src: url($ttfPath) format('truetype');
   font-weight: normal;
@@ -14,7 +14,7 @@ $ttfPath: '../icons/icomoon.ttf?sirizn';
   
   [class^="braft-icon-"], [class*=" braft-icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
-    font-family: 'icomoon' !important;
+    font-family: 'braft-icons' !important;
     speak: none;
     font-style: normal;
     font-weight: normal;
