@@ -6191,12 +6191,12 @@ var getHeadings = exports.getHeadings = function getHeadings(lang) {
     ),
     type: 'block-type',
     command: 'header-six'
-    // }, {
-    //   key: 'unstyled',
-    //   title: lang.controls.normal,
-    //   text: lang.controls.normal,
-    //   type: 'block-type',
-    //   command: 'unstyled'
+  }, {
+    key: 'unstyled',
+    title: lang.controls.normal,
+    text: lang.controls.normal,
+    type: 'block-type',
+    command: 'unstyled'
   }];
 };
 

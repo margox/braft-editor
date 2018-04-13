@@ -32,7 +32,7 @@
   border-radius: 3px;
   box-shadow: 0 15px 30px rgba(#000, .1);
   opacity: 0;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -40%);
   transition: transform .2s, opacity .2s;
 }
 .braft-modal-header{
@@ -114,6 +114,6 @@
   }
   .braft-modal-content{
     opacity: 1;
-    transform: translate(-50%, -60%);
+    transform: translate(-50%, -50%);
   }
 }
