@@ -262,14 +262,14 @@ class Demo extends React.Component {
       )
     }
   }
-  const extendAtomics = [
+  
+  const extendAtomic = [
     {
-      // mediaType是这个组件的标识符
-      mediaType: 'CUSTOM', 
-      // 传入一个react组件，在编辑器中会作为一个不可拆分的独立元素
+      type: 'CUSTOM',
       component: CustomAtomic
-    },
+    }
   ]
+  
   // 然后将extendAtomics作为props传入即可使用
   <BraftEditor extendAtomics={extendAtomics} ref={(instance) => this.editorInstance = instance}  {...otherProps} />
 
