@@ -120,7 +120,7 @@ export default class MediaLibrary {
         libraryId: item.id,
         success: (res) => {
           const serverId = res.id || item.id
-          this.handleUploadSuccess(item.id, res.url, serverId)
+          this.handleUploadSuccess(item.id, res.url, serverId, res.meta)
         },
         progress: (progress) => {
           this.setItemState(item.id, {
@@ -158,7 +158,7 @@ export default class MediaLibrary {
 
   }
 
-  handleUploadSuccess (id, url, newId) {
+  handleUploadSuccess (id, url, newId, meta = {}) {
 
     this.setItemState(id, {
       id: newId || id,
@@ -166,7 +166,8 @@ export default class MediaLibrary {
       url: url,
       uploadProgress: 1,
       uploading: false,
-      selected: false
+      selected: false,
+      meta: meta
     })
 
     const item = this.getItem(newId || id)

@@ -27,7 +27,7 @@ export default {
     externalMedias: {
       audio: true,
       video: true,
-      image: true
+      image: true,
     }
   },
   imageControls: {

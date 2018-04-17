@@ -10,8 +10,8 @@ class Demo extends React.Component {
     super(props)
     this.state = {
       contentId: 0,
-      contentFormat: 'raw',
-      initialContent: '',
+      contentFormat: 'html',
+      initialContent: '<p></p><p><img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png" id="baidu-logo" alt="Hello Baidu!" title="你好百度"/></p><p></p>',
       htmlContent: ''
     }
     this.editorInstance = null
@@ -32,7 +32,9 @@ class Demo extends React.Component {
     const mediaLibrary = this.editorInstance.getMediaLibraryInstance()
 
     const successFn = (response) => {
-      param.success({url: JSON.parse(xhr.responseText)[0]})
+      param.success({
+        url: JSON.parse(xhr.responseText)[0].url
+      })
     }
 
     const progressFn = (event) => {
@@ -219,6 +221,9 @@ class Demo extends React.Component {
             ref={instance => this.editorInstance = instance}
             extendControls={extendControls}
             extendAtomics={extendAtomics}
+            media={{
+              uploadFn: this.uploadFn
+            }}
           />
         </div>
         <div><a href="javascript:void(0);" onClick={this.setContent1}>设置内容1</a>&emsp;&emsp;<a href="javascript:void(0);" onClick={this.setContent2}>设置内容2</a></div>
