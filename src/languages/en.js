@@ -62,7 +62,8 @@ export default {
   media: {
     image: 'Image',
     video: 'Video',
-    audio: 'Audio'
+    audio: 'Audio',
+    embed: 'Embed'
   },
   mediaPicker: {
     caption: 'Media Library',

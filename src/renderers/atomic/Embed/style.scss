@@ -1,0 +1,86 @@
+@import '~sassinc';
+
+.braft-media-embed-holder{
+  position: relative;
+  display: block;
+  height: 200px;
+  margin: 10px 0;
+  overflow: hidden;
+  background-color: #f1f2f3;
+  color: #999;
+  text-align: center;
+  i{
+    display: inline-block;
+    margin-top: 40px;
+    font-size: 48px;
+  }
+  h5, h6{
+    max-width: 80%;
+    overflow: hidden;
+    font-weight: normal;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  h5{
+    margin: 10px auto;
+    padding: 0;
+    font-size: 18px;
+    text-transform: uppercase;
+  }
+  h6{
+    margin: 10px auto;
+    padding: 0;
+    font-size: 14px;
+  }
+  .braft-embed-toolbar{
+    position: absolute;
+    z-index: 3;
+    bottom: 15px;
+    left: 50%;
+    width: auto;
+    background-color: $COLOR_DARK;
+    border-radius: 3px;
+    font-weight: normal;
+    text-align: center;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    box-shadow: 0 5px 15px rgba(#000, .2);
+    user-select: none;
+    &::before{
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      display: block;
+      border: solid 5px transparent;
+      border-top-color: $COLOR_DARK;
+      content: '';
+      transform: translateX(-5px);
+    }
+    a{
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      color: rgba(#fff, .5);
+      font-family: 'braft-icons';
+      font-size: 18px;
+      font-weight: normal;
+      line-height: 40px;
+      text-align: center;
+      text-decoration: none;
+      text-transform: uppercase;
+      cursor: pointer;
+      &:hover{
+        color: #fff;
+      }
+      &:first-child{
+        border-radius: 3px 0 0 3px;
+      }
+      &:last-child{
+        border-radius: 0 3px 3px 0;
+      }
+      &.active{
+        color: $COLOR_ACTIVE;
+      }
+    }
+  }
+}

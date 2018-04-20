@@ -179,7 +179,7 @@ export default class MediaLibrary {
 
     let image = new Image()
     let compressCanvas = document.createElement('canvas')
-    
+
     image.src = url
     image.onload = function () {
 

@@ -11,7 +11,7 @@ class Demo extends React.Component {
     this.state = {
       contentId: 0,
       contentFormat: 'html',
-      initialContent: '<p></p><p><img src="https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png" id="baidu-logo" alt="Hello Baidu!" title="你好百度"/></p><p></p>',
+      initialContent: '<p></p><div class="media-wrap video-wrap"><video controls loop autoplay src="http://localhost:9090/temp/upload_a7953b3fcdc61b9396e62e7ee8d6c5bd.mp4"></video></div><p></p><p></p><div class="media-wrap embed-wrap"><div><iframe src="http://baidu.com"></iframe></div></div><p></p><p></p>',
       htmlContent: ''
     }
     this.editorInstance = null
@@ -33,7 +33,12 @@ class Demo extends React.Component {
 
     const successFn = (response) => {
       param.success({
-        url: JSON.parse(xhr.responseText)[0].url
+        url: JSON.parse(xhr.responseText)[0].url,
+        meta: {
+          controls: true,
+          loop: true,
+          autoPlay: true
+        }
       })
     }
 

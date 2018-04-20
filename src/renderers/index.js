@@ -4,6 +4,7 @@ import { DefaultDraftBlockRenderMap } from 'draft-js'
 import Image from './atomic/Image'
 import Video from './atomic/Video'
 import Audio from './atomic/Audio'
+import Embed from './atomic/Embed'
 import HorizontalLine from './atomic/HorizontalLine'
 import _blockStyleFn from './styles/blockStyles'
 import _getCustomStyleMap from './styles/inlineStyles'
@@ -31,6 +32,8 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
     return <Audio { ...mediaProps } />
   } else if (mediaType === 'VIDEO') {
     return <Video { ...mediaProps } />
+  } else if (mediaType === 'EMBED') {
+    return <Embed { ...mediaProps } />
   } else if (mediaType === 'HR') {
     return <HorizontalLine { ...mediaProps } />
   }

@@ -41,7 +41,7 @@ export default class MediaPicker extends React.Component {
     this.setState({
       external: {
         url: '',
-        type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : ''
+        type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : media.externalMedias.embed ? 'EMBED' : ''
       }
     })
 
@@ -65,7 +65,7 @@ export default class MediaPicker extends React.Component {
     this.setState({
       external: {
         url: '',
-        type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : ''
+        type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : media.externalMedias.embed ? 'EMBED' : ''
       }
     })
 
@@ -79,7 +79,7 @@ export default class MediaPicker extends React.Component {
 
     const { media, language } = this.props
     const { files, visible, external, draging, confirmable, showExternalForm } = this.state
-    const allowExternalMedia = media.externalMedias &&  (media.externalMedias.image || media.externalMedias.audio || media.externalMedias.video)
+    const allowExternalMedia = media.externalMedias &&  (media.externalMedias.image || media.externalMedias.audio || media.externalMedias.video || media.externalMedias.embed)
     const bottomText = allowExternalMedia ? (
       <span 
         onClick={this.toggleExternalMode}
@@ -144,6 +144,7 @@ export default class MediaPicker extends React.Component {
                     {media.externalMedias.image ? <button type="button" onClick={this.switchExternalType} data-type="IMAGE">{language.media.image}</button> : null}
                     {media.externalMedias.audio ? <button type="button" onClick={this.switchExternalType} data-type="AUDIO">{language.media.audio}</button> : null}
                     {media.externalMedias.video ? <button type="button" onClick={this.switchExternalType} data-type="VIDEO">{language.media.video}</button> : null}
+                    {media.externalMedias.embed ? <button type="button" onClick={this.switchExternalType} data-type="EMBED">{language.media.embed}</button> : null}
                   </div>
                   <span className="braft-media-external-tip">{language.mediaPicker.externalInputTip}</span>
                 </div>
@@ -197,6 +198,15 @@ export default class MediaPicker extends React.Component {
                   {progressMarker}
                   <i className="braft-icon-music"></i>
                   <span>{file.name || file.url}</span>
+                </div>
+              )
+            break
+            case 'EMBED':
+              previewerComponents = (
+                <div className="braft-media-icon braft-media-embed" title={file.url}>
+                  {progressMarker}
+                  <i className="braft-icon-code"></i>
+                  <span>{file.name || this.props.language.media.embed}</span>
                 </div>
               )
             break

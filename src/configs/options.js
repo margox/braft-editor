@@ -28,6 +28,7 @@ export default {
       audio: true,
       video: true,
       image: true,
+      embed: true
     }
   },
   imageControls: {

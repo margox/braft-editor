@@ -7,8 +7,22 @@ const blockNames = blockTypes.map(key => blocks[key])
 
 const convertAtomicBlock = (block, contentState) => {
 
+  if (!block || !block.key) {
+    return <p></p>
+  }
+
   const contentBlock = contentState.getBlockForKey(block.key)
+
+  if (!contentBlock) {
+    return <p></p>
+  }
+
   const entityKey = contentBlock.getEntityAt(0)
+
+  if (!entityKey) {
+    return <p></p>
+  }
+
   const entity = contentState.getEntity(entityKey)
   const mediaType = entity.getType().toLowerCase()
 
@@ -45,9 +59,11 @@ const convertAtomicBlock = (block, contentState) => {
     }
 
   } else if (mediaType === 'audio') {
-    return <div className="media-wrap audio-wrap"><audio {...meta} scontrols src={url} /></div>
+    return <div className="media-wrap audio-wrap"><audio controls {...meta} src={url} /></div>
   } else if (mediaType === 'video') {
-    return <div className="media-wrap video-wrap"><video {...meta} scontrols src={url} width={width} height={height} /></div>
+    return <div className="media-wrap video-wrap"><video controls {...meta} src={url} width={width} height={height} /></div>
+  } else if (mediaType === 'embed') {
+    return <div className="media-wrap embed-wrap"><div dangerouslySetInnerHTML={{__html: url}}/></div>
   } else if (mediaType === 'hr') {
     return <hr></hr>
   } else {
@@ -168,7 +184,6 @@ const entityToHTML = (entity, originalText) => {
 
 }
 
-
 const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 
   if (!node || !node.style) {
@@ -211,12 +226,15 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 
 const htmlToEntity = (nodeName, node, createEntity) => {
 
-  const { alt, title, id } = node
+  const { alt, title, id, controls, autoplay, loop } = node
   let meta = {}
 
   id && (meta.id = id)
   alt && (meta.alt = alt)
   title && (meta.title = title)
+  controls && (meta.controls = controls)
+  autoplay && (meta.autoPlay = autoplay)
+  loop && (meta.loop = loop)
 
   if (nodeName === 'a' && !node.querySelectorAll('img').length) {
     let { href, target } = node
@@ -243,6 +261,16 @@ const htmlToEntity = (nodeName, node, createEntity) => {
 
   } else if (nodeName === 'hr') {
     return createEntity('HR', 'IMMUTABLE', {}) 
+  } else if (node.parentNode && node.parentNode.classList.contains('embed-wrap')) {
+
+    const embedContent = node.innerHTML || node.outerHTML
+
+    if (embedContent) {
+      return createEntity('EMBED', 'IMMUTABLE', {
+        url: embedContent
+      })   
+    }
+
   }
 
 }

@@ -63,7 +63,8 @@ export default {
   media: {
     image: '图像',
     video: '视频',
-    audio: '音频'
+    audio: '音频',
+    embed: '嵌入式媒体'
   },
   mediaPicker: {
     caption: '多媒体资源库',

@@ -283,6 +283,9 @@
   .braft-media-audio{
     background-color: #f39c12;
   }
+  .braft-media-embed{
+    background-color: #f1c40f;
+  }
   .braft-media-icon{
     display: block;
     width: 113px;
@@ -425,7 +428,8 @@
       left: 0;
       height: 40px;
     }
-    input{
+    input,
+    textarea{
       display: block;
       box-sizing: border-box;
       width: 100%;
@@ -440,6 +444,10 @@
       &:focus{
         box-shadow: inset 0 0 0 1px $COLOR_ACTIVE;
       }
+    }
+    textarea{
+      height: 100px;
+      font-size: 14px;
     }
     button{
       position: absolute;
@@ -469,9 +477,10 @@
     overflow: hidden;
     text-align: center;
     button{
-      width: 60px;
+      width: auto;
       height: 30px;
       margin: 10px 5px;
+      padding: 0 10px;
       background-color: #e8e9ea;
       border: none;
       border-radius: 3px;
@@ -488,6 +497,7 @@
     &[data-type="IMAGE"] [data-type="IMAGE"],
     &[data-type="VIDEO"] [data-type="VIDEO"],
     &[data-type="AUDIO"] [data-type="AUDIO"],
+    &[data-type="EMBED"] [data-type="EMBED"],
     &[data-type="FILE"] [data-type="FILE"]{
       background-color: $COLOR_ACTIVE;
       color: #fff;

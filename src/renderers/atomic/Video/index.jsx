@@ -34,7 +34,7 @@ export default class Video extends React.Component {
             className="braft-embed-video-toolbar"
           >
             <a onClick={this.showPlayer}>&#xe037;</a>
-            <a onClick={this.removevideo}>&#xe9ac;</a>
+            <a onClick={this.removeVideo}>&#xe9ac;</a>
           </div>
         ) : null}
       </div>
@@ -56,7 +56,7 @@ export default class Video extends React.Component {
 
   }
 
-  removevideo = () => {
+  removeVideo = () => {
     this.props.editor.removeBlock(this.props.block)
   }
 
