@@ -5,9 +5,13 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.8.5以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.8.9以确保功能同步
 
 ## 最近更新
+- 2018-04-21 v1.8.9
+  - 新增Embed媒体类型，方便嵌入第三方视频或者嵌入式网页内容
+  - 支持上传多媒体文件时设置多媒体标签(img,audio,video)的部分属性(id, title, alt, loop, autoplay, controls, poster)
+  - 提升稳定性
 - 2018-04-17 v1.8.8
   - 细节调整
 - 2018-04-13 v1.8.7
@@ -45,7 +49,6 @@
 1. 使用html作为contentFormat时，文字字体(fontFamily)的的转换难以实现
 2. 从外部复制HTML内容粘贴到编辑器时，文字字体(fontFamily)的识别难以实现
 3. 编辑器内容为空时插入列表，placeholder文本不消失，输入任意文本内容后placeholder文本消失
-4. 编辑器内容转换为HTML时可能会存在部分样式作用范围不正确（会尽快修复）
 
 [查看更新历史](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
@@ -489,7 +492,16 @@ const uploadFn = (param) => {
     // 假设服务端直接返回文件上传后的地址
     // 上传成功后调用param.success并传入上传后的文件地址
     param.success({
-      url: xhr.responseText
+      url: xhr.responseText,
+      meta: {
+        id: 'xxx',
+        title: 'xxx',
+        alt: 'xxx',
+        loop: true, // 指定音视频是否循环播放
+        autoplay: true, // 指定音视频是否自动播放
+        controls: true, // 指定音视频是否显示控制栏
+        poster: 'http://xxx/xx.png', // 指定视频播放器的封面
+      }
     })
   }
 
@@ -554,9 +566,10 @@ const removeConfirmFn = (param) => {
 {
   image: true,
   audio: true,
-  video: true
+  video: true,
+  embed: true
 }
-// 如果以上三个值皆为false，则不允许插入任何外部媒体，也不会显示插入外部媒体的入口
+// 如果以上四个值皆为false，则不允许插入任何外部媒体，也不会显示插入外部媒体的入口
 ```
 
 #### imageControls [object]

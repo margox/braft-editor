@@ -226,7 +226,7 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 
 const htmlToEntity = (nodeName, node, createEntity) => {
 
-  const { alt, title, id, controls, autoplay, loop } = node
+  const { alt, title, id, controls, autoplay, loop, poster } = node
   let meta = {}
 
   id && (meta.id = id)
@@ -235,6 +235,7 @@ const htmlToEntity = (nodeName, node, createEntity) => {
   controls && (meta.controls = controls)
   autoplay && (meta.autoPlay = autoplay)
   loop && (meta.loop = loop)
+  poster && (meta.poster = poster)
 
   if (nodeName === 'a' && !node.querySelectorAll('img').length) {
     let { href, target } = node
