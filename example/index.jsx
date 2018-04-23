@@ -11,7 +11,7 @@ class Demo extends React.Component {
     this.state = {
       contentId: 0,
       contentFormat: 'html',
-      initialContent: '<p></p><div class="media-wrap video-wrap"><video controls loop autoplay src="http://localhost:9090/temp/upload_a7953b3fcdc61b9396e62e7ee8d6c5bd.mp4"></video></div><p></p><p></p><div class="media-wrap embed-wrap"><div><iframe src="http://baidu.com"></iframe></div></div><p></p><p></p>',
+      initialContent: '<p><img style="width:100%;height:123%;" width="100%" src="https://www.baidu.com/img/bd_logo1.png?where=super" /></p>',
       htmlContent: ''
     }
     this.editorInstance = null
@@ -228,7 +228,7 @@ class Demo extends React.Component {
             extendControls={extendControls}
             extendAtomics={extendAtomics}
             media={{
-              uploadFn: this.uploadFn
+              // uploadFn: this.uploadFn
             }}
           />
         </div>

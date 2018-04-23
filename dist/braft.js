@@ -7449,14 +7449,15 @@ var htmlToEntity = function htmlToEntity(nodeName, node, createEntity) {
   } else if (nodeName === 'img') {
 
     var parentNode = node.parentNode;
-    var url = node.src,
-        width = node.width,
-        height = node.height;
+    var entityData = { meta: meta };
+    var _node$style = node.style,
+        width = _node$style.width,
+        height = _node$style.height;
 
-    width = width || 'auto';
-    height = height || 'auto';
 
-    var entityData = { url: url, width: width, height: height, meta: meta };
+    entityData.url = node.src;
+    width && (entityData.width = width);
+    height && (entityData.height = height);
 
     if (parentNode.nodeName.toLowerCase() === 'a') {
       entityData.link = parentNode.href;

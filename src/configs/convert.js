@@ -247,11 +247,12 @@ const htmlToEntity = (nodeName, node, createEntity) => {
   } else if (nodeName === 'img') {
 
     let parentNode = node.parentNode
-    let { src: url, width, height } = node
-    width = width || 'auto'
-    height = height || 'auto'
+    let entityData = { meta }
+    let { width, height } = node.style
 
-    let entityData = { url, width, height, meta }
+    entityData.url = node.src
+    width && (entityData.width = width)
+    height && (entityData.height = height)
 
     if (parentNode.nodeName.toLowerCase() === 'a') {
       entityData.link = parentNode.href
