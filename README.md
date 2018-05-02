@@ -5,9 +5,11 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.8.11以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.8.12以确保功能同步
 
 ## 最近更新
+- 2018-05-02 v1.8.11
+  - 修复再次编辑时字间距失效的问题
 - 2018-04-23 v1.8.10
   - 修复再次编辑导致图片尺寸单位失效的问题
 - 2018-04-21 v1.8.9

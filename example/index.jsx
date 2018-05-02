@@ -11,7 +11,7 @@ class Demo extends React.Component {
     this.state = {
       contentId: 0,
       contentFormat: 'html',
-      initialContent: '<p><img style="width:100%;height:123%;" width="100%" src="https://www.baidu.com/img/bd_logo1.png?where=super" /></p>',
+      initialContent: '<p><span style="font-family:Impact, serif"><span style="font-size:32px">dsfdslfldsod</span></span></p>',
       htmlContent: ''
     }
     this.editorInstance = null

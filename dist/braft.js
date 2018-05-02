@@ -7399,7 +7399,7 @@ var htmlToStyle = function htmlToStyle(props) {
         newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10));
       } else if (nodeName === 'span' && node.style[i] === 'line-height') {
         newStyle = newStyle.add('LINEHEIGHT-' + node.style.lineHeight);
-      } else if (nodeName === 'span' && node.style[i] === 'letter-spacing' && !isNaN(node.style.letterSpacing)) {
+      } else if (nodeName === 'span' && node.style[i] === 'letter-spacing' && !isNaN(node.style.letterSpacing.replace('px', ''))) {
         newStyle = newStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10));
       } else if (nodeName === 'span' && (node.style[i] === 'padding-left' || node.style[i] === 'padding-right')) {
         newStyle = newStyle.add('INDENT-' + parseInt(node.style.paddingLeft, 10));
