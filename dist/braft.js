@@ -7391,10 +7391,6 @@ var htmlToStyle = function htmlToStyle(props) {
       } else if (nodeName === 'span' && node.style[i] === 'background-color') {
         var _color = (0, _colors.getHexColor)(node.style.backgroundColor);
         newStyle = _color ? newStyle.add('BGCOLOR-' + _color.replace('#', '').toUpperCase()) : newStyle;
-      } else if (nodeName === 'sup') {
-        newStyle = newStyle.add('SUPERSCRIPT');
-      } else if (nodeName === 'sub') {
-        newStyle = newStyle.add('SUBSCRIPT');
       } else if (nodeName === 'span' && node.style[i] === 'font-size') {
         newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10));
       } else if (nodeName === 'span' && node.style[i] === 'line-height') {
@@ -7412,6 +7408,12 @@ var htmlToStyle = function htmlToStyle(props) {
         if (!fontFamily) continue;
         newStyle = newStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase());
       }
+    }
+
+    if (nodeName === 'sup') {
+      newStyle = newStyle.add('SUPERSCRIPT');
+    } else if (nodeName === 'sub') {
+      newStyle = newStyle.add('SUBSCRIPT');
     }
 
     return newStyle;

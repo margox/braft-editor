@@ -199,10 +199,6 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
     } else if (nodeName === 'span' && node.style[i] === 'background-color') {
       let color = getHexColor(node.style.backgroundColor)
       newStyle = color ? newStyle.add('BGCOLOR-' + color.replace('#', '').toUpperCase()) : newStyle
-    } else if (nodeName === 'sup') {
-      newStyle = newStyle.add('SUPERSCRIPT')
-    } else if (nodeName === 'sub') {
-      newStyle = newStyle.add('SUBSCRIPT')
     } else if (nodeName === 'span' && node.style[i] === 'font-size') {
       newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10))
     } else if (nodeName === 'span' && node.style[i] === 'line-height') {
@@ -219,6 +215,12 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
       newStyle = newStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase())
     }
   }
+
+  if (nodeName === 'sup') {
+    newStyle = newStyle.add('SUPERSCRIPT')
+  } else if (nodeName === 'sub') {
+    newStyle = newStyle.add('SUBSCRIPT')
+  } 
 
   return newStyle
 
