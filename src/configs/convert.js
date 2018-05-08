@@ -126,7 +126,7 @@ const blockToHTML = (contentState) => (block) => {
     if(previousBlockType !== 'code-block' && nextBlockType !== 'code-block') {
       return {
         start: '<pre>',
-        end: '<pre>',
+        end: '</pre>',
       }
     }
 
