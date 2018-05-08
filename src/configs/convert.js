@@ -123,26 +123,30 @@ const blockToHTML = (contentState) => (block) => {
     const previousBlockType = previousBlock && previousBlock.getType()
     const nextBlockType = nextBlock && nextBlock.getType()
 
-    if (previousBlockType === 'code-block' && nextBlockType === 'code-block') {
+    if(previousBlockType !== 'code-block' && nextBlockType !== 'code-block') {
       return {
-        start: `<code>`,
-        end: '</code>\r\n'
+        start: '<pre>',
+        end: '</pre>',
       }
-    } else if (previousBlockType === 'code-block') {
+    }
+
+    if(previousBlockType !== 'code-block') {
       return {
-        start: `<code>`,
-        end: '</code>\r\n</pre>'
+        start: '<pre>',
+        end: block.text ? '' : '<br>',
       }
-    } else if (nextBlockType === 'code-block') {
+    }
+
+    if(nextBlockType !== 'code-block') {
       return {
-        start: `<pre><code>`,
-        end: '</code>\r\n'
+        start: block.text ? '' : '<br>',
+        end: `</pre>`
       }
-    } else {
-      return {
-        start: `<pre><code>`,
-        end: '</code></pre>'
-      }
+    }
+
+    return {
+      start: '<br>',
+      end: '',
     }
 
   } else if (blocks[blockType]) {
