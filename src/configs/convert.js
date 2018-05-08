@@ -345,11 +345,3 @@ export const getFromHTMLConfig = (props) => {
   }
 
 }
-
-export const mergeStyledSpans = (htmlContent) => {
-  return htmlContent
-}
-
-export const convertCodeBlock = (htmlContent) => {
-  return htmlContent
-}

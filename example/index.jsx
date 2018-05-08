@@ -11,7 +11,7 @@ class Demo extends React.Component {
     this.state = {
       contentId: 0,
       contentFormat: 'html',
-      initialContent: '<p>Hello world!<sub>123123123</sub></p>',
+      initialContent: `<p style="text-align:start;"><strong>通过Vudio.js和getUserMedia来显示麦克风拾取到的音频的波形</strong></p><pre><code><code><strong><span style="color:#333333">var</span></strong> canvas = <span style="color:#0086b3">document</span>.querySelector(<span style="color:#dd1144">&#x27;#canvas&#x27;</span>)<br/><br/>navigator.mediaDevices.getUserMedia({<br/> audio: <span style="color:#008080">true</span><br/>}).then((stream) =&gt; {<br/><br/>  <em><span style="color:#999988">// 调用Vudio</span></em><br/>  <span style="color:#333333"><strong>var</strong></span> vudio = <strong><span style="color:#333333">new</span></strong> Vudio(stream, canvas, {<br/>    accuracy: <span style="color:#008080">256</span>,<br/>    width: <span style="color:#008080">1024</span>,<br/>    height: <span style="color:#008080">200</span>,<br/>    waveform: {<br/>      fadeSide: <span style="color:#008080">false</span>,<br/>      maxHeight: <span style="color:#008080">200</span>,<br/>      verticalAlign: <span style="color:#dd1144">&#x27;middle&#x27;</span>,<br/>      horizontalAlign: <span style="color:#dd1144">&#x27;center&#x27;</span>,<br/>      color: <span style="color:#dd1144">&#x27;#2980b9&#x27;</span><br/>    }<br/>  })<br/><br/>  vudio.dance()<br/><br/>}).catch((error) =&gt; {<br/> <span style="color:#0086b3">console</span>.error(error.name || error)<br/>})<br/></code></code></pre><p style="text-align:start;"><a href="https://margox.cn/wp-content/uploads/2016/11/web-mic.html" target="">查看在线DEMO</a></p>`,
       htmlContent: ''
     }
     this.editorInstance = null
@@ -71,6 +71,8 @@ class Demo extends React.Component {
   buildPreviewHtml () {
 
     const { htmlContent } = this.state
+
+    console.log(htmlContent)
 
     return `
       <!Doctype html>
