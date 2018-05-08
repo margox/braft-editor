@@ -122,27 +122,26 @@ const blockToHTML = (contentState) => (block) => {
     const nextBlock = contentState.getBlockAfter(block.key)
     const previousBlockType = previousBlock && previousBlock.getType()
     const nextBlockType = nextBlock && nextBlock.getType()
-    const codeBreakLine = block.text ? '' : '<br>'
 
     if (previousBlockType === 'code-block' && nextBlockType === 'code-block') {
       return {
-        start: `<code><div>${codeBreakLine}`,
-        end: '</div></code>'
+        start: `<code>`,
+        end: '</code>\r\n'
       }
     } else if (previousBlockType === 'code-block') {
       return {
-        start: `<code><div>${codeBreakLine}`,
-        end: '</div></code></pre>'
+        start: `<code>`,
+        end: '</code>\r\n</pre>'
       }
     } else if (nextBlockType === 'code-block') {
       return {
-        start: `<pre><code><div>${codeBreakLine}`,
-        end: '</div></code>'
+        start: `<pre><code>`,
+        end: '</code>\r\n'
       }
     } else {
       return {
-        start: `<pre><code><div>${codeBreakLine}`,
-        end: '</div></code></pre>'
+        start: `<pre><code>`,
+        end: '</code></pre>'
       }
     }
 
@@ -340,22 +339,5 @@ export const getFromHTMLConfig = (props) => {
     htmlToEntity,
     htmlToBlock 
   }
-
-}
-
-export const mergeStyledSpans = (htmlContent) => {
-  return htmlContent
-}
-
-export const convertCodeBlock = (htmlContent) => {
-
-  const result = htmlContent
-    .replace(/\<code\>\<div\>\<br\>\<\/div\>\<\/code\>/g, `<code><div></div></code>`)
-    .replace(/\<pre\>\<code\>\<div\>/g, '<code><div>')
-    .replace(/\<\/div\>\<\/code\>\<\/pre\>/g, '</div></code>')
-    .replace(/\<code\>\<div\>/g, '<pre><code>')
-    .replace(/\<\/div\>\<\/code\>/g, '</code></pre>')
-
-  return result
 
 }

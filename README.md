@@ -5,9 +5,11 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.8.13以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.8.14以确保功能同步
 
 ## 最近更新
+- 2018-05-08 v1.8.13
+  - 优化代码块的转换展示(使用历史版本生产的代码块若出现展示错误，需要重新整理格式再保存)
 - 2018-05-04 v1.8.12
   - 修复再次编辑时上标和下标丢失的问题
 - 2018-05-02 v1.8.11
