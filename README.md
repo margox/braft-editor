@@ -5,9 +5,12 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.8.14以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.8.15以确保功能同步
 
 ## 最近更新
+- 2018-05-09 v1.8.14
+  - 优化代码块的转换展示（感谢[@杨圆建](https://github.com/smithyj)大神的贡献）
+  - 强化media.onInsert属性
 - 2018-05-08 v1.8.13
   - 优化代码块的转换展示(使用历史版本生产的代码块若出现展示错误，需要重新整理格式再保存)
 - 2018-05-04 v1.8.12
@@ -568,6 +571,23 @@ const removeConfirmFn = (param) => {
 }
 ```
 
+#### media.onInsert [object]
+从媒体库插入媒体资源到编辑器时会执行此回调，可以在此回调中修改需要插入的媒体对象，示例如下：
+```javascript
+media.onInsert = (files) => {
+
+  // 只插入前3个媒体对象
+  return files.slice(0, 3)
+
+  // 取消插入并保留媒体库弹窗
+  return false
+
+  // 取消插入并关闭媒体库弹窗
+  return []
+
+}
+```
+
 #### media.externalMedias [object]
 配置编辑器可插入的外部网络媒体类型，默认值如下：
 ```javascript
@@ -772,7 +792,7 @@ this.editorInstance.isEmpty()
 > 由于draft框架的原因，该方法返回true时，依然可以从编辑器获取到一对空的p标签`<p></p>`，反之亦然
 
 ### clear():editorInstance
-情况编辑器内容
+清空编辑器内容
 ```javascript
 this.editorInstance.clear()
 ```
