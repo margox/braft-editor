@@ -8,6 +8,8 @@
 #### 使用braft-convert的同学请将braft-convert升级到v1.8.15以确保功能同步
 
 ## 最近更新
+- 2018-05-09 v1.8.15
+  - 去除乱入的内容
 - 2018-05-09 v1.8.14
   - 优化代码块的转换展示（感谢[@杨圆建](https://github.com/smithyj)大神的贡献）
   - 强化media.onInsert属性

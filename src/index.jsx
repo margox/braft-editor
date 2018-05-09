@@ -423,14 +423,6 @@ export default class BraftEditor extends EditorController {
         <div className="BraftEditor-content" style={height ? { height } : {}}>
           <Editor {...editorProps} />
         </div>
-        <a href="javascript:void(0)" onClick={() => {
-          console.log(this.getContent('html'))
-        }}>获取当前文章内容 console 查看</a> &nbsp;
-        <a href="javascript:void(0)" onClick={() => {
-          this.setContent(`
-           <pre>111<br /></pre>
-          `, 'html')
-        }}>设置 代码块 内容</a>
       </div>
     )
 

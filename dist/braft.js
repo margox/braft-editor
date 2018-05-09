@@ -10665,21 +10665,6 @@ var BraftEditor = function (_EditorController) {
           'div',
           { className: 'BraftEditor-content', style: height ? { height: height } : {} },
           _react2.default.createElement(_draftJs.Editor, editorProps)
-        ),
-        _react2.default.createElement(
-          'a',
-          { href: 'javascript:void(0)', onClick: function onClick() {
-              console.log(_this2.getContent('html'));
-            } },
-          '\u83B7\u53D6\u5F53\u524D\u6587\u7AE0\u5185\u5BB9 console \u67E5\u770B'
-        ),
-        ' \xA0',
-        _react2.default.createElement(
-          'a',
-          { href: 'javascript:void(0)', onClick: function onClick() {
-              _this2.setContent('\n           <pre>111<br /></pre>\n          ', 'html');
-            } },
-          '\u8BBE\u7F6E \u4EE3\u7801\u5757 \u5185\u5BB9'
         )
       );
     }
