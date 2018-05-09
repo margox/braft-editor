@@ -230,7 +230,10 @@ class Demo extends React.Component {
             extendControls={extendControls}
             extendAtomics={extendAtomics}
             media={{
-              // uploadFn: this.uploadFn
+              uploadFn: this.uploadFn,
+              onInsert: (files) => {
+                return '123'
+              }
             }}
           />
         </div>

@@ -434,10 +434,25 @@ export default class MediaPicker extends React.Component {
   }
 
   confirmInsertMedia = () => {
+
     const selectedMedias = this.mediaLibrary.getSelectedItems()
-    this.props.editor.insertMedias(selectedMedias)
-    this.props.media.onInsert && this.props.media.onInsert(selectedMedias)
-    this.hide()
+
+    if (this.props.media.onInsert) {
+      const filteredMedias = this.props.media.onInsert(selectedMedias)
+      if (filteredMedias && (filteredMedias instanceof Array)) {
+        // 如果onInsert返回了一个有效的数组，则将该数组作为媒体内容插入
+        this.props.editor.insertMedias(filteredMedias)
+        this.hide()
+      } else if (filteredMedias !== false) {
+        // 如果onInsert返回不是false，则插入已选择的媒体内容
+        this.props.editor.insertMedias(selectedMedias)
+        this.hide()
+      }
+    } else {
+      this.props.editor.insertMedias(selectedMedias)
+      this.hide()
+    }
+
   }
 
   show = () => {
