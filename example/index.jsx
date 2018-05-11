@@ -11,7 +11,7 @@ class Demo extends React.Component {
     this.state = {
       contentId: 0,
       contentFormat: 'html',
-      initialContent: ``,
+      initialContent: `<ol><li>asdasd</li><li>asdasd</li><li>asdasd</li></ol>`,
       htmlContent: ''
     }
     this.editorInstance = null

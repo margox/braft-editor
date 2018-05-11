@@ -5,63 +5,16 @@
 #### 交流反馈请加QQ群：725634541
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
-#### 使用braft-convert的同学请将braft-convert升级到v1.8.15以确保功能同步
+#### 使用braft-convert的同学请将braft-convert升级到v1.9.1以确保功能同步
 
 ## 最近更新
+- 2018-05-11 v1.9.1
+  - 修复列表项目异常的问题
 - 2018-05-11 v1.9.0
   - 支持编辑器内部拖动图片调整位置
   - 支持直接粘贴本地图片文件到编辑器
   - 支持直接拖入本地图片文件到编辑器
   - 新增insertHTML实例方法
-- 2018-05-09 v1.8.15
-  - 去除乱入的内容
-- 2018-05-09 v1.8.14
-  - 优化代码块的转换展示（感谢[@杨圆建](https://github.com/smithyj)大神的贡献）
-  - 强化media.onInsert属性
-- 2018-05-08 v1.8.13
-  - 优化代码块的转换展示(使用历史版本生产的代码块若出现展示错误，需要重新整理格式再保存)
-- 2018-05-04 v1.8.12
-  - 修复再次编辑时上标和下标丢失的问题
-- 2018-05-02 v1.8.11
-  - 修复再次编辑时字间距失效的问题
-- 2018-04-23 v1.8.10
-  - 修复再次编辑导致图片尺寸单位失效的问题
-- 2018-04-21 v1.8.9
-  - 新增Embed媒体类型，方便嵌入第三方视频或者嵌入式网页内容
-  - 支持上传多媒体文件时设置多媒体标签(img,audio,video)的部分属性(id, title, alt, loop, autoplay, controls, poster)
-  - 提升稳定性
-- 2018-04-17 v1.8.8
-  - 细节调整
-- 2018-04-13 v1.8.7
-  - 修复v1.8.6改动导致部分图标显示异常的问题
-  - 微调Modal组件的top定位
-  - Headings下拉组件增加“常规”选项
-- 2018-04-12 v1.8.6
-  - 修改项目所用的字体图标font-family名称以防止与同名font-family冲突
-- 2018-04-11 v1.8.5
-  - 新增extendAtomics属性，用于在编辑器中插入自定义组件，该功能由[@filow](https://github.com/filow)贡献，非常感谢
-- 2018-04-09 v1.8.4
-  - 修复换行文本设置居中/右异常的问题
-  - modal类型的自定义组件增加onCreate属性，用于获取modal实例
-  - 支持Shift+单击以访问编辑器内的链接
-- 2018-03-23 v1.8.3
-  - 修复无法粘贴从word文档复制的内容的问题
-  - 暂时回退v1.8.1的部分优化项目
-- 2018-03-23 v1.8.2
-  - 修复了图标样式名可能会与宿主项目冲突的问题
-- 2018-03-21 v1.8.1
-  - 修复了html与raw的相互转换的一些问题，部分功能由[@joacy](https://github.com/joacycode)贡献，非常感谢
-  - 新增onTab属性
-  - 在输出的html中为设置了float和alignment的图片增加对应的className属性
-- 2018-03-16 v1.8.0
-  - 新增excludeControls属性，用于指定不需要显示的控制栏按钮
-  - 媒体库增加快捷选取/删除工具栏
-  - 新增media.onInsert子属性
-  - 新增media.removeConfirmFn子属性，用于实现删除媒体库内容前的确认操作
-  - 新增清除内容工具和editorInstance.clear()方法
-  - 新增editorInstance.isEmpty()方法
-  - media.onRemove参数类型更改为数组
-  - 增加多个媒体库(mediaLibrary)实例方法实例方法
 
 ## 已知问题
 1. 使用html作为contentFormat时，文字字体(fontFamily)的的转换难以实现
