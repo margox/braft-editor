@@ -8,6 +8,11 @@
 #### 使用braft-convert的同学请将braft-convert升级到v1.8.15以确保功能同步
 
 ## 最近更新
+- 2018-05-11 v1.9.0
+  - 支持编辑器内部拖动图片调整位置
+  - 支持直接粘贴本地图片文件到编辑器
+  - 支持直接拖入本地图片文件到编辑器
+  - 新增insertHTML实例方法
 - 2018-05-09 v1.8.15
   - 去除乱入的内容
 - 2018-05-09 v1.8.14
@@ -761,10 +766,17 @@ this.editorInstance.toggleSelectionLink(false)
 ```
 
 ### insertText(text:String, replace:Boolean):editorInstance
-插入内容到光标之后，如果当前已选中内容并且replace为true，则会替换被选中内容，replace默认为true
+插入纯文本内容到光标之后，如果当前已选中内容并且replace为true，则会替换被选中内容，replace默认为true
 ```javascript
 this.editorInstance.insertText('Hello World!')
 ```
+
+### insertHTML(htmlString:String):editorInstance
+插入HTML片段到光标之后
+```javascript
+this.editorInstance.insertHTML('<p><span color="#ff0000;">Hello World!</span></p>')
+```
+> 由于框架限制，此方法并不一定能满足所有场景的需求，请自行尝试后再决定是否使用
 
 ### insertMedias(medias:Array):editorInstance
 插入媒体内容到编辑器，medias为数组，格式如下：

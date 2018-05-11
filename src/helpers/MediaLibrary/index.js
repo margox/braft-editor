@@ -216,26 +216,42 @@ export default class MediaLibrary {
     this.onChange(this.items)
   }
 
+  uploadImage (file, callback) {
+
+    const fileId = new Date().getTime() + '_' + UniqueIndex()
+
+    this.addItem({
+      type: 'IMAGE',
+      id: fileId,
+      file: file,
+      name: fileId,
+      size: file.size,
+      uploadProgress: 0,
+      uploading: false,
+      selected: false,
+      error: 0,
+      onReadyToInsert: callback
+    })
+
+  }
+
+  uploadImageRecursively (files, callback, index = 0) {
+
+    if (files[index] && files[index].type.indexOf('image') > -1) {
+      this.uploadImage(files[index], (image) => {
+        callback && callback(image)
+        index < files.length -1 && this.uploadImageRecursively(files, callback, index + 1)
+      })
+    } else {
+      index < files.length -1 && this.uploadImageRecursively(files, callback, index + 1)
+    }
+
+  }
+
   resolvePastedData ({ clipboardData }, callback) {
 
     if (clipboardData && clipboardData.items && clipboardData.items[0].type.indexOf('image') > -1) {
-
-      const file = clipboardData.items[0].getAsFile()
-      const fileId = new Date().getTime() + '_' + UniqueIndex()
-
-      this.addItem({
-        type: 'IMAGE',
-        id: fileId,
-        file: file,
-        name: fileId,
-        size: file.size,
-        uploadProgress: 0,
-        uploading: false,
-        selected: false,
-        error: 0,
-        onReadyToInsert: callback
-      })
-
+      this.uploadImage(clipboardData.items[0].getAsFile(), callback)
     }
 
   }

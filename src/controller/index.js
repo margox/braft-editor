@@ -32,7 +32,7 @@ export default class EditorController extends React.Component{
     return nextBlock ? this.selectBlock(nextBlock) : this.applyChange(this.editorState)
   }
 
-  removeBlock = (block) => {
+  removeBlock = (block, lastSelection = null) => {
 
     let nextContentState, nextEditorState
     const blockKey = block.getKey()
@@ -46,7 +46,7 @@ export default class EditorController extends React.Component{
 
     nextContentState = Modifier.setBlockType(nextContentState, nextContentState.getSelectionAfter(), 'unstyled')
     nextEditorState = EditorState.push(this.editorState, nextContentState, 'remove-range')
-    nextEditorState = EditorState.forceSelection(nextEditorState, nextContentState.getSelectionAfter())
+    nextEditorState = EditorState.forceSelection(nextEditorState, lastSelection || nextContentState.getSelectionAfter())
 
     return this.applyChange(nextEditorState)
 
@@ -236,14 +236,20 @@ export default class EditorController extends React.Component{
     }
 
     try {
+
       const rawContent = this.convertHTML(htmlString)
       const { blockMap } = rawContent
       const tempColors = detectColorsFromHTML(htmlString)
+
       this.addTempColors(tempColors)
       this.requestFocus()
-      return this.focus().applyChange(EditorState.push(this.editorState, Modifier.replaceWithFragment(
-        this.contentState, this.selectionState, blockMap
-      ), 'insert-fragment'))
+
+      return this.focus().applyChange(
+        EditorState.push(this.editorState, Modifier.replaceWithFragment(
+          this.contentState, this.selectionState, blockMap
+        ), 'insert-fragment')
+      )
+
     } catch (error) {
       return this
     }

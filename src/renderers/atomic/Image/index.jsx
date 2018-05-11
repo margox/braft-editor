@@ -42,14 +42,16 @@ export default class Image extends React.Component {
     }
 
     return (
-      <div className="braft-media-embeder">
+      <div
+        className="braft-media-embeder"
+      >
         <div
           style={imageStyles}
-          className="braft-embed-image"
-          onMouseOver={this.showToolbar}
-          onMouseLeave={this.hideToolbar}
+          draggable={true}
+          onDragStart={this.handleDragStart}
+          onDragEnd={this.handleDragEnd}
+          className="braft-embed-image"    
         >
-          {toolbarVisible && (
           <div
             style={{marginLeft: toolbarOffset}}
             ref={instance => this.toolbarElement = instance}
@@ -58,7 +60,7 @@ export default class Image extends React.Component {
             className="braft-embed-image-toolbar"
           >
             {linkEditorVisible ? (
-              <div onClick={this.preventDefault} className="braft-embed-image-link-editor">
+              <div className="braft-embed-image-link-editor">
                 <div className="editor-input-group">
                   <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
                   <button type="button" onClick={this.confirmImageLink}>{language.base.confirm}</button>
@@ -73,7 +75,7 @@ export default class Image extends React.Component {
               </div>
             ) : null}
             {sizeEditorVisible ? (
-              <div onClick={this.preventDefault} className="braft-embed-image-size-editor">
+              <div className="braft-embed-image-size-editor">
                 <div className="editor-input-group">
                   <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
                   <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
@@ -91,7 +93,6 @@ export default class Image extends React.Component {
             {imageControls.remove ? <a onClick={this.removeImage}>&#xe9ac;</a> : null}
             <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
           </div>
-          )}
           <img
             ref={instance => this.imageElement = instance}
             src={url} style={{width, height}} width={width} height={height}
@@ -128,6 +129,27 @@ export default class Image extends React.Component {
     } else {
       return 0
     }
+
+  }
+
+  handleDragStart = (event) => {
+
+    window.__BRAFT_DRAGING__IMAGE__ = {
+      block: this.props.block,
+      mediaData: {
+        type: 'IMAGE',
+        ...this.props.mediaData
+      }
+    }
+
+    return true
+
+  }
+
+  handleDragEnd = (event) => {
+
+    window.__BRAFT_DRAGING__IMAGE__ = null
+    return false
 
   }
 
@@ -256,7 +278,9 @@ export default class Image extends React.Component {
 
   }
 
-  showToolbar = () => {
+  showToolbar = (event) => {
+
+    event.preventDefault()
 
     if (!this.state.toolbarVisible) {
       this.setState({
@@ -271,12 +295,16 @@ export default class Image extends React.Component {
 
   }
 
-  hideToolbar = () => {
+  hideToolbar = (event) => {
+
+    event.preventDefault()
+
     this.setState({
       toolbarVisible: false
     }, () => {
       this.props.editor.setEditorProp('readOnly', false)
     })
+
   }
 
 }

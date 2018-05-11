@@ -11,7 +11,7 @@ class Demo extends React.Component {
     this.state = {
       contentId: 0,
       contentFormat: 'html',
-      initialContent: `<p style="text-align:start;"><strong>通过Vudio.js和getUserMedia来显示麦克风拾取到的音频的波形</strong></p><pre><code><code><strong><span style="color:#333333">var</span></strong> canvas = <span style="color:#0086b3">document</span>.querySelector(<span style="color:#dd1144">&#x27;#canvas&#x27;</span>)<br/><br/>navigator.mediaDevices.getUserMedia({<br/> audio: <span style="color:#008080">true</span><br/>}).then((stream) =&gt; {<br/><br/>  <em><span style="color:#999988">// 调用Vudio</span></em><br/>  <span style="color:#333333"><strong>var</strong></span> vudio = <strong><span style="color:#333333">new</span></strong> Vudio(stream, canvas, {<br/>    accuracy: <span style="color:#008080">256</span>,<br/>    width: <span style="color:#008080">1024</span>,<br/>    height: <span style="color:#008080">200</span>,<br/>    waveform: {<br/>      fadeSide: <span style="color:#008080">false</span>,<br/>      maxHeight: <span style="color:#008080">200</span>,<br/>      verticalAlign: <span style="color:#dd1144">&#x27;middle&#x27;</span>,<br/>      horizontalAlign: <span style="color:#dd1144">&#x27;center&#x27;</span>,<br/>      color: <span style="color:#dd1144">&#x27;#2980b9&#x27;</span><br/>    }<br/>  })<br/><br/>  vudio.dance()<br/><br/>}).catch((error) =&gt; {<br/> <span style="color:#0086b3">console</span>.error(error.name || error)<br/>})<br/></code></code></pre><p style="text-align:start;"><a href="https://margox.cn/wp-content/uploads/2016/11/web-mic.html" target="">查看在线DEMO</a></p>`,
+      initialContent: ``,
       htmlContent: ''
     }
     this.editorInstance = null
@@ -115,20 +115,9 @@ class Demo extends React.Component {
 
   }
 
-  setContent1 = () => {
-    this.setState({
-      contentId: 1,
-      contentFormat: 'raw',
-      initialContent: {"blocks":[{"key":"9v7io","text":"\"links\": {\n    \"self\": \"https://api.unsplash.com/users/jimmyexample\",\n    \"html\": \"http","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":0,"length":7,"style":"COLOR-660066"},{"offset":15,"length":6,"style":"COLOR-660066"},{"offset":74,"length":6,"style":"COLOR-660066"},{"offset":0,"length":1,"style":"COLOR-440044"},{"offset":6,"length":1,"style":"COLOR-440044"},{"offset":15,"length":1,"style":"COLOR-440044"},{"offset":20,"length":1,"style":"COLOR-440044"},{"offset":74,"length":1,"style":"COLOR-440044"},{"offset":79,"length":1,"style":"COLOR-440044"},{"offset":23,"length":45,"style":"BGCOLOR-FF0000"},{"offset":82,"length":5,"style":"BGCOLOR-FF0000"},{"offset":23,"length":1,"style":"COLOR-771100"},{"offset":67,"length":1,"style":"COLOR-771100"},{"offset":82,"length":1,"style":"COLOR-771100"},{"offset":24,"length":43,"style":"COLOR-DD2200"},{"offset":83,"length":4,"style":"COLOR-DD2200"}],"entityRanges":[],"data":{}}],"entityMap":{}},
-    })
-  }
-
-  setContent2 = () => {
-    this.setState({
-      contentId: 2,
-      contentFormat: 'html',
-      initialContent: '<p>asdasdas<u><span style="text-decoration:line-through;"><strong>da<em><span style="font-size:32px;color:#fdda00;background-color:#07a9fe;">s</span>d</em>ad</strong>asdas</span></u>d</p>'
-    })
+  insertHTMLContent = () => {
+    //this.editorInstance.insertHTML('<p><img src="https://cdn.dribbble.com/users/1224447/screenshots/4576582/800x600_1x.png" /></p><p>12312312312<a href="123123123">baidu.com</a></p><p>asdasdas<u><span style="text-decoration:line-through;"><strong>da<em><span style="font-size:32px;color:#fdda00;background-color:#07a9fe;">s</span>d</em>ad</strong>asdas</span></u>d</p>')
+    this.editorInstance.insertHTML('<p><span style="color:#ff0000;">Hello World!</span></p>')
   }
 
   render() {
@@ -165,13 +154,6 @@ class Demo extends React.Component {
         autoHide: false,
         ref: instance => window.customDropDown = instance,
         component: <h1 style={{width: 200, color: '#ffffff', padding: 10, margin: 0}}>Hello World!</h1>
-      }, {
-        type: 'button',
-        className: 'preview-button',
-        text: '插入内容',
-        onClick: () => {
-          this.editorInstance.insertHTML('<span>123123</span>')
-        }
       }, {
         type: 'modal',
         html: '<span style="color:#f00;">弹出框</span>',
@@ -230,14 +212,14 @@ class Demo extends React.Component {
             extendControls={extendControls}
             extendAtomics={extendAtomics}
             media={{
-              uploadFn: this.uploadFn,
+              // uploadFn: this.uploadFn,
               onInsert: (files) => {
                 return '123'
               }
             }}
           />
         </div>
-        <div><a href="javascript:void(0);" onClick={this.setContent1}>设置内容1</a>&emsp;&emsp;<a href="javascript:void(0);" onClick={this.setContent2}>设置内容2</a></div>
+        <div><a href="javascript:void(0);" onClick={this.insertHTMLContent}>插入HTML片段</a></div>
       </div>
     )
 

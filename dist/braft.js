@@ -7697,6 +7697,8 @@ var EditorController = function (_React$Component) {
       var nextBlock = _this.contentState.getBlockAfter(block.getKey());
       return nextBlock ? _this.selectBlock(nextBlock) : _this.applyChange(_this.editorState);
     }, _this.removeBlock = function (block) {
+      var lastSelection = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
 
       var nextContentState = void 0,
           nextEditorState = void 0;
@@ -7711,7 +7713,7 @@ var EditorController = function (_React$Component) {
 
       nextContentState = _draftJs.Modifier.setBlockType(nextContentState, nextContentState.getSelectionAfter(), 'unstyled');
       nextEditorState = _draftJs.EditorState.push(_this.editorState, nextContentState, 'remove-range');
-      nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, nextContentState.getSelectionAfter());
+      nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, lastSelection || nextContentState.getSelectionAfter());
 
       return _this.applyChange(nextEditorState);
     }, _this.getSelectionBlock = function () {
@@ -7868,12 +7870,15 @@ var EditorController = function (_React$Component) {
       }
 
       try {
+
         var rawContent = _this.convertHTML(htmlString);
         var blockMap = rawContent.blockMap;
 
         var tempColors = (0, _colors.detectColorsFromHTML)(htmlString);
+
         _this.addTempColors(tempColors);
         _this.requestFocus();
+
         return _this.focus().applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.replaceWithFragment(_this.contentState, _this.selectionState, blockMap), 'insert-fragment'));
       } catch (error) {
         return _this;
@@ -8248,28 +8253,49 @@ var MediaLibrary = function () {
       this.onChange(this.items);
     }
   }, {
+    key: 'uploadImage',
+    value: function uploadImage(file, callback) {
+
+      var fileId = new Date().getTime() + '_' + (0, _base.UniqueIndex)();
+
+      this.addItem({
+        type: 'IMAGE',
+        id: fileId,
+        file: file,
+        name: fileId,
+        size: file.size,
+        uploadProgress: 0,
+        uploading: false,
+        selected: false,
+        error: 0,
+        onReadyToInsert: callback
+      });
+    }
+  }, {
+    key: 'uploadImageRecursively',
+    value: function uploadImageRecursively(files, callback) {
+      var _this4 = this;
+
+      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+
+      if (files[index] && files[index].type.indexOf('image') > -1) {
+        this.uploadImage(files[index], function (image) {
+          callback && callback(image);
+          index < files.length - 1 && _this4.uploadImageRecursively(files, callback, index + 1);
+        });
+      } else {
+        index < files.length - 1 && this.uploadImageRecursively(files, callback, index + 1);
+      }
+    }
+  }, {
     key: 'resolvePastedData',
     value: function resolvePastedData(_ref, callback) {
       var clipboardData = _ref.clipboardData;
 
 
       if (clipboardData && clipboardData.items && clipboardData.items[0].type.indexOf('image') > -1) {
-
-        var file = clipboardData.items[0].getAsFile();
-        var fileId = new Date().getTime() + '_' + (0, _base.UniqueIndex)();
-
-        this.addItem({
-          type: 'IMAGE',
-          id: fileId,
-          file: file,
-          name: fileId,
-          size: file.size,
-          uploadProgress: 0,
-          uploading: false,
-          selected: false,
-          error: 0,
-          onReadyToInsert: callback
-        });
+        this.uploadImage(clipboardData.items[0].getAsFile(), callback);
       }
     }
   }, {
@@ -10483,16 +10509,10 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 // TODO
 // 重写convertToHTML
-// 允许直接拖放媒体到编辑器区域
-// 强化图片尺寸编辑功能
 // 支持mention功能
 // 支持hashtag功能
 // 增加取色器
 // 增加insertHTML API
-// 修复超过一行的文本无法居中的问题
-// 增加设置音/视频封面的功能
-// 增加编辑期内超链接快速访问的功能
-// 增加插入iframe的功能
 
 var editorDecorators = new _draftJs.CompositeDecorator(_renderers.decorators);
 var blockRenderMap = _draftJs.DefaultDraftBlockRenderMap.merge(_renderers.customBlockRenderMap);
@@ -10544,8 +10564,6 @@ var BraftEditor = function (_EditorController) {
         this.setContent(this.props.initialContent);
         this.contentInitialized = true;
       }
-
-      document.addEventListener('paste', this.handlePaste, false);
     }
   }, {
     key: 'componentWillReceiveProps',
@@ -10559,11 +10577,6 @@ var BraftEditor = function (_EditorController) {
           this.setContent(nextProps.initialContent, nextProps.contentFormat);
         }
       }
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      document.removeEventListener('paste', this.handlePaste, false);
     }
   }, {
     key: 'render',
@@ -10647,7 +10660,10 @@ var BraftEditor = function (_EditorController) {
         editorState: this.state.editorState,
         handleKeyCommand: this.handleKeyCommand,
         handleReturn: this.handleReturn,
+        handleDrop: this.handleDrop,
+        handleDroppedFiles: this.handleDroppedFiles,
         handlePastedText: this.handlePastedText,
+        handlePastedFiles: this.handlePastedFiles,
         onChange: this.onChange,
         onTab: this.onTab,
         onFocus: this.onFocus,
@@ -10810,23 +10826,6 @@ var _initialiseProps = function _initialiseProps() {
     return _this3;
   };
 
-  this.handleKeyCommand = function (command) {
-
-    if (command === 'braft-save') {
-      _this3.props.onSave && _this3.props.onSave();
-      return 'handled';
-    }
-
-    var nextEditorState = _draftJs.RichUtils.handleKeyCommand(_this3.editorState, command);
-
-    if (nextEditorState) {
-      _this3.onChange(nextEditorState);
-      return 'handled';
-    }
-
-    return 'not-handled';
-  };
-
   this.onTab = function (event) {
 
     var currentBlock = _this3.getSelectionBlock();
@@ -10852,42 +10851,98 @@ var _initialiseProps = function _initialiseProps() {
     _this3.props.onBlur && _this3.props.onBlur();
   };
 
+  this.handleKeyCommand = function (command) {
+
+    if (command === 'braft-save') {
+      _this3.props.onSave && _this3.props.onSave();
+      return 'handled';
+    }
+
+    var nextEditorState = _draftJs.RichUtils.handleKeyCommand(_this3.editorState, command);
+
+    if (nextEditorState) {
+      _this3.onChange(nextEditorState);
+      return 'handled';
+    }
+
+    return 'not-handled';
+  };
+
   this.handleReturn = function (event) {
 
     var currentBlock = _this3.getSelectionBlock();
     var currentBlockType = currentBlock.getType();
 
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
+
       if (currentBlock.getLength() === 0) {
         _this3.toggleSelectionBlockType('unstyled');
         return true;
       }
+
       return false;
     } else if (currentBlockType === 'code-block') {
+
       if (event.which === 13 && (event.getModifierState('Shift') || event.getModifierState('Alt') || event.getModifierState('Control'))) {
         _this3.toggleSelectionBlockType('unstyled');
         return true;
       }
+
       return false;
     } else {
+
       var nextEditorState = (0, _draftjsUtils.handleNewLine)(_this3.state.editorState, event);
+
       if (nextEditorState) {
         _this3.onChange(nextEditorState);
         return true;
       }
+
       return false;
     }
 
     return false;
   };
 
-  this.handlePaste = function (event) {
+  this.handleDrop = function (selectionState, dataTransfer, isInternal) {
 
-    if (_this3.isFocused && _this3.props.media && _this3.props.media.allowPasteImage) {
-      _this3.mediaLibrary.resolvePastedData(event, function (image) {
-        _this3.insertMedias([image]);
-      });
+    if (window.__BRAFT_DRAGING__IMAGE__) {
+
+      _this3.removeBlock(window.__BRAFT_DRAGING__IMAGE__.block, selectionState);
+      _this3.insertMedias([window.__BRAFT_DRAGING__IMAGE__.mediaData]);
+
+      window.__BRAFT_DRAGING__IMAGE__ = null;
+      _this3.setEditorProp('readOnly', false);
+      return 'handled';
+    } else if (!dataTransfer || !dataTransfer.getText()) {
+      return 'handled';
     }
+
+    return 'not-handled';
+  };
+
+  this.handleDroppedFiles = function (selectionState, files) {
+
+    if (files[0] && files[0].type.indexOf('image') > -1 && _this3.props.media && _this3.props.media.allowPasteImage !== false) {
+      _this3.mediaLibrary.uploadImage(files[0], function (image) {
+        return _this3.insertMedias([image]);
+      });
+      return 'handled';
+    }
+
+    return 'not-handled';
+  };
+
+  this.handlePastedFiles = function (files) {
+
+    if (files[0] && files[0].type.indexOf('image') > -1 && _this3.props.media && _this3.props.media.allowPasteImage !== false) {
+      _this3.mediaLibrary.uploadImage(files[0], function (image) {
+        return _this3.insertMedias([image]);
+      });
+      return 'handled';
+    }
+
+    return 'not-handled';
   };
 
   this.handlePastedText = function (text, html) {
@@ -11556,6 +11611,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 __webpack_require__(83);
@@ -11598,6 +11655,20 @@ var Image = function (_React$Component) {
       tempLink: null,
       tempWidth: null,
       tempHeight: null
+    }, _this.handleDragStart = function (event) {
+
+      window.__BRAFT_DRAGING__IMAGE__ = {
+        block: _this.props.block,
+        mediaData: _extends({
+          type: 'IMAGE'
+        }, _this.props.mediaData)
+      };
+
+      return true;
+    }, _this.handleDragEnd = function (event) {
+
+      window.__BRAFT_DRAGING__IMAGE__ = null;
+      return false;
     }, _this.removeImage = function (e) {
       _this.props.editor.removeBlock(_this.props.block);
       _this.props.editor.setEditorProp('readOnly', false);
@@ -11686,7 +11757,9 @@ var Image = function (_React$Component) {
 
       _this.props.editor.setMediaPosition(_this.props.block, { alignment: alignment });
       _this.props.editor.setEditorProp('readOnly', false);
-    }, _this.showToolbar = function () {
+    }, _this.showToolbar = function (event) {
+
+      event.preventDefault();
 
       if (!_this.state.toolbarVisible) {
         _this.setState({
@@ -11698,7 +11771,10 @@ var Image = function (_React$Component) {
           });
         });
       }
-    }, _this.hideToolbar = function () {
+    }, _this.hideToolbar = function (event) {
+
+      event.preventDefault();
+
       _this.setState({
         toolbarVisible: false
       }, function () {
@@ -11752,16 +11828,19 @@ var Image = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'braft-media-embeder' },
+        {
+          className: 'braft-media-embeder'
+        },
         _react2.default.createElement(
           'div',
           {
             style: imageStyles,
-            className: 'braft-embed-image',
-            onMouseOver: this.showToolbar,
-            onMouseLeave: this.hideToolbar
+            draggable: true,
+            onDragStart: this.handleDragStart,
+            onDragEnd: this.handleDragEnd,
+            className: 'braft-embed-image'
           },
-          toolbarVisible && _react2.default.createElement(
+          _react2.default.createElement(
             'div',
             {
               style: { marginLeft: toolbarOffset },
@@ -11774,7 +11853,7 @@ var Image = function (_React$Component) {
             },
             linkEditorVisible ? _react2.default.createElement(
               'div',
-              { onClick: this.preventDefault, className: 'braft-embed-image-link-editor' },
+              { className: 'braft-embed-image-link-editor' },
               _react2.default.createElement(
                 'div',
                 { className: 'editor-input-group' },
@@ -11803,7 +11882,7 @@ var Image = function (_React$Component) {
             ) : null,
             sizeEditorVisible ? _react2.default.createElement(
               'div',
-              { onClick: this.preventDefault, className: 'braft-embed-image-size-editor' },
+              { className: 'braft-embed-image-size-editor' },
               _react2.default.createElement(
                 'div',
                 { className: 'editor-input-group' },

@@ -17,16 +17,10 @@ import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
 
 // TODO
 // 重写convertToHTML
-// 允许直接拖放媒体到编辑器区域
-// 强化图片尺寸编辑功能
 // 支持mention功能
 // 支持hashtag功能
 // 增加取色器
 // 增加insertHTML API
-// 修复超过一行的文本无法居中的问题
-// 增加设置音/视频封面的功能
-// 增加编辑期内超链接快速访问的功能
-// 增加插入iframe的功能
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -82,8 +76,6 @@ export default class BraftEditor extends EditorController {
       this.contentInitialized = true
     }
 
-    document.addEventListener('paste', this.handlePaste, false)
-
   }
 
   componentWillReceiveProps (nextProps) {
@@ -97,10 +89,6 @@ export default class BraftEditor extends EditorController {
       }
     }
 
-  }
-
-  componentWillUnmount () {
-    document.removeEventListener('paste', this.handlePaste, false)
   }
 
   onChange = (editorState) => {
@@ -217,24 +205,6 @@ export default class BraftEditor extends EditorController {
     return this
   }
 
-  handleKeyCommand = (command) => {
-
-    if (command === 'braft-save') {
-      this.props.onSave && this.props.onSave()
-      return 'handled'
-    }
-
-    const nextEditorState = RichUtils.handleKeyCommand(this.editorState, command)
-
-    if (nextEditorState) {
-      this.onChange(nextEditorState)
-      return 'handled'
-    }
-
-    return 'not-handled'
-
-  }
-
   onTab = (event) => {
 
     const currentBlock = this.getSelectionBlock()
@@ -261,18 +231,40 @@ export default class BraftEditor extends EditorController {
     this.props.onBlur && this.props.onBlur()
   }
 
+  handleKeyCommand = (command) => {
+
+    if (command === 'braft-save') {
+      this.props.onSave && this.props.onSave()
+      return 'handled'
+    }
+
+    const nextEditorState = RichUtils.handleKeyCommand(this.editorState, command)
+
+    if (nextEditorState) {
+      this.onChange(nextEditorState)
+      return 'handled'
+    }
+
+    return 'not-handled'
+
+  }
+
   handleReturn = (event) => {
 
     const currentBlock = this.getSelectionBlock()
     const currentBlockType = currentBlock.getType()
 
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
+
       if (currentBlock.getLength() === 0) {
         this.toggleSelectionBlockType('unstyled')
         return true
       }
+
       return false
+
     } else if (currentBlockType === 'code-block') {
+
       if (
         event.which === 13 && (
           event.getModifierState('Shift') ||
@@ -282,27 +274,64 @@ export default class BraftEditor extends EditorController {
         this.toggleSelectionBlockType('unstyled')
         return true
       }
+
       return false
+
     } else {
+
       const nextEditorState = handleNewLine(this.state.editorState, event)
+
       if (nextEditorState) {
         this.onChange(nextEditorState)
         return true
       }
+
       return false
+
     }
 
     return false
 
   }
 
-  handlePaste = (event) => {
+  handleDrop = (selectionState, dataTransfer, isInternal) => {
 
-    if (this.isFocused && this.props.media && this.props.media.allowPasteImage) {
-      this.mediaLibrary.resolvePastedData(event, image => {
-        this.insertMedias([image])
-      })
+    if (window.__BRAFT_DRAGING__IMAGE__) {
+
+      this.removeBlock(window.__BRAFT_DRAGING__IMAGE__.block, selectionState)
+      this.insertMedias([window.__BRAFT_DRAGING__IMAGE__.mediaData])
+
+      window.__BRAFT_DRAGING__IMAGE__ = null
+      this.setEditorProp('readOnly', false)
+      return 'handled'
+
+    } else if (!dataTransfer || !dataTransfer.getText()) {
+      return 'handled'
     }
+
+    return 'not-handled'
+
+  }
+
+  handleDroppedFiles = (selectionState, files) => {
+
+    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
+      this.mediaLibrary.uploadImage(files[0], image => this.insertMedias([image]))
+      return 'handled'
+    }
+
+    return 'not-handled'
+
+  }
+
+  handlePastedFiles = (files) => {
+
+    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
+      this.mediaLibrary.uploadImage(files[0], image => this.insertMedias([image]))
+      return 'handled'
+    }
+
+    return 'not-handled'
 
   }
 
@@ -406,7 +435,10 @@ export default class BraftEditor extends EditorController {
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       handleReturn: this.handleReturn,
+      handleDrop: this.handleDrop,
+      handleDroppedFiles: this.handleDroppedFiles,
       handlePastedText: this.handlePastedText,
+      handlePastedFiles: this.handlePastedFiles,
       onChange: this.onChange,
       onTab: this.onTab,
       onFocus: this.onFocus,
@@ -427,4 +459,5 @@ export default class BraftEditor extends EditorController {
     )
 
   }
+
 }
