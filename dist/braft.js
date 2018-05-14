@@ -11662,6 +11662,12 @@ var Image = function (_React$Component) {
         }, _this.props.mediaData)
       };
 
+      _this.setState({
+        toolbarVisible: false
+      }, function () {
+        _this.props.editor.setEditorProp('readOnly', false);
+      });
+
       return true;
     }, _this.handleDragEnd = function (event) {
 
@@ -11826,17 +11832,20 @@ var Image = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        {
-          className: 'braft-media-embeder'
-        },
+        { className: 'braft-media-embeder' },
         _react2.default.createElement(
           'div',
           {
             style: imageStyles,
             draggable: true,
+            onMouseEnter: this.showToolbar,
+            onMouseLeave: this.hideToolbar,
             onDragStart: this.handleDragStart,
             onDragEnd: this.handleDragEnd,
-            className: 'braft-embed-image'
+            ref: function ref(instance) {
+              return _this2.mediaEmbederInstance = instance;
+            },
+            className: "braft-embed-image" + (toolbarVisible ? ' active' : '')
           },
           _react2.default.createElement(
             'div',

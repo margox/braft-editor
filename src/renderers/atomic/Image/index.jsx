@@ -42,15 +42,16 @@ export default class Image extends React.Component {
     }
 
     return (
-      <div
-        className="braft-media-embeder"
-      >
+      <div className="braft-media-embeder">
         <div
           style={imageStyles}
           draggable={true}
+          onMouseEnter={this.showToolbar}
+          onMouseLeave={this.hideToolbar}
           onDragStart={this.handleDragStart}
           onDragEnd={this.handleDragEnd}
-          className="braft-embed-image"    
+          ref={instance => this.mediaEmbederInstance = instance}
+          className={"braft-embed-image" + (toolbarVisible ? ' active' : '')}
         >
           <div
             style={{marginLeft: toolbarOffset}}
@@ -141,6 +142,12 @@ export default class Image extends React.Component {
         ...this.props.mediaData
       }
     }
+
+    this.setState({
+      toolbarVisible: false
+    }, () => {
+      this.props.editor.setEditorProp('readOnly', false)
+    })
 
     return true
 
