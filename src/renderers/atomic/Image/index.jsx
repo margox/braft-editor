@@ -47,53 +47,56 @@ export default class Image extends React.Component {
           style={imageStyles}
           draggable={true}
           onMouseEnter={this.showToolbar}
+          onMouseMove={this.showToolbar}
           onMouseLeave={this.hideToolbar}
           onDragStart={this.handleDragStart}
           onDragEnd={this.handleDragEnd}
           ref={instance => this.mediaEmbederInstance = instance}
-          className={"braft-embed-image" + (toolbarVisible ? ' active' : '')}
+          className="braft-embed-image"
         >
-          <div
-            style={{marginLeft: toolbarOffset}}
-            ref={instance => this.toolbarElement = instance}
-            data-float={float}
-            data-alignment={alignment}
-            className="braft-embed-image-toolbar"
-          >
-            {linkEditorVisible ? (
-              <div className="braft-embed-image-link-editor">
-                <div className="editor-input-group">
-                  <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
-                  <button type="button" onClick={this.confirmImageLink}>{language.base.confirm}</button>
+          {toolbarVisible ? (
+            <div
+              style={{marginLeft: toolbarOffset}}
+              ref={instance => this.toolbarElement = instance}
+              data-float={float}
+              data-alignment={alignment}
+              className="braft-embed-image-toolbar"
+            >
+              {linkEditorVisible ? (
+                <div className="braft-embed-image-link-editor">
+                  <div className="editor-input-group">
+                    <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
+                    <button type="button" onClick={this.confirmImageLink}>{language.base.confirm}</button>
+                  </div>
+                  <div className="switch-group">
+                    <Switch
+                      active={link_target === '_blank'}
+                      onClick={() => this.setImageLinkTarget(link_target)}
+                    />
+                    <label>{language.linkEditor.openInNewWindow}</label>
+                  </div>
                 </div>
-                <div className="switch-group">
-                  <Switch
-                    active={link_target === '_blank'}
-                    onClick={() => this.setImageLinkTarget(link_target)}
-                  />
-                  <label>{language.linkEditor.openInNewWindow}</label>
+              ) : null}
+              {sizeEditorVisible ? (
+                <div className="braft-embed-image-size-editor">
+                  <div className="editor-input-group">
+                    <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
+                    <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
+                    <button type="button" onClick={this.confirmImageSize}>{language.base.confirm}</button>
+                  </div>
                 </div>
-              </div>
-            ) : null}
-            {sizeEditorVisible ? (
-              <div className="braft-embed-image-size-editor">
-                <div className="editor-input-group">
-                  <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
-                  <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
-                  <button type="button" onClick={this.confirmImageSize}>{language.base.confirm}</button>
-                </div>
-              </div>
-            ) : null}
-            {imageControls.floatLeft ? <a data-float="left" onClick={this.setImageFloat}>&#xe91e;</a> : null}
-            {imageControls.floatRight ? <a data-float="right" onClick={this.setImageFloat}>&#xe914;</a> : null}
-            {imageControls.alignLeft ? <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a> : null}
-            {imageControls.alignCenter ? <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a> : null}
-            {imageControls.alignRight ? <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a> : null}
-            {imageControls.size ? <a onClick={this.toggleSizeEditor}>&#xe3c2;</a> : null}
-            {imageControls.link ? <a className={link ? 'active' : ''} onClick={this.toggleLinkEditor}>&#xe91a;</a> : null}
-            {imageControls.remove ? <a onClick={this.removeImage}>&#xe9ac;</a> : null}
-            <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
-          </div>
+              ) : null}
+              {imageControls.floatLeft ? <a data-float="left" onClick={this.setImageFloat}>&#xe91e;</a> : null}
+              {imageControls.floatRight ? <a data-float="right" onClick={this.setImageFloat}>&#xe914;</a> : null}
+              {imageControls.alignLeft ? <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a> : null}
+              {imageControls.alignCenter ? <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a> : null}
+              {imageControls.alignRight ? <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a> : null}
+              {imageControls.size ? <a onClick={this.toggleSizeEditor}>&#xe3c2;</a> : null}
+              {imageControls.link ? <a className={link ? 'active' : ''} onClick={this.toggleLinkEditor}>&#xe91a;</a> : null}
+              {imageControls.remove ? <a onClick={this.removeImage}>&#xe9ac;</a> : null}
+              <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
+            </div>
+          ) : null}
           <img
             ref={instance => this.imageElement = instance}
             src={url} style={{width, height}} width={width} height={height}

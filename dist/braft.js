@@ -11839,15 +11839,16 @@ var Image = function (_React$Component) {
             style: imageStyles,
             draggable: true,
             onMouseEnter: this.showToolbar,
+            onMouseMove: this.showToolbar,
             onMouseLeave: this.hideToolbar,
             onDragStart: this.handleDragStart,
             onDragEnd: this.handleDragEnd,
             ref: function ref(instance) {
               return _this2.mediaEmbederInstance = instance;
             },
-            className: "braft-embed-image" + (toolbarVisible ? ' active' : '')
+            className: 'braft-embed-image'
           },
-          _react2.default.createElement(
+          toolbarVisible ? _react2.default.createElement(
             'div',
             {
               style: { marginLeft: toolbarOffset },
@@ -11943,7 +11944,7 @@ var Image = function (_React$Component) {
               '\uE9AC'
             ) : null,
             _react2.default.createElement('i', { style: { marginLeft: toolbarOffset * -1 }, className: 'braft-embed-image-toolbar-arrow' })
-          ),
+          ) : null,
           _react2.default.createElement('img', {
             ref: function ref(instance) {
               return _this2.imageElement = instance;
