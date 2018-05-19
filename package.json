@@ -5,7 +5,7 @@
   "main": "dist/braft.js",
   "author": "Margox",
   "scripts": {
-    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --port 5998",
+    "start": "webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --host 0.0.0.0 --port 5998",
     "build": "rm -rf dist/ && NODE_ENV=production webpack --config webpack.config.prod.js --progress --colors",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

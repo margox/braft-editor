@@ -14,7 +14,8 @@ import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleM
 import ControlBar from 'components/business/ControlBar'
 import MediaLibrary from 'helpers/MediaLibrary'
 import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
-
+import DataSetPolyfill from './utils/base'
+DataSetPolyfill()
 // TODO
 // 重写convertToHTML
 // 支持mention功能
