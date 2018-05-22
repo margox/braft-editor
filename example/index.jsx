@@ -211,12 +211,6 @@ class Demo extends React.Component {
             ref={instance => this.editorInstance = instance}
             extendControls={extendControls}
             extendAtomics={extendAtomics}
-            media={{
-              // uploadFn: this.uploadFn,
-              onInsert: (files) => {
-                return '123'
-              }
-            }}
           />
         </div>
         <div><a href="javascript:void(0);" onClick={this.insertHTMLContent}>插入HTML片段</a></div>

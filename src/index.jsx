@@ -9,6 +9,7 @@ import { handleNewLine } from 'draftjs-utils'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import keyBindingFn from 'configs/keybindings'
 import defaultOptions from 'configs/options'
+import { UniqueIndex } from 'utils/base'
 import EditorController from 'controller'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
@@ -20,7 +21,6 @@ import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
 // 支持mention功能
 // 支持hashtag功能
 // 增加取色器
-// 增加insertHTML API
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -47,6 +47,7 @@ export default class BraftEditor extends EditorController {
     this.selectionState = editorState.getSelection()
     this.mediaLibrary = new MediaLibrary()
     this.isFocused = false
+    this.instanceIndex = UniqueIndex()
 
     this.state = {
       tempColors: [],
@@ -399,6 +400,8 @@ export default class BraftEditor extends EditorController {
       ...imageControls
     } : defaultOptions.imageControls
 
+    viewWrapper = viewWrapper || `.BraftEditor-instance-${this.instanceIndex}`
+
     this.colorList = [...colors, ...tempColors]
     this.fontSizeList = fontSizes
     this.fontFamilyList = fontFamilies
@@ -450,7 +453,7 @@ export default class BraftEditor extends EditorController {
     }
 
     return (
-      <div className={"BraftEditor-container " + (disabled ? 'disabled' : '')}>
+      <div className={`BraftEditor-container BraftEditor-instance-${this.instanceIndex} ${(disabled ? 'disabled' : '')}`}>
         <ControlBar {...controlBarProps} />
         <div className="BraftEditor-content" style={height ? { height } : {}}>
           <Editor {...editorProps} />

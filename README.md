@@ -9,6 +9,8 @@
 #### 如果需要在IE10中只用本项目，请参考：[braft-polyfill](https://github.com/margox/braft-polyfill)
 
 ## 最近更新
+- 2018-05-22 v1.9.4
+  - 优化了viewWrapper属性，无需再手动设置
 - 2018-05-15 v1.9.3
   - 修复插入图片后输出内容异常的问题
 - 2018-05-14 v1.9.2

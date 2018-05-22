@@ -42,7 +42,7 @@ export default class Image extends React.Component {
     }
 
     return (
-      <div className="braft-media-embeder">
+      <div className="braft-media-embeder braft-image-embeder">
         <div
           style={imageStyles}
           draggable={true}

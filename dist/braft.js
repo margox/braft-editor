@@ -10477,6 +10477,8 @@ var _options = __webpack_require__(24);
 
 var _options2 = _interopRequireDefault(_options);
 
+var _base = __webpack_require__(3);
+
 var _controller = __webpack_require__(25);
 
 var _controller2 = _interopRequireDefault(_controller);
@@ -10510,7 +10512,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 // 支持mention功能
 // 支持hashtag功能
 // 增加取色器
-// 增加insertHTML API
 
 var editorDecorators = new _draftJs.CompositeDecorator(_renderers.decorators);
 var blockRenderMap = _draftJs.DefaultDraftBlockRenderMap.merge(_renderers.customBlockRenderMap);
@@ -10531,6 +10532,7 @@ var BraftEditor = function (_EditorController) {
     _this.selectionState = editorState.getSelection();
     _this.mediaLibrary = new _MediaLibrary2.default();
     _this.isFocused = false;
+    _this.instanceIndex = (0, _base.UniqueIndex)();
 
     _this.state = {
       tempColors: [],
@@ -10618,6 +10620,8 @@ var BraftEditor = function (_EditorController) {
 
       imageControls = imageControls ? _extends({}, _options2.default.imageControls, imageControls) : _options2.default.imageControls;
 
+      viewWrapper = viewWrapper || '.BraftEditor-instance-' + this.instanceIndex;
+
       this.colorList = [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors));
       this.fontSizeList = fontSizes;
       this.fontFamilyList = fontFamilies;
@@ -10673,7 +10677,7 @@ var BraftEditor = function (_EditorController) {
 
       return _react2.default.createElement(
         'div',
-        { className: "BraftEditor-container " + (disabled ? 'disabled' : '') },
+        { className: 'BraftEditor-container BraftEditor-instance-' + this.instanceIndex + ' ' + (disabled ? 'disabled' : '') },
         _react2.default.createElement(_ControlBar2.default, controlBarProps),
         _react2.default.createElement(
           'div',
@@ -11832,7 +11836,7 @@ var Image = function (_React$Component) {
 
       return _react2.default.createElement(
         'div',
-        { className: 'braft-media-embeder' },
+        { className: 'braft-media-embeder braft-image-embeder' },
         _react2.default.createElement(
           'div',
           {
