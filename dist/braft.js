@@ -7723,6 +7723,19 @@ var EditorController = function (_React$Component) {
       return name ? blockData.get(name) : blockData;
     }, _this.getSelectionBlockType = function () {
       return _this.getSelectionBlock().getType();
+    }, _this.getSelectionText = function () {
+
+      if (_this.selectionState.isCollapsed() || _this.getSelectionBlockType() === 'atomic') {
+        return '';
+      }
+
+      var anchorKey = _this.selectionState.getAnchorKey();
+      var currentContent = _this.editorState.getCurrentContent();
+      var currentContentBlock = currentContent.getBlockForKey(anchorKey);
+      var start = _this.selectionState.getStartOffset();
+      var end = _this.selectionState.getEndOffset();
+
+      return currentContentBlock.getText().slice(start, end);
     }, _this.toggleSelectionBlockType = function (blockType) {
       return _this.applyChange(_draftJs.RichUtils.toggleBlockType(_this.editorState, blockType));
     }, _this.getSelectionEntityData = function (type) {
@@ -7828,22 +7841,27 @@ var EditorController = function (_React$Component) {
         delete entityData.href;
       }
 
-      var nextContentState = _this.contentState.createEntity('LINK', 'MUTABLE', entityData);
-      var entityKey = nextContentState.getLastCreatedEntityKey();
+      try {
 
-      var nextEditorState = _draftJs.EditorState.set(_this.editorState, {
-        currentContent: nextContentState
-      });
+        var nextContentState = _this.contentState.createEntity('LINK', 'MUTABLE', entityData);
+        var entityKey = nextContentState.getLastCreatedEntityKey();
 
-      nextEditorState = _draftJs.RichUtils.toggleLink(nextEditorState, _this.selectionState, entityKey);
-      nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, _this.selectionState.merge({
-        anchorOffset: _this.selectionState.getEndOffset(),
-        focusOffset: _this.selectionState.getEndOffset()
-      }));
+        var nextEditorState = _draftJs.EditorState.set(_this.editorState, {
+          currentContent: nextContentState
+        });
 
-      nextEditorState = _draftJs.EditorState.push(nextEditorState, _draftJs.Modifier.insertText(nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '), 'insert-text');
+        nextEditorState = _draftJs.RichUtils.toggleLink(nextEditorState, _this.selectionState, entityKey);
+        nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, _this.selectionState.merge({
+          anchorOffset: _this.selectionState.getEndOffset(),
+          focusOffset: _this.selectionState.getEndOffset()
+        }));
 
-      return _this.applyChange(nextEditorState);
+        nextEditorState = _draftJs.EditorState.push(nextEditorState, _draftJs.Modifier.insertText(nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '), 'insert-text');
+
+        return _this.applyChange(nextEditorState);
+      } catch (error) {
+        console.warn(error);
+      }
     }, _this.insertText = function (text) {
       var replace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 
@@ -12049,6 +12067,10 @@ var Video = function (_React$Component) {
       toolbarVisible: false,
       playerVisible: false
     }, _this.showPlayer = function () {
+      var _this$props$mediaData = _this.props.mediaData,
+          url = _this$props$mediaData.url,
+          meta = _this$props$mediaData.meta;
+
 
       _this.playerModal = (0, _Modal.showModal)({
         title: _this.props.language.videoPlayer.title,
@@ -12057,7 +12079,7 @@ var Video = function (_React$Component) {
         language: _this.props.language,
         showCancel: false,
         onClose: _this.handlePlayerClose,
-        children: _react2.default.createElement('video', { className: 'braft-embed-video-player', src: _this.props.mediaData.url, controls: true })
+        children: _react2.default.createElement('video', { poster: meta && meta.poster ? meta.poster : '', className: 'braft-embed-video-player', src: url, controls: true })
       });
     }, _this.removeVideo = function () {
       _this.props.editor.removeBlock(_this.props.block);
@@ -12093,7 +12115,8 @@ var Video = function (_React$Component) {
       var url = mediaData.url,
           width = mediaData.width,
           height = mediaData.height,
-          name = mediaData.name;
+          name = mediaData.name,
+          meta = mediaData.meta;
 
 
       return _react2.default.createElement(
@@ -12103,16 +12126,20 @@ var Video = function (_React$Component) {
           onMouseOver: this.showToolbar,
           onMouseLeave: this.hideToolbar
         },
-        _react2.default.createElement('i', { className: 'braft-icon-film' }),
-        _react2.default.createElement(
-          'h5',
+        meta && meta.poster ? _react2.default.createElement('img', { className: 'braft-media-video-poster', src: meta.poster }) : _react2.default.createElement(
+          'div',
           null,
-          name
-        ),
-        _react2.default.createElement(
-          'h6',
-          null,
-          url
+          _react2.default.createElement('i', { className: 'braft-icon-film' }),
+          _react2.default.createElement(
+            'h5',
+            null,
+            name
+          ),
+          _react2.default.createElement(
+            'h6',
+            null,
+            url
+          )
         ),
         toolbarVisible ? _react2.default.createElement(
           'div',

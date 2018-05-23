@@ -9,6 +9,13 @@
   background-color: #f1f2f3;
   color: #999;
   text-align: center;
+  .braft-media-video-poster{
+    display: block;
+    width: 100%;
+    height: 200px;
+    background-color: #000;
+    object-fit: contain;
+  }
   i{
     display: inline-block;
     margin-top: 40px;

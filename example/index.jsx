@@ -130,7 +130,13 @@ class Demo extends React.Component {
         className: 'preview-button',
         text: <span>测试</span>,
         onClick:()=>{
-          this.editorInstance.setContent('<p>asd<span style="font-size:14px;color:#8e44ad;background-color:#f32784;line-height:1.2;letter-spacing:6px;font-family:&quot;Courier New&quot;, Courier, monospace;">asdasdasdasdasd</span></span></span>asd</p>','html')
+          this.editorInstance.insertMedias([{
+            type: 'VIDEO',
+            url: 'http://www.baidu.com',
+            meta: {
+              poster: 'https://t11.baidu.com/it/u=4159415578,2157591270&fm=173&app=25&f=JPEG?w=500&h=333&s=8A206184576332ACCEB834820300A093'
+            }
+          }])
         }
       },{
         type: 'button',

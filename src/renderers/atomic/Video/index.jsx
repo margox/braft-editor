@@ -17,7 +17,7 @@ export default class Video extends React.Component {
 
     const { toolbarVisible, playerVisible } = this.state
     const { mediaData, language } = this.props
-    const { url, width, height, name } = mediaData
+    const { url, width, height, name, meta } = mediaData
 
     return (
       <div
@@ -25,9 +25,15 @@ export default class Video extends React.Component {
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
-        <i className="braft-icon-film"></i>
-        <h5>{name}</h5>
-        <h6>{url}</h6>
+        {meta && meta.poster ? (
+          <img className="braft-media-video-poster" src={meta.poster}/>
+        ) : (
+          <div>
+            <i className="braft-icon-film"></i>
+            <h5>{name}</h5>
+            <h6>{url}</h6>
+          </div>
+        )}
         {toolbarVisible ? (
           <div
             ref={instance => this.toolbarElement = instance}
@@ -44,6 +50,8 @@ export default class Video extends React.Component {
 
   showPlayer = () => {
 
+    const { url, meta } = this.props.mediaData
+
     this.playerModal = showModal({
       title: this.props.language.videoPlayer.title,
       width: 480,
@@ -51,7 +59,7 @@ export default class Video extends React.Component {
       language: this.props.language,
       showCancel: false,
       onClose: this.handlePlayerClose,
-      children: <video className="braft-embed-video-player" src={this.props.mediaData.url} controls/>
+      children: <video poster={meta && meta.poster ? meta.poster : ''} className="braft-embed-video-player" src={url} controls/>
     })
 
   }

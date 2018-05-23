@@ -69,6 +69,22 @@ export default class EditorController extends React.Component{
     return this.getSelectionBlock().getType()
   }
 
+  getSelectionText = () => {
+
+    if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
+      return ''
+    }
+
+    const anchorKey = this.selectionState.getAnchorKey()
+    const currentContent = this.editorState.getCurrentContent()
+    const currentContentBlock = currentContent.getBlockForKey(anchorKey)
+    const start = this.selectionState.getStartOffset()
+    const end = this.selectionState.getEndOffset()
+
+    return currentContentBlock.getText().slice(start, end);
+
+  }
+
   toggleSelectionBlockType = (blockType) => {
     return this.applyChange(RichUtils.toggleBlockType(this.editorState, blockType))
   }
@@ -186,24 +202,30 @@ export default class EditorController extends React.Component{
       delete entityData.href
     }
 
-    const nextContentState = this.contentState.createEntity('LINK', 'MUTABLE', entityData)
-    const entityKey = nextContentState.getLastCreatedEntityKey()
+    try {
 
-    let nextEditorState = EditorState.set(this.editorState, {
-      currentContent: nextContentState
-    })
+      const nextContentState = this.contentState.createEntity('LINK', 'MUTABLE', entityData)
+      const entityKey = nextContentState.getLastCreatedEntityKey()
 
-    nextEditorState = RichUtils.toggleLink(nextEditorState, this.selectionState, entityKey)
-    nextEditorState = EditorState.forceSelection(nextEditorState, this.selectionState.merge({
-      anchorOffset: this.selectionState.getEndOffset(), 
-      focusOffset: this.selectionState.getEndOffset()
-    }))
+      let nextEditorState = EditorState.set(this.editorState, {
+        currentContent: nextContentState
+      })
 
-    nextEditorState = EditorState.push(nextEditorState, Modifier.insertText(
-      nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '
-    ), 'insert-text')
+      nextEditorState = RichUtils.toggleLink(nextEditorState, this.selectionState, entityKey)
+      nextEditorState = EditorState.forceSelection(nextEditorState, this.selectionState.merge({
+        anchorOffset: this.selectionState.getEndOffset(), 
+        focusOffset: this.selectionState.getEndOffset()
+      }))
 
-    return this.applyChange(nextEditorState)
+      nextEditorState = EditorState.push(nextEditorState, Modifier.insertText(
+        nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '
+      ), 'insert-text')
+
+      return this.applyChange(nextEditorState)
+
+    } catch (error) {
+      console.warn(error)
+    }
 
   }
 
