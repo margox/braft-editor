@@ -6965,7 +6965,7 @@ var ControlBar = function (_React$Component) {
               title: item.hoverTitle,
               className: 'control-item button ' + item.className,
               dangerouslySetInnerHTML: item.html ? { __html: item.html } : null,
-              onClick: function onClick() {
+              onClick: function onClick(event) {
                 if (item.modal && item.modal.id) {
                   if (_this4.extendedModals[item.modal.id]) {
                     _this4.extendedModals[item.modal.id].active = true;
@@ -6975,6 +6975,7 @@ var ControlBar = function (_React$Component) {
                     item.modal.onCreate && item.modal.onCreate(_this4.extendedModals[item.modal.id]);
                   }
                 }
+                item.onClick && item.onClick(event);
               }
             },
             !item.html ? item.text : null
@@ -6997,8 +6998,8 @@ var ControlBar = function (_React$Component) {
               title: item.hoverTitle,
               className: 'control-item button ' + item.className,
               dangerouslySetInnerHTML: item.html ? { __html: item.html } : null,
-              onClick: function onClick() {
-                return item.onClick();
+              onClick: function onClick(event) {
+                return item.onClick && item.onClick(event);
               }
             },
             !item.html ? item.text : null
@@ -7578,6 +7579,7 @@ exports.default = {
   controls: ['undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media', 'split', 'clear'],
   excludeControls: [],
   tabIndents: 2,
+  forceNewLine: false,
   textAlignOptions: ['left', 'center', 'right', 'justify'],
   allowSetTextBackgroundColor: true,
   letterSpacings: [0, 2, 4, 6],
@@ -10910,6 +10912,13 @@ var _initialiseProps = function _initialiseProps() {
 
       return false;
     } else {
+
+      if (_this3.props.forceNewLine) {
+        event.which = 13;
+        event.getModifierState = function () {
+          return true;
+        };
+      }
 
       var nextEditorState = (0, _draftjsUtils.handleNewLine)(_this3.state.editorState, event);
 

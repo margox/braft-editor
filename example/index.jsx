@@ -212,6 +212,7 @@ class Demo extends React.Component {
         <div className="demo" id="demo">
           <BraftEditor
             initialContent={this.state.initialContent}
+            forceNewLine={true}
             onHTMLChange={htmlContent => this.setState({ htmlContent })}
             contentFormat='html'
             ref={instance => this.editorInstance = instance}

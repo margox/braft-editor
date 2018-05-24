@@ -107,7 +107,7 @@ export default class ControlBar extends React.Component {
             title={item.hoverTitle}
             className={'control-item button ' + item.className}
             dangerouslySetInnerHTML={item.html ? { __html: item.html } : null}
-            onClick={() => {
+            onClick={(event) => {
               if (item.modal && item.modal.id) {
                 if (this.extendedModals[item.modal.id]) {
                   this.extendedModals[item.modal.id].active = true
@@ -117,6 +117,7 @@ export default class ControlBar extends React.Component {
                   item.modal.onCreate && item.modal.onCreate(this.extendedModals[item.modal.id])
                 }
               }
+              item.onClick && item.onClick(event)
             }}
           >
             {!item.html ? item.text : null}
@@ -137,7 +138,7 @@ export default class ControlBar extends React.Component {
             title={item.hoverTitle}
             className={'control-item button ' + item.className}
             dangerouslySetInnerHTML={item.html ? { __html: item.html } : null}
-            onClick={() => item.onClick()}
+            onClick={(event) => item.onClick && item.onClick(event)}
           >
             {!item.html ? item.text : null}
           </button>

@@ -9,6 +9,9 @@
 #### 如果需要在IE10中只用本项目，请参考：[braft-polyfill](https://github.com/margox/braft-polyfill)
 
 ## 最近更新
+- 2018-05-24 v1.9.6
+  - 新增forceNewLine属性，设置为true时，按回车键将插入`<br>`而非`<p></p>`
+  - 部分细节优化
 - 2018-05-23 v1.9.5
   - 部分细节优化
 - 2018-05-22 v1.9.4
@@ -288,12 +291,17 @@ class Demo extends React.Component {
 
 ### viewWrapper [string]
 
-指定编辑器的包裹容器的选择器字符串（例如'#wrapper', '.container'），用于下拉菜单等组件的位置自适应，默认为body
+指定编辑器的包裹容器的选择器字符串（例如'#wrapper', '.container'），用于下拉菜单等组件的位置自适应，默认为编辑器自身
 
 
 ### tabIndents [number]
 
 指定编辑器编辑代码块时按下tab插入的缩进空格数，默认是2
+
+
+### forceNewLine [boolean]
+
+指定是否启用强制空行，该属性为true时按回车键将会插入`<br>`而非`<p></p>`，默认为false
 
 
 ### textAlignOptions [array]

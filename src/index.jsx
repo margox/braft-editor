@@ -280,6 +280,11 @@ export default class BraftEditor extends EditorController {
 
     } else {
 
+      if (this.props.forceNewLine) {
+        event.which = 13
+        event.getModifierState = () => true
+      }
+
       const nextEditorState = handleNewLine(this.state.editorState, event)
 
       if (nextEditorState) {
