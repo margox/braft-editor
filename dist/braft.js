@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("draft-js"), require("draftjs-utils"), require("draft-convert"), require("react-dom")) : factory(root["react"], root["draft-js"], root["draftjs-utils"], root["draft-convert"], root["react-dom"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_4__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_93__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_93__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -5337,12 +5337,6 @@ var UniqueIndex = exports.UniqueIndex = function UniqueIndex() {
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_4__;
-
-/***/ }),
-/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5585,6 +5579,12 @@ var showModal = exports.showModal = function showModal(props) {
 
   return modalInstance;
 };
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
 
 /***/ }),
 /* 6 */
@@ -6815,7 +6815,7 @@ var _DropDown = __webpack_require__(1);
 
 var _DropDown2 = _interopRequireDefault(_DropDown);
 
-var _Modal = __webpack_require__(5);
+var _Modal = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7549,7 +7549,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _draftJs = __webpack_require__(4);
+var _draftJs = __webpack_require__(5);
 
 // TODO
 // 允许自定义的快捷键设置
@@ -7650,7 +7650,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _draftJs = __webpack_require__(4);
+var _draftJs = __webpack_require__(5);
 
 var _draftjsUtils = __webpack_require__(10);
 
@@ -8377,7 +8377,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _immutable = __webpack_require__(2);
 
-var _draftJs = __webpack_require__(4);
+var _draftJs = __webpack_require__(5);
 
 var _Image = __webpack_require__(54);
 
@@ -9175,7 +9175,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Modal = __webpack_require__(5);
+var _Modal = __webpack_require__(4);
 
 var _Modal2 = _interopRequireDefault(_Modal);
 
@@ -10477,7 +10477,7 @@ var _languages = __webpack_require__(27);
 
 var _languages2 = _interopRequireDefault(_languages);
 
-var _draftJs = __webpack_require__(4);
+var _draftJs = __webpack_require__(5);
 
 var _DraftPasteProcessor = __webpack_require__(29);
 
@@ -11092,7 +11092,8 @@ exports.default = {
     title: 'Play Audio'
   },
   videoPlayer: {
-    title: 'Play Video'
+    title: 'Play Video',
+    embedTitle: 'Embed Media'
   },
   media: {
     image: 'Image',
@@ -11186,7 +11187,8 @@ exports.default = {
     title: '播放音頻文件'
   },
   videoPlayer: {
-    title: '播放視頻文件'
+    title: '播放視頻文件',
+    embedTitle: '嵌入式媒體'
   },
   media: {
     image: '圖像',
@@ -11280,7 +11282,8 @@ exports.default = {
     title: '播放音频文件'
   },
   videoPlayer: {
-    title: '播放视频文件'
+    title: '播放视频文件',
+    embedTitle: '嵌入式媒体'
   },
   media: {
     image: '图像',
@@ -11323,7 +11326,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Modal = __webpack_require__(5);
+var _Modal = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -11465,6 +11468,8 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
+var _Modal = __webpack_require__(4);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -11488,7 +11493,20 @@ var Embed = function (_React$Component) {
     }
 
     return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Embed.__proto__ || Object.getPrototypeOf(Embed)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      toolbarVisible: false
+      toolbarVisible: false,
+      playerVisible: false
+    }, _this.showPlayer = function () {
+      var url = _this.props.mediaData.url;
+
+
+      _this.playerModal = (0, _Modal.showModal)({
+        title: _this.props.language.videoPlayer.embedTitle,
+        confirmable: true,
+        language: _this.props.language,
+        showCancel: false,
+        onClose: _this.handlePlayerClose,
+        children: _react2.default.createElement('div', { className: 'braft-embed-media-player', dangerouslySetInnerHTML: { __html: url } })
+      });
     }, _this.removeEmbed = function () {
       _this.props.editor.removeBlock(_this.props.block);
     }, _this.showToolbar = function () {
@@ -11499,15 +11517,24 @@ var Embed = function (_React$Component) {
       _this.setState({
         toolbarVisible: false
       });
+    }, _this.handlePlayerClose = function () {
+      _this.props.editor && _this.props.editor.focus();
     }, _temp), _possibleConstructorReturn(_this, _ret);
   }
 
   _createClass(Embed, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.playerModal && this.playerModal.destroy();
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      var toolbarVisible = this.state.toolbarVisible;
+      var _state = this.state,
+          toolbarVisible = _state.toolbarVisible,
+          playerVisible = _state.playerVisible;
       var _props = this.props,
           mediaData = _props.mediaData,
           language = _props.language;
@@ -11543,6 +11570,11 @@ var Embed = function (_React$Component) {
             },
             className: 'braft-embed-video-toolbar'
           },
+          _react2.default.createElement(
+            'a',
+            { onClick: this.showPlayer },
+            '\uE037'
+          ),
           _react2.default.createElement(
             'a',
             { onClick: this.removeEmbed },
@@ -12048,7 +12080,7 @@ var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _Modal = __webpack_require__(5);
+var _Modal = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 

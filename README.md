@@ -9,6 +9,8 @@
 #### 如果需要在IE10中只用本项目，请参考：[braft-polyfill](https://github.com/margox/braft-polyfill)
 
 ## 最近更新
+- 2018-05-29 v1.9.7
+  - 支持在编辑器内播放嵌入式媒体
 - 2018-05-24 v1.9.6
   - 新增forceNewLine属性，设置为true时，按回车键将插入`<br>`而非`<p></p>`
   - 部分细节优化
