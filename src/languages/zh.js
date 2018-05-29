@@ -58,7 +58,8 @@ export default {
     title: '播放音频文件'
   },
   videoPlayer: {
-    title: '播放视频文件'
+    title: '播放视频文件',
+    embedTitle: '嵌入式媒体'
   },
   media: {
     image: '图像',

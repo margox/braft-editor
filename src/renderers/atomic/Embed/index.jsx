@@ -1,15 +1,21 @@
 import './style.scss'
 import React from 'react'
+import { showModal } from 'components/common/Modal'
 
 export default class Embed extends React.Component {
 
   state = {
-    toolbarVisible: false
+    toolbarVisible: false,
+    playerVisible: false
+  }
+
+  componentWillUnmount () {
+    this.playerModal && this.playerModal.destroy()
   }
 
   render () {
 
-    const { toolbarVisible } = this.state
+    const { toolbarVisible, playerVisible } = this.state
     const { mediaData, language } = this.props
     const { url, width, height, name } = mediaData
 
@@ -27,11 +33,27 @@ export default class Embed extends React.Component {
             ref={instance => this.toolbarElement = instance}
             className="braft-embed-video-toolbar"
           >
+            <a onClick={this.showPlayer}>&#xe037;</a>
             <a onClick={this.removeEmbed}>&#xe9ac;</a>
           </div>
         ) : null}
       </div>
     )
+
+  }
+
+  showPlayer = () => {
+
+    const { url } = this.props.mediaData
+
+    this.playerModal = showModal({
+      title: this.props.language.videoPlayer.embedTitle,
+      confirmable: true,
+      language: this.props.language,
+      showCancel: false,
+      onClose: this.handlePlayerClose,
+      children: <div className="braft-embed-media-player" dangerouslySetInnerHTML={{ __html: url}}/>
+    })
 
   }
 
@@ -49,6 +71,10 @@ export default class Embed extends React.Component {
     this.setState({
       toolbarVisible: false
     })
+  }
+
+  handlePlayerClose = () => {
+    this.props.editor && this.props.editor.focus()
   }
 
 }

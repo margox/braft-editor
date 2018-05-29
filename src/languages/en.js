@@ -57,7 +57,8 @@ export default {
     title: 'Play Audio'
   },
   videoPlayer: {
-    title: 'Play Video'
+    title: 'Play Video',
+    embedTitle: 'Embed Media'
   },
   media: {
     image: 'Image',
