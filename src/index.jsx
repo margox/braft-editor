@@ -47,7 +47,6 @@ export default class BraftEditor extends EditorController {
   }
 
   constructor (props) {
-
     super(props)
 
     const editorState = EditorState.createEmpty(editorDecorators)
@@ -76,11 +75,9 @@ export default class BraftEditor extends EditorController {
     if (!document.body.classList.contains(`browser-${  browser}`)) {
       document.body.classList.add(`browser-${  browser}`)
     }
-
   }
 
   componentDidMount () {
-
     if (typeof this.props.initialContent !== "undefined" && this.props.initialContent !== null) {
       this.setContent(this.props.initialContent)
       this.contentInitialized = true
@@ -89,7 +86,6 @@ export default class BraftEditor extends EditorController {
   }
 
   componentWillReceiveProps (nextProps) {
-
     if (typeof nextProps.initialContent !== "undefined" && nextProps.initialContent !== null) {
       if (!this.contentInitialized) {
         this.contentInitialized = true
@@ -102,7 +98,6 @@ export default class BraftEditor extends EditorController {
   }
 
   onChange = (editorState) => {
-
     this.editorState = editorState
     this.contentState = editorState.getCurrentContent()
     this.selectionState = editorState.getSelection()
@@ -138,7 +133,6 @@ export default class BraftEditor extends EditorController {
   }
 
   setContent = (content, format) => {
-
     let convertedContent
     const newState = {}
     let { contentFormat, colors } = this.props
@@ -165,8 +159,7 @@ export default class BraftEditor extends EditorController {
 
     this.setState(newState)
 
-    return this
-
+    return this;
   }
 
   setEditorProp = (key, name) => {
@@ -187,7 +180,6 @@ export default class BraftEditor extends EditorController {
   }
 
   onTab = (event) => {
-
     const currentBlock = this.getSelectionBlock()
     const currentBlockType = currentBlock.getType()
     const tabIndents = this.props.tabIndents
@@ -325,7 +317,6 @@ export default class BraftEditor extends EditorController {
   }
 
   handlePastedText = (text, html) => {
-
     if (!html) {
       return false
     }
@@ -448,7 +439,5 @@ export default class BraftEditor extends EditorController {
         </div>
       </div>
     )
-
   }
-
 }
