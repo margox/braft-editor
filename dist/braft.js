@@ -10720,6 +10720,17 @@ BraftEditor.defaultProps = _extends({}, _options2.default, {
   onSave: null
 });
 
+BraftEditor.getContent = function (format, contentState) {
+  var fontFamilies = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  fontFamilies = fontFamilies || _options2.default.fontFamilies;
+
+  if (format === "html") {
+    return (0, _draftConvert.convertToHTML)((0, _convert.getToHTMLConfig)({ contentState: contentState, fontFamilies: fontFamilies }))(contentState);
+  }
+  return (0, _draftJs.convertToRaw)(contentState);
+};
+
 var _initialiseProps = function _initialiseProps() {
   var _this3 = this;
 
