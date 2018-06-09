@@ -37,6 +37,14 @@ export default class BraftEditor extends EditorController {
     onSave: null
   }
 
+  static getContent = (format, contentState, fontFamilies) => {
+    if (format === 'html') {
+      return convertToHTML(getToHTMLConfig({contentState, fontFamilies}))(contentState)
+    } else {
+      return convertToRaw(contentState)
+    }
+  }
+
   constructor (props) {
 
     super(props)
@@ -101,7 +109,7 @@ export default class BraftEditor extends EditorController {
       clearTimeout(this.syncTimer)
       this.syncTimer = setTimeout(() => {
         const { onChange, onRawChange, onHTMLChange } = this.props
-        onChange && onChange(this.getContent())
+        onChange && onChange(BraftEditor.getContent('raw', this.contentState, this.props.fontFamilies))
         onHTMLChange && onHTMLChange(this.getHTMLContent())
         onRawChange && onRawChange(this.getRawContent())
       }, 300)
@@ -110,26 +118,12 @@ export default class BraftEditor extends EditorController {
   }
 
   getHTMLContent = () => {
-    return this.getContent('html')
+    return BraftEditor.getContent('html', this.contentState, this.props.fontFamilies)
+    
   }
 
   getRawContent = () => {
-    return this.getContent('raw')
-  }
-
-  getContent = (format) => {
-
-    format = format || this.props.contentFormat || 'raw'
-
-    const contentState = this.contentState
-    const { fontFamilies} = this.props
-
-    if (format === 'html') {
-      return convertToHTML(getToHTMLConfig({contentState, fontFamilies}))(contentState)
-    } else {
-      return convertToRaw(contentState)
-    }
-
+    return BraftEditor.getContent('raw', this.contentState, this.props.fontFamilies)
   }
 
   isEmpty = () => {
