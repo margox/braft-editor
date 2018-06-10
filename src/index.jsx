@@ -38,12 +38,13 @@ export default class BraftEditor extends EditorController {
     onSave: null
   }
 
-  static getContent = (format, contentState, fontFamilies) => {
+  static getContent = (format, contentState, fontFamilies = null) => {
+    fontFamilies = fontFamilies || defaultOptions.fontFamilies;
+
     if (format === "html") {
       return convertToHTML(getToHTMLConfig({contentState, fontFamilies}))(contentState)
-    } 
+    }
     return convertToRaw(contentState)
-    
   }
 
   constructor (props) {
