@@ -212,12 +212,12 @@ class Demo extends React.Component {
         <div className="demo" id="demo">
           <BraftEditor
             initialContent={this.state.initialContent}
-            forceNewLine={true}
             onHTMLChange={htmlContent => this.setState({ htmlContent })}
             contentFormat='html'
             ref={instance => this.editorInstance = instance}
             extendControls={extendControls}
             extendAtomics={extendAtomics}
+            media={{uploadFn: this.uploadFn}}
           />
         </div>
         <div><a href="javascript:void(0);" onClick={this.insertHTMLContent}>插入HTML片段</a></div>

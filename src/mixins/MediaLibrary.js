@@ -1,84 +1,85 @@
 import { UniqueIndex } from 'utils/base'
 
-export default class MediaLibrary {
+export default Component => class extends Component {
 
-  constructor () {
-    this.items = []
+  constructor (props) {
+    super.constructor(props)
+    this.mediaItems = []
   }
 
-  getItem (id) {
-    return this.items.find(item => item.id === id)
+  getMediaItem (id) {
+    return this.mediaItems.find(item => item.id === id)
   }
 
-  getSelectedItems () {
-    return this.items.filter(item => item.selected)
+  getSelectedMediaItems () {
+    return this.mediaItems.filter(item => item.selected)
   }
 
-  setItems (items) {
-    this.items = items.map(item => ({ ...item, id: item.id.toString() })) || []
-    this.applyChange()
+  setMediaItems (items) {
+    this.mediaItems = items.map(item => ({ ...item, id: item.id.toString() })) || []
+    this.applyMediaChange()
     this.uploadItems()
   }
 
-  addItem (item) {
-    this.addItems([item])
+  addMediaItem (item) {
+    this.addMediaItems([item])
   }
 
-  addItems (items) {
-    this.items = [ ...this.items, ...items.map(item => ({ ...item, id: item.id.toString()})) ]
-    this.applyChange()
+  addMediaItems (items) {
+    this.mediaItems = [ ...this.mediaItems, ...items.map(item => ({ ...item, id: item.id.toString()})) ]
+    this.applyMediaChange()
     this.uploadItems()
   }
 
-  selectItem (id) {
-    const item = this.getItem(id)
+  selectMediaItem (id) {
+    const item = this.getMediaItem(id)
     if (item && (item.uploading || item.error)) {
       return false
     }
-    this.setItemState(id, {
+    this.setMediaItemState(id, {
       selected: true
     })
   }
 
-  selectAllItems () {
-    this.items = this.items.filter(item => !item.error && !item.uploading).map(item => ({ ...item, selected: true}))
-    this.applyChange()
+  selectAllMediaItems () {
+    this.mediaItems = this.mediaItems.filter(item => !item.error && !item.uploading).map(item => ({ ...item, selected: true}))
+    this.applyMediaChange()
   }
 
-  deselectItem (id) {
-    this.setItemState(id, {
+  deselectMediaItem (id) {
+    this.setMediaItemState(id, {
       selected: false
     })
   }
 
-  deselectAllItems () {
-    this.items = this.items.map(item => ({ ...item, selected: false}))
-    this.applyChange()
+  deselectAllMediaItems () {
+    this.mediaItems = this.mediaItems.map(item => ({ ...item, selected: false}))
+    this.applyMediaChange()
   }
 
-  removeItem (id) {
-    this.items = this.items.filter(item => item.id !== id)
-    this.applyChange()
+  removeMediaItem (id) {
+    this.mediaItems = this.mediaItems.filter(item => item.id !== id)
+    this.applyMediaChange()
   }
 
-  removeSelectedItems () {
-    this.items = this.items.filter(item => !item.selected)
-    this.applyChange()
+  removeSelectedMediaItems () {
+    this.mediaItems = this.mediaItems.filter(item => !item.selected)
+    this.applyMediaChange()
   }
 
   removeErrorItems () {
-    this.items = this.items.filter(item => !item.error)
-    this.applyChange()
+    this.mediaItems = this.mediaItems.filter(item => !item.error)
+    this.applyMediaChange()
   }
 
   removeAllItems () {
-    this.items = []
-    this.applyChange()
+    this.mediaItems = []
+    this.applyMediaChange()
   }
 
-  setItemState (id, state) {
-    this.items = this.items.map(item => item.id === id ? { ...item, ...state } : item)
-    this.applyChange()
+  setMediaItemState (id, state) {
+    this.mediaItems = this.mediaItems.map(item => item.id === id ? { ...item, ...state } : item)
+    this.applyMediaChange()
   }
 
   reuploadErrorItems () {
@@ -87,7 +88,7 @@ export default class MediaLibrary {
 
   uploadItems (ignoreError = false) {
 
-    this.items.forEach((item, index) => {
+    this.mediaItems.forEach((item, index) => {
 
       if (item.uploading || item.url) {
         return false
@@ -105,11 +106,11 @@ export default class MediaLibrary {
           return false
         }
       } else if (!this.uploadFn) {
-        this.setItemState(item.id, {error: 1})
+        this.setMediaItemState(item.id, {error: 1})
         return false
       }
 
-      this.setItemState(item.id, {
+      this.setMediaItemState(item.id, {
         uploading: true,
         uploadProgress: 0,
         error: 0
@@ -123,13 +124,13 @@ export default class MediaLibrary {
           this.handleUploadSuccess(item.id, res.url, serverId, res.meta)
         },
         progress: (progress) => {
-          this.setItemState(item.id, {
+          this.setMediaItemState(item.id, {
             uploading: true,
             uploadProgress: progress
           })
         },
         error: (error) => {
-          this.setItemState(item.id, {
+          this.setMediaItemState(item.id, {
             uploading: false,
             error: 2
           })
@@ -143,7 +144,7 @@ export default class MediaLibrary {
   createThumbnail (id, url) {
 
     this.compressImage(url, 226, 226, (result) => {
-      this.setItemState(id, {
+      this.setMediaItemState(id, {
         thumbnail: result.url
       })
     })
@@ -160,7 +161,7 @@ export default class MediaLibrary {
 
   handleUploadSuccess (id, url, newId, meta = {}) {
 
-    this.setItemState(id, {
+    this.setMediaItemState(id, {
       id: newId || id,
       file: null,
       url: url,
@@ -170,7 +171,7 @@ export default class MediaLibrary {
       meta: meta
     })
 
-    const item = this.getItem(newId || id)
+    const item = this.getMediaItem(newId || id)
     item.onReadyToInsert && item.onReadyToInsert(item)
 
   }
@@ -212,15 +213,15 @@ export default class MediaLibrary {
 
   }
 
-  applyChange (changeType) {
-    this.onChange(this.items)
+  applyMediaChange () {
+    this.onMediaItemsChange(this.mediaItems)
   }
 
   uploadImage (file, callback) {
 
     const fileId = new Date().getTime() + '_' + UniqueIndex()
 
-    this.addItem({
+    this.addMediaItem({
       type: 'IMAGE',
       id: fileId,
       file: file,
@@ -256,6 +257,6 @@ export default class MediaLibrary {
 
   }
 
-  onChange (items) {}
+  onMediaItemsChange (items) {}
 
 }

@@ -3,7 +3,7 @@ import { Modifier, EditorState, SelectionState, RichUtils, AtomicBlockUtils } fr
 import { setBlockData, getSelectionEntity, removeAllInlineStyles } from 'draftjs-utils'
 import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
 
-export default class EditorController extends React.Component{
+export default Component => class extends Component {
 
   applyChange = (editorState) => {
     this.onChange(editorState)
@@ -11,14 +11,14 @@ export default class EditorController extends React.Component{
   }
 
   selectionCollapsed = () => {
-    return this.selectionState.isCollapsed()
+    return this.state.selectionState.isCollapsed()
   }
 
   selectBlock = (block) => {
 
     const blockKey = block.getKey()
 
-    return this.applyChange(EditorState.forceSelection(this.editorState, new SelectionState({
+    return this.applyChange(EditorState.forceSelection(this.state.editorState, new SelectionState({
       anchorKey: blockKey,
       anchorOffset: 0,
       focusKey: blockKey,
@@ -28,8 +28,8 @@ export default class EditorController extends React.Component{
   }
 
   selectNextBlock = (block) => {
-    const nextBlock = this.contentState.getBlockAfter(block.getKey())
-    return nextBlock ? this.selectBlock(nextBlock) : this.applyChange(this.editorState)
+    const nextBlock = this.state.contentState.getBlockAfter(block.getKey())
+    return nextBlock ? this.selectBlock(nextBlock) : this.applyChange(this.state.editorState)
   }
 
   removeBlock = (block, lastSelection = null) => {
@@ -37,7 +37,7 @@ export default class EditorController extends React.Component{
     let nextContentState, nextEditorState
     const blockKey = block.getKey()
 
-    nextContentState = Modifier.removeRange(this.contentState, new SelectionState({
+    nextContentState = Modifier.removeRange(this.state.contentState, new SelectionState({
       anchorKey: blockKey,
       anchorOffset: 0,
       focusKey: blockKey,
@@ -45,7 +45,7 @@ export default class EditorController extends React.Component{
     }), 'backward')
 
     nextContentState = Modifier.setBlockType(nextContentState, nextContentState.getSelectionAfter(), 'unstyled')
-    nextEditorState = EditorState.push(this.editorState, nextContentState, 'remove-range')
+    nextEditorState = EditorState.push(this.state.editorState, nextContentState, 'remove-range')
     nextEditorState = EditorState.forceSelection(nextEditorState, lastSelection || nextContentState.getSelectionAfter())
 
     return this.applyChange(nextEditorState)
@@ -53,11 +53,11 @@ export default class EditorController extends React.Component{
   }
 
   getSelectionBlock = () => {
-    return this.contentState.getBlockForKey(this.selectionState.getAnchorKey())
+    return this.state.contentState.getBlockForKey(this.state.selectionState.getAnchorKey())
   }
 
   setSelectionBlockData = (blockData) => {
-    return this.applyChange(setBlockData(this.editorState, blockData))
+    return this.applyChange(setBlockData(this.state.editorState, blockData))
   }
 
   getSelectionBlockData = (name) => {
@@ -71,29 +71,29 @@ export default class EditorController extends React.Component{
 
   getSelectionText = () => {
 
-    if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
+    if (this.state.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return ''
     }
 
-    const anchorKey = this.selectionState.getAnchorKey()
-    const currentContent = this.editorState.getCurrentContent()
-    const currentContentBlock = currentContent.getBlockForKey(anchorKey)
-    const start = this.selectionState.getStartOffset()
-    const end = this.selectionState.getEndOffset()
+    const anchorKey = this.state.selectionState.getAnchorKey()
+    const currentContentBlock = this.state.contentState.getBlockForKey(anchorKey)
+    const start = this.state.selectionState.getStartOffset()
+    const end = this.state.selectionState.getEndOffset()
 
     return currentContentBlock.getText().slice(start, end);
 
   }
 
   toggleSelectionBlockType = (blockType) => {
-    return this.applyChange(RichUtils.toggleBlockType(this.editorState, blockType))
+    return this.applyChange(RichUtils.toggleBlockType(this.state.editorState, blockType))
   }
 
   getSelectionEntityData = (type) => {
 
-    const entityKey = getSelectionEntity(this.editorState)
+    const entityKey = getSelectionEntity(this.state.editorState)
+
     if (entityKey) {
-      let entity = this.contentState.getEntity(entityKey)
+      let entity = this.state.contentState.getEntity(entityKey)
       if (entity && entity.get('type') === type) {
         let { href, target } = entity.getData()
         return { href, target }
@@ -107,7 +107,7 @@ export default class EditorController extends React.Component{
   }
 
   getSelectionInlineStyle = () => {
-    return this.editorState.getCurrentInlineStyle()
+    return this.state.editorState.getCurrentInlineStyle()
   }
 
   selectionHasInlineStyle = (style) => {
@@ -116,7 +116,7 @@ export default class EditorController extends React.Component{
 
   toggleSelectionInlineStyle = (style, stylesToBeRemoved = []) => {
 
-    if (this.selectionState.isCollapsed()) {
+    if (this.state.selectionState.isCollapsed()) {
       return this
     } 
      
@@ -125,16 +125,16 @@ export default class EditorController extends React.Component{
 
     const currentInlineStyle = this.getSelectionInlineStyle()
     const nextContentState = stylesToBeRemoved.length ? stylesToBeRemoved.reduce((contentState, item) => {
-      return Modifier.removeInlineStyle(contentState, this.selectionState, item) 
-    }, this.contentState) : this.contentState
+      return Modifier.removeInlineStyle(contentState, this.state.selectionState, item) 
+    }, this.state.contentState) : this.state.contentState
 
-    const nextEditorState = stylesToBeRemoved.length ? EditorState.push(this.editorState, nextContentState, 'change-inline-style') : this.editorState
+    const nextEditorState = stylesToBeRemoved.length ? EditorState.push(this.state.editorState, nextContentState, 'change-inline-style') : this.state.editorState
     return this.applyChange(RichUtils.toggleInlineStyle(nextEditorState, style))
 
   }
 
   removeSelectionInlineStyles = () => {
-    return this.applyChange(removeAllInlineStyles(this.editorState))
+    return this.applyChange(removeAllInlineStyles(this.state.editorState))
   }
 
   toggleSelectionAlignment = (alignment) => {
@@ -173,13 +173,13 @@ export default class EditorController extends React.Component{
 
   insertHorizontalLine = () => {
 
-    if (!this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
+    if (!this.state.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return this
     }
 
-    const contentStateWithEntity = this.editorState.getCurrentContent().createEntity('HR', 'IMMUTABLE', {})
+    const contentStateWithEntity = this.state.contentState.createEntity('HR', 'IMMUTABLE', {})
     const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
-    const newEditorState = AtomicBlockUtils.insertAtomicBlock(this.editorState, entityKey, ' ')
+    const newEditorState = AtomicBlockUtils.insertAtomicBlock(this.state.editorState, entityKey, ' ')
 
     return this.applyChange(newEditorState)
 
@@ -189,12 +189,12 @@ export default class EditorController extends React.Component{
 
     let entityData = { href, target }
 
-    if (this.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
+    if (this.state.selectionState.isCollapsed() || this.getSelectionBlockType() === 'atomic') {
       return this
     }
 
     if (href === false) {
-      this.applyChange(RichUtils.toggleLink(this.editorState, this.selectionState, null))
+      this.applyChange(RichUtils.toggleLink(this.state.editorState, this.state.selectionState, null))
       return this
     }
 
@@ -204,17 +204,17 @@ export default class EditorController extends React.Component{
 
     try {
 
-      const nextContentState = this.contentState.createEntity('LINK', 'MUTABLE', entityData)
+      const nextContentState = this.state.contentState.createEntity('LINK', 'MUTABLE', entityData)
       const entityKey = nextContentState.getLastCreatedEntityKey()
 
-      let nextEditorState = EditorState.set(this.editorState, {
+      let nextEditorState = EditorState.set(this.state.editorState, {
         currentContent: nextContentState
       })
 
-      nextEditorState = RichUtils.toggleLink(nextEditorState, this.selectionState, entityKey)
-      nextEditorState = EditorState.forceSelection(nextEditorState, this.selectionState.merge({
-        anchorOffset: this.selectionState.getEndOffset(), 
-        focusOffset: this.selectionState.getEndOffset()
+      nextEditorState = RichUtils.toggleLink(nextEditorState, this.state.selectionState, entityKey)
+      nextEditorState = EditorState.forceSelection(nextEditorState, this.state.selectionState.merge({
+        anchorOffset: this.state.selectionState.getEndOffset(), 
+        focusOffset: this.state.selectionState.getEndOffset()
       }))
 
       nextEditorState = EditorState.push(nextEditorState, Modifier.insertText(
@@ -237,13 +237,13 @@ export default class EditorController extends React.Component{
       return this
     }
 
-    if (!this.selectionState.isCollapsed()) {
-      return replace ? this.applyChange(EditorState.push(this.editorState, Modifier.replaceText(
-        this.contentState, this.selectionState, text
+    if (!this.state.selectionState.isCollapsed()) {
+      return replace ? this.applyChange(EditorState.push(this.state.editorState, Modifier.replaceText(
+        this.state.contentState, this.state.selectionState, text
       ), 'replace-text')) : this
     } else {
-      return this.applyChange(EditorState.push(this.editorState, Modifier.insertText(
-        this.contentState, this.selectionState, text
+      return this.applyChange(EditorState.push(this.state.editorState, Modifier.insertText(
+        this.state.contentState, this.state.selectionState, text
       ), 'insert-text'))
     }
 
@@ -267,8 +267,8 @@ export default class EditorController extends React.Component{
       this.requestFocus()
 
       return this.focus().applyChange(
-        EditorState.push(this.editorState, Modifier.replaceWithFragment(
-          this.contentState, this.selectionState, blockMap
+        EditorState.push(this.state.editorState, Modifier.replaceWithFragment(
+          this.state.contentState, this.state.selectionState, blockMap
         ), 'insert-fragment')
       )
 
@@ -290,17 +290,17 @@ export default class EditorController extends React.Component{
 
     const newEditorState = medias.reduce((editorState, media) => {
       const { url, name, type, meta } = media
-      const contentStateWithEntity = editorState.getCurrentContent().createEntity(type, 'IMMUTABLE', { url, name, type, meta })
+      const contentStateWithEntity = this.contentState.createEntity(type, 'IMMUTABLE', { url, name, type, meta })
       const entityKey = contentStateWithEntity.getLastCreatedEntityKey()
       return AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ')
-    }, this.editorState)
+    }, this.state.editorState)
 
     return this.applyChange(newEditorState)
 
   }
 
   setMediaData = (entityKey, data) => {
-    return this.applyChange(EditorState.push(this.editorState, this.contentState.mergeEntityData(entityKey, data), 'change-block-data'))
+    return this.applyChange(EditorState.push(this.state.editorState, this.state.contentState.mergeEntityData(entityKey, data), 'change-block-data'))
   }
 
   removeMedia = (mediaBlock) => {
@@ -326,9 +326,8 @@ export default class EditorController extends React.Component{
 
   clear = () => {
 
-    const contentState = this.editorState.getCurrentContent()
-    const firstBlock = contentState.getFirstBlock()
-    const lastBlock = contentState.getLastBlock()
+    const firstBlock = this.state.contentState.getFirstBlock()
+    const lastBlock = this.state.contentState.getLastBlock()
 
     const allSelected = new SelectionState({
       anchorKey: firstBlock.getKey(),
@@ -338,22 +337,22 @@ export default class EditorController extends React.Component{
       hasFocus: true
     })
 
-    this.editorState = EditorState.push(
-      this.editorState,
-      Modifier.removeRange(contentState, allSelected, 'backward'),
+    this.state.editorState = EditorState.push(
+      this.state.editorState,
+      Modifier.removeRange(this.state.contentState, allSelected, 'backward'),
       'remove-range'
     )
 
-    return this.applyChange(this.editorState)
+    return this.applyChange(this.state.editorState)
 
   }
 
   undo = () => {
-    return this.applyChange(EditorState.undo(this.editorState))
+    return this.applyChange(EditorState.undo(this.state.editorState))
   }
 
   redo = () => {
-    return this.applyChange(EditorState.redo(this.editorState))
+    return this.applyChange(EditorState.redo(this.state.editorState))
   }
 
   focus = () => {
@@ -367,15 +366,11 @@ export default class EditorController extends React.Component{
   }
 
   requestFocus = () => {
-    window.setImmediate(() => {
-      this.focus()
-    })
+    window.setImmediate(this.focus)
   }
 
   requestBlur = () => {
-    window.setImmediate(() => {
-      this.blur()
-    })
+    window.setImmediate(this.blur)
   }
 
 }
