@@ -105,13 +105,17 @@ export default class BraftEditor extends EditorController {
     this.setState({ editorState }, () => {
       clearTimeout(this.syncTimer)
       this.syncTimer = setTimeout(() => {
-        const { onChange, onRawChange, onHTMLChange } = this.props
-        onChange && onChange(BraftEditor.getContent("raw", this.contentState, this.props.fontFamilies))
-        onHTMLChange && onHTMLChange(this.getHTMLContent())
-        onRawChange && onRawChange(this.getRawContent())
+        if (this.props.onChange) {
+          this.props.onChange(BraftEditor.getContent("raw", this.contentState, this.props.fontFamilies))
+        }
+        if (this.props.onHTMLChange) {
+          this.props.onHTMLChange(this.getHTMLContent());
+        }
+        if (this.props.onRawChange) {
+          this.props.onRawChange(this.getRawContent());
+        }
       }, 300)
     })
-
   }
 
   getHTMLContent = () => BraftEditor.getContent("html", this.contentState, this.props.fontFamilies)
