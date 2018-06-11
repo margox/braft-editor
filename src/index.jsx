@@ -83,7 +83,6 @@ export default class BraftEditor extends EditorController {
       this.setContent(this.props.initialContent)
       this.contentInitialized = true
     }
-
   }
 
   componentWillReceiveProps (nextProps) {
@@ -438,9 +437,13 @@ export default class BraftEditor extends EditorController {
 
     return (
       <div className={`BraftEditor-container BraftEditor-instance-${this.instanceIndex} ${(disabled ? "disabled" : "")}`}>
-        <ControlBar {...controlBarProps} />
+        <ControlBar 
+          {...controlBarProps} 
+        />
         <div className="BraftEditor-content" style={height ? { height } : {}}>
-          <Editor {...editorProps} />
+          <Editor 
+            {...editorProps} 
+          />
         </div>
       </div>
     )
