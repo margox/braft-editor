@@ -41,13 +41,10 @@ module.exports = {
     ]
   },
   resolve: {
-    modules: [
-      path.join(__dirname, './src'),
-      path.join(__dirname, './node_modules')
-    ],
+    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
     alias: {
-      'react': path.join(__dirname, 'node_modules', 'react'),
-      'sassinc': path.join(__dirname, './src/assets/scss/_inc.scss')
+      'react': path.join(__dirname, '../node_modules', 'react'),
+      'scssinc': path.join(__dirname, '../src/assets/scss/_inc.scss')
     },
     extensions: ['.js', '.jsx']
   }

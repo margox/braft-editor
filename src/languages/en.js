@@ -65,19 +65,5 @@ export default {
     video: 'Video',
     audio: 'Audio',
     embed: 'Embed'
-  },
-  mediaPicker: {
-    caption: 'Media Library',
-    dragTip: 'Click Or Drag Files Here',
-    dropTip: 'Drop To Upload',
-    selectAll: 'Select All',
-    deselect: 'Deselect',
-    removeSelected: 'Remove Selected Items',
-    externalInputPlaceHolder: 'Source Name|Source URL',
-    externalInputTip: 'Split source name and source URL with "|", confirm by hit Enter.',
-    addLocalFile: 'Add from local',
-    addExternalSource: 'Add from Internet',
-    unnamedItem: 'Unnamed Item',
-    confirmInsert: 'Insert selected items'
   }
 }

@@ -1,8 +1,8 @@
 import './style.scss'
 import React from 'react'
-import { UniqueIndex } from 'utils/base'
 import DropDown from 'components/common/DropDown'
 import ColorPicker from 'components/common/ColorPicker'
+import { BaseUtils, ContentUtils } from 'braft-utils'
 
 export default class TextColor extends React.Component {
 
@@ -10,30 +10,29 @@ export default class TextColor extends React.Component {
     colorType: 'color'
   }
 
-  dropDownComponentId = 'BRAFT-DROPDOWN-' + UniqueIndex()
+  dropDownComponentId = 'BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex()
 
   render () {
 
     let captionStyle = {}
     let currentColor = null
     let { colorType } = this.state
-    let { editor, language, colors, tempColors, viewWrapper, editorHeight, allowSetTextBackgroundColor } = this.props
 
-    ;[ ...colors, ...tempColors ].forEach((color) => {
+    this.props.colors.forEach((color) => {
       let color_id = color.replace('#', '')
-      if (editor.selectionHasInlineStyle('COLOR-' + color_id)) {
+      if (ContentUtils.selectionHasInlineStyle(this.props.editorState, 'COLOR-' + color_id)) {
         captionStyle.color = color
         colorType === 'color' && (currentColor = color)
       }
 
-      if (editor.selectionHasInlineStyle('BGCOLOR-' + color_id)) {
+      if (ContentUtils.selectionHasInlineStyle(this.props.editorState, 'BGCOLOR-' + color_id)) {
         captionStyle.backgroundColor = color
         colorType === 'backgroundColor' && (currentColor = color)
       }
 
     })
 
-    let caption = (
+    const caption = (
       <i style={captionStyle} className="braft-icon-text-color">
         <span className="path1"></span>
         <span className="path2"></span>
@@ -43,16 +42,16 @@ export default class TextColor extends React.Component {
     return (
       <DropDown
         caption={caption}
-        hoverTitle={language.controls.color}
+        hoverTitle={this.props.language.controls.color}
         showDropDownArrow={false}
-        viewWrapper={viewWrapper}
-        editorHeight={editorHeight}
+        viewWrapper={this.props.viewWrapper}
+        editorHeight={this.props.editorHeight}
         componentId={this.dropDownComponentId}
         ref={(instance) => this.dropDownComponent = instance}
         className={"control-item dropdown text-color-dropdown"}
       >
         <div className="braft-text-color-picker-wrap">
-          <div className="braft-color-switch-buttons" style={allowSetTextBackgroundColor ? {} : {display: 'none'}}>
+          <div className="braft-color-switch-buttons" style={this.props.disableTextBackgroundColor ? {display: 'none'} : {}}>
             <button
               type="button"
               data-type="color"
@@ -60,7 +59,7 @@ export default class TextColor extends React.Component {
               data-braft-component-id={this.dropDownComponentId}
               className={colorType === 'color' ? 'active' : ''}
               onClick={this.switchColorType}
-            >{language.controls.textColor}</button>
+            >{this.props.language.controls.textColor}</button>
             <button
               type="button"
               data-type="backgroundColor"
@@ -68,15 +67,14 @@ export default class TextColor extends React.Component {
               data-braft-component-id={this.dropDownComponentId}
               className={colorType === 'backgroundColor' ? 'active' : ''}
               onClick={this.switchColorType}
-            >{language.controls.backgroundColor}</button>
+            >{this.props.language.controls.backgroundColor}</button>
           </div>
           <ColorPicker
             width={200}
-            language={language}
+            language={this.props.language}
             current={currentColor}
             disableAlpha={true}
-            colors={colors}
-            tempColors={tempColors}
+            colors={this.props.colors}
             onChange={this.toggleColor}
           />
         </div>
@@ -96,9 +94,9 @@ export default class TextColor extends React.Component {
   toggleColor = (color) => {
 
     if (this.state.colorType === 'color') {
-      this.props.editor.toggleSelectionColor(color)
+      this.props.editor.setValue(ContentUtils.toggleSelectionColor(this.props.editorState, color, this.props.colors))
     } else {
-      this.props.editor.toggleSelectionBackgroundColor(color)
+      this.props.editor.setValue(ContentUtils.toggleSelectionBackgroundColor(this.props.editorState, color, this.props.colors))
     }
 
     this.dropDownComponent.hide()

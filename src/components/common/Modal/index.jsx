@@ -1,12 +1,22 @@
 import './style.scss'
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { UniqueIndex } from 'utils/base'
+import { BastUtils } from 'braft-utils'
 
 export default class Modal extends React.Component {
 
-  active = false
-  componentId = 'BRAFT-MODAL-' + UniqueIndex()
+  constructor (props) {
+
+    super(props)
+    this.active = false
+    this.componentId = 'BRAFT-MODAL-' + BastUtils.UniqueIndexUniqueIndex()
+
+  }
+
+  static defaultProps = {
+    header: true,
+    footer: true
+  }
 
   componentDidMount () {
 

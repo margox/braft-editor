@@ -1,7 +1,16 @@
 import React from 'react'
-import { blocks } from 'configs/maps'
-import { ColorUtils } from 'braft-utils'
+import { getHexColor } from 'utils/color'
 
+const blocks = {
+  'header-one': 'h1',
+  'header-two': 'h2',
+  'header-three': 'h3',
+  'header-four': 'h4',
+  'header-fiv': 'h5',
+  'header-six': 'h6',
+  'unstyled': 'p',
+  'blockquote': 'blockquote'
+}
 const blockTypes = Object.keys(blocks)
 const blockNames = blockTypes.map(key => blocks[key])
 
@@ -102,11 +111,12 @@ const styleToHTML = (props) => (style) => {
 
 }
 
-const blockToHTML = (contentState) => (block) => {
+const blockToHTML = (editorState) => (block) => {
 
   let result = null
   let blockStyle = ""
 
+  const contentState = editorState.getCurrentContent()
   const blockType = block.type.toLowerCase()
   const { textAlign } = block.data
 
@@ -193,10 +203,10 @@ const htmlToStyle = (props) => (nodeName, node, currentStyle) => {
 
   for (let i = 0; i < node.style.length; i++) {
     if (nodeName === 'span' && node.style[i] === 'color') {
-      let color = ColorUtils.getHexColor(node.style.color)
+      let color = getHexColor(node.style.color)
       newStyle = color ? newStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : newStyle
     } else if (nodeName === 'span' && node.style[i] === 'background-color') {
-      let color = ColorUtils.getHexColor(node.style.backgroundColor)
+      let color = getHexColor(node.style.backgroundColor)
       newStyle = color ? newStyle.add('BGCOLOR-' + color.replace('#', '').toUpperCase()) : newStyle
     } else if (nodeName === 'span' && node.style[i] === 'font-size') {
       newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10))
@@ -322,22 +332,22 @@ const htmlToBlock = (nodeName, node) => {
 
 }
 
-export const getToHTMLConfig = (props) => {
+export default {
 
-  return {
-    styleToHTML: styleToHTML(props),
-    entityToHTML: entityToHTML,
-    blockToHTML: blockToHTML(props.contentState)
-  }
+  getToHTMLConfig (editorState, props) {
+    return {
+      styleToHTML: styleToHTML(props),
+      entityToHTML: entityToHTML,
+      blockToHTML: blockToHTML(editorState)
+    }
+  },
 
-}
-
-export const getFromHTMLConfig = (props) => {
-
-  return { 
-    htmlToStyle: htmlToStyle(props),
-    htmlToEntity,
-    htmlToBlock 
+  getFromHTMLConfig (props) {
+    return { 
+      htmlToStyle: htmlToStyle(props),
+      htmlToEntity: htmlToEntity,
+      htmlToBlock: htmlToBlock
+    }
   }
 
 }

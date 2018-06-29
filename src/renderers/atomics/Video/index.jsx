@@ -81,7 +81,7 @@ export default class Video extends React.Component {
   }
 
   handlePlayerClose = () => {
-    this.props.editor && this.props.editor.focus()
+    this.props.editor && this.props.editor.requestFocus()
   }
 
 }

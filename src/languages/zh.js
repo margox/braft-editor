@@ -66,19 +66,5 @@ export default {
     video: '视频',
     audio: '音频',
     embed: '嵌入式媒体'
-  },
-  mediaPicker: {
-    caption: '多媒体资源库',
-    dragTip: '点击或拖动文件至此',
-    dropTip: '松开鼠标以上传',
-    selectAll: '全选',
-    deselect: '取消选择',
-    removeSelected: '删除所选项目',
-    externalInputPlaceHolder: '资源名称|资源地址',
-    externalInputTip: '以竖线符("|")分割资源名和资源地址，按回车确认',
-    addLocalFile: '添加本地文件',
-    addExternalSource: '添加网络资源',
-    unnamedItem: '未命名项目',
-    confirmInsert: '插入所选项目'
   }
 }

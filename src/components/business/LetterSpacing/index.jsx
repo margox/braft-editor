@@ -1,15 +1,15 @@
 import './style.scss'
 import React from 'react'
 import DropDown from 'components/common/DropDown'
+import { ContentUtils } from 'braft-utils'
 
 export default (props) => {
 
   let caption = null
   let currentLetterSpacing = null
-  let { defaultCaption, editor, language, letterSpacings, viewWrapper, editorHeight } = props
 
-  letterSpacings.find((item) => {
-    if (editor.selectionHasInlineStyle('LETTERSPACING-' + item)) {
+  props.letterSpacings.find((item) => {
+    if (ContentUtils.selectionHasInlineStyle(props.editorState, 'LETTERSPACING-' + item)) {
       caption = item
       currentLetterSpacing = item
       return true
@@ -17,26 +17,24 @@ export default (props) => {
     return false
   })
 
-  caption = caption || defaultCaption || language.controls.letterSpacing
-
   return (
     <DropDown
-      caption={caption}
-      viewWrapper={viewWrapper}
-      editorHeight={editorHeight}
-      hoverTitle={language.controls.letterSpacing}
+      caption={caption || props.defaultCaption}
+      viewWrapper={props.viewWrapper}
+      editorHeight={props.editorHeight}
+      hoverTitle={props.language.controls.letterSpacing}
       className={"control-item dropdown braft-letter-spacing-dropdown"}
     >
       <ul className="braft-letter-spacings-wrap">
-        {letterSpacings.map((item, index) => {
+        {props.letterSpacings.map((item, index) => {
           return (
             <li
               key={index}
               className={item === currentLetterSpacing ? 'active' : null}
               data-size={item}
               onClick={(e) => {
-                editor.toggleSelectionLetterSpacing(e.currentTarget.dataset.size)
-                editor.requestFocus()
+                props.editor.setValue(ContentUtils.toggleSelectionLetterSpacing(props.editorState, e.currentTarget.dataset.size, props.letterSpacings))
+                props.editor.requestFocus()
               }}
             >{item}</li>
           )

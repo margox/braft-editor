@@ -75,7 +75,7 @@ export default class Audio extends React.Component {
 
   handlePlayerClose = () => {
     this.playerModal = null
-    this.props.editor && this.props.editor.focus()
+    this.props.editor && this.props.editor.requestFocus()
   }
 
 }

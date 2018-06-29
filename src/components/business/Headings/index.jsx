@@ -2,34 +2,32 @@ import './style.scss'
 import React from 'react'
 import { getHeadings } from 'configs/maps'
 import DropDown from 'components/common/DropDown'
+import { ContentUtils } from 'braft-utils'
 
 export default (props) => {
 
-  const { current, onChange, language, viewWrapper, editorHeight } = props
-  const headings = getHeadings(language)
-
-  let currentHeadingIndex = headings.findIndex((item) => item.command === current)
-  let caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : language.controls.normal
-  let isFirstItemActive = currentHeadingIndex === 0
+  const headings = getHeadings(props.language)
+  const currentHeadingIndex = headings.findIndex((item) => item.command === props.current)
+  const caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : props.language.controls.normal
 
   return (
     <DropDown
       caption={caption}
-      viewWrapper={viewWrapper}
-      editorHeight={editorHeight}
-      hoverTitle={language.controls.headings}
-      arrowActive={isFirstItemActive}
+      viewWrapper={props.viewWrapper}
+      editorHeight={props.editorHeight}
+      hoverTitle={props.language.controls.headings}
+      arrowActive={currentHeadingIndex === 0}
       className={"control-item dropdown headings-dropdown"}
     >
       <ul className="menu">
         {
           headings.map((item, index) => {
-            let isActive = current === item.command
+            let isActive = props.current === item.command
             return (
               <li
                 key={index}
                 className={"menu-item" + (isActive ? ' active' : '')}
-                onClick={() => onChange(item.command, item.type)}
+                onClick={() => props.onChange(item.command, item.type)}
               >
                 {item.text}
               </li>

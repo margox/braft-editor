@@ -1,15 +1,15 @@
 import './style.scss'
 import React from 'react'
 import DropDown from 'components/common/DropDown'
+import { ContentUtils } from 'braft-utils'
 
 export default (props) => {
 
   let caption = null
   let currentLineHeight = null
-  let { defaultCaption, editor, language, lineHeights, viewWrapper, editorHeight } = props
 
-  lineHeights.find((item) => {
-    if (editor.selectionHasInlineStyle('LINEHEIGHT-' + item)) {
+  props.lineHeights.find((item) => {
+    if (ContentUtils.selectionHasInlineStyle(props.editorState, 'LINEHEIGHT-' + item)) {
       caption = item
       currentLineHeight = item
       return true
@@ -17,26 +17,24 @@ export default (props) => {
     return false
   })
 
-  caption = caption || defaultCaption || language.controls.lineHeight
-
   return (
     <DropDown
-      caption={caption}
-      viewWrapper={viewWrapper}
-      editorHeight={editorHeight}
-      hoverTitle={language.controls.lineHeight}
+      caption={caption || props.defaultCaption}
+      viewWrapper={props.viewWrapper}
+      editorHeight={props.editorHeight}
+      hoverTitle={props.language.controls.lineHeight}
       className={"control-item dropdown braft-line-height-dropdown"}
     >
       <ul className="braft-line-heights-wrap">
-        {lineHeights.map((item, index) => {
+        {props.lineHeights.map((item, index) => {
           return (
             <li
               key={index}
               className={item === currentLineHeight ? 'active' : null}
               data-size={item}
               onClick={(e) => {
-                editor.toggleSelectionLineHeight(e.currentTarget.dataset.size)
-                editor.requestFocus()
+                props.editor.setValue(ContentUtils.toggleSelectionLineHeight(props.editorState, e.currentTarget.dataset.size, props.lineHeights))
+                props.editor.requestFocus()
               }}
             >{item}</li>
           )

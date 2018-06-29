@@ -9,16 +9,15 @@ import LineHeightPicker from 'components/business/LineHeight'
 import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
-import MediaPicker from 'components/business/MediaPicker'
 import LetterSpacingPicker from 'components/business/letterSpacing'
 import IndentPicker from 'components/business/indent'
 import DropDown from 'components/common/DropDown'
+import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
+
 export default class ControlBar extends React.Component {
 
   mediaPicker = null
-  videoPicker = null
-  audioPicker = null
   extendedModals = {}
 
   componentDidUpdate () {
@@ -40,9 +39,9 @@ export default class ControlBar extends React.Component {
     let className = 'control-item button'
     let { type, command } = data
 
-    if (type === 'inline-style' && this.props.editor.selectionHasInlineStyle(command)) {
+    if (type === 'inline-style' && ContentUtils.selectionHasInlineStyle(this.props.editorState, command)) {
       className += ' active'
-    } else if (type === 'block-type' && this.props.editor.getSelectionBlockType() === command) {
+    } else if (type === 'block-type' && ContentUtils.getSelectionBlockType(this.props.editorState) === command) {
       className += ' active'
     }
 
@@ -53,29 +52,27 @@ export default class ControlBar extends React.Component {
   applyControl (command, type) {
 
     if (type === 'inline-style') {
-      this.props.editor.toggleSelectionInlineStyle(command)
+      this.props.editor.setValue(ContentUtils.toggleSelectionInlineStyle(this.props.editorState, command))
     } else if (type === 'block-type') {
-      this.props.editor.toggleSelectionBlockType(command)
+      this.props.editor.setValue(ContentUtils.toggleSelectionBlockType(this.props.editorState, command))
     } else if (type === 'editor-state-method') {
       this.props.editor[command] && this.props.editor[command]()
     }
 
-    window.setImmediate(() => {
-      this.props.editor.focus()
-    })
+    this.props.editor.requestFocus()
 
   }
 
   showMediaPicker = () => {
-    this.mediaPicker.show()
   }
 
   render() {
 
-    const { editor, controls, media, extendControls, language, colors, tempColors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignOptions, allowSetTextBackgroundColor, indents} = this.props
-    const currentBlockType = editor.getSelectionBlockType()
+    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignOptions, allowSetTextBackgroundColor, indents} = this.props
+    const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const supportedControls = getSupportedControls(language)
-    const commonProps = { editor, editorHeight, language, viewWrapper }
+    const commonProps = { editor, editorState, editorHeight, language, viewWrapper }
+
     const renderedExtendControls = extendControls.map((item, index) => {
       if (item.type === 'split') {
         return <span key={controls.length * 2 + index} className="split-line"></span>
@@ -148,12 +145,6 @@ export default class ControlBar extends React.Component {
 
     return (
       <div className="BraftEditor-controlBar">
-        <MediaPicker
-          media={media}
-          ref={(instance) => this.mediaPicker = instance}
-          mediaLibrary={editor.mediaLibrary}
-          {...commonProps}
-        />
         {
           controls.map((item, index) => {
             if (item.toLowerCase() === 'split') {
@@ -176,7 +167,6 @@ export default class ControlBar extends React.Component {
               return <TextColorPicker
                 key={index}
                 colors={colors}
-                tempColors={tempColors}
                 allowSetTextBackgroundColor={allowSetTextBackgroundColor}
                 {...commonProps}
               />

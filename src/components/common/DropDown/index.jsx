@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import ResponsiveHelper from 'helpers/responsive'
-import { UniqueIndex } from 'utils/base'
+import { BaseUtils } from 'braft-utils'
 
 export default class DropDown extends React.Component {
 
@@ -9,7 +9,7 @@ export default class DropDown extends React.Component {
   responsiveResolveId = null
   dropDownHandlerElement = null
   dropDownContentElement = null
-  componentId = this.props.componentId || ('BRAFT-DROPDOWN-' + UniqueIndex())
+  componentId = this.props.componentId || ('BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex())
   state = {
     active: false,
     offset: 0

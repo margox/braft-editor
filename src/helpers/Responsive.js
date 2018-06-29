@@ -1,4 +1,4 @@
-import { UniqueIndex } from 'utils/base'
+import { BaseUtils } from 'braft-utils'
 
 let resizeEventHandlers = []
 let responsiveHelperInited = false
@@ -7,7 +7,7 @@ let debouce = false
 export default {
 
   resolve (eventHandler) {
-    let id = UniqueIndex()
+    let id = BaseUtils.UniqueIndex()
     resizeEventHandlers.push({ id, eventHandler })
     return id
   },

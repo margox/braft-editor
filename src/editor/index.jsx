@@ -3,25 +3,19 @@ import 'assets/scss/_base.scss'
 import React from 'react'
 import languages from 'languages'
 import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw, convertFromHTML as originConvertFromHTML} from 'draft-js'
-import DraftPasteProcessor from 'draft-js/lib/DraftPasteProcessor'
 import { convertToHTML, convertFromHTML} from 'draft-convert'
 import { handleNewLine } from 'draftjs-utils'
 import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import keyBindingFn from 'configs/keybindings'
 import defaultOptions from 'configs/options'
-import { UniqueIndex } from 'utils/base'
-import EditorController from 'controller'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
-import { detectColorsFromHTML, detectColorsFromRaw } from 'helpers/colors'
-
-import ContentController from 'mixins/ContentController'
-import MediaLibrary from 'mixins/MediaLibrary'
+import { BaseUtils, ColorUtils, ContentUtils } from 'braft-utils'
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
-export default @MediaLibrary @ContentController class BraftEditor extends EditorController {
+export default class BraftEditor extends React.Component {
 
   static defaultProps = {
     ...defaultOptions,
@@ -38,13 +32,11 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
     const editorState = EditorState.createEmpty(editorDecorators)
 
     this.isFocused = false
-    this.instanceIndex = UniqueIndex()
+    this.instanceIndex = BaseUtils.UniqueIndex()
 
     this.state = {
       tempColors: [],
       editorState: editorState,
-      contentState: editorState.getCurrentContent(),
-      selectionState: editorState.getSelection(),
       editorProps: {}
     }
 
@@ -65,26 +57,18 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
 
   onChange = (editorState) => {
 
-    this.setState({
-      editorState: editorState,
-      contentState: editorState.getCurrentContent(),
-      selectionState: editorState.getSelection()
-    }, () => {
+    this.setState({ editorState }, () => {
       this.props.onChange && this.props.onChange(editorState)
     })
 
-  }
-
-  isEmpty = () => {
-    return this.getHTMLContent() === '<p></p>'
   }
 
   getDraftInstance = () => {
     return this.draftInstance
   }
 
-  getMediaLibraryInstance = () => {
-    return this.mediaLibrary
+  getFinderInstance = () => {
+    return this.braftFinder
   }
 
   convertHTML = (htmlString) => {
@@ -114,16 +98,14 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
   }
 
   forceRender = () => {
-    return this.setValue(EditorState.createWithContent(this.contentState, editorDecorators))
+    return this.setValue(EditorState.createWithContent(this.state.editorState.getCurrentContent(), editorDecorators))
   }
 
   onTab = (event) => {
 
-    const currentBlock = this.getSelectionBlock()
-    const currentBlockType = currentBlock.getType()
     const tabIndents = this.props.tabIndents
 
-    if (currentBlockType === 'code-block') {
+    if (ContentUtils.getSelectionBlockType(this.state.editorState) === 'code-block') {
       this.insertText(' '.repeat(tabIndents), false)
       event.preventDefault()
       return false
@@ -141,6 +123,10 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
   onBlur = () => {
     this.isFocused = false
     this.props.onBlur && this.props.onBlur()
+  }
+
+  requestFocus = () => {
+    setTimeout(() => this.draftInstance.focus(), 0)
   }
 
   handleKeyCommand = (command) => {
@@ -163,17 +149,17 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
 
   handleReturn = (event) => {
 
-    const currentBlock = this.getSelectionBlock()
+    const currentBlock = ContentUtils.getSelectionBlock(this.state.editorState)
     const currentBlockType = currentBlock.getType()
 
     if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
 
       if (currentBlock.getLength() === 0) {
-        this.toggleSelectionBlockType('unstyled')
-        return true
+        this.setValue(ContentUtils.toggleSelectionBlockType(this.state.editorState, 'unstyled'))
+        return 'handled'
       }
 
-      return false
+      return 'not-handled'
 
     } else if (currentBlockType === 'code-block') {
 
@@ -183,11 +169,11 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
           event.getModifierState('Alt') ||
           event.getModifierState('Control')
         )) {
-        this.toggleSelectionBlockType('unstyled')
-        return true
+        this.setValue(ContentUtils.toggleSelectionBlockType(this.state.editorState, 'unstyled'))
+        return 'handled'
       }
 
-      return false
+      return 'not-handled'
 
     } else {
 
@@ -199,11 +185,11 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
       const nextEditorState = handleNewLine(this.state.editorState, event)
 
       if (nextEditorState) {
-        this.onChange(nextEditorState)
-        return true
+        this.setValue(nextEditorState)
+        return 'handled'
       }
 
-      return false
+      return 'not-handled'
 
     }
 
@@ -215,11 +201,14 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
 
     if (window.__BRAFT_DRAGING__IMAGE__) {
 
-      this.removeBlock(window.__BRAFT_DRAGING__IMAGE__.block, selectionState)
-      this.insertMedias([window.__BRAFT_DRAGING__IMAGE__.mediaData])
+      let editorState = ContentUtils.removeBlock(this.state.editorState, window.__BRAFT_DRAGING__IMAGE__.block, selectionState)
+      editorState = ContentUtils.insertMedias(editorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData])
 
       window.__BRAFT_DRAGING__IMAGE__ = null
+
       this.setEditorProp('readOnly', false)
+      this.setValue(editorState)
+
       return 'handled'
 
     } else if (!dataTransfer || !dataTransfer.getText()) {
@@ -233,8 +222,13 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
   handleDroppedFiles = (selectionState, files) => {
 
     if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
-      this.mediaLibrary.uploadImage(files[0], image => this.insertMedias([image]))
+
+      this.braftFinder.uploadImage(files[0], image => {
+        this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
+      })
+  
       return 'handled'
+  
     }
 
     return 'not-handled'
@@ -244,17 +238,22 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
   handlePastedFiles = (files) => {
 
     if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
-      this.mediaLibrary.uploadImage(files[0], image => this.insertMedias([image]))
+
+      this.braftFinder.uploadImage(files[0], image => {
+        this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
+      })
+  
       return 'handled'
+
     }
 
     return 'not-handled'
 
   }
 
-  handlePastedText = (text, html) => {
+  handlePastedText = (text, htmlString) => {
 
-    if (!html) {
+    if (!htmlString) {
       return false
     }
 
@@ -263,20 +262,18 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
     if (pasteMode === 'text') {
       this.tmpPasteMode = 'normal'
       const tmpTextHolder = document.createElement('div')
-      tmpTextHolder.innerHTML = html
+      tmpTextHolder.innerHTML = htmlString
       return this.handlePastedText(text, tmpTextHolder.textContent || tmpTextHolder.innerText || '')
     } else {
       this.tmpPasteMode = null
     }
 
-    const { fontFamilies } = this.props
-    const blockMap = convertFromHTML(getFromHTMLConfig({ fontFamilies }))(html || text).blockMap
-    const nextContentState = Modifier.replaceWithFragment(this.contentState, this.selectionState, blockMap)
+    const tempColors = ColorUtils.detectColorsFromHTMLString(htmlString)
 
     this.setState({
-      tempColors: [...this.state.tempColors, ...detectColorsFromHTML(html)].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+      tempColors: [...this.state.tempColors, ...tempColors].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
     }, () => {
-      this.setValue(EditorState.push(this.state.editorState, nextContentState, 'insert-fragment'))
+      this.setValue(ContentUtils.insertHTML(this.state.editorState, htmlString))
     })
 
     return true
@@ -291,6 +288,14 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
 
   }
 
+  undo () {
+    this.setValue(EditorState.undo(this.state.editorState))
+  }
+
+  redo () {
+    this.setValue(EditorState.redo(this.state.editorState))
+  }
+
   render() {
 
     let {
@@ -300,8 +305,6 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
     } = this.props
 
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
-
-    const { tempColors } = this.state
     language = languages[language] || languages[defaultOptions.language]
 
     const externalMedias = media && media.externalMedias ? {
@@ -318,13 +321,6 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
 
     viewWrapper = viewWrapper || `.BraftEditor-instance-${this.instanceIndex}`
 
-    this.colorList = [...colors, ...tempColors]
-    this.fontSizeList = fontSizes
-    this.fontFamilyList = fontFamilies
-    this.lineHeightList = lineHeights
-    this.letterSpacingList = letterSpacings
-    this.indentList = indents
-
     if (!media.uploadFn) {
       media.video = false
       media.audio = false
@@ -332,9 +328,11 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
 
     const controlBarProps = {
       editor: this,
+      editorState: this.state.editorState,
       editorHeight: height,
       ref: instance => this.controlBarInstance = instance,
-      media, controls, language, viewWrapper, extendControls, colors, tempColors, fontSizes, fontFamilies,
+      colors: [...colors, ...this.state.tempColors],
+      media, controls, language, viewWrapper, extendControls, fontSizes, fontFamilies,
       emojis, lineHeights, letterSpacings, indents, textAlignOptions, allowSetTextBackgroundColor
     }
 
@@ -345,7 +343,7 @@ export default @MediaLibrary @ContentController class BraftEditor extends Editor
     })
 
     const customStyleMap = getCustomStyleMap({
-      colors: [...colors, ...tempColors],
+      colors: [...colors, ...this.state.tempColors],
       fontSizes, fontFamilies, lineHeights, letterSpacings, indents
     })
 

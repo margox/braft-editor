@@ -1,15 +1,15 @@
 import './style.scss'
 import React from 'react'
 import DropDown from 'components/common/DropDown'
+import { ContentUtils } from 'braft-utils'
 
 export default (props) => {
 
   let caption = null
   let currentIndex = null
-  let { defaultCaption, editor, onChange, language, fontFamilies, viewWrapper, editorHeight } = props
 
-  fontFamilies.find((item, index) => {
-    if (editor.selectionHasInlineStyle('FONTFAMILY-' + item.name)) {
+  props.fontFamilies.find((item, index) => {
+    if (ContentUtils.selectionHasInlineStyle(props.editorState, 'FONTFAMILY-' + item.name)) {
       caption = item.name
       currentIndex = index
       return true
@@ -17,28 +17,25 @@ export default (props) => {
     return false
   })
 
-  let isFirstItemActive = currentIndex === 0
-  caption = caption || defaultCaption || language.controls.fontFamily
-
   return (
     <DropDown
-      caption={caption}
-      viewWrapper={viewWrapper}
-      editorHeight={editorHeight}
-      hoverTitle={language.controls.fontFamily}
-      arrowActive={isFirstItemActive}
+      caption={caption || props.defaultCaption}
+      viewWrapper={props.viewWrapper}
+      editorHeight={props.editorHeight}
+      hoverTitle={props.language.controls.fontFamily}
+      arrowActive={currentIndex === 0}
       className={"control-item dropdown font-family-dropdown"}
     >
       <ul className="menu">
-        {fontFamilies.map((item, index) => {
+        {props.fontFamilies.map((item, index) => {
           return (
             <li
               key={index}
               className={"menu-item " + (index === currentIndex ? 'active' : '')}
               data-name={item.name}
               onClick={(e) => {
-                editor.toggleSelectionFontFamily(e.currentTarget.dataset.name)
-                editor.requestFocus()
+                props.editor.setValue(ContentUtils.toggleSelectionFontFamily(props.editorState, e.currentTarget.dataset.name, props.fontFamilies))
+                props.editor.requestFocus()
               }}
             >
               <span style={{fontFamily: item.family}}>{item.name}</span>

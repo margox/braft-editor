@@ -2,6 +2,7 @@ import './style.scss'
 import React from 'react'
 import Switch from 'components/common/Switch'
 import DropDown from 'components/common/DropDown'
+import { ContentUtils } from 'braft-utils'
 
 export default class LinkEditor extends React.Component {
 
@@ -14,7 +15,7 @@ export default class LinkEditor extends React.Component {
 
   componentWillReceiveProps (next) {
 
-    const { href, target } = next.editor.getSelectionEntityData('LINK')
+    const { href, target } = ContentUtils.getSelectionEntityData(next.editorState, 'LINK')
     this.setState({
       href: href || '',
       target: target || ''
@@ -25,17 +26,16 @@ export default class LinkEditor extends React.Component {
   render () {
 
     const { href, target } = this.state
-    const { editor, language, viewWrapper } = this.props
     const caption = <i className="braft-icon-link"></i>
-    const textSelected = !editor.selectionCollapsed() && editor.getSelectionBlockType() !== 'atomic'
+    const textSelected = !ContentUtils.selectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
       <div className="control-item-group">
         <DropDown
           caption={caption}
-          hoverTitle={language.controls.link}
+          hoverTitle={this.props.language.controls.link}
           autoHide={false}
-          viewWrapper={viewWrapper}
+          viewWrapper={this.props.viewWrapper}
           showDropDownArrow={false}
           disabled={!textSelected}
           ref={(instance) => this.dropDownComponent = instance}
@@ -47,7 +47,7 @@ export default class LinkEditor extends React.Component {
                 type="text"
                 value={href}
                 spellCheck={false}
-                placeholder={language.linkEditor.inputPlaceHolder}
+                placeholder={this.props.language.linkEditor.inputPlaceHolder}
                 onKeyDown={this.handeKeyDown}
                 onChange={this.inputLink}
               />
@@ -57,21 +57,21 @@ export default class LinkEditor extends React.Component {
                 active={target === '_blank'}
                 onClick={this.setTarget}
               />
-              <label>{language.linkEditor.openInNewWindow}</label>
+              <label>{this.props.language.linkEditor.openInNewWindow}</label>
             </div>
             <div className="buttons">
               <a onClick={this.handleUnlink} className="primary pull-left" href="javascript:void(0);">
                 <i className="braft-icon-close"></i>
-                <span>{language.linkEditor.removeLink}</span>
+                <span>{this.props.language.linkEditor.removeLink}</span>
               </a>
-              <button type="button" onClick={this.handleConfirm} className="primary pull-right">{language.base.confirm}</button>
-              <button type="button" onClick={this.handleCancel} className="default pull-right">{language.base.cancel}</button>
+              <button type="button" onClick={this.handleConfirm} className="primary pull-right">{this.props.language.base.confirm}</button>
+              <button type="button" onClick={this.handleCancel} className="default pull-right">{this.props.language.base.cancel}</button>
             </div>
           </div>
         </DropDown>
         <button
           type="button"
-          title={language.controls.unlink}
+          title={this.props.language.controls.unlink}
           className="control-item button"
           onClick={this.handleUnlink}
           disabled={!textSelected || !href}
@@ -109,13 +109,13 @@ export default class LinkEditor extends React.Component {
 
   handleUnlink = () => {
     this.dropDownComponent.hide()
-    this.props.editor.toggleSelectionLink(false)
+    this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, false))
   }
 
   handleConfirm = () => {
 
     const { href, target } = this.state
-    this.props.editor.toggleSelectionLink(href, target)
+    this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, href, target))
     this.dropDownComponent.hide()
     this.props.editor.requestFocus()
 
