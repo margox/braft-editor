@@ -9,15 +9,15 @@ import LineHeightPicker from 'components/business/LineHeight'
 import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
-import LetterSpacingPicker from 'components/business/letterSpacing'
-import IndentPicker from 'components/business/indent'
+import LetterSpacingPicker from 'components/business/LetterSpacing'
+import IndentPicker from 'components/business/Indent'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
 
 export default class ControlBar extends React.Component {
 
-  mediaPicker = null
+  mediaLibiraryModal = null
   extendedModals = {}
 
   componentDidUpdate () {
@@ -63,19 +63,45 @@ export default class ControlBar extends React.Component {
 
   }
 
-  showMediaPicker = () => {
+  openMediaLibrary = () => {
+
+    const MediaLibrary = this.props.braftFinder.ReactComponent
+
+    this.mediaLibiraryModal = showModal({
+      title: this.props.language.controls.mediaLibirary,
+      language: this.props.language,
+      width: 640,
+      showFooter: false,
+      children: (
+        <MediaLibrary
+          onCancel={this.closeMediaLibrary}
+          onInsert={this.insertMedias}
+        />
+      )
+    })
+
+  }
+
+  insertMedias = (medias) => {
+    this.props.editor.setValue(ContentUtils.insertMedias(this.props.editorState, medias))
+    this.props.editor.requestFocus()
+    this.closeMediaLibrary()
+  }
+
+  closeMediaLibrary = () => {
+    this.mediaLibiraryModal && this.mediaLibiraryModal.close()
   }
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, viewWrapper, lineHeights, letterSpacings, editorHeight, textAlignOptions, allowSetTextBackgroundColor, indents} = this.props
+    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, editorHeight, textAligns, disableTextBackgroundColor, indents} = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const supportedControls = getSupportedControls(language)
-    const commonProps = { editor, editorState, editorHeight, language, viewWrapper }
+    const commonProps = { editor, editorState, editorHeight, language, containerNode }
 
     const renderedExtendControls = extendControls.map((item, index) => {
-      if (item.type === 'split') {
-        return <span key={controls.length * 2 + index} className="split-line"></span>
+      if (item.type === 'separator') {
+        return <span key={controls.length * 2 + index} className="separator-line"></span>
       } else if (item.type === 'dropdown') {
         let { disabled, autoHide, html, text, className, showDropDownArrow, hoverTitle, component, arrowActive, ref } = item
         return (
@@ -86,7 +112,7 @@ export default class ControlBar extends React.Component {
             editorHeight={editorHeight}
             htmlCaption={html}
             showDropDownArrow={showDropDownArrow}
-            viewWrapper={viewWrapper}
+            containerNode={containerNode}
             hoverTitle={hoverTitle}
             arrowActive={arrowActive}
             autoHide={autoHide}
@@ -147,8 +173,8 @@ export default class ControlBar extends React.Component {
       <div className="BraftEditor-controlBar">
         {
           controls.map((item, index) => {
-            if (item.toLowerCase() === 'split') {
-              return <span key={index} className="split-line"></span>
+            if (item.toLowerCase() === 'separator') {
+              return <span key={index} className="separator-line"></span>
             }
             let controlItem = supportedControls.find((subItem) => {
               return subItem.key.toLowerCase() === item.toLowerCase()
@@ -167,7 +193,7 @@ export default class ControlBar extends React.Component {
               return <TextColorPicker
                 key={index}
                 colors={colors}
-                allowSetTextBackgroundColor={allowSetTextBackgroundColor}
+                disableBackgroundColor={disableTextBackgroundColor}
                 {...commonProps}
               />
             } else if (controlItem.type === 'font-size') {
@@ -221,7 +247,7 @@ export default class ControlBar extends React.Component {
               return (
                 <TextAlign
                   key={index}
-                  textAlignOptions={textAlignOptions}
+                  textAligns={textAligns}
                   {...commonProps}
                 />
               )
@@ -235,7 +261,7 @@ export default class ControlBar extends React.Component {
                   key={index}
                   title={controlItem.title}
                   className='control-item button'
-                  onClick={this.showMediaPicker}
+                  onClick={this.openMediaLibrary}
                 >
                   {controlItem.text}
                 </button>

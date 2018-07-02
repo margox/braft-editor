@@ -30,7 +30,7 @@ export default class TextAlign extends React.Component {
     return (
       <div className="control-item-group">
         {
-          this.props.textAlignOptions.map((item, index) => {
+          this.props.textAligns.map((item, index) => {
             return (
               <button
                 type="button"

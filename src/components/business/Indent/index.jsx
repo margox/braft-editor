@@ -20,7 +20,7 @@ export default (props) => {
   return (
     <DropDown
       caption={caption || props.defaultCaption}
-      viewWrapper={props.viewWrapper}
+      containerNode={props.containerNode}
       editorHeight={props.editorHeight}
       hoverTitle={props.language.controls.indent}
       className={"control-item dropdown braft-indent-dropdown"}

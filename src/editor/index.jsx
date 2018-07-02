@@ -1,66 +1,44 @@
 import 'draft-js/dist/Draft.css'
 import 'assets/scss/_base.scss'
+import 'braft-finder/dist/index.css'
 import React from 'react'
 import languages from 'languages'
-import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils, convertFromRaw, convertToRaw, convertFromHTML as originConvertFromHTML} from 'draft-js'
-import { convertToHTML, convertFromHTML} from 'draft-convert'
+import BraftFinder from 'braft-finder'
+import { BaseUtils, ColorUtils, ContentUtils } from 'braft-utils'
+import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils } from 'draft-js'
 import { handleNewLine } from 'draftjs-utils'
-import { getToHTMLConfig, getFromHTMLConfig } from 'configs/convert'
 import keyBindingFn from 'configs/keybindings'
-import defaultOptions from 'configs/options'
+import defaultProps from 'configs/props'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
-import { BaseUtils, ColorUtils, ContentUtils } from 'braft-utils'
 
 const editorDecorators = new CompositeDecorator(decorators)
 const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
 export default class BraftEditor extends React.Component {
 
-  static defaultProps = {
-    ...defaultOptions,
-    onChange: null,
-    onFocus: null,
-    onBlur: null,
-    onSave: null
-  }
+  static defaultProps = defaultProps
 
   constructor (props) {
 
     super(props)
 
-    const editorState = EditorState.createEmpty(editorDecorators)
-
     this.isFocused = false
-    this.instanceIndex = BaseUtils.UniqueIndex()
-
+    this.editorIndex = BaseUtils.UniqueIndex()
+    this.braftFinder = BraftFinder()
     this.state = {
+      containerNode: null,
       tempColors: [],
-      editorState: editorState,
-      editorProps: {}
-    }
-
-    let browser = null
-    if (window.chrome) {
-      browser = 'chrome'
-    } else if (window.safari) {
-      browser = 'safari'
-    } else if (navigator.userAgent.indexOf('Firefox') > 0) {
-      browser = 'firefox'
-    }
-
-    if (!document.body.classList.contains('browser-' + browser)) {
-      document.body.classList.add('browser-' + browser)
+      editorState: EditorState.createEmpty(editorDecorators),
+      draftProps: {}
     }
 
   }
 
   onChange = (editorState) => {
-
     this.setState({ editorState }, () => {
       this.props.onChange && this.props.onChange(editorState)
     })
-
   }
 
   getDraftInstance = () => {
@@ -71,11 +49,6 @@ export default class BraftEditor extends React.Component {
     return this.braftFinder
   }
 
-  convertHTML = (htmlString) => {
-    const { fontFamilies } = this.props
-    return convertFromHTML(getFromHTMLConfig({ fontFamilies }))(htmlString)
-  }
-
   getValue = () => {
     return this.state.editorState
   }
@@ -84,29 +57,14 @@ export default class BraftEditor extends React.Component {
     return this.onChange(editorState)
   }
 
-  setEditorProps = (editorProps) => {
-
-    this.setState({
-      editorProps: {
-        ...this.state.editorProps,
-        ...editorProps
-      }
-    })
-
-    return this
-
-  }
-
   forceRender = () => {
     return this.setValue(EditorState.createWithContent(this.state.editorState.getCurrentContent(), editorDecorators))
   }
 
   onTab = (event) => {
 
-    const tabIndents = this.props.tabIndents
-
     if (ContentUtils.getSelectionBlockType(this.state.editorState) === 'code-block') {
-      this.insertText(' '.repeat(tabIndents), false)
+      this.insertText(' '.repeat(this.props.tabIndents), false)
       event.preventDefault()
       return false
     }
@@ -136,10 +94,10 @@ export default class BraftEditor extends React.Component {
       return 'handled'
     }
 
-    const nextEditorState = RichUtils.handleKeyCommand(this.state.editorState, command)
+    const nextEditorState = ContentUtils.handleKeyCommand(this.state.editorState, command)
 
     if (nextEditorState) {
-      this.onChange(nextEditorState)
+      this.setValue(nextEditorState)
       return 'handled'
     }
 
@@ -177,11 +135,6 @@ export default class BraftEditor extends React.Component {
 
     } else {
 
-      if (this.props.forceNewLine) {
-        event.which = 13
-        event.getModifierState = () => true
-      }
-
       const nextEditorState = handleNewLine(this.state.editorState, event)
 
       if (nextEditorState) {
@@ -199,14 +152,14 @@ export default class BraftEditor extends React.Component {
 
   handleDrop = (selectionState, dataTransfer, isInternal) => {
 
-    if (window.__BRAFT_DRAGING__IMAGE__) {
+    if (window && window.__BRAFT_DRAGING__IMAGE__) {
 
       let editorState = ContentUtils.removeBlock(this.state.editorState, window.__BRAFT_DRAGING__IMAGE__.block, selectionState)
       editorState = ContentUtils.insertMedias(editorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData])
 
       window.__BRAFT_DRAGING__IMAGE__ = null
 
-      this.setEditorProp('readOnly', false)
+      this.setDraftProps({ readOnly: false })
       this.setValue(editorState)
 
       return 'handled'
@@ -220,35 +173,11 @@ export default class BraftEditor extends React.Component {
   }
 
   handleDroppedFiles = (selectionState, files) => {
-
-    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
-
-      this.braftFinder.uploadImage(files[0], image => {
-        this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
-      })
-  
-      return 'handled'
-  
-    }
-
-    return 'not-handled'
-
+    return this.resolveFiles(files)
   }
 
   handlePastedFiles = (files) => {
-
-    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
-
-      this.braftFinder.uploadImage(files[0], image => {
-        this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
-      })
-  
-      return 'handled'
-
-    }
-
-    return 'not-handled'
-
+    return this.resolveFiles(files)
   }
 
   handlePastedText = (text, htmlString) => {
@@ -280,46 +209,52 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  addTempColors = (colors, callback) => {
+  resolveFiles = (files) => {
 
-    this.setState({
-      tempColors: [...this.state.tempColors, ...colors].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-    }, callback)
+    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
+
+      this.braftFinder.uploadImage(files[0], image => {
+        this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
+      })
+  
+      return 'handled'
+
+    }
+
+    return 'not-handled'
 
   }
 
-  undo () {
+  undo = () => {
     this.setValue(EditorState.undo(this.state.editorState))
   }
 
-  redo () {
+  redo = () => {
     this.setValue(EditorState.redo(this.state.editorState))
   }
 
-  render() {
+  render () {
 
     let {
       controls, excludeControls, extendControls, disabled, height, media, language, colors,
-      fontSizes, fontFamilies, emojis, viewWrapper, placeholder, imageControls, lineHeights, letterSpacings, indents, textAlignOptions, allowSetTextBackgroundColor,
+      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, indents, textAligns, disableTextBackgroundColor,
       extendAtomics
     } = this.props
 
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
-    language = languages[language] || languages[defaultOptions.language]
+    language = languages[language] || languages[defaultProps.language]
 
     const externalMedias = media && media.externalMedias ? {
-      ...defaultOptions.media.externalMedias,
+      ...defaultProps.media.externalMedias,
       ...media.externalMedias
-    } : defaultOptions.media.externalMedias
+    } : defaultProps.media.externalMedias
 
-    media = { ...defaultOptions.media, ...media, externalMedias }
+    media = { ...defaultProps.media, ...media, externalMedias }
 
     imageControls = imageControls ? {
-      ...defaultOptions.imageControls,
+      ...defaultProps.imageControls,
       ...imageControls
-    } : defaultOptions.imageControls
-
-    viewWrapper = viewWrapper || `.BraftEditor-instance-${this.instanceIndex}`
+    } : defaultProps.imageControls
 
     if (!media.uploadFn) {
       media.video = false
@@ -329,17 +264,20 @@ export default class BraftEditor extends React.Component {
     const controlBarProps = {
       editor: this,
       editorState: this.state.editorState,
+      braftFinder: this.braftFinder,
       editorHeight: height,
       ref: instance => this.controlBarInstance = instance,
+      containerNode: this.state.containerNode,
       colors: [...colors, ...this.state.tempColors],
-      media, controls, language, viewWrapper, extendControls, fontSizes, fontFamilies,
-      emojis, lineHeights, letterSpacings, indents, textAlignOptions, allowSetTextBackgroundColor
+      media, controls, language, extendControls, fontSizes, fontFamilies,
+      emojis, lineHeights, letterSpacings, indents, textAligns, disableTextBackgroundColor
     }
 
     const blockRendererFn = getBlockRendererFn({
-      editor: this, imageControls,
-      language, viewWrapper,
-      extendAtomics
+      editor: this,
+      editorState: this.state.editorState,
+      containerNode: this.state.containerNode,
+      imageControls, language, extendAtomics
     })
 
     const customStyleMap = getCustomStyleMap({
@@ -347,7 +285,7 @@ export default class BraftEditor extends React.Component {
       fontSizes, fontFamilies, lineHeights, letterSpacings, indents
     })
 
-    const editorProps = {
+    const draftProps = {
       ref: instance => { this.draftInstance = instance },
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
@@ -363,18 +301,32 @@ export default class BraftEditor extends React.Component {
       readOnly: disabled,
       customStyleMap, blockStyleFn, keyBindingFn,
       blockRendererFn, blockRenderMap, placeholder,
-      ...this.state.editorProps
+      ...this.props.draftProps,
+      ...this.state.draftProps
     }
 
     return (
-      <div className={`BraftEditor-container BraftEditor-instance-${this.instanceIndex} ${(disabled ? 'disabled' : '')}`}>
+      <div ref={this.setEditorContainerNode} className={`BraftEditor-container BraftEditor-instance-${this.editorIndex} ${(disabled ? 'disabled' : '')}`}>
         <ControlBar {...controlBarProps} />
         <div className="BraftEditor-content" style={height ? { height } : {}}>
-          <Editor {...editorProps} />
+          <Editor {...draftProps} />
         </div>
       </div>
     )
 
+  }
+
+  setDraftProps (draftProps) {
+    this.setState({
+      draftProps: {
+        ...this.state.draftProps,
+        ...draftProps
+      }
+    })
+  }
+
+  setEditorContainerNode = (containerNode) => {
+    this.setState({ containerNode })
   }
 
 }

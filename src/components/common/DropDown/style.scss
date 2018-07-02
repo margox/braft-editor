@@ -1,13 +1,5 @@
 @import '~scssinc';
 
-.browser-chrome .Braft-dropdown .dropdown-content .menu-item:not(.active){
-  box-shadow: inset 0 -.5px 0 0 rgba(#fff, .1);
-}
-.browser-safari .Braft-dropdown .dropdown-content .menu-item:not(.active){
-  border-bottom: solid .5px rgba(#fff, .1);
-  box-shadow: none;
-}
-
 .Braft-dropdown{
   position: relative;
   width: auto;
@@ -86,7 +78,6 @@
     }
   }
   .dropdown-content-inner{
-    // margin-right: -10px;
     overflow: auto;
   }
   .dropdown-handler{

@@ -18,7 +18,7 @@ export default class DropDown extends React.Component {
   componentDidMount () {
 
     this.alive = true
-    this.fixDropDownPosition()
+    //this.fixDropDownPosition()
 
     document.body.addEventListener('click', (event) => {
       this.registerClickEvent(event)
@@ -117,17 +117,11 @@ export default class DropDown extends React.Component {
 
   fixDropDownPosition () {
 
+    const viewRect = this.props.containerNode.getBoundingClientRect()
+    const handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
+    const contentRect = this.dropDownContentElement.getBoundingClientRect()
+
     let offset = 0
-    let viewRect = null
-
-    if (this.props.viewWrapper) {
-      viewRect = document.querySelector(this.props.viewWrapper).getBoundingClientRect()
-    } else {
-      viewRect = document.body.getBoundingClientRect()
-    }
-
-    let handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
-    let contentRect = this.dropDownContentElement.getBoundingClientRect()
     let right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2
     let left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2
 

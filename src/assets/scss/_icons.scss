@@ -11,7 +11,7 @@ $ttfPath: '../icons/icomoon.ttf?sirizn';
 
 .BraftEditor-container,
 .braft-modal-root{
-  
+
   [class^="braft-icon-"], [class*=" braft-icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'braft-icons' !important;

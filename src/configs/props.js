@@ -2,17 +2,20 @@ export default {
   height: 500,
   language: 'zh',
   controls: [
-    'undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing',
-    'indent','text-color', 'bold', 'italic', 'underline', 'strike-through',
-    'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul',
-    'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media', 'split', 'clear'
+    'undo', 'redo', 'separator',
+    'font-size', 'font-family', 'line-height', 'letter-spacing', 'separator',
+    'indent','text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator',
+    'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'separator',
+    'headings', 'list_ul', 'list_ol', 'blockquote', 'code', 'separator',
+    'link', 'split', 'hr', 'separator',
+    'media', 'separator',
+    'clear'
   ],
   excludeControls: [],
   tabIndents: 2,
-  forceNewLine: false,
-  textAlignOptions: ['left', 'center', 'right', 'justify'],
-  allowSetTextBackgroundColor: true,
-  letterSpacings: [0, 2, 4, 6],
+  textAligns: ['left', 'center', 'right', 'justify'],
+  disableTextBackgroundColor: false,
+  letterSpacings: [0, 1, 2, 3, 4, 5, 6],
   indents: [0, 14, 21, 28],
   extendControls: [],
   media: {
@@ -90,5 +93,10 @@ export default {
     "😭", "😠", "😈", "😧", "💔", "😟", "🙀",
     "💩", "👿", "😡", "😾", "🖕"
   ],
-  extendAtomics: []
+  extendAtomics: [],
+  draftProps: {},
+  onChange: null,
+  onFocus: null,
+  onBlur: null,
+  onSave: null
 }

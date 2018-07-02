@@ -35,7 +35,7 @@ export default class LinkEditor extends React.Component {
           caption={caption}
           hoverTitle={this.props.language.controls.link}
           autoHide={false}
-          viewWrapper={this.props.viewWrapper}
+          containerNode={this.props.containerNode}
           showDropDownArrow={false}
           disabled={!textSelected}
           ref={(instance) => this.dropDownComponent = instance}

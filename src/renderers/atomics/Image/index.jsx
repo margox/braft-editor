@@ -1,5 +1,6 @@
 import './style.scss'
 import React from 'react'
+import { ContentUtils } from 'braft-utils'
 import Switch from 'components/common/Switch'
 
 export default class Image extends React.Component {
@@ -110,21 +111,12 @@ export default class Image extends React.Component {
 
   calcToolbarOffset () {
 
-    let viewRect = null
+    const viewRect = this.props.containerNode.getBoundingClientRect()
+    const toolbarRect = this.toolbarElement.getBoundingClientRect()
+    const imageRect = this.imageElement.getBoundingClientRect()
 
-    if (this.props.viewWrapper) {
-      viewRect = document.querySelector(this.props.viewWrapper).getBoundingClientRect()
-    } else {
-      viewRect = document.body.getBoundingClientRect()
-    }
-
-    let toolbarRect = this.toolbarElement.getBoundingClientRect()
-    let imageRect = this.imageElement.getBoundingClientRect()
-    let right = imageRect.right - imageRect.width / 2 + toolbarRect.width / 2
-    let left = imageRect.left + imageRect.width / 2 - toolbarRect.width / 2
-
-    right = viewRect.right - right
-    left = left - viewRect.left
+    const right = viewRect.right - (imageRect.right - imageRect.width / 2 + toolbarRect.width / 2)
+    const left = (imageRect.left + imageRect.width / 2 - toolbarRect.width / 2) - viewRect.left
 
     if (right < 10) {
       return right - 10
@@ -149,7 +141,7 @@ export default class Image extends React.Component {
     this.setState({
       toolbarVisible: false
     }, () => {
-      this.props.editor.setEditorProp('readOnly', false)
+      this.props.editor.setDraftProps({ readOnly: false })
     })
 
     return true
@@ -164,8 +156,8 @@ export default class Image extends React.Component {
   }
 
   removeImage = (e) => {
-    this.props.editor.removeBlock(this.props.block)
-    this.props.editor.setEditorProp('readOnly', false)
+    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
+    this.props.editor.setDraftProps({ readOnly: false })
   }
 
   toggleLinkEditor = () => {
@@ -205,7 +197,7 @@ export default class Image extends React.Component {
   setImageLinkTarget (link_target) {
 
     link_target = link_target === '_blank' ? '' : '_blank'
-    this.props.editor.setMediaData(this.props.entityKey, { link_target })
+    this.props.editor.setValue(ContentUtils.setMediaData(this.props.editorState, this.props.entityKey, { link_target }))
     window.setImmediate(this.props.editor.forceRender)
 
   }
@@ -215,7 +207,7 @@ export default class Image extends React.Component {
     const { tempLink: link } = this.state
 
     if (link !== null) {
-      this.props.editor.setMediaData(this.props.entityKey, { link })
+      this.props.editor.setValue(ContentUtils.setMediaData(this.props.editorState, this.props.entityKey, { link }))
       window.setImmediate(this.props.editor.forceRender)
     }
 
@@ -267,7 +259,7 @@ export default class Image extends React.Component {
     width !== null && (newImageSize.width = width);
     height !== null && (newImageSize.height = height);
 
-    this.props.editor.setMediaData(this.props.entityKey, newImageSize)
+    this.props.editor.setValue(ContentUtils.setMediaData(this.props.editorState, this.props.entityKey, newImageSize))
     window.setImmediate(this.props.editor.forceRender)
 
   }
@@ -275,16 +267,16 @@ export default class Image extends React.Component {
   setImageFloat = (e) => {
 
     const { float } = e.currentTarget.dataset
-    this.props.editor.setMediaPosition(this.props.block, { float })
-    this.props.editor.setEditorProp('readOnly', false)
+    this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { float }))
+    this.props.editor.setDraftProps({ readOnly: false })
 
   }
 
   setImageAlignment = (e) => {
 
     const { alignment } = e.currentTarget.dataset
-    this.props.editor.setMediaPosition(this.props.block, { alignment })
-    this.props.editor.setEditorProp('readOnly', false)
+    this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { alignment }))
+    this.props.editor.setDraftProps({ readOnly: false })
 
   }
 
@@ -296,10 +288,8 @@ export default class Image extends React.Component {
       this.setState({
         toolbarVisible: true
       }, () => {
-        this.props.editor.setEditorProp('readOnly', true)
-        this.setState({
-          toolbarOffset: this.calcToolbarOffset()
-        })
+        this.props.editor.setDraftProps({ readOnly: true })
+        this.setState({ toolbarOffset: this.calcToolbarOffset() })
       })
     }
 
@@ -312,7 +302,7 @@ export default class Image extends React.Component {
     this.setState({
       toolbarVisible: false
     }, () => {
-      this.props.editor.setEditorProp('readOnly', false)
+      this.props.editor.setDraftProps({ readOnly: false })
     })
 
   }

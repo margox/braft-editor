@@ -46,6 +46,7 @@ export default {
     unlink: '清除鏈接',
     hr: '水平线',
     media: '媒體',
+    mediaLibirary: '媒體库',
     emoji: '小表情'
   },
   linkEditor: {

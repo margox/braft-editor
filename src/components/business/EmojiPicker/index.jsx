@@ -9,7 +9,7 @@ export default (props) => {
     <DropDown
       caption={props.defaultCaption}
       showDropDownArrow={false}
-      viewWrapper={props.viewWrapper}
+      containerNode={props.containerNode}
       editorHeight={props.editorHeight}
       hoverTitle={props.language.controls.emoji}
       className={"control-item dropdown braft-emoji-dropdown"}

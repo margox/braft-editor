@@ -13,7 +13,7 @@ export default (props) => {
   return (
     <DropDown
       caption={caption}
-      viewWrapper={props.viewWrapper}
+      containerNode={props.containerNode}
       editorHeight={props.editorHeight}
       hoverTitle={props.language.controls.headings}
       arrowActive={currentHeadingIndex === 0}
