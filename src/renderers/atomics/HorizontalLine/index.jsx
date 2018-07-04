@@ -1,4 +1,5 @@
 import React from 'react'
+import { ContentUtils } from 'braft-utils'
 import './style.scss'
 
 export default class HorizontalLine extends React.Component {
@@ -16,7 +17,7 @@ export default class HorizontalLine extends React.Component {
   }
 
   removeHorizontalLine = () => {
-    this.props.editor.removeBlock(this.props.block)
+    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
   }
 
 }

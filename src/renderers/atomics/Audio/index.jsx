@@ -1,5 +1,6 @@
 import './style.scss'
 import React from 'react'
+import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
 
 export default class Audio extends React.Component {
@@ -58,7 +59,7 @@ export default class Audio extends React.Component {
   }
 
   removeAudio = () => {
-    this.props.editor.removeBlock(this.props.block)
+    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
   }
 
   showToolbar = () => {

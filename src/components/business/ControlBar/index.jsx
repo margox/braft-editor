@@ -55,7 +55,7 @@ export default class ControlBar extends React.Component {
       this.props.editor.setValue(ContentUtils.toggleSelectionInlineStyle(this.props.editorState, command))
     } else if (type === 'block-type') {
       this.props.editor.setValue(ContentUtils.toggleSelectionBlockType(this.props.editorState, command))
-    } else if (type === 'editor-state-method') {
+    } else if (type === 'editor-method') {
       this.props.editor[command] && this.props.editor[command]()
     }
 
@@ -65,6 +65,7 @@ export default class ControlBar extends React.Component {
 
   openMediaLibrary = () => {
 
+    const mediaProps = this.props.media
     const MediaLibrary = this.props.braftFinder.ReactComponent
 
     this.mediaLibiraryModal = showModal({
@@ -76,6 +77,7 @@ export default class ControlBar extends React.Component {
         <MediaLibrary
           onCancel={this.closeMediaLibrary}
           onInsert={this.insertMedias}
+          externals={mediaProps.externals}
         />
       )
     })
@@ -85,6 +87,7 @@ export default class ControlBar extends React.Component {
   insertMedias = (medias) => {
     this.props.editor.setValue(ContentUtils.insertMedias(this.props.editorState, medias))
     this.props.editor.requestFocus()
+    this.props.media.onInsert && this.props.media.onInsert(medias)
     this.closeMediaLibrary()
   }
 
@@ -94,7 +97,7 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, editorHeight, textAligns, disableTextBackgroundColor, indents} = this.props
+    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, editorHeight, textAligns, textBackgroundColor, indents} = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, editorState, editorHeight, language, containerNode }
@@ -193,7 +196,7 @@ export default class ControlBar extends React.Component {
               return <TextColorPicker
                 key={index}
                 colors={colors}
-                disableBackgroundColor={disableTextBackgroundColor}
+                enableBackgroundColor={textBackgroundColor}
                 {...commonProps}
               />
             } else if (controlItem.type === 'font-size') {

@@ -4,9 +4,8 @@ import 'braft-finder/dist/index.css'
 import React from 'react'
 import languages from 'languages'
 import BraftFinder from 'braft-finder'
-import { BaseUtils, ColorUtils, ContentUtils } from 'braft-utils'
-import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor, ContentState, EditorState, RichUtils } from 'draft-js'
-import { handleNewLine } from 'draftjs-utils'
+import { ColorUtils, ContentUtils } from 'braft-utils'
+import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import keyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
 import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
@@ -24,13 +23,40 @@ export default class BraftEditor extends React.Component {
     super(props)
 
     this.isFocused = false
-    this.editorIndex = BaseUtils.UniqueIndex()
-    this.braftFinder = BraftFinder()
+    this.braftFinder = new BraftFinder({
+      uploadFn: props.media.uploadFn,
+      validateFn: props.media.validateFn
+    })
+
     this.state = {
       containerNode: null,
       tempColors: [],
-      editorState: EditorState.createEmpty(editorDecorators),
+      editorState: ContentUtils.createEmptyEditorState(editorDecorators),
       draftProps: {}
+    }
+
+  }
+
+  componentDidMount () {
+
+    const { value: editorState } = this.props
+
+    if (ContentUtils.isEditorState(editorState)) {
+      this.setState({ editorState })
+    } else if (editorState) {
+      console.warn('')
+    }
+
+  }
+
+  componentWillReceiveProps (nextProps) {
+
+    const { value: editorState } = nextProps
+
+    if (ContentUtils.isEditorState(editorState)) {
+      this.setState({ editorState })
+    } else if (editorState) {
+      console.warn('')
     }
 
   }
@@ -58,7 +84,7 @@ export default class BraftEditor extends React.Component {
   }
 
   forceRender = () => {
-    return this.setValue(EditorState.createWithContent(this.state.editorState.getCurrentContent(), editorDecorators))
+    return this.setValue(ContentUtils.createEditorState(this.state.editorState.getCurrentContent(), editorDecorators))
   }
 
   onTab = (event) => {
@@ -135,7 +161,7 @@ export default class BraftEditor extends React.Component {
 
     } else {
 
-      const nextEditorState = handleNewLine(this.state.editorState, event)
+      const nextEditorState = ContentUtils.handleNewLine(this.state.editorState, event)
 
       if (nextEditorState) {
         this.setValue(nextEditorState)
@@ -211,7 +237,7 @@ export default class BraftEditor extends React.Component {
 
   resolveFiles = (files) => {
 
-    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.allowPasteImage !== false) {
+    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.pasteImage) {
 
       this.braftFinder.uploadImage(files[0], image => {
         this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
@@ -226,28 +252,40 @@ export default class BraftEditor extends React.Component {
   }
 
   undo = () => {
-    this.setValue(EditorState.undo(this.state.editorState))
+    this.setValue(ContentUtils.undo(this.state.editorState))
   }
 
   redo = () => {
-    this.setValue(EditorState.redo(this.state.editorState))
+    this.setValue(ContentUtils.redo(this.state.editorState))
+  }
+
+  removeSelectionInlineStyles = () => {
+    this.setValue(ContentUtils.removeSelectionInlineStyles(this.state.editorState))
+  }
+
+  insertHorizontalLine = () => {
+    this.setValue(ContentUtils.insertHorizontalLine(this.state.editorState))
+  }
+
+  clearEditorContent = () => {
+    this.setValue(ContentUtils.clear(this.state.editorState))
   }
 
   render () {
 
     let {
       controls, excludeControls, extendControls, disabled, height, media, language, colors,
-      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, indents, textAligns, disableTextBackgroundColor,
-      extendAtomics
+      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, indents, textAligns, textBackgroundColor,
+      extendAtomics, className
     } = this.props
 
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
     language = languages[language] || languages[defaultProps.language]
 
-    const externalMedias = media && media.externalMedias ? {
-      ...defaultProps.media.externalMedias,
-      ...media.externalMedias
-    } : defaultProps.media.externalMedias
+    const externalMedias = media && media.externals ? {
+      ...defaultProps.media.externals,
+      ...media.externals
+    } : defaultProps.media.externals
 
     media = { ...defaultProps.media, ...media, externalMedias }
 
@@ -270,7 +308,7 @@ export default class BraftEditor extends React.Component {
       containerNode: this.state.containerNode,
       colors: [...colors, ...this.state.tempColors],
       media, controls, language, extendControls, fontSizes, fontFamilies,
-      emojis, lineHeights, letterSpacings, indents, textAligns, disableTextBackgroundColor
+      emojis, lineHeights, letterSpacings, indents, textAligns, textBackgroundColor
     }
 
     const blockRendererFn = getBlockRendererFn({
@@ -306,7 +344,7 @@ export default class BraftEditor extends React.Component {
     }
 
     return (
-      <div ref={this.setEditorContainerNode} className={`BraftEditor-container BraftEditor-instance-${this.editorIndex} ${(disabled ? 'disabled' : '')}`}>
+      <div ref={this.setEditorContainerNode} className={`BraftEditor-container ${className} ${(disabled ? 'disabled' : '')}`}>
         <ControlBar {...controlBarProps} />
         <div className="BraftEditor-content" style={height ? { height } : {}}>
           <Editor {...draftProps} />

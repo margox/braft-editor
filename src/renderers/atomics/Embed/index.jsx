@@ -1,6 +1,7 @@
 import './style.scss'
 import React from 'react'
 import { showModal } from 'components/common/Modal'
+import { ContentUtils } from 'braft-utils'
 
 export default class Embed extends React.Component {
 
@@ -58,7 +59,7 @@ export default class Embed extends React.Component {
   }
 
   removeEmbed = () => {
-    this.props.editor.removeBlock(this.props.block)
+    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
   }
 
   showToolbar = () => {

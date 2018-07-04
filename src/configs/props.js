@@ -12,23 +12,19 @@ export default {
     'clear'
   ],
   excludeControls: [],
-  tabIndents: 2,
-  textAligns: ['left', 'center', 'right', 'justify'],
-  disableTextBackgroundColor: false,
-  letterSpacings: [0, 1, 2, 3, 4, 5, 6],
-  indents: [0, 14, 21, 28],
   extendControls: [],
+  extendAtomics: [],
   media: {
-    allowPasteImage: true,
+    pasteImage: true,
     image: true,
     video: true,
     audio: true,
     uploadFn: null,
-    sourceFn: null,
+    validateFn: null,
     onRemove: null,
     onChange: null,
     onInsert: null,
-    externalMedias: {
+    externals: {
       audio: true,
       video: true,
       image: true,
@@ -50,6 +46,11 @@ export default {
     '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784',
     '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'
   ],
+  tabIndents: 2,
+  textAligns: ['left', 'center', 'right', 'justify'],
+  textBackgroundColor: true,
+  letterSpacings: [0, 1, 2, 3, 4, 5, 6],
+  indents: [0, 14, 21, 28],
   lineHeights: [
     '1', '1.2', '1.5', '1.75', '2', '2.5', '3', '4'
   ],
@@ -93,7 +94,6 @@ export default {
     "😭", "😠", "😈", "😧", "💔", "😟", "🙀",
     "💩", "👿", "😡", "😾", "🖕"
   ],
-  extendAtomics: [],
   draftProps: {},
   onChange: null,
   onFocus: null,

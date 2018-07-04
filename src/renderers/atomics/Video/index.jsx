@@ -1,5 +1,6 @@
 import './style.scss'
 import React from 'react'
+import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
 
 export default class Video extends React.Component {
@@ -65,7 +66,7 @@ export default class Video extends React.Component {
   }
 
   removeVideo = () => {
-    this.props.editor.removeBlock(this.props.block)
+    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
   }
 
   showToolbar = () => {

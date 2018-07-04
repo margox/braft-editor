@@ -51,7 +51,7 @@ export default class TextColor extends React.Component {
         className={"control-item dropdown text-color-dropdown"}
       >
         <div className="braft-text-color-picker-wrap">
-          <div className="braft-color-switch-buttons" style={this.props.disableBackgroundColor ? {display: 'none'} : {}}>
+          <div className="braft-color-switch-buttons" style={this.props.enableBackgroundColor ? {} : {display: 'none'}}>
             <button
               type="button"
               data-type="color"

@@ -5,25 +5,25 @@ export default (lang) => [
     key: 'undo',
     title: lang.controls.undo,
     text: <i className="braft-icon-undo"></i>,
-    type: 'editor-state-method',
+    type: 'editor-method',
     command: 'undo'
   }, {
     key: 'redo',
     title: lang.controls.redo,
     text: <i className="braft-icon-redo"></i>,
-    type: 'editor-state-method',
+    type: 'editor-method',
     command: 'redo'
   }, {
     key: 'remove-styles',
     title: lang.controls.removeStyles,
     text: <i className="braft-icon-format_clear"></i>,
-    type: 'editor-state-method',
+    type: 'editor-method',
     command: 'removeSelectionInlineStyles'
   }, {
     key: 'hr',
     title: lang.controls.hr,
     text: <i className="braft-icon-hr"></i>,
-    type: 'editor-state-method',
+    type: 'editor-method',
     command: 'insertHorizontalLine'
   }, {
     key: 'bold',
@@ -97,7 +97,7 @@ export default (lang) => [
     key: 'text-color',
     title: lang.controls.color,
     type: 'text-color'
-  },  {
+  }, {
     key: 'line-height',
     title: lang.controls.lineHeight, 
     type: 'line-height'
@@ -135,7 +135,7 @@ export default (lang) => [
     key: 'clear',
     title: lang.controls.clear,
     text: <span className="braft-control-text">{lang.controls.clear}</span>,
-    type: 'editor-state-method',
-    command: 'clear'
+    type: 'editor-method',
+    command: 'clearEditorContent'
   }
 ]

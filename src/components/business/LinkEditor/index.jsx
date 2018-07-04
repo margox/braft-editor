@@ -27,7 +27,7 @@ export default class LinkEditor extends React.Component {
 
     const { href, target } = this.state
     const caption = <i className="braft-icon-link"></i>
-    const textSelected = !ContentUtils.selectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
+    const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
       <div className="control-item-group">
