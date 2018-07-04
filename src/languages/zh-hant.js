@@ -19,7 +19,7 @@ export default {
     bold: '加粗',
     lineHeight: '行高',
     letterSpacing: '字間距',
-    indent: '兩端縮進',
+    textIndent: '兩端縮進',
     border: '邊框',
     italic: '斜體',
     underline: '下劃線',

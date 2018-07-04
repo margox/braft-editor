@@ -10,7 +10,7 @@ import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
 import LetterSpacingPicker from 'components/business/LetterSpacing'
-import IndentPicker from 'components/business/Indent'
+import TextIndentPicker from 'components/business/TextIndent'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
@@ -67,6 +67,7 @@ export default class ControlBar extends React.Component {
 
     const mediaProps = this.props.media
     const MediaLibrary = this.props.braftFinder.ReactComponent
+    const { onBeforeDeselect, onDeselect, onBeforeSelect, onSelect, onBeforeRemove, onRemove, onFileSelect, onBeforeInsert, onChange } = mediaProps
 
     this.mediaLibiraryModal = showModal({
       title: this.props.language.controls.mediaLibirary,
@@ -78,6 +79,7 @@ export default class ControlBar extends React.Component {
           onCancel={this.closeMediaLibrary}
           onInsert={this.insertMedias}
           externals={mediaProps.externals}
+          {...{onBeforeDeselect, onDeselect, onBeforeSelect, onSelect, onBeforeRemove, onRemove, onFileSelect, onBeforeInsert, onChange}}
         />
       )
     })
@@ -92,12 +94,13 @@ export default class ControlBar extends React.Component {
   }
 
   closeMediaLibrary = () => {
+    this.props.media.onCancel && this.props.media.onCancel()
     this.mediaLibiraryModal && this.mediaLibiraryModal.close()
   }
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, editorHeight, textAligns, textBackgroundColor, indents} = this.props
+    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, editorHeight, textAligns, textBackgroundColor, textIndents} = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const supportedControls = getSupportedControls(language)
     const commonProps = { editor, editorState, editorHeight, language, containerNode }
@@ -220,10 +223,10 @@ export default class ControlBar extends React.Component {
                 defaultCaption={controlItem.title}
                 {...commonProps}
               />
-            } else if (controlItem.type === 'indent') {
-              return <IndentPicker
+            } else if (controlItem.type === 'text-indent') {
+              return <TextIndentPicker
                 key={index}
-                indents={indents}
+                textIndents={textIndents}
                 defaultCaption={controlItem.title}
                 {...commonProps}
               />

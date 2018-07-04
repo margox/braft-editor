@@ -4,7 +4,7 @@ export default {
   controls: [
     'undo', 'redo', 'separator',
     'font-size', 'font-family', 'line-height', 'letter-spacing', 'separator',
-    'indent','text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator',
+    'text-indent','text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator',
     'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'separator',
     'headings', 'list_ul', 'list_ol', 'blockquote', 'code', 'separator',
     'link', 'split', 'hr', 'separator',
@@ -21,9 +21,17 @@ export default {
     audio: true,
     uploadFn: null,
     validateFn: null,
+    onBeforeDeselect: null,
+    onDeselect: null,
+    onBeforeSelect: null,
+    onSelect: null,
+    onBeforeRemove: null,
     onRemove: null,
-    onChange: null,
+    onCancel: null,
+    onFileSelect: null,
+    onBeforeInsert: null,
     onInsert: null,
+    onChange: null,
     externals: {
       audio: true,
       video: true,
@@ -50,7 +58,7 @@ export default {
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,
   letterSpacings: [0, 1, 2, 3, 4, 5, 6],
-  indents: [0, 14, 21, 28],
+  textIndents: [0, 14, 21, 28],
   lineHeights: [
     '1', '1.2', '1.5', '1.75', '2', '2.5', '3', '4'
   ],

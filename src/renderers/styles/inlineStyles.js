@@ -31,7 +31,7 @@ export default (props) => {
   props.letterSpacings.forEach((letterSpacing) => {
     letterSpacingtStyles['LETTERSPACING-' + letterSpacing] = { letterSpacing: letterSpacing }
   })
-  props.indents.forEach((indent) => {
+  props.textIndents.forEach((indent) => {
     indentStyles['INDENT-' + indent] = { paddingLeft: indent, paddingRight: indent}
   })
   

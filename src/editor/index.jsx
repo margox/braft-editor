@@ -275,7 +275,7 @@ export default class BraftEditor extends React.Component {
 
     let {
       controls, excludeControls, extendControls, disabled, height, media, language, colors,
-      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, indents, textAligns, textBackgroundColor,
+      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
       extendAtomics, className
     } = this.props
 
@@ -308,7 +308,7 @@ export default class BraftEditor extends React.Component {
       containerNode: this.state.containerNode,
       colors: [...colors, ...this.state.tempColors],
       media, controls, language, extendControls, fontSizes, fontFamilies,
-      emojis, lineHeights, letterSpacings, indents, textAligns, textBackgroundColor
+      emojis, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor
     }
 
     const blockRendererFn = getBlockRendererFn({
@@ -320,7 +320,7 @@ export default class BraftEditor extends React.Component {
 
     const customStyleMap = getCustomStyleMap({
       colors: [...colors, ...this.state.tempColors],
-      fontSizes, fontFamilies, lineHeights, letterSpacings, indents
+      fontSizes, fontFamilies, lineHeights, letterSpacings, textIndents
     })
 
     const draftProps = {

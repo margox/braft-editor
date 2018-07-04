@@ -19,7 +19,7 @@ export default {
     bold: 'Bold',
     lineHeight:'Line Height',
     letterSpacing:'Letter Spacing',
-    indent:'Indent at both ends',
+    textIndent:'Indent at both ends',
     italic: 'Italic',
     underline: 'Underline',
     strikeThrough: 'Strike Through',

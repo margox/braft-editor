@@ -8,7 +8,7 @@ export default (props) => {
   let caption = null
   let currentIndent = null
 
-  props.indents.find((item) => {
+  props.textIndents.find((item) => {
     if (ContentUtils.selectionHasInlineStyle(props.editorState, 'INDENT-' + item)) {
       caption = item
       currentIndent = item
@@ -22,18 +22,18 @@ export default (props) => {
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       editorHeight={props.editorHeight}
-      hoverTitle={props.language.controls.indent}
+      hoverTitle={props.language.controls.textIndent}
       className={"control-item dropdown braft-indent-dropdown"}
     >
-      <ul className="braft-indents-wrap">
-        {props.indents.map((item, index) => {
+      <ul className="braft-text-indents-wrap">
+        {props.textIndents.map((item, index) => {
           return (
             <li
               key={index}
               className={item === currentIndent ? 'active' : null}
               data-size={item}
               onClick={(e) => {
-                props.editor.setValue(ContentUtils.toggleSelectionIndent(props.editorState, e.currentTarget.dataset.size, props.indents))
+                props.editor.setValue(ContentUtils.toggleSelectionIndent(props.editorState, e.currentTarget.dataset.size, props.textIndents))
                 props.editor.requestFocus()
               }}
             >{item}</li>

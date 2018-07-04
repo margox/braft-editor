@@ -106,9 +106,9 @@ export default (lang) => [
     title: lang.controls.letterSpacing,
     type: 'letter-spacing'
   }, {
-    key: 'indent',
-    title: lang.controls.indent,
-    type: 'indent'
+    key: 'text-indent',
+    title: lang.controls.textIndent,
+    type: 'text-indent'
   },{
     key: 'font-size',
     title: lang.controls.fontSize,

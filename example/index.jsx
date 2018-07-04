@@ -15,7 +15,15 @@ class Demo extends React.Component {
     return (
       <div>
         <div className="demo" id="demo">
-          <BraftEditor/>
+          <BraftEditor
+            media={{
+              externals: {
+                audio: true,
+                image: true,
+                embed: true
+              }
+            }}
+          />
         </div>
       </div>
     )
