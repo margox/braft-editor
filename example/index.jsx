@@ -16,6 +16,7 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            onChange={console.log}
             media={{
               externals: {
                 audio: true,

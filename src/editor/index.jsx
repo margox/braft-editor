@@ -6,13 +6,12 @@ import languages from 'languages'
 import BraftFinder from 'braft-finder'
 import { ColorUtils, ContentUtils } from 'braft-utils'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
-import keyBindingFn from 'configs/keybindings'
+import getKeyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
-import { getBlockRendererFn, customBlockRenderMap, blockStyleFn, getCustomStyleMap, decorators } from 'renderers'
+import { getBlockRendererFn, customBlockRenderMap, getBlockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 
 const editorDecorators = new CompositeDecorator(decorators)
-const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
 export default class BraftEditor extends React.Component {
 
@@ -27,6 +26,14 @@ export default class BraftEditor extends React.Component {
       uploadFn: props.media.uploadFn,
       validateFn: props.media.validateFn
     })
+
+    this.keyBindingFn = getKeyBindingFn(props.customKeyBindingFn)
+    this.blockStyleFn = getBlockStyleFn(props.blockStyleFn)
+    this.blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
+
+    if (props.blockRenderMapFn) {
+      this.blockRenderMap = props.blockRenderMapFn(this.blockRenderMap)
+    }
 
     this.state = {
       containerNode: null,
@@ -316,12 +323,12 @@ export default class BraftEditor extends React.Component {
       editorState: this.state.editorState,
       containerNode: this.state.containerNode,
       imageControls, language, extendAtomics
-    })
+    }, this.props.blockRendererFn)
 
     const customStyleMap = getCustomStyleMap({
       colors: [...colors, ...this.state.tempColors],
       fontSizes, fontFamilies, lineHeights, letterSpacings, textIndents
-    })
+    }, this.props.customStyleMap)
 
     const draftProps = {
       ref: instance => { this.draftInstance = instance },
@@ -337,8 +344,10 @@ export default class BraftEditor extends React.Component {
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       readOnly: disabled,
-      customStyleMap, blockStyleFn, keyBindingFn,
-      blockRendererFn, blockRenderMap, placeholder,
+      blockRenderMap: this.blockRenderMap,
+      blockStyleFn: this.blockStyleFn,
+      keyBindingFn: this.keyBindingFn,
+      customStyleMap, blockRendererFn, placeholder,
       ...this.props.draftProps,
       ...this.state.draftProps
     }

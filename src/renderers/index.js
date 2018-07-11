@@ -6,7 +6,7 @@ import Video from './atomics/Video'
 import Audio from './atomics/Audio'
 import Embed from './atomics/Embed'
 import HorizontalLine from './atomics/HorizontalLine'
-import _blockStyleFn from './styles/blockStyles'
+import _getBlockStyleFn from './styles/blockStyles'
 import _getCustomStyleMap from './styles/inlineStyles'
 import _decorators from './decorators'
 
@@ -37,6 +37,7 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
   } else if (mediaType === 'HR') {
     return <HorizontalLine { ...mediaProps } />
   }
+
   // 支持自定义的atomic
   if (superProps.extendAtomics) {
     const atomics = superProps.extendAtomics;
@@ -52,12 +53,22 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
 
 }
 
-export const getBlockRendererFn = (props) => (block) => {
+export const getBlockRendererFn = (props, customBlockRendererFn) => (block) => {
 
-  return block.getType() === 'atomic' ? {
-    component: getAtomicBlockComponent(block, props),
-    editable: false
-  } : null
+  let blockRenderer = null
+
+  if (block.getType() === 'atomic') {
+
+    blockRenderer = {
+      component: getAtomicBlockComponent(block, props),
+      editable: false
+    }
+
+  } else if (customBlockRendererFn) {
+    blockRenderer = customBlockRendererFn(block) || null
+  }
+
+  return blockRenderer
 
 }
 
@@ -70,6 +81,6 @@ export const customBlockRenderMap = Map({
     wrapper: DefaultDraftBlockRenderMap.get('code-block').wrapper
   }
 })
-export const blockStyleFn = _blockStyleFn
+export const getBlockStyleFn = _getBlockStyleFn
 export const getCustomStyleMap = _getCustomStyleMap
 export const decorators = _decorators

@@ -1,4 +1,4 @@
-export default (props) => {
+export default (props, customStyles = {}) => {
 
   const colorStyles = {}
   const bgColorStyles = {}
@@ -52,7 +52,8 @@ export default (props) => {
     ...fontFamilyStyles,
     ...lineHeightStyles,
     ...letterSpacingtStyles,
-    ...indentStyles
+    ...indentStyles,
+    ...customStyles
   }
 
 }

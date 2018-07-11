@@ -1,9 +1,9 @@
-export default function blockStyleFn (block) {
+export default (customBlockStyleFn) => (block) => {
 
   const blockAlignment = block.getData() && block.getData().get('textAlign')
   const blockFloat = block.getData() && block.getData().get('float')
 
-  let result = null
+  let result = ''
 
   if (blockAlignment) {
     result = `braft-${blockAlignment}-aligned-block`
@@ -11,6 +11,10 @@ export default function blockStyleFn (block) {
 
   if (blockFloat) {
     result += ` braft-float-${blockFloat}`
+  }
+
+  if (customBlockStyleFn) {
+    result += customBlockStyleFn(block)
   }
 
   return result
