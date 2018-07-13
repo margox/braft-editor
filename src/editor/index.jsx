@@ -54,6 +54,14 @@ export default class BraftEditor extends React.Component {
       console.warn('')
     }
 
+    document.addEventListener("selectionchange", this.draftInstance._onSelect)
+
+  }
+
+  componentWillUnmount () {
+
+    document.removeEventListener("selectionchange", this.draftInstance._onSelect)
+
   }
 
   componentWillReceiveProps (nextProps) {
@@ -215,19 +223,8 @@ export default class BraftEditor extends React.Component {
 
   handlePastedText = (text, htmlString) => {
 
-    if (!htmlString) {
+    if (!htmlString || this.props.stripPastedStyles) {
       return false
-    }
-
-    const pasteMode = this.tmpPasteMode || this.props.pasteMode || 'normal'
-
-    if (pasteMode === 'text') {
-      this.tmpPasteMode = 'normal'
-      const tmpTextHolder = document.createElement('div')
-      tmpTextHolder.innerHTML = htmlString
-      return this.handlePastedText(text, tmpTextHolder.textContent || tmpTextHolder.innerText || '')
-    } else {
-      this.tmpPasteMode = null
     }
 
     const tempColors = ColorUtils.detectColorsFromHTMLString(htmlString)
@@ -283,7 +280,7 @@ export default class BraftEditor extends React.Component {
     let {
       controls, excludeControls, extendControls, disabled, height, media, language, colors,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
-      extendAtomics, className
+      extendAtomics, className, stripPastedStyles
     } = this.props
 
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
@@ -347,7 +344,8 @@ export default class BraftEditor extends React.Component {
       blockRenderMap: this.blockRenderMap,
       blockStyleFn: this.blockStyleFn,
       keyBindingFn: this.keyBindingFn,
-      customStyleMap, blockRendererFn, placeholder,
+      customStyleMap, blockRendererFn,
+      placeholder, stripPastedStyles,
       ...this.props.draftProps,
       ...this.state.draftProps
     }

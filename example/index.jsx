@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
+import { convertRawToHTML } from 'braft-convert'
+import { convertToRaw } from 'draft-js'
 
 class Demo extends React.Component {
 
@@ -10,13 +12,18 @@ class Demo extends React.Component {
     this.editorInstance = null
   }
 
+  handleChange = (editorState) => {
+    console.log(convertRawToHTML(convertToRaw(editorState.getCurrentContent())))
+  }
+
   render() {
 
     return (
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            onChange={console.log}
+            onChange={this.handleChange}
+            stripPastedStyles={false}
             media={{
               externals: {
                 audio: true,
