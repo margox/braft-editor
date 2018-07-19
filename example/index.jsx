@@ -18,12 +18,33 @@ class Demo extends React.Component {
 
   render() {
 
+    const controls = BraftEditor.defaultProps.controls.map(item => {
+      if (item === 'media') {
+        return {
+          key: 'media',
+          text: <b style={{color: '#f90'}}>IMG</b>,
+        }
+      } else {
+        return item
+      }
+    })
+
+    const imageControls = [
+      ...BraftEditor.defaultProps.imageControls,
+      {
+        text: <b>SB</b>,
+        onClick: console.log
+      }
+    ]
+
     return (
       <div>
         <div className="demo" id="demo">
           <BraftEditor
             onChange={this.handleChange}
             stripPastedStyles={false}
+            controls={controls}
+            imageControls={imageControls}
             media={{
               externals: {
                 audio: true,

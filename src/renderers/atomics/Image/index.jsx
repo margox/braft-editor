@@ -2,6 +2,7 @@ import './style.scss'
 import React from 'react'
 import { ContentUtils } from 'braft-utils'
 import Switch from 'components/common/Switch'
+import { imageControlItems } from 'configs/controls'
 
 export default class Image extends React.Component {
 
@@ -42,6 +43,26 @@ export default class Image extends React.Component {
       clearFix = true
     }
 
+    const renderedControlItems = imageControls.map((item, index) => {
+
+      if (typeof item === 'string' && imageControlItems[item]) {
+        return (
+          <a className={item === 'link' && link ? 'active' : ''} key={index} href="javascript:void(0);" onClick={() => this.executeCommand(imageControlItems[item].command)}>
+            {imageControlItems[item].text}
+          </a>
+        )
+      } else if (item && item.onClick && item.text) {
+        return (
+          <a key={index} href="javascript:void(0);" onClick={() => this.executeCommand(item.onClick)}>
+            {item.text}
+          </a>
+        )
+      } else {
+        return null
+      }
+
+    })
+
     return (
       <div className="braft-media-embeder braft-image-embeder">
         <div
@@ -60,7 +81,7 @@ export default class Image extends React.Component {
               style={{marginLeft: toolbarOffset}}
               ref={instance => this.toolbarElement = instance}
               data-float={float}
-              data-alignment={alignment}
+              data-align={alignment}
               className="braft-embed-image-toolbar"
             >
               {linkEditorVisible ? (
@@ -87,14 +108,7 @@ export default class Image extends React.Component {
                   </div>
                 </div>
               ) : null}
-              {imageControls.floatLeft ? <a data-float="left" onClick={this.setImageFloat}>&#xe91e;</a> : null}
-              {imageControls.floatRight ? <a data-float="right" onClick={this.setImageFloat}>&#xe914;</a> : null}
-              {imageControls.alignLeft ? <a data-alignment="left" onClick={this.setImageAlignment}>&#xe027;</a> : null}
-              {imageControls.alignCenter ? <a data-alignment="center" onClick={this.setImageAlignment}>&#xe028;</a> : null}
-              {imageControls.alignRight ? <a data-alignment="right" onClick={this.setImageAlignment}>&#xe029;</a> : null}
-              {imageControls.size ? <a onClick={this.toggleSizeEditor}>&#xe3c2;</a> : null}
-              {imageControls.link ? <a className={link ? 'active' : ''} onClick={this.toggleLinkEditor}>&#xe91a;</a> : null}
-              {imageControls.remove ? <a onClick={this.removeImage}>&#xe9ac;</a> : null}
+              {renderedControlItems}
               <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
             </div>
           ) : null}
@@ -155,7 +169,16 @@ export default class Image extends React.Component {
 
   }
 
-  removeImage = (e) => {
+  executeCommand = (command) => {
+    if (typeof command === 'string') {
+      const [method, param] = command.split('|')
+      this[method] && this[method](param)
+    } else if (typeof command === 'function') {
+      command(this.props.block, this.props.editorState)
+    }
+  }
+
+  removeImage = () => {
     this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
     this.props.editor.setDraftProps({ readOnly: false })
   }
@@ -185,13 +208,8 @@ export default class Image extends React.Component {
   }
 
   setImageLink = (e) => {
-
-    this.setState({
-      tempLink: e.currentTarget.value
-    })
-
+    this.setState({ tempLink: e.currentTarget.value })
     return
-
   }
 
   setImageLinkTarget (link_target) {
@@ -214,13 +232,11 @@ export default class Image extends React.Component {
   }
 
   handleSizeInputKeyDown = (e) => {
-
     if (e.keyCode === 13) {
       this.confirmImageSize()
     } else {
       return
     }
-
   }
 
   setImageWidth = ({ currentTarget }) => {
@@ -264,20 +280,14 @@ export default class Image extends React.Component {
 
   }
 
-  setImageFloat = (e) => {
-
-    const { float } = e.currentTarget.dataset
+  setImageFloat = (float) => {
     this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { float }))
     this.props.editor.setDraftProps({ readOnly: false })
-
   }
 
-  setImageAlignment = (e) => {
-
-    const { alignment } = e.currentTarget.dataset
+  setImageAlignment = (alignment) => {
     this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { alignment }))
     this.props.editor.setDraftProps({ readOnly: false })
-
   }
 
   showToolbar = (event) => {

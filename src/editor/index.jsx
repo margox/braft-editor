@@ -280,7 +280,7 @@ export default class BraftEditor extends React.Component {
     let {
       controls, excludeControls, extendControls, disabled, height, media, language, colors,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
-      extendAtomics, className, stripPastedStyles
+      extendAtomics, className, stripPastedStyles, componentBelowControlBar
     } = this.props
 
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
@@ -292,11 +292,6 @@ export default class BraftEditor extends React.Component {
     } : defaultProps.media.externals
 
     media = { ...defaultProps.media, ...media, externalMedias }
-
-    imageControls = imageControls ? {
-      ...defaultProps.imageControls,
-      ...imageControls
-    } : defaultProps.imageControls
 
     if (!media.uploadFn) {
       media.video = false
@@ -353,6 +348,7 @@ export default class BraftEditor extends React.Component {
     return (
       <div ref={this.setEditorContainerNode} className={`BraftEditor-container ${className} ${(disabled ? 'disabled' : '')}`}>
         <ControlBar {...controlBarProps} />
+        {componentBelowControlBar}
         <div className="BraftEditor-content" style={height ? { height } : {}}>
           <Editor {...draftProps} />
         </div>

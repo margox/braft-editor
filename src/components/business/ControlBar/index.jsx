@@ -175,19 +175,32 @@ export default class ControlBar extends React.Component {
       }
     })
 
+    const renderedControls = []
+
     return (
       <div className="BraftEditor-controlBar">
         {
           controls.map((item, index) => {
-            if (item.toLowerCase() === 'separator') {
+            let itemKey = typeof item === 'string' ? item : item.key
+            if (typeof itemKey !== 'string') {
+              return null
+            }
+            if (renderedControls.indexOf(itemKey) > -1) {
+              return null
+            }
+            if (itemKey.toLowerCase() === 'separator') {
               return <span key={index} className="separator-line"></span>
             }
             let controlItem = supportedControls.find((subItem) => {
-              return subItem.key.toLowerCase() === item.toLowerCase()
+              return subItem.key.toLowerCase() === itemKey.toLowerCase()
             })
+            if (typeof item !== 'string') {
+              controlItem = { ...controlItem, ...item }
+            }
             if (!controlItem) {
               return null
             }
+            renderedControls.push(itemKey)
             if (controlItem.type === 'headings') {
               return <HeadingPicker
                 key={index}

@@ -124,9 +124,9 @@
   }
   &[data-float="left"] [data-float="left"],
   &[data-float="right"] [data-float="right"],
-  &[data-alignment="left"] [data-alignment="left"],
-  &[data-alignment="center"] [data-alignment="center"],
-  &[data-alignment="right"] [data-alignment="right"] {
+  &[data-align="left"] [data-align="left"],
+  &[data-align="center"] [data-align="center"],
+  &[data-align="right"] [data-align="right"] {
     color: $COLOR_ACTIVE;
   }
 }

@@ -139,3 +139,38 @@ export default (lang) => [
     command: 'clearEditorContent'
   }
 ]
+
+export const imageControlItems = {
+  'float-left': {
+    text: <span data-float="left">&#xe91e;</span>,
+    command: 'setImageFloat|left'
+  },
+  'float-right': {
+    text: <span data-float="right">&#xe914;</span>,
+    command: 'setImageFloat|right'
+  },
+  'align-left': {
+    text: <span data-align="left">&#xe027;</span>,
+    command: 'setImageAlignment|left'
+  },
+  'align-center': {
+    text: <span data-align="center">&#xe028;</span>,
+    command: 'setImageAlignment|center'
+  },
+  'align-right': {
+    text: <span data-align="right">&#xe029;</span>,
+    command: 'setImageAlignment|right'
+  },
+  'size': {
+    text: <span>&#xe3c2;</span>,
+    command: 'toggleSizeEditor'
+  },
+  'link': {
+    text: <span>&#xe91a;</span>,
+    command: 'toggleLinkEditor'
+  },
+  'remove': {
+    text: <span>&#xe9ac;</span>,
+    command: 'removeImage'
+  }
+}

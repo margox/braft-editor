@@ -14,6 +14,7 @@ export default {
   excludeControls: [],
   extendControls: [],
   extendAtomics: [],
+  componentBelowControlBar: null,
   media: {
     pasteImage: true,
     image: true,
@@ -37,18 +38,13 @@ export default {
       video: true,
       image: true,
       embed: true
-    }
+    },
   },
-  imageControls: {
-    floatLeft: true,
-    floatRight: true,
-    alignLeft: true,
-    alignCenter: true,
-    alignRight: true,
-    link: true,
-    size: true,
-    remove: true
-  },
+  imageControls: [
+    'float-left', 'float-right',
+    'align-left', 'align-center', 'align-right',
+    'link', 'size', 'remove'
+  ],
   colors: [
     '#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff',
     '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784',
