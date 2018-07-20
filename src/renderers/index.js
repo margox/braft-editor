@@ -38,7 +38,6 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
     return <HorizontalLine { ...mediaProps } />
   }
 
-  // 支持自定义的atomic
   if (superProps.extendAtomics) {
     const atomics = superProps.extendAtomics;
     for (let i = 0; i < atomics.length; i++) {
@@ -81,6 +80,7 @@ export const customBlockRenderMap = Map({
     wrapper: DefaultDraftBlockRenderMap.get('code-block').wrapper
   }
 })
+
 export const getBlockStyleFn = _getBlockStyleFn
 export const getCustomStyleMap = _getCustomStyleMap
 export const decorators = _decorators

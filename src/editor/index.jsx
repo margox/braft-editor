@@ -1,9 +1,7 @@
 import 'draft-js/dist/Draft.css'
 import 'assets/scss/_base.scss'
-import 'braft-finder/dist/index.css'
 import React from 'react'
 import languages from 'languages'
-import BraftFinder from 'braft-finder'
 import { ColorUtils, ContentUtils } from 'braft-utils'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
@@ -22,11 +20,6 @@ export default class BraftEditor extends React.Component {
     super(props)
 
     this.isFocused = false
-    this.braftFinder = new BraftFinder({
-      uploadFn: props.media.uploadFn,
-      validateFn: props.media.validateFn
-    })
-
     this.keyBindingFn = getKeyBindingFn(props.customKeyBindingFn)
     this.blockStyleFn = getBlockStyleFn(props.blockStyleFn)
     this.blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
@@ -35,11 +28,29 @@ export default class BraftEditor extends React.Component {
       this.blockRenderMap = props.blockRenderMapFn(this.blockRenderMap)
     }
 
+    this.braftFinder = null
+
     this.state = {
       containerNode: null,
       tempColors: [],
       editorState: ContentUtils.createEmptyEditorState(editorDecorators),
       draftProps: {}
+    }
+
+  }
+
+  componentWillMount () {
+
+    if (this.props.controls.indexOf('media') !== -1) {
+      require.ensure(['braft-finder'], () => {
+        const BraftFinder = require('braft-finder').default
+        this.braftFinder = new BraftFinder({
+          language: this.props.language,
+          uploadFn: this.props.media.uploadFn,
+          validateFn: this.props.media.validateFn
+        })
+        this.forceUpdate()
+      }, 'braft-finder')
     }
 
   }

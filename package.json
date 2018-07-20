@@ -44,7 +44,7 @@
   },
   "dependencies": {
     "braft-convert": "^2.0.0",
-    "braft-finder": "^0.0.4",
+    "braft-finder": "^0.0.7",
     "braft-utils": "^0.0.14",
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",

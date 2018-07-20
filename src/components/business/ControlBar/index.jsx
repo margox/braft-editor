@@ -65,6 +65,10 @@ export default class ControlBar extends React.Component {
 
   openMediaLibrary = () => {
 
+    if (!this.props.braftFinder || !this.props.braftFinder.ReactComponent) {
+      return false
+    }
+
     const mediaProps = this.props.media
     const MediaLibrary = this.props.braftFinder.ReactComponent
     const { onBeforeDeselect, onDeselect, onBeforeSelect, onSelect, onBeforeRemove, onRemove, onFileSelect, onBeforeInsert, onChange } = mediaProps
@@ -109,7 +113,7 @@ export default class ControlBar extends React.Component {
       if (item.type === 'separator') {
         return <span key={controls.length * 2 + index} className="separator-line"></span>
       } else if (item.type === 'dropdown') {
-        let { disabled, autoHide, html, text, className, showDropDownArrow, hoverTitle, component, arrowActive, ref } = item
+        let { disabled, autoHide, html, text, className, showDropDownArrow, showWrapper, hoverTitle, component, arrowActive, ref } = item
         return (
           <DropDown
             key={index}
@@ -117,6 +121,7 @@ export default class ControlBar extends React.Component {
             caption={text}
             editorHeight={editorHeight}
             htmlCaption={html}
+            showWrapper={showWrapper}
             showDropDownArrow={showDropDownArrow}
             containerNode={containerNode}
             hoverTitle={hoverTitle}
