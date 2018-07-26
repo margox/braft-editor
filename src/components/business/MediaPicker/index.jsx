@@ -112,6 +112,7 @@ export default class MediaPicker extends React.Component {
           <div
             onDragEnter={this.handleDragEnter}
             onDragLeave={this.handleDragLeave}
+            onDragOver={this.handleDragEnter}
             onDrop={this.handleDragDrop}
             className="braft-media-uploader"
           >
@@ -312,6 +313,7 @@ export default class MediaPicker extends React.Component {
   }
 
   handleDragLeave = (e) => {
+    e.preventDefault()
     this.dragCounter --
     this.dragCounter === 0 && this.setState({
       draging: false
@@ -319,10 +321,12 @@ export default class MediaPicker extends React.Component {
   }
 
   handleDragDrop = (e) => {
+    e.preventDefault()
     this.dragCounter = 0
     this.setState({
       draging: false
     })
+    this.handleFilesPicked(e)
   }
 
   handleDragEnter = (e) => {
@@ -334,11 +338,9 @@ export default class MediaPicker extends React.Component {
   }
 
   handleFilesPicked = (e) => {
-
     let index = 0
-    let { files } = e.target
+    let { files } = e.type === 'drop' ? e.dataTransfer : e.target
     let length = files.length
-
     e.persist()
 
     const resolveFile = (index) => {
