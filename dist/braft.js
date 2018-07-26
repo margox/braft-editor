@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("draft-js"), require("draftjs-utils"), require("draft-convert"), require("react-dom")) : factory(root["react"], root["draft-js"], root["draftjs-utils"], root["draft-convert"], root["react-dom"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(this, function(__WEBPACK_EXTERNAL_MODULE_0__, __WEBPACK_EXTERNAL_MODULE_5__, __WEBPACK_EXTERNAL_MODULE_10__, __WEBPACK_EXTERNAL_MODULE_32__, __WEBPACK_EXTERNAL_MODULE_93__) {
+})(this, function(__WEBPACK_EXTERNAL_MODULE_2__, __WEBPACK_EXTERNAL_MODULE_6__, __WEBPACK_EXTERNAL_MODULE_8__, __WEBPACK_EXTERNAL_MODULE_21__, __WEBPACK_EXTERNAL_MODULE_71__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -73,21 +73,63 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 47);
+/******/ 	return __webpack_require__(__webpack_require__.s = 36);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_0__;
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
+
+if (true) {
+  module.exports = __webpack_require__(70);
+} else {
+  module.exports = require('./dist/react-hot-loader.development.js');
+}
+
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 2 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_2__;
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -95,19 +137,25 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-__webpack_require__(77);
+__webpack_require__(61);
 
-var _react = __webpack_require__(0);
+var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _responsive = __webpack_require__(46);
+var _responsive = __webpack_require__(35);
 
 var _responsive2 = _interopRequireDefault(_responsive);
 
-var _base = __webpack_require__(3);
+var _base = __webpack_require__(4);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -320,15 +368,7427 @@ var DropDown = function (_React$Component) {
         active: false
       });
     }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
   }]);
 
   return DropDown;
 }(_react2.default.Component);
 
-exports.default = DropDown;
+var _default = DropDown;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(DropDown, 'DropDown', 'E:/web/braft-editor/src/components/common/DropDown/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/common/DropDown/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
 
 /***/ }),
-/* 2 */
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var UniqueIndex = exports.UniqueIndex = function UniqueIndex() {
+
+  if (isNaN(window.__BRAFT_UNIQUE_INDEX__)) {
+    window.__BRAFT_UNIQUE_INDEX__ = 1;
+  } else {
+    window.__BRAFT_UNIQUE_INDEX__ += 1;
+  }
+
+  return window.__BRAFT_UNIQUE_INDEX__;
+};
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(UniqueIndex, "UniqueIndex", "E:/web/braft-editor/src/utils/base.js");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.showModal = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(62);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(71);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _base = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Modal = function (_React$Component) {
+  _inherits(Modal, _React$Component);
+
+  function Modal() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Modal);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.active = false, _this.componentId = 'BRAFT-MODAL-' + (0, _base.UniqueIndex)(), _this.handleTransitionEnd = function () {
+
+      if (!_this.rootElement || !_this.rootElement.classList) {
+        return false;
+      }
+
+      if (!_this.rootElement.classList.contains('active')) {
+        _reactDom2.default.unmountComponentAtNode(_this.rootElement) && _this.rootElement.parentNode.removeChild(_this.rootElement);
+      }
+    }, _this.handleCancel = function () {
+      _this.props.closeOnCancel && _this.close();
+      _this.props.onCancel && _this.props.onCancel();
+    }, _this.handleConfirm = function () {
+      _this.props.closeOnConfirm && _this.close();
+      _this.props.onConfirm && _this.props.onConfirm();
+    }, _this.close = function () {
+      _this.unrenderComponent();
+      _this.props.onClose && _this.props.onClose();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Modal, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+
+      if (this.props.visible) {
+        this.active = true;
+        this.renderComponent(this.props);
+      }
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(next) {
+
+      if (this.props.visible && !next.visible) {
+        this.unrenderComponent();
+      } else if (this.props.visible || next.visible) {
+        this.active = true;
+        this.renderComponent(next);
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return null;
+    }
+  }, {
+    key: 'unrenderComponent',
+    value: function unrenderComponent() {
+      this.active = false;
+      this.activeId && window.clearImmediate(this.activeId);
+      if (this.rootElement && this.rootElement.classList) {
+        this.rootElement.classList.remove('active');
+      }
+    }
+  }, {
+    key: 'renderComponent',
+    value: function renderComponent(props) {
+      var _this2 = this;
+
+      if (!this.active) {
+        return false;
+      }
+
+      var title = props.title,
+          className = props.className,
+          width = props.width,
+          height = props.height,
+          children = props.children,
+          confirmable = props.confirmable,
+          showCancel = props.showCancel,
+          showConfirm = props.showConfirm,
+          showClose = props.showClose,
+          cancelText = props.cancelText,
+          confirmText = props.confirmText,
+          bottomText = props.bottomText,
+          language = props.language;
+
+
+      typeof showCancel === 'undefined' && (showCancel = true);
+      typeof showClose === 'undefined' && (showClose = true);
+      typeof showConfirm === 'undefined' && (showConfirm = true);
+
+      var childComponent = _react2.default.createElement(
+        'div',
+        { className: "braft-modal " + (className || '') },
+        _react2.default.createElement('div', { className: 'braft-modal-mask' }),
+        _react2.default.createElement(
+          'div',
+          { onTransitionEnd: this.handleTransitionEnd, style: { width: width, height: height }, className: 'braft-modal-content' },
+          _react2.default.createElement(
+            'div',
+            { className: 'braft-modal-header' },
+            _react2.default.createElement(
+              'h3',
+              { className: 'braft-modal-caption' },
+              title
+            ),
+            showClose && _react2.default.createElement(
+              'button',
+              { type: 'button', onClick: this.close, className: 'braft-modal-close-button' },
+              _react2.default.createElement('i', { className: 'braft-icon-close' })
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'braft-modal-body' },
+            children
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'braft-modal-footer' },
+            _react2.default.createElement(
+              'div',
+              { className: 'braft-modal-addon-text' },
+              bottomText
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'braft-modal-buttons' },
+              showCancel && _react2.default.createElement(
+                'button',
+                { type: 'button', onClick: this.handleCancel, className: 'braft-modal-cancel' },
+                cancelText || language.base.cancel
+              ),
+              showConfirm && _react2.default.createElement(
+                'button',
+                { type: 'button', onClick: this.handleConfirm, className: "braft-modal-confirm " + (!confirmable ? 'disabled' : '') },
+                confirmText || language.base.confirm
+              )
+            )
+          )
+        )
+      );
+
+      this.rootElement = document.querySelector('#' + this.componentId);
+
+      if (!this.rootElement) {
+        this.rootElement = document.createElement('div');
+        this.rootElement.id = this.componentId;
+        this.rootElement.className = 'braft-modal-root';
+        document.body.appendChild(this.rootElement);
+      }
+
+      _reactDom2.default.render(childComponent, this.rootElement);
+
+      this.activeId = window.setImmediate(function () {
+        _this2.rootElement.classList.add('active');
+      });
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Modal;
+}(_react2.default.Component);
+
+var _default = Modal;
+exports.default = _default;
+var showModal = exports.showModal = function showModal(props) {
+
+  var host = document.createElement('div');
+  host.style.display = 'none';
+  document.body.appendChild(host);
+
+  var close = function close() {
+    _reactDom2.default.unmountComponentAtNode(host) && host.parentNode.removeChild(host);
+  };
+
+  var onConfirm = function onConfirm() {
+    close();
+    props.onConfirm && props.onConfirm();
+  };
+
+  var onCancel = function onCancel() {
+    close();
+    props.onCancel && props.onCancel();
+  };
+
+  var onClose = function onClose() {
+    close();
+    props.onClose && props.onClose();
+  };
+
+  var extProps = {
+    onConfirm: onConfirm, onCancel: onCancel, onClose: onClose,
+    visible: true,
+    closeOnConfirm: true,
+    closeOnCancel: true
+  };
+
+  var modalInstance = _reactDom2.default.render(_react2.default.createElement(Modal, _extends({}, props, extProps)), host);
+  modalInstance.destroy = close;
+  modalInstance.update = modalInstance.renderComponent;
+
+  return modalInstance;
+};
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Modal, 'Modal', 'E:/web/braft-editor/src/components/common/Modal/index.jsx');
+  reactHotLoader.register(showModal, 'showModal', 'E:/web/braft-editor/src/components/common/Modal/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/common/Modal/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_6__;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var namedColors = {
+  "aliceblue": "#f0f8ff",
+  "antiquewhite": "#faebd7",
+  "aqua": "#00ffff",
+  "aquamarine": "#7fffd4",
+  "azure": "#f0ffff",
+  "beige": "#f5f5dc",
+  "bisque": "#ffe4c4",
+  "black": "#000000",
+  "blanchedalmond": "#ffebcd",
+  "blue": "#0000ff",
+  "blueviolet": "#8a2be2",
+  "brown": "#a52a2a",
+  "burlywood": "#deb887",
+  "cadetblue": "#5f9ea0",
+  "chartreuse": "#7fff00",
+  "chocolate": "#d2691e",
+  "coral": "#ff7f50",
+  "cornflowerblue": "#6495ed",
+  "cornsilk": "#fff8dc",
+  "crimson": "#dc143c",
+  "cyan": "#00ffff",
+  "darkblue": "#00008b",
+  "darkcyan": "#008b8b",
+  "darkgoldenrod": "#b8860b",
+  "darkgray": "#a9a9a9",
+  "darkgreen": "#006400",
+  "darkkhaki": "#bdb76b",
+  "darkmagenta": "#8b008b",
+  "darkolivegreen": "#556b2f",
+  "darkorange": "#ff8c00",
+  "darkorchid": "#9932cc",
+  "darkred": "#8b0000",
+  "darksalmon": "#e9967a",
+  "darkseagreen": "#8fbc8f",
+  "darkslateblue": "#483d8b",
+  "darkslategray": "#2f4f4f",
+  "darkturquoise": "#00ced1",
+  "darkviolet": "#9400d3",
+  "deeppink": "#ff1493",
+  "deepskyblue": "#00bfff",
+  "dimgray": "#696969",
+  "dodgerblue": "#1e90ff",
+  "firebrick": "#b22222",
+  "floralwhite": "#fffaf0",
+  "forestgreen": "#228b22",
+  "fuchsia": "#ff00ff",
+  "gainsboro": "#dcdcdc",
+  "ghostwhite": "#f8f8ff",
+  "gold": "#ffd700",
+  "goldenrod": "#daa520",
+  "gray": "#808080",
+  "green": "#008000",
+  "greenyellow": "#adff2f",
+  "honeydew": "#f0fff0",
+  "hotpink": "#ff69b4",
+  "indianred ": "#cd5c5c",
+  "indigo": "#4b0082",
+  "ivory": "#fffff0",
+  "khaki": "#f0e68c",
+  "lavender": "#e6e6fa",
+  "lavenderblush": "#fff0f5",
+  "lawngreen": "#7cfc00",
+  "lemonchiffon": "#fffacd",
+  "lightblue": "#add8e6",
+  "lightcoral": "#f08080",
+  "lightcyan": "#e0ffff",
+  "lightgoldenrodyellow": "#fafad2",
+  "lightgrey": "#d3d3d3",
+  "lightgreen": "#90ee90",
+  "lightpink": "#ffb6c1",
+  "lightsalmon": "#ffa07a",
+  "lightseagreen": "#20b2aa",
+  "lightskyblue": "#87cefa",
+  "lightslategray": "#778899",
+  "lightsteelblue": "#b0c4de",
+  "lightyellow": "#ffffe0",
+  "lime": "#00ff00",
+  "limegreen": "#32cd32",
+  "linen": "#faf0e6",
+  "magenta": "#ff00ff",
+  "maroon": "#800000",
+  "mediumaquamarine": "#66cdaa",
+  "mediumblue": "#0000cd",
+  "mediumorchid": "#ba55d3",
+  "mediumpurple": "#9370d8",
+  "mediumseagreen": "#3cb371",
+  "mediumslateblue": "#7b68ee",
+  "mediumspringgreen": "#00fa9a",
+  "mediumturquoise": "#48d1cc",
+  "mediumvioletred": "#c71585",
+  "midnightblue": "#191970",
+  "mintcream": "#f5fffa",
+  "mistyrose": "#ffe4e1",
+  "moccasin": "#ffe4b5",
+  "navajowhite": "#ffdead",
+  "navy": "#000080",
+  "oldlace": "#fdf5e6",
+  "olive": "#808000",
+  "olivedrab": "#6b8e23",
+  "orange": "#ffa500",
+  "orangered": "#ff4500",
+  "orchid": "#da70d6",
+  "palegoldenrod": "#eee8aa",
+  "palegreen": "#98fb98",
+  "paleturquoise": "#afeeee",
+  "palevioletred": "#d87093",
+  "papayawhip": "#ffefd5",
+  "peachpuff": "#ffdab9",
+  "peru": "#cd853f",
+  "pink": "#ffc0cb",
+  "plum": "#dda0dd",
+  "powderblue": "#b0e0e6",
+  "purple": "#800080",
+  "rebeccapurple": "#663399",
+  "red": "#ff0000",
+  "rosybrown": "#bc8f8f",
+  "royalblue": "#4169e1",
+  "saddlebrown": "#8b4513",
+  "salmon": "#fa8072",
+  "sandybrown": "#f4a460",
+  "seagreen": "#2e8b57",
+  "seashell": "#fff5ee",
+  "sienna": "#a0522d",
+  "silver": "#c0c0c0",
+  "skyblue": "#87ceeb",
+  "slateblue": "#6a5acd",
+  "slategray": "#708090",
+  "snow": "#fffafa",
+  "springgreen": "#00ff7f",
+  "steelblue": "#4682b4",
+  "tan": "#d2b48c",
+  "teal": "#008080",
+  "thistle": "#d8bfd8",
+  "tomato": "#ff6347",
+  "turquoise": "#40e0d0",
+  "violet": "#ee82ee",
+  "wheat": "#f5deb3",
+  "white": "#ffffff",
+  "whitesmoke": "#f5f5f5",
+  "yellow": "#ffff00",
+  "yellowgreen": "#9acd32"
+};
+
+var getHexColor = exports.getHexColor = function getHexColor(color) {
+
+  color = color.replace('color:', '').replace(';', '').replace(' ', '');
+
+  if (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(color)) {
+    return color;
+  } else if (namedColors[color]) {
+    return namedColors[color];
+  } else if (color.indexOf('rgb') === 0) {
+
+    var rgbArray = color.split(',');
+    var convertedColor = rgbArray.length < 3 ? null : '#' + [rgbArray[0], rgbArray[1], rgbArray[2]].map(function (x) {
+      var hex = parseInt(x.replace(/\D/g, ''), 10).toString(16);
+      return hex.length === 1 ? '0' + hex : hex;
+    }).join('');
+
+    return (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(convertedColor) ? convertedColor : null
+    );
+  } else {
+    return null;
+  }
+};
+
+var detectColorsFromHTML = exports.detectColorsFromHTML = function detectColorsFromHTML(html) {
+
+  return typeof html !== 'string' ? [] : (html.match(/color:[^;]{3,24};/g) || []).map(getHexColor).filter(function (color) {
+    return color;
+  });
+};
+
+var detectColorsFromRaw = exports.detectColorsFromRaw = function detectColorsFromRaw(raw) {
+
+  var result = [];
+
+  if (!raw || !raw.blocks || !raw.blocks.length) {
+    return result;
+  }
+
+  raw.blocks.forEach(function (block) {
+    if (block && block.inlineStyleRanges && block.inlineStyleRanges.length) {
+      block.inlineStyleRanges.forEach(function (inlineStyle) {
+        if (inlineStyle.style && inlineStyle.style.indexOf('COLOR-') >= 0) {
+          result.push('#' + inlineStyle.style.split('COLOR-')[1]);
+        }
+      });
+    }
+  });
+
+  return result.filter(function (color) {
+    return color;
+  });
+};
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(namedColors, "namedColors", "E:/web/braft-editor/src/helpers/colors/index.js");
+  reactHotLoader.register(getHexColor, "getHexColor", "E:/web/braft-editor/src/helpers/colors/index.js");
+  reactHotLoader.register(detectColorsFromHTML, "detectColorsFromHTML", "E:/web/braft-editor/src/helpers/colors/index.js");
+  reactHotLoader.register(detectColorsFromRaw, "detectColorsFromRaw", "E:/web/braft-editor/src/helpers/colors/index.js");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_8__;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(63);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+  var active = props.active,
+      _onClick = props.onClick,
+      className = props.className;
+
+
+  return _react2.default.createElement('div', { onClick: function onClick() {
+      return _onClick();
+    }, className: "switch-button " + className + (active ? ' active' : '') });
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/common/Switch/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.blocks = exports.getHeadings = undefined;
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var getHeadings = exports.getHeadings = function getHeadings(lang) {
+  return [{
+    key: 'header-one',
+    title: lang.controls.header + ' 1',
+    text: _react2.default.createElement(
+      'h1',
+      null,
+      lang.controls.header,
+      ' 1'
+    ),
+    type: 'block-type',
+    command: 'header-one'
+  }, {
+    key: 'header-two',
+    title: lang.controls.header + ' 2',
+    text: _react2.default.createElement(
+      'h2',
+      null,
+      lang.controls.header,
+      ' 2'
+    ),
+    type: 'block-type',
+    command: 'header-two'
+  }, {
+    key: 'header-three',
+    title: lang.controls.header + ' 3',
+    text: _react2.default.createElement(
+      'h3',
+      null,
+      lang.controls.header,
+      ' 3'
+    ),
+    type: 'block-type',
+    command: 'header-three'
+  }, {
+    key: 'header-four',
+    title: lang.controls.header + ' 4',
+    text: _react2.default.createElement(
+      'h4',
+      null,
+      lang.controls.header,
+      ' 4'
+    ),
+    type: 'block-type',
+    command: 'header-four'
+  }, {
+    key: 'header-five',
+    title: lang.controls.header + ' 5',
+    text: _react2.default.createElement(
+      'h5',
+      null,
+      lang.controls.header,
+      ' 5'
+    ),
+    type: 'block-type',
+    command: 'header-five'
+  }, {
+    key: 'header-six',
+    title: lang.controls.header + ' 6',
+    text: _react2.default.createElement(
+      'h6',
+      null,
+      lang.controls.header,
+      ' 6'
+    ),
+    type: 'block-type',
+    command: 'header-six'
+  }, {
+    key: 'unstyled',
+    title: lang.controls.normal,
+    text: lang.controls.normal,
+    type: 'block-type',
+    command: 'unstyled'
+  }];
+};
+
+var blocks = exports.blocks = {
+  'header-one': 'h1',
+  'header-two': 'h2',
+  'header-three': 'h3',
+  'header-four': 'h4',
+  'header-fiv': 'h5',
+  'header-six': 'h6',
+  'unstyled': 'p',
+  'blockquote': 'blockquote'
+};
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(getHeadings, 'getHeadings', 'E:/web/braft-editor/src/configs/maps.js');
+  reactHotLoader.register(blocks, 'blocks', 'E:/web/braft-editor/src/configs/maps.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(49);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _controls = __webpack_require__(34);
+
+var _controls2 = _interopRequireDefault(_controls);
+
+var _LinkEditor = __webpack_require__(27);
+
+var _LinkEditor2 = _interopRequireDefault(_LinkEditor);
+
+var _Headings = __webpack_require__(25);
+
+var _Headings2 = _interopRequireDefault(_Headings);
+
+var _TextColor = __webpack_require__(30);
+
+var _TextColor2 = _interopRequireDefault(_TextColor);
+
+var _FontSize = __webpack_require__(24);
+
+var _FontSize2 = _interopRequireDefault(_FontSize);
+
+var _LineHeight = __webpack_require__(26);
+
+var _LineHeight2 = _interopRequireDefault(_LineHeight);
+
+var _FontFamily = __webpack_require__(23);
+
+var _FontFamily2 = _interopRequireDefault(_FontFamily);
+
+var _TextAlign = __webpack_require__(29);
+
+var _TextAlign2 = _interopRequireDefault(_TextAlign);
+
+var _EmojiPicker = __webpack_require__(22);
+
+var _EmojiPicker2 = _interopRequireDefault(_EmojiPicker);
+
+var _MediaPicker = __webpack_require__(28);
+
+var _MediaPicker2 = _interopRequireDefault(_MediaPicker);
+
+var _letterSpacing = __webpack_require__(32);
+
+var _letterSpacing2 = _interopRequireDefault(_letterSpacing);
+
+var _indent = __webpack_require__(31);
+
+var _indent2 = _interopRequireDefault(_indent);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+var _Modal = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ControlBar = function (_React$Component) {
+  _inherits(ControlBar, _React$Component);
+
+  function ControlBar() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, ControlBar);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ControlBar.__proto__ || Object.getPrototypeOf(ControlBar)).call.apply(_ref, [this].concat(args))), _this), _this.mediaPicker = null, _this.videoPicker = null, _this.audioPicker = null, _this.extendedModals = {}, _this.showMediaPicker = function () {
+      _this.mediaPicker.show();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(ControlBar, [{
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate() {
+      var _this2 = this;
+
+      var _props = this.props,
+          extendControls = _props.extendControls,
+          language = _props.language;
+
+
+      extendControls.forEach(function (item) {
+        if (item.type === 'modal') {
+          if (item.modal && item.modal.id && _this2.extendedModals[item.modal.id]) {
+            _this2.extendedModals[item.modal.id].update(_extends({}, item.modal, { language: language }));
+          }
+        }
+      });
+    }
+  }, {
+    key: 'getControlItemClassName',
+    value: function getControlItemClassName(data) {
+
+      var className = 'control-item button';
+      var type = data.type,
+          command = data.command;
+
+
+      if (type === 'inline-style' && this.props.editor.selectionHasInlineStyle(command)) {
+        className += ' active';
+      } else if (type === 'block-type' && this.props.editor.getSelectionBlockType() === command) {
+        className += ' active';
+      }
+
+      return className;
+    }
+  }, {
+    key: 'applyControl',
+    value: function applyControl(command, type) {
+      var _this3 = this;
+
+      if (type === 'inline-style') {
+        this.props.editor.toggleSelectionInlineStyle(command);
+      } else if (type === 'block-type') {
+        this.props.editor.toggleSelectionBlockType(command);
+      } else if (type === 'editor-state-method') {
+        this.props.editor[command] && this.props.editor[command]();
+      }
+
+      window.setImmediate(function () {
+        _this3.props.editor.focus();
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this4 = this;
+
+      var _props2 = this.props,
+          editor = _props2.editor,
+          controls = _props2.controls,
+          media = _props2.media,
+          extendControls = _props2.extendControls,
+          language = _props2.language,
+          colors = _props2.colors,
+          tempColors = _props2.tempColors,
+          fontSizes = _props2.fontSizes,
+          fontFamilies = _props2.fontFamilies,
+          emojis = _props2.emojis,
+          viewWrapper = _props2.viewWrapper,
+          lineHeights = _props2.lineHeights,
+          letterSpacings = _props2.letterSpacings,
+          editorHeight = _props2.editorHeight,
+          textAlignOptions = _props2.textAlignOptions,
+          allowSetTextBackgroundColor = _props2.allowSetTextBackgroundColor,
+          indents = _props2.indents;
+
+      var currentBlockType = editor.getSelectionBlockType();
+      var supportedControls = (0, _controls2.default)(language);
+      var commonProps = { editor: editor, editorHeight: editorHeight, language: language, viewWrapper: viewWrapper };
+      var renderedExtendControls = extendControls.map(function (item, index) {
+        if (item.type === 'split') {
+          return _react2.default.createElement('span', { key: controls.length * 2 + index, className: 'split-line' });
+        } else if (item.type === 'dropdown') {
+          var disabled = item.disabled,
+              autoHide = item.autoHide,
+              html = item.html,
+              text = item.text,
+              className = item.className,
+              showDropDownArrow = item.showDropDownArrow,
+              hoverTitle = item.hoverTitle,
+              component = item.component,
+              arrowActive = item.arrowActive,
+              ref = item.ref;
+
+          return _react2.default.createElement(
+            _DropDown2.default,
+            {
+              key: index,
+              className: "control-item dropdown " + className,
+              caption: text,
+              editorHeight: editorHeight,
+              htmlCaption: html,
+              showDropDownArrow: showDropDownArrow,
+              viewWrapper: viewWrapper,
+              hoverTitle: hoverTitle,
+              arrowActive: arrowActive,
+              autoHide: autoHide,
+              disabled: disabled,
+              ref: ref
+            },
+            component
+          );
+        } else if (item.type === 'modal') {
+          return _react2.default.createElement(
+            'button',
+            {
+              type: 'button',
+              key: controls.length * 2 + index,
+              title: item.hoverTitle,
+              className: 'control-item button ' + item.className,
+              dangerouslySetInnerHTML: item.html ? { __html: item.html } : null,
+              onClick: function onClick(event) {
+                if (item.modal && item.modal.id) {
+                  if (_this4.extendedModals[item.modal.id]) {
+                    _this4.extendedModals[item.modal.id].active = true;
+                    _this4.extendedModals[item.modal.id].update(_extends({}, item.modal, { language: language }));
+                  } else {
+                    _this4.extendedModals[item.modal.id] = (0, _Modal.showModal)(_extends({}, item.modal, { language: language }));
+                    item.modal.onCreate && item.modal.onCreate(_this4.extendedModals[item.modal.id]);
+                  }
+                }
+                item.onClick && item.onClick(event);
+              }
+            },
+            !item.html ? item.text : null
+          );
+        } else if (item.type === 'component') {
+          return _react2.default.createElement(
+            'div',
+            {
+              key: controls.length * 2 + index,
+              className: 'control-item component-wrapper ' + item.className
+            },
+            item.component
+          );
+        } else {
+          return _react2.default.createElement(
+            'button',
+            {
+              type: 'button',
+              key: controls.length * 2 + index,
+              title: item.hoverTitle,
+              className: 'control-item button ' + item.className,
+              dangerouslySetInnerHTML: item.html ? { __html: item.html } : null,
+              onClick: function onClick(event) {
+                return item.onClick && item.onClick(event);
+              }
+            },
+            !item.html ? item.text : null
+          );
+        }
+      });
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'BraftEditor-controlBar' },
+        _react2.default.createElement(_MediaPicker2.default, _extends({
+          media: media,
+          ref: function ref(instance) {
+            return _this4.mediaPicker = instance;
+          },
+          mediaLibrary: editor.mediaLibrary
+        }, commonProps)),
+        controls.map(function (item, index) {
+          if (item.toLowerCase() === 'split') {
+            return _react2.default.createElement('span', { key: index, className: 'split-line' });
+          }
+          var controlItem = supportedControls.find(function (subItem) {
+            return subItem.key.toLowerCase() === item.toLowerCase();
+          });
+          if (!controlItem) {
+            return null;
+          }
+          if (controlItem.type === 'headings') {
+            return _react2.default.createElement(_Headings2.default, _extends({
+              key: index,
+              current: currentBlockType,
+              onChange: function onChange(command) {
+                return _this4.applyControl(command, 'block-type');
+              }
+            }, commonProps));
+          } else if (controlItem.type === 'text-color') {
+            return _react2.default.createElement(_TextColor2.default, _extends({
+              key: index,
+              colors: colors,
+              tempColors: tempColors,
+              allowSetTextBackgroundColor: allowSetTextBackgroundColor
+            }, commonProps));
+          } else if (controlItem.type === 'font-size') {
+            return _react2.default.createElement(_FontSize2.default, _extends({
+              key: index,
+              fontSizes: fontSizes,
+              defaultCaption: controlItem.title
+            }, commonProps));
+          } else if (controlItem.type === 'line-height') {
+            return _react2.default.createElement(_LineHeight2.default, _extends({
+              key: index,
+              lineHeights: lineHeights,
+              defaultCaption: controlItem.title
+            }, commonProps));
+          } else if (controlItem.type === 'letter-spacing') {
+            return _react2.default.createElement(_letterSpacing2.default, _extends({
+              key: index,
+              letterSpacings: letterSpacings,
+              defaultCaption: controlItem.title
+            }, commonProps));
+          } else if (controlItem.type === 'indent') {
+            return _react2.default.createElement(_indent2.default, _extends({
+              key: index,
+              indents: indents,
+              defaultCaption: controlItem.title
+            }, commonProps));
+          } else if (controlItem.type === 'font-family') {
+            return _react2.default.createElement(_FontFamily2.default, _extends({
+              key: index,
+              fontFamilies: fontFamilies,
+              defaultCaption: controlItem.title
+            }, commonProps));
+          } else if (controlItem.type === 'emoji') {
+            return _react2.default.createElement(_EmojiPicker2.default, _extends({
+              key: index,
+              emojis: emojis,
+              defaultCaption: controlItem.text
+            }, commonProps));
+          } else if (controlItem.type === 'link') {
+            return _react2.default.createElement(_LinkEditor2.default, _extends({
+              key: index
+            }, commonProps));
+          } else if (controlItem.type === 'text-align') {
+            return _react2.default.createElement(_TextAlign2.default, _extends({
+              key: index,
+              textAlignOptions: textAlignOptions
+            }, commonProps));
+          } else if (controlItem.type === 'media') {
+            if (!media.image && !media.video && !media.audio) {
+              return null;
+            }
+            return _react2.default.createElement(
+              'button',
+              {
+                type: 'button',
+                key: index,
+                title: controlItem.title,
+                className: 'control-item button',
+                onClick: _this4.showMediaPicker
+              },
+              controlItem.text
+            );
+          } else {
+            var buttonClassName = _this4.getControlItemClassName({
+              type: controlItem.type,
+              command: controlItem.command
+            });
+            return _react2.default.createElement(
+              'button',
+              {
+                type: 'button',
+                key: index,
+                title: controlItem.title,
+                className: buttonClassName,
+                onClick: function onClick() {
+                  return _this4.applyControl(controlItem.command, controlItem.type);
+                }
+              },
+              controlItem.text
+            );
+          }
+        }),
+        renderedExtendControls
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return ControlBar;
+}(_react2.default.Component);
+
+var _default = ControlBar;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(ControlBar, 'ControlBar', 'E:/web/braft-editor/src/components/business/ControlBar/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/ControlBar/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.getFromHTMLConfig = exports.getToHTMLConfig = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _maps = __webpack_require__(10);
+
+var _colors = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var blockTypes = Object.keys(_maps.blocks);
+var blockNames = blockTypes.map(function (key) {
+  return _maps.blocks[key];
+});
+
+var convertAtomicBlock = function convertAtomicBlock(block, contentState) {
+
+  if (!block || !block.key) {
+    return _react2.default.createElement('p', null);
+  }
+
+  var contentBlock = contentState.getBlockForKey(block.key);
+
+  if (!contentBlock) {
+    return _react2.default.createElement('p', null);
+  }
+
+  var entityKey = contentBlock.getEntityAt(0);
+
+  if (!entityKey) {
+    return _react2.default.createElement('p', null);
+  }
+
+  var entity = contentState.getEntity(entityKey);
+  var mediaType = entity.getType().toLowerCase();
+
+  var _block$data = block.data,
+      float = _block$data.float,
+      alignment = _block$data.alignment;
+
+  var _entity$getData = entity.getData(),
+      url = _entity$getData.url,
+      link = _entity$getData.link,
+      link_target = _entity$getData.link_target,
+      width = _entity$getData.width,
+      height = _entity$getData.height,
+      meta = _entity$getData.meta;
+
+  if (mediaType === 'image') {
+
+    var imageWrapStyle = {};
+    var styledClassName = '';
+
+    if (float) {
+      imageWrapStyle.float = float;
+      styledClassName += ' float-' + float;
+    } else if (alignment) {
+      imageWrapStyle.textAlign = alignment;
+      styledClassName += ' align-' + alignment;
+    }
+
+    if (link) {
+      return _react2.default.createElement(
+        'div',
+        { className: "media-wrap image-wrap" + styledClassName, style: imageWrapStyle },
+        _react2.default.createElement(
+          'a',
+          { style: { display: 'inline-block' }, href: link, target: link_target },
+          _react2.default.createElement('img', _extends({}, meta, { src: url, width: width, height: height, style: { width: width, height: height } }))
+        )
+      );
+    } else {
+      return _react2.default.createElement(
+        'div',
+        { className: "media-wrap image-wrap" + styledClassName, style: imageWrapStyle },
+        _react2.default.createElement('img', _extends({}, meta, { src: url, width: width, height: height, style: { width: width, height: height } }))
+      );
+    }
+  } else if (mediaType === 'audio') {
+    return _react2.default.createElement(
+      'div',
+      { className: 'media-wrap audio-wrap' },
+      _react2.default.createElement('audio', _extends({ controls: true }, meta, { src: url }))
+    );
+  } else if (mediaType === 'video') {
+    return _react2.default.createElement(
+      'div',
+      { className: 'media-wrap video-wrap' },
+      _react2.default.createElement('video', _extends({ controls: true }, meta, { src: url, width: width, height: height }))
+    );
+  } else if (mediaType === 'embed') {
+    return _react2.default.createElement(
+      'div',
+      { className: 'media-wrap embed-wrap' },
+      _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: url } })
+    );
+  } else if (mediaType === 'hr') {
+    return _react2.default.createElement('hr', null);
+  } else {
+    return _react2.default.createElement('p', null);
+  }
+};
+
+var styleToHTML = function styleToHTML(props) {
+  return function (style) {
+
+    style = style.toLowerCase();
+
+    if (style === 'strikethrough') {
+      return _react2.default.createElement('span', { style: { textDecoration: 'line-through' } });
+    } else if (style === 'superscript') {
+      return _react2.default.createElement('sup', null);
+    } else if (style === 'subscript') {
+      return _react2.default.createElement('sub', null);
+    } else if (style.indexOf('color-') === 0) {
+      return _react2.default.createElement('span', { style: { color: '#' + style.split('-')[1] } });
+    } else if (style.indexOf('bgcolor-') === 0) {
+      return _react2.default.createElement('span', { style: { backgroundColor: '#' + style.split('-')[1] } });
+    } else if (style.indexOf('fontsize-') === 0) {
+      return _react2.default.createElement('span', { style: { fontSize: style.split('-')[1] + 'px' } });
+    } else if (style.indexOf('lineheight-') === 0) {
+      return _react2.default.createElement('span', { style: { lineHeight: style.split('-')[1] } });
+    } else if (style.indexOf('letterspacing-') === 0) {
+      return _react2.default.createElement('span', { style: { letterSpacing: style.split('-')[1] + 'px' } });
+    } else if (style.indexOf('indent-') === 0) {
+      return _react2.default.createElement('span', { style: { paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' } });
+    } else if (style.indexOf('fontfamily-') === 0) {
+      var fontFamily = props.fontFamilies.find(function (item) {
+        return item.name.toLowerCase() === style.split('-')[1];
+      });
+      if (!fontFamily) return;
+      return _react2.default.createElement('span', { style: { fontFamily: fontFamily.family } });
+    }
+  };
+};
+
+var blockToHTML = function blockToHTML(contentState) {
+  return function (block) {
+
+    var result = null;
+    var blockStyle = "";
+
+    var blockType = block.type.toLowerCase();
+    var textAlign = block.data.textAlign;
+
+
+    if (textAlign) {
+      blockStyle = ' style="text-align:' + textAlign + ';"';
+    }
+
+    if (blockType === 'atomic') {
+      return convertAtomicBlock(block, contentState);
+    } else if (blockType === 'code-block') {
+
+      var previousBlock = contentState.getBlockBefore(block.key);
+      var nextBlock = contentState.getBlockAfter(block.key);
+      var previousBlockType = previousBlock && previousBlock.getType();
+      var nextBlockType = nextBlock && nextBlock.getType();
+
+      if (previousBlockType !== 'code-block' && nextBlockType !== 'code-block') {
+        return {
+          start: '<pre>',
+          end: '</pre>'
+        };
+      }
+      if (previousBlockType !== 'code-block') {
+        return {
+          start: '<pre>',
+          end: '<br/>'
+        };
+      }
+      if (nextBlockType !== 'code-block') {
+        return {
+          start: '',
+          end: '</pre>'
+        };
+      }
+
+      return {
+        start: '',
+        end: '<br/>'
+      };
+    } else if (_maps.blocks[blockType]) {
+      return {
+        start: '<' + _maps.blocks[blockType] + blockStyle + '>',
+        end: '</' + _maps.blocks[blockType] + '>'
+      };
+    } else if (blockType === 'unordered-list-item') {
+      return {
+        start: '<li' + blockStyle + '>',
+        end: '</li>',
+        nest: _react2.default.createElement('ul', null)
+      };
+    } else if (blockType === 'ordered-list-item') {
+      return {
+        start: '<li' + blockStyle + '>',
+        end: '</li>',
+        nest: _react2.default.createElement('ol', null)
+      };
+    }
+  };
+};
+
+var entityToHTML = function entityToHTML(entity, originalText) {
+
+  var result = originalText;
+  var entityType = entity.type.toLowerCase();
+
+  if (entityType === 'link') {
+    return _react2.default.createElement(
+      'a',
+      { href: entity.data.href, target: entity.data.target },
+      originalText
+    );
+  } else if (entityType === 'color') {
+    return _react2.default.createElement(
+      'span',
+      { style: { color: entity.data.color } },
+      originalText
+    );
+  } else if (entityType === 'bg-color') {
+    return _react2.default.createElement(
+      'span',
+      { style: { backgroundColor: entity.data.color } },
+      originalText
+    );
+  }
+};
+
+var htmlToStyle = function htmlToStyle(props) {
+  return function (nodeName, node, currentStyle) {
+
+    if (!node || !node.style) {
+      return currentStyle;
+    }
+
+    var newStyle = currentStyle;
+
+    for (var i = 0; i < node.style.length; i++) {
+      if (nodeName === 'span' && node.style[i] === 'color') {
+        var color = (0, _colors.getHexColor)(node.style.color);
+        newStyle = color ? newStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : newStyle;
+      } else if (nodeName === 'span' && node.style[i] === 'background-color') {
+        var _color = (0, _colors.getHexColor)(node.style.backgroundColor);
+        newStyle = _color ? newStyle.add('BGCOLOR-' + _color.replace('#', '').toUpperCase()) : newStyle;
+      } else if (nodeName === 'span' && node.style[i] === 'font-size') {
+        newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10));
+      } else if (nodeName === 'span' && node.style[i] === 'line-height') {
+        newStyle = newStyle.add('LINEHEIGHT-' + node.style.lineHeight);
+      } else if (nodeName === 'span' && node.style[i] === 'letter-spacing' && !isNaN(node.style.letterSpacing.replace('px', ''))) {
+        newStyle = newStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10));
+      } else if (nodeName === 'span' && (node.style[i] === 'padding-left' || node.style[i] === 'padding-right')) {
+        newStyle = newStyle.add('INDENT-' + parseInt(node.style.paddingLeft, 10));
+      } else if (nodeName === 'span' && node.style[i] === 'text-decoration' && node.style.textDecoration === 'line-through') {
+        newStyle = newStyle.add('STRIKETHROUGH');
+      } else if (nodeName === 'span' && node.style[i] === 'font-family') {
+        var fontFamily = props.fontFamilies.find(function (item) {
+          return item.family.toLowerCase() === node.style.fontFamily.toLowerCase();
+        });
+        if (!fontFamily) continue;
+        newStyle = newStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase());
+      }
+    }
+
+    if (nodeName === 'sup') {
+      newStyle = newStyle.add('SUPERSCRIPT');
+    } else if (nodeName === 'sub') {
+      newStyle = newStyle.add('SUBSCRIPT');
+    }
+
+    return newStyle;
+  };
+};
+
+var htmlToEntity = function htmlToEntity(nodeName, node, createEntity) {
+  var alt = node.alt,
+      title = node.title,
+      id = node.id,
+      controls = node.controls,
+      autoplay = node.autoplay,
+      loop = node.loop,
+      poster = node.poster;
+
+  var meta = {};
+
+  id && (meta.id = id);
+  alt && (meta.alt = alt);
+  title && (meta.title = title);
+  controls && (meta.controls = controls);
+  autoplay && (meta.autoPlay = autoplay);
+  loop && (meta.loop = loop);
+  poster && (meta.poster = poster);
+
+  if (nodeName === 'a' && !node.querySelectorAll('img').length) {
+    var href = node.href,
+        target = node.target;
+
+    return createEntity('LINK', 'MUTABLE', { href: href, target: target });
+  } else if (nodeName === 'audio') {
+    return createEntity('AUDIO', 'IMMUTABLE', { url: node.src, meta: meta });
+  } else if (nodeName === 'video') {
+    return createEntity('VIDEO', 'IMMUTABLE', { url: node.src, meta: meta });
+  } else if (nodeName === 'img') {
+
+    var parentNode = node.parentNode;
+    var entityData = { meta: meta };
+    var _node$style = node.style,
+        width = _node$style.width,
+        height = _node$style.height;
+
+
+    entityData.url = node.src;
+    width && (entityData.width = width);
+    height && (entityData.height = height);
+
+    if (parentNode.nodeName.toLowerCase() === 'a') {
+      entityData.link = parentNode.href;
+      entityData.link_target = parentNode.target;
+    }
+
+    return createEntity('IMAGE', 'IMMUTABLE', entityData);
+  } else if (nodeName === 'hr') {
+    return createEntity('HR', 'IMMUTABLE', {});
+  } else if (node.parentNode && node.parentNode.classList.contains('embed-wrap')) {
+
+    var embedContent = node.innerHTML || node.outerHTML;
+
+    if (embedContent) {
+      return createEntity('EMBED', 'IMMUTABLE', {
+        url: embedContent
+      });
+    }
+  }
+};
+
+var htmlToBlock = function htmlToBlock(nodeName, node) {
+
+  var nodeStyle = node.style || {};
+
+  if (node.classList && node.classList.contains('media-wrap')) {
+
+    return {
+      type: 'atomic',
+      data: {
+        float: nodeStyle.float,
+        alignment: nodeStyle.textAlign
+      }
+    };
+  } else if (nodeName === 'img') {
+
+    return {
+      type: 'atomic',
+      data: {
+        float: nodeStyle.float,
+        alignment: nodeStyle.textAlign
+      }
+    };
+  } else if (nodeName === 'hr') {
+
+    return {
+      type: 'atomic',
+      data: {}
+    };
+  } else if (nodeStyle.textAlign && blockNames.indexOf(nodeName) > -1) {
+
+    return {
+      type: blockTypes[blockNames.indexOf(nodeName)],
+      data: {
+        textAlign: nodeStyle.textAlign
+      }
+    };
+  }
+};
+
+var getToHTMLConfig = exports.getToHTMLConfig = function getToHTMLConfig(props) {
+
+  return {
+    styleToHTML: styleToHTML(props),
+    entityToHTML: entityToHTML,
+    blockToHTML: blockToHTML(props.contentState)
+  };
+};
+
+var getFromHTMLConfig = exports.getFromHTMLConfig = function getFromHTMLConfig(props) {
+
+  return {
+    htmlToStyle: htmlToStyle(props),
+    htmlToEntity: htmlToEntity,
+    htmlToBlock: htmlToBlock
+  };
+};
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(blockTypes, 'blockTypes', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(blockNames, 'blockNames', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(convertAtomicBlock, 'convertAtomicBlock', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(styleToHTML, 'styleToHTML', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(blockToHTML, 'blockToHTML', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(entityToHTML, 'entityToHTML', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(htmlToStyle, 'htmlToStyle', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(htmlToEntity, 'htmlToEntity', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(htmlToBlock, 'htmlToBlock', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(getToHTMLConfig, 'getToHTMLConfig', 'E:/web/braft-editor/src/configs/convert.js');
+  reactHotLoader.register(getFromHTMLConfig, 'getFromHTMLConfig', 'E:/web/braft-editor/src/configs/convert.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _draftJs = __webpack_require__(6);
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+// TODO
+// 允许自定义的快捷键设置
+
+var _default = function _default(event) {
+
+  if (event.keyCode === 83 && (_draftJs.KeyBindingUtil.hasCommandModifier(event) || _draftJs.KeyBindingUtil.isCtrlKeyCommand(event))) {
+    return 'braft-save';
+  }
+
+  return (0, _draftJs.getDefaultKeyBinding)(event);
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/configs/keybindings.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = {
+  height: 500,
+  language: 'zh',
+  controls: ['undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media', 'split', 'clear'],
+  excludeControls: [],
+  tabIndents: 2,
+  forceNewLine: false,
+  textAlignOptions: ['left', 'center', 'right', 'justify'],
+  allowSetTextBackgroundColor: true,
+  letterSpacings: [0, 2, 4, 6],
+  indents: [0, 14, 21, 28],
+  extendControls: [],
+  media: {
+    allowPasteImage: true,
+    image: true,
+    video: true,
+    audio: true,
+    uploadFn: null,
+    sourceFn: null,
+    onRemove: null,
+    onChange: null,
+    onInsert: null,
+    externalMedias: {
+      audio: true,
+      video: true,
+      image: true,
+      embed: true
+    }
+  },
+  imageControls: {
+    floatLeft: true,
+    floatRight: true,
+    alignLeft: true,
+    alignCenter: true,
+    alignRight: true,
+    link: true,
+    size: true,
+    remove: true
+  },
+  colors: ['#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff', '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784', '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'],
+  lineHeights: ['1', '1.2', '1.5', '1.75', '2', '2.5', '3', '4'],
+  fontSizes: [12, 14, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 64, 72, 96, 120, 144],
+  fontFamilies: [{
+    name: 'Araial',
+    family: 'Arial, Helvetica, sans-serif'
+  }, {
+    name: 'Georgia',
+    family: 'Georgia, serif'
+  }, {
+    name: 'Impact',
+    family: 'Impact, serif'
+  }, {
+    name: 'Monospace',
+    family: '"Courier New", Courier, monospace'
+  }, {
+    name: 'Tahoma',
+    family: "tahoma, arial, 'Hiragino Sans GB', 宋体, sans-serif"
+  }],
+  emojis: ["🤣", "🙌", "💚", "💛", "👏", "😉", "💯", "💕", "💞", "💘", "💙", "💝", "🖤", "💜", "❤️", "😍", "😻", "💓", "💗", "😋", "😇", "😂", "😹", "😘", "💖", "😁", "😀", "🤞", "😲", "😄", "😊", "👍", "😌", "😃", "😅", "✌️", "🤗", "💋", "😗", "😽", "😚", "🤠", "😙", "😺", "👄", "😸", "😏", "😼", "👌", "😎", "😆", "😛", "🙏", "🤝", "🙂", "🤑", "😝", "😐", "😑", "🤤", "😤", "🙃", "🤡", "😶", "😪", "😴", "😵", "😓", "👊", "😦", "😷", "🤐", "😜", "🤓", "👻", "😥", "🙄", "🤔", "🤒", "🙁", "😔", "😯", "☹️", "☠️", "😰", "😩", "😖", "😕", "😒", "😣", "😢", "😮", "😿", "🤧", "😫", "🤥", "😞", "😬", "👎", "💀", "😳", "😨", "🤕", "🤢", "😱", "😭", "😠", "😈", "😧", "💔", "😟", "🙀", "💩", "👿", "😡", "😾", "🖕"],
+  extendAtomics: []
+};
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/configs/options.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _draftJs = __webpack_require__(6);
+
+var _draftjsUtils = __webpack_require__(8);
+
+var _colors = __webpack_require__(7);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EditorController = function (_React$Component) {
+  _inherits(EditorController, _React$Component);
+
+  function EditorController() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, EditorController);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditorController.__proto__ || Object.getPrototypeOf(EditorController)).call.apply(_ref, [this].concat(args))), _this), _this.applyChange = function (editorState) {
+      _this.onChange(editorState);
+      return _this;
+    }, _this.selectionCollapsed = function () {
+      return _this.selectionState.isCollapsed();
+    }, _this.selectBlock = function (block) {
+
+      var blockKey = block.getKey();
+
+      return _this.applyChange(_draftJs.EditorState.forceSelection(_this.editorState, new _draftJs.SelectionState({
+        anchorKey: blockKey,
+        anchorOffset: 0,
+        focusKey: blockKey,
+        focusOffset: block.getLength()
+      })));
+    }, _this.selectNextBlock = function (block) {
+      var nextBlock = _this.contentState.getBlockAfter(block.getKey());
+      return nextBlock ? _this.selectBlock(nextBlock) : _this.applyChange(_this.editorState);
+    }, _this.removeBlock = function (block) {
+      var lastSelection = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+
+      var nextContentState = void 0,
+          nextEditorState = void 0;
+      var blockKey = block.getKey();
+
+      nextContentState = _draftJs.Modifier.removeRange(_this.contentState, new _draftJs.SelectionState({
+        anchorKey: blockKey,
+        anchorOffset: 0,
+        focusKey: blockKey,
+        focusOffset: block.getLength()
+      }), 'backward');
+
+      nextContentState = _draftJs.Modifier.setBlockType(nextContentState, nextContentState.getSelectionAfter(), 'unstyled');
+      nextEditorState = _draftJs.EditorState.push(_this.editorState, nextContentState, 'remove-range');
+      nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, lastSelection || nextContentState.getSelectionAfter());
+
+      return _this.applyChange(nextEditorState);
+    }, _this.getSelectionBlock = function () {
+      return _this.contentState.getBlockForKey(_this.selectionState.getAnchorKey());
+    }, _this.setSelectionBlockData = function (blockData) {
+      return _this.applyChange((0, _draftjsUtils.setBlockData)(_this.editorState, blockData));
+    }, _this.getSelectionBlockData = function (name) {
+      var blockData = _this.getSelectionBlock().getData();
+      return name ? blockData.get(name) : blockData;
+    }, _this.getSelectionBlockType = function () {
+      return _this.getSelectionBlock().getType();
+    }, _this.getSelectionText = function () {
+
+      if (_this.selectionState.isCollapsed() || _this.getSelectionBlockType() === 'atomic') {
+        return '';
+      }
+
+      var anchorKey = _this.selectionState.getAnchorKey();
+      var currentContent = _this.editorState.getCurrentContent();
+      var currentContentBlock = currentContent.getBlockForKey(anchorKey);
+      var start = _this.selectionState.getStartOffset();
+      var end = _this.selectionState.getEndOffset();
+
+      return currentContentBlock.getText().slice(start, end);
+    }, _this.toggleSelectionBlockType = function (blockType) {
+      return _this.applyChange(_draftJs.RichUtils.toggleBlockType(_this.editorState, blockType));
+    }, _this.getSelectionEntityData = function (type) {
+
+      var entityKey = (0, _draftjsUtils.getSelectionEntity)(_this.editorState);
+      if (entityKey) {
+        var entity = _this.contentState.getEntity(entityKey);
+        if (entity && entity.get('type') === type) {
+          var _entity$getData = entity.getData(),
+              href = _entity$getData.href,
+              target = _entity$getData.target;
+
+          return { href: href, target: target };
+        } else {
+          return {};
+        }
+      } else {
+        return {};
+      }
+    }, _this.getSelectionInlineStyle = function () {
+      return _this.editorState.getCurrentInlineStyle();
+    }, _this.selectionHasInlineStyle = function (style) {
+      return _this.getSelectionInlineStyle().has(style.toUpperCase());
+    }, _this.toggleSelectionInlineStyle = function (style) {
+      var stylesToBeRemoved = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+
+
+      if (_this.selectionState.isCollapsed()) {
+        return _this;
+      }
+
+      style = style.toUpperCase();
+      stylesToBeRemoved = stylesToBeRemoved.filter(function (item) {
+        return item !== style;
+      });
+
+      var currentInlineStyle = _this.getSelectionInlineStyle();
+      var nextContentState = stylesToBeRemoved.length ? stylesToBeRemoved.reduce(function (contentState, item) {
+        return _draftJs.Modifier.removeInlineStyle(contentState, _this.selectionState, item);
+      }, _this.contentState) : _this.contentState;
+
+      var nextEditorState = stylesToBeRemoved.length ? _draftJs.EditorState.push(_this.editorState, nextContentState, 'change-inline-style') : _this.editorState;
+      return _this.applyChange(_draftJs.RichUtils.toggleInlineStyle(nextEditorState, style));
+    }, _this.removeSelectionInlineStyles = function () {
+      return _this.applyChange((0, _draftjsUtils.removeAllInlineStyles)(_this.editorState));
+    }, _this.toggleSelectionAlignment = function (alignment) {
+      return _this.setSelectionBlockData({
+        textAlign: _this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
+      });
+    }, _this.toggleSelectionColor = function (color) {
+      return _this.toggleSelectionInlineStyle('COLOR-' + color.replace('#', ''), _this.colorList.map(function (item) {
+        return 'COLOR-' + item.replace('#', '').toUpperCase();
+      }));
+    }, _this.toggleSelectionBackgroundColor = function (color) {
+      return _this.toggleSelectionInlineStyle('BGCOLOR-' + color.replace('#', ''), _this.colorList.map(function (item) {
+        return 'BGCOLOR-' + item.replace('#', '').toUpperCase();
+      }));
+    }, _this.toggleSelectionFontSize = function (fontSize) {
+      return _this.toggleSelectionInlineStyle('FONTSIZE-' + fontSize, _this.fontSizeList.map(function (item) {
+        return 'FONTSIZE-' + item;
+      }));
+    }, _this.toggleSelectionLineHeight = function (lineHeight) {
+      return _this.toggleSelectionInlineStyle('LINEHEIGHT-' + lineHeight, _this.lineHeightList.map(function (item) {
+        return 'LINEHEIGHT-' + item;
+      }));
+    }, _this.toggleSelectionFontFamily = function (fontFamily) {
+      return _this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, _this.fontFamilyList.map(function (item) {
+        return 'FONTFAMILY-' + item.name.toUpperCase();
+      }));
+    }, _this.toggleSelectionLetterSpacing = function (letterSpacing) {
+      return _this.toggleSelectionInlineStyle('LETTERSPACING-' + letterSpacing, _this.letterSpacingList.map(function (item) {
+        return 'LETTERSPACING-' + item;
+      }));
+    }, _this.toggleSelectionIndent = function (indent) {
+      return _this.toggleSelectionInlineStyle('INDENT-' + indent, _this.indentList.map(function (item) {
+        return 'INDENT-' + item;
+      }));
+    }, _this.insertHorizontalLine = function () {
+
+      if (!_this.selectionState.isCollapsed() || _this.getSelectionBlockType() === 'atomic') {
+        return _this;
+      }
+
+      var contentStateWithEntity = _this.editorState.getCurrentContent().createEntity('HR', 'IMMUTABLE', {});
+      var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+      var newEditorState = _draftJs.AtomicBlockUtils.insertAtomicBlock(_this.editorState, entityKey, ' ');
+
+      return _this.applyChange(newEditorState);
+    }, _this.toggleSelectionLink = function (href, target) {
+
+      var entityData = { href: href, target: target };
+
+      if (_this.selectionState.isCollapsed() || _this.getSelectionBlockType() === 'atomic') {
+        return _this;
+      }
+
+      if (href === false) {
+        _this.applyChange(_draftJs.RichUtils.toggleLink(_this.editorState, _this.selectionState, null));
+        return _this;
+      }
+
+      if (href === null) {
+        delete entityData.href;
+      }
+
+      try {
+
+        var nextContentState = _this.contentState.createEntity('LINK', 'MUTABLE', entityData);
+        var entityKey = nextContentState.getLastCreatedEntityKey();
+
+        var nextEditorState = _draftJs.EditorState.set(_this.editorState, {
+          currentContent: nextContentState
+        });
+
+        nextEditorState = _draftJs.RichUtils.toggleLink(nextEditorState, _this.selectionState, entityKey);
+        nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, _this.selectionState.merge({
+          anchorOffset: _this.selectionState.getEndOffset(),
+          focusOffset: _this.selectionState.getEndOffset()
+        }));
+
+        nextEditorState = _draftJs.EditorState.push(nextEditorState, _draftJs.Modifier.insertText(nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '), 'insert-text');
+
+        return _this.applyChange(nextEditorState);
+      } catch (error) {
+        console.warn(error);
+      }
+    }, _this.insertText = function (text) {
+      var replace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
+
+
+      var currentSelectedBlockType = _this.getSelectionBlockType();
+
+      if (currentSelectedBlockType === 'atomic') {
+        return _this;
+      }
+
+      if (!_this.selectionState.isCollapsed()) {
+        return replace ? _this.applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.replaceText(_this.contentState, _this.selectionState, text), 'replace-text')) : _this;
+      } else {
+        return _this.applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.insertText(_this.contentState, _this.selectionState, text), 'insert-text'));
+      }
+    }, _this.replaceText = function (text) {
+      return _this.insertText(text);
+    }, _this.insertHTML = function (htmlString) {
+
+      if (!htmlString) {
+        return _this;
+      }
+
+      try {
+
+        var rawContent = _this.convertHTML(htmlString);
+        var blockMap = rawContent.blockMap;
+
+        var tempColors = (0, _colors.detectColorsFromHTML)(htmlString);
+
+        _this.addTempColors(tempColors);
+        _this.requestFocus();
+
+        return _this.focus().applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.replaceWithFragment(_this.contentState, _this.selectionState, blockMap), 'insert-fragment'));
+      } catch (error) {
+        return _this;
+      }
+    }, _this.insertMedias = function () {
+      var medias = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+
+
+      if (!medias.length) {
+        return _this;
+      }
+
+      if (_this.getSelectionBlockType() === 'atomic') {
+        _this.selectNextBlock(_this.getSelectionBlock());
+      }
+
+      var newEditorState = medias.reduce(function (editorState, media) {
+        var url = media.url,
+            name = media.name,
+            type = media.type,
+            meta = media.meta;
+
+        var contentStateWithEntity = editorState.getCurrentContent().createEntity(type, 'IMMUTABLE', { url: url, name: name, type: type, meta: meta });
+        var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
+        return _draftJs.AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
+      }, _this.editorState);
+
+      return _this.applyChange(newEditorState);
+    }, _this.setMediaData = function (entityKey, data) {
+      return _this.applyChange(_draftJs.EditorState.push(_this.editorState, _this.contentState.mergeEntityData(entityKey, data), 'change-block-data'));
+    }, _this.removeMedia = function (mediaBlock) {
+      return _this.removeBlock(mediaBlock);
+    }, _this.setMediaPosition = function (mediaBlock, position) {
+
+      var newPosition = {};
+      var float = position.float,
+          alignment = position.alignment;
+
+
+      if (typeof float !== 'undefined') {
+        newPosition.float = mediaBlock.getData().get('float') === float ? null : float;
+      }
+
+      if (typeof alignment !== 'undefined') {
+        newPosition.alignment = mediaBlock.getData().get('alignment') === alignment ? null : alignment;
+      }
+
+      return _this.selectBlock(mediaBlock).setSelectionBlockData(newPosition);
+    }, _this.clear = function () {
+
+      var contentState = _this.editorState.getCurrentContent();
+      var firstBlock = contentState.getFirstBlock();
+      var lastBlock = contentState.getLastBlock();
+
+      var allSelected = new _draftJs.SelectionState({
+        anchorKey: firstBlock.getKey(),
+        anchorOffset: 0,
+        focusKey: lastBlock.getKey(),
+        focusOffset: lastBlock.getLength(),
+        hasFocus: true
+      });
+
+      _this.editorState = _draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.removeRange(contentState, allSelected, 'backward'), 'remove-range');
+
+      return _this.applyChange(_this.editorState);
+    }, _this.undo = function () {
+      return _this.applyChange(_draftJs.EditorState.undo(_this.editorState));
+    }, _this.redo = function () {
+      return _this.applyChange(_draftJs.EditorState.redo(_this.editorState));
+    }, _this.focus = function () {
+      _this.draftInstance && _this.draftInstance.focus();
+      return _this;
+    }, _this.blur = function () {
+      _this.draftInstance && _this.draftInstance.blur();
+      return _this;
+    }, _this.requestFocus = function () {
+      window.setImmediate(function () {
+        _this.focus();
+      });
+    }, _this.requestBlur = function () {
+      window.setImmediate(function () {
+        _this.blur();
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(EditorController, [{
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return EditorController;
+}(_react2.default.Component);
+
+var _default = EditorController;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(EditorController, 'EditorController', 'E:/web/braft-editor/src/controller/index.js');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/controller/index.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _base = __webpack_require__(4);
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MediaLibrary = function () {
+  function MediaLibrary() {
+    _classCallCheck(this, MediaLibrary);
+
+    this.items = [];
+  }
+
+  _createClass(MediaLibrary, [{
+    key: 'getItem',
+    value: function getItem(id) {
+      return this.items.find(function (item) {
+        return item.id === id;
+      });
+    }
+  }, {
+    key: 'getSelectedItems',
+    value: function getSelectedItems() {
+      return this.items.filter(function (item) {
+        return item.selected;
+      });
+    }
+  }, {
+    key: 'setItems',
+    value: function setItems(items) {
+      this.items = items.map(function (item) {
+        return _extends({}, item, { id: item.id.toString() });
+      }) || [];
+      this.applyChange();
+      this.uploadItems();
+    }
+  }, {
+    key: 'addItem',
+    value: function addItem(item) {
+      this.addItems([item]);
+    }
+  }, {
+    key: 'addItems',
+    value: function addItems(items) {
+      this.items = [].concat(_toConsumableArray(this.items), _toConsumableArray(items.map(function (item) {
+        return _extends({}, item, { id: item.id.toString() });
+      })));
+      this.applyChange();
+      this.uploadItems();
+    }
+  }, {
+    key: 'selectItem',
+    value: function selectItem(id) {
+      var item = this.getItem(id);
+      if (item && (item.uploading || item.error)) {
+        return false;
+      }
+      this.setItemState(id, {
+        selected: true
+      });
+    }
+  }, {
+    key: 'selectAllItems',
+    value: function selectAllItems() {
+      this.items = this.items.filter(function (item) {
+        return !item.error && !item.uploading;
+      }).map(function (item) {
+        return _extends({}, item, { selected: true });
+      });
+      this.applyChange();
+    }
+  }, {
+    key: 'deselectItem',
+    value: function deselectItem(id) {
+      this.setItemState(id, {
+        selected: false
+      });
+    }
+  }, {
+    key: 'deselectAllItems',
+    value: function deselectAllItems() {
+      this.items = this.items.map(function (item) {
+        return _extends({}, item, { selected: false });
+      });
+      this.applyChange();
+    }
+  }, {
+    key: 'removeItem',
+    value: function removeItem(id) {
+      this.items = this.items.filter(function (item) {
+        return item.id !== id;
+      });
+      this.applyChange();
+    }
+  }, {
+    key: 'removeSelectedItems',
+    value: function removeSelectedItems() {
+      this.items = this.items.filter(function (item) {
+        return !item.selected;
+      });
+      this.applyChange();
+    }
+  }, {
+    key: 'removeErrorItems',
+    value: function removeErrorItems() {
+      this.items = this.items.filter(function (item) {
+        return !item.error;
+      });
+      this.applyChange();
+    }
+  }, {
+    key: 'removeAllItems',
+    value: function removeAllItems() {
+      this.items = [];
+      this.applyChange();
+    }
+  }, {
+    key: 'setItemState',
+    value: function setItemState(id, state) {
+      this.items = this.items.map(function (item) {
+        return item.id === id ? _extends({}, item, state) : item;
+      });
+      this.applyChange();
+    }
+  }, {
+    key: 'reuploadErrorItems',
+    value: function reuploadErrorItems() {
+      this.uploadItems(true);
+    }
+  }, {
+    key: 'uploadItems',
+    value: function uploadItems() {
+      var _this = this;
+
+      var ignoreError = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
+
+      this.items.forEach(function (item, index) {
+
+        if (item.uploading || item.url) {
+          return false;
+        }
+
+        if (!ignoreError && item.error) {
+          return false;
+        }
+
+        if (item.type === 'IMAGE') {
+          var fileURL = URL.createObjectURL(item.file);
+          _this.createThumbnail(item.id, fileURL);
+          if (!_this.uploadFn) {
+            _this.createInlineImage(item.id, fileURL);
+            return false;
+          }
+        } else if (!_this.uploadFn) {
+          _this.setItemState(item.id, { error: 1 });
+          return false;
+        }
+
+        _this.setItemState(item.id, {
+          uploading: true,
+          uploadProgress: 0,
+          error: 0
+        });
+
+        _this.uploadFn({
+          file: item.file,
+          libraryId: item.id,
+          success: function success(res) {
+            var serverId = res.id || item.id;
+            _this.handleUploadSuccess(item.id, res.url, serverId, res.meta);
+          },
+          progress: function progress(_progress) {
+            _this.setItemState(item.id, {
+              uploading: true,
+              uploadProgress: _progress
+            });
+          },
+          error: function error(_error) {
+            _this.setItemState(item.id, {
+              uploading: false,
+              error: 2
+            });
+          }
+        });
+      });
+    }
+  }, {
+    key: 'createThumbnail',
+    value: function createThumbnail(id, url) {
+      var _this2 = this;
+
+      this.compressImage(url, 226, 226, function (result) {
+        _this2.setItemState(id, {
+          thumbnail: result.url
+        });
+      });
+    }
+  }, {
+    key: 'createInlineImage',
+    value: function createInlineImage(id, url) {
+      var _this3 = this;
+
+      this.compressImage(url, 1280, 800, function (result) {
+        _this3.handleUploadSuccess(id, result.url, id);
+      });
+    }
+  }, {
+    key: 'handleUploadSuccess',
+    value: function handleUploadSuccess(id, url, newId) {
+      var meta = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+
+
+      this.setItemState(id, {
+        id: newId || id,
+        file: null,
+        url: url,
+        uploadProgress: 1,
+        uploading: false,
+        selected: false,
+        meta: meta
+      });
+
+      var item = this.getItem(newId || id);
+      item.onReadyToInsert && item.onReadyToInsert(item);
+    }
+  }, {
+    key: 'compressImage',
+    value: function compressImage(url, width, height, callback) {
+
+      var image = new Image();
+      var compressCanvas = document.createElement('canvas');
+
+      image.src = url;
+      image.onload = function () {
+
+        var scale = 1;
+
+        if (this.width > width || this.height > height) {
+          scale = this.width > this.height ? width / this.width : height / this.height;
+        } else {
+          callback({
+            url: url,
+            width: this.width,
+            height: this.height
+          });
+          return false;
+        }
+
+        compressCanvas.width = this.width * scale;
+        compressCanvas.height = this.height * scale;
+
+        var ctx = compressCanvas.getContext('2d');
+        ctx.drawImage(this, 0, 0, compressCanvas.width, compressCanvas.height);
+
+        callback({
+          url: compressCanvas.toDataURL('image/png', 1),
+          width: compressCanvas.width,
+          height: compressCanvas.height
+        });
+      };
+    }
+  }, {
+    key: 'applyChange',
+    value: function applyChange(changeType) {
+      this.onChange(this.items);
+    }
+  }, {
+    key: 'uploadImage',
+    value: function uploadImage(file, callback) {
+
+      var fileId = new Date().getTime() + '_' + (0, _base.UniqueIndex)();
+
+      this.addItem({
+        type: 'IMAGE',
+        id: fileId,
+        file: file,
+        name: fileId,
+        size: file.size,
+        uploadProgress: 0,
+        uploading: false,
+        selected: false,
+        error: 0,
+        onReadyToInsert: callback
+      });
+    }
+  }, {
+    key: 'uploadImageRecursively',
+    value: function uploadImageRecursively(files, callback) {
+      var _this4 = this;
+
+      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
+
+
+      if (files[index] && files[index].type.indexOf('image') > -1) {
+        this.uploadImage(files[index], function (image) {
+          callback && callback(image);
+          index < files.length - 1 && _this4.uploadImageRecursively(files, callback, index + 1);
+        });
+      } else {
+        index < files.length - 1 && this.uploadImageRecursively(files, callback, index + 1);
+      }
+    }
+  }, {
+    key: 'resolvePastedData',
+    value: function resolvePastedData(_ref, callback) {
+      var clipboardData = _ref.clipboardData;
+
+
+      if (clipboardData && clipboardData.items && clipboardData.items[0].type.indexOf('image') > -1) {
+        this.uploadImage(clipboardData.items[0].getAsFile(), callback);
+      }
+    }
+  }, {
+    key: 'onChange',
+    value: function onChange(items) {}
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return MediaLibrary;
+}();
+
+var _default = MediaLibrary;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(MediaLibrary, 'MediaLibrary', 'E:/web/braft-editor/src/helpers/MediaLibrary/index.js');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/helpers/MediaLibrary/index.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _en = __webpack_require__(37);
+
+var _en2 = _interopRequireDefault(_en);
+
+var _zh = __webpack_require__(39);
+
+var _zh2 = _interopRequireDefault(_zh);
+
+var _zhHant = __webpack_require__(38);
+
+var _zhHant2 = _interopRequireDefault(_zhHant);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = {
+  "en": _en2.default,
+  "zh": _zh2.default,
+  "zh-hant": _zhHant2.default
+};
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/languages/index.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.decorators = exports.getCustomStyleMap = exports.blockStyleFn = exports.customBlockRenderMap = exports.getBlockRendererFn = undefined;
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _immutable = __webpack_require__(69);
+
+var _draftJs = __webpack_require__(6);
+
+var _Image = __webpack_require__(43);
+
+var _Image2 = _interopRequireDefault(_Image);
+
+var _Video = __webpack_require__(44);
+
+var _Video2 = _interopRequireDefault(_Video);
+
+var _Audio = __webpack_require__(40);
+
+var _Audio2 = _interopRequireDefault(_Audio);
+
+var _Embed = __webpack_require__(41);
+
+var _Embed2 = _interopRequireDefault(_Embed);
+
+var _HorizontalLine = __webpack_require__(42);
+
+var _HorizontalLine2 = _interopRequireDefault(_HorizontalLine);
+
+var _blockStyles = __webpack_require__(47);
+
+var _blockStyles2 = _interopRequireDefault(_blockStyles);
+
+var _inlineStyles = __webpack_require__(48);
+
+var _inlineStyles2 = _interopRequireDefault(_inlineStyles);
+
+var _decorators2 = __webpack_require__(46);
+
+var _decorators3 = _interopRequireDefault(_decorators2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var getAtomicBlockComponent = function getAtomicBlockComponent(block, superProps) {
+  return function (props) {
+
+    var entityKey = props.block.getEntityAt(0);
+
+    if (!entityKey) {
+      return null;
+    }
+
+    var entity = props.contentState.getEntity(entityKey);
+    var mediaData = entity.getData();
+    var mediaType = entity.getType();
+    var mediaProps = _extends({}, superProps, {
+      block: block, mediaData: mediaData, entityKey: entityKey
+    });
+
+    if (mediaType === 'IMAGE') {
+      return _react2.default.createElement(_Image2.default, mediaProps);
+    } else if (mediaType === 'AUDIO') {
+      return _react2.default.createElement(_Audio2.default, mediaProps);
+    } else if (mediaType === 'VIDEO') {
+      return _react2.default.createElement(_Video2.default, mediaProps);
+    } else if (mediaType === 'EMBED') {
+      return _react2.default.createElement(_Embed2.default, mediaProps);
+    } else if (mediaType === 'HR') {
+      return _react2.default.createElement(_HorizontalLine2.default, mediaProps);
+    }
+    // 支持自定义的atomic
+    if (superProps.extendAtomics) {
+      var atomics = superProps.extendAtomics;
+      for (var i = 0; i < atomics.length; i++) {
+        if (mediaType === atomics[i].type) {
+          var Component = atomics[i].component;
+          return _react2.default.createElement(Component, mediaProps);
+        }
+      }
+    }
+
+    return null;
+  };
+};
+
+var getBlockRendererFn = exports.getBlockRendererFn = function getBlockRendererFn(props) {
+  return function (block) {
+
+    return block.getType() === 'atomic' ? {
+      component: getAtomicBlockComponent(block, props),
+      editable: false
+    } : null;
+  };
+};
+
+var customBlockRenderMap = exports.customBlockRenderMap = (0, _immutable.Map)({
+  'atomic': {
+    element: ''
+  },
+  'code-block': {
+    element: 'code',
+    wrapper: _draftJs.DefaultDraftBlockRenderMap.get('code-block').wrapper
+  }
+});
+var blockStyleFn = exports.blockStyleFn = _blockStyles2.default;
+var getCustomStyleMap = exports.getCustomStyleMap = _inlineStyles2.default;
+var decorators = exports.decorators = _decorators3.default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(getAtomicBlockComponent, 'getAtomicBlockComponent', 'E:/web/braft-editor/src/renderers/index.js');
+  reactHotLoader.register(getBlockRendererFn, 'getBlockRendererFn', 'E:/web/braft-editor/src/renderers/index.js');
+  reactHotLoader.register(customBlockRenderMap, 'customBlockRenderMap', 'E:/web/braft-editor/src/renderers/index.js');
+  reactHotLoader.register(blockStyleFn, 'blockStyleFn', 'E:/web/braft-editor/src/renderers/index.js');
+  reactHotLoader.register(getCustomStyleMap, 'getCustomStyleMap', 'E:/web/braft-editor/src/renderers/index.js');
+  reactHotLoader.register(decorators, 'decorators', 'E:/web/braft-editor/src/renderers/index.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE_21__;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(50);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+  var defaultCaption = props.defaultCaption,
+      onChange = props.onChange,
+      language = props.language,
+      emojis = props.emojis,
+      viewWrapper = props.viewWrapper,
+      editor = props.editor,
+      editorHeight = props.editorHeight;
+
+  var caption = defaultCaption || language.controls.emoji;
+
+  return _react2.default.createElement(
+    _DropDown2.default,
+    {
+      caption: caption,
+      showDropDownArrow: false,
+      viewWrapper: viewWrapper,
+      editorHeight: editorHeight,
+      hoverTitle: language.controls.emoji,
+      className: "control-item dropdown braft-emoji-dropdown"
+    },
+    _react2.default.createElement(
+      'div',
+      { className: 'braft-emojis-wrap' },
+      _react2.default.createElement(
+        'ul',
+        { className: 'braft-emojis' },
+        emojis.map(function (item, index) {
+          return _react2.default.createElement(
+            'li',
+            {
+              key: index,
+              'data-emoji': item,
+              onClick: function onClick(e) {
+                editor.insertText(e.currentTarget.dataset.emoji);
+                editor.requestFocus();
+              }
+            },
+            item
+          );
+        })
+      )
+    )
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/EmojiPicker/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(51);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+
+  var caption = null;
+  var currentIndex = null;
+  var defaultCaption = props.defaultCaption,
+      editor = props.editor,
+      onChange = props.onChange,
+      language = props.language,
+      fontFamilies = props.fontFamilies,
+      viewWrapper = props.viewWrapper,
+      editorHeight = props.editorHeight;
+
+
+  fontFamilies.find(function (item, index) {
+    if (editor.selectionHasInlineStyle('FONTFAMILY-' + item.name)) {
+      caption = item.name;
+      currentIndex = index;
+      return true;
+    }
+    return false;
+  });
+
+  var isFirstItemActive = currentIndex === 0;
+  caption = caption || defaultCaption || language.controls.fontFamily;
+
+  return _react2.default.createElement(
+    _DropDown2.default,
+    {
+      caption: caption,
+      viewWrapper: viewWrapper,
+      editorHeight: editorHeight,
+      hoverTitle: language.controls.fontFamily,
+      arrowActive: isFirstItemActive,
+      className: "control-item dropdown font-family-dropdown"
+    },
+    _react2.default.createElement(
+      'ul',
+      { className: 'menu' },
+      fontFamilies.map(function (item, index) {
+        return _react2.default.createElement(
+          'li',
+          {
+            key: index,
+            className: "menu-item " + (index === currentIndex ? 'active' : ''),
+            'data-name': item.name,
+            onClick: function onClick(e) {
+              editor.toggleSelectionFontFamily(e.currentTarget.dataset.name);
+              editor.requestFocus();
+            }
+          },
+          _react2.default.createElement(
+            'span',
+            { style: { fontFamily: item.family } },
+            item.name
+          )
+        );
+      })
+    )
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/FontFamily/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(52);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+
+  var caption = null;
+  var currentFontSize = null;
+  var defaultCaption = props.defaultCaption,
+      editor = props.editor,
+      language = props.language,
+      fontSizes = props.fontSizes,
+      viewWrapper = props.viewWrapper,
+      editorHeight = props.editorHeight;
+
+
+  fontSizes.find(function (item) {
+    if (editor.selectionHasInlineStyle('FONTSIZE-' + item)) {
+      caption = item + 'px';
+      currentFontSize = item;
+      return true;
+    }
+    return false;
+  });
+
+  caption = caption || defaultCaption || language.controls.fontSize;
+
+  return _react2.default.createElement(
+    _DropDown2.default,
+    {
+      caption: caption,
+      editorHeight: editorHeight,
+      viewWrapper: viewWrapper,
+      hoverTitle: language.controls.fontSize,
+      className: "control-item dropdown braft-font-size-dropdown"
+    },
+    _react2.default.createElement(
+      'ul',
+      { className: 'braft-font-sizes-wrap' },
+      fontSizes.map(function (item, index) {
+        return _react2.default.createElement(
+          'li',
+          {
+            key: index,
+            className: item === currentFontSize ? 'active' : null,
+            'data-size': item,
+            onClick: function onClick(e) {
+              editor.toggleSelectionFontSize(e.currentTarget.dataset.size);
+              editor.requestFocus();
+            }
+          },
+          item + 'px'
+        );
+      })
+    )
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/FontSize/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(53);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _maps = __webpack_require__(10);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+  var current = props.current,
+      onChange = props.onChange,
+      language = props.language,
+      viewWrapper = props.viewWrapper,
+      editorHeight = props.editorHeight;
+
+  var headings = (0, _maps.getHeadings)(language);
+
+  var currentHeadingIndex = headings.findIndex(function (item) {
+    return item.command === current;
+  });
+  var caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : language.controls.normal;
+  var isFirstItemActive = currentHeadingIndex === 0;
+
+  return _react2.default.createElement(
+    _DropDown2.default,
+    {
+      caption: caption,
+      viewWrapper: viewWrapper,
+      editorHeight: editorHeight,
+      hoverTitle: language.controls.headings,
+      arrowActive: isFirstItemActive,
+      className: "control-item dropdown headings-dropdown"
+    },
+    _react2.default.createElement(
+      'ul',
+      { className: 'menu' },
+      headings.map(function (item, index) {
+        var isActive = current === item.command;
+        return _react2.default.createElement(
+          'li',
+          {
+            key: index,
+            className: "menu-item" + (isActive ? ' active' : ''),
+            onClick: function onClick() {
+              return onChange(item.command, item.type);
+            }
+          },
+          item.text
+        );
+      })
+    )
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/Headings/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(54);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+
+  var caption = null;
+  var currentLineHeight = null;
+  var defaultCaption = props.defaultCaption,
+      editor = props.editor,
+      language = props.language,
+      lineHeights = props.lineHeights,
+      viewWrapper = props.viewWrapper,
+      editorHeight = props.editorHeight;
+
+
+  lineHeights.find(function (item) {
+    if (editor.selectionHasInlineStyle('LINEHEIGHT-' + item)) {
+      caption = item;
+      currentLineHeight = item;
+      return true;
+    }
+    return false;
+  });
+
+  caption = caption || defaultCaption || language.controls.lineHeight;
+
+  return _react2.default.createElement(
+    _DropDown2.default,
+    {
+      caption: caption,
+      viewWrapper: viewWrapper,
+      editorHeight: editorHeight,
+      hoverTitle: language.controls.lineHeight,
+      className: "control-item dropdown braft-line-height-dropdown"
+    },
+    _react2.default.createElement(
+      'ul',
+      { className: 'braft-line-heights-wrap' },
+      lineHeights.map(function (item, index) {
+        return _react2.default.createElement(
+          'li',
+          {
+            key: index,
+            className: item === currentLineHeight ? 'active' : null,
+            'data-size': item,
+            onClick: function onClick(e) {
+              editor.toggleSelectionLineHeight(e.currentTarget.dataset.size);
+              editor.requestFocus();
+            }
+          },
+          item
+        );
+      })
+    )
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/LineHeight/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(55);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Switch = __webpack_require__(9);
+
+var _Switch2 = _interopRequireDefault(_Switch);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var LinkEditor = function (_React$Component) {
+  _inherits(LinkEditor, _React$Component);
+
+  function LinkEditor() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, LinkEditor);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LinkEditor.__proto__ || Object.getPrototypeOf(LinkEditor)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      href: '',
+      target: ''
+    }, _this.dropDownComponent = null, _this.handeKeyDown = function (e) {
+      if (e.keyCode === 13) {
+        _this.handleConfirm();
+        e.preventDefault();
+        return false;
+      }
+    }, _this.inputLink = function (e) {
+      _this.setState({
+        href: e.currentTarget.value
+      });
+    }, _this.setTarget = function () {
+      _this.setState({
+        target: _this.state.target === '_blank' ? '' : '_blank'
+      });
+    }, _this.handleCancel = function () {
+      _this.dropDownComponent.hide();
+    }, _this.handleUnlink = function () {
+      _this.dropDownComponent.hide();
+      _this.props.editor.toggleSelectionLink(false);
+    }, _this.handleConfirm = function () {
+      var _this$state = _this.state,
+          href = _this$state.href,
+          target = _this$state.target;
+
+      _this.props.editor.toggleSelectionLink(href, target);
+      _this.dropDownComponent.hide();
+      _this.props.editor.requestFocus();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(LinkEditor, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(next) {
+      var _next$editor$getSelec = next.editor.getSelectionEntityData('LINK'),
+          href = _next$editor$getSelec.href,
+          target = _next$editor$getSelec.target;
+
+      this.setState({
+        href: href || '',
+        target: target || ''
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          href = _state.href,
+          target = _state.target;
+      var _props = this.props,
+          editor = _props.editor,
+          language = _props.language,
+          viewWrapper = _props.viewWrapper;
+
+      var caption = _react2.default.createElement('i', { className: 'braft-icon-link' });
+      var textSelected = !editor.selectionCollapsed() && editor.getSelectionBlockType() !== 'atomic';
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'control-item-group' },
+        _react2.default.createElement(
+          _DropDown2.default,
+          {
+            caption: caption,
+            hoverTitle: language.controls.link,
+            autoHide: false,
+            viewWrapper: viewWrapper,
+            showDropDownArrow: false,
+            disabled: !textSelected,
+            ref: function ref(instance) {
+              return _this2.dropDownComponent = instance;
+            },
+            className: "control-item dropdown link-editor-dropdown"
+          },
+          _react2.default.createElement(
+            'div',
+            { className: 'braft-link-editor' },
+            _react2.default.createElement(
+              'div',
+              { className: 'input-group' },
+              _react2.default.createElement('input', {
+                type: 'text',
+                value: href,
+                spellCheck: false,
+                placeholder: language.linkEditor.inputPlaceHolder,
+                onKeyDown: this.handeKeyDown,
+                onChange: this.inputLink
+              })
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'switch-group' },
+              _react2.default.createElement(_Switch2.default, {
+                active: target === '_blank',
+                onClick: this.setTarget
+              }),
+              _react2.default.createElement(
+                'label',
+                null,
+                language.linkEditor.openInNewWindow
+              )
+            ),
+            _react2.default.createElement(
+              'div',
+              { className: 'buttons' },
+              _react2.default.createElement(
+                'a',
+                { onClick: this.handleUnlink, className: 'primary pull-left', href: 'javascript:void(0);' },
+                _react2.default.createElement('i', { className: 'braft-icon-close' }),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  language.linkEditor.removeLink
+                )
+              ),
+              _react2.default.createElement(
+                'button',
+                { type: 'button', onClick: this.handleConfirm, className: 'primary pull-right' },
+                language.base.confirm
+              ),
+              _react2.default.createElement(
+                'button',
+                { type: 'button', onClick: this.handleCancel, className: 'default pull-right' },
+                language.base.cancel
+              )
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'button',
+          {
+            type: 'button',
+            title: language.controls.unlink,
+            className: 'control-item button',
+            onClick: this.handleUnlink,
+            disabled: !textSelected || !href
+          },
+          _react2.default.createElement('i', { className: 'braft-icon-link-off' })
+        )
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return LinkEditor;
+}(_react2.default.Component);
+
+var _default = LinkEditor;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(LinkEditor, 'LinkEditor', 'E:/web/braft-editor/src/components/business/LinkEditor/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/LinkEditor/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(56);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Modal = __webpack_require__(5);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
+var _base = __webpack_require__(4);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// TODO
+// 允许删除所选项目
+
+var imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg';
+var videoMediaType = 'video/mp4';
+var audioMediaType = 'audio/mp3';
+var defaultValidateFn = function defaultValidateFn() {
+  return true;
+};
+
+var MediaPicker = function (_React$Component) {
+  _inherits(MediaPicker, _React$Component);
+
+  function MediaPicker() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, MediaPicker);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MediaPicker.__proto__ || Object.getPrototypeOf(MediaPicker)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      visible: false,
+      showExternalForm: false,
+      draging: false,
+      error: false,
+      confirmable: false,
+      external: {
+        url: '',
+        type: 'IMAGE'
+      },
+      files: []
+    }, _this.dragCounter = 0, _this.mediaFileAccept = [_this.props.media.image ? imageMediaType : null, _this.props.media.video ? videoMediaType : null, _this.props.media.audio ? audioMediaType : null].filter(function (item) {
+      return item;
+    }).join(','), _this.selectItem = function (file) {
+      var id = file.id,
+          selected = file.selected,
+          error = file.error,
+          uploading = file.uploading;
+
+
+      if (error || uploading) {
+        return false;
+      }
+
+      selected = !selected;
+      _this.mediaLibrary.setItemState(id, { selected: selected });
+    }, _this.removeItem = function (event) {
+
+      var mediaId = event.currentTarget.dataset.id;
+      var mediaItem = _this.mediaLibrary.getItem(mediaId);
+
+      if (!mediaItem) {
+        return false;
+      }
+
+      if (_this.props.media.removeConfirmFn) {
+        _this.props.media.removeConfirmFn({
+          items: [mediaItem],
+          confirm: function confirm() {
+            _this.mediaLibrary.removeItem(mediaId);
+            _this.props.media.onRemove && _this.props.media.onRemove([mediaItem]);
+          }
+        });
+      } else {
+        _this.mediaLibrary.removeItem(mediaId);
+        _this.props.media.onRemove && _this.props.media.onRemove([mediaItem]);
+      }
+
+      event.stopPropagation();
+    }, _this.removeSelectedItems = function () {
+
+      var selectedItems = _this.mediaLibrary.getSelectedItems();
+
+      if (_this.props.media.removeConfirmFn) {
+        _this.props.media.removeConfirmFn({
+          items: selectedItems,
+          confirm: function confirm() {
+            _this.mediaLibrary.removeSelectedItems();
+            _this.props.media.onRemove && _this.props.media.onRemove(selectedItems);
+          }
+        });
+      } else {
+        _this.mediaLibrary.removeSelectedItems();
+        _this.props.media.onRemove && _this.props.media.onRemove(selectedItems);
+      }
+    }, _this.selectAllItems = function () {
+      _this.mediaLibrary.selectAllItems();
+    }, _this.deselectAllItems = function () {
+      _this.mediaLibrary.deselectAllItems();
+    }, _this.handleDragLeave = function (e) {
+      e.preventDefault();
+      _this.dragCounter--;
+      _this.dragCounter === 0 && _this.setState({
+        draging: false
+      });
+    }, _this.handleDragDrop = function (e) {
+      e.preventDefault();
+      _this.dragCounter = 0;
+      _this.setState({
+        draging: false
+      });
+      _this.handleFilesPicked(e);
+    }, _this.handleDragEnter = function (e) {
+      e.preventDefault();
+      _this.dragCounter++;
+      _this.setState({
+        draging: true
+      });
+    }, _this.handleFilesPicked = function (e) {
+      var index = 0;
+
+      var _ref2 = e.type === 'drop' ? e.dataTransfer : e.target,
+          files = _ref2.files;
+
+      var length = files.length;
+      e.persist();
+
+      var resolveFile = function resolveFile(index) {
+
+        if (index < length) {
+
+          if (_this.validateFn(files[index])) {
+
+            var data = {
+              id: new Date().getTime() + '_' + (0, _base.UniqueIndex)(),
+              file: files[index],
+              name: files[index].name,
+              size: files[index].size,
+              uploadProgress: 0,
+              uploading: false,
+              selected: false,
+              error: 0,
+              onReadyToInsert: function onReadyToInsert(_ref3) {
+                var id = _ref3.id;
+
+                _this.mediaLibrary.selectItem(id);
+              }
+            };
+
+            if (files[index].type.indexOf('image/') === 0 && _this.props.media.image) {
+              data.type = 'IMAGE';
+              _this.mediaLibrary.addItems([data]);
+            } else if (files[index].type.indexOf('video/') === 0 && _this.props.media.video) {
+              data.type = 'VIDEO';
+              _this.mediaLibrary.addItems([data]);
+            } else if (files[index].type.indexOf('audio/') === 0 && _this.props.media.audio) {
+              data.type = 'AUDIO';
+              _this.mediaLibrary.addItems([data]);
+            }
+          }
+
+          setTimeout(function () {
+            resolveFile(index + 1);
+          }, 100);
+        } else {
+          e.target.value = null;
+        }
+      };
+
+      resolveFile(0);
+    }, _this.inputExternal = function (e) {
+      _this.setState({
+        external: _extends({}, _this.state.external, {
+          url: e.target.value
+        })
+      });
+    }, _this.switchExternalType = function (e) {
+      _this.setState({
+        external: _extends({}, _this.state.external, { type: e.target.dataset.type })
+      });
+    }, _this.confirmAddExternal = function (e) {
+      if (e.target.nodeName.toLowerCase() === 'button' || e.keyCode === 13) {
+        var _this$state$external = _this.state.external,
+            url = _this$state$external.url,
+            type = _this$state$external.type;
+
+        url = url.split('|');
+        var name = url.length > 1 ? url[0] : _this.props.language.mediaPicker.unnamedItem;
+        url = url.length > 1 ? url[1] : url[0];
+        var thumbnail = type === 'IMAGE' ? url : null;
+        _this.mediaLibrary.addItems([{
+          thumbnail: thumbnail, url: url, name: name, type: type,
+          id: new Date().getTime() + '_' + (0, _base.UniqueIndex)(),
+          uploading: false,
+          uploadProgress: 1,
+          selected: true
+        }]);
+        _this.setState({
+          showExternalForm: false,
+          external: {
+            url: '',
+            type: 'IMAGE'
+          }
+        });
+      }
+    }, _this.toggleExternalMode = function () {
+      _this.setState({
+        showExternalForm: !_this.state.showExternalForm
+      });
+    }, _this.confirmInsertMedia = function () {
+
+      var selectedMedias = _this.mediaLibrary.getSelectedItems();
+
+      if (_this.props.media.onInsert) {
+        var filteredMedias = _this.props.media.onInsert(selectedMedias);
+        if (filteredMedias && filteredMedias instanceof Array) {
+          // 如果onInsert返回了一个有效的数组，则将该数组作为媒体内容插入
+          _this.props.editor.insertMedias(filteredMedias);
+          _this.hide();
+        } else if (filteredMedias !== false) {
+          // 如果onInsert返回不是false，则插入已选择的媒体内容
+          _this.props.editor.insertMedias(selectedMedias);
+          _this.hide();
+        }
+      } else {
+        _this.props.editor.insertMedias(selectedMedias);
+        _this.hide();
+      }
+    }, _this.show = function () {
+      _this.setState({
+        visible: true
+      });
+    }, _this.hide = function () {
+      _this.setState({
+        visible: false
+      }, function () {
+        _this.mediaLibrary.deselectAllItems();
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(MediaPicker, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var media = this.props.media;
+
+
+      this.setState({
+        external: {
+          url: '',
+          type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : media.externalMedias.embed ? 'EMBED' : ''
+        }
+      });
+
+      this.mediaLibrary = this.props.mediaLibrary;
+      this.mediaLibrary.uploadFn = this.props.media.uploadFn || null;
+      this.validateFn = this.props.media.validateFn || defaultValidateFn;
+      this.mediaLibrary.onChange = function (files) {
+        _this2.setState({
+          files: files,
+          confirmable: !!files.filter(function (item) {
+            return item.selected;
+          }).length
+        });
+        media.onChange && media.onChange(files);
+      };
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      var media = nextProps.media;
+
+
+      this.setState({
+        external: {
+          url: '',
+          type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : media.externalMedias.embed ? 'EMBED' : ''
+        }
+      });
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.pickerModal && this.pickerModal.close();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this3 = this;
+
+      var _props = this.props,
+          media = _props.media,
+          language = _props.language;
+      var _state = this.state,
+          files = _state.files,
+          visible = _state.visible,
+          external = _state.external,
+          draging = _state.draging,
+          confirmable = _state.confirmable,
+          showExternalForm = _state.showExternalForm;
+
+      var allowExternalMedia = media.externalMedias && (media.externalMedias.image || media.externalMedias.audio || media.externalMedias.video || media.externalMedias.embed);
+      var bottomText = allowExternalMedia ? _react2.default.createElement(
+        'span',
+        {
+          onClick: this.toggleExternalMode,
+          className: 'braft-media-toggle-external-mode'
+        },
+        showExternalForm ? _react2.default.createElement(
+          'span',
+          { className: 'braft-media-bottom-text' },
+          _react2.default.createElement('i', { className: 'braft-icon-add' }),
+          ' ',
+          language.mediaPicker.addLocalFile
+        ) : _react2.default.createElement(
+          'span',
+          { className: 'braft-media-bottom-text' },
+          _react2.default.createElement('i', { className: 'braft-icon-add' }),
+          ' ',
+          language.mediaPicker.addExternalSource
+        )
+      ) : null;
+
+      return _react2.default.createElement(
+        _Modal2.default,
+        {
+          title: language.mediaPicker.caption,
+          width: 640,
+          visible: visible,
+          language: language,
+          className: 'braft-media-picker-modal',
+          bottomText: bottomText,
+          confirmable: confirmable && !showExternalForm,
+          onClose: this.hide,
+          onCancel: this.hide,
+          onConfirm: this.confirmInsertMedia,
+          confirmText: language.mediaPicker.confirmInsert,
+          ref: function ref(instance) {
+            return _this3.pickerModal = instance;
+          }
+        },
+        _react2.default.createElement(
+          'div',
+          { className: 'braft-media-picker' },
+          _react2.default.createElement(
+            'div',
+            {
+              onDragEnter: this.handleDragEnter,
+              onDragLeave: this.handleDragLeave,
+              onDragOver: this.handleDragEnter,
+              onDrop: this.handleDragDrop,
+              className: 'braft-media-uploader'
+            },
+            _react2.default.createElement(
+              'div',
+              { className: "braft-media-drag-uploader " + (draging || !files.length ? 'active ' : ' ') + (draging ? 'draging' : '') },
+              _react2.default.createElement(
+                'span',
+                { className: 'braft-media-drag-tip' },
+                _react2.default.createElement('input', { accept: this.mediaFileAccept, onChange: this.handleFilesPicked, multiple: true, type: 'file' }),
+                draging ? language.mediaPicker.dropTip : language.mediaPicker.dragTip
+              )
+            ),
+            files.length ? _react2.default.createElement(
+              'div',
+              { className: 'braft-media-list-wrap' },
+              _react2.default.createElement(
+                'div',
+                { className: 'braft-media-list-tools' },
+                _react2.default.createElement(
+                  'span',
+                  { onClick: this.selectAllItems, className: 'braft-media-select-all' },
+                  _react2.default.createElement('i', { className: 'braft-icon-done' }),
+                  ' ',
+                  language.mediaPicker.selectAll
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { onClick: this.deselectAllItems, disabled: !confirmable, className: 'braft-media-deselect-all' },
+                  _react2.default.createElement('i', { className: 'braft-icon-close' }),
+                  ' ',
+                  language.mediaPicker.deselect
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { onClick: this.removeSelectedItems, disabled: !confirmable, className: 'braft-media-remove-selected' },
+                  _react2.default.createElement('i', { className: 'braft-icon-bin' }),
+                  ' ',
+                  language.mediaPicker.removeSelected
+                )
+              ),
+              this.buildMediaList()
+            ) : null,
+            showExternalForm && allowExternalMedia ? _react2.default.createElement(
+              'div',
+              { className: 'braft-media-add-external' },
+              _react2.default.createElement(
+                'div',
+                { className: 'braft-media-external-form' },
+                _react2.default.createElement(
+                  'div',
+                  { className: 'braft-media-external-input' },
+                  _react2.default.createElement(
+                    'div',
+                    null,
+                    _react2.default.createElement('input', { onKeyDown: this.confirmAddExternal, value: external.url, onChange: this.inputExternal, placeholder: language.mediaPicker.externalInputPlaceHolder })
+                  ),
+                  _react2.default.createElement(
+                    'button',
+                    { type: 'button', onClick: this.confirmAddExternal, disabled: !external.url.trim().length },
+                    language.base.confirm
+                  )
+                ),
+                _react2.default.createElement(
+                  'div',
+                  { 'data-type': external.type, className: 'braft-media-switch-external-type' },
+                  media.externalMedias.image ? _react2.default.createElement(
+                    'button',
+                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'IMAGE' },
+                    language.media.image
+                  ) : null,
+                  media.externalMedias.audio ? _react2.default.createElement(
+                    'button',
+                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'AUDIO' },
+                    language.media.audio
+                  ) : null,
+                  media.externalMedias.video ? _react2.default.createElement(
+                    'button',
+                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'VIDEO' },
+                    language.media.video
+                  ) : null,
+                  media.externalMedias.embed ? _react2.default.createElement(
+                    'button',
+                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'EMBED' },
+                    language.media.embed
+                  ) : null
+                ),
+                _react2.default.createElement(
+                  'span',
+                  { className: 'braft-media-external-tip' },
+                  language.mediaPicker.externalInputTip
+                )
+              )
+            ) : null
+          )
+        )
+      );
+    }
+  }, {
+    key: 'buildMediaList',
+    value: function buildMediaList() {
+      var _this4 = this;
+
+      return _react2.default.createElement(
+        'ul',
+        { className: 'braft-media-list' },
+        _react2.default.createElement(
+          'li',
+          { className: 'braft-media-add-item' },
+          _react2.default.createElement('i', { className: 'braft-icon-add' }),
+          _react2.default.createElement('input', { accept: this.mediaFileAccept, onChange: this.handleFilesPicked, multiple: true, type: 'file' })
+        ),
+        this.state.files.map(function (file, index) {
+
+          var previewerComponents = null;
+          var progressMarker = file.uploading ? _react2.default.createElement(
+            'div',
+            { className: 'braft-media-item-uploading' },
+            _react2.default.createElement('div', { className: 'braft-media-item-uploading-bar', style: { width: file.uploadProgress / 1 + '%' } })
+          ) : '';
+
+          switch (file.type) {
+            case 'IMAGE':
+              previewerComponents = _react2.default.createElement(
+                'div',
+                { className: 'braft-media-image' },
+                progressMarker,
+                _react2.default.createElement('img', { src: file.thumbnail || file.url })
+              );
+              break;
+            case 'VIDEO':
+              previewerComponents = _react2.default.createElement(
+                'div',
+                { className: 'braft-media-icon braft-media-video', title: file.url },
+                progressMarker,
+                _react2.default.createElement('i', { className: 'braft-icon-film' }),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  file.name || file.url
+                )
+              );
+              break;
+            case 'AUDIO':
+              previewerComponents = _react2.default.createElement(
+                'div',
+                { className: 'braft-media-icon braft-media-audio', title: file.url },
+                progressMarker,
+                _react2.default.createElement('i', { className: 'braft-icon-music' }),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  file.name || file.url
+                )
+              );
+              break;
+            case 'EMBED':
+              previewerComponents = _react2.default.createElement(
+                'div',
+                { className: 'braft-media-icon braft-media-embed', title: file.url },
+                progressMarker,
+                _react2.default.createElement('i', { className: 'braft-icon-code' }),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  file.name || _this4.props.language.media.embed
+                )
+              );
+              break;
+            default:
+              previewerComponents = _react2.default.createElement(
+                'a',
+                { className: 'braft-media-icon braft-media-file', title: file.url, href: file.url },
+                progressMarker,
+                _react2.default.createElement('i', { className: 'braft-icon-file-text' }),
+                _react2.default.createElement(
+                  'span',
+                  null,
+                  file.name || file.url
+                )
+              );
+              break;
+          }
+
+          var className = ['braft-media-item'];
+          file.selected && className.push('active');
+          file.uploading && className.push('uploading');
+          file.error && className.push('error');
+
+          return _react2.default.createElement(
+            'li',
+            {
+              key: index,
+              title: file.name,
+              className: className.join(' '),
+              onClick: function onClick() {
+                return _this4.selectItem(file);
+              }
+            },
+            previewerComponents,
+            _react2.default.createElement('span', { 'data-id': file.id, onClick: _this4.removeItem, className: 'braft-media-item-remove braft-icon-close' }),
+            _react2.default.createElement(
+              'span',
+              { className: 'braft-media-item-title' },
+              file.name
+            )
+          );
+        })
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return MediaPicker;
+}(_react2.default.Component);
+
+var _default = MediaPicker;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(imageMediaType, 'imageMediaType', 'E:/web/braft-editor/src/components/business/MediaPicker/index.jsx');
+  reactHotLoader.register(videoMediaType, 'videoMediaType', 'E:/web/braft-editor/src/components/business/MediaPicker/index.jsx');
+  reactHotLoader.register(audioMediaType, 'audioMediaType', 'E:/web/braft-editor/src/components/business/MediaPicker/index.jsx');
+  reactHotLoader.register(defaultValidateFn, 'defaultValidateFn', 'E:/web/braft-editor/src/components/business/MediaPicker/index.jsx');
+  reactHotLoader.register(MediaPicker, 'MediaPicker', 'E:/web/braft-editor/src/components/business/MediaPicker/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/MediaPicker/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TextAlign = function (_React$Component) {
+  _inherits(TextAlign, _React$Component);
+
+  function TextAlign() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, TextAlign);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextAlign.__proto__ || Object.getPrototypeOf(TextAlign)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      currentAlignment: undefined
+    }, _this.setAlignment = function (e) {
+      _this.props.editor.toggleSelectionAlignment(e.currentTarget.dataset.alignment);
+      _this.props.editor.requestFocus();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(TextAlign, [{
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(next) {
+      this.setState({
+        currentAlignment: next.editor.getSelectionBlockData('textAlign')
+      });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var currentAlignment = this.state.currentAlignment;
+      var _props = this.props,
+          language = _props.language,
+          textAlignOptions = _props.textAlignOptions;
+
+      var textAlignmentTitles = [language.controls.alignLeft, language.controls.alignCenter, language.controls.alignRight, language.controls.alignJustify];
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'control-item-group' },
+        textAlignOptions.map(function (item, index) {
+          return _react2.default.createElement(
+            'button',
+            {
+              type: 'button',
+              key: index,
+              title: textAlignmentTitles[index],
+              'data-alignment': item,
+              className: 'control-item button ' + (item === currentAlignment ? 'active' : null),
+              onClick: _this2.setAlignment
+            },
+            _react2.default.createElement('i', { className: "braft-icon-align-" + item })
+          );
+        })
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return TextAlign;
+}(_react2.default.Component);
+
+var _default = TextAlign;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(TextAlign, 'TextAlign', 'E:/web/braft-editor/src/components/business/TextAlign/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/TextAlign/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(57);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _base = __webpack_require__(4);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+var _ColorPicker = __webpack_require__(33);
+
+var _ColorPicker2 = _interopRequireDefault(_ColorPicker);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var TextColor = function (_React$Component) {
+  _inherits(TextColor, _React$Component);
+
+  function TextColor() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, TextColor);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextColor.__proto__ || Object.getPrototypeOf(TextColor)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      colorType: 'color'
+    }, _this.dropDownComponentId = 'BRAFT-DROPDOWN-' + (0, _base.UniqueIndex)(), _this.switchColorType = function (e) {
+
+      _this.setState({
+        colorType: e.currentTarget.dataset.type
+      });
+    }, _this.toggleColor = function (color) {
+
+      if (_this.state.colorType === 'color') {
+        _this.props.editor.toggleSelectionColor(color);
+      } else {
+        _this.props.editor.toggleSelectionBackgroundColor(color);
+      }
+
+      _this.dropDownComponent.hide();
+      _this.props.editor.requestFocus();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(TextColor, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var captionStyle = {};
+      var currentColor = null;
+      var colorType = this.state.colorType;
+      var _props = this.props,
+          editor = _props.editor,
+          language = _props.language,
+          colors = _props.colors,
+          tempColors = _props.tempColors,
+          viewWrapper = _props.viewWrapper,
+          editorHeight = _props.editorHeight,
+          allowSetTextBackgroundColor = _props.allowSetTextBackgroundColor;
+      [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors)).forEach(function (color) {
+        var color_id = color.replace('#', '');
+        if (editor.selectionHasInlineStyle('COLOR-' + color_id)) {
+          captionStyle.color = color;
+          colorType === 'color' && (currentColor = color);
+        }
+
+        if (editor.selectionHasInlineStyle('BGCOLOR-' + color_id)) {
+          captionStyle.backgroundColor = color;
+          colorType === 'backgroundColor' && (currentColor = color);
+        }
+      });
+
+      var caption = _react2.default.createElement(
+        'i',
+        { style: captionStyle, className: 'braft-icon-text-color' },
+        _react2.default.createElement('span', { className: 'path1' }),
+        _react2.default.createElement('span', { className: 'path2' })
+      );
+
+      return _react2.default.createElement(
+        _DropDown2.default,
+        {
+          caption: caption,
+          hoverTitle: language.controls.color,
+          showDropDownArrow: false,
+          viewWrapper: viewWrapper,
+          editorHeight: editorHeight,
+          componentId: this.dropDownComponentId,
+          ref: function ref(instance) {
+            return _this2.dropDownComponent = instance;
+          },
+          className: "control-item dropdown text-color-dropdown"
+        },
+        _react2.default.createElement(
+          'div',
+          { className: 'braft-text-color-picker-wrap' },
+          _react2.default.createElement(
+            'div',
+            { className: 'braft-color-switch-buttons', style: allowSetTextBackgroundColor ? {} : { display: 'none' } },
+            _react2.default.createElement(
+              'button',
+              {
+                type: 'button',
+                'data-type': 'color',
+                'data-keep-active': true,
+                'data-braft-component-id': this.dropDownComponentId,
+                className: colorType === 'color' ? 'active' : '',
+                onClick: this.switchColorType
+              },
+              language.controls.textColor
+            ),
+            _react2.default.createElement(
+              'button',
+              {
+                type: 'button',
+                'data-type': 'backgroundColor',
+                'data-keep-active': true,
+                'data-braft-component-id': this.dropDownComponentId,
+                className: colorType === 'backgroundColor' ? 'active' : '',
+                onClick: this.switchColorType
+              },
+              language.controls.backgroundColor
+            )
+          ),
+          _react2.default.createElement(_ColorPicker2.default, {
+            width: 200,
+            language: language,
+            current: currentColor,
+            disableAlpha: true,
+            colors: colors,
+            tempColors: tempColors,
+            onChange: this.toggleColor
+          })
+        )
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return TextColor;
+}(_react2.default.Component);
+
+var _default = TextColor;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(TextColor, 'TextColor', 'E:/web/braft-editor/src/components/business/TextColor/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/TextColor/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(58);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+
+  var caption = null;
+  var currentIndent = null;
+  var defaultCaption = props.defaultCaption,
+      editor = props.editor,
+      language = props.language,
+      indents = props.indents,
+      viewWrapper = props.viewWrapper,
+      editorHeight = props.editorHeight;
+
+
+  indents.find(function (item) {
+    if (editor.selectionHasInlineStyle('INDENT-' + item)) {
+      caption = item;
+      currentIndent = item;
+      return true;
+    }
+    return false;
+  });
+
+  caption = caption || defaultCaption || language.controls.indent;
+
+  return _react2.default.createElement(
+    _DropDown2.default,
+    {
+      caption: caption,
+      viewWrapper: viewWrapper,
+      editorHeight: editorHeight,
+      hoverTitle: language.controls.indent,
+      className: "control-item dropdown braft-indent-dropdown"
+    },
+    _react2.default.createElement(
+      'ul',
+      { className: 'braft-indents-wrap' },
+      indents.map(function (item, index) {
+        return _react2.default.createElement(
+          'li',
+          {
+            key: index,
+            className: item === currentIndent ? 'active' : null,
+            'data-size': item,
+            onClick: function onClick(e) {
+              editor.toggleSelectionIndent(e.currentTarget.dataset.size);
+              editor.requestFocus();
+            }
+          },
+          item
+        );
+      })
+    )
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/indent/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(59);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _DropDown = __webpack_require__(3);
+
+var _DropDown2 = _interopRequireDefault(_DropDown);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+
+  var caption = null;
+  var currentLetterSpacing = null;
+  var defaultCaption = props.defaultCaption,
+      editor = props.editor,
+      language = props.language,
+      letterSpacings = props.letterSpacings,
+      viewWrapper = props.viewWrapper,
+      editorHeight = props.editorHeight;
+
+
+  letterSpacings.find(function (item) {
+    if (editor.selectionHasInlineStyle('LETTERSPACING-' + item)) {
+      caption = item;
+      currentLetterSpacing = item;
+      return true;
+    }
+    return false;
+  });
+
+  caption = caption || defaultCaption || language.controls.letterSpacing;
+
+  return _react2.default.createElement(
+    _DropDown2.default,
+    {
+      caption: caption,
+      viewWrapper: viewWrapper,
+      editorHeight: editorHeight,
+      hoverTitle: language.controls.letterSpacing,
+      className: "control-item dropdown braft-letter-spacing-dropdown"
+    },
+    _react2.default.createElement(
+      'ul',
+      { className: 'braft-letter-spacings-wrap' },
+      letterSpacings.map(function (item, index) {
+        return _react2.default.createElement(
+          'li',
+          {
+            key: index,
+            className: item === currentLetterSpacing ? 'active' : null,
+            'data-size': item,
+            onClick: function onClick(e) {
+              editor.toggleSelectionLetterSpacing(e.currentTarget.dataset.size);
+              editor.requestFocus();
+            }
+          },
+          item
+        );
+      })
+    )
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/business/letterSpacing/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+__webpack_require__(60);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+  var current = props.current,
+      colors = props.colors,
+      tempColors = props.tempColors,
+      onChange = props.onChange,
+      language = props.language;
+
+
+  return _react2.default.createElement(
+    'div',
+    { className: 'braft-color-list-wrap' },
+    _react2.default.createElement(
+      'ul',
+      { className: 'braft-color-list' },
+      colors.map(function (item, index) {
+        var className = item === current ? 'color-item active' : 'color-item';
+        return _react2.default.createElement('li', {
+          key: index,
+          title: item,
+          className: className,
+          style: { color: item },
+          'data-color': item.replace('#', ''),
+          onClick: function onClick(e) {
+            return props.onChange(e.currentTarget.dataset.color);
+          }
+        });
+      })
+    ),
+    tempColors.length ? _react2.default.createElement(
+      'div',
+      { className: 'braft-color-list-split-line' },
+      _react2.default.createElement(
+        'span',
+        null,
+        language.controls.tempColors
+      )
+    ) : null,
+    tempColors.length ? _react2.default.createElement(
+      'ul',
+      { className: 'braft-color-list' },
+      tempColors.map(function (item, index) {
+        var className = item === current ? 'color-item active' : 'color-item';
+        return _react2.default.createElement('li', {
+          key: index,
+          title: item,
+          className: className,
+          style: { color: item },
+          'data-color': item.replace('#', ''),
+          onClick: function onClick(e) {
+            return props.onChange(e.currentTarget.dataset.color);
+          }
+        });
+      })
+    ) : null
+  );
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/components/common/ColorPicker/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(lang) {
+  return [{
+    key: 'undo',
+    title: lang.controls.undo,
+    text: _react2.default.createElement('i', { className: 'braft-icon-undo' }),
+    type: 'editor-state-method',
+    command: 'undo'
+  }, {
+    key: 'redo',
+    title: lang.controls.redo,
+    text: _react2.default.createElement('i', { className: 'braft-icon-redo' }),
+    type: 'editor-state-method',
+    command: 'redo'
+  }, {
+    key: 'remove-styles',
+    title: lang.controls.removeStyles,
+    text: _react2.default.createElement('i', { className: 'braft-icon-format_clear' }),
+    type: 'editor-state-method',
+    command: 'removeSelectionInlineStyles'
+  }, {
+    key: 'hr',
+    title: lang.controls.hr,
+    text: _react2.default.createElement('i', { className: 'braft-icon-hr' }),
+    type: 'editor-state-method',
+    command: 'insertHorizontalLine'
+  }, {
+    key: 'bold',
+    title: lang.controls.bold,
+    text: _react2.default.createElement('i', { className: 'braft-icon-bold' }),
+    type: 'inline-style',
+    command: 'bold'
+  }, {
+    key: 'italic',
+    title: lang.controls.italic,
+    text: _react2.default.createElement('i', { className: 'braft-icon-italic' }),
+    type: 'inline-style',
+    command: 'italic'
+  }, {
+    key: 'underline',
+    title: lang.controls.underline,
+    text: _react2.default.createElement('i', { className: 'braft-icon-underlined' }),
+    type: 'inline-style',
+    command: 'underline'
+  }, {
+    key: 'strike-through',
+    title: lang.controls.strikeThrough,
+    text: _react2.default.createElement('i', { className: 'braft-icon-strikethrough' }),
+    type: 'inline-style',
+    command: 'strikethrough'
+  }, {
+    key: 'superscript',
+    title: lang.controls.superScript,
+    text: _react2.default.createElement('i', { className: 'braft-icon-superscript' }),
+    type: 'inline-style',
+    command: 'superscript'
+  }, {
+    key: 'subscript',
+    title: lang.controls.subScript,
+    text: _react2.default.createElement('i', { className: 'braft-icon-subscript' }),
+    type: 'inline-style',
+    command: 'subscript'
+  }, {
+    key: 'headings',
+    title: lang.controls.headings,
+    type: 'headings'
+  }, {
+    key: 'blockquote',
+    title: lang.controls.blockQuote,
+    text: _react2.default.createElement('i', { className: 'braft-icon-quote' }),
+    type: 'block-type',
+    command: 'blockquote'
+  }, {
+    key: 'code',
+    title: lang.controls.code,
+    text: _react2.default.createElement('i', { className: 'braft-icon-code' }),
+    type: 'block-type',
+    command: 'code-block'
+  }, {
+    key: 'list_ul',
+    title: lang.controls.unorderedList,
+    text: _react2.default.createElement('i', { className: 'braft-icon-list' }),
+    type: 'block-type',
+    command: 'unordered-list-item'
+  }, {
+    key: 'list_ol',
+    title: lang.controls.orderedList,
+    text: _react2.default.createElement('i', { className: 'braft-icon-list-numbered' }),
+    type: 'block-type',
+    command: 'ordered-list-item'
+  }, {
+    key: 'link',
+    title: lang.controls.link,
+    type: 'link'
+  }, {
+    key: 'text-color',
+    title: lang.controls.color,
+    type: 'text-color'
+  }, {
+    key: 'line-height',
+    title: lang.controls.lineHeight,
+    type: 'line-height'
+  }, {
+    key: 'letter-spacing',
+    title: lang.controls.letterSpacing,
+    type: 'letter-spacing'
+  }, {
+    key: 'indent',
+    title: lang.controls.indent,
+    type: 'indent'
+  }, {
+    key: 'font-size',
+    title: lang.controls.fontSize,
+    type: 'font-size'
+  }, {
+    key: 'font-family',
+    title: lang.controls.fontFamily,
+    type: 'font-family'
+  }, {
+    key: 'text-align',
+    title: lang.controls.textAlign,
+    type: 'text-align'
+  }, {
+    key: 'media',
+    title: lang.controls.media,
+    text: _react2.default.createElement('i', { className: 'braft-icon-media' }),
+    type: 'media'
+  }, {
+    key: 'emoji',
+    title: lang.controls.emoji,
+    text: _react2.default.createElement('i', { className: 'braft-icon-emoji' }),
+    type: 'emoji'
+  }, {
+    key: 'clear',
+    title: lang.controls.clear,
+    text: _react2.default.createElement(
+      'span',
+      { className: 'braft-control-text' },
+      lang.controls.clear
+    ),
+    type: 'editor-state-method',
+    command: 'clear'
+  }];
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/configs/controls.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _base = __webpack_require__(4);
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var resizeEventHandlers = [];
+var responsiveHelperInited = false;
+var debouce = false;
+
+var _default = {
+  resolve: function resolve(eventHandler) {
+    var id = (0, _base.UniqueIndex)();
+    resizeEventHandlers.push({ id: id, eventHandler: eventHandler });
+    return id;
+  },
+  unresolve: function unresolve(id) {
+    resizeEventHandlers = resizeEventHandlers.filter(function (item) {
+      return item.id !== id;
+    });
+  }
+};
+exports.default = _default;
+
+
+if (!responsiveHelperInited) {
+
+  window.addEventListener('resize', function (event) {
+    clearTimeout(debouce);
+    debouce = setTimeout(function () {
+      resizeEventHandlers.map(function (item) {
+        typeof item.eventHandler === 'function' && item.eventHandler(event);
+      });
+      debouce = false;
+    }, 100);
+  });
+
+  responsiveHelperInited = true;
+}
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(resizeEventHandlers, 'resizeEventHandlers', 'E:/web/braft-editor/src/helpers/responsive/index.js');
+  reactHotLoader.register(responsiveHelperInited, 'responsiveHelperInited', 'E:/web/braft-editor/src/helpers/responsive/index.js');
+  reactHotLoader.register(debouce, 'debouce', 'E:/web/braft-editor/src/helpers/responsive/index.js');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/helpers/responsive/index.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 36 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _languages = __webpack_require__(17);
+
+var _languages2 = _interopRequireDefault(_languages);
+
+var _draftJs = __webpack_require__(6);
+
+var _draftConvert = __webpack_require__(21);
+
+var _draftjsUtils = __webpack_require__(8);
+
+var _convert = __webpack_require__(12);
+
+var _keybindings = __webpack_require__(13);
+
+var _keybindings2 = _interopRequireDefault(_keybindings);
+
+var _options = __webpack_require__(14);
+
+var _options2 = _interopRequireDefault(_options);
+
+var _base = __webpack_require__(4);
+
+var _controller = __webpack_require__(15);
+
+var _controller2 = _interopRequireDefault(_controller);
+
+var _renderers = __webpack_require__(18);
+
+var _ControlBar = __webpack_require__(11);
+
+var _ControlBar2 = _interopRequireDefault(_ControlBar);
+
+var _MediaLibrary = __webpack_require__(16);
+
+var _MediaLibrary2 = _interopRequireDefault(_MediaLibrary);
+
+var _colors = __webpack_require__(7);
+
+__webpack_require__(19);
+
+__webpack_require__(20);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// TODO
+// 重写convertToHTML
+// 支持mention功能
+// 支持hashtag功能
+// 增加取色器
+
+var editorDecorators = new _draftJs.CompositeDecorator(_renderers.decorators);
+var blockRenderMap = _draftJs.DefaultDraftBlockRenderMap.merge(_renderers.customBlockRenderMap);
+
+var BraftEditor = function (_EditorController) {
+  _inherits(BraftEditor, _EditorController);
+
+  function BraftEditor(props) {
+    _classCallCheck(this, BraftEditor);
+
+    var _this = _possibleConstructorReturn(this, (BraftEditor.__proto__ || Object.getPrototypeOf(BraftEditor)).call(this, props));
+
+    _initialiseProps.call(_this);
+
+    var editorState = _draftJs.EditorState.createEmpty(editorDecorators);
+    _this.editorState = editorState;
+    _this.contentState = editorState.getCurrentContent();
+    _this.selectionState = editorState.getSelection();
+    _this.mediaLibrary = new _MediaLibrary2.default();
+    _this.isFocused = false;
+    _this.instanceIndex = (0, _base.UniqueIndex)();
+
+    _this.state = {
+      tempColors: [],
+      editorState: editorState,
+      editorProps: {}
+    };
+
+    var browser = null;
+    if (window.chrome) {
+      browser = "chrome";
+    } else if (window.safari) {
+      browser = "safari";
+    } else if (navigator.userAgent.indexOf("Firefox") > 0) {
+      browser = "firefox";
+    }
+
+    if (!document.body.classList.contains("browser-" + browser)) {
+      document.body.classList.add("browser-" + browser);
+    }
+    return _this;
+  }
+
+  _createClass(BraftEditor, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (typeof this.props.initialContent !== "undefined" && this.props.initialContent !== null) {
+        this.setContent(this.props.initialContent);
+        this.contentInitialized = true;
+      }
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      if (typeof nextProps.initialContent !== "undefined" && nextProps.initialContent !== null) {
+        if (!this.contentInitialized) {
+          this.contentInitialized = true;
+          this.setContent(nextProps.initialContent, nextProps.contentFormat);
+        } else if (nextProps.contentId !== this.props.contentId) {
+          this.setContent(nextProps.initialContent, nextProps.contentFormat);
+        }
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          controls = _props.controls,
+          excludeControls = _props.excludeControls,
+          extendControls = _props.extendControls,
+          disabled = _props.disabled,
+          height = _props.height,
+          media = _props.media,
+          language = _props.language,
+          colors = _props.colors,
+          fontSizes = _props.fontSizes,
+          fontFamilies = _props.fontFamilies,
+          emojis = _props.emojis,
+          viewWrapper = _props.viewWrapper,
+          placeholder = _props.placeholder,
+          imageControls = _props.imageControls,
+          lineHeights = _props.lineHeights,
+          letterSpacings = _props.letterSpacings,
+          indents = _props.indents,
+          textAlignOptions = _props.textAlignOptions,
+          allowSetTextBackgroundColor = _props.allowSetTextBackgroundColor,
+          extendAtomics = _props.extendAtomics;
+
+
+      controls = controls.filter(function (item) {
+        return excludeControls.indexOf(item) === -1;
+      });
+
+      var tempColors = this.state.tempColors;
+
+      language = _languages2.default[language] || _languages2.default[_options2.default.language];
+
+      var externalMedias = media && media.externalMedias ? _extends({}, _options2.default.media.externalMedias, media.externalMedias) : _options2.default.media.externalMedias;
+
+      media = _extends({}, _options2.default.media, media, { externalMedias: externalMedias });
+
+      imageControls = imageControls ? _extends({}, _options2.default.imageControls, imageControls) : _options2.default.imageControls;
+
+      viewWrapper = viewWrapper || ".BraftEditor-instance-" + this.instanceIndex;
+
+      this.colorList = [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors));
+      this.fontSizeList = fontSizes;
+      this.fontFamilyList = fontFamilies;
+      this.lineHeightList = lineHeights;
+      this.letterSpacingList = letterSpacings;
+      this.indentList = indents;
+
+      if (!media.uploadFn) {
+        media.video = false;
+        media.audio = false;
+      }
+
+      var controlBarProps = {
+        editor: this,
+        editorHeight: height,
+        ref: function ref(instance) {
+          return _this2.controlBarInstance = instance;
+        },
+        media: media, controls: controls, language: language, viewWrapper: viewWrapper, extendControls: extendControls, colors: colors, tempColors: tempColors, fontSizes: fontSizes, fontFamilies: fontFamilies,
+        emojis: emojis, lineHeights: lineHeights, letterSpacings: letterSpacings, indents: indents, textAlignOptions: textAlignOptions, allowSetTextBackgroundColor: allowSetTextBackgroundColor
+      };
+
+      var blockRendererFn = (0, _renderers.getBlockRendererFn)({
+        editor: this, imageControls: imageControls,
+        language: language, viewWrapper: viewWrapper,
+        extendAtomics: extendAtomics
+      });
+
+      var customStyleMap = (0, _renderers.getCustomStyleMap)({
+        colors: [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors)),
+        fontSizes: fontSizes, fontFamilies: fontFamilies, lineHeights: lineHeights, letterSpacings: letterSpacings, indents: indents
+      });
+
+      var editorProps = _extends({
+        ref: function ref(instance) {
+          _this2.draftInstance = instance;
+        },
+        editorState: this.state.editorState,
+        handleKeyCommand: this.handleKeyCommand,
+        handleReturn: this.handleReturn,
+        handleDrop: this.handleDrop,
+        handleDroppedFiles: this.handleDroppedFiles,
+        handlePastedText: this.handlePastedText,
+        handlePastedFiles: this.handlePastedFiles,
+        onChange: this.onChange,
+        onTab: this.onTab,
+        onFocus: this.onFocus,
+        onBlur: this.onBlur,
+        readOnly: disabled,
+        customStyleMap: customStyleMap, blockStyleFn: _renderers.blockStyleFn, keyBindingFn: _keybindings2.default,
+        blockRendererFn: blockRendererFn, blockRenderMap: blockRenderMap, placeholder: placeholder
+      }, this.state.editorProps);
+
+      return _react2.default.createElement(
+        "div",
+        { className: "BraftEditor-container BraftEditor-instance-" + this.instanceIndex + " " + (disabled ? "disabled" : "") },
+        _react2.default.createElement(_ControlBar2.default, controlBarProps),
+        _react2.default.createElement(
+          "div",
+          { className: "BraftEditor-content", style: height ? { height: height } : {} },
+          _react2.default.createElement(_draftJs.Editor, editorProps)
+        )
+      );
+    }
+  }, {
+    key: "__reactstandin__regenerateByEval",
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return BraftEditor;
+}(_controller2.default);
+
+BraftEditor.defaultProps = _extends({}, _options2.default, {
+  onChange: null,
+  onHTMLChange: null,
+  onRawChange: null,
+  onFocus: null,
+  onBlur: null,
+  onSave: null
+});
+
+BraftEditor.getContent = function (format, contentState) {
+  var fontFamilies = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+  fontFamilies = fontFamilies || _options2.default.fontFamilies;
+
+  if (format === "html") {
+    return (0, _draftConvert.convertToHTML)((0, _convert.getToHTMLConfig)({ contentState: contentState, fontFamilies: fontFamilies }))(contentState);
+  }
+  return (0, _draftJs.convertToRaw)(contentState);
+};
+
+var _initialiseProps = function _initialiseProps() {
+  var _this3 = this;
+
+  this.onChange = function (editorState) {
+    _this3.editorState = editorState;
+    _this3.contentState = editorState.getCurrentContent();
+    _this3.selectionState = editorState.getSelection();
+    _this3.setState({ editorState: editorState }, function () {
+      clearTimeout(_this3.syncTimer);
+      _this3.syncTimer = setTimeout(function () {
+        var _props2 = _this3.props,
+            onChange = _props2.onChange,
+            onRawChange = _props2.onRawChange,
+            onHTMLChange = _props2.onHTMLChange;
+
+        onChange && onChange(BraftEditor.getContent("raw", _this3.contentState, _this3.props.fontFamilies));
+        onHTMLChange && onHTMLChange(_this3.getHTMLContent());
+        onRawChange && onRawChange(_this3.getRawContent());
+      }, 300);
+    });
+  };
+
+  this.getHTMLContent = function () {
+    return BraftEditor.getContent("html", _this3.contentState, _this3.props.fontFamilies);
+  };
+
+  this.getRawContent = function () {
+    return BraftEditor.getContent("raw", _this3.contentState, _this3.props.fontFamilies);
+  };
+
+  this.isEmpty = function () {
+    return _this3.getHTMLContent() === "<p></p>";
+  };
+
+  this.getContentState = function () {
+    return _this3.contentState;
+  };
+
+  this.getEditorState = function () {
+    return _this3.editorState;
+  };
+
+  this.getDraftInstance = function () {
+    return _this3.draftInstance;
+  };
+
+  this.getMediaLibraryInstance = function () {
+    return _this3.mediaLibrary;
+  };
+
+  this.convertHTML = function (htmlString) {
+    var fontFamilies = _this3.props.fontFamilies;
+
+    return (0, _draftConvert.convertFromHTML)((0, _convert.getFromHTMLConfig)({ fontFamilies: fontFamilies }))(htmlString);
+  };
+
+  this.setContent = function (content, format) {
+    var convertedContent = void 0;
+    var newState = {};
+    var _props3 = _this3.props,
+        contentFormat = _props3.contentFormat,
+        colors = _props3.colors;
+
+
+    contentFormat = format || contentFormat || "raw";
+
+    if (contentFormat === "html") {
+      content = content || "";
+      newState.tempColors = [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray((0, _colors.detectColorsFromHTML)(content))).filter(function (item) {
+        return _this3.props.colors.indexOf(item) === -1;
+      }).filter(function (item, index, array) {
+        return array.indexOf(item) === index;
+      });
+      convertedContent = _this3.convertHTML(content);
+    } else if (contentFormat === "raw") {
+      if (!content || !content.blocks) {
+        return false;
+      }
+      newState.tempColors = [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray((0, _colors.detectColorsFromRaw)(content))).filter(function (item) {
+        return _this3.props.colors.indexOf(item) === -1;
+      }).filter(function (item, index, array) {
+        return array.indexOf(item) === index;
+      });
+      convertedContent = (0, _draftJs.convertFromRaw)(content);
+    }
+
+    newState.editorState = _draftJs.EditorState.createWithContent(convertedContent, editorDecorators);
+
+    _this3.editorState = newState.editorState;
+    _this3.contentState = newState.editorState.getCurrentContent();
+    _this3.selectionState = newState.editorState.getSelection();
+
+    _this3.setState(newState);
+
+    return _this3;
+  };
+
+  this.setEditorProp = function (key, name) {
+    _this3.setState({
+      editorProps: _extends({}, _this3.state.editorProps, _defineProperty({}, key, name))
+    });
+    return _this3;
+  };
+
+  this.forceRender = function () {
+    _this3.setState({
+      editorState: _draftJs.EditorState.createWithContent(_this3.contentState, editorDecorators)
+    });
+    return _this3;
+  };
+
+  this.onTab = function (event) {
+    var currentBlock = _this3.getSelectionBlock();
+    var currentBlockType = currentBlock.getType();
+    var tabIndents = _this3.props.tabIndents;
+
+    if (currentBlockType === "code-block") {
+      _this3.insertText(" ".repeat(tabIndents), false);
+      event.preventDefault();
+      return false;
+    }
+
+    if (_this3.props.onTab) {
+      _this3.props.onTab(event);
+    }
+  };
+
+  this.onFocus = function () {
+    _this3.isFocused = true;
+    if (_this3.props.onFocus) {
+      _this3.props.onFocus();
+    }
+  };
+
+  this.onBlur = function () {
+    _this3.isFocused = false;
+    if (_this3.props.onBlur) {
+      _this3.props.onBlur();
+    }
+  };
+
+  this.handleKeyCommand = function (command) {
+    if (command === "braft-save") {
+      if (_this3.props.onSave()) {
+        _this3.props.onSave();
+      }
+
+      return "handled";
+    }
+
+    var nextEditorState = _draftJs.RichUtils.handleKeyCommand(_this3.editorState, command);
+
+    if (nextEditorState) {
+      _this3.onChange(nextEditorState);
+      return "handled";
+    }
+
+    return "not-handled";
+  };
+
+  this.handleReturn = function (event) {
+
+    var currentBlock = _this3.getSelectionBlock();
+    var currentBlockType = currentBlock.getType();
+
+    if (currentBlockType === "unordered-list-item" || currentBlockType === "ordered-list-item") {
+
+      if (currentBlock.getLength() === 0) {
+        _this3.toggleSelectionBlockType("unstyled");
+        return true;
+      }
+
+      return false;
+    } else if (currentBlockType === "code-block") {
+
+      if (event.which === 13 && (event.getModifierState("Shift") || event.getModifierState("Alt") || event.getModifierState("Control"))) {
+        _this3.toggleSelectionBlockType("unstyled");
+        return true;
+      }
+
+      return false;
+    }
+
+    if (_this3.props.forceNewLine) {
+      event.which = 13;
+      event.getModifierState = function () {
+        return true;
+      };
+    }
+
+    var nextEditorState = (0, _draftjsUtils.handleNewLine)(_this3.state.editorState, event);
+
+    if (nextEditorState) {
+      _this3.onChange(nextEditorState);
+      return true;
+    }
+
+    return false;
+  };
+
+  this.handleDrop = function (selectionState, dataTransfer, isInternal) {
+
+    if (window.__BRAFT_DRAGING__IMAGE__) {
+
+      _this3.removeBlock(window.__BRAFT_DRAGING__IMAGE__.block, selectionState);
+      _this3.insertMedias([window.__BRAFT_DRAGING__IMAGE__.mediaData]);
+
+      window.__BRAFT_DRAGING__IMAGE__ = null;
+      _this3.setEditorProp("readOnly", false);
+      return "handled";
+    } else if (!dataTransfer || !dataTransfer.getText()) {
+      return "handled";
+    }
+
+    return "not-handled";
+  };
+
+  this.handleDroppedFiles = function (selectionState, files) {
+
+    if (files[0] && files[0].type.indexOf("image") > -1 && _this3.props.media && _this3.props.media.allowPasteImage !== false) {
+      _this3.mediaLibrary.uploadImage(files[0], function (image) {
+        return _this3.insertMedias([image]);
+      });
+      return "handled";
+    }
+
+    return "not-handled";
+  };
+
+  this.handlePastedFiles = function (files) {
+
+    if (files[0] && files[0].type.indexOf("image") > -1 && _this3.props.media && _this3.props.media.allowPasteImage !== false) {
+      _this3.mediaLibrary.uploadImage(files[0], function (image) {
+        return _this3.insertMedias([image]);
+      });
+      return "handled";
+    }
+
+    return "not-handled";
+  };
+
+  this.handlePastedText = function (text, html) {
+    if (!html) {
+      return false;
+    }
+
+    var pasteMode = _this3.tmpPasteMode || _this3.props.pasteMode || "normal";
+
+    if (pasteMode === "text") {
+      _this3.tmpPasteMode = "normal";
+      var tmpTextHolder = document.createElement("div");
+      tmpTextHolder.innerHTML = html;
+      return _this3.handlePastedText(text, tmpTextHolder.textContent || tmpTextHolder.innerText || "");
+    }
+    _this3.tmpPasteMode = null;
+
+    var fontFamilies = _this3.props.fontFamilies;
+
+    var blockMap = (0, _draftConvert.convertFromHTML)((0, _convert.getFromHTMLConfig)({ fontFamilies: fontFamilies }))(html || text).blockMap;
+    var nextContentState = _draftJs.Modifier.replaceWithFragment(_this3.contentState, _this3.selectionState, blockMap);
+
+    _this3.setState({
+      tempColors: [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray((0, _colors.detectColorsFromHTML)(html))).filter(function (item) {
+        return _this3.props.colors.indexOf(item) === -1;
+      }).filter(function (item, index, array) {
+        return array.indexOf(item) === index;
+      })
+    }, function () {
+      _this3.onChange(_draftJs.EditorState.push(_this3.editorState, nextContentState, "insert-fragment"));
+    });
+
+    return true;
+  };
+
+  this.addTempColors = function (colors, callback) {
+
+    _this3.setState({
+      tempColors: [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray(colors)).filter(function (item) {
+        return _this3.props.colors.indexOf(item) === -1;
+      }).filter(function (item, index, array) {
+        return array.indexOf(item) === index;
+      })
+    }, callback);
+  };
+};
+
+var _default = BraftEditor;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(editorDecorators, "editorDecorators", "E:/web/braft-editor/src/index.jsx");
+  reactHotLoader.register(blockRenderMap, "blockRenderMap", "E:/web/braft-editor/src/index.jsx");
+  reactHotLoader.register(BraftEditor, "BraftEditor", "E:/web/braft-editor/src/index.jsx");
+  reactHotLoader.register(_default, "default", "E:/web/braft-editor/src/index.jsx");
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 37 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = {
+  base: {
+    remove: 'Remove',
+    cancel: 'Cancel',
+    confirm: 'Confirm',
+    inert: 'Insert',
+    width: 'Width',
+    height: 'Height'
+  },
+  controls: {
+    clear: 'Clear',
+    undo: 'Undo',
+    redo: 'Redo',
+    fontSize: 'Font Size',
+    color: 'Color',
+    textColor: 'Text',
+    tempColors: 'Temp Colors',
+    backgroundColor: 'Background',
+    bold: 'Bold',
+    lineHeight: 'Line Height',
+    letterSpacing: 'Letter Spacing',
+    indent: 'Indent at both ends',
+    italic: 'Italic',
+    underline: 'Underline',
+    strikeThrough: 'Strike Through',
+    fontFamily: 'Font Family',
+    textAlign: 'Text Alignment',
+    alignLeft: 'Left Alignment',
+    alignCenter: 'Center Alignment',
+    alignRight: 'Right Alignment',
+    alignJustify: 'Justify Alignment',
+    floatLeft: 'Left Float',
+    floatRight: 'Right Float',
+    superScript: 'Super Script',
+    subScript: 'Sub Script',
+    removeStyles: 'Remove Styles',
+    headings: 'Headings',
+    header: 'Header',
+    normal: 'Normal',
+    orderedList: 'Ordered List',
+    unorderedList: 'Unordered List',
+    blockQuote: 'Quote',
+    code: 'Code',
+    link: 'Link',
+    unlink: 'Unlink',
+    hr: 'Horizontal Line',
+    media: 'Media',
+    emoji: 'Emoji'
+  },
+  linkEditor: {
+    inputPlaceHolder: 'Input link URL',
+    inputWithEnterPlaceHolder: 'Input link URL and press Enter',
+    openInNewWindow: 'Open in new window',
+    removeLink: 'Remove Link'
+  },
+  audioPlayer: {
+    title: 'Play Audio'
+  },
+  videoPlayer: {
+    title: 'Play Video',
+    embedTitle: 'Embed Media'
+  },
+  media: {
+    image: 'Image',
+    video: 'Video',
+    audio: 'Audio',
+    embed: 'Embed'
+  },
+  mediaPicker: {
+    caption: 'Media Library',
+    dragTip: 'Click Or Drag Files Here',
+    dropTip: 'Drop To Upload',
+    selectAll: 'Select All',
+    deselect: 'Deselect',
+    removeSelected: 'Remove Selected Items',
+    externalInputPlaceHolder: 'Source Name|Source URL',
+    externalInputTip: 'Split source name and source URL with "|", confirm by hit Enter.',
+    addLocalFile: 'Add from local',
+    addExternalSource: 'Add from Internet',
+    unnamedItem: 'Unnamed Item',
+    confirmInsert: 'Insert selected items'
+  }
+};
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/languages/en.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = {
+  base: {
+    remove: '刪除',
+    cancel: '取消',
+    confirm: '確定',
+    inert: '插入',
+    width: '宽度',
+    height: '高度'
+  },
+  controls: {
+    clear: '清除内容',
+    undo: '撤銷',
+    redo: '重做',
+    fontSize: '字號',
+    color: '顏色',
+    textColor: '文字顏色',
+    backgroundColor: '背景顏色',
+    tempColors: '臨時顏色',
+    bold: '加粗',
+    lineHeight: '行高',
+    letterSpacing: '字間距',
+    indent: '兩端縮進',
+    border: '邊框',
+    italic: '斜體',
+    underline: '下劃線',
+    strikeThrough: '刪除線',
+    fontFamily: '字體',
+    textAlign: '文本對齊',
+    alignLeft: '居左',
+    alignCenter: '居中',
+    alignRight: '居右',
+    alignJustify: '兩端對齊',
+    floatLeft: '左浮動',
+    floatRight: '右浮動',
+    superScript: '上標',
+    subScript: '下標',
+    removeStyles: '清除样式',
+    headings: '標題',
+    header: '標題',
+    normal: '常規',
+    orderedList: '有序列表',
+    unorderedList: '無序列表',
+    blockQuote: '引用',
+    code: '代碼',
+    link: '鏈接',
+    unlink: '清除鏈接',
+    hr: '水平线',
+    media: '媒體',
+    emoji: '小表情'
+  },
+  linkEditor: {
+    inputPlaceHolder: '輸入鏈接地址',
+    inputWithEnterPlaceHolder: '輸入鏈接地址並回車',
+    openInNewWindow: '在新窗口打開',
+    removeLink: '移除鏈接'
+  },
+  audioPlayer: {
+    title: '播放音頻文件'
+  },
+  videoPlayer: {
+    title: '播放視頻文件',
+    embedTitle: '嵌入式媒體'
+  },
+  media: {
+    image: '圖像',
+    video: '視頻',
+    audio: '音頻',
+    embed: '嵌入式媒體'
+  },
+  mediaPicker: {
+    caption: '多媒體資源庫',
+    dragTip: '點擊或拖動文件至此',
+    dropTip: '鬆開鼠標以上傳',
+    selectAll: '全選',
+    deselect: '取消選择',
+    removeSelected: '删除所選项目',
+    externalInputPlaceHolder: '資源名稱|資源地址',
+    externalInputTip: '以豎線符("|")分割資源名和資源地址，按回車確認',
+    addLocalFile: '添加本地文件',
+    addExternalSource: '添加網絡資源',
+    unnamedItem: '未命名項目',
+    confirmInsert: '插入所選項目'
+  }
+};
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/languages/zh-hant.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = {
+  base: {
+    remove: '删除',
+    cancel: '取消',
+    confirm: '确定',
+    inert: '插入',
+    width: '宽度',
+    height: '高度'
+  },
+  controls: {
+    clear: '清除内容',
+    undo: '撤销',
+    redo: '重做',
+    fontSize: '字号',
+    lineHeight: '行高',
+    letterSpacing: '字间距',
+    indent: '两端缩进',
+    border: '边框',
+    color: '颜色',
+    textColor: '文字颜色',
+    backgroundColor: '背景颜色',
+    tempColors: '临时颜色',
+    bold: '加粗',
+    italic: '斜体',
+    underline: '下划线',
+    strikeThrough: '删除线',
+    fontFamily: '字体',
+    textAlign: '文本对齐',
+    alignLeft: '居左',
+    alignCenter: '居中',
+    alignRight: '居右',
+    alignJustify: '两端',
+    floatLeft: '左浮动',
+    floatRight: '右浮动',
+    superScript: '上标',
+    subScript: '下标',
+    removeStyles: '清除样式',
+    headings: '标题',
+    header: '标题',
+    normal: '常规',
+    orderedList: '有序列表',
+    unorderedList: '无序列表',
+    blockQuote: '引用',
+    code: '代码',
+    link: '链接',
+    unlink: '清除链接',
+    hr: '水平线',
+    media: '媒体',
+    emoji: '小表情'
+  },
+  linkEditor: {
+    inputPlaceHolder: '输入链接地址',
+    inputWithEnterPlaceHolder: '输入链接地址并回车',
+    openInNewWindow: '在新窗口打开',
+    removeLink: '移除链接'
+  },
+  audioPlayer: {
+    title: '播放音频文件'
+  },
+  videoPlayer: {
+    title: '播放视频文件',
+    embedTitle: '嵌入式媒体'
+  },
+  media: {
+    image: '图像',
+    video: '视频',
+    audio: '音频',
+    embed: '嵌入式媒体'
+  },
+  mediaPicker: {
+    caption: '多媒体资源库',
+    dragTip: '点击或拖动文件至此',
+    dropTip: '松开鼠标以上传',
+    selectAll: '全选',
+    deselect: '取消选择',
+    removeSelected: '删除所选项目',
+    externalInputPlaceHolder: '资源名称|资源地址',
+    externalInputTip: '以竖线符("|")分割资源名和资源地址，按回车确认',
+    addLocalFile: '添加本地文件',
+    addExternalSource: '添加网络资源',
+    unnamedItem: '未命名项目',
+    confirmInsert: '插入所选项目'
+  }
+};
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/languages/zh.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 40 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(64);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Modal = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Audio = function (_React$Component) {
+  _inherits(Audio, _React$Component);
+
+  function Audio() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Audio);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Audio.__proto__ || Object.getPrototypeOf(Audio)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      toolbarVisible: false,
+      playerVisible: false
+    }, _this.showPlayer = function () {
+
+      _this.playerModal = (0, _Modal.showModal)({
+        title: _this.props.language.audioPlayer.title,
+        width: 480,
+        confirmable: true,
+        language: _this.props.language,
+        showCancel: false,
+        onClose: _this.handlePlayerClose,
+        onConfirm: _this.handlePlayerClose,
+        children: _react2.default.createElement('audio', { className: 'braft-embed-audio-player', src: _this.props.mediaData.url, controls: true })
+      });
+    }, _this.removeAudio = function () {
+      _this.props.editor.removeBlock(_this.props.block);
+    }, _this.showToolbar = function () {
+      _this.setState({
+        toolbarVisible: true
+      });
+    }, _this.hideToolbar = function () {
+      _this.setState({
+        toolbarVisible: false
+      });
+    }, _this.handlePlayerClose = function () {
+      _this.playerModal = null;
+      _this.props.editor && _this.props.editor.focus();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Audio, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.playerModal && this.playerModal.destroy();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          toolbarVisible = _state.toolbarVisible,
+          playerVisible = _state.playerVisible;
+      var _props = this.props,
+          mediaData = _props.mediaData,
+          language = _props.language;
+      var url = mediaData.url,
+          width = mediaData.width,
+          height = mediaData.height,
+          name = mediaData.name;
+
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'braft-media-audio-holder',
+          onMouseOver: this.showToolbar,
+          onMouseLeave: this.hideToolbar
+        },
+        _react2.default.createElement('i', { className: 'braft-icon-music' }),
+        _react2.default.createElement(
+          'h5',
+          null,
+          name
+        ),
+        _react2.default.createElement(
+          'h6',
+          null,
+          url
+        ),
+        toolbarVisible ? _react2.default.createElement(
+          'div',
+          {
+            ref: function ref(instance) {
+              return _this2.toolbarElement = instance;
+            },
+            className: 'braft-embed-audio-toolbar'
+          },
+          _react2.default.createElement(
+            'a',
+            { onClick: this.showPlayer },
+            '\uE037'
+          ),
+          _react2.default.createElement(
+            'a',
+            { onClick: this.removeAudio },
+            '\uE9AC'
+          )
+        ) : null
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Audio;
+}(_react2.default.Component);
+
+var _default = Audio;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Audio, 'Audio', 'E:/web/braft-editor/src/renderers/atomic/Audio/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/atomic/Audio/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 41 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(65);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Modal = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Embed = function (_React$Component) {
+  _inherits(Embed, _React$Component);
+
+  function Embed() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Embed);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Embed.__proto__ || Object.getPrototypeOf(Embed)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      toolbarVisible: false,
+      playerVisible: false
+    }, _this.showPlayer = function () {
+      var url = _this.props.mediaData.url;
+
+
+      _this.playerModal = (0, _Modal.showModal)({
+        title: _this.props.language.videoPlayer.embedTitle,
+        confirmable: true,
+        language: _this.props.language,
+        showCancel: false,
+        onClose: _this.handlePlayerClose,
+        children: _react2.default.createElement('div', { className: 'braft-embed-media-player', dangerouslySetInnerHTML: { __html: url } })
+      });
+    }, _this.removeEmbed = function () {
+      _this.props.editor.removeBlock(_this.props.block);
+    }, _this.showToolbar = function () {
+      _this.setState({
+        toolbarVisible: true
+      });
+    }, _this.hideToolbar = function () {
+      _this.setState({
+        toolbarVisible: false
+      });
+    }, _this.handlePlayerClose = function () {
+      _this.props.editor && _this.props.editor.focus();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Embed, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.playerModal && this.playerModal.destroy();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          toolbarVisible = _state.toolbarVisible,
+          playerVisible = _state.playerVisible;
+      var _props = this.props,
+          mediaData = _props.mediaData,
+          language = _props.language;
+      var url = mediaData.url,
+          width = mediaData.width,
+          height = mediaData.height,
+          name = mediaData.name;
+
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'braft-media-video-holder',
+          onMouseOver: this.showToolbar,
+          onMouseLeave: this.hideToolbar
+        },
+        _react2.default.createElement('i', { className: 'braft-icon-code' }),
+        _react2.default.createElement(
+          'h5',
+          null,
+          name
+        ),
+        _react2.default.createElement(
+          'h6',
+          null,
+          url
+        ),
+        toolbarVisible ? _react2.default.createElement(
+          'div',
+          {
+            ref: function ref(instance) {
+              return _this2.toolbarElement = instance;
+            },
+            className: 'braft-embed-video-toolbar'
+          },
+          _react2.default.createElement(
+            'a',
+            { onClick: this.showPlayer },
+            '\uE037'
+          ),
+          _react2.default.createElement(
+            'a',
+            { onClick: this.removeEmbed },
+            '\uE9AC'
+          )
+        ) : null
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Embed;
+}(_react2.default.Component);
+
+var _default = Embed;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Embed, 'Embed', 'E:/web/braft-editor/src/renderers/atomic/Embed/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/atomic/Embed/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 42 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(66);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var HorizontalLine = function (_React$Component) {
+  _inherits(HorizontalLine, _React$Component);
+
+  function HorizontalLine() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, HorizontalLine);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = HorizontalLine.__proto__ || Object.getPrototypeOf(HorizontalLine)).call.apply(_ref, [this].concat(args))), _this), _this.removeHorizontalLine = function () {
+      _this.props.editor.removeBlock(_this.props.block);
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(HorizontalLine, [{
+    key: 'render',
+    value: function render() {
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'braft-horizontal-line' },
+        _react2.default.createElement(
+          'div',
+          { className: 'braft-horizontal-line-toolbar' },
+          _react2.default.createElement(
+            'a',
+            { onClick: this.removeHorizontalLine },
+            '\uE9AC'
+          )
+        )
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return HorizontalLine;
+}(_react2.default.Component);
+
+var _default = HorizontalLine;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(HorizontalLine, 'HorizontalLine', 'E:/web/braft-editor/src/renderers/atomic/HorizontalLine/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/atomic/HorizontalLine/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 43 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(67);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Switch = __webpack_require__(9);
+
+var _Switch2 = _interopRequireDefault(_Switch);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Image = function (_React$Component) {
+  _inherits(Image, _React$Component);
+
+  function Image() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Image);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Image.__proto__ || Object.getPrototypeOf(Image)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      toolbarVisible: false,
+      toolbarOffset: 0,
+      linkEditorVisible: false,
+      sizeEditorVisible: false,
+      tempLink: null,
+      tempWidth: null,
+      tempHeight: null
+    }, _this.handleDragStart = function (event) {
+
+      window.__BRAFT_DRAGING__IMAGE__ = {
+        block: _this.props.block,
+        mediaData: _extends({
+          type: 'IMAGE'
+        }, _this.props.mediaData)
+      };
+
+      _this.setState({
+        toolbarVisible: false
+      }, function () {
+        _this.props.editor.setEditorProp('readOnly', false);
+      });
+
+      return true;
+    }, _this.handleDragEnd = function (event) {
+
+      window.__BRAFT_DRAGING__IMAGE__ = null;
+      return false;
+    }, _this.removeImage = function (e) {
+      _this.props.editor.removeBlock(_this.props.block);
+      _this.props.editor.setEditorProp('readOnly', false);
+    }, _this.toggleLinkEditor = function () {
+      _this.setState({
+        linkEditorVisible: !_this.state.linkEditorVisible,
+        sizeEditorVisible: false
+      });
+    }, _this.toggleSizeEditor = function () {
+      _this.setState({
+        linkEditorVisible: false,
+        sizeEditorVisible: !_this.state.sizeEditorVisible
+      });
+    }, _this.handleLinkInputKeyDown = function (e) {
+
+      if (e.keyCode === 13) {
+        _this.confirmImageLink();
+      } else {
+        return;
+      }
+    }, _this.setImageLink = function (e) {
+
+      _this.setState({
+        tempLink: e.currentTarget.value
+      });
+
+      return;
+    }, _this.confirmImageLink = function () {
+      var link = _this.state.tempLink;
+
+
+      if (link !== null) {
+        _this.props.editor.setMediaData(_this.props.entityKey, { link: link });
+        window.setImmediate(_this.props.editor.forceRender);
+      }
+    }, _this.handleSizeInputKeyDown = function (e) {
+
+      if (e.keyCode === 13) {
+        _this.confirmImageSize();
+      } else {
+        return;
+      }
+    }, _this.setImageWidth = function (_ref2) {
+      var currentTarget = _ref2.currentTarget;
+      var value = currentTarget.value;
+
+
+      value && !isNaN(value) && (value = value + 'px');
+
+      _this.setState({
+        tempWidth: value
+      });
+
+      return;
+    }, _this.setImageHeight = function (_ref3) {
+      var currentTarget = _ref3.currentTarget;
+      var value = currentTarget.value;
+
+
+      value && !isNaN(value) && (value = value + 'px');
+
+      _this.setState({
+        tempHeight: value
+      });
+
+      return;
+    }, _this.confirmImageSize = function () {
+      var _this$state = _this.state,
+          width = _this$state.tempWidth,
+          height = _this$state.tempHeight;
+
+      var newImageSize = {};
+
+      width !== null && (newImageSize.width = width);
+      height !== null && (newImageSize.height = height);
+
+      _this.props.editor.setMediaData(_this.props.entityKey, newImageSize);
+      window.setImmediate(_this.props.editor.forceRender);
+    }, _this.setImageFloat = function (e) {
+      var float = e.currentTarget.dataset.float;
+
+      _this.props.editor.setMediaPosition(_this.props.block, { float: float });
+      _this.props.editor.setEditorProp('readOnly', false);
+    }, _this.setImageAlignment = function (e) {
+      var alignment = e.currentTarget.dataset.alignment;
+
+      _this.props.editor.setMediaPosition(_this.props.block, { alignment: alignment });
+      _this.props.editor.setEditorProp('readOnly', false);
+    }, _this.showToolbar = function (event) {
+
+      event.preventDefault();
+
+      if (!_this.state.toolbarVisible) {
+        _this.setState({
+          toolbarVisible: true
+        }, function () {
+          _this.props.editor.setEditorProp('readOnly', true);
+          _this.setState({
+            toolbarOffset: _this.calcToolbarOffset()
+          });
+        });
+      }
+    }, _this.hideToolbar = function (event) {
+
+      event.preventDefault();
+
+      _this.setState({
+        toolbarVisible: false
+      }, function () {
+        _this.props.editor.setEditorProp('readOnly', false);
+      });
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Image, [{
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _props = this.props,
+          mediaData = _props.mediaData,
+          language = _props.language,
+          imageControls = _props.imageControls;
+      var _state = this.state,
+          toolbarVisible = _state.toolbarVisible,
+          toolbarOffset = _state.toolbarOffset,
+          linkEditorVisible = _state.linkEditorVisible,
+          sizeEditorVisible = _state.sizeEditorVisible;
+
+      var blockData = this.props.block.getData();
+
+      var float = blockData.get('float');
+      var alignment = blockData.get('alignment');
+      var url = mediaData.url,
+          link = mediaData.link,
+          link_target = mediaData.link_target,
+          width = mediaData.width,
+          height = mediaData.height;
+
+      var imageStyles = {};
+      var clearFix = false;
+
+      if (float) {
+        alignment = null;
+      } else if (alignment === 'left') {
+        imageStyles.float = 'left';
+        clearFix = true;
+      } else if (alignment === 'right') {
+        imageStyles.float = 'right';
+        clearFix = true;
+      } else if (alignment === 'center') {
+        imageStyles.textAlign = "center";
+      } else {
+        imageStyles.float = 'left';
+        clearFix = true;
+      }
+
+      return _react2.default.createElement(
+        'div',
+        { className: 'braft-media-embeder braft-image-embeder' },
+        _react2.default.createElement(
+          'div',
+          {
+            style: imageStyles,
+            draggable: true,
+            onMouseEnter: this.showToolbar,
+            onMouseMove: this.showToolbar,
+            onMouseLeave: this.hideToolbar,
+            onDragStart: this.handleDragStart,
+            onDragEnd: this.handleDragEnd,
+            ref: function ref(instance) {
+              return _this2.mediaEmbederInstance = instance;
+            },
+            className: 'braft-embed-image'
+          },
+          toolbarVisible ? _react2.default.createElement(
+            'div',
+            {
+              style: { marginLeft: toolbarOffset },
+              ref: function ref(instance) {
+                return _this2.toolbarElement = instance;
+              },
+              'data-float': float,
+              'data-alignment': alignment,
+              className: 'braft-embed-image-toolbar'
+            },
+            linkEditorVisible ? _react2.default.createElement(
+              'div',
+              { className: 'braft-embed-image-link-editor' },
+              _react2.default.createElement(
+                'div',
+                { className: 'editor-input-group' },
+                _react2.default.createElement('input', { type: 'text', placeholder: language.linkEditor.inputWithEnterPlaceHolder, onKeyDown: this.handleLinkInputKeyDown, onChange: this.setImageLink, defaultValue: link }),
+                _react2.default.createElement(
+                  'button',
+                  { type: 'button', onClick: this.confirmImageLink },
+                  language.base.confirm
+                )
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'switch-group' },
+                _react2.default.createElement(_Switch2.default, {
+                  active: link_target === '_blank',
+                  onClick: function onClick() {
+                    return _this2.setImageLinkTarget(link_target);
+                  }
+                }),
+                _react2.default.createElement(
+                  'label',
+                  null,
+                  language.linkEditor.openInNewWindow
+                )
+              )
+            ) : null,
+            sizeEditorVisible ? _react2.default.createElement(
+              'div',
+              { className: 'braft-embed-image-size-editor' },
+              _react2.default.createElement(
+                'div',
+                { className: 'editor-input-group' },
+                _react2.default.createElement('input', { type: 'text', placeholder: language.base.width, onKeyDown: this.handleSizeInputKeyDown, onChange: this.setImageWidth, defaultValue: width }),
+                _react2.default.createElement('input', { type: 'text', placeholder: language.base.height, onKeyDown: this.handleSizeInputKeyDown, onChange: this.setImageHeight, defaultValue: height }),
+                _react2.default.createElement(
+                  'button',
+                  { type: 'button', onClick: this.confirmImageSize },
+                  language.base.confirm
+                )
+              )
+            ) : null,
+            imageControls.floatLeft ? _react2.default.createElement(
+              'a',
+              { 'data-float': 'left', onClick: this.setImageFloat },
+              '\uE91E'
+            ) : null,
+            imageControls.floatRight ? _react2.default.createElement(
+              'a',
+              { 'data-float': 'right', onClick: this.setImageFloat },
+              '\uE914'
+            ) : null,
+            imageControls.alignLeft ? _react2.default.createElement(
+              'a',
+              { 'data-alignment': 'left', onClick: this.setImageAlignment },
+              '\uE027'
+            ) : null,
+            imageControls.alignCenter ? _react2.default.createElement(
+              'a',
+              { 'data-alignment': 'center', onClick: this.setImageAlignment },
+              '\uE028'
+            ) : null,
+            imageControls.alignRight ? _react2.default.createElement(
+              'a',
+              { 'data-alignment': 'right', onClick: this.setImageAlignment },
+              '\uE029'
+            ) : null,
+            imageControls.size ? _react2.default.createElement(
+              'a',
+              { onClick: this.toggleSizeEditor },
+              '\uE3C2'
+            ) : null,
+            imageControls.link ? _react2.default.createElement(
+              'a',
+              { className: link ? 'active' : '', onClick: this.toggleLinkEditor },
+              '\uE91A'
+            ) : null,
+            imageControls.remove ? _react2.default.createElement(
+              'a',
+              { onClick: this.removeImage },
+              '\uE9AC'
+            ) : null,
+            _react2.default.createElement('i', { style: { marginLeft: toolbarOffset * -1 }, className: 'braft-embed-image-toolbar-arrow' })
+          ) : null,
+          _react2.default.createElement('img', {
+            ref: function ref(instance) {
+              return _this2.imageElement = instance;
+            },
+            src: url, style: { width: width, height: height }, width: width, height: height
+          })
+        ),
+        clearFix && _react2.default.createElement('div', { className: 'clearfix', style: { clear: 'both', height: 0, lineHeight: 0, float: 'none' } })
+      );
+    }
+  }, {
+    key: 'calcToolbarOffset',
+    value: function calcToolbarOffset() {
+
+      var viewRect = null;
+
+      if (this.props.viewWrapper) {
+        viewRect = document.querySelector(this.props.viewWrapper).getBoundingClientRect();
+      } else {
+        viewRect = document.body.getBoundingClientRect();
+      }
+
+      var toolbarRect = this.toolbarElement.getBoundingClientRect();
+      var imageRect = this.imageElement.getBoundingClientRect();
+      var right = imageRect.right - imageRect.width / 2 + toolbarRect.width / 2;
+      var left = imageRect.left + imageRect.width / 2 - toolbarRect.width / 2;
+
+      right = viewRect.right - right;
+      left = left - viewRect.left;
+
+      if (right < 10) {
+        return right - 10;
+      } else if (left < 10) {
+        return left * -1 + 10;
+      } else {
+        return 0;
+      }
+    }
+  }, {
+    key: 'setImageLinkTarget',
+    value: function setImageLinkTarget(link_target) {
+
+      link_target = link_target === '_blank' ? '' : '_blank';
+      this.props.editor.setMediaData(this.props.entityKey, { link_target: link_target });
+      window.setImmediate(this.props.editor.forceRender);
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Image;
+}(_react2.default.Component);
+
+var _default = Image;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Image, 'Image', 'E:/web/braft-editor/src/renderers/atomic/Image/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/atomic/Image/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 44 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+__webpack_require__(68);
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Modal = __webpack_require__(5);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Video = function (_React$Component) {
+  _inherits(Video, _React$Component);
+
+  function Video() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    _classCallCheck(this, Video);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Video.__proto__ || Object.getPrototypeOf(Video)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
+      toolbarVisible: false,
+      playerVisible: false
+    }, _this.showPlayer = function () {
+      var _this$props$mediaData = _this.props.mediaData,
+          url = _this$props$mediaData.url,
+          meta = _this$props$mediaData.meta;
+
+
+      _this.playerModal = (0, _Modal.showModal)({
+        title: _this.props.language.videoPlayer.title,
+        width: 480,
+        confirmable: true,
+        language: _this.props.language,
+        showCancel: false,
+        onClose: _this.handlePlayerClose,
+        children: _react2.default.createElement('video', { poster: meta && meta.poster ? meta.poster : '', className: 'braft-embed-video-player', src: url, controls: true })
+      });
+    }, _this.removeVideo = function () {
+      _this.props.editor.removeBlock(_this.props.block);
+    }, _this.showToolbar = function () {
+      _this.setState({
+        toolbarVisible: true
+      });
+    }, _this.hideToolbar = function () {
+      _this.setState({
+        toolbarVisible: false
+      });
+    }, _this.handlePlayerClose = function () {
+      _this.props.editor && _this.props.editor.focus();
+    }, _temp), _possibleConstructorReturn(_this, _ret);
+  }
+
+  _createClass(Video, [{
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.playerModal && this.playerModal.destroy();
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var _state = this.state,
+          toolbarVisible = _state.toolbarVisible,
+          playerVisible = _state.playerVisible;
+      var _props = this.props,
+          mediaData = _props.mediaData,
+          language = _props.language;
+      var url = mediaData.url,
+          width = mediaData.width,
+          height = mediaData.height,
+          name = mediaData.name,
+          meta = mediaData.meta;
+
+
+      return _react2.default.createElement(
+        'div',
+        {
+          className: 'braft-media-video-holder',
+          onMouseOver: this.showToolbar,
+          onMouseLeave: this.hideToolbar
+        },
+        meta && meta.poster ? _react2.default.createElement('img', { className: 'braft-media-video-poster', src: meta.poster }) : _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement('i', { className: 'braft-icon-film' }),
+          _react2.default.createElement(
+            'h5',
+            null,
+            name
+          ),
+          _react2.default.createElement(
+            'h6',
+            null,
+            url
+          )
+        ),
+        toolbarVisible ? _react2.default.createElement(
+          'div',
+          {
+            ref: function ref(instance) {
+              return _this2.toolbarElement = instance;
+            },
+            className: 'braft-embed-video-toolbar'
+          },
+          _react2.default.createElement(
+            'a',
+            { onClick: this.showPlayer },
+            '\uE037'
+          ),
+          _react2.default.createElement(
+            'a',
+            { onClick: this.removeVideo },
+            '\uE9AC'
+          )
+        ) : null
+      );
+    }
+  }, {
+    key: '__reactstandin__regenerateByEval',
+    value: function __reactstandin__regenerateByEval(key, code) {
+      this[key] = eval(code);
+    }
+  }]);
+
+  return Video;
+}(_react2.default.Component);
+
+var _default = Video;
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(Video, 'Video', 'E:/web/braft-editor/src/renderers/atomic/Video/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/atomic/Video/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(2);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function handleStrategy(contentBlock, callback, contentState) {
+
+  contentBlock.findEntityRanges(function (character) {
+    var entityKey = character.getEntity();
+    return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
+  }, callback);
+}
+
+var Link = function Link(props) {
+  var children = props.children,
+      entityKey = props.entityKey,
+      contentState = props.contentState;
+
+  var _contentState$getEnti = contentState.getEntity(entityKey).getData(),
+      href = _contentState$getEnti.href,
+      target = _contentState$getEnti.target;
+
+  return _react2.default.createElement(
+    'span',
+    { className: 'braft-link-wrap' },
+    _react2.default.createElement(
+      'a',
+      { onClick: function onClick(event) {
+          return viewLink(event, href);
+        }, className: 'braft-link', href: href, target: target },
+      children
+    )
+  );
+};
+
+var viewLink = function viewLink(event, link) {
+  if (event.getModifierState('Shift')) {
+    var tempLink = document.createElement('a');
+    tempLink.href = link;
+    tempLink.target = '_blank';
+    tempLink.click();
+  }
+};
+
+var _default = {
+  strategy: handleStrategy,
+  component: Link
+};
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(handleStrategy, 'handleStrategy', 'E:/web/braft-editor/src/renderers/decorators/Link/index.jsx');
+  reactHotLoader.register(Link, 'Link', 'E:/web/braft-editor/src/renderers/decorators/Link/index.jsx');
+  reactHotLoader.register(viewLink, 'viewLink', 'E:/web/braft-editor/src/renderers/decorators/Link/index.jsx');
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/decorators/Link/index.jsx');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 46 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Link = __webpack_require__(45);
+
+var _Link2 = _interopRequireDefault(_Link);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = [_Link2.default];
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/decorators/index.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = blockStyleFn;
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+function blockStyleFn(block) {
+
+  var blockAlignment = block.getData() && block.getData().get('textAlign');
+  var blockFloat = block.getData() && block.getData().get('float');
+
+  var result = null;
+
+  if (blockAlignment) {
+    result = 'braft-' + blockAlignment + '-aligned-block';
+  }
+
+  if (blockFloat) {
+    result += ' braft-float-' + blockFloat;
+  }
+
+  return result;
+}
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(blockStyleFn, 'blockStyleFn', 'E:/web/braft-editor/src/renderers/styles/blockStyles.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(module) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+(function () {
+  var enterModule = __webpack_require__(0).enterModule;
+
+  enterModule && enterModule(module);
+})();
+
+var _default = function _default(props) {
+
+  var colorStyles = {};
+  var bgColorStyles = {};
+  var fontSizeStyles = {};
+  var fontFamilyStyles = {};
+  var lineHeightStyles = {};
+  var letterSpacingtStyles = {};
+  var indentStyles = {};
+
+  props.colors.forEach(function (color) {
+    var color_id = color.replace('#', '').toUpperCase();
+    colorStyles['COLOR-' + color_id] = { color: color };
+    bgColorStyles['BGCOLOR-' + color_id] = { backgroundColor: color };
+  });
+
+  props.fontSizes.forEach(function (fontSize) {
+    fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize };
+  });
+
+  props.fontFamilies.forEach(function (fontFamily) {
+    fontFamilyStyles['FONTFAMILY-' + fontFamily.name.toUpperCase()] = {
+      fontFamily: fontFamily.family
+    };
+  });
+
+  props.lineHeights.forEach(function (lineHeight) {
+    lineHeightStyles['LINEHEIGHT-' + lineHeight] = { lineHeight: lineHeight };
+  });
+
+  props.letterSpacings.forEach(function (letterSpacing) {
+    letterSpacingtStyles['LETTERSPACING-' + letterSpacing] = { letterSpacing: letterSpacing };
+  });
+  props.indents.forEach(function (indent) {
+    indentStyles['INDENT-' + indent] = { paddingLeft: indent, paddingRight: indent };
+  });
+
+  return _extends({
+    'SUPERSCRIPT': {
+      position: 'relative',
+      top: '-8px',
+      fontSize: '11px'
+    },
+    'SUBSCRIPT': {
+      position: 'relative',
+      bottom: '-8px',
+      fontSize: '11px'
+    }
+  }, colorStyles, bgColorStyles, fontSizeStyles, fontFamilyStyles, lineHeightStyles, letterSpacingtStyles, indentStyles);
+};
+
+exports.default = _default;
+;
+
+(function () {
+  var reactHotLoader = __webpack_require__(0).default;
+
+  var leaveModule = __webpack_require__(0).leaveModule;
+
+  if (!reactHotLoader) {
+    return;
+  }
+
+  reactHotLoader.register(_default, 'default', 'E:/web/braft-editor/src/renderers/styles/inlineStyles.js');
+  leaveModule(module);
+})();
+
+;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)(module)))
+
+/***/ }),
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 50 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 51 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 52 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 64 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 67 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -5315,10192 +12775,18 @@ exports.default = DropDown;
 }));
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var UniqueIndex = exports.UniqueIndex = function UniqueIndex() {
-
-  if (isNaN(window.__BRAFT_UNIQUE_INDEX__)) {
-    window.__BRAFT_UNIQUE_INDEX__ = 1;
-  } else {
-    window.__BRAFT_UNIQUE_INDEX__ += 1;
-  }
-
-  return window.__BRAFT_UNIQUE_INDEX__;
-};
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.showModal = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(78);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactDom = __webpack_require__(93);
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
-var _base = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Modal = function (_React$Component) {
-  _inherits(Modal, _React$Component);
-
-  function Modal() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Modal);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Modal.__proto__ || Object.getPrototypeOf(Modal)).call.apply(_ref, [this].concat(args))), _this), _this.active = false, _this.componentId = 'BRAFT-MODAL-' + (0, _base.UniqueIndex)(), _this.handleTransitionEnd = function () {
-
-      if (!_this.rootElement || !_this.rootElement.classList) {
-        return false;
-      }
-
-      if (!_this.rootElement.classList.contains('active')) {
-        _reactDom2.default.unmountComponentAtNode(_this.rootElement) && _this.rootElement.parentNode.removeChild(_this.rootElement);
-      }
-    }, _this.handleCancel = function () {
-      _this.props.closeOnCancel && _this.close();
-      _this.props.onCancel && _this.props.onCancel();
-    }, _this.handleConfirm = function () {
-      _this.props.closeOnConfirm && _this.close();
-      _this.props.onConfirm && _this.props.onConfirm();
-    }, _this.close = function () {
-      _this.unrenderComponent();
-      _this.props.onClose && _this.props.onClose();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Modal, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-
-      if (this.props.visible) {
-        this.active = true;
-        this.renderComponent(this.props);
-      }
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(next) {
-
-      if (this.props.visible && !next.visible) {
-        this.unrenderComponent();
-      } else if (this.props.visible || next.visible) {
-        this.active = true;
-        this.renderComponent(next);
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      return null;
-    }
-  }, {
-    key: 'unrenderComponent',
-    value: function unrenderComponent() {
-      this.active = false;
-      this.activeId && window.clearImmediate(this.activeId);
-      if (this.rootElement && this.rootElement.classList) {
-        this.rootElement.classList.remove('active');
-      }
-    }
-  }, {
-    key: 'renderComponent',
-    value: function renderComponent(props) {
-      var _this2 = this;
-
-      if (!this.active) {
-        return false;
-      }
-
-      var title = props.title,
-          className = props.className,
-          width = props.width,
-          height = props.height,
-          children = props.children,
-          confirmable = props.confirmable,
-          showCancel = props.showCancel,
-          showConfirm = props.showConfirm,
-          showClose = props.showClose,
-          cancelText = props.cancelText,
-          confirmText = props.confirmText,
-          bottomText = props.bottomText,
-          language = props.language;
-
-
-      typeof showCancel === 'undefined' && (showCancel = true);
-      typeof showClose === 'undefined' && (showClose = true);
-      typeof showConfirm === 'undefined' && (showConfirm = true);
-
-      var childComponent = _react2.default.createElement(
-        'div',
-        { className: "braft-modal " + (className || '') },
-        _react2.default.createElement('div', { className: 'braft-modal-mask' }),
-        _react2.default.createElement(
-          'div',
-          { onTransitionEnd: this.handleTransitionEnd, style: { width: width, height: height }, className: 'braft-modal-content' },
-          _react2.default.createElement(
-            'div',
-            { className: 'braft-modal-header' },
-            _react2.default.createElement(
-              'h3',
-              { className: 'braft-modal-caption' },
-              title
-            ),
-            showClose && _react2.default.createElement(
-              'button',
-              { type: 'button', onClick: this.close, className: 'braft-modal-close-button' },
-              _react2.default.createElement('i', { className: 'braft-icon-close' })
-            )
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'braft-modal-body' },
-            children
-          ),
-          _react2.default.createElement(
-            'div',
-            { className: 'braft-modal-footer' },
-            _react2.default.createElement(
-              'div',
-              { className: 'braft-modal-addon-text' },
-              bottomText
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'braft-modal-buttons' },
-              showCancel && _react2.default.createElement(
-                'button',
-                { type: 'button', onClick: this.handleCancel, className: 'braft-modal-cancel' },
-                cancelText || language.base.cancel
-              ),
-              showConfirm && _react2.default.createElement(
-                'button',
-                { type: 'button', onClick: this.handleConfirm, className: "braft-modal-confirm " + (!confirmable ? 'disabled' : '') },
-                confirmText || language.base.confirm
-              )
-            )
-          )
-        )
-      );
-
-      this.rootElement = document.querySelector('#' + this.componentId);
-
-      if (!this.rootElement) {
-        this.rootElement = document.createElement('div');
-        this.rootElement.id = this.componentId;
-        this.rootElement.className = 'braft-modal-root';
-        document.body.appendChild(this.rootElement);
-      }
-
-      _reactDom2.default.render(childComponent, this.rootElement);
-
-      this.activeId = window.setImmediate(function () {
-        _this2.rootElement.classList.add('active');
-      });
-    }
-  }]);
-
-  return Modal;
-}(_react2.default.Component);
-
-exports.default = Modal;
-var showModal = exports.showModal = function showModal(props) {
-
-  var host = document.createElement('div');
-  host.style.display = 'none';
-  document.body.appendChild(host);
-
-  var close = function close() {
-    _reactDom2.default.unmountComponentAtNode(host) && host.parentNode.removeChild(host);
-  };
-
-  var onConfirm = function onConfirm() {
-    close();
-    props.onConfirm && props.onConfirm();
-  };
-
-  var onCancel = function onCancel() {
-    close();
-    props.onCancel && props.onCancel();
-  };
-
-  var onClose = function onClose() {
-    close();
-    props.onClose && props.onClose();
-  };
-
-  var extProps = {
-    onConfirm: onConfirm, onCancel: onCancel, onClose: onClose,
-    visible: true,
-    closeOnConfirm: true,
-    closeOnCancel: true
-  };
-
-  var modalInstance = _reactDom2.default.render(_react2.default.createElement(Modal, _extends({}, props, extProps)), host);
-  modalInstance.destroy = close;
-  modalInstance.update = modalInstance.renderComponent;
-
-  return modalInstance;
-};
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_5__;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule CharacterMetadata
- * @format
- * 
- */
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var _require = __webpack_require__(2),
-    Map = _require.Map,
-    OrderedSet = _require.OrderedSet,
-    Record = _require.Record;
-
-// Immutable.map is typed such that the value for every key in the map
-// must be the same type
-
-
-var EMPTY_SET = OrderedSet();
-
-var defaultRecord = {
-  style: EMPTY_SET,
-  entity: null
-};
-
-var CharacterMetadataRecord = Record(defaultRecord);
-
-var CharacterMetadata = function (_CharacterMetadataRec) {
-  _inherits(CharacterMetadata, _CharacterMetadataRec);
-
-  function CharacterMetadata() {
-    _classCallCheck(this, CharacterMetadata);
-
-    return _possibleConstructorReturn(this, _CharacterMetadataRec.apply(this, arguments));
-  }
-
-  CharacterMetadata.prototype.getStyle = function getStyle() {
-    return this.get('style');
-  };
-
-  CharacterMetadata.prototype.getEntity = function getEntity() {
-    return this.get('entity');
-  };
-
-  CharacterMetadata.prototype.hasStyle = function hasStyle(style) {
-    return this.getStyle().includes(style);
-  };
-
-  CharacterMetadata.applyStyle = function applyStyle(record, style) {
-    var withStyle = record.set('style', record.getStyle().add(style));
-    return CharacterMetadata.create(withStyle);
-  };
-
-  CharacterMetadata.removeStyle = function removeStyle(record, style) {
-    var withoutStyle = record.set('style', record.getStyle().remove(style));
-    return CharacterMetadata.create(withoutStyle);
-  };
-
-  CharacterMetadata.applyEntity = function applyEntity(record, entityKey) {
-    var withEntity = record.getEntity() === entityKey ? record : record.set('entity', entityKey);
-    return CharacterMetadata.create(withEntity);
-  };
-
-  /**
-   * Use this function instead of the `CharacterMetadata` constructor.
-   * Since most content generally uses only a very small number of
-   * style/entity permutations, we can reuse these objects as often as
-   * possible.
-   */
-
-
-  CharacterMetadata.create = function create(config) {
-    if (!config) {
-      return EMPTY;
-    }
-
-    var defaultConfig = {
-      style: EMPTY_SET,
-      entity: null
-    };
-
-    // Fill in unspecified properties, if necessary.
-    var configMap = Map(defaultConfig).merge(config);
-
-    var existing = pool.get(configMap);
-    if (existing) {
-      return existing;
-    }
-
-    var newCharacter = new CharacterMetadata(configMap);
-    pool = pool.set(configMap, newCharacter);
-    return newCharacter;
-  };
-
-  return CharacterMetadata;
-}(CharacterMetadataRecord);
-
-var EMPTY = new CharacterMetadata();
-var pool = Map([[Map(defaultRecord), EMPTY]]);
-
-CharacterMetadata.EMPTY = EMPTY;
-
-module.exports = CharacterMetadata;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-/**
- * Use invariant() to assert state which your program assumes to be true.
- *
- * Provide sprintf-style format (only %s is supported) and arguments
- * to provide information about what broke and what you were
- * expecting.
- *
- * The invariant message will be stripped in production, but the invariant
- * will remain to ensure logic does not differ in production.
- */
-
-var validateFormat = function validateFormat(format) {};
-
-if (false) {
-  validateFormat = function validateFormat(format) {
-    if (format === undefined) {
-      throw new Error('invariant requires an error message argument');
-    }
-  };
-}
-
-function invariant(condition, format, a, b, c, d, e, f) {
-  validateFormat(format);
-
-  if (!condition) {
-    var error;
-    if (format === undefined) {
-      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
-    } else {
-      var args = [a, b, c, d, e, f];
-      var argIndex = 0;
-      error = new Error(format.replace(/%s/g, function () {
-        return args[argIndex++];
-      }));
-      error.name = 'Invariant Violation';
-    }
-
-    error.framesToPop = 1; // we don't care about invariant's own frame
-    throw error;
-  }
-}
-
-module.exports = invariant;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var namedColors = {
-  "aliceblue": "#f0f8ff",
-  "antiquewhite": "#faebd7",
-  "aqua": "#00ffff",
-  "aquamarine": "#7fffd4",
-  "azure": "#f0ffff",
-  "beige": "#f5f5dc",
-  "bisque": "#ffe4c4",
-  "black": "#000000",
-  "blanchedalmond": "#ffebcd",
-  "blue": "#0000ff",
-  "blueviolet": "#8a2be2",
-  "brown": "#a52a2a",
-  "burlywood": "#deb887",
-  "cadetblue": "#5f9ea0",
-  "chartreuse": "#7fff00",
-  "chocolate": "#d2691e",
-  "coral": "#ff7f50",
-  "cornflowerblue": "#6495ed",
-  "cornsilk": "#fff8dc",
-  "crimson": "#dc143c",
-  "cyan": "#00ffff",
-  "darkblue": "#00008b",
-  "darkcyan": "#008b8b",
-  "darkgoldenrod": "#b8860b",
-  "darkgray": "#a9a9a9",
-  "darkgreen": "#006400",
-  "darkkhaki": "#bdb76b",
-  "darkmagenta": "#8b008b",
-  "darkolivegreen": "#556b2f",
-  "darkorange": "#ff8c00",
-  "darkorchid": "#9932cc",
-  "darkred": "#8b0000",
-  "darksalmon": "#e9967a",
-  "darkseagreen": "#8fbc8f",
-  "darkslateblue": "#483d8b",
-  "darkslategray": "#2f4f4f",
-  "darkturquoise": "#00ced1",
-  "darkviolet": "#9400d3",
-  "deeppink": "#ff1493",
-  "deepskyblue": "#00bfff",
-  "dimgray": "#696969",
-  "dodgerblue": "#1e90ff",
-  "firebrick": "#b22222",
-  "floralwhite": "#fffaf0",
-  "forestgreen": "#228b22",
-  "fuchsia": "#ff00ff",
-  "gainsboro": "#dcdcdc",
-  "ghostwhite": "#f8f8ff",
-  "gold": "#ffd700",
-  "goldenrod": "#daa520",
-  "gray": "#808080",
-  "green": "#008000",
-  "greenyellow": "#adff2f",
-  "honeydew": "#f0fff0",
-  "hotpink": "#ff69b4",
-  "indianred ": "#cd5c5c",
-  "indigo": "#4b0082",
-  "ivory": "#fffff0",
-  "khaki": "#f0e68c",
-  "lavender": "#e6e6fa",
-  "lavenderblush": "#fff0f5",
-  "lawngreen": "#7cfc00",
-  "lemonchiffon": "#fffacd",
-  "lightblue": "#add8e6",
-  "lightcoral": "#f08080",
-  "lightcyan": "#e0ffff",
-  "lightgoldenrodyellow": "#fafad2",
-  "lightgrey": "#d3d3d3",
-  "lightgreen": "#90ee90",
-  "lightpink": "#ffb6c1",
-  "lightsalmon": "#ffa07a",
-  "lightseagreen": "#20b2aa",
-  "lightskyblue": "#87cefa",
-  "lightslategray": "#778899",
-  "lightsteelblue": "#b0c4de",
-  "lightyellow": "#ffffe0",
-  "lime": "#00ff00",
-  "limegreen": "#32cd32",
-  "linen": "#faf0e6",
-  "magenta": "#ff00ff",
-  "maroon": "#800000",
-  "mediumaquamarine": "#66cdaa",
-  "mediumblue": "#0000cd",
-  "mediumorchid": "#ba55d3",
-  "mediumpurple": "#9370d8",
-  "mediumseagreen": "#3cb371",
-  "mediumslateblue": "#7b68ee",
-  "mediumspringgreen": "#00fa9a",
-  "mediumturquoise": "#48d1cc",
-  "mediumvioletred": "#c71585",
-  "midnightblue": "#191970",
-  "mintcream": "#f5fffa",
-  "mistyrose": "#ffe4e1",
-  "moccasin": "#ffe4b5",
-  "navajowhite": "#ffdead",
-  "navy": "#000080",
-  "oldlace": "#fdf5e6",
-  "olive": "#808000",
-  "olivedrab": "#6b8e23",
-  "orange": "#ffa500",
-  "orangered": "#ff4500",
-  "orchid": "#da70d6",
-  "palegoldenrod": "#eee8aa",
-  "palegreen": "#98fb98",
-  "paleturquoise": "#afeeee",
-  "palevioletred": "#d87093",
-  "papayawhip": "#ffefd5",
-  "peachpuff": "#ffdab9",
-  "peru": "#cd853f",
-  "pink": "#ffc0cb",
-  "plum": "#dda0dd",
-  "powderblue": "#b0e0e6",
-  "purple": "#800080",
-  "rebeccapurple": "#663399",
-  "red": "#ff0000",
-  "rosybrown": "#bc8f8f",
-  "royalblue": "#4169e1",
-  "saddlebrown": "#8b4513",
-  "salmon": "#fa8072",
-  "sandybrown": "#f4a460",
-  "seagreen": "#2e8b57",
-  "seashell": "#fff5ee",
-  "sienna": "#a0522d",
-  "silver": "#c0c0c0",
-  "skyblue": "#87ceeb",
-  "slateblue": "#6a5acd",
-  "slategray": "#708090",
-  "snow": "#fffafa",
-  "springgreen": "#00ff7f",
-  "steelblue": "#4682b4",
-  "tan": "#d2b48c",
-  "teal": "#008080",
-  "thistle": "#d8bfd8",
-  "tomato": "#ff6347",
-  "turquoise": "#40e0d0",
-  "violet": "#ee82ee",
-  "wheat": "#f5deb3",
-  "white": "#ffffff",
-  "whitesmoke": "#f5f5f5",
-  "yellow": "#ffff00",
-  "yellowgreen": "#9acd32"
-};
-
-var getHexColor = exports.getHexColor = function getHexColor(color) {
-
-  color = color.replace('color:', '').replace(';', '').replace(' ', '');
-
-  if (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(color)) {
-    return color;
-  } else if (namedColors[color]) {
-    return namedColors[color];
-  } else if (color.indexOf('rgb') === 0) {
-
-    var rgbArray = color.split(',');
-    var convertedColor = rgbArray.length < 3 ? null : '#' + [rgbArray[0], rgbArray[1], rgbArray[2]].map(function (x) {
-      var hex = parseInt(x.replace(/\D/g, ''), 10).toString(16);
-      return hex.length === 1 ? '0' + hex : hex;
-    }).join('');
-
-    return (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(convertedColor) ? convertedColor : null
-    );
-  } else {
-    return null;
-  }
-};
-
-var detectColorsFromHTML = exports.detectColorsFromHTML = function detectColorsFromHTML(html) {
-
-  return typeof html !== 'string' ? [] : (html.match(/color:[^;]{3,24};/g) || []).map(getHexColor).filter(function (color) {
-    return color;
-  });
-};
-
-var detectColorsFromRaw = exports.detectColorsFromRaw = function detectColorsFromRaw(raw) {
-
-  var result = [];
-
-  if (!raw || !raw.blocks || !raw.blocks.length) {
-    return result;
-  }
-
-  raw.blocks.forEach(function (block) {
-    if (block && block.inlineStyleRanges && block.inlineStyleRanges.length) {
-      block.inlineStyleRanges.forEach(function (inlineStyle) {
-        if (inlineStyle.style && inlineStyle.style.indexOf('COLOR-') >= 0) {
-          result.push('#' + inlineStyle.style.split('COLOR-')[1]);
-        }
-      });
-    }
-  });
-
-  return result.filter(function (color) {
-    return color;
-  });
-};
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*
-object-assign
-(c) Sindre Sorhus
-@license MIT
-*/
-
-
-/* eslint-disable no-unused-vars */
-var getOwnPropertySymbols = Object.getOwnPropertySymbols;
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-var propIsEnumerable = Object.prototype.propertyIsEnumerable;
-
-function toObject(val) {
-	if (val === null || val === undefined) {
-		throw new TypeError('Object.assign cannot be called with null or undefined');
-	}
-
-	return Object(val);
-}
-
-function shouldUseNative() {
-	try {
-		if (!Object.assign) {
-			return false;
-		}
-
-		// Detect buggy property enumeration order in older V8 versions.
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-		var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
-		test1[5] = 'de';
-		if (Object.getOwnPropertyNames(test1)[0] === '5') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test2 = {};
-		for (var i = 0; i < 10; i++) {
-			test2['_' + String.fromCharCode(i)] = i;
-		}
-		var order2 = Object.getOwnPropertyNames(test2).map(function (n) {
-			return test2[n];
-		});
-		if (order2.join('') !== '0123456789') {
-			return false;
-		}
-
-		// https://bugs.chromium.org/p/v8/issues/detail?id=3056
-		var test3 = {};
-		'abcdefghijklmnopqrst'.split('').forEach(function (letter) {
-			test3[letter] = letter;
-		});
-		if (Object.keys(Object.assign({}, test3)).join('') !==
-				'abcdefghijklmnopqrst') {
-			return false;
-		}
-
-		return true;
-	} catch (err) {
-		// We don't expect any of the above to throw, but better to be safe.
-		return false;
-	}
-}
-
-module.exports = shouldUseNative() ? Object.assign : function (target, source) {
-	var from;
-	var to = toObject(target);
-	var symbols;
-
-	for (var s = 1; s < arguments.length; s++) {
-		from = Object(arguments[s]);
-
-		for (var key in from) {
-			if (hasOwnProperty.call(from, key)) {
-				to[key] = from[key];
-			}
-		}
-
-		if (getOwnPropertySymbols) {
-			symbols = getOwnPropertySymbols(from);
-			for (var i = 0; i < symbols.length; i++) {
-				if (propIsEnumerable.call(from, symbols[i])) {
-					to[symbols[i]] = from[symbols[i]];
-				}
-			}
-		}
-	}
-
-	return to;
-};
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_10__;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(79);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-  var active = props.active,
-      _onClick = props.onClick,
-      className = props.className;
-
-
-  return _react2.default.createElement('div', { onClick: function onClick() {
-      return _onClick();
-    }, className: "switch-button " + className + (active ? ' active' : '') });
-};
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.blocks = exports.getHeadings = undefined;
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var getHeadings = exports.getHeadings = function getHeadings(lang) {
-  return [{
-    key: 'header-one',
-    title: lang.controls.header + ' 1',
-    text: _react2.default.createElement(
-      'h1',
-      null,
-      lang.controls.header,
-      ' 1'
-    ),
-    type: 'block-type',
-    command: 'header-one'
-  }, {
-    key: 'header-two',
-    title: lang.controls.header + ' 2',
-    text: _react2.default.createElement(
-      'h2',
-      null,
-      lang.controls.header,
-      ' 2'
-    ),
-    type: 'block-type',
-    command: 'header-two'
-  }, {
-    key: 'header-three',
-    title: lang.controls.header + ' 3',
-    text: _react2.default.createElement(
-      'h3',
-      null,
-      lang.controls.header,
-      ' 3'
-    ),
-    type: 'block-type',
-    command: 'header-three'
-  }, {
-    key: 'header-four',
-    title: lang.controls.header + ' 4',
-    text: _react2.default.createElement(
-      'h4',
-      null,
-      lang.controls.header,
-      ' 4'
-    ),
-    type: 'block-type',
-    command: 'header-four'
-  }, {
-    key: 'header-five',
-    title: lang.controls.header + ' 5',
-    text: _react2.default.createElement(
-      'h5',
-      null,
-      lang.controls.header,
-      ' 5'
-    ),
-    type: 'block-type',
-    command: 'header-five'
-  }, {
-    key: 'header-six',
-    title: lang.controls.header + ' 6',
-    text: _react2.default.createElement(
-      'h6',
-      null,
-      lang.controls.header,
-      ' 6'
-    ),
-    type: 'block-type',
-    command: 'header-six'
-  }, {
-    key: 'unstyled',
-    title: lang.controls.normal,
-    text: lang.controls.normal,
-    type: 'block-type',
-    command: 'unstyled'
-  }];
-};
-
-var blocks = exports.blocks = {
-  'header-one': 'h1',
-  'header-two': 'h2',
-  'header-three': 'h3',
-  'header-four': 'h4',
-  'header-fiv': 'h5',
-  'header-six': 'h6',
-  'unstyled': 'p',
-  'blockquote': 'blockquote'
-};
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule ContentBlock
- * @format
- * 
- */
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CharacterMetadata = __webpack_require__(6);
-var Immutable = __webpack_require__(2);
-
-var findRangesImmutable = __webpack_require__(16);
-
-var List = Immutable.List,
-    Map = Immutable.Map,
-    OrderedSet = Immutable.OrderedSet,
-    Record = Immutable.Record,
-    Repeat = Immutable.Repeat;
-
-
-var EMPTY_SET = OrderedSet();
-
-var defaultRecord = {
-  key: '',
-  type: 'unstyled',
-  text: '',
-  characterList: List(),
-  depth: 0,
-  data: Map()
-};
-
-var ContentBlockRecord = Record(defaultRecord);
-
-var decorateCharacterList = function decorateCharacterList(config) {
-  if (!config) {
-    return config;
-  }
-
-  var characterList = config.characterList,
-      text = config.text;
-
-
-  if (text && !characterList) {
-    config.characterList = List(Repeat(CharacterMetadata.EMPTY, text.length));
-  }
-
-  return config;
-};
-
-var ContentBlock = function (_ContentBlockRecord) {
-  _inherits(ContentBlock, _ContentBlockRecord);
-
-  function ContentBlock(config) {
-    _classCallCheck(this, ContentBlock);
-
-    return _possibleConstructorReturn(this, _ContentBlockRecord.call(this, decorateCharacterList(config)));
-  }
-
-  ContentBlock.prototype.getKey = function getKey() {
-    return this.get('key');
-  };
-
-  ContentBlock.prototype.getType = function getType() {
-    return this.get('type');
-  };
-
-  ContentBlock.prototype.getText = function getText() {
-    return this.get('text');
-  };
-
-  ContentBlock.prototype.getCharacterList = function getCharacterList() {
-    return this.get('characterList');
-  };
-
-  ContentBlock.prototype.getLength = function getLength() {
-    return this.getText().length;
-  };
-
-  ContentBlock.prototype.getDepth = function getDepth() {
-    return this.get('depth');
-  };
-
-  ContentBlock.prototype.getData = function getData() {
-    return this.get('data');
-  };
-
-  ContentBlock.prototype.getInlineStyleAt = function getInlineStyleAt(offset) {
-    var character = this.getCharacterList().get(offset);
-    return character ? character.getStyle() : EMPTY_SET;
-  };
-
-  ContentBlock.prototype.getEntityAt = function getEntityAt(offset) {
-    var character = this.getCharacterList().get(offset);
-    return character ? character.getEntity() : null;
-  };
-
-  /**
-   * Execute a callback for every contiguous range of styles within the block.
-   */
-
-
-  ContentBlock.prototype.findStyleRanges = function findStyleRanges(filterFn, callback) {
-    findRangesImmutable(this.getCharacterList(), haveEqualStyle, filterFn, callback);
-  };
-
-  /**
-   * Execute a callback for every contiguous range of entities within the block.
-   */
-
-
-  ContentBlock.prototype.findEntityRanges = function findEntityRanges(filterFn, callback) {
-    findRangesImmutable(this.getCharacterList(), haveEqualEntity, filterFn, callback);
-  };
-
-  return ContentBlock;
-}(ContentBlockRecord);
-
-function haveEqualStyle(charA, charB) {
-  return charA.getStyle() === charB.getStyle();
-}
-
-function haveEqualEntity(charA, charB) {
-  return charA.getEntity() === charB.getEntity();
-}
-
-module.exports = ContentBlock;
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule ContentBlockNode
- * @format
- * 
- *
- * This file is a fork of ContentBlock adding support for nesting references by
- * providing links to children, parent, prevSibling, and nextSibling.
- *
- * This is unstable and not part of the public API and should not be used by
- * production systems. This file may be update/removed without notice.
- */
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var CharacterMetadata = __webpack_require__(6);
-var Immutable = __webpack_require__(2);
-
-var findRangesImmutable = __webpack_require__(16);
-
-var List = Immutable.List,
-    Map = Immutable.Map,
-    OrderedSet = Immutable.OrderedSet,
-    Record = Immutable.Record,
-    Repeat = Immutable.Repeat;
-
-
-var EMPTY_SET = OrderedSet();
-
-var defaultRecord = {
-  parent: null,
-  characterList: List(),
-  data: Map(),
-  depth: 0,
-  key: '',
-  text: '',
-  type: 'unstyled',
-  children: List(),
-  prevSibling: null,
-  nextSibling: null
-};
-
-var haveEqualStyle = function haveEqualStyle(charA, charB) {
-  return charA.getStyle() === charB.getStyle();
-};
-
-var haveEqualEntity = function haveEqualEntity(charA, charB) {
-  return charA.getEntity() === charB.getEntity();
-};
-
-var decorateCharacterList = function decorateCharacterList(config) {
-  if (!config) {
-    return config;
-  }
-
-  var characterList = config.characterList,
-      text = config.text;
-
-
-  if (text && !characterList) {
-    config.characterList = List(Repeat(CharacterMetadata.EMPTY, text.length));
-  }
-
-  return config;
-};
-
-var ContentBlockNode = function (_Record) {
-  _inherits(ContentBlockNode, _Record);
-
-  function ContentBlockNode() {
-    var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultRecord;
-
-    _classCallCheck(this, ContentBlockNode);
-
-    return _possibleConstructorReturn(this, _Record.call(this, decorateCharacterList(props)));
-  }
-
-  ContentBlockNode.prototype.getKey = function getKey() {
-    return this.get('key');
-  };
-
-  ContentBlockNode.prototype.getType = function getType() {
-    return this.get('type');
-  };
-
-  ContentBlockNode.prototype.getText = function getText() {
-    return this.get('text');
-  };
-
-  ContentBlockNode.prototype.getCharacterList = function getCharacterList() {
-    return this.get('characterList');
-  };
-
-  ContentBlockNode.prototype.getLength = function getLength() {
-    return this.getText().length;
-  };
-
-  ContentBlockNode.prototype.getDepth = function getDepth() {
-    return this.get('depth');
-  };
-
-  ContentBlockNode.prototype.getData = function getData() {
-    return this.get('data');
-  };
-
-  ContentBlockNode.prototype.getInlineStyleAt = function getInlineStyleAt(offset) {
-    var character = this.getCharacterList().get(offset);
-    return character ? character.getStyle() : EMPTY_SET;
-  };
-
-  ContentBlockNode.prototype.getEntityAt = function getEntityAt(offset) {
-    var character = this.getCharacterList().get(offset);
-    return character ? character.getEntity() : null;
-  };
-
-  ContentBlockNode.prototype.getChildKeys = function getChildKeys() {
-    return this.get('children');
-  };
-
-  ContentBlockNode.prototype.getParentKey = function getParentKey() {
-    return this.get('parent');
-  };
-
-  ContentBlockNode.prototype.getPrevSiblingKey = function getPrevSiblingKey() {
-    return this.get('prevSibling');
-  };
-
-  ContentBlockNode.prototype.getNextSiblingKey = function getNextSiblingKey() {
-    return this.get('nextSibling');
-  };
-
-  ContentBlockNode.prototype.findStyleRanges = function findStyleRanges(filterFn, callback) {
-    findRangesImmutable(this.getCharacterList(), haveEqualStyle, filterFn, callback);
-  };
-
-  ContentBlockNode.prototype.findEntityRanges = function findEntityRanges(filterFn, callback) {
-    findRangesImmutable(this.getCharacterList(), haveEqualEntity, filterFn, callback);
-  };
-
-  return ContentBlockNode;
-}(Record(defaultRecord));
-
-module.exports = ContentBlockNode;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule DraftFeatureFlags
- * @format
- * 
- */
-
-
-
-var DraftFeatureFlags = __webpack_require__(63);
-
-module.exports = DraftFeatureFlags;
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule findRangesImmutable
- * @format
- * 
- */
-
-
-
-/**
- * Search through an array to find contiguous stretches of elements that
- * match a specified filter function.
- *
- * When ranges are found, execute a specified `found` function to supply
- * the values to the caller.
- */
-function findRangesImmutable(haystack, areEqualFn, filterFn, foundFn) {
-  if (!haystack.size) {
-    return;
-  }
-
-  var cursor = 0;
-
-  haystack.reduce(function (value, nextValue, nextIndex) {
-    if (!areEqualFn(value, nextValue)) {
-      if (filterFn(value)) {
-        foundFn(cursor, nextIndex);
-      }
-      cursor = nextIndex;
-    }
-    return nextValue;
-  });
-
-  filterFn(haystack.last()) && foundFn(cursor, haystack.count());
-}
-
-module.exports = findRangesImmutable;
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule generateRandomKey
- * @format
- * 
- */
-
-
-
-var seenKeys = {};
-var MULTIPLIER = Math.pow(2, 24);
-
-function generateRandomKey() {
-  var key = void 0;
-  while (key === undefined || seenKeys.hasOwnProperty(key) || !isNaN(+key)) {
-    key = Math.floor(Math.random() * MULTIPLIER).toString(32);
-  }
-  seenKeys[key] = true;
-  return key;
-}
-
-module.exports = generateRandomKey;
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule getSafeBodyFromHTML
- * @format
- * 
- */
-
-
-
-var UserAgent = __webpack_require__(86);
-
-var invariant = __webpack_require__(7);
-
-var isOldIE = UserAgent.isBrowser('IE <= 9');
-
-// Provides a dom node that will not execute scripts
-// https://developer.mozilla.org/en-US/docs/Web/API/DOMImplementation.createHTMLDocument
-// https://developer.mozilla.org/en-US/Add-ons/Code_snippets/HTML_to_DOM
-
-function getSafeBodyFromHTML(html) {
-  var doc;
-  var root = null;
-  // Provides a safe context
-  if (!isOldIE && document.implementation && document.implementation.createHTMLDocument) {
-    doc = document.implementation.createHTMLDocument('foo');
-    !doc.documentElement ?  false ? invariant(false, 'Missing doc.documentElement') : invariant(false) : void 0;
-    doc.documentElement.innerHTML = html;
-    root = doc.getElementsByTagName('body')[0];
-  }
-  return root;
-}
-
-module.exports = getSafeBodyFromHTML;
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule sanitizeDraftText
- * @format
- * 
- */
-
-
-
-var REGEX_BLOCK_DELIMITER = new RegExp('\r', 'g');
-
-function sanitizeDraftText(input) {
-  return input.replace(REGEX_BLOCK_DELIMITER, '');
-}
-
-module.exports = sanitizeDraftText;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-/**
- * This function is used to mark string literals representing CSS class names
- * so that they can be transformed statically. This allows for modularization
- * and minification of CSS class names.
- *
- * In static_upstream, this function is actually implemented, but it should
- * eventually be replaced with something more descriptive, and the transform
- * that is used in the main stack should be ported for use elsewhere.
- *
- * @param string|object className to modularize, or an object of key/values.
- *                      In the object case, the values are conditions that
- *                      determine if the className keys should be included.
- * @param [string ...]  Variable list of classNames in the string case.
- * @return string       Renderable space-separated CSS className.
- */
-function cx(classNames) {
-  if (typeof classNames == 'object') {
-    return Object.keys(classNames).filter(function (className) {
-      return classNames[className];
-    }).map(replace).join(' ');
-  }
-  return Array.prototype.map.call(arguments, replace).join(' ');
-}
-
-function replace(str) {
-  return str.replace(/\//g, '-');
-}
-
-module.exports = cx;
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(65);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _controls = __webpack_require__(45);
-
-var _controls2 = _interopRequireDefault(_controls);
-
-var _LinkEditor = __webpack_require__(38);
-
-var _LinkEditor2 = _interopRequireDefault(_LinkEditor);
-
-var _Headings = __webpack_require__(36);
-
-var _Headings2 = _interopRequireDefault(_Headings);
-
-var _TextColor = __webpack_require__(41);
-
-var _TextColor2 = _interopRequireDefault(_TextColor);
-
-var _FontSize = __webpack_require__(35);
-
-var _FontSize2 = _interopRequireDefault(_FontSize);
-
-var _LineHeight = __webpack_require__(37);
-
-var _LineHeight2 = _interopRequireDefault(_LineHeight);
-
-var _FontFamily = __webpack_require__(34);
-
-var _FontFamily2 = _interopRequireDefault(_FontFamily);
-
-var _TextAlign = __webpack_require__(40);
-
-var _TextAlign2 = _interopRequireDefault(_TextAlign);
-
-var _EmojiPicker = __webpack_require__(33);
-
-var _EmojiPicker2 = _interopRequireDefault(_EmojiPicker);
-
-var _MediaPicker = __webpack_require__(39);
-
-var _MediaPicker2 = _interopRequireDefault(_MediaPicker);
-
-var _letterSpacing = __webpack_require__(43);
-
-var _letterSpacing2 = _interopRequireDefault(_letterSpacing);
-
-var _indent = __webpack_require__(42);
-
-var _indent2 = _interopRequireDefault(_indent);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-var _Modal = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var ControlBar = function (_React$Component) {
-  _inherits(ControlBar, _React$Component);
-
-  function ControlBar() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, ControlBar);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ControlBar.__proto__ || Object.getPrototypeOf(ControlBar)).call.apply(_ref, [this].concat(args))), _this), _this.mediaPicker = null, _this.videoPicker = null, _this.audioPicker = null, _this.extendedModals = {}, _this.showMediaPicker = function () {
-      _this.mediaPicker.show();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(ControlBar, [{
-    key: 'componentDidUpdate',
-    value: function componentDidUpdate() {
-      var _this2 = this;
-
-      var _props = this.props,
-          extendControls = _props.extendControls,
-          language = _props.language;
-
-
-      extendControls.forEach(function (item) {
-        if (item.type === 'modal') {
-          if (item.modal && item.modal.id && _this2.extendedModals[item.modal.id]) {
-            _this2.extendedModals[item.modal.id].update(_extends({}, item.modal, { language: language }));
-          }
-        }
-      });
-    }
-  }, {
-    key: 'getControlItemClassName',
-    value: function getControlItemClassName(data) {
-
-      var className = 'control-item button';
-      var type = data.type,
-          command = data.command;
-
-
-      if (type === 'inline-style' && this.props.editor.selectionHasInlineStyle(command)) {
-        className += ' active';
-      } else if (type === 'block-type' && this.props.editor.getSelectionBlockType() === command) {
-        className += ' active';
-      }
-
-      return className;
-    }
-  }, {
-    key: 'applyControl',
-    value: function applyControl(command, type) {
-      var _this3 = this;
-
-      if (type === 'inline-style') {
-        this.props.editor.toggleSelectionInlineStyle(command);
-      } else if (type === 'block-type') {
-        this.props.editor.toggleSelectionBlockType(command);
-      } else if (type === 'editor-state-method') {
-        this.props.editor[command] && this.props.editor[command]();
-      }
-
-      window.setImmediate(function () {
-        _this3.props.editor.focus();
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this4 = this;
-
-      var _props2 = this.props,
-          editor = _props2.editor,
-          controls = _props2.controls,
-          media = _props2.media,
-          extendControls = _props2.extendControls,
-          language = _props2.language,
-          colors = _props2.colors,
-          tempColors = _props2.tempColors,
-          fontSizes = _props2.fontSizes,
-          fontFamilies = _props2.fontFamilies,
-          emojis = _props2.emojis,
-          viewWrapper = _props2.viewWrapper,
-          lineHeights = _props2.lineHeights,
-          letterSpacings = _props2.letterSpacings,
-          editorHeight = _props2.editorHeight,
-          textAlignOptions = _props2.textAlignOptions,
-          allowSetTextBackgroundColor = _props2.allowSetTextBackgroundColor,
-          indents = _props2.indents;
-
-      var currentBlockType = editor.getSelectionBlockType();
-      var supportedControls = (0, _controls2.default)(language);
-      var commonProps = { editor: editor, editorHeight: editorHeight, language: language, viewWrapper: viewWrapper };
-      var renderedExtendControls = extendControls.map(function (item, index) {
-        if (item.type === 'split') {
-          return _react2.default.createElement('span', { key: controls.length * 2 + index, className: 'split-line' });
-        } else if (item.type === 'dropdown') {
-          var disabled = item.disabled,
-              autoHide = item.autoHide,
-              html = item.html,
-              text = item.text,
-              className = item.className,
-              showDropDownArrow = item.showDropDownArrow,
-              hoverTitle = item.hoverTitle,
-              component = item.component,
-              arrowActive = item.arrowActive,
-              ref = item.ref;
-
-          return _react2.default.createElement(
-            _DropDown2.default,
-            {
-              key: index,
-              className: "control-item dropdown " + className,
-              caption: text,
-              editorHeight: editorHeight,
-              htmlCaption: html,
-              showDropDownArrow: showDropDownArrow,
-              viewWrapper: viewWrapper,
-              hoverTitle: hoverTitle,
-              arrowActive: arrowActive,
-              autoHide: autoHide,
-              disabled: disabled,
-              ref: ref
-            },
-            component
-          );
-        } else if (item.type === 'modal') {
-          return _react2.default.createElement(
-            'button',
-            {
-              type: 'button',
-              key: controls.length * 2 + index,
-              title: item.hoverTitle,
-              className: 'control-item button ' + item.className,
-              dangerouslySetInnerHTML: item.html ? { __html: item.html } : null,
-              onClick: function onClick(event) {
-                if (item.modal && item.modal.id) {
-                  if (_this4.extendedModals[item.modal.id]) {
-                    _this4.extendedModals[item.modal.id].active = true;
-                    _this4.extendedModals[item.modal.id].update(_extends({}, item.modal, { language: language }));
-                  } else {
-                    _this4.extendedModals[item.modal.id] = (0, _Modal.showModal)(_extends({}, item.modal, { language: language }));
-                    item.modal.onCreate && item.modal.onCreate(_this4.extendedModals[item.modal.id]);
-                  }
-                }
-                item.onClick && item.onClick(event);
-              }
-            },
-            !item.html ? item.text : null
-          );
-        } else if (item.type === 'component') {
-          return _react2.default.createElement(
-            'div',
-            {
-              key: controls.length * 2 + index,
-              className: 'control-item component-wrapper ' + item.className
-            },
-            item.component
-          );
-        } else {
-          return _react2.default.createElement(
-            'button',
-            {
-              type: 'button',
-              key: controls.length * 2 + index,
-              title: item.hoverTitle,
-              className: 'control-item button ' + item.className,
-              dangerouslySetInnerHTML: item.html ? { __html: item.html } : null,
-              onClick: function onClick(event) {
-                return item.onClick && item.onClick(event);
-              }
-            },
-            !item.html ? item.text : null
-          );
-        }
-      });
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'BraftEditor-controlBar' },
-        _react2.default.createElement(_MediaPicker2.default, _extends({
-          media: media,
-          ref: function ref(instance) {
-            return _this4.mediaPicker = instance;
-          },
-          mediaLibrary: editor.mediaLibrary
-        }, commonProps)),
-        controls.map(function (item, index) {
-          if (item.toLowerCase() === 'split') {
-            return _react2.default.createElement('span', { key: index, className: 'split-line' });
-          }
-          var controlItem = supportedControls.find(function (subItem) {
-            return subItem.key.toLowerCase() === item.toLowerCase();
-          });
-          if (!controlItem) {
-            return null;
-          }
-          if (controlItem.type === 'headings') {
-            return _react2.default.createElement(_Headings2.default, _extends({
-              key: index,
-              current: currentBlockType,
-              onChange: function onChange(command) {
-                return _this4.applyControl(command, 'block-type');
-              }
-            }, commonProps));
-          } else if (controlItem.type === 'text-color') {
-            return _react2.default.createElement(_TextColor2.default, _extends({
-              key: index,
-              colors: colors,
-              tempColors: tempColors,
-              allowSetTextBackgroundColor: allowSetTextBackgroundColor
-            }, commonProps));
-          } else if (controlItem.type === 'font-size') {
-            return _react2.default.createElement(_FontSize2.default, _extends({
-              key: index,
-              fontSizes: fontSizes,
-              defaultCaption: controlItem.title
-            }, commonProps));
-          } else if (controlItem.type === 'line-height') {
-            return _react2.default.createElement(_LineHeight2.default, _extends({
-              key: index,
-              lineHeights: lineHeights,
-              defaultCaption: controlItem.title
-            }, commonProps));
-          } else if (controlItem.type === 'letter-spacing') {
-            return _react2.default.createElement(_letterSpacing2.default, _extends({
-              key: index,
-              letterSpacings: letterSpacings,
-              defaultCaption: controlItem.title
-            }, commonProps));
-          } else if (controlItem.type === 'indent') {
-            return _react2.default.createElement(_indent2.default, _extends({
-              key: index,
-              indents: indents,
-              defaultCaption: controlItem.title
-            }, commonProps));
-          } else if (controlItem.type === 'font-family') {
-            return _react2.default.createElement(_FontFamily2.default, _extends({
-              key: index,
-              fontFamilies: fontFamilies,
-              defaultCaption: controlItem.title
-            }, commonProps));
-          } else if (controlItem.type === 'emoji') {
-            return _react2.default.createElement(_EmojiPicker2.default, _extends({
-              key: index,
-              emojis: emojis,
-              defaultCaption: controlItem.text
-            }, commonProps));
-          } else if (controlItem.type === 'link') {
-            return _react2.default.createElement(_LinkEditor2.default, _extends({
-              key: index
-            }, commonProps));
-          } else if (controlItem.type === 'text-align') {
-            return _react2.default.createElement(_TextAlign2.default, _extends({
-              key: index,
-              textAlignOptions: textAlignOptions
-            }, commonProps));
-          } else if (controlItem.type === 'media') {
-            if (!media.image && !media.video && !media.audio) {
-              return null;
-            }
-            return _react2.default.createElement(
-              'button',
-              {
-                type: 'button',
-                key: index,
-                title: controlItem.title,
-                className: 'control-item button',
-                onClick: _this4.showMediaPicker
-              },
-              controlItem.text
-            );
-          } else {
-            var buttonClassName = _this4.getControlItemClassName({
-              type: controlItem.type,
-              command: controlItem.command
-            });
-            return _react2.default.createElement(
-              'button',
-              {
-                type: 'button',
-                key: index,
-                title: controlItem.title,
-                className: buttonClassName,
-                onClick: function onClick() {
-                  return _this4.applyControl(controlItem.command, controlItem.type);
-                }
-              },
-              controlItem.text
-            );
-          }
-        }),
-        renderedExtendControls
-      );
-    }
-  }]);
-
-  return ControlBar;
-}(_react2.default.Component);
-
-exports.default = ControlBar;
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.getFromHTMLConfig = exports.getToHTMLConfig = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _maps = __webpack_require__(12);
-
-var _colors = __webpack_require__(8);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var blockTypes = Object.keys(_maps.blocks);
-var blockNames = blockTypes.map(function (key) {
-  return _maps.blocks[key];
-});
-
-var convertAtomicBlock = function convertAtomicBlock(block, contentState) {
-
-  if (!block || !block.key) {
-    return _react2.default.createElement('p', null);
-  }
-
-  var contentBlock = contentState.getBlockForKey(block.key);
-
-  if (!contentBlock) {
-    return _react2.default.createElement('p', null);
-  }
-
-  var entityKey = contentBlock.getEntityAt(0);
-
-  if (!entityKey) {
-    return _react2.default.createElement('p', null);
-  }
-
-  var entity = contentState.getEntity(entityKey);
-  var mediaType = entity.getType().toLowerCase();
-
-  var _block$data = block.data,
-      float = _block$data.float,
-      alignment = _block$data.alignment;
-
-  var _entity$getData = entity.getData(),
-      url = _entity$getData.url,
-      link = _entity$getData.link,
-      link_target = _entity$getData.link_target,
-      width = _entity$getData.width,
-      height = _entity$getData.height,
-      meta = _entity$getData.meta;
-
-  if (mediaType === 'image') {
-
-    var imageWrapStyle = {};
-    var styledClassName = '';
-
-    if (float) {
-      imageWrapStyle.float = float;
-      styledClassName += ' float-' + float;
-    } else if (alignment) {
-      imageWrapStyle.textAlign = alignment;
-      styledClassName += ' align-' + alignment;
-    }
-
-    if (link) {
-      return _react2.default.createElement(
-        'div',
-        { className: "media-wrap image-wrap" + styledClassName, style: imageWrapStyle },
-        _react2.default.createElement(
-          'a',
-          { style: { display: 'inline-block' }, href: link, target: link_target },
-          _react2.default.createElement('img', _extends({}, meta, { src: url, width: width, height: height, style: { width: width, height: height } }))
-        )
-      );
-    } else {
-      return _react2.default.createElement(
-        'div',
-        { className: "media-wrap image-wrap" + styledClassName, style: imageWrapStyle },
-        _react2.default.createElement('img', _extends({}, meta, { src: url, width: width, height: height, style: { width: width, height: height } }))
-      );
-    }
-  } else if (mediaType === 'audio') {
-    return _react2.default.createElement(
-      'div',
-      { className: 'media-wrap audio-wrap' },
-      _react2.default.createElement('audio', _extends({ controls: true }, meta, { src: url }))
-    );
-  } else if (mediaType === 'video') {
-    return _react2.default.createElement(
-      'div',
-      { className: 'media-wrap video-wrap' },
-      _react2.default.createElement('video', _extends({ controls: true }, meta, { src: url, width: width, height: height }))
-    );
-  } else if (mediaType === 'embed') {
-    return _react2.default.createElement(
-      'div',
-      { className: 'media-wrap embed-wrap' },
-      _react2.default.createElement('div', { dangerouslySetInnerHTML: { __html: url } })
-    );
-  } else if (mediaType === 'hr') {
-    return _react2.default.createElement('hr', null);
-  } else {
-    return _react2.default.createElement('p', null);
-  }
-};
-
-var styleToHTML = function styleToHTML(props) {
-  return function (style) {
-
-    style = style.toLowerCase();
-
-    if (style === 'strikethrough') {
-      return _react2.default.createElement('span', { style: { textDecoration: 'line-through' } });
-    } else if (style === 'superscript') {
-      return _react2.default.createElement('sup', null);
-    } else if (style === 'subscript') {
-      return _react2.default.createElement('sub', null);
-    } else if (style.indexOf('color-') === 0) {
-      return _react2.default.createElement('span', { style: { color: '#' + style.split('-')[1] } });
-    } else if (style.indexOf('bgcolor-') === 0) {
-      return _react2.default.createElement('span', { style: { backgroundColor: '#' + style.split('-')[1] } });
-    } else if (style.indexOf('fontsize-') === 0) {
-      return _react2.default.createElement('span', { style: { fontSize: style.split('-')[1] + 'px' } });
-    } else if (style.indexOf('lineheight-') === 0) {
-      return _react2.default.createElement('span', { style: { lineHeight: style.split('-')[1] } });
-    } else if (style.indexOf('letterspacing-') === 0) {
-      return _react2.default.createElement('span', { style: { letterSpacing: style.split('-')[1] + 'px' } });
-    } else if (style.indexOf('indent-') === 0) {
-      return _react2.default.createElement('span', { style: { paddingLeft: style.split('-')[1] + 'px', paddingRight: style.split('-')[1] + 'px' } });
-    } else if (style.indexOf('fontfamily-') === 0) {
-      var fontFamily = props.fontFamilies.find(function (item) {
-        return item.name.toLowerCase() === style.split('-')[1];
-      });
-      if (!fontFamily) return;
-      return _react2.default.createElement('span', { style: { fontFamily: fontFamily.family } });
-    }
-  };
-};
-
-var blockToHTML = function blockToHTML(contentState) {
-  return function (block) {
-
-    var result = null;
-    var blockStyle = "";
-
-    var blockType = block.type.toLowerCase();
-    var textAlign = block.data.textAlign;
-
-
-    if (textAlign) {
-      blockStyle = ' style="text-align:' + textAlign + ';"';
-    }
-
-    if (blockType === 'atomic') {
-      return convertAtomicBlock(block, contentState);
-    } else if (blockType === 'code-block') {
-
-      var previousBlock = contentState.getBlockBefore(block.key);
-      var nextBlock = contentState.getBlockAfter(block.key);
-      var previousBlockType = previousBlock && previousBlock.getType();
-      var nextBlockType = nextBlock && nextBlock.getType();
-
-      if (previousBlockType !== 'code-block' && nextBlockType !== 'code-block') {
-        return {
-          start: '<pre>',
-          end: '</pre>'
-        };
-      }
-      if (previousBlockType !== 'code-block') {
-        return {
-          start: '<pre>',
-          end: '<br/>'
-        };
-      }
-      if (nextBlockType !== 'code-block') {
-        return {
-          start: '',
-          end: '</pre>'
-        };
-      }
-
-      return {
-        start: '',
-        end: '<br/>'
-      };
-    } else if (_maps.blocks[blockType]) {
-      return {
-        start: '<' + _maps.blocks[blockType] + blockStyle + '>',
-        end: '</' + _maps.blocks[blockType] + '>'
-      };
-    } else if (blockType === 'unordered-list-item') {
-      return {
-        start: '<li' + blockStyle + '>',
-        end: '</li>',
-        nest: _react2.default.createElement('ul', null)
-      };
-    } else if (blockType === 'ordered-list-item') {
-      return {
-        start: '<li' + blockStyle + '>',
-        end: '</li>',
-        nest: _react2.default.createElement('ol', null)
-      };
-    }
-  };
-};
-
-var entityToHTML = function entityToHTML(entity, originalText) {
-
-  var result = originalText;
-  var entityType = entity.type.toLowerCase();
-
-  if (entityType === 'link') {
-    return _react2.default.createElement(
-      'a',
-      { href: entity.data.href, target: entity.data.target },
-      originalText
-    );
-  } else if (entityType === 'color') {
-    return _react2.default.createElement(
-      'span',
-      { style: { color: entity.data.color } },
-      originalText
-    );
-  } else if (entityType === 'bg-color') {
-    return _react2.default.createElement(
-      'span',
-      { style: { backgroundColor: entity.data.color } },
-      originalText
-    );
-  }
-};
-
-var htmlToStyle = function htmlToStyle(props) {
-  return function (nodeName, node, currentStyle) {
-
-    if (!node || !node.style) {
-      return currentStyle;
-    }
-
-    var newStyle = currentStyle;
-
-    for (var i = 0; i < node.style.length; i++) {
-      if (nodeName === 'span' && node.style[i] === 'color') {
-        var color = (0, _colors.getHexColor)(node.style.color);
-        newStyle = color ? newStyle.add('COLOR-' + color.replace('#', '').toUpperCase()) : newStyle;
-      } else if (nodeName === 'span' && node.style[i] === 'background-color') {
-        var _color = (0, _colors.getHexColor)(node.style.backgroundColor);
-        newStyle = _color ? newStyle.add('BGCOLOR-' + _color.replace('#', '').toUpperCase()) : newStyle;
-      } else if (nodeName === 'span' && node.style[i] === 'font-size') {
-        newStyle = newStyle.add('FONTSIZE-' + parseInt(node.style.fontSize, 10));
-      } else if (nodeName === 'span' && node.style[i] === 'line-height') {
-        newStyle = newStyle.add('LINEHEIGHT-' + node.style.lineHeight);
-      } else if (nodeName === 'span' && node.style[i] === 'letter-spacing' && !isNaN(node.style.letterSpacing.replace('px', ''))) {
-        newStyle = newStyle.add('LETTERSPACING-' + parseInt(node.style.letterSpacing, 10));
-      } else if (nodeName === 'span' && (node.style[i] === 'padding-left' || node.style[i] === 'padding-right')) {
-        newStyle = newStyle.add('INDENT-' + parseInt(node.style.paddingLeft, 10));
-      } else if (nodeName === 'span' && node.style[i] === 'text-decoration' && node.style.textDecoration === 'line-through') {
-        newStyle = newStyle.add('STRIKETHROUGH');
-      } else if (nodeName === 'span' && node.style[i] === 'font-family') {
-        var fontFamily = props.fontFamilies.find(function (item) {
-          return item.family.toLowerCase() === node.style.fontFamily.toLowerCase();
-        });
-        if (!fontFamily) continue;
-        newStyle = newStyle.add('FONTFAMILY-' + fontFamily.name.toUpperCase());
-      }
-    }
-
-    if (nodeName === 'sup') {
-      newStyle = newStyle.add('SUPERSCRIPT');
-    } else if (nodeName === 'sub') {
-      newStyle = newStyle.add('SUBSCRIPT');
-    }
-
-    return newStyle;
-  };
-};
-
-var htmlToEntity = function htmlToEntity(nodeName, node, createEntity) {
-  var alt = node.alt,
-      title = node.title,
-      id = node.id,
-      controls = node.controls,
-      autoplay = node.autoplay,
-      loop = node.loop,
-      poster = node.poster;
-
-  var meta = {};
-
-  id && (meta.id = id);
-  alt && (meta.alt = alt);
-  title && (meta.title = title);
-  controls && (meta.controls = controls);
-  autoplay && (meta.autoPlay = autoplay);
-  loop && (meta.loop = loop);
-  poster && (meta.poster = poster);
-
-  if (nodeName === 'a' && !node.querySelectorAll('img').length) {
-    var href = node.href,
-        target = node.target;
-
-    return createEntity('LINK', 'MUTABLE', { href: href, target: target });
-  } else if (nodeName === 'audio') {
-    return createEntity('AUDIO', 'IMMUTABLE', { url: node.src, meta: meta });
-  } else if (nodeName === 'video') {
-    return createEntity('VIDEO', 'IMMUTABLE', { url: node.src, meta: meta });
-  } else if (nodeName === 'img') {
-
-    var parentNode = node.parentNode;
-    var entityData = { meta: meta };
-    var _node$style = node.style,
-        width = _node$style.width,
-        height = _node$style.height;
-
-
-    entityData.url = node.src;
-    width && (entityData.width = width);
-    height && (entityData.height = height);
-
-    if (parentNode.nodeName.toLowerCase() === 'a') {
-      entityData.link = parentNode.href;
-      entityData.link_target = parentNode.target;
-    }
-
-    return createEntity('IMAGE', 'IMMUTABLE', entityData);
-  } else if (nodeName === 'hr') {
-    return createEntity('HR', 'IMMUTABLE', {});
-  } else if (node.parentNode && node.parentNode.classList.contains('embed-wrap')) {
-
-    var embedContent = node.innerHTML || node.outerHTML;
-
-    if (embedContent) {
-      return createEntity('EMBED', 'IMMUTABLE', {
-        url: embedContent
-      });
-    }
-  }
-};
-
-var htmlToBlock = function htmlToBlock(nodeName, node) {
-
-  var nodeStyle = node.style || {};
-
-  if (node.classList && node.classList.contains('media-wrap')) {
-
-    return {
-      type: 'atomic',
-      data: {
-        float: nodeStyle.float,
-        alignment: nodeStyle.textAlign
-      }
-    };
-  } else if (nodeName === 'img') {
-
-    return {
-      type: 'atomic',
-      data: {
-        float: nodeStyle.float,
-        alignment: nodeStyle.textAlign
-      }
-    };
-  } else if (nodeName === 'hr') {
-
-    return {
-      type: 'atomic',
-      data: {}
-    };
-  } else if (nodeStyle.textAlign && blockNames.indexOf(nodeName) > -1) {
-
-    return {
-      type: blockTypes[blockNames.indexOf(nodeName)],
-      data: {
-        textAlign: nodeStyle.textAlign
-      }
-    };
-  }
-};
-
-var getToHTMLConfig = exports.getToHTMLConfig = function getToHTMLConfig(props) {
-
-  return {
-    styleToHTML: styleToHTML(props),
-    entityToHTML: entityToHTML,
-    blockToHTML: blockToHTML(props.contentState)
-  };
-};
-
-var getFromHTMLConfig = exports.getFromHTMLConfig = function getFromHTMLConfig(props) {
-
-  return {
-    htmlToStyle: htmlToStyle(props),
-    htmlToEntity: htmlToEntity,
-    htmlToBlock: htmlToBlock
-  };
-};
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _draftJs = __webpack_require__(5);
-
-// TODO
-// 允许自定义的快捷键设置
-
-exports.default = function (event) {
-
-  if (event.keyCode === 83 && (_draftJs.KeyBindingUtil.hasCommandModifier(event) || _draftJs.KeyBindingUtil.isCtrlKeyCommand(event))) {
-    return 'braft-save';
-  }
-
-  return (0, _draftJs.getDefaultKeyBinding)(event);
-};
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  height: 500,
-  language: 'zh',
-  controls: ['undo', 'redo', 'split', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'indent', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'split', 'headings', 'list_ul', 'list_ol', 'blockquote', 'code', 'split', 'link', 'split', 'hr', 'split', 'media', 'split', 'clear'],
-  excludeControls: [],
-  tabIndents: 2,
-  forceNewLine: false,
-  textAlignOptions: ['left', 'center', 'right', 'justify'],
-  allowSetTextBackgroundColor: true,
-  letterSpacings: [0, 2, 4, 6],
-  indents: [0, 14, 21, 28],
-  extendControls: [],
-  media: {
-    allowPasteImage: true,
-    image: true,
-    video: true,
-    audio: true,
-    uploadFn: null,
-    sourceFn: null,
-    onRemove: null,
-    onChange: null,
-    onInsert: null,
-    externalMedias: {
-      audio: true,
-      video: true,
-      image: true,
-      embed: true
-    }
-  },
-  imageControls: {
-    floatLeft: true,
-    floatRight: true,
-    alignLeft: true,
-    alignCenter: true,
-    alignRight: true,
-    link: true,
-    size: true,
-    remove: true
-  },
-  colors: ['#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff', '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784', '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'],
-  lineHeights: ['1', '1.2', '1.5', '1.75', '2', '2.5', '3', '4'],
-  fontSizes: [12, 14, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 64, 72, 96, 120, 144],
-  fontFamilies: [{
-    name: 'Araial',
-    family: 'Arial, Helvetica, sans-serif'
-  }, {
-    name: 'Georgia',
-    family: 'Georgia, serif'
-  }, {
-    name: 'Impact',
-    family: 'Impact, serif'
-  }, {
-    name: 'Monospace',
-    family: '"Courier New", Courier, monospace'
-  }, {
-    name: 'Tahoma',
-    family: "tahoma, arial, 'Hiragino Sans GB', 宋体, sans-serif"
-  }],
-  emojis: ["🤣", "🙌", "💚", "💛", "👏", "😉", "💯", "💕", "💞", "💘", "💙", "💝", "🖤", "💜", "❤️", "😍", "😻", "💓", "💗", "😋", "😇", "😂", "😹", "😘", "💖", "😁", "😀", "🤞", "😲", "😄", "😊", "👍", "😌", "😃", "😅", "✌️", "🤗", "💋", "😗", "😽", "😚", "🤠", "😙", "😺", "👄", "😸", "😏", "😼", "👌", "😎", "😆", "😛", "🙏", "🤝", "🙂", "🤑", "😝", "😐", "😑", "🤤", "😤", "🙃", "🤡", "😶", "😪", "😴", "😵", "😓", "👊", "😦", "😷", "🤐", "😜", "🤓", "👻", "😥", "🙄", "🤔", "🤒", "🙁", "😔", "😯", "☹️", "☠️", "😰", "😩", "😖", "😕", "😒", "😣", "😢", "😮", "😿", "🤧", "😫", "🤥", "😞", "😬", "👎", "💀", "😳", "😨", "🤕", "🤢", "😱", "😭", "😠", "😈", "😧", "💔", "😟", "🙀", "💩", "👿", "😡", "😾", "🖕"],
-  extendAtomics: []
-};
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _draftJs = __webpack_require__(5);
-
-var _draftjsUtils = __webpack_require__(10);
-
-var _colors = __webpack_require__(8);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var EditorController = function (_React$Component) {
-  _inherits(EditorController, _React$Component);
-
-  function EditorController() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, EditorController);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = EditorController.__proto__ || Object.getPrototypeOf(EditorController)).call.apply(_ref, [this].concat(args))), _this), _this.applyChange = function (editorState) {
-      _this.onChange(editorState);
-      return _this;
-    }, _this.selectionCollapsed = function () {
-      return _this.selectionState.isCollapsed();
-    }, _this.selectBlock = function (block) {
-
-      var blockKey = block.getKey();
-
-      return _this.applyChange(_draftJs.EditorState.forceSelection(_this.editorState, new _draftJs.SelectionState({
-        anchorKey: blockKey,
-        anchorOffset: 0,
-        focusKey: blockKey,
-        focusOffset: block.getLength()
-      })));
-    }, _this.selectNextBlock = function (block) {
-      var nextBlock = _this.contentState.getBlockAfter(block.getKey());
-      return nextBlock ? _this.selectBlock(nextBlock) : _this.applyChange(_this.editorState);
-    }, _this.removeBlock = function (block) {
-      var lastSelection = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-
-
-      var nextContentState = void 0,
-          nextEditorState = void 0;
-      var blockKey = block.getKey();
-
-      nextContentState = _draftJs.Modifier.removeRange(_this.contentState, new _draftJs.SelectionState({
-        anchorKey: blockKey,
-        anchorOffset: 0,
-        focusKey: blockKey,
-        focusOffset: block.getLength()
-      }), 'backward');
-
-      nextContentState = _draftJs.Modifier.setBlockType(nextContentState, nextContentState.getSelectionAfter(), 'unstyled');
-      nextEditorState = _draftJs.EditorState.push(_this.editorState, nextContentState, 'remove-range');
-      nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, lastSelection || nextContentState.getSelectionAfter());
-
-      return _this.applyChange(nextEditorState);
-    }, _this.getSelectionBlock = function () {
-      return _this.contentState.getBlockForKey(_this.selectionState.getAnchorKey());
-    }, _this.setSelectionBlockData = function (blockData) {
-      return _this.applyChange((0, _draftjsUtils.setBlockData)(_this.editorState, blockData));
-    }, _this.getSelectionBlockData = function (name) {
-      var blockData = _this.getSelectionBlock().getData();
-      return name ? blockData.get(name) : blockData;
-    }, _this.getSelectionBlockType = function () {
-      return _this.getSelectionBlock().getType();
-    }, _this.getSelectionText = function () {
-
-      if (_this.selectionState.isCollapsed() || _this.getSelectionBlockType() === 'atomic') {
-        return '';
-      }
-
-      var anchorKey = _this.selectionState.getAnchorKey();
-      var currentContent = _this.editorState.getCurrentContent();
-      var currentContentBlock = currentContent.getBlockForKey(anchorKey);
-      var start = _this.selectionState.getStartOffset();
-      var end = _this.selectionState.getEndOffset();
-
-      return currentContentBlock.getText().slice(start, end);
-    }, _this.toggleSelectionBlockType = function (blockType) {
-      return _this.applyChange(_draftJs.RichUtils.toggleBlockType(_this.editorState, blockType));
-    }, _this.getSelectionEntityData = function (type) {
-
-      var entityKey = (0, _draftjsUtils.getSelectionEntity)(_this.editorState);
-      if (entityKey) {
-        var entity = _this.contentState.getEntity(entityKey);
-        if (entity && entity.get('type') === type) {
-          var _entity$getData = entity.getData(),
-              href = _entity$getData.href,
-              target = _entity$getData.target;
-
-          return { href: href, target: target };
-        } else {
-          return {};
-        }
-      } else {
-        return {};
-      }
-    }, _this.getSelectionInlineStyle = function () {
-      return _this.editorState.getCurrentInlineStyle();
-    }, _this.selectionHasInlineStyle = function (style) {
-      return _this.getSelectionInlineStyle().has(style.toUpperCase());
-    }, _this.toggleSelectionInlineStyle = function (style) {
-      var stylesToBeRemoved = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
-
-
-      if (_this.selectionState.isCollapsed()) {
-        return _this;
-      }
-
-      style = style.toUpperCase();
-      stylesToBeRemoved = stylesToBeRemoved.filter(function (item) {
-        return item !== style;
-      });
-
-      var currentInlineStyle = _this.getSelectionInlineStyle();
-      var nextContentState = stylesToBeRemoved.length ? stylesToBeRemoved.reduce(function (contentState, item) {
-        return _draftJs.Modifier.removeInlineStyle(contentState, _this.selectionState, item);
-      }, _this.contentState) : _this.contentState;
-
-      var nextEditorState = stylesToBeRemoved.length ? _draftJs.EditorState.push(_this.editorState, nextContentState, 'change-inline-style') : _this.editorState;
-      return _this.applyChange(_draftJs.RichUtils.toggleInlineStyle(nextEditorState, style));
-    }, _this.removeSelectionInlineStyles = function () {
-      return _this.applyChange((0, _draftjsUtils.removeAllInlineStyles)(_this.editorState));
-    }, _this.toggleSelectionAlignment = function (alignment) {
-      return _this.setSelectionBlockData({
-        textAlign: _this.getSelectionBlockData('textAlign') !== alignment ? alignment : undefined
-      });
-    }, _this.toggleSelectionColor = function (color) {
-      return _this.toggleSelectionInlineStyle('COLOR-' + color.replace('#', ''), _this.colorList.map(function (item) {
-        return 'COLOR-' + item.replace('#', '').toUpperCase();
-      }));
-    }, _this.toggleSelectionBackgroundColor = function (color) {
-      return _this.toggleSelectionInlineStyle('BGCOLOR-' + color.replace('#', ''), _this.colorList.map(function (item) {
-        return 'BGCOLOR-' + item.replace('#', '').toUpperCase();
-      }));
-    }, _this.toggleSelectionFontSize = function (fontSize) {
-      return _this.toggleSelectionInlineStyle('FONTSIZE-' + fontSize, _this.fontSizeList.map(function (item) {
-        return 'FONTSIZE-' + item;
-      }));
-    }, _this.toggleSelectionLineHeight = function (lineHeight) {
-      return _this.toggleSelectionInlineStyle('LINEHEIGHT-' + lineHeight, _this.lineHeightList.map(function (item) {
-        return 'LINEHEIGHT-' + item;
-      }));
-    }, _this.toggleSelectionFontFamily = function (fontFamily) {
-      return _this.toggleSelectionInlineStyle('FONTFAMILY-' + fontFamily, _this.fontFamilyList.map(function (item) {
-        return 'FONTFAMILY-' + item.name.toUpperCase();
-      }));
-    }, _this.toggleSelectionLetterSpacing = function (letterSpacing) {
-      return _this.toggleSelectionInlineStyle('LETTERSPACING-' + letterSpacing, _this.letterSpacingList.map(function (item) {
-        return 'LETTERSPACING-' + item;
-      }));
-    }, _this.toggleSelectionIndent = function (indent) {
-      return _this.toggleSelectionInlineStyle('INDENT-' + indent, _this.indentList.map(function (item) {
-        return 'INDENT-' + item;
-      }));
-    }, _this.insertHorizontalLine = function () {
-
-      if (!_this.selectionState.isCollapsed() || _this.getSelectionBlockType() === 'atomic') {
-        return _this;
-      }
-
-      var contentStateWithEntity = _this.editorState.getCurrentContent().createEntity('HR', 'IMMUTABLE', {});
-      var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-      var newEditorState = _draftJs.AtomicBlockUtils.insertAtomicBlock(_this.editorState, entityKey, ' ');
-
-      return _this.applyChange(newEditorState);
-    }, _this.toggleSelectionLink = function (href, target) {
-
-      var entityData = { href: href, target: target };
-
-      if (_this.selectionState.isCollapsed() || _this.getSelectionBlockType() === 'atomic') {
-        return _this;
-      }
-
-      if (href === false) {
-        _this.applyChange(_draftJs.RichUtils.toggleLink(_this.editorState, _this.selectionState, null));
-        return _this;
-      }
-
-      if (href === null) {
-        delete entityData.href;
-      }
-
-      try {
-
-        var nextContentState = _this.contentState.createEntity('LINK', 'MUTABLE', entityData);
-        var entityKey = nextContentState.getLastCreatedEntityKey();
-
-        var nextEditorState = _draftJs.EditorState.set(_this.editorState, {
-          currentContent: nextContentState
-        });
-
-        nextEditorState = _draftJs.RichUtils.toggleLink(nextEditorState, _this.selectionState, entityKey);
-        nextEditorState = _draftJs.EditorState.forceSelection(nextEditorState, _this.selectionState.merge({
-          anchorOffset: _this.selectionState.getEndOffset(),
-          focusOffset: _this.selectionState.getEndOffset()
-        }));
-
-        nextEditorState = _draftJs.EditorState.push(nextEditorState, _draftJs.Modifier.insertText(nextEditorState.getCurrentContent(), nextEditorState.getSelection(), ' '), 'insert-text');
-
-        return _this.applyChange(nextEditorState);
-      } catch (error) {
-        console.warn(error);
-      }
-    }, _this.insertText = function (text) {
-      var replace = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-
-
-      var currentSelectedBlockType = _this.getSelectionBlockType();
-
-      if (currentSelectedBlockType === 'atomic') {
-        return _this;
-      }
-
-      if (!_this.selectionState.isCollapsed()) {
-        return replace ? _this.applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.replaceText(_this.contentState, _this.selectionState, text), 'replace-text')) : _this;
-      } else {
-        return _this.applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.insertText(_this.contentState, _this.selectionState, text), 'insert-text'));
-      }
-    }, _this.replaceText = function (text) {
-      return _this.insertText(text);
-    }, _this.insertHTML = function (htmlString) {
-
-      if (!htmlString) {
-        return _this;
-      }
-
-      try {
-
-        var rawContent = _this.convertHTML(htmlString);
-        var blockMap = rawContent.blockMap;
-
-        var tempColors = (0, _colors.detectColorsFromHTML)(htmlString);
-
-        _this.addTempColors(tempColors);
-        _this.requestFocus();
-
-        return _this.focus().applyChange(_draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.replaceWithFragment(_this.contentState, _this.selectionState, blockMap), 'insert-fragment'));
-      } catch (error) {
-        return _this;
-      }
-    }, _this.insertMedias = function () {
-      var medias = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-
-
-      if (!medias.length) {
-        return _this;
-      }
-
-      if (_this.getSelectionBlockType() === 'atomic') {
-        _this.selectNextBlock(_this.getSelectionBlock());
-      }
-
-      var newEditorState = medias.reduce(function (editorState, media) {
-        var url = media.url,
-            name = media.name,
-            type = media.type,
-            meta = media.meta;
-
-        var contentStateWithEntity = editorState.getCurrentContent().createEntity(type, 'IMMUTABLE', { url: url, name: name, type: type, meta: meta });
-        var entityKey = contentStateWithEntity.getLastCreatedEntityKey();
-        return _draftJs.AtomicBlockUtils.insertAtomicBlock(editorState, entityKey, ' ');
-      }, _this.editorState);
-
-      return _this.applyChange(newEditorState);
-    }, _this.setMediaData = function (entityKey, data) {
-      return _this.applyChange(_draftJs.EditorState.push(_this.editorState, _this.contentState.mergeEntityData(entityKey, data), 'change-block-data'));
-    }, _this.removeMedia = function (mediaBlock) {
-      return _this.removeBlock(mediaBlock);
-    }, _this.setMediaPosition = function (mediaBlock, position) {
-
-      var newPosition = {};
-      var float = position.float,
-          alignment = position.alignment;
-
-
-      if (typeof float !== 'undefined') {
-        newPosition.float = mediaBlock.getData().get('float') === float ? null : float;
-      }
-
-      if (typeof alignment !== 'undefined') {
-        newPosition.alignment = mediaBlock.getData().get('alignment') === alignment ? null : alignment;
-      }
-
-      return _this.selectBlock(mediaBlock).setSelectionBlockData(newPosition);
-    }, _this.clear = function () {
-
-      var contentState = _this.editorState.getCurrentContent();
-      var firstBlock = contentState.getFirstBlock();
-      var lastBlock = contentState.getLastBlock();
-
-      var allSelected = new _draftJs.SelectionState({
-        anchorKey: firstBlock.getKey(),
-        anchorOffset: 0,
-        focusKey: lastBlock.getKey(),
-        focusOffset: lastBlock.getLength(),
-        hasFocus: true
-      });
-
-      _this.editorState = _draftJs.EditorState.push(_this.editorState, _draftJs.Modifier.removeRange(contentState, allSelected, 'backward'), 'remove-range');
-
-      return _this.applyChange(_this.editorState);
-    }, _this.undo = function () {
-      return _this.applyChange(_draftJs.EditorState.undo(_this.editorState));
-    }, _this.redo = function () {
-      return _this.applyChange(_draftJs.EditorState.redo(_this.editorState));
-    }, _this.focus = function () {
-      _this.draftInstance && _this.draftInstance.focus();
-      return _this;
-    }, _this.blur = function () {
-      _this.draftInstance && _this.draftInstance.blur();
-      return _this;
-    }, _this.requestFocus = function () {
-      window.setImmediate(function () {
-        _this.focus();
-      });
-    }, _this.requestBlur = function () {
-      window.setImmediate(function () {
-        _this.blur();
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  return EditorController;
-}(_react2.default.Component);
-
-exports.default = EditorController;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _base = __webpack_require__(3);
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MediaLibrary = function () {
-  function MediaLibrary() {
-    _classCallCheck(this, MediaLibrary);
-
-    this.items = [];
-  }
-
-  _createClass(MediaLibrary, [{
-    key: 'getItem',
-    value: function getItem(id) {
-      return this.items.find(function (item) {
-        return item.id === id;
-      });
-    }
-  }, {
-    key: 'getSelectedItems',
-    value: function getSelectedItems() {
-      return this.items.filter(function (item) {
-        return item.selected;
-      });
-    }
-  }, {
-    key: 'setItems',
-    value: function setItems(items) {
-      this.items = items.map(function (item) {
-        return _extends({}, item, { id: item.id.toString() });
-      }) || [];
-      this.applyChange();
-      this.uploadItems();
-    }
-  }, {
-    key: 'addItem',
-    value: function addItem(item) {
-      this.addItems([item]);
-    }
-  }, {
-    key: 'addItems',
-    value: function addItems(items) {
-      this.items = [].concat(_toConsumableArray(this.items), _toConsumableArray(items.map(function (item) {
-        return _extends({}, item, { id: item.id.toString() });
-      })));
-      this.applyChange();
-      this.uploadItems();
-    }
-  }, {
-    key: 'selectItem',
-    value: function selectItem(id) {
-      var item = this.getItem(id);
-      if (item && (item.uploading || item.error)) {
-        return false;
-      }
-      this.setItemState(id, {
-        selected: true
-      });
-    }
-  }, {
-    key: 'selectAllItems',
-    value: function selectAllItems() {
-      this.items = this.items.filter(function (item) {
-        return !item.error && !item.uploading;
-      }).map(function (item) {
-        return _extends({}, item, { selected: true });
-      });
-      this.applyChange();
-    }
-  }, {
-    key: 'deselectItem',
-    value: function deselectItem(id) {
-      this.setItemState(id, {
-        selected: false
-      });
-    }
-  }, {
-    key: 'deselectAllItems',
-    value: function deselectAllItems() {
-      this.items = this.items.map(function (item) {
-        return _extends({}, item, { selected: false });
-      });
-      this.applyChange();
-    }
-  }, {
-    key: 'removeItem',
-    value: function removeItem(id) {
-      this.items = this.items.filter(function (item) {
-        return item.id !== id;
-      });
-      this.applyChange();
-    }
-  }, {
-    key: 'removeSelectedItems',
-    value: function removeSelectedItems() {
-      this.items = this.items.filter(function (item) {
-        return !item.selected;
-      });
-      this.applyChange();
-    }
-  }, {
-    key: 'removeErrorItems',
-    value: function removeErrorItems() {
-      this.items = this.items.filter(function (item) {
-        return !item.error;
-      });
-      this.applyChange();
-    }
-  }, {
-    key: 'removeAllItems',
-    value: function removeAllItems() {
-      this.items = [];
-      this.applyChange();
-    }
-  }, {
-    key: 'setItemState',
-    value: function setItemState(id, state) {
-      this.items = this.items.map(function (item) {
-        return item.id === id ? _extends({}, item, state) : item;
-      });
-      this.applyChange();
-    }
-  }, {
-    key: 'reuploadErrorItems',
-    value: function reuploadErrorItems() {
-      this.uploadItems(true);
-    }
-  }, {
-    key: 'uploadItems',
-    value: function uploadItems() {
-      var _this = this;
-
-      var ignoreError = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
-
-
-      this.items.forEach(function (item, index) {
-
-        if (item.uploading || item.url) {
-          return false;
-        }
-
-        if (!ignoreError && item.error) {
-          return false;
-        }
-
-        if (item.type === 'IMAGE') {
-          var fileURL = URL.createObjectURL(item.file);
-          _this.createThumbnail(item.id, fileURL);
-          if (!_this.uploadFn) {
-            _this.createInlineImage(item.id, fileURL);
-            return false;
-          }
-        } else if (!_this.uploadFn) {
-          _this.setItemState(item.id, { error: 1 });
-          return false;
-        }
-
-        _this.setItemState(item.id, {
-          uploading: true,
-          uploadProgress: 0,
-          error: 0
-        });
-
-        _this.uploadFn({
-          file: item.file,
-          libraryId: item.id,
-          success: function success(res) {
-            var serverId = res.id || item.id;
-            _this.handleUploadSuccess(item.id, res.url, serverId, res.meta);
-          },
-          progress: function progress(_progress) {
-            _this.setItemState(item.id, {
-              uploading: true,
-              uploadProgress: _progress
-            });
-          },
-          error: function error(_error) {
-            _this.setItemState(item.id, {
-              uploading: false,
-              error: 2
-            });
-          }
-        });
-      });
-    }
-  }, {
-    key: 'createThumbnail',
-    value: function createThumbnail(id, url) {
-      var _this2 = this;
-
-      this.compressImage(url, 226, 226, function (result) {
-        _this2.setItemState(id, {
-          thumbnail: result.url
-        });
-      });
-    }
-  }, {
-    key: 'createInlineImage',
-    value: function createInlineImage(id, url) {
-      var _this3 = this;
-
-      this.compressImage(url, 1280, 800, function (result) {
-        _this3.handleUploadSuccess(id, result.url, id);
-      });
-    }
-  }, {
-    key: 'handleUploadSuccess',
-    value: function handleUploadSuccess(id, url, newId) {
-      var meta = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
-
-
-      this.setItemState(id, {
-        id: newId || id,
-        file: null,
-        url: url,
-        uploadProgress: 1,
-        uploading: false,
-        selected: false,
-        meta: meta
-      });
-
-      var item = this.getItem(newId || id);
-      item.onReadyToInsert && item.onReadyToInsert(item);
-    }
-  }, {
-    key: 'compressImage',
-    value: function compressImage(url, width, height, callback) {
-
-      var image = new Image();
-      var compressCanvas = document.createElement('canvas');
-
-      image.src = url;
-      image.onload = function () {
-
-        var scale = 1;
-
-        if (this.width > width || this.height > height) {
-          scale = this.width > this.height ? width / this.width : height / this.height;
-        } else {
-          callback({
-            url: url,
-            width: this.width,
-            height: this.height
-          });
-          return false;
-        }
-
-        compressCanvas.width = this.width * scale;
-        compressCanvas.height = this.height * scale;
-
-        var ctx = compressCanvas.getContext('2d');
-        ctx.drawImage(this, 0, 0, compressCanvas.width, compressCanvas.height);
-
-        callback({
-          url: compressCanvas.toDataURL('image/png', 1),
-          width: compressCanvas.width,
-          height: compressCanvas.height
-        });
-      };
-    }
-  }, {
-    key: 'applyChange',
-    value: function applyChange(changeType) {
-      this.onChange(this.items);
-    }
-  }, {
-    key: 'uploadImage',
-    value: function uploadImage(file, callback) {
-
-      var fileId = new Date().getTime() + '_' + (0, _base.UniqueIndex)();
-
-      this.addItem({
-        type: 'IMAGE',
-        id: fileId,
-        file: file,
-        name: fileId,
-        size: file.size,
-        uploadProgress: 0,
-        uploading: false,
-        selected: false,
-        error: 0,
-        onReadyToInsert: callback
-      });
-    }
-  }, {
-    key: 'uploadImageRecursively',
-    value: function uploadImageRecursively(files, callback) {
-      var _this4 = this;
-
-      var index = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-
-
-      if (files[index] && files[index].type.indexOf('image') > -1) {
-        this.uploadImage(files[index], function (image) {
-          callback && callback(image);
-          index < files.length - 1 && _this4.uploadImageRecursively(files, callback, index + 1);
-        });
-      } else {
-        index < files.length - 1 && this.uploadImageRecursively(files, callback, index + 1);
-      }
-    }
-  }, {
-    key: 'resolvePastedData',
-    value: function resolvePastedData(_ref, callback) {
-      var clipboardData = _ref.clipboardData;
-
-
-      if (clipboardData && clipboardData.items && clipboardData.items[0].type.indexOf('image') > -1) {
-        this.uploadImage(clipboardData.items[0].getAsFile(), callback);
-      }
-    }
-  }, {
-    key: 'onChange',
-    value: function onChange(items) {}
-  }]);
-
-  return MediaLibrary;
-}();
-
-exports.default = MediaLibrary;
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _en = __webpack_require__(48);
-
-var _en2 = _interopRequireDefault(_en);
-
-var _zh = __webpack_require__(50);
-
-var _zh2 = _interopRequireDefault(_zh);
-
-var _zhHant = __webpack_require__(49);
-
-var _zhHant2 = _interopRequireDefault(_zhHant);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = {
-  "en": _en2.default,
-  "zh": _zh2.default,
-  "zh-hant": _zhHant2.default
-};
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.decorators = exports.getCustomStyleMap = exports.blockStyleFn = exports.customBlockRenderMap = exports.getBlockRendererFn = undefined;
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _immutable = __webpack_require__(2);
-
-var _draftJs = __webpack_require__(5);
-
-var _Image = __webpack_require__(54);
-
-var _Image2 = _interopRequireDefault(_Image);
-
-var _Video = __webpack_require__(55);
-
-var _Video2 = _interopRequireDefault(_Video);
-
-var _Audio = __webpack_require__(51);
-
-var _Audio2 = _interopRequireDefault(_Audio);
-
-var _Embed = __webpack_require__(52);
-
-var _Embed2 = _interopRequireDefault(_Embed);
-
-var _HorizontalLine = __webpack_require__(53);
-
-var _HorizontalLine2 = _interopRequireDefault(_HorizontalLine);
-
-var _blockStyles = __webpack_require__(58);
-
-var _blockStyles2 = _interopRequireDefault(_blockStyles);
-
-var _inlineStyles = __webpack_require__(59);
-
-var _inlineStyles2 = _interopRequireDefault(_inlineStyles);
-
-var _decorators2 = __webpack_require__(57);
-
-var _decorators3 = _interopRequireDefault(_decorators2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var getAtomicBlockComponent = function getAtomicBlockComponent(block, superProps) {
-  return function (props) {
-
-    var entityKey = props.block.getEntityAt(0);
-
-    if (!entityKey) {
-      return null;
-    }
-
-    var entity = props.contentState.getEntity(entityKey);
-    var mediaData = entity.getData();
-    var mediaType = entity.getType();
-    var mediaProps = _extends({}, superProps, {
-      block: block, mediaData: mediaData, entityKey: entityKey
-    });
-
-    if (mediaType === 'IMAGE') {
-      return _react2.default.createElement(_Image2.default, mediaProps);
-    } else if (mediaType === 'AUDIO') {
-      return _react2.default.createElement(_Audio2.default, mediaProps);
-    } else if (mediaType === 'VIDEO') {
-      return _react2.default.createElement(_Video2.default, mediaProps);
-    } else if (mediaType === 'EMBED') {
-      return _react2.default.createElement(_Embed2.default, mediaProps);
-    } else if (mediaType === 'HR') {
-      return _react2.default.createElement(_HorizontalLine2.default, mediaProps);
-    }
-    // 支持自定义的atomic
-    if (superProps.extendAtomics) {
-      var atomics = superProps.extendAtomics;
-      for (var i = 0; i < atomics.length; i++) {
-        if (mediaType === atomics[i].type) {
-          var Component = atomics[i].component;
-          return _react2.default.createElement(Component, mediaProps);
-        }
-      }
-    }
-
-    return null;
-  };
-};
-
-var getBlockRendererFn = exports.getBlockRendererFn = function getBlockRendererFn(props) {
-  return function (block) {
-
-    return block.getType() === 'atomic' ? {
-      component: getAtomicBlockComponent(block, props),
-      editable: false
-    } : null;
-  };
-};
-
-var customBlockRenderMap = exports.customBlockRenderMap = (0, _immutable.Map)({
-  'atomic': {
-    element: ''
-  },
-  'code-block': {
-    element: 'code',
-    wrapper: _draftJs.DefaultDraftBlockRenderMap.get('code-block').wrapper
-  }
-});
-var blockStyleFn = exports.blockStyleFn = _blockStyles2.default;
-var getCustomStyleMap = exports.getCustomStyleMap = _inlineStyles2.default;
-var decorators = exports.decorators = _decorators3.default;
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule DraftPasteProcessor
- * @format
- * 
- */
-
-
-
-var _assign = __webpack_require__(9);
-
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var CharacterMetadata = __webpack_require__(6);
-var ContentBlock = __webpack_require__(13);
-var ContentBlockNode = __webpack_require__(14);
-var DraftFeatureFlags = __webpack_require__(15);
-var Immutable = __webpack_require__(2);
-
-var convertFromHTMLtoContentBlocks = __webpack_require__(64);
-var generateRandomKey = __webpack_require__(17);
-var getSafeBodyFromHTML = __webpack_require__(18);
-var sanitizeDraftText = __webpack_require__(19);
-
-var List = Immutable.List,
-    Repeat = Immutable.Repeat;
-
-
-var experimentalTreeDataSupport = DraftFeatureFlags.draft_tree_data_support;
-var ContentBlockRecord = experimentalTreeDataSupport ? ContentBlockNode : ContentBlock;
-
-var DraftPasteProcessor = {
-  processHTML: function processHTML(html, blockRenderMap) {
-    return convertFromHTMLtoContentBlocks(html, getSafeBodyFromHTML, blockRenderMap);
-  },
-  processText: function processText(textBlocks, character, type) {
-    return textBlocks.reduce(function (acc, textLine, index) {
-      textLine = sanitizeDraftText(textLine);
-      var key = generateRandomKey();
-
-      var blockNodeConfig = {
-        key: key,
-        type: type,
-        text: textLine,
-        characterList: List(Repeat(character, textLine.length))
-      };
-
-      // next block updates previous block
-      if (experimentalTreeDataSupport && index !== 0) {
-        var prevSiblingIndex = index - 1;
-        // update previous block
-        var previousBlock = acc[prevSiblingIndex] = acc[prevSiblingIndex].merge({
-          nextSibling: key
-        });
-        blockNodeConfig = _extends({}, blockNodeConfig, {
-          prevSibling: previousBlock.getKey()
-        });
-      }
-
-      acc.push(new ContentBlockRecord(blockNodeConfig));
-
-      return acc;
-    }, []);
-  }
-};
-
-module.exports = DraftPasteProcessor;
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_32__;
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(66);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-  var defaultCaption = props.defaultCaption,
-      onChange = props.onChange,
-      language = props.language,
-      emojis = props.emojis,
-      viewWrapper = props.viewWrapper,
-      editor = props.editor,
-      editorHeight = props.editorHeight;
-
-  var caption = defaultCaption || language.controls.emoji;
-
-  return _react2.default.createElement(
-    _DropDown2.default,
-    {
-      caption: caption,
-      showDropDownArrow: false,
-      viewWrapper: viewWrapper,
-      editorHeight: editorHeight,
-      hoverTitle: language.controls.emoji,
-      className: "control-item dropdown braft-emoji-dropdown"
-    },
-    _react2.default.createElement(
-      'div',
-      { className: 'braft-emojis-wrap' },
-      _react2.default.createElement(
-        'ul',
-        { className: 'braft-emojis' },
-        emojis.map(function (item, index) {
-          return _react2.default.createElement(
-            'li',
-            {
-              key: index,
-              'data-emoji': item,
-              onClick: function onClick(e) {
-                editor.insertText(e.currentTarget.dataset.emoji);
-                editor.requestFocus();
-              }
-            },
-            item
-          );
-        })
-      )
-    )
-  );
-};
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(67);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-
-  var caption = null;
-  var currentIndex = null;
-  var defaultCaption = props.defaultCaption,
-      editor = props.editor,
-      onChange = props.onChange,
-      language = props.language,
-      fontFamilies = props.fontFamilies,
-      viewWrapper = props.viewWrapper,
-      editorHeight = props.editorHeight;
-
-
-  fontFamilies.find(function (item, index) {
-    if (editor.selectionHasInlineStyle('FONTFAMILY-' + item.name)) {
-      caption = item.name;
-      currentIndex = index;
-      return true;
-    }
-    return false;
-  });
-
-  var isFirstItemActive = currentIndex === 0;
-  caption = caption || defaultCaption || language.controls.fontFamily;
-
-  return _react2.default.createElement(
-    _DropDown2.default,
-    {
-      caption: caption,
-      viewWrapper: viewWrapper,
-      editorHeight: editorHeight,
-      hoverTitle: language.controls.fontFamily,
-      arrowActive: isFirstItemActive,
-      className: "control-item dropdown font-family-dropdown"
-    },
-    _react2.default.createElement(
-      'ul',
-      { className: 'menu' },
-      fontFamilies.map(function (item, index) {
-        return _react2.default.createElement(
-          'li',
-          {
-            key: index,
-            className: "menu-item " + (index === currentIndex ? 'active' : ''),
-            'data-name': item.name,
-            onClick: function onClick(e) {
-              editor.toggleSelectionFontFamily(e.currentTarget.dataset.name);
-              editor.requestFocus();
-            }
-          },
-          _react2.default.createElement(
-            'span',
-            { style: { fontFamily: item.family } },
-            item.name
-          )
-        );
-      })
-    )
-  );
-};
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(68);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-
-  var caption = null;
-  var currentFontSize = null;
-  var defaultCaption = props.defaultCaption,
-      editor = props.editor,
-      language = props.language,
-      fontSizes = props.fontSizes,
-      viewWrapper = props.viewWrapper,
-      editorHeight = props.editorHeight;
-
-
-  fontSizes.find(function (item) {
-    if (editor.selectionHasInlineStyle('FONTSIZE-' + item)) {
-      caption = item + 'px';
-      currentFontSize = item;
-      return true;
-    }
-    return false;
-  });
-
-  caption = caption || defaultCaption || language.controls.fontSize;
-
-  return _react2.default.createElement(
-    _DropDown2.default,
-    {
-      caption: caption,
-      editorHeight: editorHeight,
-      viewWrapper: viewWrapper,
-      hoverTitle: language.controls.fontSize,
-      className: "control-item dropdown braft-font-size-dropdown"
-    },
-    _react2.default.createElement(
-      'ul',
-      { className: 'braft-font-sizes-wrap' },
-      fontSizes.map(function (item, index) {
-        return _react2.default.createElement(
-          'li',
-          {
-            key: index,
-            className: item === currentFontSize ? 'active' : null,
-            'data-size': item,
-            onClick: function onClick(e) {
-              editor.toggleSelectionFontSize(e.currentTarget.dataset.size);
-              editor.requestFocus();
-            }
-          },
-          item + 'px'
-        );
-      })
-    )
-  );
-};
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(69);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _maps = __webpack_require__(12);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-  var current = props.current,
-      onChange = props.onChange,
-      language = props.language,
-      viewWrapper = props.viewWrapper,
-      editorHeight = props.editorHeight;
-
-  var headings = (0, _maps.getHeadings)(language);
-
-  var currentHeadingIndex = headings.findIndex(function (item) {
-    return item.command === current;
-  });
-  var caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : language.controls.normal;
-  var isFirstItemActive = currentHeadingIndex === 0;
-
-  return _react2.default.createElement(
-    _DropDown2.default,
-    {
-      caption: caption,
-      viewWrapper: viewWrapper,
-      editorHeight: editorHeight,
-      hoverTitle: language.controls.headings,
-      arrowActive: isFirstItemActive,
-      className: "control-item dropdown headings-dropdown"
-    },
-    _react2.default.createElement(
-      'ul',
-      { className: 'menu' },
-      headings.map(function (item, index) {
-        var isActive = current === item.command;
-        return _react2.default.createElement(
-          'li',
-          {
-            key: index,
-            className: "menu-item" + (isActive ? ' active' : ''),
-            onClick: function onClick() {
-              return onChange(item.command, item.type);
-            }
-          },
-          item.text
-        );
-      })
-    )
-  );
-};
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(70);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-
-  var caption = null;
-  var currentLineHeight = null;
-  var defaultCaption = props.defaultCaption,
-      editor = props.editor,
-      language = props.language,
-      lineHeights = props.lineHeights,
-      viewWrapper = props.viewWrapper,
-      editorHeight = props.editorHeight;
-
-
-  lineHeights.find(function (item) {
-    if (editor.selectionHasInlineStyle('LINEHEIGHT-' + item)) {
-      caption = item;
-      currentLineHeight = item;
-      return true;
-    }
-    return false;
-  });
-
-  caption = caption || defaultCaption || language.controls.lineHeight;
-
-  return _react2.default.createElement(
-    _DropDown2.default,
-    {
-      caption: caption,
-      viewWrapper: viewWrapper,
-      editorHeight: editorHeight,
-      hoverTitle: language.controls.lineHeight,
-      className: "control-item dropdown braft-line-height-dropdown"
-    },
-    _react2.default.createElement(
-      'ul',
-      { className: 'braft-line-heights-wrap' },
-      lineHeights.map(function (item, index) {
-        return _react2.default.createElement(
-          'li',
-          {
-            key: index,
-            className: item === currentLineHeight ? 'active' : null,
-            'data-size': item,
-            onClick: function onClick(e) {
-              editor.toggleSelectionLineHeight(e.currentTarget.dataset.size);
-              editor.requestFocus();
-            }
-          },
-          item
-        );
-      })
-    )
-  );
-};
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(71);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Switch = __webpack_require__(11);
-
-var _Switch2 = _interopRequireDefault(_Switch);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var LinkEditor = function (_React$Component) {
-  _inherits(LinkEditor, _React$Component);
-
-  function LinkEditor() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, LinkEditor);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = LinkEditor.__proto__ || Object.getPrototypeOf(LinkEditor)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      href: '',
-      target: ''
-    }, _this.dropDownComponent = null, _this.handeKeyDown = function (e) {
-      if (e.keyCode === 13) {
-        _this.handleConfirm();
-        e.preventDefault();
-        return false;
-      }
-    }, _this.inputLink = function (e) {
-      _this.setState({
-        href: e.currentTarget.value
-      });
-    }, _this.setTarget = function () {
-      _this.setState({
-        target: _this.state.target === '_blank' ? '' : '_blank'
-      });
-    }, _this.handleCancel = function () {
-      _this.dropDownComponent.hide();
-    }, _this.handleUnlink = function () {
-      _this.dropDownComponent.hide();
-      _this.props.editor.toggleSelectionLink(false);
-    }, _this.handleConfirm = function () {
-      var _this$state = _this.state,
-          href = _this$state.href,
-          target = _this$state.target;
-
-      _this.props.editor.toggleSelectionLink(href, target);
-      _this.dropDownComponent.hide();
-      _this.props.editor.requestFocus();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(LinkEditor, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(next) {
-      var _next$editor$getSelec = next.editor.getSelectionEntityData('LINK'),
-          href = _next$editor$getSelec.href,
-          target = _next$editor$getSelec.target;
-
-      this.setState({
-        href: href || '',
-        target: target || ''
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          href = _state.href,
-          target = _state.target;
-      var _props = this.props,
-          editor = _props.editor,
-          language = _props.language,
-          viewWrapper = _props.viewWrapper;
-
-      var caption = _react2.default.createElement('i', { className: 'braft-icon-link' });
-      var textSelected = !editor.selectionCollapsed() && editor.getSelectionBlockType() !== 'atomic';
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'control-item-group' },
-        _react2.default.createElement(
-          _DropDown2.default,
-          {
-            caption: caption,
-            hoverTitle: language.controls.link,
-            autoHide: false,
-            viewWrapper: viewWrapper,
-            showDropDownArrow: false,
-            disabled: !textSelected,
-            ref: function ref(instance) {
-              return _this2.dropDownComponent = instance;
-            },
-            className: "control-item dropdown link-editor-dropdown"
-          },
-          _react2.default.createElement(
-            'div',
-            { className: 'braft-link-editor' },
-            _react2.default.createElement(
-              'div',
-              { className: 'input-group' },
-              _react2.default.createElement('input', {
-                type: 'text',
-                value: href,
-                spellCheck: false,
-                placeholder: language.linkEditor.inputPlaceHolder,
-                onKeyDown: this.handeKeyDown,
-                onChange: this.inputLink
-              })
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'switch-group' },
-              _react2.default.createElement(_Switch2.default, {
-                active: target === '_blank',
-                onClick: this.setTarget
-              }),
-              _react2.default.createElement(
-                'label',
-                null,
-                language.linkEditor.openInNewWindow
-              )
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'buttons' },
-              _react2.default.createElement(
-                'a',
-                { onClick: this.handleUnlink, className: 'primary pull-left', href: 'javascript:void(0);' },
-                _react2.default.createElement('i', { className: 'braft-icon-close' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  language.linkEditor.removeLink
-                )
-              ),
-              _react2.default.createElement(
-                'button',
-                { type: 'button', onClick: this.handleConfirm, className: 'primary pull-right' },
-                language.base.confirm
-              ),
-              _react2.default.createElement(
-                'button',
-                { type: 'button', onClick: this.handleCancel, className: 'default pull-right' },
-                language.base.cancel
-              )
-            )
-          )
-        ),
-        _react2.default.createElement(
-          'button',
-          {
-            type: 'button',
-            title: language.controls.unlink,
-            className: 'control-item button',
-            onClick: this.handleUnlink,
-            disabled: !textSelected || !href
-          },
-          _react2.default.createElement('i', { className: 'braft-icon-link-off' })
-        )
-      );
-    }
-  }]);
-
-  return LinkEditor;
-}(_react2.default.Component);
-
-exports.default = LinkEditor;
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(72);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Modal = __webpack_require__(4);
-
-var _Modal2 = _interopRequireDefault(_Modal);
-
-var _base = __webpack_require__(3);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// TODO
-// 允许删除所选项目
-
-var imageMediaType = 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg';
-var videoMediaType = 'video/mp4';
-var audioMediaType = 'audio/mp3';
-var defaultValidateFn = function defaultValidateFn() {
-  return true;
-};
-
-var MediaPicker = function (_React$Component) {
-  _inherits(MediaPicker, _React$Component);
-
-  function MediaPicker() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, MediaPicker);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = MediaPicker.__proto__ || Object.getPrototypeOf(MediaPicker)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      visible: false,
-      showExternalForm: false,
-      draging: false,
-      error: false,
-      confirmable: false,
-      external: {
-        url: '',
-        type: 'IMAGE'
-      },
-      files: []
-    }, _this.dragCounter = 0, _this.mediaFileAccept = [_this.props.media.image ? imageMediaType : null, _this.props.media.video ? videoMediaType : null, _this.props.media.audio ? audioMediaType : null].filter(function (item) {
-      return item;
-    }).join(','), _this.selectItem = function (file) {
-      var id = file.id,
-          selected = file.selected,
-          error = file.error,
-          uploading = file.uploading;
-
-
-      if (error || uploading) {
-        return false;
-      }
-
-      selected = !selected;
-      _this.mediaLibrary.setItemState(id, { selected: selected });
-    }, _this.removeItem = function (event) {
-
-      var mediaId = event.currentTarget.dataset.id;
-      var mediaItem = _this.mediaLibrary.getItem(mediaId);
-
-      if (!mediaItem) {
-        return false;
-      }
-
-      if (_this.props.media.removeConfirmFn) {
-        _this.props.media.removeConfirmFn({
-          items: [mediaItem],
-          confirm: function confirm() {
-            _this.mediaLibrary.removeItem(mediaId);
-            _this.props.media.onRemove && _this.props.media.onRemove([mediaItem]);
-          }
-        });
-      } else {
-        _this.mediaLibrary.removeItem(mediaId);
-        _this.props.media.onRemove && _this.props.media.onRemove([mediaItem]);
-      }
-
-      event.stopPropagation();
-    }, _this.removeSelectedItems = function () {
-
-      var selectedItems = _this.mediaLibrary.getSelectedItems();
-
-      if (_this.props.media.removeConfirmFn) {
-        _this.props.media.removeConfirmFn({
-          items: selectedItems,
-          confirm: function confirm() {
-            _this.mediaLibrary.removeSelectedItems();
-            _this.props.media.onRemove && _this.props.media.onRemove(selectedItems);
-          }
-        });
-      } else {
-        _this.mediaLibrary.removeSelectedItems();
-        _this.props.media.onRemove && _this.props.media.onRemove(selectedItems);
-      }
-    }, _this.selectAllItems = function () {
-      _this.mediaLibrary.selectAllItems();
-    }, _this.deselectAllItems = function () {
-      _this.mediaLibrary.deselectAllItems();
-    }, _this.handleDragLeave = function (e) {
-      _this.dragCounter--;
-      _this.dragCounter === 0 && _this.setState({
-        draging: false
-      });
-    }, _this.handleDragDrop = function (e) {
-      _this.dragCounter = 0;
-      _this.setState({
-        draging: false
-      });
-    }, _this.handleDragEnter = function (e) {
-      e.preventDefault();
-      _this.dragCounter++;
-      _this.setState({
-        draging: true
-      });
-    }, _this.handleFilesPicked = function (e) {
-
-      var index = 0;
-      var files = e.target.files;
-
-      var length = files.length;
-
-      e.persist();
-
-      var resolveFile = function resolveFile(index) {
-
-        if (index < length) {
-
-          if (_this.validateFn(files[index])) {
-
-            var data = {
-              id: new Date().getTime() + '_' + (0, _base.UniqueIndex)(),
-              file: files[index],
-              name: files[index].name,
-              size: files[index].size,
-              uploadProgress: 0,
-              uploading: false,
-              selected: false,
-              error: 0,
-              onReadyToInsert: function onReadyToInsert(_ref2) {
-                var id = _ref2.id;
-
-                _this.mediaLibrary.selectItem(id);
-              }
-            };
-
-            if (files[index].type.indexOf('image/') === 0 && _this.props.media.image) {
-              data.type = 'IMAGE';
-              _this.mediaLibrary.addItems([data]);
-            } else if (files[index].type.indexOf('video/') === 0 && _this.props.media.video) {
-              data.type = 'VIDEO';
-              _this.mediaLibrary.addItems([data]);
-            } else if (files[index].type.indexOf('audio/') === 0 && _this.props.media.audio) {
-              data.type = 'AUDIO';
-              _this.mediaLibrary.addItems([data]);
-            }
-          }
-
-          setTimeout(function () {
-            resolveFile(index + 1);
-          }, 100);
-        } else {
-          e.target.value = null;
-        }
-      };
-
-      resolveFile(0);
-    }, _this.inputExternal = function (e) {
-      _this.setState({
-        external: _extends({}, _this.state.external, {
-          url: e.target.value
-        })
-      });
-    }, _this.switchExternalType = function (e) {
-      _this.setState({
-        external: _extends({}, _this.state.external, { type: e.target.dataset.type })
-      });
-    }, _this.confirmAddExternal = function (e) {
-      if (e.target.nodeName.toLowerCase() === 'button' || e.keyCode === 13) {
-        var _this$state$external = _this.state.external,
-            url = _this$state$external.url,
-            type = _this$state$external.type;
-
-        url = url.split('|');
-        var name = url.length > 1 ? url[0] : _this.props.language.mediaPicker.unnamedItem;
-        url = url.length > 1 ? url[1] : url[0];
-        var thumbnail = type === 'IMAGE' ? url : null;
-        _this.mediaLibrary.addItems([{
-          thumbnail: thumbnail, url: url, name: name, type: type,
-          id: new Date().getTime() + '_' + (0, _base.UniqueIndex)(),
-          uploading: false,
-          uploadProgress: 1,
-          selected: true
-        }]);
-        _this.setState({
-          showExternalForm: false,
-          external: {
-            url: '',
-            type: 'IMAGE'
-          }
-        });
-      }
-    }, _this.toggleExternalMode = function () {
-      _this.setState({
-        showExternalForm: !_this.state.showExternalForm
-      });
-    }, _this.confirmInsertMedia = function () {
-
-      var selectedMedias = _this.mediaLibrary.getSelectedItems();
-
-      if (_this.props.media.onInsert) {
-        var filteredMedias = _this.props.media.onInsert(selectedMedias);
-        if (filteredMedias && filteredMedias instanceof Array) {
-          // 如果onInsert返回了一个有效的数组，则将该数组作为媒体内容插入
-          _this.props.editor.insertMedias(filteredMedias);
-          _this.hide();
-        } else if (filteredMedias !== false) {
-          // 如果onInsert返回不是false，则插入已选择的媒体内容
-          _this.props.editor.insertMedias(selectedMedias);
-          _this.hide();
-        }
-      } else {
-        _this.props.editor.insertMedias(selectedMedias);
-        _this.hide();
-      }
-    }, _this.show = function () {
-      _this.setState({
-        visible: true
-      });
-    }, _this.hide = function () {
-      _this.setState({
-        visible: false
-      }, function () {
-        _this.mediaLibrary.deselectAllItems();
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(MediaPicker, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      var media = this.props.media;
-
-
-      this.setState({
-        external: {
-          url: '',
-          type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : media.externalMedias.embed ? 'EMBED' : ''
-        }
-      });
-
-      this.mediaLibrary = this.props.mediaLibrary;
-      this.mediaLibrary.uploadFn = this.props.media.uploadFn || null;
-      this.validateFn = this.props.media.validateFn || defaultValidateFn;
-      this.mediaLibrary.onChange = function (files) {
-        _this2.setState({
-          files: files,
-          confirmable: !!files.filter(function (item) {
-            return item.selected;
-          }).length
-        });
-        media.onChange && media.onChange(files);
-      };
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-      var media = nextProps.media;
-
-
-      this.setState({
-        external: {
-          url: '',
-          type: media.externalMedias.image ? 'IMAGE' : media.externalMedias.audio ? 'AUDIO' : media.externalMedias.video ? 'VIDEO' : media.externalMedias.embed ? 'EMBED' : ''
-        }
-      });
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.pickerModal && this.pickerModal.close();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          media = _props.media,
-          language = _props.language;
-      var _state = this.state,
-          files = _state.files,
-          visible = _state.visible,
-          external = _state.external,
-          draging = _state.draging,
-          confirmable = _state.confirmable,
-          showExternalForm = _state.showExternalForm;
-
-      var allowExternalMedia = media.externalMedias && (media.externalMedias.image || media.externalMedias.audio || media.externalMedias.video || media.externalMedias.embed);
-      var bottomText = allowExternalMedia ? _react2.default.createElement(
-        'span',
-        {
-          onClick: this.toggleExternalMode,
-          className: 'braft-media-toggle-external-mode'
-        },
-        showExternalForm ? _react2.default.createElement(
-          'span',
-          { className: 'braft-media-bottom-text' },
-          _react2.default.createElement('i', { className: 'braft-icon-add' }),
-          ' ',
-          language.mediaPicker.addLocalFile
-        ) : _react2.default.createElement(
-          'span',
-          { className: 'braft-media-bottom-text' },
-          _react2.default.createElement('i', { className: 'braft-icon-add' }),
-          ' ',
-          language.mediaPicker.addExternalSource
-        )
-      ) : null;
-
-      return _react2.default.createElement(
-        _Modal2.default,
-        {
-          title: language.mediaPicker.caption,
-          width: 640,
-          visible: visible,
-          language: language,
-          className: 'braft-media-picker-modal',
-          bottomText: bottomText,
-          confirmable: confirmable && !showExternalForm,
-          onClose: this.hide,
-          onCancel: this.hide,
-          onConfirm: this.confirmInsertMedia,
-          confirmText: language.mediaPicker.confirmInsert,
-          ref: function ref(instance) {
-            return _this3.pickerModal = instance;
-          }
-        },
-        _react2.default.createElement(
-          'div',
-          { className: 'braft-media-picker' },
-          _react2.default.createElement(
-            'div',
-            {
-              onDragEnter: this.handleDragEnter,
-              onDragLeave: this.handleDragLeave,
-              onDrop: this.handleDragDrop,
-              className: 'braft-media-uploader'
-            },
-            _react2.default.createElement(
-              'div',
-              { className: "braft-media-drag-uploader " + (draging || !files.length ? 'active ' : ' ') + (draging ? 'draging' : '') },
-              _react2.default.createElement(
-                'span',
-                { className: 'braft-media-drag-tip' },
-                _react2.default.createElement('input', { accept: this.mediaFileAccept, onChange: this.handleFilesPicked, multiple: true, type: 'file' }),
-                draging ? language.mediaPicker.dropTip : language.mediaPicker.dragTip
-              )
-            ),
-            files.length ? _react2.default.createElement(
-              'div',
-              { className: 'braft-media-list-wrap' },
-              _react2.default.createElement(
-                'div',
-                { className: 'braft-media-list-tools' },
-                _react2.default.createElement(
-                  'span',
-                  { onClick: this.selectAllItems, className: 'braft-media-select-all' },
-                  _react2.default.createElement('i', { className: 'braft-icon-done' }),
-                  ' ',
-                  language.mediaPicker.selectAll
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { onClick: this.deselectAllItems, disabled: !confirmable, className: 'braft-media-deselect-all' },
-                  _react2.default.createElement('i', { className: 'braft-icon-close' }),
-                  ' ',
-                  language.mediaPicker.deselect
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { onClick: this.removeSelectedItems, disabled: !confirmable, className: 'braft-media-remove-selected' },
-                  _react2.default.createElement('i', { className: 'braft-icon-bin' }),
-                  ' ',
-                  language.mediaPicker.removeSelected
-                )
-              ),
-              this.buildMediaList()
-            ) : null,
-            showExternalForm && allowExternalMedia ? _react2.default.createElement(
-              'div',
-              { className: 'braft-media-add-external' },
-              _react2.default.createElement(
-                'div',
-                { className: 'braft-media-external-form' },
-                _react2.default.createElement(
-                  'div',
-                  { className: 'braft-media-external-input' },
-                  _react2.default.createElement(
-                    'div',
-                    null,
-                    _react2.default.createElement('input', { onKeyDown: this.confirmAddExternal, value: external.url, onChange: this.inputExternal, placeholder: language.mediaPicker.externalInputPlaceHolder })
-                  ),
-                  _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.confirmAddExternal, disabled: !external.url.trim().length },
-                    language.base.confirm
-                  )
-                ),
-                _react2.default.createElement(
-                  'div',
-                  { 'data-type': external.type, className: 'braft-media-switch-external-type' },
-                  media.externalMedias.image ? _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'IMAGE' },
-                    language.media.image
-                  ) : null,
-                  media.externalMedias.audio ? _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'AUDIO' },
-                    language.media.audio
-                  ) : null,
-                  media.externalMedias.video ? _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'VIDEO' },
-                    language.media.video
-                  ) : null,
-                  media.externalMedias.embed ? _react2.default.createElement(
-                    'button',
-                    { type: 'button', onClick: this.switchExternalType, 'data-type': 'EMBED' },
-                    language.media.embed
-                  ) : null
-                ),
-                _react2.default.createElement(
-                  'span',
-                  { className: 'braft-media-external-tip' },
-                  language.mediaPicker.externalInputTip
-                )
-              )
-            ) : null
-          )
-        )
-      );
-    }
-  }, {
-    key: 'buildMediaList',
-    value: function buildMediaList() {
-      var _this4 = this;
-
-      return _react2.default.createElement(
-        'ul',
-        { className: 'braft-media-list' },
-        _react2.default.createElement(
-          'li',
-          { className: 'braft-media-add-item' },
-          _react2.default.createElement('i', { className: 'braft-icon-add' }),
-          _react2.default.createElement('input', { accept: this.mediaFileAccept, onChange: this.handleFilesPicked, multiple: true, type: 'file' })
-        ),
-        this.state.files.map(function (file, index) {
-
-          var previewerComponents = null;
-          var progressMarker = file.uploading ? _react2.default.createElement(
-            'div',
-            { className: 'braft-media-item-uploading' },
-            _react2.default.createElement('div', { className: 'braft-media-item-uploading-bar', style: { width: file.uploadProgress / 1 + '%' } })
-          ) : '';
-
-          switch (file.type) {
-            case 'IMAGE':
-              previewerComponents = _react2.default.createElement(
-                'div',
-                { className: 'braft-media-image' },
-                progressMarker,
-                _react2.default.createElement('img', { src: file.thumbnail || file.url })
-              );
-              break;
-            case 'VIDEO':
-              previewerComponents = _react2.default.createElement(
-                'div',
-                { className: 'braft-media-icon braft-media-video', title: file.url },
-                progressMarker,
-                _react2.default.createElement('i', { className: 'braft-icon-film' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  file.name || file.url
-                )
-              );
-              break;
-            case 'AUDIO':
-              previewerComponents = _react2.default.createElement(
-                'div',
-                { className: 'braft-media-icon braft-media-audio', title: file.url },
-                progressMarker,
-                _react2.default.createElement('i', { className: 'braft-icon-music' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  file.name || file.url
-                )
-              );
-              break;
-            case 'EMBED':
-              previewerComponents = _react2.default.createElement(
-                'div',
-                { className: 'braft-media-icon braft-media-embed', title: file.url },
-                progressMarker,
-                _react2.default.createElement('i', { className: 'braft-icon-code' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  file.name || _this4.props.language.media.embed
-                )
-              );
-              break;
-            default:
-              previewerComponents = _react2.default.createElement(
-                'a',
-                { className: 'braft-media-icon braft-media-file', title: file.url, href: file.url },
-                progressMarker,
-                _react2.default.createElement('i', { className: 'braft-icon-file-text' }),
-                _react2.default.createElement(
-                  'span',
-                  null,
-                  file.name || file.url
-                )
-              );
-              break;
-          }
-
-          var className = ['braft-media-item'];
-          file.selected && className.push('active');
-          file.uploading && className.push('uploading');
-          file.error && className.push('error');
-
-          return _react2.default.createElement(
-            'li',
-            {
-              key: index,
-              title: file.name,
-              className: className.join(' '),
-              onClick: function onClick() {
-                return _this4.selectItem(file);
-              }
-            },
-            previewerComponents,
-            _react2.default.createElement('span', { 'data-id': file.id, onClick: _this4.removeItem, className: 'braft-media-item-remove braft-icon-close' }),
-            _react2.default.createElement(
-              'span',
-              { className: 'braft-media-item-title' },
-              file.name
-            )
-          );
-        })
-      );
-    }
-  }]);
-
-  return MediaPicker;
-}(_react2.default.Component);
-
-exports.default = MediaPicker;
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TextAlign = function (_React$Component) {
-  _inherits(TextAlign, _React$Component);
-
-  function TextAlign() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, TextAlign);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextAlign.__proto__ || Object.getPrototypeOf(TextAlign)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      currentAlignment: undefined
-    }, _this.setAlignment = function (e) {
-      _this.props.editor.toggleSelectionAlignment(e.currentTarget.dataset.alignment);
-      _this.props.editor.requestFocus();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(TextAlign, [{
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(next) {
-      this.setState({
-        currentAlignment: next.editor.getSelectionBlockData('textAlign')
-      });
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var currentAlignment = this.state.currentAlignment;
-      var _props = this.props,
-          language = _props.language,
-          textAlignOptions = _props.textAlignOptions;
-
-      var textAlignmentTitles = [language.controls.alignLeft, language.controls.alignCenter, language.controls.alignRight, language.controls.alignJustify];
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'control-item-group' },
-        textAlignOptions.map(function (item, index) {
-          return _react2.default.createElement(
-            'button',
-            {
-              type: 'button',
-              key: index,
-              title: textAlignmentTitles[index],
-              'data-alignment': item,
-              className: 'control-item button ' + (item === currentAlignment ? 'active' : null),
-              onClick: _this2.setAlignment
-            },
-            _react2.default.createElement('i', { className: "braft-icon-align-" + item })
-          );
-        })
-      );
-    }
-  }]);
-
-  return TextAlign;
-}(_react2.default.Component);
-
-exports.default = TextAlign;
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(73);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _base = __webpack_require__(3);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-var _ColorPicker = __webpack_require__(44);
-
-var _ColorPicker2 = _interopRequireDefault(_ColorPicker);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TextColor = function (_React$Component) {
-  _inherits(TextColor, _React$Component);
-
-  function TextColor() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, TextColor);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = TextColor.__proto__ || Object.getPrototypeOf(TextColor)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      colorType: 'color'
-    }, _this.dropDownComponentId = 'BRAFT-DROPDOWN-' + (0, _base.UniqueIndex)(), _this.switchColorType = function (e) {
-
-      _this.setState({
-        colorType: e.currentTarget.dataset.type
-      });
-    }, _this.toggleColor = function (color) {
-
-      if (_this.state.colorType === 'color') {
-        _this.props.editor.toggleSelectionColor(color);
-      } else {
-        _this.props.editor.toggleSelectionBackgroundColor(color);
-      }
-
-      _this.dropDownComponent.hide();
-      _this.props.editor.requestFocus();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(TextColor, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var captionStyle = {};
-      var currentColor = null;
-      var colorType = this.state.colorType;
-      var _props = this.props,
-          editor = _props.editor,
-          language = _props.language,
-          colors = _props.colors,
-          tempColors = _props.tempColors,
-          viewWrapper = _props.viewWrapper,
-          editorHeight = _props.editorHeight,
-          allowSetTextBackgroundColor = _props.allowSetTextBackgroundColor;
-      [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors)).forEach(function (color) {
-        var color_id = color.replace('#', '');
-        if (editor.selectionHasInlineStyle('COLOR-' + color_id)) {
-          captionStyle.color = color;
-          colorType === 'color' && (currentColor = color);
-        }
-
-        if (editor.selectionHasInlineStyle('BGCOLOR-' + color_id)) {
-          captionStyle.backgroundColor = color;
-          colorType === 'backgroundColor' && (currentColor = color);
-        }
-      });
-
-      var caption = _react2.default.createElement(
-        'i',
-        { style: captionStyle, className: 'braft-icon-text-color' },
-        _react2.default.createElement('span', { className: 'path1' }),
-        _react2.default.createElement('span', { className: 'path2' })
-      );
-
-      return _react2.default.createElement(
-        _DropDown2.default,
-        {
-          caption: caption,
-          hoverTitle: language.controls.color,
-          showDropDownArrow: false,
-          viewWrapper: viewWrapper,
-          editorHeight: editorHeight,
-          componentId: this.dropDownComponentId,
-          ref: function ref(instance) {
-            return _this2.dropDownComponent = instance;
-          },
-          className: "control-item dropdown text-color-dropdown"
-        },
-        _react2.default.createElement(
-          'div',
-          { className: 'braft-text-color-picker-wrap' },
-          _react2.default.createElement(
-            'div',
-            { className: 'braft-color-switch-buttons', style: allowSetTextBackgroundColor ? {} : { display: 'none' } },
-            _react2.default.createElement(
-              'button',
-              {
-                type: 'button',
-                'data-type': 'color',
-                'data-keep-active': true,
-                'data-braft-component-id': this.dropDownComponentId,
-                className: colorType === 'color' ? 'active' : '',
-                onClick: this.switchColorType
-              },
-              language.controls.textColor
-            ),
-            _react2.default.createElement(
-              'button',
-              {
-                type: 'button',
-                'data-type': 'backgroundColor',
-                'data-keep-active': true,
-                'data-braft-component-id': this.dropDownComponentId,
-                className: colorType === 'backgroundColor' ? 'active' : '',
-                onClick: this.switchColorType
-              },
-              language.controls.backgroundColor
-            )
-          ),
-          _react2.default.createElement(_ColorPicker2.default, {
-            width: 200,
-            language: language,
-            current: currentColor,
-            disableAlpha: true,
-            colors: colors,
-            tempColors: tempColors,
-            onChange: this.toggleColor
-          })
-        )
-      );
-    }
-  }]);
-
-  return TextColor;
-}(_react2.default.Component);
-
-exports.default = TextColor;
-
-/***/ }),
-/* 42 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(74);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-
-  var caption = null;
-  var currentIndent = null;
-  var defaultCaption = props.defaultCaption,
-      editor = props.editor,
-      language = props.language,
-      indents = props.indents,
-      viewWrapper = props.viewWrapper,
-      editorHeight = props.editorHeight;
-
-
-  indents.find(function (item) {
-    if (editor.selectionHasInlineStyle('INDENT-' + item)) {
-      caption = item;
-      currentIndent = item;
-      return true;
-    }
-    return false;
-  });
-
-  caption = caption || defaultCaption || language.controls.indent;
-
-  return _react2.default.createElement(
-    _DropDown2.default,
-    {
-      caption: caption,
-      viewWrapper: viewWrapper,
-      editorHeight: editorHeight,
-      hoverTitle: language.controls.indent,
-      className: "control-item dropdown braft-indent-dropdown"
-    },
-    _react2.default.createElement(
-      'ul',
-      { className: 'braft-indents-wrap' },
-      indents.map(function (item, index) {
-        return _react2.default.createElement(
-          'li',
-          {
-            key: index,
-            className: item === currentIndent ? 'active' : null,
-            'data-size': item,
-            onClick: function onClick(e) {
-              editor.toggleSelectionIndent(e.currentTarget.dataset.size);
-              editor.requestFocus();
-            }
-          },
-          item
-        );
-      })
-    )
-  );
-};
-
-/***/ }),
-/* 43 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(75);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _DropDown = __webpack_require__(1);
-
-var _DropDown2 = _interopRequireDefault(_DropDown);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-
-  var caption = null;
-  var currentLetterSpacing = null;
-  var defaultCaption = props.defaultCaption,
-      editor = props.editor,
-      language = props.language,
-      letterSpacings = props.letterSpacings,
-      viewWrapper = props.viewWrapper,
-      editorHeight = props.editorHeight;
-
-
-  letterSpacings.find(function (item) {
-    if (editor.selectionHasInlineStyle('LETTERSPACING-' + item)) {
-      caption = item;
-      currentLetterSpacing = item;
-      return true;
-    }
-    return false;
-  });
-
-  caption = caption || defaultCaption || language.controls.letterSpacing;
-
-  return _react2.default.createElement(
-    _DropDown2.default,
-    {
-      caption: caption,
-      viewWrapper: viewWrapper,
-      editorHeight: editorHeight,
-      hoverTitle: language.controls.letterSpacing,
-      className: "control-item dropdown braft-letter-spacing-dropdown"
-    },
-    _react2.default.createElement(
-      'ul',
-      { className: 'braft-letter-spacings-wrap' },
-      letterSpacings.map(function (item, index) {
-        return _react2.default.createElement(
-          'li',
-          {
-            key: index,
-            className: item === currentLetterSpacing ? 'active' : null,
-            'data-size': item,
-            onClick: function onClick(e) {
-              editor.toggleSelectionLetterSpacing(e.currentTarget.dataset.size);
-              editor.requestFocus();
-            }
-          },
-          item
-        );
-      })
-    )
-  );
-};
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-__webpack_require__(76);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (props) {
-  var current = props.current,
-      colors = props.colors,
-      tempColors = props.tempColors,
-      onChange = props.onChange,
-      language = props.language;
-
-
-  return _react2.default.createElement(
-    'div',
-    { className: 'braft-color-list-wrap' },
-    _react2.default.createElement(
-      'ul',
-      { className: 'braft-color-list' },
-      colors.map(function (item, index) {
-        var className = item === current ? 'color-item active' : 'color-item';
-        return _react2.default.createElement('li', {
-          key: index,
-          title: item,
-          className: className,
-          style: { color: item },
-          'data-color': item.replace('#', ''),
-          onClick: function onClick(e) {
-            return props.onChange(e.currentTarget.dataset.color);
-          }
-        });
-      })
-    ),
-    tempColors.length ? _react2.default.createElement(
-      'div',
-      { className: 'braft-color-list-split-line' },
-      _react2.default.createElement(
-        'span',
-        null,
-        language.controls.tempColors
-      )
-    ) : null,
-    tempColors.length ? _react2.default.createElement(
-      'ul',
-      { className: 'braft-color-list' },
-      tempColors.map(function (item, index) {
-        var className = item === current ? 'color-item active' : 'color-item';
-        return _react2.default.createElement('li', {
-          key: index,
-          title: item,
-          className: className,
-          style: { color: item },
-          'data-color': item.replace('#', ''),
-          onClick: function onClick(e) {
-            return props.onChange(e.currentTarget.dataset.color);
-          }
-        });
-      })
-    ) : null
-  );
-};
-
-/***/ }),
-/* 45 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (lang) {
-  return [{
-    key: 'undo',
-    title: lang.controls.undo,
-    text: _react2.default.createElement('i', { className: 'braft-icon-undo' }),
-    type: 'editor-state-method',
-    command: 'undo'
-  }, {
-    key: 'redo',
-    title: lang.controls.redo,
-    text: _react2.default.createElement('i', { className: 'braft-icon-redo' }),
-    type: 'editor-state-method',
-    command: 'redo'
-  }, {
-    key: 'remove-styles',
-    title: lang.controls.removeStyles,
-    text: _react2.default.createElement('i', { className: 'braft-icon-format_clear' }),
-    type: 'editor-state-method',
-    command: 'removeSelectionInlineStyles'
-  }, {
-    key: 'hr',
-    title: lang.controls.hr,
-    text: _react2.default.createElement('i', { className: 'braft-icon-hr' }),
-    type: 'editor-state-method',
-    command: 'insertHorizontalLine'
-  }, {
-    key: 'bold',
-    title: lang.controls.bold,
-    text: _react2.default.createElement('i', { className: 'braft-icon-bold' }),
-    type: 'inline-style',
-    command: 'bold'
-  }, {
-    key: 'italic',
-    title: lang.controls.italic,
-    text: _react2.default.createElement('i', { className: 'braft-icon-italic' }),
-    type: 'inline-style',
-    command: 'italic'
-  }, {
-    key: 'underline',
-    title: lang.controls.underline,
-    text: _react2.default.createElement('i', { className: 'braft-icon-underlined' }),
-    type: 'inline-style',
-    command: 'underline'
-  }, {
-    key: 'strike-through',
-    title: lang.controls.strikeThrough,
-    text: _react2.default.createElement('i', { className: 'braft-icon-strikethrough' }),
-    type: 'inline-style',
-    command: 'strikethrough'
-  }, {
-    key: 'superscript',
-    title: lang.controls.superScript,
-    text: _react2.default.createElement('i', { className: 'braft-icon-superscript' }),
-    type: 'inline-style',
-    command: 'superscript'
-  }, {
-    key: 'subscript',
-    title: lang.controls.subScript,
-    text: _react2.default.createElement('i', { className: 'braft-icon-subscript' }),
-    type: 'inline-style',
-    command: 'subscript'
-  }, {
-    key: 'headings',
-    title: lang.controls.headings,
-    type: 'headings'
-  }, {
-    key: 'blockquote',
-    title: lang.controls.blockQuote,
-    text: _react2.default.createElement('i', { className: 'braft-icon-quote' }),
-    type: 'block-type',
-    command: 'blockquote'
-  }, {
-    key: 'code',
-    title: lang.controls.code,
-    text: _react2.default.createElement('i', { className: 'braft-icon-code' }),
-    type: 'block-type',
-    command: 'code-block'
-  }, {
-    key: 'list_ul',
-    title: lang.controls.unorderedList,
-    text: _react2.default.createElement('i', { className: 'braft-icon-list' }),
-    type: 'block-type',
-    command: 'unordered-list-item'
-  }, {
-    key: 'list_ol',
-    title: lang.controls.orderedList,
-    text: _react2.default.createElement('i', { className: 'braft-icon-list-numbered' }),
-    type: 'block-type',
-    command: 'ordered-list-item'
-  }, {
-    key: 'link',
-    title: lang.controls.link,
-    type: 'link'
-  }, {
-    key: 'text-color',
-    title: lang.controls.color,
-    type: 'text-color'
-  }, {
-    key: 'line-height',
-    title: lang.controls.lineHeight,
-    type: 'line-height'
-  }, {
-    key: 'letter-spacing',
-    title: lang.controls.letterSpacing,
-    type: 'letter-spacing'
-  }, {
-    key: 'indent',
-    title: lang.controls.indent,
-    type: 'indent'
-  }, {
-    key: 'font-size',
-    title: lang.controls.fontSize,
-    type: 'font-size'
-  }, {
-    key: 'font-family',
-    title: lang.controls.fontFamily,
-    type: 'font-family'
-  }, {
-    key: 'text-align',
-    title: lang.controls.textAlign,
-    type: 'text-align'
-  }, {
-    key: 'media',
-    title: lang.controls.media,
-    text: _react2.default.createElement('i', { className: 'braft-icon-media' }),
-    type: 'media'
-  }, {
-    key: 'emoji',
-    title: lang.controls.emoji,
-    text: _react2.default.createElement('i', { className: 'braft-icon-emoji' }),
-    type: 'emoji'
-  }, {
-    key: 'clear',
-    title: lang.controls.clear,
-    text: _react2.default.createElement(
-      'span',
-      { className: 'braft-control-text' },
-      lang.controls.clear
-    ),
-    type: 'editor-state-method',
-    command: 'clear'
-  }];
-};
-
-/***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _base = __webpack_require__(3);
-
-var resizeEventHandlers = [];
-var responsiveHelperInited = false;
-var debouce = false;
-
-exports.default = {
-  resolve: function resolve(eventHandler) {
-    var id = (0, _base.UniqueIndex)();
-    resizeEventHandlers.push({ id: id, eventHandler: eventHandler });
-    return id;
-  },
-  unresolve: function unresolve(id) {
-    resizeEventHandlers = resizeEventHandlers.filter(function (item) {
-      return item.id !== id;
-    });
-  }
-};
-
-
-if (!responsiveHelperInited) {
-
-  window.addEventListener('resize', function (event) {
-    clearTimeout(debouce);
-    debouce = setTimeout(function () {
-      resizeEventHandlers.map(function (item) {
-        typeof item.eventHandler === 'function' && item.eventHandler(event);
-      });
-      debouce = false;
-    }, 100);
-  });
-
-  responsiveHelperInited = true;
-}
-
-/***/ }),
-/* 47 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(30);
-
-__webpack_require__(31);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _languages = __webpack_require__(27);
-
-var _languages2 = _interopRequireDefault(_languages);
-
-var _draftJs = __webpack_require__(5);
-
-var _DraftPasteProcessor = __webpack_require__(29);
-
-var _DraftPasteProcessor2 = _interopRequireDefault(_DraftPasteProcessor);
-
-var _draftConvert = __webpack_require__(32);
-
-var _draftjsUtils = __webpack_require__(10);
-
-var _convert = __webpack_require__(22);
-
-var _keybindings = __webpack_require__(23);
-
-var _keybindings2 = _interopRequireDefault(_keybindings);
-
-var _options = __webpack_require__(24);
-
-var _options2 = _interopRequireDefault(_options);
-
-var _base = __webpack_require__(3);
-
-var _controller = __webpack_require__(25);
-
-var _controller2 = _interopRequireDefault(_controller);
-
-var _renderers = __webpack_require__(28);
-
-var _ControlBar = __webpack_require__(21);
-
-var _ControlBar2 = _interopRequireDefault(_ControlBar);
-
-var _MediaLibrary = __webpack_require__(26);
-
-var _MediaLibrary2 = _interopRequireDefault(_MediaLibrary);
-
-var _colors = __webpack_require__(8);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-// TODO
-// 重写convertToHTML
-// 支持mention功能
-// 支持hashtag功能
-// 增加取色器
-
-var editorDecorators = new _draftJs.CompositeDecorator(_renderers.decorators);
-var blockRenderMap = _draftJs.DefaultDraftBlockRenderMap.merge(_renderers.customBlockRenderMap);
-
-var BraftEditor = function (_EditorController) {
-  _inherits(BraftEditor, _EditorController);
-
-  function BraftEditor(props) {
-    _classCallCheck(this, BraftEditor);
-
-    var _this = _possibleConstructorReturn(this, (BraftEditor.__proto__ || Object.getPrototypeOf(BraftEditor)).call(this, props));
-
-    _initialiseProps.call(_this);
-
-    var editorState = _draftJs.EditorState.createEmpty(editorDecorators);
-    _this.editorState = editorState;
-    _this.contentState = editorState.getCurrentContent();
-    _this.selectionState = editorState.getSelection();
-    _this.mediaLibrary = new _MediaLibrary2.default();
-    _this.isFocused = false;
-    _this.instanceIndex = (0, _base.UniqueIndex)();
-
-    _this.state = {
-      tempColors: [],
-      editorState: editorState,
-      editorProps: {}
-    };
-
-    var browser = null;
-    if (window.chrome) {
-      browser = 'chrome';
-    } else if (window.safari) {
-      browser = 'safari';
-    } else if (navigator.userAgent.indexOf('Firefox') > 0) {
-      browser = 'firefox';
-    }
-
-    if (!document.body.classList.contains('browser-' + browser)) {
-      document.body.classList.add('browser-' + browser);
-    }
-
-    return _this;
-  }
-
-  _createClass(BraftEditor, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-
-      if (typeof this.props.initialContent !== 'undefined' && this.props.initialContent !== null) {
-        this.setContent(this.props.initialContent);
-        this.contentInitialized = true;
-      }
-    }
-  }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps(nextProps) {
-
-      if (typeof nextProps.initialContent !== 'undefined' && nextProps.initialContent !== null) {
-        if (!this.contentInitialized) {
-          this.contentInitialized = true;
-          this.setContent(nextProps.initialContent, nextProps.contentFormat);
-        } else if (nextProps.contentId !== this.props.contentId) {
-          this.setContent(nextProps.initialContent, nextProps.contentFormat);
-        }
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          controls = _props.controls,
-          excludeControls = _props.excludeControls,
-          extendControls = _props.extendControls,
-          disabled = _props.disabled,
-          height = _props.height,
-          media = _props.media,
-          language = _props.language,
-          colors = _props.colors,
-          fontSizes = _props.fontSizes,
-          fontFamilies = _props.fontFamilies,
-          emojis = _props.emojis,
-          viewWrapper = _props.viewWrapper,
-          placeholder = _props.placeholder,
-          imageControls = _props.imageControls,
-          lineHeights = _props.lineHeights,
-          letterSpacings = _props.letterSpacings,
-          indents = _props.indents,
-          textAlignOptions = _props.textAlignOptions,
-          allowSetTextBackgroundColor = _props.allowSetTextBackgroundColor,
-          extendAtomics = _props.extendAtomics;
-
-
-      controls = controls.filter(function (item) {
-        return excludeControls.indexOf(item) === -1;
-      });
-
-      var tempColors = this.state.tempColors;
-
-      language = _languages2.default[language] || _languages2.default[_options2.default.language];
-
-      var externalMedias = media && media.externalMedias ? _extends({}, _options2.default.media.externalMedias, media.externalMedias) : _options2.default.media.externalMedias;
-
-      media = _extends({}, _options2.default.media, media, { externalMedias: externalMedias });
-
-      imageControls = imageControls ? _extends({}, _options2.default.imageControls, imageControls) : _options2.default.imageControls;
-
-      viewWrapper = viewWrapper || '.BraftEditor-instance-' + this.instanceIndex;
-
-      this.colorList = [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors));
-      this.fontSizeList = fontSizes;
-      this.fontFamilyList = fontFamilies;
-      this.lineHeightList = lineHeights;
-      this.letterSpacingList = letterSpacings;
-      this.indentList = indents;
-
-      if (!media.uploadFn) {
-        media.video = false;
-        media.audio = false;
-      }
-
-      var controlBarProps = {
-        editor: this,
-        editorHeight: height,
-        ref: function ref(instance) {
-          return _this2.controlBarInstance = instance;
-        },
-        media: media, controls: controls, language: language, viewWrapper: viewWrapper, extendControls: extendControls, colors: colors, tempColors: tempColors, fontSizes: fontSizes, fontFamilies: fontFamilies,
-        emojis: emojis, lineHeights: lineHeights, letterSpacings: letterSpacings, indents: indents, textAlignOptions: textAlignOptions, allowSetTextBackgroundColor: allowSetTextBackgroundColor
-      };
-
-      var blockRendererFn = (0, _renderers.getBlockRendererFn)({
-        editor: this, imageControls: imageControls,
-        language: language, viewWrapper: viewWrapper,
-        extendAtomics: extendAtomics
-      });
-
-      var customStyleMap = (0, _renderers.getCustomStyleMap)({
-        colors: [].concat(_toConsumableArray(colors), _toConsumableArray(tempColors)),
-        fontSizes: fontSizes, fontFamilies: fontFamilies, lineHeights: lineHeights, letterSpacings: letterSpacings, indents: indents
-      });
-
-      var editorProps = _extends({
-        ref: function ref(instance) {
-          _this2.draftInstance = instance;
-        },
-        editorState: this.state.editorState,
-        handleKeyCommand: this.handleKeyCommand,
-        handleReturn: this.handleReturn,
-        handleDrop: this.handleDrop,
-        handleDroppedFiles: this.handleDroppedFiles,
-        handlePastedText: this.handlePastedText,
-        handlePastedFiles: this.handlePastedFiles,
-        onChange: this.onChange,
-        onTab: this.onTab,
-        onFocus: this.onFocus,
-        onBlur: this.onBlur,
-        readOnly: disabled,
-        customStyleMap: customStyleMap, blockStyleFn: _renderers.blockStyleFn, keyBindingFn: _keybindings2.default,
-        blockRendererFn: blockRendererFn, blockRenderMap: blockRenderMap, placeholder: placeholder
-      }, this.state.editorProps);
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'BraftEditor-container BraftEditor-instance-' + this.instanceIndex + ' ' + (disabled ? 'disabled' : '') },
-        _react2.default.createElement(_ControlBar2.default, controlBarProps),
-        _react2.default.createElement(
-          'div',
-          { className: 'BraftEditor-content', style: height ? { height: height } : {} },
-          _react2.default.createElement(_draftJs.Editor, editorProps)
-        )
-      );
-    }
-  }]);
-
-  return BraftEditor;
-}(_controller2.default);
-
-BraftEditor.defaultProps = _extends({}, _options2.default, {
-  onChange: null,
-  onHTMLChange: null,
-  onRawChange: null,
-  onFocus: null,
-  onBlur: null,
-  onSave: null
-});
-
-BraftEditor.getContent = function (format, contentState) {
-  var fontFamilies = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-
-  fontFamilies = fontFamilies || _options2.default.fontFamilies;
-
-  if (format === "html") {
-    return (0, _draftConvert.convertToHTML)((0, _convert.getToHTMLConfig)({ contentState: contentState, fontFamilies: fontFamilies }))(contentState);
-  }
-  return (0, _draftJs.convertToRaw)(contentState);
-};
-
-var _initialiseProps = function _initialiseProps() {
-  var _this3 = this;
-
-  this.onChange = function (editorState) {
-
-    _this3.editorState = editorState;
-    _this3.contentState = editorState.getCurrentContent();
-    _this3.selectionState = editorState.getSelection();
-    _this3.setState({ editorState: editorState }, function () {
-      clearTimeout(_this3.syncTimer);
-      _this3.syncTimer = setTimeout(function () {
-        var _props2 = _this3.props,
-            onChange = _props2.onChange,
-            onRawChange = _props2.onRawChange,
-            onHTMLChange = _props2.onHTMLChange;
-
-        onChange && onChange(_this3.getContent());
-        onHTMLChange && onHTMLChange(_this3.getHTMLContent());
-        onRawChange && onRawChange(_this3.getRawContent());
-      }, 300);
-    });
-  };
-
-  this.getHTMLContent = function () {
-    return _this3.getContent('html');
-  };
-
-  this.getRawContent = function () {
-    return _this3.getContent('raw');
-  };
-
-  this.getContent = function (format) {
-
-    format = format || _this3.props.contentFormat || 'raw';
-
-    var contentState = _this3.contentState;
-    var fontFamilies = _this3.props.fontFamilies;
-
-
-    if (format === 'html') {
-      return (0, _draftConvert.convertToHTML)((0, _convert.getToHTMLConfig)({ contentState: contentState, fontFamilies: fontFamilies }))(contentState);
-    } else {
-      return (0, _draftJs.convertToRaw)(contentState);
-    }
-  };
-
-  this.isEmpty = function () {
-    return _this3.getHTMLContent() === '<p></p>';
-  };
-
-  this.getContentState = function () {
-    return _this3.contentState;
-  };
-
-  this.getEditorState = function () {
-    return _this3.editorState;
-  };
-
-  this.getDraftInstance = function () {
-    return _this3.draftInstance;
-  };
-
-  this.getMediaLibraryInstance = function () {
-    return _this3.mediaLibrary;
-  };
-
-  this.convertHTML = function (htmlString) {
-    var fontFamilies = _this3.props.fontFamilies;
-
-    return (0, _draftConvert.convertFromHTML)((0, _convert.getFromHTMLConfig)({ fontFamilies: fontFamilies }))(htmlString);
-  };
-
-  this.setContent = function (content, format) {
-
-    var convertedContent = void 0;
-    var newState = {};
-    var _props3 = _this3.props,
-        contentFormat = _props3.contentFormat,
-        colors = _props3.colors;
-
-
-    contentFormat = format || contentFormat || 'raw';
-
-    if (contentFormat === 'html') {
-      content = content || '';
-      newState.tempColors = [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray((0, _colors.detectColorsFromHTML)(content))).filter(function (item) {
-        return _this3.props.colors.indexOf(item) === -1;
-      }).filter(function (item, index, array) {
-        return array.indexOf(item) === index;
-      });
-      convertedContent = _this3.convertHTML(content);
-    } else if (contentFormat === 'raw') {
-      if (!content || !content.blocks) {
-        return false;
-      }
-      newState.tempColors = [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray((0, _colors.detectColorsFromRaw)(content))).filter(function (item) {
-        return _this3.props.colors.indexOf(item) === -1;
-      }).filter(function (item, index, array) {
-        return array.indexOf(item) === index;
-      });
-      convertedContent = (0, _draftJs.convertFromRaw)(content);
-    }
-
-    newState.editorState = _draftJs.EditorState.createWithContent(convertedContent, editorDecorators);
-
-    _this3.editorState = newState.editorState;
-    _this3.contentState = newState.editorState.getCurrentContent();
-    _this3.selectionState = newState.editorState.getSelection();
-
-    _this3.setState(newState);
-
-    return _this3;
-  };
-
-  this.setEditorProp = function (key, name) {
-    _this3.setState({
-      editorProps: _extends({}, _this3.state.editorProps, _defineProperty({}, key, name))
-    });
-    return _this3;
-  };
-
-  this.forceRender = function () {
-    _this3.setState({
-      editorState: _draftJs.EditorState.createWithContent(_this3.contentState, editorDecorators)
-    });
-    return _this3;
-  };
-
-  this.onTab = function (event) {
-
-    var currentBlock = _this3.getSelectionBlock();
-    var currentBlockType = currentBlock.getType();
-    var tabIndents = _this3.props.tabIndents;
-
-    if (currentBlockType === 'code-block') {
-      _this3.insertText(' '.repeat(tabIndents), false);
-      event.preventDefault();
-      return false;
-    }
-
-    _this3.props.onTab && _this3.props.onTab(event);
-  };
-
-  this.onFocus = function () {
-    _this3.isFocused = true;
-    _this3.props.onFocus && _this3.props.onFocus();
-  };
-
-  this.onBlur = function () {
-    _this3.isFocused = false;
-    _this3.props.onBlur && _this3.props.onBlur();
-  };
-
-  this.handleKeyCommand = function (command) {
-
-    if (command === 'braft-save') {
-      _this3.props.onSave && _this3.props.onSave();
-      return 'handled';
-    }
-
-    var nextEditorState = _draftJs.RichUtils.handleKeyCommand(_this3.editorState, command);
-
-    if (nextEditorState) {
-      _this3.onChange(nextEditorState);
-      return 'handled';
-    }
-
-    return 'not-handled';
-  };
-
-  this.handleReturn = function (event) {
-
-    var currentBlock = _this3.getSelectionBlock();
-    var currentBlockType = currentBlock.getType();
-
-    if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
-
-      if (currentBlock.getLength() === 0) {
-        _this3.toggleSelectionBlockType('unstyled');
-        return true;
-      }
-
-      return false;
-    } else if (currentBlockType === 'code-block') {
-
-      if (event.which === 13 && (event.getModifierState('Shift') || event.getModifierState('Alt') || event.getModifierState('Control'))) {
-        _this3.toggleSelectionBlockType('unstyled');
-        return true;
-      }
-
-      return false;
-    } else {
-
-      if (_this3.props.forceNewLine) {
-        event.which = 13;
-        event.getModifierState = function () {
-          return true;
-        };
-      }
-
-      var nextEditorState = (0, _draftjsUtils.handleNewLine)(_this3.state.editorState, event);
-
-      if (nextEditorState) {
-        _this3.onChange(nextEditorState);
-        return true;
-      }
-
-      return false;
-    }
-
-    return false;
-  };
-
-  this.handleDrop = function (selectionState, dataTransfer, isInternal) {
-
-    if (window.__BRAFT_DRAGING__IMAGE__) {
-
-      _this3.removeBlock(window.__BRAFT_DRAGING__IMAGE__.block, selectionState);
-      _this3.insertMedias([window.__BRAFT_DRAGING__IMAGE__.mediaData]);
-
-      window.__BRAFT_DRAGING__IMAGE__ = null;
-      _this3.setEditorProp('readOnly', false);
-      return 'handled';
-    } else if (!dataTransfer || !dataTransfer.getText()) {
-      return 'handled';
-    }
-
-    return 'not-handled';
-  };
-
-  this.handleDroppedFiles = function (selectionState, files) {
-
-    if (files[0] && files[0].type.indexOf('image') > -1 && _this3.props.media && _this3.props.media.allowPasteImage !== false) {
-      _this3.mediaLibrary.uploadImage(files[0], function (image) {
-        return _this3.insertMedias([image]);
-      });
-      return 'handled';
-    }
-
-    return 'not-handled';
-  };
-
-  this.handlePastedFiles = function (files) {
-
-    if (files[0] && files[0].type.indexOf('image') > -1 && _this3.props.media && _this3.props.media.allowPasteImage !== false) {
-      _this3.mediaLibrary.uploadImage(files[0], function (image) {
-        return _this3.insertMedias([image]);
-      });
-      return 'handled';
-    }
-
-    return 'not-handled';
-  };
-
-  this.handlePastedText = function (text, html) {
-
-    if (!html) {
-      return false;
-    }
-
-    var pasteMode = _this3.tmpPasteMode || _this3.props.pasteMode || 'normal';
-
-    if (pasteMode === 'text') {
-      _this3.tmpPasteMode = 'normal';
-      var tmpTextHolder = document.createElement('div');
-      tmpTextHolder.innerHTML = html;
-      return _this3.handlePastedText(text, tmpTextHolder.textContent || tmpTextHolder.innerText || '');
-    } else {
-      _this3.tmpPasteMode = null;
-    }
-
-    var fontFamilies = _this3.props.fontFamilies;
-
-    var blockMap = (0, _draftConvert.convertFromHTML)((0, _convert.getFromHTMLConfig)({ fontFamilies: fontFamilies }))(html || text).blockMap;
-    var nextContentState = _draftJs.Modifier.replaceWithFragment(_this3.contentState, _this3.selectionState, blockMap);
-
-    _this3.setState({
-      tempColors: [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray((0, _colors.detectColorsFromHTML)(html))).filter(function (item) {
-        return _this3.props.colors.indexOf(item) === -1;
-      }).filter(function (item, index, array) {
-        return array.indexOf(item) === index;
-      })
-    }, function () {
-      _this3.onChange(_draftJs.EditorState.push(_this3.editorState, nextContentState, 'insert-fragment'));
-    });
-
-    return true;
-  };
-
-  this.addTempColors = function (colors, callback) {
-
-    _this3.setState({
-      tempColors: [].concat(_toConsumableArray(_this3.state.tempColors), _toConsumableArray(colors)).filter(function (item) {
-        return _this3.props.colors.indexOf(item) === -1;
-      }).filter(function (item, index, array) {
-        return array.indexOf(item) === index;
-      })
-    }, callback);
-  };
-};
-
-exports.default = BraftEditor;
-
-/***/ }),
-/* 48 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  base: {
-    remove: 'Remove',
-    cancel: 'Cancel',
-    confirm: 'Confirm',
-    inert: 'Insert',
-    width: 'Width',
-    height: 'Height'
-  },
-  controls: {
-    clear: 'Clear',
-    undo: 'Undo',
-    redo: 'Redo',
-    fontSize: 'Font Size',
-    color: 'Color',
-    textColor: 'Text',
-    tempColors: 'Temp Colors',
-    backgroundColor: 'Background',
-    bold: 'Bold',
-    lineHeight: 'Line Height',
-    letterSpacing: 'Letter Spacing',
-    indent: 'Indent at both ends',
-    italic: 'Italic',
-    underline: 'Underline',
-    strikeThrough: 'Strike Through',
-    fontFamily: 'Font Family',
-    textAlign: 'Text Alignment',
-    alignLeft: 'Left Alignment',
-    alignCenter: 'Center Alignment',
-    alignRight: 'Right Alignment',
-    alignJustify: 'Justify Alignment',
-    floatLeft: 'Left Float',
-    floatRight: 'Right Float',
-    superScript: 'Super Script',
-    subScript: 'Sub Script',
-    removeStyles: 'Remove Styles',
-    headings: 'Headings',
-    header: 'Header',
-    normal: 'Normal',
-    orderedList: 'Ordered List',
-    unorderedList: 'Unordered List',
-    blockQuote: 'Quote',
-    code: 'Code',
-    link: 'Link',
-    unlink: 'Unlink',
-    hr: 'Horizontal Line',
-    media: 'Media',
-    emoji: 'Emoji'
-  },
-  linkEditor: {
-    inputPlaceHolder: 'Input link URL',
-    inputWithEnterPlaceHolder: 'Input link URL and press Enter',
-    openInNewWindow: 'Open in new window',
-    removeLink: 'Remove Link'
-  },
-  audioPlayer: {
-    title: 'Play Audio'
-  },
-  videoPlayer: {
-    title: 'Play Video',
-    embedTitle: 'Embed Media'
-  },
-  media: {
-    image: 'Image',
-    video: 'Video',
-    audio: 'Audio',
-    embed: 'Embed'
-  },
-  mediaPicker: {
-    caption: 'Media Library',
-    dragTip: 'Click Or Drag Files Here',
-    dropTip: 'Drop To Upload',
-    selectAll: 'Select All',
-    deselect: 'Deselect',
-    removeSelected: 'Remove Selected Items',
-    externalInputPlaceHolder: 'Source Name|Source URL',
-    externalInputTip: 'Split source name and source URL with "|", confirm by hit Enter.',
-    addLocalFile: 'Add from local',
-    addExternalSource: 'Add from Internet',
-    unnamedItem: 'Unnamed Item',
-    confirmInsert: 'Insert selected items'
-  }
-};
-
-/***/ }),
-/* 49 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  base: {
-    remove: '刪除',
-    cancel: '取消',
-    confirm: '確定',
-    inert: '插入',
-    width: '宽度',
-    height: '高度'
-  },
-  controls: {
-    clear: '清除内容',
-    undo: '撤銷',
-    redo: '重做',
-    fontSize: '字號',
-    color: '顏色',
-    textColor: '文字顏色',
-    backgroundColor: '背景顏色',
-    tempColors: '臨時顏色',
-    bold: '加粗',
-    lineHeight: '行高',
-    letterSpacing: '字間距',
-    indent: '兩端縮進',
-    border: '邊框',
-    italic: '斜體',
-    underline: '下劃線',
-    strikeThrough: '刪除線',
-    fontFamily: '字體',
-    textAlign: '文本對齊',
-    alignLeft: '居左',
-    alignCenter: '居中',
-    alignRight: '居右',
-    alignJustify: '兩端對齊',
-    floatLeft: '左浮動',
-    floatRight: '右浮動',
-    superScript: '上標',
-    subScript: '下標',
-    removeStyles: '清除样式',
-    headings: '標題',
-    header: '標題',
-    normal: '常規',
-    orderedList: '有序列表',
-    unorderedList: '無序列表',
-    blockQuote: '引用',
-    code: '代碼',
-    link: '鏈接',
-    unlink: '清除鏈接',
-    hr: '水平线',
-    media: '媒體',
-    emoji: '小表情'
-  },
-  linkEditor: {
-    inputPlaceHolder: '輸入鏈接地址',
-    inputWithEnterPlaceHolder: '輸入鏈接地址並回車',
-    openInNewWindow: '在新窗口打開',
-    removeLink: '移除鏈接'
-  },
-  audioPlayer: {
-    title: '播放音頻文件'
-  },
-  videoPlayer: {
-    title: '播放視頻文件',
-    embedTitle: '嵌入式媒體'
-  },
-  media: {
-    image: '圖像',
-    video: '視頻',
-    audio: '音頻',
-    embed: '嵌入式媒體'
-  },
-  mediaPicker: {
-    caption: '多媒體資源庫',
-    dragTip: '點擊或拖動文件至此',
-    dropTip: '鬆開鼠標以上傳',
-    selectAll: '全選',
-    deselect: '取消選择',
-    removeSelected: '删除所選项目',
-    externalInputPlaceHolder: '資源名稱|資源地址',
-    externalInputTip: '以豎線符("|")分割資源名和資源地址，按回車確認',
-    addLocalFile: '添加本地文件',
-    addExternalSource: '添加網絡資源',
-    unnamedItem: '未命名項目',
-    confirmInsert: '插入所選項目'
-  }
-};
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = {
-  base: {
-    remove: '删除',
-    cancel: '取消',
-    confirm: '确定',
-    inert: '插入',
-    width: '宽度',
-    height: '高度'
-  },
-  controls: {
-    clear: '清除内容',
-    undo: '撤销',
-    redo: '重做',
-    fontSize: '字号',
-    lineHeight: '行高',
-    letterSpacing: '字间距',
-    indent: '两端缩进',
-    border: '边框',
-    color: '颜色',
-    textColor: '文字颜色',
-    backgroundColor: '背景颜色',
-    tempColors: '临时颜色',
-    bold: '加粗',
-    italic: '斜体',
-    underline: '下划线',
-    strikeThrough: '删除线',
-    fontFamily: '字体',
-    textAlign: '文本对齐',
-    alignLeft: '居左',
-    alignCenter: '居中',
-    alignRight: '居右',
-    alignJustify: '两端',
-    floatLeft: '左浮动',
-    floatRight: '右浮动',
-    superScript: '上标',
-    subScript: '下标',
-    removeStyles: '清除样式',
-    headings: '标题',
-    header: '标题',
-    normal: '常规',
-    orderedList: '有序列表',
-    unorderedList: '无序列表',
-    blockQuote: '引用',
-    code: '代码',
-    link: '链接',
-    unlink: '清除链接',
-    hr: '水平线',
-    media: '媒体',
-    emoji: '小表情'
-  },
-  linkEditor: {
-    inputPlaceHolder: '输入链接地址',
-    inputWithEnterPlaceHolder: '输入链接地址并回车',
-    openInNewWindow: '在新窗口打开',
-    removeLink: '移除链接'
-  },
-  audioPlayer: {
-    title: '播放音频文件'
-  },
-  videoPlayer: {
-    title: '播放视频文件',
-    embedTitle: '嵌入式媒体'
-  },
-  media: {
-    image: '图像',
-    video: '视频',
-    audio: '音频',
-    embed: '嵌入式媒体'
-  },
-  mediaPicker: {
-    caption: '多媒体资源库',
-    dragTip: '点击或拖动文件至此',
-    dropTip: '松开鼠标以上传',
-    selectAll: '全选',
-    deselect: '取消选择',
-    removeSelected: '删除所选项目',
-    externalInputPlaceHolder: '资源名称|资源地址',
-    externalInputTip: '以竖线符("|")分割资源名和资源地址，按回车确认',
-    addLocalFile: '添加本地文件',
-    addExternalSource: '添加网络资源',
-    unnamedItem: '未命名项目',
-    confirmInsert: '插入所选项目'
-  }
-};
-
-/***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(80);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Modal = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Audio = function (_React$Component) {
-  _inherits(Audio, _React$Component);
-
-  function Audio() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Audio);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Audio.__proto__ || Object.getPrototypeOf(Audio)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      toolbarVisible: false,
-      playerVisible: false
-    }, _this.showPlayer = function () {
-
-      _this.playerModal = (0, _Modal.showModal)({
-        title: _this.props.language.audioPlayer.title,
-        width: 480,
-        confirmable: true,
-        language: _this.props.language,
-        showCancel: false,
-        onClose: _this.handlePlayerClose,
-        onConfirm: _this.handlePlayerClose,
-        children: _react2.default.createElement('audio', { className: 'braft-embed-audio-player', src: _this.props.mediaData.url, controls: true })
-      });
-    }, _this.removeAudio = function () {
-      _this.props.editor.removeBlock(_this.props.block);
-    }, _this.showToolbar = function () {
-      _this.setState({
-        toolbarVisible: true
-      });
-    }, _this.hideToolbar = function () {
-      _this.setState({
-        toolbarVisible: false
-      });
-    }, _this.handlePlayerClose = function () {
-      _this.playerModal = null;
-      _this.props.editor && _this.props.editor.focus();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Audio, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.playerModal && this.playerModal.destroy();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          toolbarVisible = _state.toolbarVisible,
-          playerVisible = _state.playerVisible;
-      var _props = this.props,
-          mediaData = _props.mediaData,
-          language = _props.language;
-      var url = mediaData.url,
-          width = mediaData.width,
-          height = mediaData.height,
-          name = mediaData.name;
-
-
-      return _react2.default.createElement(
-        'div',
-        {
-          className: 'braft-media-audio-holder',
-          onMouseOver: this.showToolbar,
-          onMouseLeave: this.hideToolbar
-        },
-        _react2.default.createElement('i', { className: 'braft-icon-music' }),
-        _react2.default.createElement(
-          'h5',
-          null,
-          name
-        ),
-        _react2.default.createElement(
-          'h6',
-          null,
-          url
-        ),
-        toolbarVisible ? _react2.default.createElement(
-          'div',
-          {
-            ref: function ref(instance) {
-              return _this2.toolbarElement = instance;
-            },
-            className: 'braft-embed-audio-toolbar'
-          },
-          _react2.default.createElement(
-            'a',
-            { onClick: this.showPlayer },
-            '\uE037'
-          ),
-          _react2.default.createElement(
-            'a',
-            { onClick: this.removeAudio },
-            '\uE9AC'
-          )
-        ) : null
-      );
-    }
-  }]);
-
-  return Audio;
-}(_react2.default.Component);
-
-exports.default = Audio;
-
-/***/ }),
-/* 52 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(81);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Modal = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Embed = function (_React$Component) {
-  _inherits(Embed, _React$Component);
-
-  function Embed() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Embed);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Embed.__proto__ || Object.getPrototypeOf(Embed)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      toolbarVisible: false,
-      playerVisible: false
-    }, _this.showPlayer = function () {
-      var url = _this.props.mediaData.url;
-
-
-      _this.playerModal = (0, _Modal.showModal)({
-        title: _this.props.language.videoPlayer.embedTitle,
-        confirmable: true,
-        language: _this.props.language,
-        showCancel: false,
-        onClose: _this.handlePlayerClose,
-        children: _react2.default.createElement('div', { className: 'braft-embed-media-player', dangerouslySetInnerHTML: { __html: url } })
-      });
-    }, _this.removeEmbed = function () {
-      _this.props.editor.removeBlock(_this.props.block);
-    }, _this.showToolbar = function () {
-      _this.setState({
-        toolbarVisible: true
-      });
-    }, _this.hideToolbar = function () {
-      _this.setState({
-        toolbarVisible: false
-      });
-    }, _this.handlePlayerClose = function () {
-      _this.props.editor && _this.props.editor.focus();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Embed, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.playerModal && this.playerModal.destroy();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          toolbarVisible = _state.toolbarVisible,
-          playerVisible = _state.playerVisible;
-      var _props = this.props,
-          mediaData = _props.mediaData,
-          language = _props.language;
-      var url = mediaData.url,
-          width = mediaData.width,
-          height = mediaData.height,
-          name = mediaData.name;
-
-
-      return _react2.default.createElement(
-        'div',
-        {
-          className: 'braft-media-video-holder',
-          onMouseOver: this.showToolbar,
-          onMouseLeave: this.hideToolbar
-        },
-        _react2.default.createElement('i', { className: 'braft-icon-code' }),
-        _react2.default.createElement(
-          'h5',
-          null,
-          name
-        ),
-        _react2.default.createElement(
-          'h6',
-          null,
-          url
-        ),
-        toolbarVisible ? _react2.default.createElement(
-          'div',
-          {
-            ref: function ref(instance) {
-              return _this2.toolbarElement = instance;
-            },
-            className: 'braft-embed-video-toolbar'
-          },
-          _react2.default.createElement(
-            'a',
-            { onClick: this.showPlayer },
-            '\uE037'
-          ),
-          _react2.default.createElement(
-            'a',
-            { onClick: this.removeEmbed },
-            '\uE9AC'
-          )
-        ) : null
-      );
-    }
-  }]);
-
-  return Embed;
-}(_react2.default.Component);
-
-exports.default = Embed;
-
-/***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-__webpack_require__(82);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var HorizontalLine = function (_React$Component) {
-  _inherits(HorizontalLine, _React$Component);
-
-  function HorizontalLine() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, HorizontalLine);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = HorizontalLine.__proto__ || Object.getPrototypeOf(HorizontalLine)).call.apply(_ref, [this].concat(args))), _this), _this.removeHorizontalLine = function () {
-      _this.props.editor.removeBlock(_this.props.block);
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(HorizontalLine, [{
-    key: 'render',
-    value: function render() {
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'braft-horizontal-line' },
-        _react2.default.createElement(
-          'div',
-          { className: 'braft-horizontal-line-toolbar' },
-          _react2.default.createElement(
-            'a',
-            { onClick: this.removeHorizontalLine },
-            '\uE9AC'
-          )
-        )
-      );
-    }
-  }]);
-
-  return HorizontalLine;
-}(_react2.default.Component);
-
-exports.default = HorizontalLine;
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(83);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Switch = __webpack_require__(11);
-
-var _Switch2 = _interopRequireDefault(_Switch);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Image = function (_React$Component) {
-  _inherits(Image, _React$Component);
-
-  function Image() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Image);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Image.__proto__ || Object.getPrototypeOf(Image)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      toolbarVisible: false,
-      toolbarOffset: 0,
-      linkEditorVisible: false,
-      sizeEditorVisible: false,
-      tempLink: null,
-      tempWidth: null,
-      tempHeight: null
-    }, _this.handleDragStart = function (event) {
-
-      window.__BRAFT_DRAGING__IMAGE__ = {
-        block: _this.props.block,
-        mediaData: _extends({
-          type: 'IMAGE'
-        }, _this.props.mediaData)
-      };
-
-      _this.setState({
-        toolbarVisible: false
-      }, function () {
-        _this.props.editor.setEditorProp('readOnly', false);
-      });
-
-      return true;
-    }, _this.handleDragEnd = function (event) {
-
-      window.__BRAFT_DRAGING__IMAGE__ = null;
-      return false;
-    }, _this.removeImage = function (e) {
-      _this.props.editor.removeBlock(_this.props.block);
-      _this.props.editor.setEditorProp('readOnly', false);
-    }, _this.toggleLinkEditor = function () {
-      _this.setState({
-        linkEditorVisible: !_this.state.linkEditorVisible,
-        sizeEditorVisible: false
-      });
-    }, _this.toggleSizeEditor = function () {
-      _this.setState({
-        linkEditorVisible: false,
-        sizeEditorVisible: !_this.state.sizeEditorVisible
-      });
-    }, _this.handleLinkInputKeyDown = function (e) {
-
-      if (e.keyCode === 13) {
-        _this.confirmImageLink();
-      } else {
-        return;
-      }
-    }, _this.setImageLink = function (e) {
-
-      _this.setState({
-        tempLink: e.currentTarget.value
-      });
-
-      return;
-    }, _this.confirmImageLink = function () {
-      var link = _this.state.tempLink;
-
-
-      if (link !== null) {
-        _this.props.editor.setMediaData(_this.props.entityKey, { link: link });
-        window.setImmediate(_this.props.editor.forceRender);
-      }
-    }, _this.handleSizeInputKeyDown = function (e) {
-
-      if (e.keyCode === 13) {
-        _this.confirmImageSize();
-      } else {
-        return;
-      }
-    }, _this.setImageWidth = function (_ref2) {
-      var currentTarget = _ref2.currentTarget;
-      var value = currentTarget.value;
-
-
-      value && !isNaN(value) && (value = value + 'px');
-
-      _this.setState({
-        tempWidth: value
-      });
-
-      return;
-    }, _this.setImageHeight = function (_ref3) {
-      var currentTarget = _ref3.currentTarget;
-      var value = currentTarget.value;
-
-
-      value && !isNaN(value) && (value = value + 'px');
-
-      _this.setState({
-        tempHeight: value
-      });
-
-      return;
-    }, _this.confirmImageSize = function () {
-      var _this$state = _this.state,
-          width = _this$state.tempWidth,
-          height = _this$state.tempHeight;
-
-      var newImageSize = {};
-
-      width !== null && (newImageSize.width = width);
-      height !== null && (newImageSize.height = height);
-
-      _this.props.editor.setMediaData(_this.props.entityKey, newImageSize);
-      window.setImmediate(_this.props.editor.forceRender);
-    }, _this.setImageFloat = function (e) {
-      var float = e.currentTarget.dataset.float;
-
-      _this.props.editor.setMediaPosition(_this.props.block, { float: float });
-      _this.props.editor.setEditorProp('readOnly', false);
-    }, _this.setImageAlignment = function (e) {
-      var alignment = e.currentTarget.dataset.alignment;
-
-      _this.props.editor.setMediaPosition(_this.props.block, { alignment: alignment });
-      _this.props.editor.setEditorProp('readOnly', false);
-    }, _this.showToolbar = function (event) {
-
-      event.preventDefault();
-
-      if (!_this.state.toolbarVisible) {
-        _this.setState({
-          toolbarVisible: true
-        }, function () {
-          _this.props.editor.setEditorProp('readOnly', true);
-          _this.setState({
-            toolbarOffset: _this.calcToolbarOffset()
-          });
-        });
-      }
-    }, _this.hideToolbar = function (event) {
-
-      event.preventDefault();
-
-      _this.setState({
-        toolbarVisible: false
-      }, function () {
-        _this.props.editor.setEditorProp('readOnly', false);
-      });
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Image, [{
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _props = this.props,
-          mediaData = _props.mediaData,
-          language = _props.language,
-          imageControls = _props.imageControls;
-      var _state = this.state,
-          toolbarVisible = _state.toolbarVisible,
-          toolbarOffset = _state.toolbarOffset,
-          linkEditorVisible = _state.linkEditorVisible,
-          sizeEditorVisible = _state.sizeEditorVisible;
-
-      var blockData = this.props.block.getData();
-
-      var float = blockData.get('float');
-      var alignment = blockData.get('alignment');
-      var url = mediaData.url,
-          link = mediaData.link,
-          link_target = mediaData.link_target,
-          width = mediaData.width,
-          height = mediaData.height;
-
-      var imageStyles = {};
-      var clearFix = false;
-
-      if (float) {
-        alignment = null;
-      } else if (alignment === 'left') {
-        imageStyles.float = 'left';
-        clearFix = true;
-      } else if (alignment === 'right') {
-        imageStyles.float = 'right';
-        clearFix = true;
-      } else if (alignment === 'center') {
-        imageStyles.textAlign = "center";
-      } else {
-        imageStyles.float = 'left';
-        clearFix = true;
-      }
-
-      return _react2.default.createElement(
-        'div',
-        { className: 'braft-media-embeder braft-image-embeder' },
-        _react2.default.createElement(
-          'div',
-          {
-            style: imageStyles,
-            draggable: true,
-            onMouseEnter: this.showToolbar,
-            onMouseMove: this.showToolbar,
-            onMouseLeave: this.hideToolbar,
-            onDragStart: this.handleDragStart,
-            onDragEnd: this.handleDragEnd,
-            ref: function ref(instance) {
-              return _this2.mediaEmbederInstance = instance;
-            },
-            className: 'braft-embed-image'
-          },
-          toolbarVisible ? _react2.default.createElement(
-            'div',
-            {
-              style: { marginLeft: toolbarOffset },
-              ref: function ref(instance) {
-                return _this2.toolbarElement = instance;
-              },
-              'data-float': float,
-              'data-alignment': alignment,
-              className: 'braft-embed-image-toolbar'
-            },
-            linkEditorVisible ? _react2.default.createElement(
-              'div',
-              { className: 'braft-embed-image-link-editor' },
-              _react2.default.createElement(
-                'div',
-                { className: 'editor-input-group' },
-                _react2.default.createElement('input', { type: 'text', placeholder: language.linkEditor.inputWithEnterPlaceHolder, onKeyDown: this.handleLinkInputKeyDown, onChange: this.setImageLink, defaultValue: link }),
-                _react2.default.createElement(
-                  'button',
-                  { type: 'button', onClick: this.confirmImageLink },
-                  language.base.confirm
-                )
-              ),
-              _react2.default.createElement(
-                'div',
-                { className: 'switch-group' },
-                _react2.default.createElement(_Switch2.default, {
-                  active: link_target === '_blank',
-                  onClick: function onClick() {
-                    return _this2.setImageLinkTarget(link_target);
-                  }
-                }),
-                _react2.default.createElement(
-                  'label',
-                  null,
-                  language.linkEditor.openInNewWindow
-                )
-              )
-            ) : null,
-            sizeEditorVisible ? _react2.default.createElement(
-              'div',
-              { className: 'braft-embed-image-size-editor' },
-              _react2.default.createElement(
-                'div',
-                { className: 'editor-input-group' },
-                _react2.default.createElement('input', { type: 'text', placeholder: language.base.width, onKeyDown: this.handleSizeInputKeyDown, onChange: this.setImageWidth, defaultValue: width }),
-                _react2.default.createElement('input', { type: 'text', placeholder: language.base.height, onKeyDown: this.handleSizeInputKeyDown, onChange: this.setImageHeight, defaultValue: height }),
-                _react2.default.createElement(
-                  'button',
-                  { type: 'button', onClick: this.confirmImageSize },
-                  language.base.confirm
-                )
-              )
-            ) : null,
-            imageControls.floatLeft ? _react2.default.createElement(
-              'a',
-              { 'data-float': 'left', onClick: this.setImageFloat },
-              '\uE91E'
-            ) : null,
-            imageControls.floatRight ? _react2.default.createElement(
-              'a',
-              { 'data-float': 'right', onClick: this.setImageFloat },
-              '\uE914'
-            ) : null,
-            imageControls.alignLeft ? _react2.default.createElement(
-              'a',
-              { 'data-alignment': 'left', onClick: this.setImageAlignment },
-              '\uE027'
-            ) : null,
-            imageControls.alignCenter ? _react2.default.createElement(
-              'a',
-              { 'data-alignment': 'center', onClick: this.setImageAlignment },
-              '\uE028'
-            ) : null,
-            imageControls.alignRight ? _react2.default.createElement(
-              'a',
-              { 'data-alignment': 'right', onClick: this.setImageAlignment },
-              '\uE029'
-            ) : null,
-            imageControls.size ? _react2.default.createElement(
-              'a',
-              { onClick: this.toggleSizeEditor },
-              '\uE3C2'
-            ) : null,
-            imageControls.link ? _react2.default.createElement(
-              'a',
-              { className: link ? 'active' : '', onClick: this.toggleLinkEditor },
-              '\uE91A'
-            ) : null,
-            imageControls.remove ? _react2.default.createElement(
-              'a',
-              { onClick: this.removeImage },
-              '\uE9AC'
-            ) : null,
-            _react2.default.createElement('i', { style: { marginLeft: toolbarOffset * -1 }, className: 'braft-embed-image-toolbar-arrow' })
-          ) : null,
-          _react2.default.createElement('img', {
-            ref: function ref(instance) {
-              return _this2.imageElement = instance;
-            },
-            src: url, style: { width: width, height: height }, width: width, height: height
-          })
-        ),
-        clearFix && _react2.default.createElement('div', { className: 'clearfix', style: { clear: 'both', height: 0, lineHeight: 0, float: 'none' } })
-      );
-    }
-  }, {
-    key: 'calcToolbarOffset',
-    value: function calcToolbarOffset() {
-
-      var viewRect = null;
-
-      if (this.props.viewWrapper) {
-        viewRect = document.querySelector(this.props.viewWrapper).getBoundingClientRect();
-      } else {
-        viewRect = document.body.getBoundingClientRect();
-      }
-
-      var toolbarRect = this.toolbarElement.getBoundingClientRect();
-      var imageRect = this.imageElement.getBoundingClientRect();
-      var right = imageRect.right - imageRect.width / 2 + toolbarRect.width / 2;
-      var left = imageRect.left + imageRect.width / 2 - toolbarRect.width / 2;
-
-      right = viewRect.right - right;
-      left = left - viewRect.left;
-
-      if (right < 10) {
-        return right - 10;
-      } else if (left < 10) {
-        return left * -1 + 10;
-      } else {
-        return 0;
-      }
-    }
-  }, {
-    key: 'setImageLinkTarget',
-    value: function setImageLinkTarget(link_target) {
-
-      link_target = link_target === '_blank' ? '' : '_blank';
-      this.props.editor.setMediaData(this.props.entityKey, { link_target: link_target });
-      window.setImmediate(this.props.editor.forceRender);
-    }
-  }]);
-
-  return Image;
-}(_react2.default.Component);
-
-exports.default = Image;
-
-/***/ }),
-/* 55 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(84);
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-var _Modal = __webpack_require__(4);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Video = function (_React$Component) {
-  _inherits(Video, _React$Component);
-
-  function Video() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    _classCallCheck(this, Video);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Video.__proto__ || Object.getPrototypeOf(Video)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-      toolbarVisible: false,
-      playerVisible: false
-    }, _this.showPlayer = function () {
-      var _this$props$mediaData = _this.props.mediaData,
-          url = _this$props$mediaData.url,
-          meta = _this$props$mediaData.meta;
-
-
-      _this.playerModal = (0, _Modal.showModal)({
-        title: _this.props.language.videoPlayer.title,
-        width: 480,
-        confirmable: true,
-        language: _this.props.language,
-        showCancel: false,
-        onClose: _this.handlePlayerClose,
-        children: _react2.default.createElement('video', { poster: meta && meta.poster ? meta.poster : '', className: 'braft-embed-video-player', src: url, controls: true })
-      });
-    }, _this.removeVideo = function () {
-      _this.props.editor.removeBlock(_this.props.block);
-    }, _this.showToolbar = function () {
-      _this.setState({
-        toolbarVisible: true
-      });
-    }, _this.hideToolbar = function () {
-      _this.setState({
-        toolbarVisible: false
-      });
-    }, _this.handlePlayerClose = function () {
-      _this.props.editor && _this.props.editor.focus();
-    }, _temp), _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(Video, [{
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.playerModal && this.playerModal.destroy();
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this2 = this;
-
-      var _state = this.state,
-          toolbarVisible = _state.toolbarVisible,
-          playerVisible = _state.playerVisible;
-      var _props = this.props,
-          mediaData = _props.mediaData,
-          language = _props.language;
-      var url = mediaData.url,
-          width = mediaData.width,
-          height = mediaData.height,
-          name = mediaData.name,
-          meta = mediaData.meta;
-
-
-      return _react2.default.createElement(
-        'div',
-        {
-          className: 'braft-media-video-holder',
-          onMouseOver: this.showToolbar,
-          onMouseLeave: this.hideToolbar
-        },
-        meta && meta.poster ? _react2.default.createElement('img', { className: 'braft-media-video-poster', src: meta.poster }) : _react2.default.createElement(
-          'div',
-          null,
-          _react2.default.createElement('i', { className: 'braft-icon-film' }),
-          _react2.default.createElement(
-            'h5',
-            null,
-            name
-          ),
-          _react2.default.createElement(
-            'h6',
-            null,
-            url
-          )
-        ),
-        toolbarVisible ? _react2.default.createElement(
-          'div',
-          {
-            ref: function ref(instance) {
-              return _this2.toolbarElement = instance;
-            },
-            className: 'braft-embed-video-toolbar'
-          },
-          _react2.default.createElement(
-            'a',
-            { onClick: this.showPlayer },
-            '\uE037'
-          ),
-          _react2.default.createElement(
-            'a',
-            { onClick: this.removeVideo },
-            '\uE9AC'
-          )
-        ) : null
-      );
-    }
-  }]);
-
-  return Video;
-}(_react2.default.Component);
-
-exports.default = Video;
-
-/***/ }),
-/* 56 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(0);
-
-var _react2 = _interopRequireDefault(_react);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function handleStrategy(contentBlock, callback, contentState) {
-
-  contentBlock.findEntityRanges(function (character) {
-    var entityKey = character.getEntity();
-    return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
-  }, callback);
-}
-
-var Link = function Link(props) {
-  var children = props.children,
-      entityKey = props.entityKey,
-      contentState = props.contentState;
-
-  var _contentState$getEnti = contentState.getEntity(entityKey).getData(),
-      href = _contentState$getEnti.href,
-      target = _contentState$getEnti.target;
-
-  return _react2.default.createElement(
-    'span',
-    { className: 'braft-link-wrap' },
-    _react2.default.createElement(
-      'a',
-      { onClick: function onClick(event) {
-          return viewLink(event, href);
-        }, className: 'braft-link', href: href, target: target },
-      children
-    )
-  );
-};
-
-var viewLink = function viewLink(event, link) {
-  if (event.getModifierState('Shift')) {
-    var tempLink = document.createElement('a');
-    tempLink.href = link;
-    tempLink.target = '_blank';
-    tempLink.click();
-  }
-};
-
-exports.default = {
-  strategy: handleStrategy,
-  component: Link
-};
-
-/***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _Link = __webpack_require__(56);
-
-var _Link2 = _interopRequireDefault(_Link);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = [_Link2.default];
-
-/***/ }),
-/* 58 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = blockStyleFn;
-function blockStyleFn(block) {
-
-  var blockAlignment = block.getData() && block.getData().get('textAlign');
-  var blockFloat = block.getData() && block.getData().get('float');
-
-  var result = null;
-
-  if (blockAlignment) {
-    result = 'braft-' + blockAlignment + '-aligned-block';
-  }
-
-  if (blockFloat) {
-    result += ' braft-float-' + blockFloat;
-  }
-
-  return result;
-}
-
-/***/ }),
-/* 59 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.default = function (props) {
-
-  var colorStyles = {};
-  var bgColorStyles = {};
-  var fontSizeStyles = {};
-  var fontFamilyStyles = {};
-  var lineHeightStyles = {};
-  var letterSpacingtStyles = {};
-  var indentStyles = {};
-
-  props.colors.forEach(function (color) {
-    var color_id = color.replace('#', '').toUpperCase();
-    colorStyles['COLOR-' + color_id] = { color: color };
-    bgColorStyles['BGCOLOR-' + color_id] = { backgroundColor: color };
-  });
-
-  props.fontSizes.forEach(function (fontSize) {
-    fontSizeStyles['FONTSIZE-' + fontSize] = { fontSize: fontSize };
-  });
-
-  props.fontFamilies.forEach(function (fontFamily) {
-    fontFamilyStyles['FONTFAMILY-' + fontFamily.name.toUpperCase()] = {
-      fontFamily: fontFamily.family
-    };
-  });
-
-  props.lineHeights.forEach(function (lineHeight) {
-    lineHeightStyles['LINEHEIGHT-' + lineHeight] = { lineHeight: lineHeight };
-  });
-
-  props.letterSpacings.forEach(function (letterSpacing) {
-    letterSpacingtStyles['LETTERSPACING-' + letterSpacing] = { letterSpacing: letterSpacing };
-  });
-  props.indents.forEach(function (indent) {
-    indentStyles['INDENT-' + indent] = { paddingLeft: indent, paddingRight: indent };
-  });
-
-  return _extends({
-    'SUPERSCRIPT': {
-      position: 'relative',
-      top: '-8px',
-      fontSize: '11px'
-    },
-    'SUBSCRIPT': {
-      position: 'relative',
-      bottom: '-8px',
-      fontSize: '11px'
-    }
-  }, colorStyles, bgColorStyles, fontSizeStyles, fontFamilyStyles, lineHeightStyles, letterSpacingtStyles, indentStyles);
-};
-
-/***/ }),
-/* 60 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule DefaultDraftBlockRenderMap
- * @format
- * 
- */
-
-
-
-var _require = __webpack_require__(2),
-    Map = _require.Map;
-
-var React = __webpack_require__(0);
-
-var cx = __webpack_require__(20);
-
-var UL_WRAP = React.createElement('ul', { className: cx('public/DraftStyleDefault/ul') });
-var OL_WRAP = React.createElement('ol', { className: cx('public/DraftStyleDefault/ol') });
-var PRE_WRAP = React.createElement('pre', { className: cx('public/DraftStyleDefault/pre') });
-
-var DefaultDraftBlockRenderMap = Map({
-  'header-one': {
-    element: 'h1'
-  },
-  'header-two': {
-    element: 'h2'
-  },
-  'header-three': {
-    element: 'h3'
-  },
-  'header-four': {
-    element: 'h4'
-  },
-  'header-five': {
-    element: 'h5'
-  },
-  'header-six': {
-    element: 'h6'
-  },
-  'unordered-list-item': {
-    element: 'li',
-    wrapper: UL_WRAP
-  },
-  'ordered-list-item': {
-    element: 'li',
-    wrapper: OL_WRAP
-  },
-  blockquote: {
-    element: 'blockquote'
-  },
-  atomic: {
-    element: 'figure'
-  },
-  'code-block': {
-    element: 'pre',
-    wrapper: PRE_WRAP
-  },
-  unstyled: {
-    element: 'div',
-    aliasedElements: ['p']
-  }
-});
-
-module.exports = DefaultDraftBlockRenderMap;
-
-/***/ }),
-/* 61 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _assign = __webpack_require__(9);
-
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule DraftEntity
- * @format
- * 
- */
-
-var DraftEntityInstance = __webpack_require__(62);
-var Immutable = __webpack_require__(2);
-
-var invariant = __webpack_require__(7);
-
-var Map = Immutable.Map;
-
-
-var instances = Map();
-var instanceKey = 0;
-
-/**
- * Temporary utility for generating the warnings
- */
-function logWarning(oldMethodCall, newMethodCall) {
-  console.warn('WARNING: ' + oldMethodCall + ' will be deprecated soon!\nPlease use "' + newMethodCall + '" instead.');
-}
-
-/**
- * A "document entity" is an object containing metadata associated with a
- * piece of text in a ContentBlock.
- *
- * For example, a `link` entity might include a `uri` property. When a
- * ContentBlock is rendered in the browser, text that refers to that link
- * entity may be rendered as an anchor, with the `uri` as the href value.
- *
- * In a ContentBlock, every position in the text may correspond to zero
- * or one entities. This correspondence is tracked using a key string,
- * generated via DraftEntity.create() and used to obtain entity metadata
- * via DraftEntity.get().
- */
-var DraftEntity = {
-  /**
-   * WARNING: This method will be deprecated soon!
-   * Please use 'contentState.getLastCreatedEntityKey' instead.
-   * ---
-   * Get the random key string from whatever entity was last created.
-   * We need this to support the new API, as part of transitioning to put Entity
-   * storage in contentState.
-   */
-  getLastCreatedEntityKey: function getLastCreatedEntityKey() {
-    logWarning('DraftEntity.getLastCreatedEntityKey', 'contentState.getLastCreatedEntityKey');
-    return DraftEntity.__getLastCreatedEntityKey();
-  },
-
-  /**
-   * WARNING: This method will be deprecated soon!
-   * Please use 'contentState.createEntity' instead.
-   * ---
-   * Create a DraftEntityInstance and store it for later retrieval.
-   *
-   * A random key string will be generated and returned. This key may
-   * be used to track the entity's usage in a ContentBlock, and for
-   * retrieving data about the entity at render time.
-   */
-  create: function create(type, mutability, data) {
-    logWarning('DraftEntity.create', 'contentState.createEntity');
-    return DraftEntity.__create(type, mutability, data);
-  },
-
-  /**
-   * WARNING: This method will be deprecated soon!
-   * Please use 'contentState.addEntity' instead.
-   * ---
-   * Add an existing DraftEntityInstance to the DraftEntity map. This is
-   * useful when restoring instances from the server.
-   */
-  add: function add(instance) {
-    logWarning('DraftEntity.add', 'contentState.addEntity');
-    return DraftEntity.__add(instance);
-  },
-
-  /**
-   * WARNING: This method will be deprecated soon!
-   * Please use 'contentState.getEntity' instead.
-   * ---
-   * Retrieve the entity corresponding to the supplied key string.
-   */
-  get: function get(key) {
-    logWarning('DraftEntity.get', 'contentState.getEntity');
-    return DraftEntity.__get(key);
-  },
-
-  /**
-   * WARNING: This method will be deprecated soon!
-   * Please use 'contentState.mergeEntityData' instead.
-   * ---
-   * Entity instances are immutable. If you need to update the data for an
-   * instance, this method will merge your data updates and return a new
-   * instance.
-   */
-  mergeData: function mergeData(key, toMerge) {
-    logWarning('DraftEntity.mergeData', 'contentState.mergeEntityData');
-    return DraftEntity.__mergeData(key, toMerge);
-  },
-
-  /**
-   * WARNING: This method will be deprecated soon!
-   * Please use 'contentState.replaceEntityData' instead.
-   * ---
-   * Completely replace the data for a given instance.
-   */
-  replaceData: function replaceData(key, newData) {
-    logWarning('DraftEntity.replaceData', 'contentState.replaceEntityData');
-    return DraftEntity.__replaceData(key, newData);
-  },
-
-  // ***********************************WARNING******************************
-  // --- the above public API will be deprecated in the next version of Draft!
-  // The methods below this line are private - don't call them directly.
-
-  /**
-   * Get the random key string from whatever entity was last created.
-   * We need this to support the new API, as part of transitioning to put Entity
-   * storage in contentState.
-   */
-  __getLastCreatedEntityKey: function __getLastCreatedEntityKey() {
-    return '' + instanceKey;
-  },
-
-  /**
-   * Create a DraftEntityInstance and store it for later retrieval.
-   *
-   * A random key string will be generated and returned. This key may
-   * be used to track the entity's usage in a ContentBlock, and for
-   * retrieving data about the entity at render time.
-   */
-  __create: function __create(type, mutability, data) {
-    return DraftEntity.__add(new DraftEntityInstance({ type: type, mutability: mutability, data: data || {} }));
-  },
-
-  /**
-   * Add an existing DraftEntityInstance to the DraftEntity map. This is
-   * useful when restoring instances from the server.
-   */
-  __add: function __add(instance) {
-    var key = '' + ++instanceKey;
-    instances = instances.set(key, instance);
-    return key;
-  },
-
-  /**
-   * Retrieve the entity corresponding to the supplied key string.
-   */
-  __get: function __get(key) {
-    var instance = instances.get(key);
-    !!!instance ?  false ? invariant(false, 'Unknown DraftEntity key: %s.', key) : invariant(false) : void 0;
-    return instance;
-  },
-
-  /**
-   * Entity instances are immutable. If you need to update the data for an
-   * instance, this method will merge your data updates and return a new
-   * instance.
-   */
-  __mergeData: function __mergeData(key, toMerge) {
-    var instance = DraftEntity.__get(key);
-    var newData = _extends({}, instance.getData(), toMerge);
-    var newInstance = instance.set('data', newData);
-    instances = instances.set(key, newInstance);
-    return newInstance;
-  },
-
-  /**
-   * Completely replace the data for a given instance.
-   */
-  __replaceData: function __replaceData(key, newData) {
-    var instance = DraftEntity.__get(key);
-    var newInstance = instance.set('data', newData);
-    instances = instances.set(key, newInstance);
-    return newInstance;
-  }
-};
-
-module.exports = DraftEntity;
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule DraftEntityInstance
- * @legacyServerCallableInstance
- * @format
- * 
- */
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Immutable = __webpack_require__(2);
-
-var Record = Immutable.Record;
-
-
-var DraftEntityInstanceRecord = Record({
-  type: 'TOKEN',
-  mutability: 'IMMUTABLE',
-  data: Object
-});
-
-/**
- * An instance of a document entity, consisting of a `type` and relevant
- * `data`, metadata about the entity.
- *
- * For instance, a "link" entity might provide a URI, and a "mention"
- * entity might provide the mentioned user's ID. These pieces of data
- * may be used when rendering the entity as part of a ContentBlock DOM
- * representation. For a link, the data would be used as an href for
- * the rendered anchor. For a mention, the ID could be used to retrieve
- * a hovercard.
- */
-
-var DraftEntityInstance = function (_DraftEntityInstanceR) {
-  _inherits(DraftEntityInstance, _DraftEntityInstanceR);
-
-  function DraftEntityInstance() {
-    _classCallCheck(this, DraftEntityInstance);
-
-    return _possibleConstructorReturn(this, _DraftEntityInstanceR.apply(this, arguments));
-  }
-
-  DraftEntityInstance.prototype.getType = function getType() {
-    return this.get('type');
-  };
-
-  DraftEntityInstance.prototype.getMutability = function getMutability() {
-    return this.get('mutability');
-  };
-
-  DraftEntityInstance.prototype.getData = function getData() {
-    return this.get('data');
-  };
-
-  return DraftEntityInstance;
-}(DraftEntityInstanceRecord);
-
-module.exports = DraftEntityInstance;
-
-/***/ }),
-/* 63 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule DraftFeatureFlags-core
- * @format
- * 
- */
-
-
-
-var DraftFeatureFlags = {
-  draft_killswitch_allow_nontextnodes: false,
-  draft_segmented_entities_behavior: false,
-  draft_handlebeforeinput_composed_text: false,
-  draft_tree_data_support: false
-};
-
-module.exports = DraftFeatureFlags;
-
-/***/ }),
-/* 64 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the BSD-style license found in the
- * LICENSE file in the root directory of this source tree. An additional grant
- * of patent rights can be found in the PATENTS file in the same directory.
- *
- * @providesModule convertFromHTMLToContentBlocks
- * @format
- * 
- */
-
-
-
-var _extends = _assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _knownListItemDepthCl,
-    _assign = __webpack_require__(9);
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var CharacterMetadata = __webpack_require__(6);
-var ContentBlock = __webpack_require__(13);
-var ContentBlockNode = __webpack_require__(14);
-var DefaultDraftBlockRenderMap = __webpack_require__(60);
-var DraftEntity = __webpack_require__(61);
-var DraftFeatureFlags = __webpack_require__(15);
-var Immutable = __webpack_require__(2);
-
-var _require = __webpack_require__(2),
-    Set = _require.Set;
-
-var URI = __webpack_require__(85);
-
-var cx = __webpack_require__(20);
-var generateRandomKey = __webpack_require__(17);
-var getSafeBodyFromHTML = __webpack_require__(18);
-var invariant = __webpack_require__(7);
-var sanitizeDraftText = __webpack_require__(19);
-
-var experimentalTreeDataSupport = DraftFeatureFlags.draft_tree_data_support;
-
-var List = Immutable.List,
-    OrderedSet = Immutable.OrderedSet;
-
-
-var NBSP = '&nbsp;';
-var SPACE = ' ';
-
-// Arbitrary max indent
-var MAX_DEPTH = 4;
-
-// used for replacing characters in HTML
-var REGEX_CR = new RegExp('\r', 'g');
-var REGEX_LF = new RegExp('\n', 'g');
-var REGEX_NBSP = new RegExp(NBSP, 'g');
-var REGEX_CARRIAGE = new RegExp('&#13;?', 'g');
-var REGEX_ZWS = new RegExp('&#8203;?', 'g');
-
-// https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight
-var boldValues = ['bold', 'bolder', '500', '600', '700', '800', '900'];
-var notBoldValues = ['light', 'lighter', '100', '200', '300', '400'];
-
-// Block tag flow is different because LIs do not have
-// a deterministic style ;_;
-var inlineTags = {
-  b: 'BOLD',
-  code: 'CODE',
-  del: 'STRIKETHROUGH',
-  em: 'ITALIC',
-  i: 'ITALIC',
-  s: 'STRIKETHROUGH',
-  strike: 'STRIKETHROUGH',
-  strong: 'BOLD',
-  u: 'UNDERLINE'
-};
-
-var knownListItemDepthClasses = (_knownListItemDepthCl = {}, _defineProperty(_knownListItemDepthCl, cx('public/DraftStyleDefault/depth0'), 0), _defineProperty(_knownListItemDepthCl, cx('public/DraftStyleDefault/depth1'), 1), _defineProperty(_knownListItemDepthCl, cx('public/DraftStyleDefault/depth2'), 2), _defineProperty(_knownListItemDepthCl, cx('public/DraftStyleDefault/depth3'), 3), _defineProperty(_knownListItemDepthCl, cx('public/DraftStyleDefault/depth4'), 4), _knownListItemDepthCl);
-
-var anchorAttr = ['className', 'href', 'rel', 'target', 'title'];
-
-var imgAttr = ['alt', 'className', 'height', 'src', 'width'];
-
-var lastBlock = void 0;
-
-var EMPTY_CHUNK = {
-  text: '',
-  inlines: [],
-  entities: [],
-  blocks: []
-};
-
-var EMPTY_BLOCK = {
-  children: List(),
-  depth: 0,
-  key: '',
-  type: ''
-};
-
-var getListBlockType = function getListBlockType(tag, lastList) {
-  if (tag === 'li') {
-    return lastList === 'ol' ? 'ordered-list-item' : 'unordered-list-item';
-  }
-  return null;
-};
-
-var getBlockMapSupportedTags = function getBlockMapSupportedTags(blockRenderMap) {
-  var unstyledElement = blockRenderMap.get('unstyled').element;
-  var tags = Set([]);
-
-  blockRenderMap.forEach(function (draftBlock) {
-    if (draftBlock.aliasedElements) {
-      draftBlock.aliasedElements.forEach(function (tag) {
-        tags = tags.add(tag);
-      });
-    }
-
-    tags = tags.add(draftBlock.element);
-  });
-
-  return tags.filter(function (tag) {
-    return tag && tag !== unstyledElement;
-  }).toArray().sort();
-};
-
-// custom element conversions
-var getMultiMatchedType = function getMultiMatchedType(tag, lastList, multiMatchExtractor) {
-  for (var ii = 0; ii < multiMatchExtractor.length; ii++) {
-    var matchType = multiMatchExtractor[ii](tag, lastList);
-    if (matchType) {
-      return matchType;
-    }
-  }
-  return null;
-};
-
-var getBlockTypeForTag = function getBlockTypeForTag(tag, lastList, blockRenderMap) {
-  var matchedTypes = blockRenderMap.filter(function (draftBlock) {
-    return draftBlock.element === tag || draftBlock.wrapper === tag || draftBlock.aliasedElements && draftBlock.aliasedElements.some(function (alias) {
-      return alias === tag;
-    });
-  }).keySeq().toSet().toArray().sort();
-
-  // if we dont have any matched type, return unstyled
-  // if we have one matched type return it
-  // if we have multi matched types use the multi-match function to gather type
-  switch (matchedTypes.length) {
-    case 0:
-      return 'unstyled';
-    case 1:
-      return matchedTypes[0];
-    default:
-      return getMultiMatchedType(tag, lastList, [getListBlockType]) || 'unstyled';
-  }
-};
-
-var processInlineTag = function processInlineTag(tag, node, currentStyle) {
-  var styleToCheck = inlineTags[tag];
-  if (styleToCheck) {
-    currentStyle = currentStyle.add(styleToCheck).toOrderedSet();
-  } else if (node instanceof HTMLElement) {
-    var htmlElement = node;
-    currentStyle = currentStyle.withMutations(function (style) {
-      var fontWeight = htmlElement.style.fontWeight;
-      var fontStyle = htmlElement.style.fontStyle;
-      var textDecoration = htmlElement.style.textDecoration;
-
-      if (boldValues.indexOf(fontWeight) >= 0) {
-        style.add('BOLD');
-      } else if (notBoldValues.indexOf(fontWeight) >= 0) {
-        style.remove('BOLD');
-      }
-
-      if (fontStyle === 'italic') {
-        style.add('ITALIC');
-      } else if (fontStyle === 'normal') {
-        style.remove('ITALIC');
-      }
-
-      if (textDecoration === 'underline') {
-        style.add('UNDERLINE');
-      }
-      if (textDecoration === 'line-through') {
-        style.add('STRIKETHROUGH');
-      }
-      if (textDecoration === 'none') {
-        style.remove('UNDERLINE');
-        style.remove('STRIKETHROUGH');
-      }
-    }).toOrderedSet();
-  }
-  return currentStyle;
-};
-
-var joinChunks = function joinChunks(A, B, experimentalHasNestedBlocks) {
-  // Sometimes two blocks will touch in the DOM and we need to strip the
-  // extra delimiter to preserve niceness.
-  var lastInA = A.text.slice(-1);
-  var firstInB = B.text.slice(0, 1);
-
-  if (lastInA === '\r' && firstInB === '\r' && !experimentalHasNestedBlocks) {
-    A.text = A.text.slice(0, -1);
-    A.inlines.pop();
-    A.entities.pop();
-    A.blocks.pop();
-  }
-
-  // Kill whitespace after blocks
-  if (lastInA === '\r') {
-    if (B.text === SPACE || B.text === '\n') {
-      return A;
-    } else if (firstInB === SPACE || firstInB === '\n') {
-      B.text = B.text.slice(1);
-      B.inlines.shift();
-      B.entities.shift();
-    }
-  }
-
-  return {
-    text: A.text + B.text,
-    inlines: A.inlines.concat(B.inlines),
-    entities: A.entities.concat(B.entities),
-    blocks: A.blocks.concat(B.blocks)
-  };
-};
-
-/**
- * Check to see if we have anything like <p> <blockquote> <h1>... to create
- * block tags from. If we do, we can use those and ignore <div> tags. If we
- * don't, we can treat <div> tags as meaningful (unstyled) blocks.
- */
-var containsSemanticBlockMarkup = function containsSemanticBlockMarkup(html, blockTags) {
-  return blockTags.some(function (tag) {
-    return html.indexOf('<' + tag) !== -1;
-  });
-};
-
-var hasValidLinkText = function hasValidLinkText(link) {
-  !(link instanceof HTMLAnchorElement) ?  false ? invariant(false, 'Link must be an HTMLAnchorElement.') : invariant(false) : void 0;
-  var protocol = link.protocol;
-  return protocol === 'http:' || protocol === 'https:' || protocol === 'mailto:';
-};
-
-var getWhitespaceChunk = function getWhitespaceChunk(inEntity) {
-  var entities = new Array(1);
-  if (inEntity) {
-    entities[0] = inEntity;
-  }
-  return _extends({}, EMPTY_CHUNK, {
-    text: SPACE,
-    inlines: [OrderedSet()],
-    entities: entities
-  });
-};
-
-var getSoftNewlineChunk = function getSoftNewlineChunk() {
-  return _extends({}, EMPTY_CHUNK, {
-    text: '\n',
-    inlines: [OrderedSet()],
-    entities: new Array(1)
-  });
-};
-
-var getChunkedBlock = function getChunkedBlock() {
-  var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-  return _extends({}, EMPTY_BLOCK, props);
-};
-
-var getBlockDividerChunk = function getBlockDividerChunk(block, depth) {
-  var parentKey = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-
-  return {
-    text: '\r',
-    inlines: [OrderedSet()],
-    entities: new Array(1),
-    blocks: [getChunkedBlock({
-      parent: parentKey,
-      key: generateRandomKey(),
-      type: block,
-      depth: Math.max(0, Math.min(MAX_DEPTH, depth))
-    })]
-  };
-};
-
-/**
- *  If we're pasting from one DraftEditor to another we can check to see if
- *  existing list item depth classes are being used and preserve this style
- */
-var getListItemDepth = function getListItemDepth(node) {
-  var depth = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
-
-  Object.keys(knownListItemDepthClasses).some(function (depthClass) {
-    if (node.classList.contains(depthClass)) {
-      depth = knownListItemDepthClasses[depthClass];
-    }
-  });
-  return depth;
-};
-
-var genFragment = function genFragment(entityMap, node, inlineStyle, lastList, inBlock, blockTags, depth, blockRenderMap, inEntity, parentKey) {
-  var lastLastBlock = lastBlock;
-  var nodeName = node.nodeName.toLowerCase();
-  var newEntityMap = entityMap;
-  var nextBlockType = 'unstyled';
-  var newBlock = false;
-  var inBlockType = inBlock && getBlockTypeForTag(inBlock, lastList, blockRenderMap);
-  var chunk = _extends({}, EMPTY_CHUNK);
-  var newChunk = null;
-  var blockKey = void 0;
-
-  // Base Case
-  if (nodeName === '#text') {
-    var _text = node.textContent;
-    var nodeTextContent = _text.trim();
-
-    // We should not create blocks for leading spaces that are
-    // existing around ol/ul and their children list items
-    if (lastList && nodeTextContent === '' && node.parentElement) {
-      var parentNodeName = node.parentElement.nodeName.toLowerCase();
-      if (parentNodeName === 'ol' || parentNodeName === 'ul') {
-        return { chunk: _extends({}, EMPTY_CHUNK), entityMap: entityMap };
-      }
-    }
-
-    if (nodeTextContent === '' && inBlock !== 'pre') {
-      return { chunk: getWhitespaceChunk(inEntity), entityMap: entityMap };
-    }
-    if (inBlock !== 'pre') {
-      // Can't use empty string because MSWord
-      _text = _text.replace(REGEX_LF, SPACE);
-    }
-
-    // save the last block so we can use it later
-    lastBlock = nodeName;
-
-    return {
-      chunk: {
-        text: _text,
-        inlines: Array(_text.length).fill(inlineStyle),
-        entities: Array(_text.length).fill(inEntity),
-        blocks: []
-      },
-      entityMap: entityMap
-    };
-  }
-
-  // save the last block so we can use it later
-  lastBlock = nodeName;
-
-  // BR tags
-  if (nodeName === 'br') {
-    if (lastLastBlock === 'br' && (!inBlock || inBlockType === 'unstyled')) {
-      return {
-        chunk: getBlockDividerChunk('unstyled', depth, parentKey),
-        entityMap: entityMap
-      };
-    }
-    return { chunk: getSoftNewlineChunk(), entityMap: entityMap };
-  }
-
-  // IMG tags
-  if (nodeName === 'img' && node instanceof HTMLImageElement && node.attributes.getNamedItem('src') && node.attributes.getNamedItem('src').value) {
-    var image = node;
-    var entityConfig = {};
-
-    imgAttr.forEach(function (attr) {
-      var imageAttribute = image.getAttribute(attr);
-      if (imageAttribute) {
-        entityConfig[attr] = imageAttribute;
-      }
-    });
-    // Forcing this node to have children because otherwise no entity will be
-    // created for this node.
-    // The child text node cannot just have a space or return as content -
-    // we strip those out.
-    // See https://github.com/facebook/draft-js/issues/231 for some context.
-    node.textContent = '\uD83D\uDCF7';
-
-    // TODO: update this when we remove DraftEntity entirely
-    inEntity = DraftEntity.__create('IMAGE', 'MUTABLE', entityConfig || {});
-  }
-
-  // Inline tags
-  inlineStyle = processInlineTag(nodeName, node, inlineStyle);
-
-  // Handle lists
-  if (nodeName === 'ul' || nodeName === 'ol') {
-    if (lastList) {
-      depth += 1;
-    }
-    lastList = nodeName;
-  }
-
-  if (!experimentalTreeDataSupport && nodeName === 'li' && node instanceof HTMLElement) {
-    depth = getListItemDepth(node, depth);
-  }
-
-  var blockType = getBlockTypeForTag(nodeName, lastList, blockRenderMap);
-  var inListBlock = lastList && inBlock === 'li' && nodeName === 'li';
-  var inBlockOrHasNestedBlocks = (!inBlock || experimentalTreeDataSupport) && blockTags.indexOf(nodeName) !== -1;
-
-  // Block Tags
-  if (inListBlock || inBlockOrHasNestedBlocks) {
-    chunk = getBlockDividerChunk(blockType, depth, parentKey);
-    blockKey = chunk.blocks[0].key;
-    inBlock = nodeName;
-    newBlock = !experimentalTreeDataSupport;
-  }
-
-  // this is required so that we can handle 'ul' and 'ol'
-  if (inListBlock) {
-    nextBlockType = lastList === 'ul' ? 'unordered-list-item' : 'ordered-list-item';
-  }
-
-  // Recurse through children
-  var child = node.firstChild;
-  if (child != null) {
-    nodeName = child.nodeName.toLowerCase();
-  }
-
-  var entityId = null;
-
-  while (child) {
-    if (child instanceof HTMLAnchorElement && child.href && hasValidLinkText(child)) {
-      (function () {
-        var anchor = child;
-        var entityConfig = {};
-
-        anchorAttr.forEach(function (attr) {
-          var anchorAttribute = anchor.getAttribute(attr);
-          if (anchorAttribute) {
-            entityConfig[attr] = anchorAttribute;
-          }
-        });
-
-        entityConfig.url = new URI(anchor.href).toString();
-        // TODO: update this when we remove DraftEntity completely
-        entityId = DraftEntity.__create('LINK', 'MUTABLE', entityConfig || {});
-      })();
-    } else {
-      entityId = undefined;
-    }
-
-    var _genFragment = genFragment(newEntityMap, child, inlineStyle, lastList, inBlock, blockTags, depth, blockRenderMap, entityId || inEntity, experimentalTreeDataSupport ? blockKey : null),
-        generatedChunk = _genFragment.chunk,
-        maybeUpdatedEntityMap = _genFragment.entityMap;
-
-    newChunk = generatedChunk;
-    newEntityMap = maybeUpdatedEntityMap;
-
-    chunk = joinChunks(chunk, newChunk, experimentalTreeDataSupport);
-    var sibling = child.nextSibling;
-
-    // Put in a newline to break up blocks inside blocks
-    if (!parentKey && sibling && blockTags.indexOf(nodeName) >= 0 && inBlock) {
-      chunk = joinChunks(chunk, getSoftNewlineChunk());
-    }
-    if (sibling) {
-      nodeName = sibling.nodeName.toLowerCase();
-    }
-    child = sibling;
-  }
-
-  if (newBlock) {
-    chunk = joinChunks(chunk, getBlockDividerChunk(nextBlockType, depth, parentKey));
-  }
-
-  return { chunk: chunk, entityMap: newEntityMap };
-};
-
-var getChunkForHTML = function getChunkForHTML(html, DOMBuilder, blockRenderMap, entityMap) {
-  html = html.trim().replace(REGEX_CR, '').replace(REGEX_NBSP, SPACE).replace(REGEX_CARRIAGE, '').replace(REGEX_ZWS, '');
-
-  var supportedBlockTags = getBlockMapSupportedTags(blockRenderMap);
-
-  var safeBody = DOMBuilder(html);
-  if (!safeBody) {
-    return null;
-  }
-  lastBlock = null;
-
-  // Sometimes we aren't dealing with content that contains nice semantic
-  // tags. In this case, use divs to separate everything out into paragraphs
-  // and hope for the best.
-  var workingBlocks = containsSemanticBlockMarkup(html, supportedBlockTags) ? supportedBlockTags : ['div'];
-
-  // Start with -1 block depth to offset the fact that we are passing in a fake
-  // UL block to start with.
-  var fragment = genFragment(entityMap, safeBody, OrderedSet(), 'ul', null, workingBlocks, -1, blockRenderMap);
-
-  var chunk = fragment.chunk;
-  var newEntityMap = fragment.entityMap;
-
-  // join with previous block to prevent weirdness on paste
-  if (chunk.text.indexOf('\r') === 0) {
-    chunk = {
-      text: chunk.text.slice(1),
-      inlines: chunk.inlines.slice(1),
-      entities: chunk.entities.slice(1),
-      blocks: chunk.blocks
-    };
-  }
-
-  // Kill block delimiter at the end
-  if (chunk.text.slice(-1) === '\r') {
-    chunk.text = chunk.text.slice(0, -1);
-    chunk.inlines = chunk.inlines.slice(0, -1);
-    chunk.entities = chunk.entities.slice(0, -1);
-    chunk.blocks.pop();
-  }
-
-  // If we saw no block tags, put an unstyled one in
-  if (chunk.blocks.length === 0) {
-    chunk.blocks.push(_extends({}, EMPTY_CHUNK, {
-      type: 'unstyled',
-      depth: 0
-    }));
-  }
-
-  // Sometimes we start with text that isn't in a block, which is then
-  // followed by blocks. Need to fix up the blocks to add in
-  // an unstyled block for this content
-  if (chunk.text.split('\r').length === chunk.blocks.length + 1) {
-    chunk.blocks.unshift({ type: 'unstyled', depth: 0 });
-  }
-
-  return { chunk: chunk, entityMap: newEntityMap };
-};
-
-var convertChunkToContentBlocks = function convertChunkToContentBlocks(chunk) {
-  if (!chunk || !chunk.text || !Array.isArray(chunk.blocks)) {
-    return null;
-  }
-
-  var initialState = {
-    cacheRef: {},
-    contentBlocks: []
-  };
-
-  var start = 0;
-
-  var rawBlocks = chunk.blocks,
-      rawInlines = chunk.inlines,
-      rawEntities = chunk.entities;
-
-
-  var BlockNodeRecord = experimentalTreeDataSupport ? ContentBlockNode : ContentBlock;
-
-  return chunk.text.split('\r').reduce(function (acc, textBlock, index) {
-    // Make absolutely certain that our text is acceptable.
-    textBlock = sanitizeDraftText(textBlock);
-
-    var block = rawBlocks[index];
-    var end = start + textBlock.length;
-    var inlines = rawInlines.slice(start, end);
-    var entities = rawEntities.slice(start, end);
-    var characterList = List(inlines.map(function (style, index) {
-      var data = { style: style, entity: null };
-      if (entities[index]) {
-        data.entity = entities[index];
-      }
-      return CharacterMetadata.create(data);
-    }));
-    start = end + 1;
-
-    var depth = block.depth,
-        type = block.type,
-        parent = block.parent;
-
-
-    var key = block.key || generateRandomKey();
-    var parentTextNodeKey = null; // will be used to store container text nodes
-
-    // childrens add themselves to their parents since we are iterating in order
-    if (parent) {
-      var parentIndex = acc.cacheRef[parent];
-      var parentRecord = acc.contentBlocks[parentIndex];
-
-      // if parent has text we need to split it into a separate unstyled element
-      if (parentRecord.getChildKeys().isEmpty() && parentRecord.getText()) {
-        var parentCharacterList = parentRecord.getCharacterList();
-        var parentText = parentRecord.getText();
-        parentTextNodeKey = generateRandomKey();
-
-        var textNode = new ContentBlockNode({
-          key: parentTextNodeKey,
-          text: parentText,
-          characterList: parentCharacterList,
-          parent: parent,
-          nextSibling: key
-        });
-
-        acc.contentBlocks.push(textNode);
-
-        parentRecord = parentRecord.withMutations(function (block) {
-          block.set('characterList', List()).set('text', '').set('children', parentRecord.children.push(textNode.getKey()));
-        });
-      }
-
-      acc.contentBlocks[parentIndex] = parentRecord.set('children', parentRecord.children.push(key));
-    }
-
-    var blockNode = new BlockNodeRecord({
-      key: key,
-      parent: parent,
-      type: type,
-      depth: depth,
-      text: textBlock,
-      characterList: characterList,
-      prevSibling: parentTextNodeKey || (index === 0 || rawBlocks[index - 1].parent !== parent ? null : rawBlocks[index - 1].key),
-      nextSibling: index === rawBlocks.length - 1 || rawBlocks[index + 1].parent !== parent ? null : rawBlocks[index + 1].key
-    });
-
-    // insert node
-    acc.contentBlocks.push(blockNode);
-
-    // cache ref for building links
-    acc.cacheRef[blockNode.key] = index;
-
-    return acc;
-  }, initialState).contentBlocks;
-};
-
-var convertFromHTMLtoContentBlocks = function convertFromHTMLtoContentBlocks(html) {
-  var DOMBuilder = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : getSafeBodyFromHTML;
-  var blockRenderMap = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : DefaultDraftBlockRenderMap;
-
-  // Be ABSOLUTELY SURE that the dom builder you pass here won't execute
-  // arbitrary code in whatever environment you're running this in. For an
-  // example of how we try to do this in-browser, see getSafeBodyFromHTML.
-
-  // TODO: replace DraftEntity with an OrderedMap here
-  var chunkData = getChunkForHTML(html, DOMBuilder, blockRenderMap, DraftEntity);
-
-  if (chunkData == null) {
-    return null;
-  }
-
-  var chunk = chunkData.chunk,
-      entityMap = chunkData.entityMap;
-
-  var contentBlocks = convertChunkToContentBlocks(chunk);
-
-  return {
-    contentBlocks: contentBlocks,
-    entityMap: entityMap
-  };
-};
-
-module.exports = convertFromHTMLtoContentBlocks;
-
-/***/ }),
-/* 65 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 66 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 67 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 68 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 69 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 70 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-// removed by extract-text-webpack-plugin
+"use strict";
+function _interopDefault(e){return e&&"object"==typeof e&&"default"in e?e.default:e}Object.defineProperty(exports,"__esModule",{value:!0});var React=_interopDefault(__webpack_require__(2)),classCallCheck=function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")},inherits=function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)},possibleConstructorReturn=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t},AppContainer=function(e){function t(){return classCallCheck(this,t),possibleConstructorReturn(this,e.apply(this,arguments))}return inherits(t,e),t.prototype.render=function(){return React.Children.only(this.props.children)},t}(React.Component),hot_prod=function(){return function(e){return e}},areComponentsEqual=function(e,t){return e===t},setConfig=function(){};exports.AppContainer=AppContainer,exports.hot=hot_prod,exports.areComponentsEqual=areComponentsEqual,exports.setConfig=setConfig;
+
 
 /***/ }),
 /* 71 */
 /***/ (function(module, exports) {
 
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 72 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 73 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 74 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 75 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 76 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 77 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 78 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 79 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 80 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 81 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 82 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 83 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 84 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 85 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- */
-
-
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var URI = function () {
-  function URI(uri) {
-    _classCallCheck(this, URI);
-
-    this._uri = uri;
-  }
-
-  URI.prototype.toString = function toString() {
-    return this._uri;
-  };
-
-  return URI;
-}();
-
-module.exports = URI;
-
-/***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-var UserAgentData = __webpack_require__(87);
-var VersionRange = __webpack_require__(88);
-
-var mapObject = __webpack_require__(89);
-var memoizeStringOnly = __webpack_require__(90);
-
-/**
- * Checks to see whether `name` and `version` satisfy `query`.
- *
- * @param {string} name Name of the browser, device, engine or platform
- * @param {?string} version Version of the browser, engine or platform
- * @param {string} query Query of form "Name [range expression]"
- * @param {?function} normalizer Optional pre-processor for range expression
- * @return {boolean}
- */
-function compare(name, version, query, normalizer) {
-  // check for exact match with no version
-  if (name === query) {
-    return true;
-  }
-
-  // check for non-matching names
-  if (!query.startsWith(name)) {
-    return false;
-  }
-
-  // full comparison with version
-  var range = query.slice(name.length);
-  if (version) {
-    range = normalizer ? normalizer(range) : range;
-    return VersionRange.contains(range, version);
-  }
-
-  return false;
-}
-
-/**
- * Normalizes `version` by stripping any "NT" prefix, but only on the Windows
- * platform.
- *
- * Mimics the stripping performed by the `UserAgentWindowsPlatform` PHP class.
- *
- * @param {string} version
- * @return {string}
- */
-function normalizePlatformVersion(version) {
-  if (UserAgentData.platformName === 'Windows') {
-    return version.replace(/^\s*NT/, '');
-  }
-
-  return version;
-}
-
-/**
- * Provides client-side access to the authoritative PHP-generated User Agent
- * information supplied by the server.
- */
-var UserAgent = {
-  /**
-   * Check if the User Agent browser matches `query`.
-   *
-   * `query` should be a string like "Chrome" or "Chrome > 33".
-   *
-   * Valid browser names include:
-   *
-   * - ACCESS NetFront
-   * - AOL
-   * - Amazon Silk
-   * - Android
-   * - BlackBerry
-   * - BlackBerry PlayBook
-   * - Chrome
-   * - Chrome for iOS
-   * - Chrome frame
-   * - Facebook PHP SDK
-   * - Facebook for iOS
-   * - Firefox
-   * - IE
-   * - IE Mobile
-   * - Mobile Safari
-   * - Motorola Internet Browser
-   * - Nokia
-   * - Openwave Mobile Browser
-   * - Opera
-   * - Opera Mini
-   * - Opera Mobile
-   * - Safari
-   * - UIWebView
-   * - Unknown
-   * - webOS
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `BrowserDetector` class and
-   * related classes in the same file (see calls to `new UserAgentBrowser` here:
-   * https://fburl.com/50728104).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name [range expression]"
-   * @return {boolean}
-   */
-  isBrowser: function isBrowser(query) {
-    return compare(UserAgentData.browserName, UserAgentData.browserFullVersion, query);
-  },
-
-
-  /**
-   * Check if the User Agent browser uses a 32 or 64 bit architecture.
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "32" or "64".
-   * @return {boolean}
-   */
-  isBrowserArchitecture: function isBrowserArchitecture(query) {
-    return compare(UserAgentData.browserArchitecture, null, query);
-  },
-
-
-  /**
-   * Check if the User Agent device matches `query`.
-   *
-   * `query` should be a string like "iPhone" or "iPad".
-   *
-   * Valid device names include:
-   *
-   * - Kindle
-   * - Kindle Fire
-   * - Unknown
-   * - iPad
-   * - iPhone
-   * - iPod
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `DeviceDetector` class and
-   * related classes in the same file (see calls to `new UserAgentDevice` here:
-   * https://fburl.com/50728332).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name"
-   * @return {boolean}
-   */
-  isDevice: function isDevice(query) {
-    return compare(UserAgentData.deviceName, null, query);
-  },
-
-
-  /**
-   * Check if the User Agent rendering engine matches `query`.
-   *
-   * `query` should be a string like "WebKit" or "WebKit >= 537".
-   *
-   * Valid engine names include:
-   *
-   * - Gecko
-   * - Presto
-   * - Trident
-   * - WebKit
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `RenderingEngineDetector`
-   * class related classes in the same file (see calls to `new
-   * UserAgentRenderingEngine` here: https://fburl.com/50728617).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name [range expression]"
-   * @return {boolean}
-   */
-  isEngine: function isEngine(query) {
-    return compare(UserAgentData.engineName, UserAgentData.engineVersion, query);
-  },
-
-
-  /**
-   * Check if the User Agent platform matches `query`.
-   *
-   * `query` should be a string like "Windows" or "iOS 5 - 6".
-   *
-   * Valid platform names include:
-   *
-   * - Android
-   * - BlackBerry OS
-   * - Java ME
-   * - Linux
-   * - Mac OS X
-   * - Mac OS X Calendar
-   * - Mac OS X Internet Account
-   * - Symbian
-   * - SymbianOS
-   * - Windows
-   * - Windows Mobile
-   * - Windows Phone
-   * - iOS
-   * - iOS Facebook Integration Account
-   * - iOS Facebook Social Sharing UI
-   * - webOS
-   * - Chrome OS
-   * - etc...
-   *
-   * An authoritative list can be found in the PHP `PlatformDetector` class and
-   * related classes in the same file (see calls to `new UserAgentPlatform`
-   * here: https://fburl.com/50729226).
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "Name [range expression]"
-   * @return {boolean}
-   */
-  isPlatform: function isPlatform(query) {
-    return compare(UserAgentData.platformName, UserAgentData.platformFullVersion, query, normalizePlatformVersion);
-  },
-
-
-  /**
-   * Check if the User Agent platform is a 32 or 64 bit architecture.
-   *
-   * @note Function results are memoized
-   *
-   * @param {string} query Query of the form "32" or "64".
-   * @return {boolean}
-   */
-  isPlatformArchitecture: function isPlatformArchitecture(query) {
-    return compare(UserAgentData.platformArchitecture, null, query);
-  }
-};
-
-module.exports = mapObject(UserAgent, memoizeStringOnly);
-
-/***/ }),
-/* 87 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-/**
- * Usage note:
- * This module makes a best effort to export the same data we would internally.
- * At Facebook we use a server-generated module that does the parsing and
- * exports the data for the client to use. We can't rely on a server-side
- * implementation in open source so instead we make use of an open source
- * library to do the heavy lifting and then make some adjustments as necessary.
- * It's likely there will be some differences. Some we can smooth over.
- * Others are going to be harder.
- */
-
-
-
-var UAParser = __webpack_require__(91);
-
-var UNKNOWN = 'Unknown';
-
-var PLATFORM_MAP = {
-  'Mac OS': 'Mac OS X'
-};
-
-/**
- * Convert from UAParser platform name to what we expect.
- */
-function convertPlatformName(name) {
-  return PLATFORM_MAP[name] || name;
-}
-
-/**
- * Get the version number in parts. This is very naive. We actually get major
- * version as a part of UAParser already, which is generally good enough, but
- * let's get the minor just in case.
- */
-function getBrowserVersion(version) {
-  if (!version) {
-    return {
-      major: '',
-      minor: ''
-    };
-  }
-  var parts = version.split('.');
-  return {
-    major: parts[0],
-    minor: parts[1]
-  };
-}
-
-/**
- * Get the UA data fom UAParser and then convert it to the format we're
- * expecting for our APIS.
- */
-var parser = new UAParser();
-var results = parser.getResult();
-
-// Do some conversion first.
-var browserVersionData = getBrowserVersion(results.browser.version);
-var uaData = {
-  browserArchitecture: results.cpu.architecture || UNKNOWN,
-  browserFullVersion: results.browser.version || UNKNOWN,
-  browserMinorVersion: browserVersionData.minor || UNKNOWN,
-  browserName: results.browser.name || UNKNOWN,
-  browserVersion: results.browser.major || UNKNOWN,
-  deviceName: results.device.model || UNKNOWN,
-  engineName: results.engine.name || UNKNOWN,
-  engineVersion: results.engine.version || UNKNOWN,
-  platformArchitecture: results.cpu.architecture || UNKNOWN,
-  platformName: convertPlatformName(results.os.name) || UNKNOWN,
-  platformVersion: results.os.version || UNKNOWN,
-  platformFullVersion: results.os.version || UNKNOWN
-};
-
-module.exports = uaData;
-
-/***/ }),
-/* 88 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-var invariant = __webpack_require__(7);
-
-var componentRegex = /\./;
-var orRegex = /\|\|/;
-var rangeRegex = /\s+\-\s+/;
-var modifierRegex = /^(<=|<|=|>=|~>|~|>|)?\s*(.+)/;
-var numericRegex = /^(\d*)(.*)/;
-
-/**
- * Splits input `range` on "||" and returns true if any subrange matches
- * `version`.
- *
- * @param {string} range
- * @param {string} version
- * @returns {boolean}
- */
-function checkOrExpression(range, version) {
-  var expressions = range.split(orRegex);
-
-  if (expressions.length > 1) {
-    return expressions.some(function (range) {
-      return VersionRange.contains(range, version);
-    });
-  } else {
-    range = expressions[0].trim();
-    return checkRangeExpression(range, version);
-  }
-}
-
-/**
- * Splits input `range` on " - " (the surrounding whitespace is required) and
- * returns true if version falls between the two operands.
- *
- * @param {string} range
- * @param {string} version
- * @returns {boolean}
- */
-function checkRangeExpression(range, version) {
-  var expressions = range.split(rangeRegex);
-
-  !(expressions.length > 0 && expressions.length <= 2) ?  false ? invariant(false, 'the "-" operator expects exactly 2 operands') : invariant(false) : void 0;
-
-  if (expressions.length === 1) {
-    return checkSimpleExpression(expressions[0], version);
-  } else {
-    var startVersion = expressions[0],
-        endVersion = expressions[1];
-
-    !(isSimpleVersion(startVersion) && isSimpleVersion(endVersion)) ?  false ? invariant(false, 'operands to the "-" operator must be simple (no modifiers)') : invariant(false) : void 0;
-
-    return checkSimpleExpression('>=' + startVersion, version) && checkSimpleExpression('<=' + endVersion, version);
-  }
-}
-
-/**
- * Checks if `range` matches `version`. `range` should be a "simple" range (ie.
- * not a compound range using the " - " or "||" operators).
- *
- * @param {string} range
- * @param {string} version
- * @returns {boolean}
- */
-function checkSimpleExpression(range, version) {
-  range = range.trim();
-  if (range === '') {
-    return true;
-  }
-
-  var versionComponents = version.split(componentRegex);
-
-  var _getModifierAndCompon = getModifierAndComponents(range),
-      modifier = _getModifierAndCompon.modifier,
-      rangeComponents = _getModifierAndCompon.rangeComponents;
-
-  switch (modifier) {
-    case '<':
-      return checkLessThan(versionComponents, rangeComponents);
-    case '<=':
-      return checkLessThanOrEqual(versionComponents, rangeComponents);
-    case '>=':
-      return checkGreaterThanOrEqual(versionComponents, rangeComponents);
-    case '>':
-      return checkGreaterThan(versionComponents, rangeComponents);
-    case '~':
-    case '~>':
-      return checkApproximateVersion(versionComponents, rangeComponents);
-    default:
-      return checkEqual(versionComponents, rangeComponents);
-  }
-}
-
-/**
- * Checks whether `a` is less than `b`.
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {boolean}
- */
-function checkLessThan(a, b) {
-  return compareComponents(a, b) === -1;
-}
-
-/**
- * Checks whether `a` is less than or equal to `b`.
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {boolean}
- */
-function checkLessThanOrEqual(a, b) {
-  var result = compareComponents(a, b);
-  return result === -1 || result === 0;
-}
-
-/**
- * Checks whether `a` is equal to `b`.
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {boolean}
- */
-function checkEqual(a, b) {
-  return compareComponents(a, b) === 0;
-}
-
-/**
- * Checks whether `a` is greater than or equal to `b`.
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {boolean}
- */
-function checkGreaterThanOrEqual(a, b) {
-  var result = compareComponents(a, b);
-  return result === 1 || result === 0;
-}
-
-/**
- * Checks whether `a` is greater than `b`.
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {boolean}
- */
-function checkGreaterThan(a, b) {
-  return compareComponents(a, b) === 1;
-}
-
-/**
- * Checks whether `a` is "reasonably close" to `b` (as described in
- * https://www.npmjs.org/doc/misc/semver.html). For example, if `b` is "1.3.1"
- * then "reasonably close" is defined as ">= 1.3.1 and < 1.4".
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {boolean}
- */
-function checkApproximateVersion(a, b) {
-  var lowerBound = b.slice();
-  var upperBound = b.slice();
-
-  if (upperBound.length > 1) {
-    upperBound.pop();
-  }
-  var lastIndex = upperBound.length - 1;
-  var numeric = parseInt(upperBound[lastIndex], 10);
-  if (isNumber(numeric)) {
-    upperBound[lastIndex] = numeric + 1 + '';
-  }
-
-  return checkGreaterThanOrEqual(a, lowerBound) && checkLessThan(a, upperBound);
-}
-
-/**
- * Extracts the optional modifier (<, <=, =, >=, >, ~, ~>) and version
- * components from `range`.
- *
- * For example, given `range` ">= 1.2.3" returns an object with a `modifier` of
- * `">="` and `components` of `[1, 2, 3]`.
- *
- * @param {string} range
- * @returns {object}
- */
-function getModifierAndComponents(range) {
-  var rangeComponents = range.split(componentRegex);
-  var matches = rangeComponents[0].match(modifierRegex);
-  !matches ?  false ? invariant(false, 'expected regex to match but it did not') : invariant(false) : void 0;
-
-  return {
-    modifier: matches[1],
-    rangeComponents: [matches[2]].concat(rangeComponents.slice(1))
-  };
-}
-
-/**
- * Determines if `number` is a number.
- *
- * @param {mixed} number
- * @returns {boolean}
- */
-function isNumber(number) {
-  return !isNaN(number) && isFinite(number);
-}
-
-/**
- * Tests whether `range` is a "simple" version number without any modifiers
- * (">", "~" etc).
- *
- * @param {string} range
- * @returns {boolean}
- */
-function isSimpleVersion(range) {
-  return !getModifierAndComponents(range).modifier;
-}
-
-/**
- * Zero-pads array `array` until it is at least `length` long.
- *
- * @param {array} array
- * @param {number} length
- */
-function zeroPad(array, length) {
-  for (var i = array.length; i < length; i++) {
-    array[i] = '0';
-  }
-}
-
-/**
- * Normalizes `a` and `b` in preparation for comparison by doing the following:
- *
- * - zero-pads `a` and `b`
- * - marks any "x", "X" or "*" component in `b` as equivalent by zero-ing it out
- *   in both `a` and `b`
- * - marks any final "*" component in `b` as a greedy wildcard by zero-ing it
- *   and all of its successors in `a`
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {array<array<string>>}
- */
-function normalizeVersions(a, b) {
-  a = a.slice();
-  b = b.slice();
-
-  zeroPad(a, b.length);
-
-  // mark "x" and "*" components as equal
-  for (var i = 0; i < b.length; i++) {
-    var matches = b[i].match(/^[x*]$/i);
-    if (matches) {
-      b[i] = a[i] = '0';
-
-      // final "*" greedily zeros all remaining components
-      if (matches[0] === '*' && i === b.length - 1) {
-        for (var j = i; j < a.length; j++) {
-          a[j] = '0';
-        }
-      }
-    }
-  }
-
-  zeroPad(b, a.length);
-
-  return [a, b];
-}
-
-/**
- * Returns the numerical -- not the lexicographical -- ordering of `a` and `b`.
- *
- * For example, `10-alpha` is greater than `2-beta`.
- *
- * @param {string} a
- * @param {string} b
- * @returns {number} -1, 0 or 1 to indicate whether `a` is less than, equal to,
- * or greater than `b`, respectively
- */
-function compareNumeric(a, b) {
-  var aPrefix = a.match(numericRegex)[1];
-  var bPrefix = b.match(numericRegex)[1];
-  var aNumeric = parseInt(aPrefix, 10);
-  var bNumeric = parseInt(bPrefix, 10);
-
-  if (isNumber(aNumeric) && isNumber(bNumeric) && aNumeric !== bNumeric) {
-    return compare(aNumeric, bNumeric);
-  } else {
-    return compare(a, b);
-  }
-}
-
-/**
- * Returns the ordering of `a` and `b`.
- *
- * @param {string|number} a
- * @param {string|number} b
- * @returns {number} -1, 0 or 1 to indicate whether `a` is less than, equal to,
- * or greater than `b`, respectively
- */
-function compare(a, b) {
-  !(typeof a === typeof b) ?  false ? invariant(false, '"a" and "b" must be of the same type') : invariant(false) : void 0;
-
-  if (a > b) {
-    return 1;
-  } else if (a < b) {
-    return -1;
-  } else {
-    return 0;
-  }
-}
-
-/**
- * Compares arrays of version components.
- *
- * @param {array<string>} a
- * @param {array<string>} b
- * @returns {number} -1, 0 or 1 to indicate whether `a` is less than, equal to,
- * or greater than `b`, respectively
- */
-function compareComponents(a, b) {
-  var _normalizeVersions = normalizeVersions(a, b),
-      aNormalized = _normalizeVersions[0],
-      bNormalized = _normalizeVersions[1];
-
-  for (var i = 0; i < bNormalized.length; i++) {
-    var result = compareNumeric(aNormalized[i], bNormalized[i]);
-    if (result) {
-      return result;
-    }
-  }
-
-  return 0;
-}
-
-var VersionRange = {
-  /**
-   * Checks whether `version` satisfies the `range` specification.
-   *
-   * We support a subset of the expressions defined in
-   * https://www.npmjs.org/doc/misc/semver.html:
-   *
-   *    version   Must match version exactly
-   *    =version  Same as just version
-   *    >version  Must be greater than version
-   *    >=version Must be greater than or equal to version
-   *    <version  Must be less than version
-   *    <=version Must be less than or equal to version
-   *    ~version  Must be at least version, but less than the next significant
-   *              revision above version:
-   *              "~1.2.3" is equivalent to ">= 1.2.3 and < 1.3"
-   *    ~>version Equivalent to ~version
-   *    1.2.x     Must match "1.2.x", where "x" is a wildcard that matches
-   *              anything
-   *    1.2.*     Similar to "1.2.x", but "*" in the trailing position is a
-   *              "greedy" wildcard, so will match any number of additional
-   *              components:
-   *              "1.2.*" will match "1.2.1", "1.2.1.1", "1.2.1.1.1" etc
-   *    *         Any version
-   *    ""        (Empty string) Same as *
-   *    v1 - v2   Equivalent to ">= v1 and <= v2"
-   *    r1 || r2  Passes if either r1 or r2 are satisfied
-   *
-   * @param {string} range
-   * @param {string} version
-   * @returns {boolean}
-   */
-  contains: function contains(range, version) {
-    return checkOrExpression(range.trim(), version.trim());
-  }
-};
-
-module.exports = VersionRange;
-
-/***/ }),
-/* 89 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-
-
-var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-/**
- * Executes the provided `callback` once for each enumerable own property in the
- * object and constructs a new object from the results. The `callback` is
- * invoked with three arguments:
- *
- *  - the property value
- *  - the property name
- *  - the object being traversed
- *
- * Properties that are added after the call to `mapObject` will not be visited
- * by `callback`. If the values of existing properties are changed, the value
- * passed to `callback` will be the value at the time `mapObject` visits them.
- * Properties that are deleted before being visited are not visited.
- *
- * @grep function objectMap()
- * @grep function objMap()
- *
- * @param {?object} object
- * @param {function} callback
- * @param {*} context
- * @return {?object}
- */
-function mapObject(object, callback, context) {
-  if (!object) {
-    return null;
-  }
-  var result = {};
-  for (var name in object) {
-    if (hasOwnProperty.call(object, name)) {
-      result[name] = callback.call(context, object[name], name, object);
-    }
-  }
-  return result;
-}
-
-module.exports = mapObject;
-
-/***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/**
- * Copyright (c) 2013-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- * 
- * @typechecks static-only
- */
-
-
-
-/**
- * Memoizes the return value of a function that accepts one string argument.
- */
-
-function memoizeStringOnly(callback) {
-  var cache = {};
-  return function (string) {
-    if (!cache.hasOwnProperty(string)) {
-      cache[string] = callback.call(this, string);
-    }
-    return cache[string];
-  };
-}
-
-module.exports = memoizeStringOnly;
-
-/***/ }),
-/* 91 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var __WEBPACK_AMD_DEFINE_RESULT__;/*!
- * UAParser.js v0.7.18
- * Lightweight JavaScript-based User-Agent string parser
- * https://github.com/faisalman/ua-parser-js
- *
- * Copyright © 2012-2016 Faisal Salman <fyzlman@gmail.com>
- * Dual licensed under GPLv2 or MIT
- */
-
-(function (window, undefined) {
-
-    'use strict';
-
-    //////////////
-    // Constants
-    /////////////
-
-
-    var LIBVERSION  = '0.7.18',
-        EMPTY       = '',
-        UNKNOWN     = '?',
-        FUNC_TYPE   = 'function',
-        UNDEF_TYPE  = 'undefined',
-        OBJ_TYPE    = 'object',
-        STR_TYPE    = 'string',
-        MAJOR       = 'major', // deprecated
-        MODEL       = 'model',
-        NAME        = 'name',
-        TYPE        = 'type',
-        VENDOR      = 'vendor',
-        VERSION     = 'version',
-        ARCHITECTURE= 'architecture',
-        CONSOLE     = 'console',
-        MOBILE      = 'mobile',
-        TABLET      = 'tablet',
-        SMARTTV     = 'smarttv',
-        WEARABLE    = 'wearable',
-        EMBEDDED    = 'embedded';
-
-
-    ///////////
-    // Helper
-    //////////
-
-
-    var util = {
-        extend : function (regexes, extensions) {
-            var margedRegexes = {};
-            for (var i in regexes) {
-                if (extensions[i] && extensions[i].length % 2 === 0) {
-                    margedRegexes[i] = extensions[i].concat(regexes[i]);
-                } else {
-                    margedRegexes[i] = regexes[i];
-                }
-            }
-            return margedRegexes;
-        },
-        has : function (str1, str2) {
-          if (typeof str1 === "string") {
-            return str2.toLowerCase().indexOf(str1.toLowerCase()) !== -1;
-          } else {
-            return false;
-          }
-        },
-        lowerize : function (str) {
-            return str.toLowerCase();
-        },
-        major : function (version) {
-            return typeof(version) === STR_TYPE ? version.replace(/[^\d\.]/g,'').split(".")[0] : undefined;
-        },
-        trim : function (str) {
-          return str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, '');
-        }
-    };
-
-
-    ///////////////
-    // Map helper
-    //////////////
-
-
-    var mapper = {
-
-        rgx : function (ua, arrays) {
-
-            //var result = {},
-            var i = 0, j, k, p, q, matches, match;//, args = arguments;
-
-            /*// construct object barebones
-            for (p = 0; p < args[1].length; p++) {
-                q = args[1][p];
-                result[typeof q === OBJ_TYPE ? q[0] : q] = undefined;
-            }*/
-
-            // loop through all regexes maps
-            while (i < arrays.length && !matches) {
-
-                var regex = arrays[i],       // even sequence (0,2,4,..)
-                    props = arrays[i + 1];   // odd sequence (1,3,5,..)
-                j = k = 0;
-
-                // try matching uastring with regexes
-                while (j < regex.length && !matches) {
-
-                    matches = regex[j++].exec(ua);
-
-                    if (!!matches) {
-                        for (p = 0; p < props.length; p++) {
-                            match = matches[++k];
-                            q = props[p];
-                            // check if given property is actually array
-                            if (typeof q === OBJ_TYPE && q.length > 0) {
-                                if (q.length == 2) {
-                                    if (typeof q[1] == FUNC_TYPE) {
-                                        // assign modified match
-                                        this[q[0]] = q[1].call(this, match);
-                                    } else {
-                                        // assign given value, ignore regex match
-                                        this[q[0]] = q[1];
-                                    }
-                                } else if (q.length == 3) {
-                                    // check whether function or regex
-                                    if (typeof q[1] === FUNC_TYPE && !(q[1].exec && q[1].test)) {
-                                        // call function (usually string mapper)
-                                        this[q[0]] = match ? q[1].call(this, match, q[2]) : undefined;
-                                    } else {
-                                        // sanitize match using given regex
-                                        this[q[0]] = match ? match.replace(q[1], q[2]) : undefined;
-                                    }
-                                } else if (q.length == 4) {
-                                        this[q[0]] = match ? q[3].call(this, match.replace(q[1], q[2])) : undefined;
-                                }
-                            } else {
-                                this[q] = match ? match : undefined;
-                            }
-                        }
-                    }
-                }
-                i += 2;
-            }
-            // console.log(this);
-            //return this;
-        },
-
-        str : function (str, map) {
-
-            for (var i in map) {
-                // check if array
-                if (typeof map[i] === OBJ_TYPE && map[i].length > 0) {
-                    for (var j = 0; j < map[i].length; j++) {
-                        if (util.has(map[i][j], str)) {
-                            return (i === UNKNOWN) ? undefined : i;
-                        }
-                    }
-                } else if (util.has(map[i], str)) {
-                    return (i === UNKNOWN) ? undefined : i;
-                }
-            }
-            return str;
-        }
-    };
-
-
-    ///////////////
-    // String map
-    //////////////
-
-
-    var maps = {
-
-        browser : {
-            oldsafari : {
-                version : {
-                    '1.0'   : '/8',
-                    '1.2'   : '/1',
-                    '1.3'   : '/3',
-                    '2.0'   : '/412',
-                    '2.0.2' : '/416',
-                    '2.0.3' : '/417',
-                    '2.0.4' : '/419',
-                    '?'     : '/'
-                }
-            }
-        },
-
-        device : {
-            amazon : {
-                model : {
-                    'Fire Phone' : ['SD', 'KF']
-                }
-            },
-            sprint : {
-                model : {
-                    'Evo Shift 4G' : '7373KT'
-                },
-                vendor : {
-                    'HTC'       : 'APA',
-                    'Sprint'    : 'Sprint'
-                }
-            }
-        },
-
-        os : {
-            windows : {
-                version : {
-                    'ME'        : '4.90',
-                    'NT 3.11'   : 'NT3.51',
-                    'NT 4.0'    : 'NT4.0',
-                    '2000'      : 'NT 5.0',
-                    'XP'        : ['NT 5.1', 'NT 5.2'],
-                    'Vista'     : 'NT 6.0',
-                    '7'         : 'NT 6.1',
-                    '8'         : 'NT 6.2',
-                    '8.1'       : 'NT 6.3',
-                    '10'        : ['NT 6.4', 'NT 10.0'],
-                    'RT'        : 'ARM'
-                }
-            }
-        }
-    };
-
-
-    //////////////
-    // Regex map
-    /////////////
-
-
-    var regexes = {
-
-        browser : [[
-
-            // Presto based
-            /(opera\smini)\/([\w\.-]+)/i,                                       // Opera Mini
-            /(opera\s[mobiletab]+).+version\/([\w\.-]+)/i,                      // Opera Mobi/Tablet
-            /(opera).+version\/([\w\.]+)/i,                                     // Opera > 9.80
-            /(opera)[\/\s]+([\w\.]+)/i                                          // Opera < 9.80
-            ], [NAME, VERSION], [
-
-            /(opios)[\/\s]+([\w\.]+)/i                                          // Opera mini on iphone >= 8.0
-            ], [[NAME, 'Opera Mini'], VERSION], [
-
-            /\s(opr)\/([\w\.]+)/i                                               // Opera Webkit
-            ], [[NAME, 'Opera'], VERSION], [
-
-            // Mixed
-            /(kindle)\/([\w\.]+)/i,                                             // Kindle
-            /(lunascape|maxthon|netfront|jasmine|blazer)[\/\s]?([\w\.]*)/i,
-                                                                                // Lunascape/Maxthon/Netfront/Jasmine/Blazer
-
-            // Trident based
-            /(avant\s|iemobile|slim|baidu)(?:browser)?[\/\s]?([\w\.]*)/i,
-                                                                                // Avant/IEMobile/SlimBrowser/Baidu
-            /(?:ms|\()(ie)\s([\w\.]+)/i,                                        // Internet Explorer
-
-            // Webkit/KHTML based
-            /(rekonq)\/([\w\.]*)/i,                                             // Rekonq
-            /(chromium|flock|rockmelt|midori|epiphany|silk|skyfire|ovibrowser|bolt|iron|vivaldi|iridium|phantomjs|bowser|quark)\/([\w\.-]+)/i
-                                                                                // Chromium/Flock/RockMelt/Midori/Epiphany/Silk/Skyfire/Bolt/Iron/Iridium/PhantomJS/Bowser
-            ], [NAME, VERSION], [
-
-            /(trident).+rv[:\s]([\w\.]+).+like\sgecko/i                         // IE11
-            ], [[NAME, 'IE'], VERSION], [
-
-            /(edge|edgios|edgea)\/((\d+)?[\w\.]+)/i                             // Microsoft Edge
-            ], [[NAME, 'Edge'], VERSION], [
-
-            /(yabrowser)\/([\w\.]+)/i                                           // Yandex
-            ], [[NAME, 'Yandex'], VERSION], [
-
-            /(puffin)\/([\w\.]+)/i                                              // Puffin
-            ], [[NAME, 'Puffin'], VERSION], [
-
-            /((?:[\s\/])uc?\s?browser|(?:juc.+)ucweb)[\/\s]?([\w\.]+)/i
-                                                                                // UCBrowser
-            ], [[NAME, 'UCBrowser'], VERSION], [
-
-            /(comodo_dragon)\/([\w\.]+)/i                                       // Comodo Dragon
-            ], [[NAME, /_/g, ' '], VERSION], [
-
-            /(micromessenger)\/([\w\.]+)/i                                      // WeChat
-            ], [[NAME, 'WeChat'], VERSION], [
-
-            /(qqbrowserlite)\/([\w\.]+)/i                                       // QQBrowserLite
-            ], [NAME, VERSION], [
-
-            /(QQ)\/([\d\.]+)/i                                                  // QQ, aka ShouQ
-            ], [NAME, VERSION], [
-
-            /m?(qqbrowser)[\/\s]?([\w\.]+)/i                                    // QQBrowser
-            ], [NAME, VERSION], [
-
-            /(BIDUBrowser)[\/\s]?([\w\.]+)/i                                    // Baidu Browser
-            ], [NAME, VERSION], [
-
-            /(2345Explorer)[\/\s]?([\w\.]+)/i                                   // 2345 Browser
-            ], [NAME, VERSION], [
-
-            /(MetaSr)[\/\s]?([\w\.]+)/i                                         // SouGouBrowser
-            ], [NAME], [
-
-            /(LBBROWSER)/i                                      // LieBao Browser
-            ], [NAME], [
-
-            /xiaomi\/miuibrowser\/([\w\.]+)/i                                   // MIUI Browser
-            ], [VERSION, [NAME, 'MIUI Browser']], [
-
-            /;fbav\/([\w\.]+);/i                                                // Facebook App for iOS & Android
-            ], [VERSION, [NAME, 'Facebook']], [
-
-            /headlesschrome(?:\/([\w\.]+)|\s)/i                                 // Chrome Headless
-            ], [VERSION, [NAME, 'Chrome Headless']], [
-
-            /\swv\).+(chrome)\/([\w\.]+)/i                                      // Chrome WebView
-            ], [[NAME, /(.+)/, '$1 WebView'], VERSION], [
-
-            /((?:oculus|samsung)browser)\/([\w\.]+)/i
-            ], [[NAME, /(.+(?:g|us))(.+)/, '$1 $2'], VERSION], [                // Oculus / Samsung Browser
-
-            /android.+version\/([\w\.]+)\s+(?:mobile\s?safari|safari)*/i        // Android Browser
-            ], [VERSION, [NAME, 'Android Browser']], [
-
-            /(chrome|omniweb|arora|[tizenoka]{5}\s?browser)\/v?([\w\.]+)/i
-                                                                                // Chrome/OmniWeb/Arora/Tizen/Nokia
-            ], [NAME, VERSION], [
-
-            /(dolfin)\/([\w\.]+)/i                                              // Dolphin
-            ], [[NAME, 'Dolphin'], VERSION], [
-
-            /((?:android.+)crmo|crios)\/([\w\.]+)/i                             // Chrome for Android/iOS
-            ], [[NAME, 'Chrome'], VERSION], [
-
-            /(coast)\/([\w\.]+)/i                                               // Opera Coast
-            ], [[NAME, 'Opera Coast'], VERSION], [
-
-            /fxios\/([\w\.-]+)/i                                                // Firefox for iOS
-            ], [VERSION, [NAME, 'Firefox']], [
-
-            /version\/([\w\.]+).+?mobile\/\w+\s(safari)/i                       // Mobile Safari
-            ], [VERSION, [NAME, 'Mobile Safari']], [
-
-            /version\/([\w\.]+).+?(mobile\s?safari|safari)/i                    // Safari & Safari Mobile
-            ], [VERSION, NAME], [
-
-            /webkit.+?(gsa)\/([\w\.]+).+?(mobile\s?safari|safari)(\/[\w\.]+)/i  // Google Search Appliance on iOS
-            ], [[NAME, 'GSA'], VERSION], [
-
-            /webkit.+?(mobile\s?safari|safari)(\/[\w\.]+)/i                     // Safari < 3.0
-            ], [NAME, [VERSION, mapper.str, maps.browser.oldsafari.version]], [
-
-            /(konqueror)\/([\w\.]+)/i,                                          // Konqueror
-            /(webkit|khtml)\/([\w\.]+)/i
-            ], [NAME, VERSION], [
-
-            // Gecko based
-            /(navigator|netscape)\/([\w\.-]+)/i                                 // Netscape
-            ], [[NAME, 'Netscape'], VERSION], [
-            /(swiftfox)/i,                                                      // Swiftfox
-            /(icedragon|iceweasel|camino|chimera|fennec|maemo\sbrowser|minimo|conkeror)[\/\s]?([\w\.\+]+)/i,
-                                                                                // IceDragon/Iceweasel/Camino/Chimera/Fennec/Maemo/Minimo/Conkeror
-            /(firefox|seamonkey|k-meleon|icecat|iceape|firebird|phoenix|palemoon|basilisk|waterfox)\/([\w\.-]+)$/i,
-
-                                                                                // Firefox/SeaMonkey/K-Meleon/IceCat/IceApe/Firebird/Phoenix
-            /(mozilla)\/([\w\.]+).+rv\:.+gecko\/\d+/i,                          // Mozilla
-
-            // Other
-            /(polaris|lynx|dillo|icab|doris|amaya|w3m|netsurf|sleipnir)[\/\s]?([\w\.]+)/i,
-                                                                                // Polaris/Lynx/Dillo/iCab/Doris/Amaya/w3m/NetSurf/Sleipnir
-            /(links)\s\(([\w\.]+)/i,                                            // Links
-            /(gobrowser)\/?([\w\.]*)/i,                                         // GoBrowser
-            /(ice\s?browser)\/v?([\w\._]+)/i,                                   // ICE Browser
-            /(mosaic)[\/\s]([\w\.]+)/i                                          // Mosaic
-            ], [NAME, VERSION]
-
-            /* /////////////////////
-            // Media players BEGIN
-            ////////////////////////
-
-            , [
-
-            /(apple(?:coremedia|))\/((\d+)[\w\._]+)/i,                          // Generic Apple CoreMedia
-            /(coremedia) v((\d+)[\w\._]+)/i
-            ], [NAME, VERSION], [
-
-            /(aqualung|lyssna|bsplayer)\/((\d+)?[\w\.-]+)/i                     // Aqualung/Lyssna/BSPlayer
-            ], [NAME, VERSION], [
-
-            /(ares|ossproxy)\s((\d+)[\w\.-]+)/i                                 // Ares/OSSProxy
-            ], [NAME, VERSION], [
-
-            /(audacious|audimusicstream|amarok|bass|core|dalvik|gnomemplayer|music on console|nsplayer|psp-internetradioplayer|videos)\/((\d+)[\w\.-]+)/i,
-                                                                                // Audacious/AudiMusicStream/Amarok/BASS/OpenCORE/Dalvik/GnomeMplayer/MoC
-                                                                                // NSPlayer/PSP-InternetRadioPlayer/Videos
-            /(clementine|music player daemon)\s((\d+)[\w\.-]+)/i,               // Clementine/MPD
-            /(lg player|nexplayer)\s((\d+)[\d\.]+)/i,
-            /player\/(nexplayer|lg player)\s((\d+)[\w\.-]+)/i                   // NexPlayer/LG Player
-            ], [NAME, VERSION], [
-            /(nexplayer)\s((\d+)[\w\.-]+)/i                                     // Nexplayer
-            ], [NAME, VERSION], [
-
-            /(flrp)\/((\d+)[\w\.-]+)/i                                          // Flip Player
-            ], [[NAME, 'Flip Player'], VERSION], [
-
-            /(fstream|nativehost|queryseekspider|ia-archiver|facebookexternalhit)/i
-                                                                                // FStream/NativeHost/QuerySeekSpider/IA Archiver/facebookexternalhit
-            ], [NAME], [
-
-            /(gstreamer) souphttpsrc (?:\([^\)]+\)){0,1} libsoup\/((\d+)[\w\.-]+)/i
-                                                                                // Gstreamer
-            ], [NAME, VERSION], [
-
-            /(htc streaming player)\s[\w_]+\s\/\s((\d+)[\d\.]+)/i,              // HTC Streaming Player
-            /(java|python-urllib|python-requests|wget|libcurl)\/((\d+)[\w\.-_]+)/i,
-                                                                                // Java/urllib/requests/wget/cURL
-            /(lavf)((\d+)[\d\.]+)/i                                             // Lavf (FFMPEG)
-            ], [NAME, VERSION], [
-
-            /(htc_one_s)\/((\d+)[\d\.]+)/i                                      // HTC One S
-            ], [[NAME, /_/g, ' '], VERSION], [
-
-            /(mplayer)(?:\s|\/)(?:(?:sherpya-){0,1}svn)(?:-|\s)(r\d+(?:-\d+[\w\.-]+){0,1})/i
-                                                                                // MPlayer SVN
-            ], [NAME, VERSION], [
-
-            /(mplayer)(?:\s|\/|[unkow-]+)((\d+)[\w\.-]+)/i                      // MPlayer
-            ], [NAME, VERSION], [
-
-            /(mplayer)/i,                                                       // MPlayer (no other info)
-            /(yourmuze)/i,                                                      // YourMuze
-            /(media player classic|nero showtime)/i                             // Media Player Classic/Nero ShowTime
-            ], [NAME], [
-
-            /(nero (?:home|scout))\/((\d+)[\w\.-]+)/i                           // Nero Home/Nero Scout
-            ], [NAME, VERSION], [
-
-            /(nokia\d+)\/((\d+)[\w\.-]+)/i                                      // Nokia
-            ], [NAME, VERSION], [
-
-            /\s(songbird)\/((\d+)[\w\.-]+)/i                                    // Songbird/Philips-Songbird
-            ], [NAME, VERSION], [
-
-            /(winamp)3 version ((\d+)[\w\.-]+)/i,                               // Winamp
-            /(winamp)\s((\d+)[\w\.-]+)/i,
-            /(winamp)mpeg\/((\d+)[\w\.-]+)/i
-            ], [NAME, VERSION], [
-
-            /(ocms-bot|tapinradio|tunein radio|unknown|winamp|inlight radio)/i  // OCMS-bot/tap in radio/tunein/unknown/winamp (no other info)
-                                                                                // inlight radio
-            ], [NAME], [
-
-            /(quicktime|rma|radioapp|radioclientapplication|soundtap|totem|stagefright|streamium)\/((\d+)[\w\.-]+)/i
-                                                                                // QuickTime/RealMedia/RadioApp/RadioClientApplication/
-                                                                                // SoundTap/Totem/Stagefright/Streamium
-            ], [NAME, VERSION], [
-
-            /(smp)((\d+)[\d\.]+)/i                                              // SMP
-            ], [NAME, VERSION], [
-
-            /(vlc) media player - version ((\d+)[\w\.]+)/i,                     // VLC Videolan
-            /(vlc)\/((\d+)[\w\.-]+)/i,
-            /(xbmc|gvfs|xine|xmms|irapp)\/((\d+)[\w\.-]+)/i,                    // XBMC/gvfs/Xine/XMMS/irapp
-            /(foobar2000)\/((\d+)[\d\.]+)/i,                                    // Foobar2000
-            /(itunes)\/((\d+)[\d\.]+)/i                                         // iTunes
-            ], [NAME, VERSION], [
-
-            /(wmplayer)\/((\d+)[\w\.-]+)/i,                                     // Windows Media Player
-            /(windows-media-player)\/((\d+)[\w\.-]+)/i
-            ], [[NAME, /-/g, ' '], VERSION], [
-
-            /windows\/((\d+)[\w\.-]+) upnp\/[\d\.]+ dlnadoc\/[\d\.]+ (home media server)/i
-                                                                                // Windows Media Server
-            ], [VERSION, [NAME, 'Windows']], [
-
-            /(com\.riseupradioalarm)\/((\d+)[\d\.]*)/i                          // RiseUP Radio Alarm
-            ], [NAME, VERSION], [
-
-            /(rad.io)\s((\d+)[\d\.]+)/i,                                        // Rad.io
-            /(radio.(?:de|at|fr))\s((\d+)[\d\.]+)/i
-            ], [[NAME, 'rad.io'], VERSION]
-
-            //////////////////////
-            // Media players END
-            ////////////////////*/
-
-        ],
-
-        cpu : [[
-
-            /(?:(amd|x(?:(?:86|64)[_-])?|wow|win)64)[;\)]/i                     // AMD64
-            ], [[ARCHITECTURE, 'amd64']], [
-
-            /(ia32(?=;))/i                                                      // IA32 (quicktime)
-            ], [[ARCHITECTURE, util.lowerize]], [
-
-            /((?:i[346]|x)86)[;\)]/i                                            // IA32
-            ], [[ARCHITECTURE, 'ia32']], [
-
-            // PocketPC mistakenly identified as PowerPC
-            /windows\s(ce|mobile);\sppc;/i
-            ], [[ARCHITECTURE, 'arm']], [
-
-            /((?:ppc|powerpc)(?:64)?)(?:\smac|;|\))/i                           // PowerPC
-            ], [[ARCHITECTURE, /ower/, '', util.lowerize]], [
-
-            /(sun4\w)[;\)]/i                                                    // SPARC
-            ], [[ARCHITECTURE, 'sparc']], [
-
-            /((?:avr32|ia64(?=;))|68k(?=\))|arm(?:64|(?=v\d+;))|(?=atmel\s)avr|(?:irix|mips|sparc)(?:64)?(?=;)|pa-risc)/i
-                                                                                // IA64, 68K, ARM/64, AVR/32, IRIX/64, MIPS/64, SPARC/64, PA-RISC
-            ], [[ARCHITECTURE, util.lowerize]]
-        ],
-
-        device : [[
-
-            /\((ipad|playbook);[\w\s\);-]+(rim|apple)/i                         // iPad/PlayBook
-            ], [MODEL, VENDOR, [TYPE, TABLET]], [
-
-            /applecoremedia\/[\w\.]+ \((ipad)/                                  // iPad
-            ], [MODEL, [VENDOR, 'Apple'], [TYPE, TABLET]], [
-
-            /(apple\s{0,1}tv)/i                                                 // Apple TV
-            ], [[MODEL, 'Apple TV'], [VENDOR, 'Apple']], [
-
-            /(archos)\s(gamepad2?)/i,                                           // Archos
-            /(hp).+(touchpad)/i,                                                // HP TouchPad
-            /(hp).+(tablet)/i,                                                  // HP Tablet
-            /(kindle)\/([\w\.]+)/i,                                             // Kindle
-            /\s(nook)[\w\s]+build\/(\w+)/i,                                     // Nook
-            /(dell)\s(strea[kpr\s\d]*[\dko])/i                                  // Dell Streak
-            ], [VENDOR, MODEL, [TYPE, TABLET]], [
-
-            /(kf[A-z]+)\sbuild\/.+silk\//i                                      // Kindle Fire HD
-            ], [MODEL, [VENDOR, 'Amazon'], [TYPE, TABLET]], [
-            /(sd|kf)[0349hijorstuw]+\sbuild\/.+silk\//i                         // Fire Phone
-            ], [[MODEL, mapper.str, maps.device.amazon.model], [VENDOR, 'Amazon'], [TYPE, MOBILE]], [
-
-            /\((ip[honed|\s\w*]+);.+(apple)/i                                   // iPod/iPhone
-            ], [MODEL, VENDOR, [TYPE, MOBILE]], [
-            /\((ip[honed|\s\w*]+);/i                                            // iPod/iPhone
-            ], [MODEL, [VENDOR, 'Apple'], [TYPE, MOBILE]], [
-
-            /(blackberry)[\s-]?(\w+)/i,                                         // BlackBerry
-            /(blackberry|benq|palm(?=\-)|sonyericsson|acer|asus|dell|meizu|motorola|polytron)[\s_-]?([\w-]*)/i,
-                                                                                // BenQ/Palm/Sony-Ericsson/Acer/Asus/Dell/Meizu/Motorola/Polytron
-            /(hp)\s([\w\s]+\w)/i,                                               // HP iPAQ
-            /(asus)-?(\w+)/i                                                    // Asus
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-            /\(bb10;\s(\w+)/i                                                   // BlackBerry 10
-            ], [MODEL, [VENDOR, 'BlackBerry'], [TYPE, MOBILE]], [
-                                                                                // Asus Tablets
-            /android.+(transfo[prime\s]{4,10}\s\w+|eeepc|slider\s\w+|nexus 7|padfone)/i
-            ], [MODEL, [VENDOR, 'Asus'], [TYPE, TABLET]], [
-
-            /(sony)\s(tablet\s[ps])\sbuild\//i,                                  // Sony
-            /(sony)?(?:sgp.+)\sbuild\//i
-            ], [[VENDOR, 'Sony'], [MODEL, 'Xperia Tablet'], [TYPE, TABLET]], [
-            /android.+\s([c-g]\d{4}|so[-l]\w+)\sbuild\//i
-            ], [MODEL, [VENDOR, 'Sony'], [TYPE, MOBILE]], [
-
-            /\s(ouya)\s/i,                                                      // Ouya
-            /(nintendo)\s([wids3u]+)/i                                          // Nintendo
-            ], [VENDOR, MODEL, [TYPE, CONSOLE]], [
-
-            /android.+;\s(shield)\sbuild/i                                      // Nvidia
-            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, CONSOLE]], [
-
-            /(playstation\s[34portablevi]+)/i                                   // Playstation
-            ], [MODEL, [VENDOR, 'Sony'], [TYPE, CONSOLE]], [
-
-            /(sprint\s(\w+))/i                                                  // Sprint Phones
-            ], [[VENDOR, mapper.str, maps.device.sprint.vendor], [MODEL, mapper.str, maps.device.sprint.model], [TYPE, MOBILE]], [
-
-            /(lenovo)\s?(S(?:5000|6000)+(?:[-][\w+]))/i                         // Lenovo tablets
-            ], [VENDOR, MODEL, [TYPE, TABLET]], [
-
-            /(htc)[;_\s-]+([\w\s]+(?=\))|\w+)*/i,                               // HTC
-            /(zte)-(\w*)/i,                                                     // ZTE
-            /(alcatel|geeksphone|lenovo|nexian|panasonic|(?=;\s)sony)[_\s-]?([\w-]*)/i
-                                                                                // Alcatel/GeeksPhone/Lenovo/Nexian/Panasonic/Sony
-            ], [VENDOR, [MODEL, /_/g, ' '], [TYPE, MOBILE]], [
-
-            /(nexus\s9)/i                                                       // HTC Nexus 9
-            ], [MODEL, [VENDOR, 'HTC'], [TYPE, TABLET]], [
-
-            /d\/huawei([\w\s-]+)[;\)]/i,
-            /(nexus\s6p)/i                                                      // Huawei
-            ], [MODEL, [VENDOR, 'Huawei'], [TYPE, MOBILE]], [
-
-            /(microsoft);\s(lumia[\s\w]+)/i                                     // Microsoft Lumia
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-
-            /[\s\(;](xbox(?:\sone)?)[\s\);]/i                                   // Microsoft Xbox
-            ], [MODEL, [VENDOR, 'Microsoft'], [TYPE, CONSOLE]], [
-            /(kin\.[onetw]{3})/i                                                // Microsoft Kin
-            ], [[MODEL, /\./g, ' '], [VENDOR, 'Microsoft'], [TYPE, MOBILE]], [
-
-                                                                                // Motorola
-            /\s(milestone|droid(?:[2-4x]|\s(?:bionic|x2|pro|razr))?:?(\s4g)?)[\w\s]+build\//i,
-            /mot[\s-]?(\w*)/i,
-            /(XT\d{3,4}) build\//i,
-            /(nexus\s6)/i
-            ], [MODEL, [VENDOR, 'Motorola'], [TYPE, MOBILE]], [
-            /android.+\s(mz60\d|xoom[\s2]{0,2})\sbuild\//i
-            ], [MODEL, [VENDOR, 'Motorola'], [TYPE, TABLET]], [
-
-            /hbbtv\/\d+\.\d+\.\d+\s+\([\w\s]*;\s*(\w[^;]*);([^;]*)/i            // HbbTV devices
-            ], [[VENDOR, util.trim], [MODEL, util.trim], [TYPE, SMARTTV]], [
-
-            /hbbtv.+maple;(\d+)/i
-            ], [[MODEL, /^/, 'SmartTV'], [VENDOR, 'Samsung'], [TYPE, SMARTTV]], [
-
-            /\(dtv[\);].+(aquos)/i                                              // Sharp
-            ], [MODEL, [VENDOR, 'Sharp'], [TYPE, SMARTTV]], [
-
-            /android.+((sch-i[89]0\d|shw-m380s|gt-p\d{4}|gt-n\d+|sgh-t8[56]9|nexus 10))/i,
-            /((SM-T\w+))/i
-            ], [[VENDOR, 'Samsung'], MODEL, [TYPE, TABLET]], [                  // Samsung
-            /smart-tv.+(samsung)/i
-            ], [VENDOR, [TYPE, SMARTTV], MODEL], [
-            /((s[cgp]h-\w+|gt-\w+|galaxy\snexus|sm-\w[\w\d]+))/i,
-            /(sam[sung]*)[\s-]*(\w+-?[\w-]*)/i,
-            /sec-((sgh\w+))/i
-            ], [[VENDOR, 'Samsung'], MODEL, [TYPE, MOBILE]], [
-
-            /sie-(\w*)/i                                                        // Siemens
-            ], [MODEL, [VENDOR, 'Siemens'], [TYPE, MOBILE]], [
-
-            /(maemo|nokia).*(n900|lumia\s\d+)/i,                                // Nokia
-            /(nokia)[\s_-]?([\w-]*)/i
-            ], [[VENDOR, 'Nokia'], MODEL, [TYPE, MOBILE]], [
-
-            /android\s3\.[\s\w;-]{10}(a\d{3})/i                                 // Acer
-            ], [MODEL, [VENDOR, 'Acer'], [TYPE, TABLET]], [
-
-            /android.+([vl]k\-?\d{3})\s+build/i                                 // LG Tablet
-            ], [MODEL, [VENDOR, 'LG'], [TYPE, TABLET]], [
-            /android\s3\.[\s\w;-]{10}(lg?)-([06cv9]{3,4})/i                     // LG Tablet
-            ], [[VENDOR, 'LG'], MODEL, [TYPE, TABLET]], [
-            /(lg) netcast\.tv/i                                                 // LG SmartTV
-            ], [VENDOR, MODEL, [TYPE, SMARTTV]], [
-            /(nexus\s[45])/i,                                                   // LG
-            /lg[e;\s\/-]+(\w*)/i,
-            /android.+lg(\-?[\d\w]+)\s+build/i
-            ], [MODEL, [VENDOR, 'LG'], [TYPE, MOBILE]], [
-
-            /android.+(ideatab[a-z0-9\-\s]+)/i                                  // Lenovo
-            ], [MODEL, [VENDOR, 'Lenovo'], [TYPE, TABLET]], [
-
-            /linux;.+((jolla));/i                                               // Jolla
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-
-            /((pebble))app\/[\d\.]+\s/i                                         // Pebble
-            ], [VENDOR, MODEL, [TYPE, WEARABLE]], [
-
-            /android.+;\s(oppo)\s?([\w\s]+)\sbuild/i                            // OPPO
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-
-            /crkey/i                                                            // Google Chromecast
-            ], [[MODEL, 'Chromecast'], [VENDOR, 'Google']], [
-
-            /android.+;\s(glass)\s\d/i                                          // Google Glass
-            ], [MODEL, [VENDOR, 'Google'], [TYPE, WEARABLE]], [
-
-            /android.+;\s(pixel c)\s/i                                          // Google Pixel C
-            ], [MODEL, [VENDOR, 'Google'], [TYPE, TABLET]], [
-
-            /android.+;\s(pixel xl|pixel)\s/i                                   // Google Pixel
-            ], [MODEL, [VENDOR, 'Google'], [TYPE, MOBILE]], [
-
-            /android.+;\s(\w+)\s+build\/hm\1/i,                                 // Xiaomi Hongmi 'numeric' models
-            /android.+(hm[\s\-_]*note?[\s_]*(?:\d\w)?)\s+build/i,               // Xiaomi Hongmi
-            /android.+(mi[\s\-_]*(?:one|one[\s_]plus|note lte)?[\s_]*(?:\d?\w?)[\s_]*(?:plus)?)\s+build/i,    // Xiaomi Mi
-            /android.+(redmi[\s\-_]*(?:note)?(?:[\s_]*[\w\s]+))\s+build/i       // Redmi Phones
-            ], [[MODEL, /_/g, ' '], [VENDOR, 'Xiaomi'], [TYPE, MOBILE]], [
-            /android.+(mi[\s\-_]*(?:pad)(?:[\s_]*[\w\s]+))\s+build/i            // Mi Pad tablets
-            ],[[MODEL, /_/g, ' '], [VENDOR, 'Xiaomi'], [TYPE, TABLET]], [
-            /android.+;\s(m[1-5]\snote)\sbuild/i                                // Meizu Tablet
-            ], [MODEL, [VENDOR, 'Meizu'], [TYPE, TABLET]], [
-
-            /android.+a000(1)\s+build/i,                                        // OnePlus
-            /android.+oneplus\s(a\d{4})\s+build/i
-            ], [MODEL, [VENDOR, 'OnePlus'], [TYPE, MOBILE]], [
-
-            /android.+[;\/]\s*(RCT[\d\w]+)\s+build/i                            // RCA Tablets
-            ], [MODEL, [VENDOR, 'RCA'], [TYPE, TABLET]], [
-
-            /android.+[;\/\s]+(Venue[\d\s]{2,7})\s+build/i                      // Dell Venue Tablets
-            ], [MODEL, [VENDOR, 'Dell'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*(Q[T|M][\d\w]+)\s+build/i                         // Verizon Tablet
-            ], [MODEL, [VENDOR, 'Verizon'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s+(Barnes[&\s]+Noble\s+|BN[RT])(V?.*)\s+build/i     // Barnes & Noble Tablet
-            ], [[VENDOR, 'Barnes & Noble'], MODEL, [TYPE, TABLET]], [
-
-            /android.+[;\/]\s+(TM\d{3}.*\b)\s+build/i                           // Barnes & Noble Tablet
-            ], [MODEL, [VENDOR, 'NuVision'], [TYPE, TABLET]], [
-
-            /android.+;\s(k88)\sbuild/i                                         // ZTE K Series Tablet
-            ], [MODEL, [VENDOR, 'ZTE'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*(gen\d{3})\s+build.*49h/i                         // Swiss GEN Mobile
-            ], [MODEL, [VENDOR, 'Swiss'], [TYPE, MOBILE]], [
-
-            /android.+[;\/]\s*(zur\d{3})\s+build/i                              // Swiss ZUR Tablet
-            ], [MODEL, [VENDOR, 'Swiss'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*((Zeki)?TB.*\b)\s+build/i                         // Zeki Tablets
-            ], [MODEL, [VENDOR, 'Zeki'], [TYPE, TABLET]], [
-
-            /(android).+[;\/]\s+([YR]\d{2})\s+build/i,
-            /android.+[;\/]\s+(Dragon[\-\s]+Touch\s+|DT)(\w{5})\sbuild/i        // Dragon Touch Tablet
-            ], [[VENDOR, 'Dragon Touch'], MODEL, [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*(NS-?\w{0,9})\sbuild/i                            // Insignia Tablets
-            ], [MODEL, [VENDOR, 'Insignia'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*((NX|Next)-?\w{0,9})\s+build/i                    // NextBook Tablets
-            ], [MODEL, [VENDOR, 'NextBook'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*(Xtreme\_)?(V(1[045]|2[015]|30|40|60|7[05]|90))\s+build/i
-            ], [[VENDOR, 'Voice'], MODEL, [TYPE, MOBILE]], [                    // Voice Xtreme Phones
-
-            /android.+[;\/]\s*(LVTEL\-)?(V1[12])\s+build/i                     // LvTel Phones
-            ], [[VENDOR, 'LvTel'], MODEL, [TYPE, MOBILE]], [
-
-            /android.+[;\/]\s*(V(100MD|700NA|7011|917G).*\b)\s+build/i          // Envizen Tablets
-            ], [MODEL, [VENDOR, 'Envizen'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*(Le[\s\-]+Pan)[\s\-]+(\w{1,9})\s+build/i          // Le Pan Tablets
-            ], [VENDOR, MODEL, [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*(Trio[\s\-]*.*)\s+build/i                         // MachSpeed Tablets
-            ], [MODEL, [VENDOR, 'MachSpeed'], [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*(Trinity)[\-\s]*(T\d{3})\s+build/i                // Trinity Tablets
-            ], [VENDOR, MODEL, [TYPE, TABLET]], [
-
-            /android.+[;\/]\s*TU_(1491)\s+build/i                               // Rotor Tablets
-            ], [MODEL, [VENDOR, 'Rotor'], [TYPE, TABLET]], [
-
-            /android.+(KS(.+))\s+build/i                                        // Amazon Kindle Tablets
-            ], [MODEL, [VENDOR, 'Amazon'], [TYPE, TABLET]], [
-
-            /android.+(Gigaset)[\s\-]+(Q\w{1,9})\s+build/i                      // Gigaset Tablets
-            ], [VENDOR, MODEL, [TYPE, TABLET]], [
-
-            /\s(tablet|tab)[;\/]/i,                                             // Unidentifiable Tablet
-            /\s(mobile)(?:[;\/]|\ssafari)/i                                     // Unidentifiable Mobile
-            ], [[TYPE, util.lowerize], VENDOR, MODEL], [
-
-            /(android[\w\.\s\-]{0,9});.+build/i                                 // Generic Android Device
-            ], [MODEL, [VENDOR, 'Generic']]
-
-
-        /*//////////////////////////
-            // TODO: move to string map
-            ////////////////////////////
-
-            /(C6603)/i                                                          // Sony Xperia Z C6603
-            ], [[MODEL, 'Xperia Z C6603'], [VENDOR, 'Sony'], [TYPE, MOBILE]], [
-            /(C6903)/i                                                          // Sony Xperia Z 1
-            ], [[MODEL, 'Xperia Z 1'], [VENDOR, 'Sony'], [TYPE, MOBILE]], [
-
-            /(SM-G900[F|H])/i                                                   // Samsung Galaxy S5
-            ], [[MODEL, 'Galaxy S5'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
-            /(SM-G7102)/i                                                       // Samsung Galaxy Grand 2
-            ], [[MODEL, 'Galaxy Grand 2'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
-            /(SM-G530H)/i                                                       // Samsung Galaxy Grand Prime
-            ], [[MODEL, 'Galaxy Grand Prime'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
-            /(SM-G313HZ)/i                                                      // Samsung Galaxy V
-            ], [[MODEL, 'Galaxy V'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
-            /(SM-T805)/i                                                        // Samsung Galaxy Tab S 10.5
-            ], [[MODEL, 'Galaxy Tab S 10.5'], [VENDOR, 'Samsung'], [TYPE, TABLET]], [
-            /(SM-G800F)/i                                                       // Samsung Galaxy S5 Mini
-            ], [[MODEL, 'Galaxy S5 Mini'], [VENDOR, 'Samsung'], [TYPE, MOBILE]], [
-            /(SM-T311)/i                                                        // Samsung Galaxy Tab 3 8.0
-            ], [[MODEL, 'Galaxy Tab 3 8.0'], [VENDOR, 'Samsung'], [TYPE, TABLET]], [
-
-            /(T3C)/i                                                            // Advan Vandroid T3C
-            ], [MODEL, [VENDOR, 'Advan'], [TYPE, TABLET]], [
-            /(ADVAN T1J\+)/i                                                    // Advan Vandroid T1J+
-            ], [[MODEL, 'Vandroid T1J+'], [VENDOR, 'Advan'], [TYPE, TABLET]], [
-            /(ADVAN S4A)/i                                                      // Advan Vandroid S4A
-            ], [[MODEL, 'Vandroid S4A'], [VENDOR, 'Advan'], [TYPE, MOBILE]], [
-
-            /(V972M)/i                                                          // ZTE V972M
-            ], [MODEL, [VENDOR, 'ZTE'], [TYPE, MOBILE]], [
-
-            /(i-mobile)\s(IQ\s[\d\.]+)/i                                        // i-mobile IQ
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-            /(IQ6.3)/i                                                          // i-mobile IQ IQ 6.3
-            ], [[MODEL, 'IQ 6.3'], [VENDOR, 'i-mobile'], [TYPE, MOBILE]], [
-            /(i-mobile)\s(i-style\s[\d\.]+)/i                                   // i-mobile i-STYLE
-            ], [VENDOR, MODEL, [TYPE, MOBILE]], [
-            /(i-STYLE2.1)/i                                                     // i-mobile i-STYLE 2.1
-            ], [[MODEL, 'i-STYLE 2.1'], [VENDOR, 'i-mobile'], [TYPE, MOBILE]], [
-
-            /(mobiistar touch LAI 512)/i                                        // mobiistar touch LAI 512
-            ], [[MODEL, 'Touch LAI 512'], [VENDOR, 'mobiistar'], [TYPE, MOBILE]], [
-
-            /////////////
-            // END TODO
-            ///////////*/
-
-        ],
-
-        engine : [[
-
-            /windows.+\sedge\/([\w\.]+)/i                                       // EdgeHTML
-            ], [VERSION, [NAME, 'EdgeHTML']], [
-
-            /(presto)\/([\w\.]+)/i,                                             // Presto
-            /(webkit|trident|netfront|netsurf|amaya|lynx|w3m)\/([\w\.]+)/i,     // WebKit/Trident/NetFront/NetSurf/Amaya/Lynx/w3m
-            /(khtml|tasman|links)[\/\s]\(?([\w\.]+)/i,                          // KHTML/Tasman/Links
-            /(icab)[\/\s]([23]\.[\d\.]+)/i                                      // iCab
-            ], [NAME, VERSION], [
-
-            /rv\:([\w\.]{1,9}).+(gecko)/i                                       // Gecko
-            ], [VERSION, NAME]
-        ],
-
-        os : [[
-
-            // Windows based
-            /microsoft\s(windows)\s(vista|xp)/i                                 // Windows (iTunes)
-            ], [NAME, VERSION], [
-            /(windows)\snt\s6\.2;\s(arm)/i,                                     // Windows RT
-            /(windows\sphone(?:\sos)*)[\s\/]?([\d\.\s\w]*)/i,                   // Windows Phone
-            /(windows\smobile|windows)[\s\/]?([ntce\d\.\s]+\w)/i
-            ], [NAME, [VERSION, mapper.str, maps.os.windows.version]], [
-            /(win(?=3|9|n)|win\s9x\s)([nt\d\.]+)/i
-            ], [[NAME, 'Windows'], [VERSION, mapper.str, maps.os.windows.version]], [
-
-            // Mobile/Embedded OS
-            /\((bb)(10);/i                                                      // BlackBerry 10
-            ], [[NAME, 'BlackBerry'], VERSION], [
-            /(blackberry)\w*\/?([\w\.]*)/i,                                     // Blackberry
-            /(tizen)[\/\s]([\w\.]+)/i,                                          // Tizen
-            /(android|webos|palm\sos|qnx|bada|rim\stablet\sos|meego|contiki)[\/\s-]?([\w\.]*)/i,
-                                                                                // Android/WebOS/Palm/QNX/Bada/RIM/MeeGo/Contiki
-            /linux;.+(sailfish);/i                                              // Sailfish OS
-            ], [NAME, VERSION], [
-            /(symbian\s?os|symbos|s60(?=;))[\/\s-]?([\w\.]*)/i                  // Symbian
-            ], [[NAME, 'Symbian'], VERSION], [
-            /\((series40);/i                                                    // Series 40
-            ], [NAME], [
-            /mozilla.+\(mobile;.+gecko.+firefox/i                               // Firefox OS
-            ], [[NAME, 'Firefox OS'], VERSION], [
-
-            // Console
-            /(nintendo|playstation)\s([wids34portablevu]+)/i,                   // Nintendo/Playstation
-
-            // GNU/Linux based
-            /(mint)[\/\s\(]?(\w*)/i,                                            // Mint
-            /(mageia|vectorlinux)[;\s]/i,                                       // Mageia/VectorLinux
-            /(joli|[kxln]?ubuntu|debian|suse|opensuse|gentoo|(?=\s)arch|slackware|fedora|mandriva|centos|pclinuxos|redhat|zenwalk|linpus)[\/\s-]?(?!chrom)([\w\.-]*)/i,
-                                                                                // Joli/Ubuntu/Debian/SUSE/Gentoo/Arch/Slackware
-                                                                                // Fedora/Mandriva/CentOS/PCLinuxOS/RedHat/Zenwalk/Linpus
-            /(hurd|linux)\s?([\w\.]*)/i,                                        // Hurd/Linux
-            /(gnu)\s?([\w\.]*)/i                                                // GNU
-            ], [NAME, VERSION], [
-
-            /(cros)\s[\w]+\s([\w\.]+\w)/i                                       // Chromium OS
-            ], [[NAME, 'Chromium OS'], VERSION],[
-
-            // Solaris
-            /(sunos)\s?([\w\.\d]*)/i                                            // Solaris
-            ], [[NAME, 'Solaris'], VERSION], [
-
-            // BSD based
-            /\s([frentopc-]{0,4}bsd|dragonfly)\s?([\w\.]*)/i                    // FreeBSD/NetBSD/OpenBSD/PC-BSD/DragonFly
-            ], [NAME, VERSION],[
-
-            /(haiku)\s(\w+)/i                                                   // Haiku
-            ], [NAME, VERSION],[
-
-            /cfnetwork\/.+darwin/i,
-            /ip[honead]{2,4}(?:.*os\s([\w]+)\slike\smac|;\sopera)/i             // iOS
-            ], [[VERSION, /_/g, '.'], [NAME, 'iOS']], [
-
-            /(mac\sos\sx)\s?([\w\s\.]*)/i,
-            /(macintosh|mac(?=_powerpc)\s)/i                                    // Mac OS
-            ], [[NAME, 'Mac OS'], [VERSION, /_/g, '.']], [
-
-            // Other
-            /((?:open)?solaris)[\/\s-]?([\w\.]*)/i,                             // Solaris
-            /(aix)\s((\d)(?=\.|\)|\s)[\w\.])*/i,                                // AIX
-            /(plan\s9|minix|beos|os\/2|amigaos|morphos|risc\sos|openvms)/i,
-                                                                                // Plan9/Minix/BeOS/OS2/AmigaOS/MorphOS/RISCOS/OpenVMS
-            /(unix)\s?([\w\.]*)/i                                               // UNIX
-            ], [NAME, VERSION]
-        ]
-    };
-
-
-    /////////////////
-    // Constructor
-    ////////////////
-    /*
-    var Browser = function (name, version) {
-        this[NAME] = name;
-        this[VERSION] = version;
-    };
-    var CPU = function (arch) {
-        this[ARCHITECTURE] = arch;
-    };
-    var Device = function (vendor, model, type) {
-        this[VENDOR] = vendor;
-        this[MODEL] = model;
-        this[TYPE] = type;
-    };
-    var Engine = Browser;
-    var OS = Browser;
-    */
-    var UAParser = function (uastring, extensions) {
-
-        if (typeof uastring === 'object') {
-            extensions = uastring;
-            uastring = undefined;
-        }
-
-        if (!(this instanceof UAParser)) {
-            return new UAParser(uastring, extensions).getResult();
-        }
-
-        var ua = uastring || ((window && window.navigator && window.navigator.userAgent) ? window.navigator.userAgent : EMPTY);
-        var rgxmap = extensions ? util.extend(regexes, extensions) : regexes;
-        //var browser = new Browser();
-        //var cpu = new CPU();
-        //var device = new Device();
-        //var engine = new Engine();
-        //var os = new OS();
-
-        this.getBrowser = function () {
-            var browser = { name: undefined, version: undefined };
-            mapper.rgx.call(browser, ua, rgxmap.browser);
-            browser.major = util.major(browser.version); // deprecated
-            return browser;
-        };
-        this.getCPU = function () {
-            var cpu = { architecture: undefined };
-            mapper.rgx.call(cpu, ua, rgxmap.cpu);
-            return cpu;
-        };
-        this.getDevice = function () {
-            var device = { vendor: undefined, model: undefined, type: undefined };
-            mapper.rgx.call(device, ua, rgxmap.device);
-            return device;
-        };
-        this.getEngine = function () {
-            var engine = { name: undefined, version: undefined };
-            mapper.rgx.call(engine, ua, rgxmap.engine);
-            return engine;
-        };
-        this.getOS = function () {
-            var os = { name: undefined, version: undefined };
-            mapper.rgx.call(os, ua, rgxmap.os);
-            return os;
-        };
-        this.getResult = function () {
-            return {
-                ua      : this.getUA(),
-                browser : this.getBrowser(),
-                engine  : this.getEngine(),
-                os      : this.getOS(),
-                device  : this.getDevice(),
-                cpu     : this.getCPU()
-            };
-        };
-        this.getUA = function () {
-            return ua;
-        };
-        this.setUA = function (uastring) {
-            ua = uastring;
-            //browser = new Browser();
-            //cpu = new CPU();
-            //device = new Device();
-            //engine = new Engine();
-            //os = new OS();
-            return this;
-        };
-        return this;
-    };
-
-    UAParser.VERSION = LIBVERSION;
-    UAParser.BROWSER = {
-        NAME    : NAME,
-        MAJOR   : MAJOR, // deprecated
-        VERSION : VERSION
-    };
-    UAParser.CPU = {
-        ARCHITECTURE : ARCHITECTURE
-    };
-    UAParser.DEVICE = {
-        MODEL   : MODEL,
-        VENDOR  : VENDOR,
-        TYPE    : TYPE,
-        CONSOLE : CONSOLE,
-        MOBILE  : MOBILE,
-        SMARTTV : SMARTTV,
-        TABLET  : TABLET,
-        WEARABLE: WEARABLE,
-        EMBEDDED: EMBEDDED
-    };
-    UAParser.ENGINE = {
-        NAME    : NAME,
-        VERSION : VERSION
-    };
-    UAParser.OS = {
-        NAME    : NAME,
-        VERSION : VERSION
-    };
-    //UAParser.Utils = util;
-
-    ///////////
-    // Export
-    //////////
-
-
-    // check js environment
-    if (typeof(exports) !== UNDEF_TYPE) {
-        // nodejs env
-        if (typeof module !== UNDEF_TYPE && module.exports) {
-            exports = module.exports = UAParser;
-        }
-        // TODO: test!!!!!!!!
-        /*
-        if (require && require.main === module && process) {
-            // cli
-            var jsonize = function (arr) {
-                var res = [];
-                for (var i in arr) {
-                    res.push(new UAParser(arr[i]).getResult());
-                }
-                process.stdout.write(JSON.stringify(res, null, 2) + '\n');
-            };
-            if (process.stdin.isTTY) {
-                // via args
-                jsonize(process.argv.slice(2));
-            } else {
-                // via pipe
-                var str = '';
-                process.stdin.on('readable', function() {
-                    var read = process.stdin.read();
-                    if (read !== null) {
-                        str += read;
-                    }
-                });
-                process.stdin.on('end', function () {
-                    jsonize(str.replace(/\n$/, '').split('\n'));
-                });
-            }
-        }
-        */
-        exports.UAParser = UAParser;
-    } else {
-        // requirejs env (optional)
-        if ("function" === FUNC_TYPE && __webpack_require__(92)) {
-            !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-                return UAParser;
-            }.call(exports, __webpack_require__, exports, module),
-				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-        } else if (window) {
-            // browser env
-            window.UAParser = UAParser;
-        }
-    }
-
-    // jQuery/Zepto specific (optional)
-    // Note:
-    //   In AMD env the global scope should be kept clean, but jQuery is an exception.
-    //   jQuery always exports to global scope, unless jQuery.noConflict(true) is used,
-    //   and we should catch that.
-    var $ = window && (window.jQuery || window.Zepto);
-    if (typeof $ !== UNDEF_TYPE) {
-        var parser = new UAParser();
-        $.ua = parser.getResult();
-        $.ua.get = function () {
-            return parser.getUA();
-        };
-        $.ua.set = function (uastring) {
-            parser.setUA(uastring);
-            var result = parser.getResult();
-            for (var prop in result) {
-                $.ua[prop] = result[prop];
-            }
-        };
-    }
-
-})(typeof window === 'object' ? window : this);
-
-
-/***/ }),
-/* 92 */
-/***/ (function(module, exports) {
-
-/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {/* globals __webpack_amd_options__ */
-module.exports = __webpack_amd_options__;
-
-/* WEBPACK VAR INJECTION */}.call(exports, {}))
-
-/***/ }),
-/* 93 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE_93__;
+module.exports = __WEBPACK_EXTERNAL_MODULE_71__;
 
 /***/ })
 /******/ ]);
