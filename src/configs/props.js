@@ -1,5 +1,4 @@
 export default {
-  height: 500,
   language: 'zh',
   controls: [
     'undo', 'redo', 'separator',
@@ -98,6 +97,13 @@ export default {
     "😭", "😠", "😈", "😧", "💔", "😟", "🙀",
     "💩", "👿", "😡", "😾", "🖕"
   ],
+  stripPastedStyles: false,
+  className: '',
+  style: {},
+  controlBarClassName: '',
+  controlBarStyle: {},
+  contentClassName: '',
+  contentStyle: {},
   draftProps: {},
   onChange: null,
   onFocus: null,

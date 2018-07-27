@@ -1,45 +1,30 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor from '../src'
-import { convertRawToHTML } from 'braft-convert'
-import { convertToRaw } from 'draft-js'
+import BraftEditor, { ConvertUtils } from '../src'
 
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      editorState: null
+    }
     this.editorInstance = null
   }
 
   handleChange = (editorState) => {
-    console.log(convertRawToHTML(convertToRaw(editorState.getCurrentContent())))
+    this.setState({ editorState })
+    console.log(ConvertUtils.convertEditorStateToRaw(editorState))
   }
 
   render() {
-
-    const imageControls = [
-      ...BraftEditor.defaultProps.imageControls,
-      {
-        text: <b>SB</b>,
-        onClick: console.log
-      }
-    ]
 
     return (
       <div>
         <div className="demo" id="demo">
           <BraftEditor
             onChange={this.handleChange}
-            stripPastedStyles={false}
-            imageControls={imageControls}
-            media={{
-              externals: {
-                audio: true,
-                image: true,
-                embed: true
-              }
-            }}
+            value={this.state.editorState}
           />
         </div>
       </div>

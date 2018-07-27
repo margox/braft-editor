@@ -1,6 +1,7 @@
 @import '~scssinc';
 
 .BraftEditor-content{
+  height: 500px;
   overflow: auto;
   font-size: 16px;
   img{
@@ -15,7 +16,6 @@
   position: relative;
   height: 100%;
   padding: 0;
-  overflow: hidden;
 
   &.disabled{
     pointer-events: none;

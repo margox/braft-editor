@@ -104,24 +104,22 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, editorHeight, textAligns, textBackgroundColor, textIndents} = this.props
+    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, textIndents} = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const supportedControls = getSupportedControls(language)
-    const commonProps = { editor, editorState, editorHeight, language, containerNode }
+    const commonProps = { editor, editorState, language, containerNode }
 
     const renderedExtendControls = extendControls.map((item, index) => {
       if (item.type === 'separator') {
         return <span key={controls.length * 2 + index} className="separator-line"></span>
       } else if (item.type === 'dropdown') {
-        let { disabled, autoHide, html, text, className, showDropDownArrow, showWrapper, hoverTitle, component, arrowActive, ref } = item
+        let { disabled, autoHide, html, text, className, showDropDownArrow, hoverTitle, component, arrowActive, ref } = item
         return (
           <DropDown
             key={index}
             className={"control-item dropdown " + className}
             caption={text}
-            editorHeight={editorHeight}
             htmlCaption={html}
-            showWrapper={showWrapper}
             showDropDownArrow={showDropDownArrow}
             containerNode={containerNode}
             hoverTitle={hoverTitle}

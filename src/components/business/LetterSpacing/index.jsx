@@ -21,7 +21,6 @@ export default (props) => {
     <DropDown
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
-      editorHeight={props.editorHeight}
       hoverTitle={props.language.controls.letterSpacing}
       className={"control-item dropdown braft-letter-spacing-dropdown"}
     >

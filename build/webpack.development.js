@@ -1,7 +1,6 @@
 var webpack = require('webpack')
   , merge = require('webpack-merge')
   , path = require('path')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin')
   , HtmlWebpackPlugin = require('html-webpack-plugin')
   , baseConfigs = require('./webpack.base')
 
@@ -16,7 +15,6 @@ module.exports = merge(baseConfigs, {
     filename: '[name].js'
   },
   plugins: [
-    new ExtractTextPlugin("braft.css"),
     new HtmlWebpackPlugin({
       template: './example/index.html'
     })

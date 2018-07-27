@@ -1,6 +1,9 @@
 import BraftEditor from 'editor'
+import { ContentUtils, ColorUtils, BaseUtils } from 'braft-utils'
+import * as ConvertUtils from 'braft-convert'
 
 export default BraftEditor
+export { ContentUtils, ColorUtils, BaseUtils, ConvertUtils }
 
 // TODO
 // [√]优化内置的图片伪上传功能，用base64代替blob
@@ -12,6 +15,6 @@ export default BraftEditor
 // [√]允许完全设置控制栏的按钮（['media', { key: 'blod', text: 'xxx' }）
 // [√]允许在工具栏和内容区域直接插入自定义的组件[componentBelowControlBar]
 // [ ]优化换行与空格
-// [ ]支持定义DropDown组件的样式
+// [√]支持定义DropDown组件的样式
 // --------------
-// [ ]图片剪切功能
+// [ ]图片裁切等简单的编辑功能

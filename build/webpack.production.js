@@ -1,6 +1,5 @@
 var webpack = require('webpack')
   , merge = require('webpack-merge')
-  , ExtractTextPlugin = require('extract-text-webpack-plugin')
   , OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
   , path = require('path')
   , baseConfigs = require('./webpack.base')
@@ -32,7 +31,6 @@ module.exports = merge(baseConfigs, {
     minimize: true,
   },
   plugins: [
-    new ExtractTextPlugin("index.css"),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /.css$/,
       cssProcessor: require('cssnano'),

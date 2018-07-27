@@ -12,13 +12,13 @@ export default class DropDown extends React.Component {
   componentId = this.props.componentId || ('BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex())
   state = {
     active: false,
-    offset: 0
+    offset: 0,
+    maxHeight: 100
   }
 
   componentDidMount () {
 
     this.alive = true
-    //this.fixDropDownPosition()
 
     document.body.addEventListener('click', (event) => {
       this.registerClickEvent(event)
@@ -59,14 +59,10 @@ export default class DropDown extends React.Component {
 
   render () {
 
-    let { active, offset } = this.state
-    let { caption, htmlCaption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children, editorHeight } = this.props
+    let { active, offset, maxHeight } = this.state
+    let { caption, htmlCaption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children } = this.props
 
     disabled && (active = false)
-
-    const dropDownContentInnerStyle = !isNaN(editorHeight) && editorHeight > 0 ? {
-      maxHeight: editorHeight - 30 + 'px'
-    } : {}
 
     return (
       <div
@@ -96,7 +92,7 @@ export default class DropDown extends React.Component {
         )}
         <div
           className="dropdown-content"
-          style={{marginLeft: offset + 'px'}}
+          style={{marginLeft: offset }}
           ref={(instance) => this.dropDownContentElement = instance}
         >
           <i
@@ -105,7 +101,7 @@ export default class DropDown extends React.Component {
           ></i>
           <div
             className="dropdown-content-inner"
-            style={dropDownContentInnerStyle}
+            style={{ maxHeight }}
           >
             {children}
           </div>
@@ -118,8 +114,11 @@ export default class DropDown extends React.Component {
   fixDropDownPosition () {
 
     const viewRect = this.props.containerNode.getBoundingClientRect()
+    const editorContentRect = this.props.containerNode.querySelector('.BraftEditor-content').getBoundingClientRect()
     const handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
     const contentRect = this.dropDownContentElement.getBoundingClientRect()
+
+    const maxHeight = editorContentRect.height + (editorContentRect.top - (handlerRect.top + handlerRect.height)) - 30
 
     let offset = 0
     let right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2
@@ -134,7 +133,9 @@ export default class DropDown extends React.Component {
       offset = left * -1 + 10
     }
 
-    offset !== this.state.offset && this.setState({ offset })
+    if (offset !== this.state.offset || maxHeight !== this.state.maxHeight) {
+      this.setState({ offset, maxHeight })
+    }
 
   }
 

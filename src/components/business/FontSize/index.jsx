@@ -20,7 +20,6 @@ export default (props) => {
   return (
     <DropDown
       caption={caption || props.defaultCaption}
-      editorHeight={props.editorHeight}
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.fontSize}
       className={"control-item dropdown braft-font-size-dropdown"}

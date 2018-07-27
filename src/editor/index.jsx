@@ -33,7 +33,7 @@ export default class BraftEditor extends React.Component {
     this.state = {
       containerNode: null,
       tempColors: [],
-      editorState: ContentUtils.createEmptyEditorState(editorDecorators),
+      editorState: ContentUtils.isEditorState(props.defaultValue) ? props.defaultValue : ContentUtils.createEmptyEditorState(editorDecorators),
       draftProps: {}
     }
 
@@ -64,14 +64,6 @@ export default class BraftEditor extends React.Component {
     } else if (editorState) {
       console.warn('')
     }
-
-    document.addEventListener("selectionchange", this.draftInstance._onSelect)
-
-  }
-
-  componentWillUnmount () {
-
-    document.removeEventListener("selectionchange", this.draftInstance._onSelect)
 
   }
 
@@ -291,7 +283,7 @@ export default class BraftEditor extends React.Component {
     let {
       controls, excludeControls, extendControls, disabled, height, media, language, colors,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
-      extendAtomics, className, stripPastedStyles, componentBelowControlBar
+      extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.props
 
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
@@ -313,9 +305,10 @@ export default class BraftEditor extends React.Component {
       editor: this,
       editorState: this.state.editorState,
       braftFinder: this.braftFinder,
-      editorHeight: height,
       ref: instance => this.controlBarInstance = instance,
       containerNode: this.state.containerNode,
+      className: controlBarClassName,
+      style: controlBarStyle,
       colors: [...colors, ...this.state.tempColors],
       media, controls, language, extendControls, fontSizes, fontFamilies,
       emojis, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor
@@ -357,10 +350,10 @@ export default class BraftEditor extends React.Component {
     }
 
     return (
-      <div ref={this.setEditorContainerNode} className={`BraftEditor-container ${className} ${(disabled ? 'disabled' : '')}`}>
+      <div ref={this.setEditorContainerNode} className={`BraftEditor-container ${className} ${(disabled ? 'disabled' : '')}`} style={style}>
         <ControlBar {...controlBarProps} />
         {componentBelowControlBar}
-        <div className="BraftEditor-content" style={height ? { height } : {}}>
+        <div className={`BraftEditor-content ${contentClassName}`} style={contentStyle}>
           <Editor {...draftProps} />
         </div>
       </div>
