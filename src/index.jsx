@@ -1,7 +1,8 @@
 
 import React from "react"
+import PropTypes from "prop-types";
 import languages from "languages"
-import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, EditorState, RichUtils, convertFromRaw, convertToRaw, convertFromHTML as originConvertFromHTML} from "draft-js"
+import { Modifier, CompositeDecorator, DefaultDraftBlockRenderMap, Editor, EditorState, RichUtils, convertFromRaw, convertToRaw} from "draft-js"
 import { convertToHTML, convertFromHTML} from "draft-convert"
 import { handleNewLine } from "draftjs-utils"
 import { getToHTMLConfig, getFromHTMLConfig } from "configs/convert"
@@ -28,6 +29,25 @@ const blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
 export default class BraftEditor extends EditorController {
 
+  static propTypes = {
+    extendControls: PropTypes.array,
+    controls: PropTypes.array,
+    excludeControls: PropTypes.array,
+    onChange: PropTypes.func,
+    onHTMLChange: PropTypes.func,
+    onRawChange: PropTypes.func,
+    initialContent: PropTypes.any,
+    disabled: PropTypes.bool,
+    height: PropTypes.number,
+    media: PropTypes.object, 
+    language: PropTypes.oneOf(["en", "zh"]),
+    colors: PropTypes.array,
+    fontFamilies: PropTypes.array,
+    fontSizes: PropTypes.array,
+    emojis: PropTypes.array,
+    wrapperClasses: PropTypes.object,
+  }
+
   static defaultProps = {
     ...defaultOptions,
     onChange: null,
@@ -35,7 +55,13 @@ export default class BraftEditor extends EditorController {
     onRawChange: null,
     onFocus: null,
     onBlur: null,
-    onSave: null
+    onSave: null,
+    disabled: false,
+    language: "en",
+    wrapperClasses: {
+      container: null,
+      controlBar: null,
+    }
   }
 
   static getContent = (format, contentState, fontFamilies = null) => {
@@ -83,7 +109,6 @@ export default class BraftEditor extends EditorController {
       this.setContent(this.props.initialContent)
       this.contentInitialized = true
     }
-
   }
 
   componentWillReceiveProps (nextProps) {
@@ -105,13 +130,17 @@ export default class BraftEditor extends EditorController {
     this.setState({ editorState }, () => {
       clearTimeout(this.syncTimer)
       this.syncTimer = setTimeout(() => {
-        const { onChange, onRawChange, onHTMLChange } = this.props
-        onChange && onChange(BraftEditor.getContent("raw", this.contentState, this.props.fontFamilies))
-        onHTMLChange && onHTMLChange(this.getHTMLContent())
-        onRawChange && onRawChange(this.getRawContent())
+        if (this.props.onChange) {
+          this.props.onChange(BraftEditor.getContent("raw", this.contentState, this.props.fontFamilies))
+        }
+        if (this.props.onHTMLChange) {
+          this.props.onHTMLChange(this.getHTMLContent());
+        }
+        if (this.props.onRawChange) {
+          this.props.onRawChange(this.getRawContent());
+        }
       }, 300)
     })
-
   }
 
   getHTMLContent = () => BraftEditor.getContent("html", this.contentState, this.props.fontFamilies)
@@ -136,7 +165,7 @@ export default class BraftEditor extends EditorController {
   setContent = (content, format) => {
     let convertedContent
     const newState = {}
-    let { contentFormat, colors } = this.props
+    let { contentFormat } = this.props
 
     contentFormat = format || contentFormat || "raw"
 
@@ -397,7 +426,7 @@ export default class BraftEditor extends EditorController {
     const controlBarProps = {
       editor: this,
       editorHeight: height,
-      ref: (instance) => this.controlBarInstance = instance,
+      ref: (instance) => { this.controlBarInstance = instance },
       media, controls, language, viewWrapper, extendControls, colors, tempColors, fontSizes, fontFamilies,
       emojis, lineHeights, letterSpacings, indents, textAlignOptions, allowSetTextBackgroundColor
     }
@@ -432,11 +461,19 @@ export default class BraftEditor extends EditorController {
       ...this.state.editorProps
     }
 
+    const containerClass = this.props.wrapperClasses.container;
+    const controlBarClass = this.props.wrapperClasses.controlBar;
+
     return (
-      <div className={`BraftEditor-container BraftEditor-instance-${this.instanceIndex} ${(disabled ? "disabled" : "")}`}>
-        <ControlBar {...controlBarProps} />
+      <div className={`BraftEditor-container BraftEditor-instance-${this.instanceIndex} ${(disabled ? "disabled" : "")} ${containerClass}`}>
+        <ControlBar
+          wrapperClass={controlBarClass}
+          {...controlBarProps}
+        />
         <div className="BraftEditor-content" style={height ? { height } : {}}>
-          <Editor {...editorProps} />
+          <Editor 
+            {...editorProps} 
+          />
         </div>
       </div>
     )

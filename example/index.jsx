@@ -1,18 +1,16 @@
-import 'babel-polyfill'
-import React from 'react'
-import ReactDOM from 'react-dom'
-import BraftEditor from '../src'
-import CustomAtomic from './CustomAtomic';
+import "babel-polyfill"
+import React from "react"
+import ReactDOM from "react-dom"
+import BraftEditor from "../src"
+import CustomAtomic from "./CustomAtomic";
 
 class Demo extends React.Component {
-
   constructor(props) {
     super(props)
     this.state = {
-      contentId: 0,
-      contentFormat: 'html',
-      initialContent: ``,
-      htmlContent: ''
+      contentFormat: "html",
+      initialContent: "",
+      htmlContent: ""
     }
     this.editorInstance = null
   }
@@ -38,7 +36,7 @@ class Demo extends React.Component {
           controls: true,
           loop: true,
           autoPlay: false,
-          poster: 'https://www.baidu.com/img/bd_logo1.png?where=super'
+          poster: "https://www.baidu.com/img/bd_logo1.png?where=super"
         }
       })
     }
@@ -49,7 +47,7 @@ class Demo extends React.Component {
 
     const errorFn = (response) => {
       param.error({
-        msg: 'unable to upload.'
+        msg: "unable to upload."
       })
     }
 
@@ -58,15 +56,13 @@ class Demo extends React.Component {
     xhr.addEventListener("error", errorFn, false)
     xhr.addEventListener("abort", errorFn, false)
 
-    fd.append('file', param.file)
-    xhr.open('POST', 'http://localhost:9090', true)
+    fd.append("file", param.file)
+    xhr.open("POST", "http://localhost:9090", true)
     xhr.send(fd)
 
   }
 
-  validateFn = (file) => {
-    return file.size <= 1024 * 100
-  }
+  validateFn = (file) => file.size <= 1024 * 100
 
   buildPreviewHtml () {
 
@@ -116,7 +112,7 @@ class Demo extends React.Component {
   }
 
   insertHTMLContent = () => {
-    //this.editorInstance.insertHTML('<p><img src="https://cdn.dribbble.com/users/1224447/screenshots/4576582/800x600_1x.png" /></p><p>12312312312<a href="123123123">baidu.com</a></p><p>asdasdas<u><span style="text-decoration:line-through;"><strong>da<em><span style="font-size:32px;color:#fdda00;background-color:#07a9fe;">s</span>d</em>ad</strong>asdas</span></u>d</p>')
+    // this.editorInstance.insertHTML('<p><img src="https://cdn.dribbble.com/users/1224447/screenshots/4576582/800x600_1x.png" /></p><p>12312312312<a href="123123123">baidu.com</a></p><p>asdasdas<u><span style="text-decoration:line-through;"><strong>da<em><span style="font-size:32px;color:#fdda00;background-color:#07a9fe;">s</span>d</em>ad</strong>asdas</span></u>d</p>')
     this.editorInstance.insertHTML('<p><span style="color:#ff0000;">Hello World!</span></p>')
   }
 
@@ -124,55 +120,55 @@ class Demo extends React.Component {
 
     const extendControls = [
       {
-        type: 'split',
+        type: "split",
       }, {
-        type: 'button',
-        className: 'preview-button',
+        type: "button",
+        className: "preview-button",
         text: <span>测试</span>,
         onClick:()=>{
           this.editorInstance.insertMedias([{
-            type: 'VIDEO',
-            url: 'http://www.baidu.com',
+            type: "VIDEO",
+            url: "http://www.baidu.com",
             meta: {
-              poster: 'https://t11.baidu.com/it/u=4159415578,2157591270&fm=173&app=25&f=JPEG?w=500&h=333&s=8A206184576332ACCEB834820300A093'
+              poster: "https://t11.baidu.com/it/u=4159415578,2157591270&fm=173&app=25&f=JPEG?w=500&h=333&s=8A206184576332ACCEB834820300A093"
             }
           }])
         }
       },{
-        type: 'button',
-        className: 'preview-button',
+        type: "button",
+        className: "preview-button",
         text: <span>预览</span>,
         onClick: this.preview
       }, {
-        type: 'button',
-        className: 'preview-button',
+        type: "button",
+        className: "preview-button",
         text: <span>增加颜色</span>,
         onClick: () => {
-          this.editorInstance.addTempColors(['#0099ae', '#0049ae', '#4099ae', '#00c9fe'])
+          this.editorInstance.addTempColors(["#0099ae", "#0049ae", "#4099ae", "#00c9fe"])
         }
       }, {
-        type: 'dropdown',
+        type: "dropdown",
         width: 80,
         disabled: false,
         arrowActive: false,
         text: <span>下拉框</span>,
         html: '<span style="color:#0f0;">下拉框</span>',
         autoHide: false,
-        ref: instance => window.customDropDown = instance,
-        component: <h1 style={{width: 200, color: '#ffffff', padding: 10, margin: 0}}>Hello World!</h1>
+        ref: (instance) => { window.customDropDown = instance },
+        component: <h1 style={{width: 200, color: "#ffffff", padding: 10, margin: 0}}>Hello World!</h1>
       }, {
-        type: 'modal',
+        type: "modal",
         html: '<span style="color:#f00;">弹出框</span>',
-        text: '弹出框',
-        className: 'modal-button',
+        text: "弹出框",
+        className: "modal-button",
         modal: {
-          id: 'test-modal',
-          title: '这是一个弹出框',
+          id: "test-modal",
+          title: "这是一个弹出框",
           showClose: true,
           showCancel: true,
           showConfirm: true,
           confirmable: true,
-          onCreate: modal => this.myModal = modal,
+          onCreate: (modal) => { this.myModal = modal },
           children: (
             <div style={{width: 480, height: 320, padding: 30}}>
               <span>Hello World!</span>
@@ -180,12 +176,12 @@ class Demo extends React.Component {
           )
         }
       }, {
-        type: 'button',
+        type: "button",
         text: <span>添加自定义组件</span>,
         onClick: () => {
           this.editorInstance.insertMedias([{
-            type: 'HELLO',
-            name: 'BalBla',
+            type: "HELLO",
+            name: "BalBla",
           }]);
         }
       }
@@ -193,7 +189,7 @@ class Demo extends React.Component {
 
     const extendAtomics = [
       {
-        mediaType: 'HELLO', 
+        mediaType: "HELLO", 
         component: CustomAtomic
       },
     ]
@@ -201,7 +197,7 @@ class Demo extends React.Component {
     const mediaProps = {
       onRemove: console.log,
       removeConfirmFn: (param) => {
-        if (confirm('确认删除所选项目么?')) {
+        if (confirm("确认删除所选项目么?")) {
           param.confirm()
         }
       }
@@ -210,17 +206,20 @@ class Demo extends React.Component {
     return (
       <div>
         <div className="demo" id="demo">
+          <div>
+            <button onClick={this.insertHTMLContent}>Insert Html Fragment</button>
+          </div>
           <BraftEditor
             initialContent={this.state.initialContent}
-            forceNewLine={true}
-            onHTMLChange={htmlContent => this.setState({ htmlContent })}
-            contentFormat='html'
-            ref={instance => this.editorInstance = instance}
+            forceNewLine
+            onHTMLChange={(htmlContent) => this.setState({ htmlContent })}
+            contentFormat={this.state.contentFormat}
+            ref={(instance) => { this.editorInstance = instance}}
             extendControls={extendControls}
             extendAtomics={extendAtomics}
           />
         </div>
-        <div><a href="javascript:void(0);" onClick={this.insertHTMLContent}>插入HTML片段</a></div>
+       
       </div>
     )
 
@@ -228,4 +227,4 @@ class Demo extends React.Component {
 
 }
 
-ReactDOM.render(<Demo />, document.querySelector('#root'))
+ReactDOM.render(<Demo />, document.querySelector("#root"))
