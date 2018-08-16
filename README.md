@@ -6,7 +6,7 @@
 
 #### 现已支持在typescript，使用npm或者yarn安装@types/braft-editor即可,墙裂感谢[@petitspois](https://github.com/petitspois)提供支持
 #### 使用braft-convert的同学请将braft-convert升级到v1.9.1以确保功能同步
-#### 如果需要在IE10中只用本项目，请参考：[braft-polyfill](https://github.com/margox/braft-polyfill)
+#### 如果需要在IE10中使用本项目，请参考：[braft-polyfill](https://github.com/margox/braft-polyfill)
 
 ## 最近更新
 - 2018-05-29 v1.9.7
