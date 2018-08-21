@@ -15,7 +15,7 @@ const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
 }
 
 export const enhanceEditorState = (editorState) => {
-  editorState.getRAW = (stringify = true) => stringify ? JSON.stringify(convertEditorStateToRaw(editorState)) : convertEditorStateToRaw(editorState)
+  editorState.getRAW = (noStringify = false) => noStringify ? convertEditorStateToRaw(editorState) : JSON.stringify(convertEditorStateToRaw(editorState)) 
   editorState.getHTML = () => convertEditorStateToHTML(editorState)
   return editorState
 }

@@ -7,13 +7,14 @@ class Demo extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      editorState: EditorState.createFrom(`<p>Hello, <b>World!</b></p>`)
+      editorState: null
     }
     this.editorInstance = null
   }
 
   handleChange = (editorState) => {
     this.setState({ editorState })
+    console.log(editorState.getHTML())
   }
 
   render() {
@@ -23,7 +24,7 @@ class Demo extends React.Component {
         <div className="demo" id="demo">
           <BraftEditor
             onChange={this.handleChange}
-            defaultValue={EditorState.createFrom(`<p>Hello, <b>World!</b></p>`)}
+            value={this.state.editorState}
           />
         </div>
       </div>
