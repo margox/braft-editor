@@ -104,10 +104,10 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, textIndents} = this.props
+    const { editor, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, textIndents} = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const supportedControls = getSupportedControls(language)
-    const commonProps = { editor, editorState, language, containerNode }
+    const commonProps = { editor, editorState, language, containerNode, hooks }
 
     const renderedExtendControls = extendControls.map((item, index) => {
       if (item.type === 'separator') {

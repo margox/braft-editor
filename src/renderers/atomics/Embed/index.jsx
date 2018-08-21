@@ -10,6 +10,10 @@ export default class Embed extends React.Component {
     playerVisible: false
   }
 
+  shouldComponentUpdate () {
+    return !this.state.toolbarVisible
+  }
+
   componentWillUnmount () {
     this.playerModal && this.playerModal.destroy()
   }
@@ -18,7 +22,7 @@ export default class Embed extends React.Component {
 
     const { toolbarVisible, playerVisible } = this.state
     const { mediaData, language } = this.props
-    const { url, width, height, name } = mediaData
+    const { src, url, width, height, name } = mediaData
 
     return (
       <div
@@ -28,7 +32,7 @@ export default class Embed extends React.Component {
       >
         <i className="braft-icon-code"></i>
         <h5>{name}</h5>
-        <h6>{url}</h6>
+        <h6>{src || url}</h6>
         {toolbarVisible ? (
           <div
             ref={instance => this.toolbarElement = instance}
@@ -45,7 +49,7 @@ export default class Embed extends React.Component {
 
   showPlayer = () => {
 
-    const { url } = this.props.mediaData
+    const { src, url } = this.props.mediaData
 
     this.playerModal = showModal({
       title: this.props.language.videoPlayer.embedTitle,
@@ -53,7 +57,7 @@ export default class Embed extends React.Component {
       language: this.props.language,
       showCancel: false,
       onClose: this.handlePlayerClose,
-      children: <div className="braft-embed-media-player" dangerouslySetInnerHTML={{ __html: url}}/>
+      children: <div className="braft-embed-media-player" dangerouslySetInnerHTML={{ __html: src || url}}/>
     })
 
   }

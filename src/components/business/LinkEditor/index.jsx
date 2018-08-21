@@ -114,10 +114,22 @@ export default class LinkEditor extends React.Component {
 
   handleConfirm = () => {
 
-    const { href, target } = this.state
-    this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, href, target))
+    let { href, target } = this.state
+    const hookReturns = this.props.hooks('insert-link')({ href, target })
+
     this.dropDownComponent.hide()
     this.props.editor.requestFocus()
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (hookReturns) {
+      typeof hookReturns.href === 'string' && (href = hookReturns.href)
+      typeof hookReturns.target === 'string' && (target = hookReturns.target)
+    }
+
+    this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, href, target))
 
   }
 

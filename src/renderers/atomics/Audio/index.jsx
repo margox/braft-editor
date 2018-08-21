@@ -18,7 +18,7 @@ export default class Audio extends React.Component {
 
     const { toolbarVisible, playerVisible } = this.state
     const { mediaData, language } = this.props
-    const { url, width, height, name } = mediaData
+    const { src, url, width, height, name } = mediaData
 
     return (
       <div
@@ -28,7 +28,7 @@ export default class Audio extends React.Component {
       >
         <i className="braft-icon-music"></i>
         <h5>{name}</h5>
-        <h6>{url}</h6>
+        <h6>{src || url}</h6>
         {toolbarVisible ? (
           <div
             ref={instance => this.toolbarElement = instance}
@@ -45,6 +45,8 @@ export default class Audio extends React.Component {
 
   showPlayer = () => {
 
+    const { src, url } = this.props.mediaData
+
     this.playerModal = showModal({
       title: this.props.language.audioPlayer.title,
       width: 480,
@@ -53,7 +55,7 @@ export default class Audio extends React.Component {
       showCancel: false,
       onClose: this.handlePlayerClose,
       onConfirm: this.handlePlayerClose,
-      children: <audio className="braft-embed-audio-player" src={this.props.mediaData.url} controls/>
+      children: <audio className="braft-embed-audio-player" src={src || url} controls/>
     })
 
   }

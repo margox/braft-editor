@@ -105,8 +105,11 @@ export default {
   contentClassName: '',
   contentStyle: {},
   draftProps: {},
+  hooks: {},
   onChange: null,
   onFocus: null,
   onBlur: null,
+  onTab: null,
+  onDelete: null,
   onSave: null
 }

@@ -10,6 +10,9 @@ import { getBlockRendererFn, customBlockRenderMap, getBlockStyleFn, getCustomSty
 import ControlBar from 'components/business/ControlBar'
 
 const editorDecorators = new CompositeDecorator(decorators)
+const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
+  return hooks[hookName] || () => defaultReturns
+}
 
 export default class BraftEditor extends React.Component {
 
@@ -281,11 +284,12 @@ export default class BraftEditor extends React.Component {
   render () {
 
     let {
-      controls, excludeControls, extendControls, disabled, height, media, language, colors,
+      controls, excludeControls, extendControls, disabled, height, media, language, colors, hooks,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.props
 
+    hooks = buildHooks(hooks)
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
     language = languages[language] || languages[defaultProps.language]
 
@@ -308,14 +312,14 @@ export default class BraftEditor extends React.Component {
       ref: instance => this.controlBarInstance = instance,
       containerNode: this.state.containerNode,
       className: controlBarClassName,
-      style: controlBarStyle,
+      style: controlBarStyle, hooks,
       colors: [...colors, ...this.state.tempColors],
       media, controls, language, extendControls, fontSizes, fontFamilies,
       emojis, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor
     }
 
     const blockRendererFn = getBlockRendererFn({
-      editor: this,
+      editor: this, hooks,
       editorState: this.state.editorState,
       containerNode: this.state.containerNode,
       imageControls, language, extendAtomics
