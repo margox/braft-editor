@@ -1,20 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor, { ConvertUtils } from '../src'
+import BraftEditor, { EditorState } from '../src'
 
 class Demo extends React.Component {
 
   constructor(props) {
     super(props)
     this.state = {
-      editorState: null
+      editorState: EditorState.createFrom(`<p>Hello, <b>World!</b></p>`)
     }
     this.editorInstance = null
   }
 
   handleChange = (editorState) => {
     this.setState({ editorState })
-    console.log(ConvertUtils.convertEditorStateToRaw(editorState))
   }
 
   render() {
@@ -24,7 +23,7 @@ class Demo extends React.Component {
         <div className="demo" id="demo">
           <BraftEditor
             onChange={this.handleChange}
-            value={this.state.editorState}
+            defaultValue={EditorState.createFrom(`<p>Hello, <b>World!</b></p>`)}
           />
         </div>
       </div>

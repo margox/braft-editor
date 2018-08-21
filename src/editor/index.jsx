@@ -3,16 +3,24 @@ import 'assets/scss/_base.scss'
 import React from 'react'
 import languages from 'languages'
 import { ColorUtils, ContentUtils } from 'braft-utils'
+import { convertEditorStateToRaw, convertEditorStateToHTML } from 'braft-convert'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
 import { getBlockRendererFn, customBlockRenderMap, getBlockStyleFn, getCustomStyleMap, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 
-const editorDecorators = new CompositeDecorator(decorators)
 const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
-  return hooks[hookName] || () => defaultReturns
+  return hooks[hookName] || (() => defaultReturns)
 }
+
+export const enhanceEditorState = (editorState) => {
+  editorState.getRAW = (stringify = true) => stringify ? JSON.stringify(convertEditorStateToRaw(editorState)) : convertEditorStateToRaw(editorState)
+  editorState.getHTML = () => convertEditorStateToHTML(editorState)
+  return editorState
+}
+
+export const editorDecorators = new CompositeDecorator(decorators)
 
 export default class BraftEditor extends React.Component {
 
@@ -32,11 +40,12 @@ export default class BraftEditor extends React.Component {
     }
 
     this.braftFinder = null
+    const defaultEditorState = ContentUtils.isEditorState(props.defaultValue) ? props.defaultValue : ContentUtils.createEmptyEditorState(editorDecorators)
 
     this.state = {
       containerNode: null,
       tempColors: [],
-      editorState: ContentUtils.isEditorState(props.defaultValue) ? props.defaultValue : ContentUtils.createEmptyEditorState(editorDecorators),
+      editorState: enhanceEditorState(defaultEditorState),
       draftProps: {}
     }
 
@@ -83,9 +92,13 @@ export default class BraftEditor extends React.Component {
   }
 
   onChange = (editorState) => {
+
+    editorState = enhanceEditorState(editorState)
+
     this.setState({ editorState }, () => {
       this.props.onChange && this.props.onChange(editorState)
     })
+
   }
 
   getDraftInstance = () => {

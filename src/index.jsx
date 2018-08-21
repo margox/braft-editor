@@ -1,9 +1,31 @@
-import BraftEditor from 'editor'
-import { ContentUtils, ColorUtils, BaseUtils } from 'braft-utils'
-import * as ConvertUtils from 'braft-convert'
+import BraftEditor, { enhanceEditorState, editorDecorators } from './editor'
+import { EditorState } from 'draft-js'
+import { convertRawToEditorState, convertHTMLToEditorState } from 'braft-convert'
+
+// 为EditorState对象增加新的方法，用于从raw或者html内容创建ediorState
+EditorState.createFrom = (content, options) => {
+
+  let editorState = null
+
+  if (typeof content === 'object' && content.blocks && content.entityMap) {
+    editorState = convertRawToEditorState(content, editorDecorators)
+  } else if (typeof content === 'string') {
+    try {
+      editorState = EditorState.createFrom(JSON.parse(content), options)
+    } catch (error) {
+      editorState = convertHTMLToEditorState(content, editorDecorators, options)
+    }
+  } else {
+    editorState = EditorState.createEmpty(editorDecorators)
+  }
+
+  // 返回增强之后的editorState
+  return enhanceEditorState(editorState)
+
+}
 
 export default BraftEditor
-export { ContentUtils, ColorUtils, BaseUtils, ConvertUtils }
+export { EditorState, editorDecorators }
 
 // TODO
 // [ ]完善各模块文档说明
