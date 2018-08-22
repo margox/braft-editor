@@ -297,7 +297,7 @@ export default class BraftEditor extends React.Component {
   render () {
 
     let {
-      controls, excludeControls, extendControls, disabled, height, media, language, colors, hooks,
+      controls, excludeControls, extendControls, disabled, media, language, colors, hooks,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.props

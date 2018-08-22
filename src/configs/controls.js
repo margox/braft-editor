@@ -78,13 +78,13 @@ export default (lang) => [
     type: 'block-type',
     command: 'code-block'
   }, {
-    key: 'list_ul',
+    key: 'list-ul',
     title: lang.controls.unorderedList,
     text: <i className="braft-icon-list"></i>,
     type: 'block-type',
     command: 'unordered-list-item'
   }, {
-    key: 'list_ol',
+    key: 'list-ol',
     title: lang.controls.orderedList,
     text: <i className="braft-icon-list-numbered"></i>,
     type: 'block-type',

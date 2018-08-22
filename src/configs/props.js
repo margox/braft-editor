@@ -3,9 +3,9 @@ export default {
   controls: [
     'undo', 'redo', 'separator',
     'font-size', 'font-family', 'line-height', 'letter-spacing', 'separator',
-    'text-indent','text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator',
+    'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator',
     'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'separator',
-    'headings', 'list_ul', 'list_ol', 'blockquote', 'code', 'separator',
+    'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator',
     'link', 'split', 'hr', 'separator',
     'media', 'separator',
     'clear'
