@@ -134,9 +134,21 @@ export default (lang) => [
   }, {
     key: 'clear',
     title: lang.controls.clear,
-    text: <span className="braft-control-text">{lang.controls.clear}</span>,
+    text: lang.controls.clear,
     type: 'editor-method',
     command: 'clearEditorContent'
+  }, {
+    key: 'modal',
+    type: 'modal',
+  }, {
+    key: 'button',
+    type: 'button',
+  }, {
+    key: 'dropdown',
+    type: 'dropdown',
+  }, {
+    key: 'component',
+    type: 'component',
   }
 ]
 

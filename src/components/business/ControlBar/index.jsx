@@ -1,6 +1,6 @@
 import './style.scss'
 import React from 'react'
-import getSupportedControls from 'configs/controls'
+import getEditorControls from 'configs/controls'
 import LinkEditor from 'components/business/LinkEditor'
 import HeadingPicker from 'components/business/Headings'
 import TextColorPicker from 'components/business/TextColor'
@@ -22,9 +22,9 @@ export default class ControlBar extends React.Component {
 
   componentDidUpdate () {
 
-    const { extendControls, language } = this.props
+    const { controls, language } = this.props
 
-    extendControls.forEach(item => {
+    controls.forEach(item => {
       if (item.type === 'modal') {
         if (item.modal && item.modal.id && this.extendedModals[item.modal.id]) {
           this.extendedModals[item.modal.id].update({ ...item.modal, language })
@@ -106,84 +106,17 @@ export default class ControlBar extends React.Component {
 
     const { editor, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, textIndents} = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
-    const supportedControls = getSupportedControls(language)
+    const editorControls = getEditorControls(language)
     const commonProps = { editor, editorState, language, containerNode, hooks }
-
-    const renderedExtendControls = extendControls.map((item, index) => {
-      if (item.type === 'separator') {
-        return <span key={controls.length * 2 + index} className="separator-line"></span>
-      } else if (item.type === 'dropdown') {
-        let { disabled, autoHide, html, text, className, showDropDownArrow, hoverTitle, component, arrowActive, ref } = item
-        return (
-          <DropDown
-            key={index}
-            className={"control-item dropdown " + className}
-            caption={text}
-            htmlCaption={html}
-            showDropDownArrow={showDropDownArrow}
-            containerNode={containerNode}
-            hoverTitle={hoverTitle}
-            arrowActive={arrowActive}
-            autoHide={autoHide}
-            disabled={disabled}
-            ref={ref}
-          >
-            {component}
-          </DropDown>
-        )
-      } else if (item.type === 'modal') {
-        return (
-          <button
-            type="button"
-            key={controls.length * 2 + index}
-            title={item.hoverTitle}
-            className={'control-item button ' + item.className}
-            dangerouslySetInnerHTML={item.html ? { __html: item.html } : null}
-            onClick={(event) => {
-              if (item.modal && item.modal.id) {
-                if (this.extendedModals[item.modal.id]) {
-                  this.extendedModals[item.modal.id].active = true
-                  this.extendedModals[item.modal.id].update({ ...item.modal, language })
-                } else {
-                  this.extendedModals[item.modal.id] = showModal({ ...item.modal, language })
-                  item.modal.onCreate && item.modal.onCreate(this.extendedModals[item.modal.id])
-                }
-              }
-              item.onClick && item.onClick(event)
-            }}
-          >
-            {!item.html ? item.text : null}
-          </button>
-        )
-      } else if (item.type === 'component') {
-        return (
-          <div
-            key={controls.length * 2 + index}
-            className={'control-item component-wrapper ' + item.className}
-          >{item.component}</div>
-        )
-      } else {
-        return (
-          <button
-            type="button"
-            key={controls.length * 2 + index}
-            title={item.hoverTitle}
-            className={'control-item button ' + item.className}
-            dangerouslySetInnerHTML={item.html ? { __html: item.html } : null}
-            onClick={(event) => item.onClick && item.onClick(event)}
-          >
-            {!item.html ? item.text : null}
-          </button>
-        )
-      }
-    })
-
     const renderedControls = []
 
     return (
       <div className="BraftEditor-controlBar">
         {
-          controls.map((item, index) => {
+          [
+            ...controls,
+            ...extendControls
+          ].map((item, index) => {
             let itemKey = typeof item === 'string' ? item : item.key
             if (typeof itemKey !== 'string') {
               return null
@@ -194,7 +127,7 @@ export default class ControlBar extends React.Component {
             if (itemKey.toLowerCase() === 'separator') {
               return <span key={index} className="separator-line"></span>
             }
-            let controlItem = supportedControls.find((subItem) => {
+            let controlItem = editorControls.find((subItem) => {
               return subItem.key.toLowerCase() === itemKey.toLowerCase()
             })
             if (typeof item !== 'string') {
@@ -203,6 +136,7 @@ export default class ControlBar extends React.Component {
             if (!controlItem) {
               return null
             }
+            console.log(controlItem)
             renderedControls.push(itemKey)
             if (controlItem.type === 'headings') {
               return <HeadingPicker
@@ -282,23 +216,84 @@ export default class ControlBar extends React.Component {
                   type="button"
                   key={index}
                   title={controlItem.title}
-                  className='control-item button'
+                  className='control-item media button'
                   onClick={this.openMediaLibrary}
                 >
                   {controlItem.text}
                 </button>
               )
+            } else if (controlItem.type === 'dropdown') {
+              return (
+                <DropDown
+                  key={index}
+                  className={"control-item extend-control-item dropdown " + controlItem.className}
+                  caption={controlItem.text}
+                  htmlCaption={controlItem.html}
+                  showDropDownArrow={controlItem.showDropDownArrow}
+                  containerNode={controlItem.containerNode}
+                  hoverTitle={controlItem.hoverTitle}
+                  arrowActive={controlItem.arrowActive}
+                  autoHide={controlItem.autoHide}
+                  disabled={controlItem.disabled}
+                  ref={controlItem.ref}
+                >
+                  {controlItem.component}
+                </DropDown>
+              )
+            } else if (controlItem.type === 'modal') {
+              return (
+                <button
+                  type="button"
+                  key={index}
+                  title={controlItem.hoverTitle}
+                  className={'control-item extend-control-item button ' + controlItem.className}
+                  dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
+                  onClick={(event) => {
+                    if (controlItem.modal && controlItem.modal.id) {
+                      if (this.extendedModals[controlItem.modal.id]) {
+                        this.extendedModals[controlItem.modal.id].active = true
+                        this.extendedModals[controlItem.modal.id].update({ ...controlItem.modal, language })
+                      } else {
+                        this.extendedModals[controlItem.modal.id] = showModal({ ...controlItem.modal, language })
+                        controlItem.modal.onCreate && controlItem.modal.onCreate(this.extendedModals[controlItem.modal.id])
+                      }
+                    }
+                    controlItem.onClick && controlItem.onClick(event)
+                  }}
+                >
+                  {!controlItem.html ? controlItem.text : null}
+                </button>
+              )
+            } else if (controlItem.type === 'component') {
+              return (
+                <div
+                  key={index}
+                  className={'control-item component-wrapper ' + controlItem.className}
+                >{controlItem.component}</div>
+              )
+            } else if (controlItem.type === 'button') {
+              return (
+                <button
+                  type="button"
+                  key={index}
+                  title={controlItem.hoverTitle}
+                  className={'control-item button ' + controlItem.className}
+                  dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
+                  onClick={(event) => controlItem.onClick && controlItem.onClick(event)}
+                >
+                  {!controlItem.html ? controlItem.text : null}
+                </button>
+              )
             } else {
-              let buttonClassName = this.getControlItemClassName({
-                type: controlItem.type,
-                command: controlItem.command
-              })
               return (
                 <button
                   type="button"
                   key={index}
                   title={controlItem.title}
-                  className={buttonClassName}
+                  className={this.getControlItemClassName({
+                    type: controlItem.type,
+                    command: controlItem.command
+                  })}
                   onClick={() => this.applyControl(controlItem.command, controlItem.type)}
                 >
                   {controlItem.text}
@@ -307,7 +302,6 @@ export default class ControlBar extends React.Component {
             }
           })
         }
-        {renderedExtendControls}
       </div>
     )
 

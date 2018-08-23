@@ -21,7 +21,7 @@
     min-width: 100%;
     margin-top: 9px;
     background-color: rgba($COLOR_DARK, 1);
-    border-radius: 3px;
+    border-radius: 2px;
     box-shadow: 0 5px 15px rgba(#000, .2);
     opacity: 0;
     cursor: default;
@@ -33,11 +33,11 @@
     ::-webkit-scrollbar{
       width: 4px;
       background-color: transparent;
-      border-radius: 3px;
+      border-radius: 2px;
     }
     ::-webkit-scrollbar-thumb{
       background-color: rgba(#fff, .3);
-      border-radius: 3px;
+      border-radius: 2px;
     }
     .dropdown-arrow{
       position: absolute;

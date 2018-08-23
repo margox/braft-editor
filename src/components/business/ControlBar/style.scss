@@ -55,7 +55,7 @@
   }
 
   .dropdown-handler{
-    border-radius: 3px;
+    border-radius: 2px;
   }
 
   .control-item{
@@ -63,7 +63,7 @@
     float: left;
     height: 36px;
     margin: 5px 0 5px 3px;
-    border-radius: 3px;
+    border-radius: 2px;
     cursor: pointer;
     &.component-wrapper{
       cursor: default;
@@ -72,7 +72,9 @@
       margin-left: 0;
     }
     &.button{
+      box-sizing: border-box;
       min-width: 36px;
+      padding: 0 8px;
       background-color: transparent;
       border: none;
       color: $COLOR_GRAY;
@@ -85,7 +87,6 @@
       }
       i::before{
         display: block;
-        width: 36px;
         height: 36px;
         font-size: 18px;
         line-height: 36px;

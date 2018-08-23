@@ -7,7 +7,7 @@
   left: 50%;
   width: auto;
   background-color: $COLOR_DARK;
-  border-radius: 3px;
+  border-radius: 2px;
   font-weight: normal;
   text-align: center;
   white-space: nowrap;
@@ -27,7 +27,7 @@
   .braft-embed-image-link-editor{
     padding-bottom: 1px;
     overflow: hidden;
-    border-radius: 3px 3px 0 0;
+    border-radius: 2px 2px 0 0;
     box-shadow: inset 0 -1px 0 0 rgba(#fff, .1);
     .editor-input-group{
       width: 300px;
@@ -43,7 +43,7 @@
       padding: 0 10px;
       background-color: rgba(#fff, .1);
       border: none;
-      border-radius: 3px;
+      border-radius: 2px;
       outline: none;
       box-shadow: inset 0 0 0 1px rgba(#fff, .1);
       color: #fff;
@@ -65,7 +65,7 @@
       border: none;
       color: #fff;
       font-size: 12px;
-      border-radius: 3px;
+      border-radius: 2px;
       cursor: pointer;
       &:hover{
         background-color: $COLOR_ACTIVE - 20;
@@ -113,10 +113,10 @@
       color: #fff;
     }
     &:first-child{
-      border-radius: 3px 0 0 3px;
+      border-radius: 2px 0 0 2px;
     }
     &:last-child{
-      border-radius: 0 3px 3px 0;
+      border-radius: 0 2px 2px 0;
     }
     &.active{
       color: $COLOR_ACTIVE;

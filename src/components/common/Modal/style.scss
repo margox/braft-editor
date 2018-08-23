@@ -25,11 +25,11 @@
 .braft-modal-content{
   position: absolute;
   z-index: 2;
-  top: 50%;
+  top: 45%;
   left: 50%;
   max-width: 95%;
   background-color: #fff;
-  border-radius: 3px;
+  border-radius: 2px;
   box-shadow: 0 15px 30px rgba(#000, .1);
   opacity: 0;
   transform: translate(-50%, -40%);
@@ -83,7 +83,7 @@
   margin: 12px 0 12px 15px;
   padding: 0 30px;
   border: none;
-  border-radius: 3px;
+  border-radius: 2px;
   font-size: 12px;
   font-weight: bold;
   cursor: pointer;
