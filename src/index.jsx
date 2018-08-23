@@ -1,26 +1,31 @@
-import BraftEditor, { enhanceEditorState, editorDecorators } from './editor'
+import BraftEditor, { editorDecorators } from './editor'
 import { EditorState } from 'draft-js'
-import { convertRawToEditorState, convertHTMLToEditorState } from 'braft-convert'
+import { convertRawToEditorState, convertHTMLToEditorState, convertEditorStateToRaw, convertEditorStateToHTML } from 'braft-convert'
 
-// 为EditorState对象增加新的方法，用于从raw或者html内容创建ediorState
+// 为EditorState对象增加toHTML原型方法，用于将editorState转换成HTML字符串
+EditorState.prototype.toHTML = function () {
+  return convertEditorStateToHTML(this)
+}
+
+// 为EditorState对象增加toRAW原型方法，用于将editorState转换成RAW JSON对象或RAW JSON字符串
+EditorState.prototype.toRAW = function (noStringify) {
+  return noStringify ? convertEditorStateToRaw(this) : JSON.stringify(convertEditorStateToRaw(this))
+}
+
+// 为EditorState对象增加新的静态方法，用于从raw或者html内容创建ediorState
 EditorState.createFrom = (content, options) => {
 
-  let editorState = null
-
   if (typeof content === 'object' && content.blocks && content.entityMap) {
-    editorState = convertRawToEditorState(content, editorDecorators)
+    return convertRawToEditorState(content, editorDecorators)
   } else if (typeof content === 'string') {
     try {
-      editorState = EditorState.createFrom(JSON.parse(content), options)
+      return EditorState.createFrom(JSON.parse(content), options)
     } catch (error) {
-      editorState = convertHTMLToEditorState(content, editorDecorators, options)
+      return convertHTMLToEditorState(content, editorDecorators, options)
     }
   } else {
-    editorState = EditorState.createEmpty(editorDecorators)
+    return EditorState.createEmpty(editorDecorators)
   }
-
-  // 返回增强之后的editorState
-  return enhanceEditorState(editorState)
 
 }
 

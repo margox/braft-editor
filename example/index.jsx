@@ -14,7 +14,7 @@ class Demo extends React.Component {
 
   handleChange = (editorState) => {
     this.setState({ editorState })
-    console.log(editorState.getHTML())
+    console.log(editorState.toHTML())
   }
 
   render() {

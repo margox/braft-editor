@@ -3,7 +3,6 @@ import 'assets/scss/_base.scss'
 import React from 'react'
 import languages from 'languages'
 import { ColorUtils, ContentUtils } from 'braft-utils'
-import { convertEditorStateToRaw, convertEditorStateToHTML } from 'braft-convert'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
@@ -12,12 +11,6 @@ import ControlBar from 'components/business/ControlBar'
 
 const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
   return hooks[hookName] || (() => defaultReturns)
-}
-
-export const enhanceEditorState = (editorState) => {
-  editorState.getRAW = (noStringify = false) => noStringify ? convertEditorStateToRaw(editorState) : JSON.stringify(convertEditorStateToRaw(editorState)) 
-  editorState.getHTML = () => convertEditorStateToHTML(editorState)
-  return editorState
 }
 
 export const editorDecorators = new CompositeDecorator(decorators)
@@ -45,7 +38,7 @@ export default class BraftEditor extends React.Component {
     this.state = {
       containerNode: null,
       tempColors: [],
-      editorState: enhanceEditorState(defaultEditorState),
+      editorState: defaultEditorState,
       draftProps: {}
     }
 
@@ -92,13 +85,9 @@ export default class BraftEditor extends React.Component {
   }
 
   onChange = (editorState) => {
-
-    editorState = enhanceEditorState(editorState)
-
     this.setState({ editorState }, () => {
       this.props.onChange && this.props.onChange(editorState)
     })
-
   }
 
   getDraftInstance = () => {
