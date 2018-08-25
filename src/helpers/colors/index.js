@@ -144,7 +144,7 @@ const namedColors = {
 
 export const getHexColor = (color) => {
 
-  color = color.replace('color:', '').replace(';', '').replace(' ', '')
+  color = color.replace('color:', '').replace(';', '').replace(' ', '').replace('"', '')
 
   if (/^#([0-9a-fA-F]{6}|[0-9a-fA-F]{3})$/.test(color)) {
     return color
@@ -168,7 +168,7 @@ export const getHexColor = (color) => {
 
 export const detectColorsFromHTML = (html) => {
 
-  return typeof html !== 'string' ? [] : (html.match(/color:[^;]{3,24};/g) || []).map(getHexColor).filter(color => color)
+  return typeof html !== 'string' ? [] : (html.match(/color:[^;^"]{3,24}(;|")/g) || []).map(getHexColor).filter(color => color)
 
 }
 
