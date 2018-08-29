@@ -164,7 +164,6 @@ export default class ControlBar extends React.Component {
             if (!controlItem) {
               return null
             }
-            console.log(controlItem)
             renderedControls.push(itemKey)
             if (controlItem.type === 'headings') {
               return <HeadingPicker

@@ -3,6 +3,24 @@ import React from 'react'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 
+const insertEmoji = (event, props) => {
+
+  let emoji = event.currentTarget.dataset.emoji
+  const hookReturns = props.hooks('insert-emoji', emoji)(emoji)
+
+  if (hookReturns === false) {
+    return false
+  }
+
+  if (typeof hookReturns === 'string') {
+    emoji = hookReturns
+  }
+
+  props.editor.setValue(ContentUtils.insertText(props.editorState, emoji))
+  props.editor.requestFocus()
+
+}
+
 export default (props) => {
 
   return (
@@ -20,10 +38,7 @@ export default (props) => {
               <li
                 key={index}
                 data-emoji={item}
-                onClick={(e) => {
-                  props.editor.setValue(ContentUtils.insertText(props.editorState, e.currentTarget.dataset.emoji))
-                  props.editor.requestFocus()
-                }}
+                onClick={(event) => insertEmoji(event, props)}
               >{item}</li>
             )
           })}

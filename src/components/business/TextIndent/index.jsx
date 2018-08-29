@@ -3,6 +3,24 @@ import React from 'react'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 
+const toggleTextIndent = (event, props) => {
+
+  let textIndent = event.currentTarget.dataset.size
+  const hookReturns = props.hooks('toggle-text-indent', textIndent)(textIndent)
+
+  if (hookReturns === false) {
+    return false
+  }
+
+  if (!isNaN(hookReturns)) {
+    textIndent = hookReturns
+  }
+
+  props.editor.setValue(ContentUtils.toggleSelectionIndent(props.editorState, textIndent, props.textIndents))
+  props.editor.requestFocus()
+
+}
+
 export default (props) => {
 
   let caption = null
@@ -31,10 +49,7 @@ export default (props) => {
               key={index}
               className={item === currentIndent ? 'active' : null}
               data-size={item}
-              onClick={(e) => {
-                props.editor.setValue(ContentUtils.toggleSelectionIndent(props.editorState, e.currentTarget.dataset.size, props.textIndents))
-                props.editor.requestFocus()
-              }}
+              onClick={(event) => toggleTextIndent(event, props)}
             >{item}</li>
           )
         })}

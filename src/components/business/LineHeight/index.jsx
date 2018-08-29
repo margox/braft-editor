@@ -3,6 +3,24 @@ import React from 'react'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 
+const toggleLineHeight = (event, props) => {
+
+  let lineHeight = event.currentTarget.dataset.size
+  const hookReturns = props.hooks('toggle-line-height', lineHeight)(lineHeight)
+
+  if (hookReturns === false) {
+    return false
+  }
+
+  if (!isNaN(hookReturns)) {
+    lineHeight = hookReturns
+  }
+
+  props.editor.setValue(ContentUtils.toggleSelectionLineHeight(props.editorState, lineHeight, props.lineHeights))
+  props.editor.requestFocus()
+
+}
+
 export default (props) => {
 
   let caption = null
@@ -31,10 +49,7 @@ export default (props) => {
               key={index}
               className={item === currentLineHeight ? 'active' : null}
               data-size={item}
-              onClick={(e) => {
-                props.editor.setValue(ContentUtils.toggleSelectionLineHeight(props.editorState, e.currentTarget.dataset.size, props.lineHeights))
-                props.editor.requestFocus()
-              }}
+              onClick={(event) => toggleLineHeight(event, props)}
             >{item}</li>
           )
         })}

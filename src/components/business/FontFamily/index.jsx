@@ -3,6 +3,24 @@ import React from 'react'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 
+const toggleFontFamily = (event, props) => {
+
+  let fontFamilyName = event.currentTarget.dataset.name
+  const hookReturns = props.hooks('toggle-font-family', fontFamilyName)(fontFamilyName, props.fontFamilies)
+
+  if (hookReturns === false) {
+    return false
+  }
+
+  if (typeof hookReturns === 'string') {
+    fontFamilyName = hookReturns
+  }
+
+  props.editor.setValue(ContentUtils.toggleSelectionFontFamily(props.editorState, fontFamilyName, props.fontFamilies))
+  props.editor.requestFocus()
+
+}
+
 export default (props) => {
 
   let caption = null
@@ -32,7 +50,7 @@ export default (props) => {
               key={index}
               className={"menu-item " + (index === currentIndex ? 'active' : '')}
               data-name={item.name}
-              onClick={this.toggleFontFamily}
+              onClick={(event) => toggleFontFamily(event, props)}
             >
               <span style={{fontFamily: item.family}}>{item.name}</span>
             </li>
@@ -41,23 +59,5 @@ export default (props) => {
       </ul>
     </DropDown>
   )
-
-  toggleFontFamily = (event) => {
-
-    let fontFamilyName = event.currentTarget.dataset.name
-    const hookReturns = this.props.hooks('toggle-font-family', fontFamilyName)(fontFamilyName)
-
-    if (hookReturns === false) {
-      return false
-    }
-
-    if (typeof hookReturns === 'string') {
-      fontFamilyName = hookReturns
-    }
-
-    this.props.editor.setValue(ContentUtils.toggleSelectionFontFamily(this.props.editorState, fontFamilyName, this.props.fontFamilies))
-    this.props.editor.requestFocus()
-
-  }
 
 }

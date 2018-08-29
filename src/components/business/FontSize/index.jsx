@@ -3,6 +3,24 @@ import React from 'react'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 
+const toggleFontSize = (event, props) => {
+
+  let fontSize = event.currentTarget.dataset.size
+  const hookReturns = props.hooks('toggle-font-size', fontSize)(fontSize)
+
+  if (hookReturns === false) {
+    return false
+  }
+
+  if (!isNaN(fontSize)) {
+    fontSize = hookReturns
+  }
+
+  props.editor.setValue(ContentUtils.toggleSelectionFontSize(props.editorState, fontSize, props.fontSizes))
+  props.editor.requestFocus()
+
+}
+
 export default (props) => {
 
   let caption = null
@@ -31,30 +49,12 @@ export default (props) => {
               key={index}
               className={item === currentFontSize ? 'active' : null}
               data-size={item}
-              onClick={this.toggleFontSize}
+              onClick={(event) => toggleFontSize(event, props)}
             >{item + 'px'}</li>
           )
         })}
       </ul>
     </DropDown>
   )
-
-  toggleFontSize = (event) => {
-
-    let fontSize = event.currentTarget.dataset.size
-    const hookReturns = this.props.hooks('toggle-font-size', fontSize)(fontSize)
-
-    if (hookReturns === false) {
-      return false
-    }
-
-    if (!isNaN(fontSize)) {
-      fontSize = hookReturns
-    }
-
-    this.props.editor.setValue(ContentUtils.toggleSelectionFontSize(this.props.editorState, fontSize, this.props.fontSizes))
-    this.props.editor.requestFocus()
-
-  }
 
 }

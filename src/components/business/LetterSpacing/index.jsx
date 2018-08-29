@@ -3,6 +3,24 @@ import React from 'react'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 
+const toggleLetterSpacing = (event, props) => {
+
+  let letterSpacing = event.currentTarget.dataset.size
+  const hookReturns = props.hooks('toggle-letter-spacing', letterSpacing)(letterSpacing)
+
+  if (hookReturns === false) {
+    return false
+  }
+
+  if (!isNaN(hookReturns)) {
+    letterSpacing = hookReturns
+  }
+
+  props.editor.setValue(ContentUtils.toggleSelectionLetterSpacing(props.editorState, letterSpacing, props.letterSpacings))
+  props.editor.requestFocus()
+
+}
+
 export default (props) => {
 
   let caption = null
@@ -31,10 +49,7 @@ export default (props) => {
               key={index}
               className={item === currentLetterSpacing ? 'active' : null}
               data-size={item}
-              onClick={(e) => {
-                props.editor.setValue(ContentUtils.toggleSelectionLetterSpacing(props.editorState, e.currentTarget.dataset.size, props.letterSpacings))
-                props.editor.requestFocus()
-              }}
+              onClick={(event) => toggleLetterSpacing(event, props)}
             >{item}</li>
           )
         })}

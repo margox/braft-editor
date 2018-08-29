@@ -27,7 +27,7 @@ export default class TextColor extends React.Component {
 
       if (ContentUtils.selectionHasInlineStyle(this.props.editorState, 'BGCOLOR-' + color_id)) {
         captionStyle.backgroundColor = color
-        colorType === 'backgroundColor' && (currentColor = color)
+        colorType === 'background-color' && (currentColor = color)
       }
 
     })
@@ -61,10 +61,10 @@ export default class TextColor extends React.Component {
             >{this.props.language.controls.textColor}</button>
             <button
               type="button"
-              data-type="backgroundColor"
+              data-type="background-color"
               data-keep-active={true}
               data-braft-component-id={this.dropDownComponentId}
-              className={colorType === 'backgroundColor' ? 'active' : ''}
+              className={colorType === 'backgroun-color' ? 'active' : ''}
               onClick={this.switchColorType}
             >{this.props.language.controls.backgroundColor}</button>
           </div>
@@ -82,15 +82,23 @@ export default class TextColor extends React.Component {
 
   }
 
-  switchColorType = (e) => {
-
+  switchColorType = ({ currentTarget }) => {
     this.setState({
-      colorType: e.currentTarget.dataset.type
+      colorType: currentTarget.dataset.type
     })
-
   }
 
   toggleColor = (color) => {
+
+    const hookReturns = this.props.hooks(`toggle-text-${this.state.colorType}`, color)(color)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (typeof hookReturns === 'string') {
+      color =  hookReturns
+    }
 
     if (this.state.colorType === 'color') {
       this.props.editor.setValue(ContentUtils.toggleSelectionColor(this.props.editorState, color, this.props.colors))

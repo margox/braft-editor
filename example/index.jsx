@@ -11,18 +11,26 @@ class Demo extends React.Component {
       editorState: null
     }
     this.editorInstance = null
-    this.extendControls = [
-      'separator',
-      {
-        key: 'button',
-        text: 'Media',
-      }
-    ]
 
   }
 
   handleChange = (editorState) => {
     this.setState({ editorState })
+  }
+
+  hooks = {
+    'change-block-type': console.log,
+    'insert-emoji': (fontSize) => {
+      return '123'
+    },
+    'insert-medias': console.log,
+    'exec-editor-command': console.log,
+    'toggle-link': () => {
+      return {
+        href: 'http://www.baidu.com',
+        target: '_blank'
+      }
+    }
   }
 
   render() {
@@ -31,7 +39,7 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            extendControls={this.extendControls}
+            hooks={this.hooks}
             onChange={this.handleChange}
             value={this.state.editorState}
           />

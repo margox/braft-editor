@@ -34,7 +34,7 @@ export { EditorState, editorDecorators }
 
 // 2.0.0开发计划
 // [ ]完善各模块文档说明
-// [ ]添加更多钩子（插入链接、切换样式等）
+// [√]添加更多钩子（插入链接、切换样式等）
 // [√]优化内置的图片伪上传功能，用base64代替blob
 // [√]支持自定义图片工具栏按钮
 // [√]支持通过属性扩展customStyleMap, blockStyleFn, keyBindingFn, blockRendererFn, blockRenderMap等
