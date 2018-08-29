@@ -115,7 +115,7 @@ export default class LinkEditor extends React.Component {
   handleConfirm = () => {
 
     let { href, target } = this.state
-    const hookReturns = this.props.hooks('insert-link')({ href, target })
+    const hookReturns = this.props.hooks('insert-link', { href, target })({ href, target })
 
     this.dropDownComponent.hide()
     this.props.editor.requestFocus()

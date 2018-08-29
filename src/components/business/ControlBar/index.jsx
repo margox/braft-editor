@@ -15,6 +15,12 @@ import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
 
+const commandHookMap = {
+  'inline-style': 'toggle-inline-style',
+  'block-type': 'change-block-type',
+  'editor-method': 'exec-editor-command'
+}
+
 export default class ControlBar extends React.Component {
 
   mediaLibiraryModal = null
@@ -51,6 +57,16 @@ export default class ControlBar extends React.Component {
 
   applyControl (command, type) {
 
+    const hookReturns = this.props.hooks(commandHookMap[type] || type, command)(command)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (typeof hookReturns === 'string') {
+      command = hookReturns
+    }
+
     if (type === 'inline-style') {
       this.props.editor.setValue(ContentUtils.toggleSelectionInlineStyle(this.props.editorState, command))
     } else if (type === 'block-type') {
@@ -63,7 +79,7 @@ export default class ControlBar extends React.Component {
 
   }
 
-  openMediaLibrary = () => {
+  openBraftFinder = () => {
 
     if (!this.props.braftFinder || !this.props.braftFinder.ReactComponent) {
       return false
@@ -80,7 +96,7 @@ export default class ControlBar extends React.Component {
       showFooter: false,
       children: (
         <MediaLibrary
-          onCancel={this.closeMediaLibrary}
+          onCancel={this.closeBraftFinder}
           onInsert={this.insertMedias}
           externals={mediaProps.externals}
           {...{onBeforeDeselect, onDeselect, onBeforeSelect, onSelect, onBeforeRemove, onRemove, onFileSelect, onBeforeInsert, onChange}}
@@ -91,13 +107,25 @@ export default class ControlBar extends React.Component {
   }
 
   insertMedias = (medias) => {
+
+    const hookReturns = this.props.hooks('insert-medias', medias)(medias)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (hookReturns instanceof Array) {
+      medias = hookReturns
+    }
+
     this.props.editor.setValue(ContentUtils.insertMedias(this.props.editorState, medias))
     this.props.editor.requestFocus()
     this.props.media.onInsert && this.props.media.onInsert(medias)
-    this.closeMediaLibrary()
+    this.closeBraftFinder()
+
   }
 
-  closeMediaLibrary = () => {
+  closeBraftFinder = () => {
     this.props.media.onCancel && this.props.media.onCancel()
     this.mediaLibiraryModal && this.mediaLibiraryModal.close()
   }
@@ -217,7 +245,7 @@ export default class ControlBar extends React.Component {
                   key={index}
                   title={controlItem.title}
                   className='control-item media button'
-                  onClick={this.openMediaLibrary}
+                  onClick={this.openBraftFinder}
                 >
                   {controlItem.text}
                 </button>

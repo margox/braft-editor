@@ -31,15 +31,30 @@ export default (props) => {
               key={index}
               className={item === currentFontSize ? 'active' : null}
               data-size={item}
-              onClick={(e) => {
-                props.editor.setValue(ContentUtils.toggleSelectionFontSize(props.editorState, e.currentTarget.dataset.size, props.fontSizes))
-                props.editor.requestFocus()
-              }}
+              onClick={this.toggleFontSize}
             >{item + 'px'}</li>
           )
         })}
       </ul>
     </DropDown>
   )
+
+  toggleFontSize = (event) => {
+
+    let fontSize = event.currentTarget.dataset.size
+    const hookReturns = this.props.hooks('toggle-font-size', fontSize)(fontSize)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (!isNaN(fontSize)) {
+      fontSize = hookReturns
+    }
+
+    this.props.editor.setValue(ContentUtils.toggleSelectionFontSize(this.props.editorState, fontSize, this.props.fontSizes))
+    this.props.editor.requestFocus()
+
+  }
 
 }

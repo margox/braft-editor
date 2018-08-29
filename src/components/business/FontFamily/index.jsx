@@ -32,10 +32,7 @@ export default (props) => {
               key={index}
               className={"menu-item " + (index === currentIndex ? 'active' : '')}
               data-name={item.name}
-              onClick={(e) => {
-                props.editor.setValue(ContentUtils.toggleSelectionFontFamily(props.editorState, e.currentTarget.dataset.name, props.fontFamilies))
-                props.editor.requestFocus()
-              }}
+              onClick={this.toggleFontFamily}
             >
               <span style={{fontFamily: item.family}}>{item.name}</span>
             </li>
@@ -44,5 +41,23 @@ export default (props) => {
       </ul>
     </DropDown>
   )
+
+  toggleFontFamily = (event) => {
+
+    let fontFamilyName = event.currentTarget.dataset.name
+    const hookReturns = this.props.hooks('toggle-font-family', fontFamilyName)(fontFamilyName)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (typeof hookReturns === 'string') {
+      fontFamilyName = hookReturns
+    }
+
+    this.props.editor.setValue(ContentUtils.toggleSelectionFontFamily(this.props.editorState, fontFamilyName, this.props.fontFamilies))
+    this.props.editor.requestFocus()
+
+  }
 
 }
