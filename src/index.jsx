@@ -32,7 +32,7 @@ EditorState.createFrom = (content, options) => {
 export default BraftEditor
 export { EditorState, editorDecorators }
 
-// 当前版本开发计划
+// 2.0.0开发计划
 // [ ]完善各模块文档说明
 // [ ]添加更多钩子（插入链接、切换样式等）
 // [√]优化内置的图片伪上传功能，用base64代替blob
@@ -43,7 +43,10 @@ export { EditorState, editorDecorators }
 // [√]支持定义DropDown组件的样式
 // [ ]media.validateFn支持异步函数
 // [ ]优化音视频在编辑器内的预览体验
-// 下个版本开发计划
+// 2.1.0版本开发加护
+// [ ]美化UI，包括图标和界面风格
+// [ ]标准化代码，引入ESLint
+// 2.2.0版本开发计划
 // [ ]优化图片param.success，支持传入link等
 // [ ]简化上传配置流程
 // [ ]支持draftjs插件机制
@@ -51,7 +54,7 @@ export { EditorState, editorDecorators }
 // [ ]支持非媒体类附件
 // [ ]优化HTML格式无法存储媒体名称的问题 
 // [ ]完成font-size等样式的全量支持
-// 下下个版本开发计划
+// 2.3.0版本开发计划
 // [ ]优化换行与空格
 // [ ]支持自定义Atomic组件
 // [ ]图片裁切等简单的编辑功能
