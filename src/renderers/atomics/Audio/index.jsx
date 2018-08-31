@@ -1,22 +1,17 @@
 import './style.scss'
 import React from 'react'
+import StaticContainer from 'components/common/StaticContainer'
 import { ContentUtils } from 'braft-utils'
-import { showModal } from 'components/common/Modal'
 
 export default class Audio extends React.Component {
 
   state = {
     toolbarVisible: false,
-    playerVisible: false
-  }
-
-  componentWillUnmount () {
-    this.playerModal && this.playerModal.destroy()
   }
 
   render () {
 
-    const { toolbarVisible, playerVisible } = this.state
+    const { toolbarVisible } = this.state
     const { mediaData, language } = this.props
     const { src, url, width, height, name } = mediaData
 
@@ -26,37 +21,16 @@ export default class Audio extends React.Component {
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
-        <i className="braft-icon-music"></i>
-        <h5>{name}</h5>
-        <h6>{src || url}</h6>
+        <StaticContainer>
+          <audio controls src={src || url}/>
+        </StaticContainer>
         {toolbarVisible ? (
-          <div
-            ref={instance => this.toolbarElement = instance}
-            className="braft-embed-audio-toolbar"
-          >
-            <a onClick={this.showPlayer}>&#xe037;</a>
+          <div className="braft-media-toolbar">
             <a onClick={this.removeAudio}>&#xe9ac;</a>
           </div>
         ) : null}
       </div>
     )
-
-  }
-
-  showPlayer = () => {
-
-    const { src, url } = this.props.mediaData
-
-    this.playerModal = showModal({
-      title: this.props.language.audioPlayer.title,
-      width: 480,
-      confirmable: true,
-      language: this.props.language,
-      showCancel: false,
-      onClose: this.handlePlayerClose,
-      onConfirm: this.handlePlayerClose,
-      children: <audio className="braft-embed-audio-player" src={src || url} controls/>
-    })
 
   }
 
@@ -74,11 +48,6 @@ export default class Audio extends React.Component {
     this.setState({
       toolbarVisible: false
     })
-  }
-
-  handlePlayerClose = () => {
-    this.playerModal = null
-    this.props.editor && this.props.editor.requestFocus()
   }
 
 }

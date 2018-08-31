@@ -1,5 +1,6 @@
 var webpack = require('webpack')
   , merge = require('webpack-merge')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
   , OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin')
   , path = require('path')
   , baseConfigs = require('./webpack.base')
@@ -25,12 +26,14 @@ module.exports = merge(baseConfigs, {
     'draftjs-utils': 'draftjs-utils',
     'braft-finder': 'braft-finder',
     'braft-utils': 'braft-utils',
+    'braft-convert': 'braft-convert',
     'immutable': 'immutable'
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   plugins: [
+    new ExtractTextPlugin("index.css"),
     new OptimizeCssAssetsPlugin({
       assetNameRegExp: /.css$/,
       cssProcessor: require('cssnano'),

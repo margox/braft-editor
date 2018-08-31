@@ -22,7 +22,10 @@
   ],
   "license": "MIT",
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "babel-cli": "7.0.0-beta.0",
+    "babel-core": "^7.0.0-bridge.0",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-runtime": "^6.23.0",
     "babel-preset-es2015": "^6.24.1",
@@ -41,12 +44,12 @@
     "url-loader": "^1.0.1",
     "webpack": "^4.12.0",
     "webpack-cli": "^3.0.8",
-    "webpack-merge": "^4.1.3",
-    "webpack-dev-server": "^3.1.5"
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.3"
   },
   "dependencies": {
     "braft-convert": "^2.0.1",
-    "braft-finder": "^0.0.7",
+    "braft-finder": "^0.0.9",
     "braft-utils": "^0.0.16",
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",

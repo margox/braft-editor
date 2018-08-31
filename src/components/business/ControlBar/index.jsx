@@ -85,9 +85,12 @@ export default class ControlBar extends React.Component {
       return false
     }
 
+    if (this.props.hooks('open-braft-finder')() === false) {
+      return false
+    }
+
     const mediaProps = this.props.media
     const MediaLibrary = this.props.braftFinder.ReactComponent
-    const { onBeforeDeselect, onDeselect, onBeforeSelect, onSelect, onBeforeRemove, onRemove, onFileSelect, onBeforeInsert, onChange } = mediaProps
 
     this.mediaLibiraryModal = showModal({
       title: this.props.language.controls.mediaLibirary,
@@ -98,25 +101,24 @@ export default class ControlBar extends React.Component {
         <MediaLibrary
           onCancel={this.closeBraftFinder}
           onInsert={this.insertMedias}
+          onChange={mediaProps.onChange}
           externals={mediaProps.externals}
-          {...{onBeforeDeselect, onDeselect, onBeforeSelect, onSelect, onBeforeRemove, onRemove, onFileSelect, onBeforeInsert, onChange}}
+          onBeforeSelect={this.bindBraftFinderHook('select-medias')}
+          onBeforeDeselect={this.bindBraftFinderHook('deselect-medias')}
+          onBeforeRemove={this.bindBraftFinderHook('remove-medias')}
+          onBeforeInsert={this.bindBraftFinderHook('insert-medias')}
+          onFileSelect={this.bindBraftFinderHook('select-files')}
         />
       )
     })
 
   }
 
+  bindBraftFinderHook = (hookName) => (...params) => {
+    return this.props.hooks(hookName, params[0])(...params)
+  }
+
   insertMedias = (medias) => {
-
-    const hookReturns = this.props.hooks('insert-medias', medias)(medias)
-
-    if (hookReturns === false) {
-      return false
-    }
-
-    if (hookReturns instanceof Array) {
-      medias = hookReturns
-    }
 
     this.props.editor.setValue(ContentUtils.insertMedias(this.props.editorState, medias))
     this.props.editor.requestFocus()
@@ -126,8 +128,10 @@ export default class ControlBar extends React.Component {
   }
 
   closeBraftFinder = () => {
+
     this.props.media.onCancel && this.props.media.onCancel()
     this.mediaLibiraryModal && this.mediaLibiraryModal.close()
+
   }
 
   render() {

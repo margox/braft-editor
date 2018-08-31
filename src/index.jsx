@@ -41,7 +41,7 @@ export { EditorState, editorDecorators }
 // [√]允许完全设置控制栏的按钮（['media', { key: 'blod', text: 'xxx' }）
 // [√]允许在工具栏和内容区域直接插入自定义的组件[componentBelowControlBar]
 // [√]支持定义DropDown组件的样式
-// [ ]media.validateFn支持异步函数
+// [√]media.validateFn支持异步函数
 // [ ]优化音视频在编辑器内的预览体验
 // 2.1.0版本开发加护
 // [ ]美化UI，包括图标和界面风格

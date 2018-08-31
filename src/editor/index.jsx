@@ -45,14 +45,16 @@ export default class BraftEditor extends React.Component {
   }
 
   componentWillMount () {
+
     const { controls, extendControls } = this.props
+
     if ([...controls, ...extendControls].find(item => item === 'media' || item.key === 'media')) {
       require.ensure(['braft-finder'], () => {
         const BraftFinder = require('braft-finder').default
         this.braftFinder = new BraftFinder({
           language: this.props.language,
-          uploadFn: this.props.media.uploadFn,
-          validateFn: this.props.media.validateFn
+          uploader: this.props.media.uploadFn,
+          validator: this.props.media.validateFn
         })
         this.forceUpdate()
       }, 'braft-finder')

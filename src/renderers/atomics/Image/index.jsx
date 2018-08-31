@@ -82,10 +82,10 @@ export default class Image extends React.Component {
               ref={instance => this.toolbarElement = instance}
               data-float={float}
               data-align={alignment}
-              className="braft-embed-image-toolbar"
+              className="braft-media-toolbar braft-media-image-toolbar"
             >
               {linkEditorVisible ? (
-                <div className="braft-embed-image-link-editor">
+                <div className="braft-media-image-link-editor">
                   <div className="editor-input-group">
                     <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
                     <button type="button" onClick={this.confirmImageLink}>{language.base.confirm}</button>
@@ -100,7 +100,7 @@ export default class Image extends React.Component {
                 </div>
               ) : null}
               {sizeEditorVisible ? (
-                <div className="braft-embed-image-size-editor">
+                <div className="braft-media-image-size-editor">
                   <div className="editor-input-group">
                     <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
                     <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>

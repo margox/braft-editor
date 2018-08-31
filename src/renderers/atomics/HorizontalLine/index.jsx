@@ -8,7 +8,7 @@ export default class HorizontalLine extends React.Component {
 
     return (
       <div className="braft-horizontal-line">
-        <div className="braft-horizontal-line-toolbar">
+        <div className="braft-media-toolbar">
           <a onClick={this.removeHorizontalLine}>&#xe9ac;</a>
         </div>
       </div>
