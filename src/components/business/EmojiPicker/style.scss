@@ -47,8 +47,10 @@
     line-height: 32px;
     text-align: center;
     cursor: pointer;
+    user-select: none;
+    transition: transform .2s;
     &:hover{
-      background-color: $COLOR_ACTIVE;
+      transform: scale(1.5);
     }
   }
 }

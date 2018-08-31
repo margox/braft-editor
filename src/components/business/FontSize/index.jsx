@@ -40,9 +40,9 @@ export default (props) => {
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.fontSize}
-      className={"control-item dropdown braft-font-size-dropdown"}
+      className={'control-item dropdown braft-font-size-dropdown'}
     >
-      <ul className="braft-font-sizes-wrap">
+      <ul className='braft-font-sizes-wrap'>
         {props.fontSizes.map((item, index) => {
           return (
             <li

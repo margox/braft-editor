@@ -67,12 +67,12 @@ export default class DropDown extends React.Component {
     return (
       <div
         id={this.componentId}
-        className={"Braft-dropdown " + (active ? "active " : "") + (disabled ? "disabled " : "") + className}
+        className={'Braft-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className}
       >
         {htmlCaption ? (
           <button
-            type="button"
-            className="dropdown-handler"
+            type='button'
+            className='dropdown-handler'
             title={hoverTitle}
             data-braft-component-id={this.componentId}
             dangerouslySetInnerHTML={htmlCaption ? {__html: htmlCaption} : null}
@@ -80,18 +80,18 @@ export default class DropDown extends React.Component {
           ></button>
         ) : (
           <button
-            type="button"
-            className="dropdown-handler"
+            type='button'
+            className='dropdown-handler'
             title={hoverTitle}
             data-braft-component-id={this.componentId}
             ref={(instance) => this.dropDownHandlerElement = instance}
           >
             <span>{caption}</span>
-            {showDropDownArrow !== false ? <i className="braft-icon-drop-down"></i> : null}
+            {showDropDownArrow !== false ? <i className='braft-icon-drop-down'></i> : null}
           </button>
         )}
         <div
-          className="dropdown-content"
+          className='dropdown-content'
           style={{marginLeft: offset }}
           ref={(instance) => this.dropDownContentElement = instance}
         >
@@ -100,7 +100,7 @@ export default class DropDown extends React.Component {
             className={'dropdown-arrow' + (arrowActive ? ' active' : '')}
           ></i>
           <div
-            className="dropdown-content-inner"
+            className='dropdown-content-inner'
             style={{ maxHeight }}
           >
             {children}

@@ -16,7 +16,7 @@ export default class TextAlign extends React.Component {
   setAlignment = (event) => {
 
     let { alignment } = event.currentTarget.dataset
-    const hookReturns = this.props.hooks(`toggle-text-alignment`, alignment)(alignment)
+    const hookReturns = this.props.hooks('toggle-text-alignment', alignment)(alignment)
 
     if (this.props.textAligns.indexOf(hookReturns) > -1) {
       alignment = hookReturns
@@ -37,19 +37,19 @@ export default class TextAlign extends React.Component {
     ]
 
     return (
-      <div className="control-item-group">
+      <div className='control-item-group'>
         {
           this.props.textAligns.map((item, index) => {
             return (
               <button
-                type="button"
+                type='button'
                 key={index}
                 title={textAlignmentTitles[index]}
                 data-alignment={item}
                 className={'control-item button ' + (item === this.state.currentAlignment ? 'active' : null)}
                 onClick={this.setAlignment}
               >
-                <i className={"braft-icon-align-" + item}></i>
+                <i className={'braft-icon-align-' + item}></i>
               </button>
             )
           })

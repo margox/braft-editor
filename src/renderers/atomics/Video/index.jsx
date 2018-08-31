@@ -12,12 +12,12 @@ export default class Video extends React.Component {
   render () {
 
     const { toolbarVisible } = this.state
-    const { mediaData, language } = this.props
-    const { src, url, width, height, name, meta } = mediaData
+    const { mediaData } = this.props
+    const { src, url, meta } = mediaData
 
     return (
       <div
-        className="braft-media-video-holder"
+        className='braft-media-video-holder'
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
@@ -25,7 +25,7 @@ export default class Video extends React.Component {
           <video controls src={src || url} poster={meta.poster}/>
         </StaticContainer>
         {toolbarVisible ? (
-          <div className="braft-embed-toolbar">
+          <div className='braft-embed-toolbar'>
             <a onClick={this.removeVideo}>&#xe9ac;</a>
           </div>
         ) : null}

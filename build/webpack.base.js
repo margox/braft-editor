@@ -1,5 +1,6 @@
 var path = require('path')
-    , ExtractTextPlugin = require('extract-text-webpack-plugin')
+  , fs = require('fs')
+  , ExtractTextPlugin = require('extract-text-webpack-plugin')
 
 module.exports = {
   module: {
@@ -14,8 +15,19 @@ module.exports = {
         ])
       }, {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader']
+        exclude: [
+          /node_modules/,
+          /dist/
+        ],
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              ...JSON.parse(fs.readFileSync(path.resolve(__dirname, '../.babelrc'))),
+            },
+          },
+          'eslint-loader'
+        ]
       }, {
         test: /\.(png|svg)$/,
         use: [

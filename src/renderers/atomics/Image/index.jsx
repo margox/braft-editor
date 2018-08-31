@@ -37,7 +37,7 @@ export default class Image extends React.Component {
       imageStyles.float = 'right'
       clearFix = true
     } else if (alignment === 'center') {
-      imageStyles.textAlign = "center"
+      imageStyles.textAlign = 'center'
     } else {
       imageStyles.float = 'left'
       clearFix = true
@@ -47,13 +47,13 @@ export default class Image extends React.Component {
 
       if (typeof item === 'string' && imageControlItems[item]) {
         return (
-          <a className={item === 'link' && link ? 'active' : ''} key={index} href="javascript:void(0);" onClick={() => this.executeCommand(imageControlItems[item].command)}>
+          <a className={item === 'link' && link ? 'active' : ''} key={index} href='javascript:void(0);' onClick={() => this.executeCommand(imageControlItems[item].command)}>
             {imageControlItems[item].text}
           </a>
         )
       } else if (item && item.onClick && item.text) {
         return (
-          <a key={index} href="javascript:void(0);" onClick={() => this.executeCommand(item.onClick)}>
+          <a key={index} href='javascript:void(0);' onClick={() => this.executeCommand(item.onClick)}>
             {item.text}
           </a>
         )
@@ -64,7 +64,7 @@ export default class Image extends React.Component {
     })
 
     return (
-      <div className="braft-media-embeder braft-image-embeder">
+      <div className='braft-media-embeder braft-image-embeder'>
         <div
           style={imageStyles}
           draggable={true}
@@ -74,7 +74,7 @@ export default class Image extends React.Component {
           onDragStart={this.handleDragStart}
           onDragEnd={this.handleDragEnd}
           ref={instance => this.mediaEmbederInstance = instance}
-          className="braft-embed-image"
+          className='braft-embed-image'
         >
           {toolbarVisible ? (
             <div
@@ -82,15 +82,15 @@ export default class Image extends React.Component {
               ref={instance => this.toolbarElement = instance}
               data-float={float}
               data-align={alignment}
-              className="braft-media-toolbar braft-media-image-toolbar"
+              className='braft-media-toolbar braft-media-image-toolbar'
             >
               {linkEditorVisible ? (
-                <div className="braft-media-image-link-editor">
-                  <div className="editor-input-group">
-                    <input type="text" placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
-                    <button type="button" onClick={this.confirmImageLink}>{language.base.confirm}</button>
+                <div className='braft-media-image-link-editor'>
+                  <div className='editor-input-group'>
+                    <input type='text' placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
+                    <button type='button' onClick={this.confirmImageLink}>{language.base.confirm}</button>
                   </div>
-                  <div className="switch-group">
+                  <div className='switch-group'>
                     <Switch
                       active={link_target === '_blank'}
                       onClick={() => this.setImageLinkTarget(link_target)}
@@ -100,16 +100,16 @@ export default class Image extends React.Component {
                 </div>
               ) : null}
               {sizeEditorVisible ? (
-                <div className="braft-media-image-size-editor">
-                  <div className="editor-input-group">
-                    <input type="text" placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
-                    <input type="text" placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
-                    <button type="button" onClick={this.confirmImageSize}>{language.base.confirm}</button>
+                <div className='braft-media-image-size-editor'>
+                  <div className='editor-input-group'>
+                    <input type='text' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
+                    <input type='text' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
+                    <button type='button' onClick={this.confirmImageSize}>{language.base.confirm}</button>
                   </div>
                 </div>
               ) : null}
               {renderedControlItems}
-              <i style={{marginLeft: toolbarOffset * -1}} className="braft-embed-image-toolbar-arrow"></i>
+              <i style={{marginLeft: toolbarOffset * -1}} className='braft-embed-image-toolbar-arrow'></i>
             </div>
           ) : null}
           <img
@@ -117,7 +117,7 @@ export default class Image extends React.Component {
             src={src || url} style={{width, height}} width={width} height={height}
           />
         </div>
-        {clearFix && <div className="clearfix" style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}
+        {clearFix && <div className='clearfix' style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}
       </div>
     )
 
@@ -142,7 +142,7 @@ export default class Image extends React.Component {
 
   }
 
-  handleDragStart = (event) => {
+  handleDragStart = () => {
 
     window.__BRAFT_DRAGING__IMAGE__ = {
       block: this.props.block,
@@ -162,7 +162,7 @@ export default class Image extends React.Component {
 
   }
 
-  handleDragEnd = (event) => {
+  handleDragEnd = () => {
 
     window.__BRAFT_DRAGING__IMAGE__ = null
     return false
@@ -272,8 +272,8 @@ export default class Image extends React.Component {
     const { tempWidth: width, tempHeight: height } = this.state
     const newImageSize = {}
 
-    width !== null && (newImageSize.width = width);
-    height !== null && (newImageSize.height = height);
+    width !== null && (newImageSize.width = width)
+    height !== null && (newImageSize.height = height)
 
     this.props.editor.setValue(ContentUtils.setMediaData(this.props.editorState, this.props.entityKey, newImageSize))
     window.setImmediate(this.props.editor.forceRender)

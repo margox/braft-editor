@@ -1,4 +1,4 @@
-import React from 'react'
+// import React from 'react'
 import { Map } from 'immutable'
 import { DefaultDraftBlockRenderMap } from 'draft-js'
 import Image from './atomics/Image'
@@ -39,10 +39,10 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
   }
 
   if (superProps.extendAtomics) {
-    const atomics = superProps.extendAtomics;
+    const atomics = superProps.extendAtomics
     for (let i = 0; i < atomics.length; i++) {
       if (mediaType === atomics[i].type) {
-        const Component = atomics[i].component;
+        const Component = atomics[i].component
         return <Component {...mediaProps} />
       }
     }

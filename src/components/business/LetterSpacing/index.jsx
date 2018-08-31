@@ -40,9 +40,9 @@ export default (props) => {
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.letterSpacing}
-      className={"control-item dropdown braft-letter-spacing-dropdown"}
+      className={'control-item dropdown braft-letter-spacing-dropdown'}
     >
-      <ul className="braft-letter-spacings-wrap">
+      <ul className='braft-letter-spacings-wrap'>
         {props.letterSpacings.map((item, index) => {
           return (
             <li

@@ -42,10 +42,15 @@ export { EditorState, editorDecorators }
 // [√]允许在工具栏和内容区域直接插入自定义的组件[componentBelowControlBar]
 // [√]支持定义DropDown组件的样式
 // [√]media.validateFn支持异步函数
-// [ ]优化音视频在编辑器内的预览体验
-// 2.1.0版本开发加护
+// [√]优化音视频在编辑器内的预览体验
+// [√]标准化代码，引入ESLint
+// ---------------------------
+// 优化全选会选择上传中的项目的问题
+// 支持param.success时设置媒体文件的更多属性（尺寸等）
+
+// 2.1.0版本开发计划
 // [ ]美化UI，包括图标和界面风格
-// [ ]标准化代码，引入ESLint
+
 // 2.2.0版本开发计划
 // [ ]优化图片param.success，支持传入link等
 // [ ]简化上传配置流程
@@ -54,6 +59,7 @@ export { EditorState, editorDecorators }
 // [ ]支持非媒体类附件
 // [ ]优化HTML格式无法存储媒体名称的问题 
 // [ ]完成font-size等样式的全量支持
+
 // 2.3.0版本开发计划
 // [ ]优化换行与空格
 // [ ]支持自定义Atomic组件

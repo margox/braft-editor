@@ -12,12 +12,12 @@ export default class Audio extends React.Component {
   render () {
 
     const { toolbarVisible } = this.state
-    const { mediaData, language } = this.props
-    const { src, url, width, height, name } = mediaData
+    const { mediaData } = this.props
+    const { src, url } = mediaData
 
     return (
       <div
-        className="braft-media-audio-holder"
+        className='braft-media-audio-holder'
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
@@ -25,7 +25,7 @@ export default class Audio extends React.Component {
           <audio controls src={src || url}/>
         </StaticContainer>
         {toolbarVisible ? (
-          <div className="braft-media-toolbar">
+          <div className='braft-media-toolbar'>
             <a onClick={this.removeAudio}>&#xe9ac;</a>
           </div>
         ) : null}

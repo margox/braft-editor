@@ -143,7 +143,7 @@ export default class ControlBar extends React.Component {
     const renderedControls = []
 
     return (
-      <div className="BraftEditor-controlBar">
+      <div className='BraftEditor-controlBar'>
         {
           [
             ...controls,
@@ -157,7 +157,7 @@ export default class ControlBar extends React.Component {
               return null
             }
             if (itemKey.toLowerCase() === 'separator') {
-              return <span key={index} className="separator-line"></span>
+              return <span key={index} className='separator-line'></span>
             }
             let controlItem = editorControls.find((subItem) => {
               return subItem.key.toLowerCase() === itemKey.toLowerCase()
@@ -244,7 +244,7 @@ export default class ControlBar extends React.Component {
               }
               return (
                 <button
-                  type="button"
+                  type='button'
                   key={index}
                   title={controlItem.title}
                   className='control-item media button'
@@ -257,7 +257,7 @@ export default class ControlBar extends React.Component {
               return (
                 <DropDown
                   key={index}
-                  className={"control-item extend-control-item dropdown " + controlItem.className}
+                  className={'control-item extend-control-item dropdown ' + controlItem.className}
                   caption={controlItem.text}
                   htmlCaption={controlItem.html}
                   showDropDownArrow={controlItem.showDropDownArrow}
@@ -274,7 +274,7 @@ export default class ControlBar extends React.Component {
             } else if (controlItem.type === 'modal') {
               return (
                 <button
-                  type="button"
+                  type='button'
                   key={index}
                   title={controlItem.hoverTitle}
                   className={'control-item extend-control-item button ' + controlItem.className}
@@ -305,7 +305,7 @@ export default class ControlBar extends React.Component {
             } else if (controlItem.type === 'button') {
               return (
                 <button
-                  type="button"
+                  type='button'
                   key={index}
                   title={controlItem.hoverTitle}
                   className={'control-item button ' + controlItem.className}
@@ -318,7 +318,7 @@ export default class ControlBar extends React.Component {
             } else {
               return (
                 <button
-                  type="button"
+                  type='button'
                   key={index}
                   title={controlItem.title}
                   className={this.getControlItemClassName({

@@ -41,14 +41,14 @@ export default (props) => {
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.fontFamily}
       arrowActive={currentIndex === 0}
-      className={"control-item dropdown font-family-dropdown"}
+      className={'control-item dropdown font-family-dropdown'}
     >
-      <ul className="menu">
+      <ul className='menu'>
         {props.fontFamilies.map((item, index) => {
           return (
             <li
               key={index}
-              className={"menu-item " + (index === currentIndex ? 'active' : '')}
+              className={'menu-item ' + (index === currentIndex ? 'active' : '')}
               data-name={item.name}
               onClick={(event) => toggleFontFamily(event, props)}
             >

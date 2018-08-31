@@ -14,7 +14,6 @@ export default class Modal extends React.Component {
   }
 
   static defaultProps = {
-    showHeader: true,
     showFooter: true
   }
 
@@ -68,27 +67,27 @@ export default class Modal extends React.Component {
       return false
     }
 
-    let { title, className, width, height, children, confirmable, showHeader, showFooter, showCancel, showConfirm, showClose, cancelText, confirmText, bottomText, language } = props
+    let { title, className, width, height, children, confirmable, showFooter, showCancel, showConfirm, showClose, cancelText, confirmText, bottomText, language } = props
 
     typeof showCancel === 'undefined' && (showCancel = true)
     typeof showClose === 'undefined' && (showClose = true)
     typeof showConfirm === 'undefined' && (showConfirm = true)
 
     const childComponent = (
-      <div className={"braft-modal " + (className || '')}>
-        <div className="braft-modal-mask"></div>
-        <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className="braft-modal-content">
-          <div className="braft-modal-header">
-            <h3 className="braft-modal-caption">{title}</h3>
-            {showClose && <button type="button" onClick={this.close} className="braft-modal-close-button"><i className="braft-icon-close"></i></button>}
+      <div className={'braft-modal ' + (className || '')}>
+        <div className='braft-modal-mask'></div>
+        <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className='braft-modal-content'>
+          <div className='braft-modal-header'>
+            <h3 className='braft-modal-caption'>{title}</h3>
+            {showClose && <button type='button' onClick={this.close} className='braft-modal-close-button'><i className='braft-icon-close'></i></button>}
           </div>
-          <div className="braft-modal-body">{children}</div>
+          <div className='braft-modal-body'>{children}</div>
           {showFooter ? (
-            <div className="braft-modal-footer">
-              <div className="braft-modal-addon-text">{bottomText}</div>
-              <div className="braft-modal-buttons">
-                {showCancel && <button type="button" onClick={this.handleCancel} className="braft-modal-cancel">{cancelText || language.base.cancel}</button>}
-                {showConfirm && <button type="button" onClick={this.handleConfirm} className={"braft-modal-confirm " + (!confirmable ? 'disabled' : '')}>{confirmText || language.base.confirm}</button>}
+            <div className='braft-modal-footer'>
+              <div className='braft-modal-addon-text'>{bottomText}</div>
+              <div className='braft-modal-buttons'>
+                {showCancel && <button type='button' onClick={this.handleCancel} className='braft-modal-cancel'>{cancelText || language.base.cancel}</button>}
+                {showConfirm && <button type='button' onClick={this.handleConfirm} className={'braft-modal-confirm ' + (!confirmable ? 'disabled' : '')}>{confirmText || language.base.confirm}</button>}
               </div>
             </div>
           ) : null}

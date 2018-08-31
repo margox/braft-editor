@@ -7,6 +7,7 @@
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.development.js -d --history-api-fallback --no-inline --progress --colors",
     "build": "rm -rf dist/ && NODE_ENV=production webpack --config ./build/webpack.production.js --progress --colors",
+    "lint": "node_modules/eslint/bin/eslint.js .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": "https://github.com/margox/braft",
@@ -25,11 +26,21 @@
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^9.0.0",
     "babel-loader": "^8.0.0",
     "babel-plugin-transform-runtime": "^6.23.0",
     "css-loader": "^0.28.11",
+    "eslint": "^5.4.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-loader": "^2.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-promise": "^4.0.0",
+    "eslint-plugin-react": "^7.11.1",
+    "eslint-plugin-standard": "^4.0.0",
     "extract-text-webpack-plugin": "next",
     "html-webpack-plugin": "next",
     "node-sass": "^4.9.0",
@@ -46,6 +57,7 @@
     "webpack-merge": "^4.1.3"
   },
   "dependencies": {
+    "@babel/runtime": "^7.0.0",
     "braft-convert": "^2.0.1",
     "braft-finder": "^0.0.9",
     "braft-utils": "^0.0.16",

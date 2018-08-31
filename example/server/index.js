@@ -5,13 +5,13 @@ const url = require('url')
 const formidable = require('formidable')
 
 const mimeTypes = {
-  "jpeg": "image/jpeg",
-  "jpg": "image/jpeg",
-  "png": "image/png",
-  "svg": "image/svg",
-  "gif": "image/gif",
-  "mp4": "video/mp4",
-  "mp3": "audio/mp3"
+  'jpeg': 'image/jpeg',
+  'jpg': 'image/jpeg',
+  'png': 'image/png',
+  'svg': 'image/svg',
+  'gif': 'image/gif',
+  'mp4': 'video/mp4',
+  'mp3': 'audio/mp3'
 }
 
 const port = 9090
@@ -41,12 +41,12 @@ const uploadServer = (req, res) => {
           type: file.type,
           name: filename,
           url: 'http://localhost:' + port + '/temp/' + filename,
-          size: file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + "MB" : ~~(file.size / 1024) + "KB"
+          size: file.size / 1024 > 1024 ? (~~(10 * file.size / 1024 / 1024)) / 10 + 'MB' : ~~(file.size / 1024) + 'KB'
         })
 
       })
     } else {
-      console.warn(err)
+      // console.warn(err)
     }
 
     res.setHeader('Access-Control-Allow-Origin', '*')
@@ -59,37 +59,37 @@ const uploadServer = (req, res) => {
 
 const staticServer = (req, res) => {
 
-  var uri = url.parse(req.url).pathname;
-  var filename = path.join(process.cwd(), unescape(uri));
-  var stats;
+  var uri = url.parse(req.url).pathname
+  var filename = path.join(process.cwd(), unescape(uri))
+  var stats
 
   try {
-    stats = fs.lstatSync(filename); // throws if path doesn't exist
+    stats = fs.lstatSync(filename) // throws if path doesn't exist
   } catch (e) {
-    res.writeHead(404, {'Content-Type': 'text/plain'});
-    res.write('404 Not Found\n');
-    res.end();
-    return;
+    res.writeHead(404, {'Content-Type': 'text/plain'})
+    res.write('404 Not Found\n')
+    res.end()
+    return
   }
 
   if (stats.isFile()) {
     // path exists, is a file
-    var mimeType = mimeTypes[path.extname(filename).split(".").reverse()[0]];
-    res.writeHead(200, {'Content-Type': mimeType} );
-    var fileStream = fs.createReadStream(filename);
-    fileStream.pipe(res);
+    var mimeType = mimeTypes[path.extname(filename).split('.').reverse()[0]]
+    res.writeHead(200, {'Content-Type': mimeType} )
+    var fileStream = fs.createReadStream(filename)
+    fileStream.pipe(res)
   } else if (stats.isDirectory()) {
     // path exists, is a directory
-    res.writeHead(200, {'Content-Type': 'text/plain'});
-    res.write('Index of '+uri+'\n');
-    res.write('TODO, show index?\n');
-    res.end();
+    res.writeHead(200, {'Content-Type': 'text/plain'})
+    res.write('Index of '+uri+'\n')
+    res.write('TODO, show index?\n')
+    res.end()
   } else {
     // Symbolic link, other?
     // TODO: follow symlinks?  security?
-    res.writeHead(500, {'Content-Type': 'text/plain'});
-    res.write('500 Internal server error\n');
-    res.end();
+    res.writeHead(500, {'Content-Type': 'text/plain'})
+    res.write('500 Internal server error\n')
+    res.end()
   }
 
 }

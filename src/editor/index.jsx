@@ -69,7 +69,7 @@ export default class BraftEditor extends React.Component {
     if (ContentUtils.isEditorState(editorState)) {
       this.setState({ editorState })
     } else if (editorState) {
-      console.warn('')
+      // console.warn('')
     }
 
   }
@@ -81,7 +81,7 @@ export default class BraftEditor extends React.Component {
     if (ContentUtils.isEditorState(editorState)) {
       this.setState({ editorState })
     } else if (editorState) {
-      console.warn('')
+      // console.warn('')
     }
 
   }
@@ -197,11 +197,9 @@ export default class BraftEditor extends React.Component {
 
     }
 
-    return false
-
   }
 
-  handleDrop = (selectionState, dataTransfer, isInternal) => {
+  handleDrop = (selectionState, dataTransfer) => {
 
     if (window && window.__BRAFT_DRAGING__IMAGE__) {
 

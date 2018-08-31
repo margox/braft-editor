@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor, { EditorState } from '../src'
+import BraftEditor from '../src'
+// import '../dist/index.css'
 
 class Demo extends React.Component {
 
@@ -30,7 +31,6 @@ class Demo extends React.Component {
           controls: true,
           loop: true,
           autoPlay: false,
-          poster: "https://www.baidu.com/img/bd_logo1.png?where=super"
         }
       })
     }

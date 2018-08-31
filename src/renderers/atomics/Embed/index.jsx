@@ -12,20 +12,20 @@ export default class Embed extends React.Component {
   render () {
 
     const { toolbarVisible } = this.state
-    const { mediaData, language } = this.props
-    const { src, url, width, height, name } = mediaData
+    const { mediaData } = this.props
+    const { src, url } = mediaData
 
     return (
       <div
-        className="braft-media-embed-holder"
+        className='braft-media-embed-holder'
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
         <StaticContainer>
-          <div className="braft-embed-media-player" dangerouslySetInnerHTML={{ __html: src || url}}></div>
+          <div className='braft-embed-media-player' dangerouslySetInnerHTML={{ __html: src || url}}></div>
         </StaticContainer>
         {toolbarVisible ? (
-          <div className="braft-media-toolbar">
+          <div className='braft-media-toolbar'>
             <a onClick={this.removeEmbed}>&#xe9ac;</a>
           </div>
         ) : null}

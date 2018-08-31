@@ -2,7 +2,6 @@ import './style.scss'
 import React from 'react'
 import { getHeadings } from 'configs/maps'
 import DropDown from 'components/common/DropDown'
-import { ContentUtils } from 'braft-utils'
 
 export default (props) => {
 
@@ -16,16 +15,16 @@ export default (props) => {
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.headings}
       arrowActive={currentHeadingIndex === 0}
-      className={"control-item dropdown headings-dropdown"}
+      className={'control-item dropdown headings-dropdown'}
     >
-      <ul className="menu">
+      <ul className='menu'>
         {
           headings.map((item, index) => {
             let isActive = props.current === item.command
             return (
               <li
                 key={index}
-                className={"menu-item" + (isActive ? ' active' : '')}
+                className={'menu-item' + (isActive ? ' active' : '')}
                 onClick={() => props.onChange(item.command, item.type)}
               >
                 {item.text}

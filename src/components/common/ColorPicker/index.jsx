@@ -3,11 +3,11 @@ import React from 'react'
 
 export default (props) => {
 
-  const { current, colors, onChange, language } = props
+  const { current, colors } = props
 
   return (
-    <div className="braft-color-list-wrap">
-      <ul className="braft-color-list">
+    <div className='braft-color-list-wrap'>
+      <ul className='braft-color-list'>
         {colors.map((item, index) => {
           let className = item === current ? 'color-item active' : 'color-item'
           return (

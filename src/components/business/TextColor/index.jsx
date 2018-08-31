@@ -33,9 +33,9 @@ export default class TextColor extends React.Component {
     })
 
     const caption = (
-      <i style={captionStyle} className="braft-icon-text-color">
-        <span className="path1"></span>
-        <span className="path2"></span>
+      <i style={captionStyle} className='braft-icon-text-color'>
+        <span className='path1'></span>
+        <span className='path2'></span>
       </i>
     )
 
@@ -47,24 +47,24 @@ export default class TextColor extends React.Component {
         containerNode={this.props.containerNode}
         componentId={this.dropDownComponentId}
         ref={(instance) => this.dropDownComponent = instance}
-        className={"control-item dropdown text-color-dropdown"}
+        className={'control-item dropdown text-color-dropdown'}
       >
-        <div className="braft-text-color-picker-wrap">
-          <div className="braft-color-switch-buttons" style={this.props.enableBackgroundColor ? {} : {display: 'none'}}>
+        <div className='braft-text-color-picker-wrap'>
+          <div className='braft-color-switch-buttons' style={this.props.enableBackgroundColor ? {} : {display: 'none'}}>
             <button
-              type="button"
-              data-type="color"
+              type='button'
+              data-type='color'
               data-keep-active={true}
               data-braft-component-id={this.dropDownComponentId}
               className={colorType === 'color' ? 'active' : ''}
               onClick={this.switchColorType}
             >{this.props.language.controls.textColor}</button>
             <button
-              type="button"
-              data-type="background-color"
+              type='button'
+              data-type='background-color'
               data-keep-active={true}
               data-braft-component-id={this.dropDownComponentId}
-              className={colorType === 'backgroun-color' ? 'active' : ''}
+              className={colorType === 'background-color' ? 'active' : ''}
               onClick={this.switchColorType}
             >{this.props.language.controls.backgroundColor}</button>
           </div>

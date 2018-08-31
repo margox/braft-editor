@@ -26,11 +26,11 @@ export default class LinkEditor extends React.Component {
   render () {
 
     const { href, target } = this.state
-    const caption = <i className="braft-icon-link"></i>
+    const caption = <i className='braft-icon-link'></i>
     const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
-      <div className="control-item-group">
+      <div className='control-item-group'>
         <DropDown
           caption={caption}
           hoverTitle={this.props.language.controls.link}
@@ -39,12 +39,12 @@ export default class LinkEditor extends React.Component {
           showDropDownArrow={false}
           disabled={!textSelected}
           ref={(instance) => this.dropDownComponent = instance}
-          className={"control-item dropdown link-editor-dropdown"}
+          className={'control-item dropdown link-editor-dropdown'}
         >
-          <div className="braft-link-editor">
-            <div className="input-group">
+          <div className='braft-link-editor'>
+            <div className='input-group'>
               <input
-                type="text"
+                type='text'
                 value={href}
                 spellCheck={false}
                 placeholder={this.props.language.linkEditor.inputPlaceHolder}
@@ -52,31 +52,31 @@ export default class LinkEditor extends React.Component {
                 onChange={this.inputLink}
               />
             </div>
-            <div className="switch-group">
+            <div className='switch-group'>
               <Switch
                 active={target === '_blank'}
                 onClick={this.setTarget}
               />
               <label>{this.props.language.linkEditor.openInNewWindow}</label>
             </div>
-            <div className="buttons">
-              <a onClick={this.handleUnlink} className="primary pull-left" href="javascript:void(0);">
-                <i className="braft-icon-close"></i>
+            <div className='buttons'>
+              <a onClick={this.handleUnlink} className='primary pull-left' href='javascript:void(0);'>
+                <i className='braft-icon-close'></i>
                 <span>{this.props.language.linkEditor.removeLink}</span>
               </a>
-              <button type="button" onClick={this.handleConfirm} className="primary pull-right">{this.props.language.base.confirm}</button>
-              <button type="button" onClick={this.handleCancel} className="default pull-right">{this.props.language.base.cancel}</button>
+              <button type='button' onClick={this.handleConfirm} className='primary pull-right'>{this.props.language.base.confirm}</button>
+              <button type='button' onClick={this.handleCancel} className='default pull-right'>{this.props.language.base.cancel}</button>
             </div>
           </div>
         </DropDown>
         <button
-          type="button"
+          type='button'
           title={this.props.language.controls.unlink}
-          className="control-item button"
+          className='control-item button'
           onClick={this.handleUnlink}
           disabled={!textSelected || !href}
         >
-          <i className="braft-icon-link-off"></i>
+          <i className='braft-icon-link-off'></i>
         </button>
       </div>
     )
