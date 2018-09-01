@@ -1,6 +1,6 @@
 @import '~scssinc';
 
-.braft-modal{
+.bf-modal{
   position: fixed;
   z-index: 99999;
   top: 0;
@@ -11,7 +11,7 @@
     outline: none;
   }
 }
-.braft-modal-mask{
+.bf-modal-mask{
   position: absolute;
   z-index: 1;
   top: 0;
@@ -22,7 +22,7 @@
   opacity: 0;
   transition: opacity .2s;
 }
-.braft-modal-content{
+.bf-modal-content{
   position: absolute;
   z-index: 2;
   top: 45%;
@@ -35,10 +35,10 @@
   transform: translate(-50%, -40%);
   transition: transform .2s, opacity .2s;
 }
-.braft-modal-header{
+.bf-modal-header{
   height: 50px;
 }
-.braft-modal-caption{
+.bf-modal-caption{
   float: left;
   margin: 0;
   padding: 0 15px;
@@ -47,7 +47,7 @@
   font-weight: normal;
   line-height: 50px;
 }
-.braft-modal-close-button{
+.bf-modal-close-button{
   float: right;
   width: 50px;
   height: 50px;
@@ -60,25 +60,25 @@
     color: $COLOR_DANGER;
   }
 }
-.braft-modal-body{
+.bf-modal-body{
   overflow: auto;
 }
-.braft-modal-footer{
+.bf-modal-footer{
   min-height: 15px;
   padding: 0 15px;
   overflow: hidden;
 }
-.braft-modal-addon-text{
+.bf-modal-addon-text{
   float: left;
   color: #999;
   font-size: 12px;
   line-height: 60px;
 }
-.braft-modal-buttons{
+.bf-modal-buttons{
   float: right;
 }
-.braft-modal-cancel,
-.braft-modal-confirm{
+.bf-modal-cancel,
+.bf-modal-confirm{
   height: 36px;
   margin: 12px 0 12px 15px;
   padding: 0 30px;
@@ -88,14 +88,14 @@
   font-weight: bold;
   cursor: pointer;
 }
-.braft-modal-cancel{
+.bf-modal-cancel{
   background-color: #e8e9ea;
   color: #999;
   &:hover{
     background-color: #d8d9da;
   }
 }
-.braft-modal-confirm{
+.bf-modal-confirm{
   background-color: $COLOR_ACTIVE;
   color: #fff;
   &:hover{
@@ -108,11 +108,11 @@
   }
 }
 
-.braft-modal-root.active{
-  .braft-modal-mask{
+.bf-modal-root.active{
+  .bf-modal-mask{
     opacity: 1;
   }
-  .braft-modal-content{
+  .bf-modal-content{
     opacity: 1;
     transform: translate(-50%, -50%);
   }

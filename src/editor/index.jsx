@@ -356,10 +356,10 @@ export default class BraftEditor extends React.Component {
     }
 
     return (
-      <div ref={this.setEditorContainerNode} className={`BraftEditor-container ${className} ${(disabled ? 'disabled' : '')}`} style={style}>
+      <div ref={this.setEditorContainerNode} className={`bf-container ${className} ${(disabled ? 'disabled' : '')}`} style={style}>
         <ControlBar {...controlBarProps} />
         {componentBelowControlBar}
-        <div className={`BraftEditor-content ${contentClassName}`} style={contentStyle}>
+        <div className={`bf-content ${contentClassName}`} style={contentStyle}>
           <Editor {...draftProps} />
         </div>
       </div>

@@ -1,6 +1,6 @@
 @import '~scssinc';
 
-.BraftEditor-content{
+.bf-content{
   height: 500px;
   overflow: auto;
   font-size: 16px;
@@ -12,7 +12,7 @@
   }
 }
 
-.BraftEditor-container{
+.bf-container{
   position: relative;
   height: 100%;
   padding: 0;
@@ -125,56 +125,56 @@
       }
     }
   }
-  .braft-left-aligned-block {
+  .bfa-left {
     text-align: left;
     .public-DraftStyleDefault-ltr{
       text-align: left;
     }
   }
-  .braft-right-aligned-block {
+  .bfa-right {
     text-align: right;
     .public-DraftStyleDefault-ltr{
       text-align: right;
     }
   }
-  .braft-center-aligned-block {
+  .bfa-center {
     text-align: center;
     .public-DraftStyleDefault-ltr{
       text-align: center;
     }
   }
-  .braft-justify-aligned-block {
+  .bfa-justify {
     text-align: justify;
     .public-DraftStyleDefault-ltr{
       text-align: justify;
     }
   }
-  .braft-left-aligned-block,
-  .braft-right-aligned-block,
-  .braft-center-aligned-block,
-  .braft-justify-aligned-block{
+  .bfa-left,
+  .bfa-right,
+  .bfa-center,
+  .bfa-justify{
     & > div{
       display: inline-block;
     }
   }
-  .braft-float-left{
+  .bff-left{
     position: relative;
     z-index: 1;
     float: left;
     margin: 0 10px 0 0;
   }
-  .braft-float-right{
+  .bff-right{
     position: relative;
     z-index: 1;
     float: right;
     margin: 0 0 0 10px;
   }
 
-  .braft-media-embeder{
+  .bf-media{
     position: relative;
   }
 
-  .braft-embed-image{
+  .bf-image{
     position: relative;
     img{
       display: inline-block;
@@ -183,10 +183,13 @@
       font-size: 0;
       resize: both;
       outline-offset: -3px;
+      &:hover{
+        outline: solid 1px $COLOR_ACTIVE;
+      }
     }
   }
 
-  .braft-media-toolbar{
+  .bf-media-toolbar{
     position: absolute;
     z-index: 3;
     bottom: 15px;
@@ -200,7 +203,8 @@
     transform: translateX(-50%);
     box-shadow: 0 5px 15px rgba(#000, .2);
     user-select: none;
-    &::before{
+    &::before,
+    .bf-media-toolbar-arrow{
       position: absolute;
       bottom: -10px;
       left: 50%;

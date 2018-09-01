@@ -33,7 +33,7 @@ export default class TextColor extends React.Component {
     })
 
     const caption = (
-      <i style={captionStyle} className='braft-icon-text-color'>
+      <i style={captionStyle} className='bfi-text-color'>
         <span className='path1'></span>
         <span className='path2'></span>
       </i>
@@ -49,8 +49,8 @@ export default class TextColor extends React.Component {
         ref={(instance) => this.dropDownComponent = instance}
         className={'control-item dropdown text-color-dropdown'}
       >
-        <div className='braft-text-color-picker-wrap'>
-          <div className='braft-color-switch-buttons' style={this.props.enableBackgroundColor ? {} : {display: 'none'}}>
+        <div className='bf-text-color-picker-wrap'>
+          <div className='bf-color-switch-buttons' style={this.props.enableBackgroundColor ? {} : {display: 'none'}}>
             <button
               type='button'
               data-type='color'

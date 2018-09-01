@@ -29,7 +29,7 @@ module.exports = merge(baseConfigs, {
     'immutable': 'immutable'
   },
   optimization: {
-    minimize: true,
+    minimize: false,
   },
   plugins: [
     new ExtractTextPlugin('index.css'),

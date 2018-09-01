@@ -1,6 +1,6 @@
 @import '~scssinc';
 
-.braft-emojis-wrap{
+.bf-emojis-wrap{
   position: relative;
   width: 210px;
   height: 220px;
@@ -25,7 +25,7 @@
     background-image: linear-gradient(rgba($COLOR_DARK, 0), rgba($COLOR_DARK, 1));
   }
 }
-.braft-emojis{
+.bf-emojis{
   box-sizing: content-box;
   width: 200px;
   height: 195px;

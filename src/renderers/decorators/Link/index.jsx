@@ -18,8 +18,8 @@ const Link = (props) => {
   const { href, target } = contentState.getEntity(entityKey).getData()
 
   return (
-    <span className='braft-link-wrap'>
-      <a onClick={(event) => viewLink(event, href)} className='braft-link' href={href} target={target}>{children}</a>
+    <span className='bf-link-wrap'>
+      <a onClick={(event) => viewLink(event, href)} className='bf-link' href={href} target={target}>{children}</a>
     </span>
   )
 

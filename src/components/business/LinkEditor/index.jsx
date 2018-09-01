@@ -1,4 +1,3 @@
-import './style.scss'
 import React from 'react'
 import Switch from 'components/common/Switch'
 import DropDown from 'components/common/DropDown'
@@ -26,7 +25,7 @@ export default class LinkEditor extends React.Component {
   render () {
 
     const { href, target } = this.state
-    const caption = <i className='braft-icon-link'></i>
+    const caption = <i className='bfi-link'></i>
     const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
@@ -41,7 +40,7 @@ export default class LinkEditor extends React.Component {
           ref={(instance) => this.dropDownComponent = instance}
           className={'control-item dropdown link-editor-dropdown'}
         >
-          <div className='braft-link-editor'>
+          <div className='bf-link-editor'>
             <div className='input-group'>
               <input
                 type='text'
@@ -61,7 +60,7 @@ export default class LinkEditor extends React.Component {
             </div>
             <div className='buttons'>
               <a onClick={this.handleUnlink} className='primary pull-left' href='javascript:void(0);'>
-                <i className='braft-icon-close'></i>
+                <i className='bfi-close'></i>
                 <span>{this.props.language.linkEditor.removeLink}</span>
               </a>
               <button type='button' onClick={this.handleConfirm} className='primary pull-right'>{this.props.language.base.confirm}</button>
@@ -76,7 +75,7 @@ export default class LinkEditor extends React.Component {
           onClick={this.handleUnlink}
           disabled={!textSelected || !href}
         >
-          <i className='braft-icon-link-off'></i>
+          <i className='bfi-link-off'></i>
         </button>
       </div>
     )

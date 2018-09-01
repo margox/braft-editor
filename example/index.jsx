@@ -84,7 +84,7 @@ class Demo extends React.Component {
           <BraftEditor
             hooks={this.hooks}
             media={{
-              uploadFn: this.uploadFn
+              // uploadFn: this.uploadFn
             }}
             onChange={this.handleChange}
             value={this.state.editorState}

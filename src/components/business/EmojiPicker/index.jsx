@@ -29,10 +29,10 @@ export default (props) => {
       showDropDownArrow={false}
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.emoji}
-      className={'control-item dropdown braft-emoji-dropdown'}
+      className={'control-item dropdown bf-emoji-dropdown'}
     >
-      <div className='braft-emojis-wrap'>
-        <ul className='braft-emojis'>
+      <div className='bf-emojis-wrap'>
+        <ul className='bf-emojis'>
           {props.emojis.map((item, index) => {
             return (
               <li

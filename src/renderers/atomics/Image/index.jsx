@@ -64,7 +64,7 @@ export default class Image extends React.Component {
     })
 
     return (
-      <div className='braft-media-embeder braft-image-embeder'>
+      <div className='bf-media'>
         <div
           style={imageStyles}
           draggable={true}
@@ -74,7 +74,7 @@ export default class Image extends React.Component {
           onDragStart={this.handleDragStart}
           onDragEnd={this.handleDragEnd}
           ref={instance => this.mediaEmbederInstance = instance}
-          className='braft-embed-image'
+          className='bf-image'
         >
           {toolbarVisible ? (
             <div
@@ -82,10 +82,10 @@ export default class Image extends React.Component {
               ref={instance => this.toolbarElement = instance}
               data-float={float}
               data-align={alignment}
-              className='braft-media-toolbar braft-media-image-toolbar'
+              className='bf-media-toolbar'
             >
               {linkEditorVisible ? (
-                <div className='braft-media-image-link-editor'>
+                <div className='bf-image-link-editor'>
                   <div className='editor-input-group'>
                     <input type='text' placeholder={language.linkEditor.inputWithEnterPlaceHolder} onKeyDown={this.handleLinkInputKeyDown} onChange={this.setImageLink} defaultValue={link}/>
                     <button type='button' onClick={this.confirmImageLink}>{language.base.confirm}</button>
@@ -100,7 +100,7 @@ export default class Image extends React.Component {
                 </div>
               ) : null}
               {sizeEditorVisible ? (
-                <div className='braft-media-image-size-editor'>
+                <div className='bf-image-size-editor'>
                   <div className='editor-input-group'>
                     <input type='text' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
                     <input type='text' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
@@ -109,7 +109,7 @@ export default class Image extends React.Component {
                 </div>
               ) : null}
               {renderedControlItems}
-              <i style={{marginLeft: toolbarOffset * -1}} className='braft-embed-image-toolbar-arrow'></i>
+              <i style={{marginLeft: toolbarOffset * -1}} className='bf-media-toolbar-arrow'></i>
             </div>
           ) : null}
           <img

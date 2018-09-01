@@ -74,20 +74,20 @@ export default class Modal extends React.Component {
     typeof showConfirm === 'undefined' && (showConfirm = true)
 
     const childComponent = (
-      <div className={'braft-modal ' + (className || '')}>
-        <div className='braft-modal-mask'></div>
-        <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className='braft-modal-content'>
-          <div className='braft-modal-header'>
-            <h3 className='braft-modal-caption'>{title}</h3>
-            {showClose && <button type='button' onClick={this.close} className='braft-modal-close-button'><i className='braft-icon-close'></i></button>}
+      <div className={'bf-modal ' + (className || '')}>
+        <div className='bf-modal-mask'></div>
+        <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className='bf-modal-content'>
+          <div className='bf-modal-header'>
+            <h3 className='bf-modal-caption'>{title}</h3>
+            {showClose && <button type='button' onClick={this.close} className='bf-modal-close-button'><i className='bf-icon-close'></i></button>}
           </div>
-          <div className='braft-modal-body'>{children}</div>
+          <div className='bf-modal-body'>{children}</div>
           {showFooter ? (
-            <div className='braft-modal-footer'>
-              <div className='braft-modal-addon-text'>{bottomText}</div>
-              <div className='braft-modal-buttons'>
-                {showCancel && <button type='button' onClick={this.handleCancel} className='braft-modal-cancel'>{cancelText || language.base.cancel}</button>}
-                {showConfirm && <button type='button' onClick={this.handleConfirm} className={'braft-modal-confirm ' + (!confirmable ? 'disabled' : '')}>{confirmText || language.base.confirm}</button>}
+            <div className='bf-modal-footer'>
+              <div className='bf-modal-addon-text'>{bottomText}</div>
+              <div className='bf-modal-buttons'>
+                {showCancel && <button type='button' onClick={this.handleCancel} className='bf-modal-cancel'>{cancelText || language.base.cancel}</button>}
+                {showConfirm && <button type='button' onClick={this.handleConfirm} className={'bf-modal-confirm ' + (!confirmable ? 'disabled' : '')}>{confirmText || language.base.confirm}</button>}
               </div>
             </div>
           ) : null}
@@ -100,7 +100,7 @@ export default class Modal extends React.Component {
     if (!this.rootElement) {
       this.rootElement = document.createElement('div')
       this.rootElement.id = this.componentId
-      this.rootElement.className = 'braft-modal-root'
+      this.rootElement.className = 'bf-modal-root'
       document.body.appendChild(this.rootElement)
     }
 

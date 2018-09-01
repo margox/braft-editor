@@ -1,5 +1,5 @@
-$eotPath: '../icons/icomoon.eot?sirizn';
-$ttfPath: '../icons/icomoon.ttf?sirizn';
+$eotPath: '../icons/icons.eot';
+$ttfPath: '../icons/icons.ttf';
 
 @font-face {
   font-family: 'braft-icons';
@@ -9,10 +9,10 @@ $ttfPath: '../icons/icomoon.ttf?sirizn';
   font-style: normal;
 }
 
-.BraftEditor-container,
-.braft-modal-root{
+.bf-container,
+.bf-modal-root{
 
-  [class^="braft-icon-"], [class*=" braft-icon-"] {
+  [class^="bfi-"], [class*=" bfi-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'braft-icons' !important;
     speak: none;
@@ -24,213 +24,213 @@ $ttfPath: '../icons/icomoon.ttf?sirizn';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  .braft-icon-format_clear:before {
+  .bfi-format_clear:before {
     content: "\e239";
   }
-  .braft-icon-hr:before {
+  .bfi-hr:before {
     content: "\e925";
   }
-  .braft-icon-colorize:before {
+  .bfi-colorize:before {
     content: "\e3b8";
   }
-  .braft-icon-crop_free:before {
+  .bfi-crop_free:before {
     content: "\e3c2";
   }
-  .braft-icon-pause:before {
+  .bfi-pause:before {
     content: "\e034";
   }
-  .braft-icon-play_arrow:before {
+  .bfi-play_arrow:before {
     content: "\e037";
   }
-  .braft-icon-bin:before {
+  .bfi-bin:before {
     content: "\e9ac";
   }
-  .braft-icon-replay:before {
+  .bfi-replay:before {
     content: "\e042";
   }
-  .braft-icon-tune:before {
+  .bfi-tune:before {
     content: "\e429";
   }
-  .braft-icon-close:before {
+  .bfi-close:before {
     content: "\e913";
   }
-  .braft-icon-align-center:before {
+  .bfi-align-center:before {
     content: "\e028";
   }
-  .braft-icon-align-justify:before {
+  .bfi-align-justify:before {
     content: "\e026";
   }
-  .braft-icon-align-left:before {
+  .bfi-align-left:before {
     content: "\e027";
   }
-  .braft-icon-align-right:before {
+  .bfi-align-right:before {
     content: "\e029";
   }
-  .braft-icon-image-right:before {
+  .bfi-image-right:before {
     content: "\e914";
   }
-  .braft-icon-image-left:before {
+  .bfi-image-left:before {
     content: "\e91e";
   }
-  .braft-icon-music:before {
+  .bfi-music:before {
     content: "\e90e";
   }
-  .braft-icon-camera:before {
+  .bfi-camera:before {
     content: "\e911";
   }
-  .braft-icon-copy:before {
+  .bfi-copy:before {
     content: "\e92c";
   }
-  .braft-icon-file-text:before {
+  .bfi-file-text:before {
     content: "\e926";
   }
-  .braft-icon-film:before {
+  .bfi-film:before {
     content: "\e91c";
   }
-  .braft-icon-github:before {
+  .bfi-github:before {
     content: "\eab0";
   }
-  .braft-icon-ltr:before {
+  .bfi-ltr:before {
     content: "\ea74";
   }
-  .braft-icon-page-break:before {
+  .bfi-page-break:before {
     content: "\ea68";
   }
-  .braft-icon-pagebreak:before {
+  .bfi-pagebreak:before {
     content: "\ea6e";
   }
-  .braft-icon-paint-format:before {
+  .bfi-paint-format:before {
     content: "\e90c";
   }
-  .braft-icon-paste:before {
+  .bfi-paste:before {
     content: "\e92d";
   }
-  .braft-icon-pilcrow:before {
+  .bfi-pilcrow:before {
     content: "\ea73";
   }
-  .braft-icon-pushpin:before {
+  .bfi-pushpin:before {
     content: "\e946";
   }
-  .braft-icon-redo:before {
+  .bfi-redo:before {
     content: "\e968";
   }
-  .braft-icon-rtl:before {
+  .bfi-rtl:before {
     content: "\ea75";
   }
-  .braft-icon-spinner:before {
+  .bfi-spinner:before {
     content: "\e980";
   }
-  .braft-icon-subscript:before {
+  .bfi-subscript:before {
     content: "\ea6c";
   }
-  .braft-icon-superscript:before {
+  .bfi-superscript:before {
     content: "\ea6b";
   }
-  .braft-icon-undo:before {
+  .bfi-undo:before {
     content: "\e967";
   }
-  .braft-icon-media:before {
+  .bfi-media:before {
     content: "\e90f";
   }
-  .braft-icon-add:before {
+  .bfi-add:before {
     content: "\e918";
   }
-  .braft-icon-bold:before {
+  .bfi-bold:before {
     content: "\e904";
   }
-  .braft-icon-code:before {
+  .bfi-code:before {
     content: "\e903";
   }
-  .braft-icon-done:before {
+  .bfi-done:before {
     content: "\e912";
   }
-  .braft-icon-drop-down:before {
+  .bfi-drop-down:before {
     content: "\e906";
   }
-  .braft-icon-drop-up:before {
+  .bfi-drop-up:before {
     content: "\e909";
   }
-  .braft-icon-emoji:before {
+  .bfi-emoji:before {
     content: "\e91b";
   }
-  .braft-icon-font-size:before {
+  .bfi-font-size:before {
     content: "\e920";
   }
-  .braft-icon-fullscreen:before {
+  .bfi-fullscreen:before {
     content: "\e910";
   }
-  .braft-icon-fullscreen-exit:before {
+  .bfi-fullscreen-exit:before {
     content: "\e90d";
   }
-  .braft-icon-help:before {
+  .bfi-help:before {
     content: "\e902";
   }
-  .braft-icon-indent-decrease:before {
+  .bfi-indent-decrease:before {
     content: "\e92f";
   }
-  .braft-icon-indent-increase:before {
+  .bfi-indent-increase:before {
     content: "\e92e";
   }
-  .braft-icon-info:before {
+  .bfi-info:before {
     content: "\e901";
   }
-  .braft-icon-italic:before {
+  .bfi-italic:before {
     content: "\e924";
   }
-  .braft-icon-link:before {
+  .bfi-link:before {
     content: "\e91a";
   }
-  .braft-icon-link-off:before {
+  .bfi-link-off:before {
     content: "\e919";
   }
-  .braft-icon-list:before {
+  .bfi-list:before {
     content: "\e923";
   }
-  .braft-icon-list-numbered:before {
+  .bfi-list-numbered:before {
     content: "\e922";
   }
-  .braft-icon-menu:before {
+  .bfi-menu:before {
     content: "\e908";
   }
-  .braft-icon-more-horiz:before {
+  .bfi-more-horiz:before {
     content: "\e90b";
   }
-  .braft-icon-more-vert:before {
+  .bfi-more-vert:before {
     content: "\e90a";
   }
-  .braft-icon-not-disturb:before {
+  .bfi-not-disturb:before {
     content: "\e907";
   }
-  .braft-icon-print:before {
+  .bfi-print:before {
     content: "\e915";
   }
-  .braft-icon-quote:before {
+  .bfi-quote:before {
     content: "\e921";
   }
-  .braft-icon-search:before {
+  .bfi-search:before {
     content: "\e916";
   }
-  .braft-icon-settingsx:before {
+  .bfi-settingsx:before {
     content: "\e917";
   }
-  .braft-icon-share:before {
+  .bfi-share:before {
     content: "\e905";
   }
-  .braft-icon-share-square:before {
+  .bfi-share-square:before {
     content: "\e900";
   }
-  .braft-icon-strikethrough:before {
+  .bfi-strikethrough:before {
     content: "\e91f";
   }
-  .braft-icon-text-color .path1:before {
+  .bfi-text-color .path1:before {
     content: "\e930";
     opacity: 0.36;
   }
-  .braft-icon-text-color .path2:before {
+  .bfi-text-color .path2:before {
     content: "\e931";
     margin-left: -1em;
   }
-  .braft-icon-underlined:before {
+  .bfi-underlined:before {
     content: "\e91d";
   }
 }

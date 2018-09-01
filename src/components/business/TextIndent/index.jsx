@@ -40,9 +40,9 @@ export default (props) => {
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.textIndent}
-      className={'control-item dropdown braft-indent-dropdown'}
+      className={'control-item dropdown bf-indent-dropdown'}
     >
-      <ul className='braft-text-indents-wrap'>
+      <ul className='bf-text-indents'>
         {props.textIndents.map((item, index) => {
           return (
             <li

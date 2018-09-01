@@ -6,11 +6,11 @@ export default (customBlockStyleFn) => (block) => {
   let result = ''
 
   if (blockAlignment) {
-    result = `braft-${blockAlignment}-aligned-block`
+    result = `bfa-${blockAlignment}`
   }
 
   if (blockFloat) {
-    result += ` braft-float-${blockFloat}`
+    result += ` bff-${blockFloat}`
   }
 
   if (customBlockStyleFn) {

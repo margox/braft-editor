@@ -40,9 +40,9 @@ export default (props) => {
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       hoverTitle={props.language.controls.lineHeight}
-      className={'control-item dropdown braft-line-height-dropdown'}
+      className={'control-item dropdown bf-line-height-dropdown'}
     >
-      <ul className='braft-line-heights-wrap'>
+      <ul className='bf-line-heights'>
         {props.lineHeights.map((item, index) => {
           return (
             <li

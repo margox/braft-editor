@@ -67,7 +67,7 @@ export default class DropDown extends React.Component {
     return (
       <div
         id={this.componentId}
-        className={'Braft-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className}
+        className={'bf-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className}
       >
         {htmlCaption ? (
           <button
@@ -87,7 +87,7 @@ export default class DropDown extends React.Component {
             ref={(instance) => this.dropDownHandlerElement = instance}
           >
             <span>{caption}</span>
-            {showDropDownArrow !== false ? <i className='braft-icon-drop-down'></i> : null}
+            {showDropDownArrow !== false ? <i className='bfi-drop-down'></i> : null}
           </button>
         )}
         <div
@@ -114,7 +114,7 @@ export default class DropDown extends React.Component {
   fixDropDownPosition () {
 
     const viewRect = this.props.containerNode.getBoundingClientRect()
-    const editorContentRect = this.props.containerNode.querySelector('.BraftEditor-content').getBoundingClientRect()
+    const editorContentRect = this.props.containerNode.querySelector('.bf-content').getBoundingClientRect()
     const handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
     const contentRect = this.dropDownContentElement.getBoundingClientRect()
 

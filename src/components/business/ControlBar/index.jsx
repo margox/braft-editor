@@ -143,7 +143,7 @@ export default class ControlBar extends React.Component {
     const renderedControls = []
 
     return (
-      <div className='BraftEditor-controlBar'>
+      <div className='bf-controlbar'>
         {
           [
             ...controls,

@@ -6,8 +6,8 @@ export default (props) => {
   const { current, colors } = props
 
   return (
-    <div className='braft-color-list-wrap'>
-      <ul className='braft-color-list'>
+    <div className='bf-colors-wrap'>
+      <ul className='bf-colors'>
         {colors.map((item, index) => {
           let className = item === current ? 'color-item active' : 'color-item'
           return (

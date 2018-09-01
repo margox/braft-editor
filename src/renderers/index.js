@@ -1,4 +1,4 @@
-// import React from 'react'
+import React from 'react'
 import { Map } from 'immutable'
 import { DefaultDraftBlockRenderMap } from 'draft-js'
 import Image from './atomics/Image'

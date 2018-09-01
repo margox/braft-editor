@@ -1,6 +1,6 @@
 @import '~scssinc';
-.braft-media-image-size-editor,
-.braft-media-image-link-editor{
+.bf-image-size-editor,
+.bf-image-link-editor{
   padding-bottom: 1px;
   overflow: hidden;
   border-radius: 2px 2px 0 0;
@@ -48,19 +48,19 @@
     }
   }
 }
-.braft-embed-image-size-editor{
+.bf-image-size-editor{
   input{
     width: 95px;      
   }
 }
-.braft-embed-image-link-editor{
+.bf-image-link-editor{
   input{
     width: 215px;
   }
   .switch-group{
     height: 20px;
     margin: 10px 10px;
-    .switch-button{
+    .bf-switch{
       float: left;
     }
     label{
@@ -73,12 +73,17 @@
   }
 }
 
-.braft-media-image-toolbar{
-  &[data-float="left"] [data-float="left"],
-  &[data-float="right"] [data-float="right"],
-  &[data-align="left"] [data-align="left"],
-  &[data-align="center"] [data-align="center"],
-  &[data-align="right"] [data-align="right"] {
-    color: $COLOR_ACTIVE;
+.bf-image{
+  .bf-media-toolbar{
+    &::before{
+      visibility: hidden;
+    }
+    &[data-float="left"] [data-float="left"],
+    &[data-float="right"] [data-float="right"],
+    &[data-align="left"] [data-align="left"],
+    &[data-align="center"] [data-align="center"],
+    &[data-align="right"] [data-align="right"] {
+      color: $COLOR_ACTIVE;
+    }
   }
 }
