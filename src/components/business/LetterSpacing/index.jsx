@@ -39,7 +39,7 @@ export default (props) => {
     <DropDown
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
-      hoverTitle={props.language.controls.letterSpacing}
+      title={props.language.controls.letterSpacing}
       className={'control-item dropdown bf-letter-spacing-dropdown'}
     >
       <ul className='bf-letter-spacings'>

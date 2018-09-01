@@ -2163,9 +2163,9 @@ function (_React$Component) {
       var _this$props = this.props,
           caption = _this$props.caption,
           htmlCaption = _this$props.htmlCaption,
-          hoverTitle = _this$props.hoverTitle,
+          title = _this$props.title,
           disabled = _this$props.disabled,
-          showDropDownArrow = _this$props.showDropDownArrow,
+          showArrow = _this$props.showArrow,
           arrowActive = _this$props.arrowActive,
           className = _this$props.className,
           children = _this$props.children;
@@ -2176,7 +2176,7 @@ function (_React$Component) {
       }, htmlCaption ? external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
-        title: hoverTitle,
+        title: title,
         "data-braft-component-id": this.componentId,
         dangerouslySetInnerHTML: htmlCaption ? {
           __html: htmlCaption
@@ -2187,12 +2187,12 @@ function (_React$Component) {
       }) : external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
-        title: hoverTitle,
+        title: title,
         "data-braft-component-id": this.componentId,
         ref: function ref(instance) {
           return _this4.dropDownHandlerElement = instance;
         }
-      }, external_react_default.a.createElement("span", null, caption), showDropDownArrow !== false ? external_react_default.a.createElement("i", {
+      }, external_react_default.a.createElement("span", null, caption), showArrow !== false ? external_react_default.a.createElement("i", {
         className: "bfi-drop-down"
       }) : null), external_react_default.a.createElement("div", {
         className: "dropdown-content",
@@ -2406,10 +2406,10 @@ function (_React$Component) {
         className: "control-item-group"
       }, external_react_default.a.createElement(DropDown_DropDown, {
         caption: caption,
-        hoverTitle: this.props.language.controls.link,
+        title: this.props.language.controls.link,
         autoHide: false,
         containerNode: this.props.containerNode,
-        showDropDownArrow: false,
+        showArrow: false,
         disabled: !textSelected,
         ref: function ref(instance) {
           return _this2.dropDownComponent = instance;
@@ -2537,7 +2537,7 @@ var blocks = {
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: caption,
     containerNode: props.containerNode,
-    hoverTitle: props.language.controls.headings,
+    title: props.language.controls.headings,
     arrowActive: currentHeadingIndex === 0,
     className: 'control-item dropdown headings-dropdown'
   }, external_react_default.a.createElement("ul", {
@@ -2687,8 +2687,8 @@ function (_React$Component) {
       }));
       return external_react_default.a.createElement(DropDown_DropDown, {
         caption: caption,
-        hoverTitle: this.props.language.controls.color,
-        showDropDownArrow: false,
+        title: this.props.language.controls.color,
+        showArrow: false,
         containerNode: this.props.containerNode,
         componentId: this.dropDownComponentId,
         ref: function ref(instance) {
@@ -2771,7 +2771,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
-    hoverTitle: props.language.controls.fontSize,
+    title: props.language.controls.fontSize,
     className: 'control-item dropdown bf-font-size-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "bf-font-sizes"
@@ -2826,7 +2826,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
-    hoverTitle: props.language.controls.lineHeight,
+    title: props.language.controls.lineHeight,
     className: 'control-item dropdown bf-line-height-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "bf-line-heights"
@@ -2881,7 +2881,7 @@ var FontFamily_toggleFontFamily = function toggleFontFamily(event, props) {
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
-    hoverTitle: props.language.controls.fontFamily,
+    title: props.language.controls.fontFamily,
     arrowActive: currentIndex === 0,
     className: 'control-item dropdown font-family-dropdown'
   }, external_react_default.a.createElement("ul", {
@@ -3013,9 +3013,9 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
 /* harmony default export */ var EmojiPicker = (function (props) {
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: props.defaultCaption,
-    showDropDownArrow: false,
+    showArrow: false,
     containerNode: props.containerNode,
-    hoverTitle: props.language.controls.emoji,
+    title: props.language.controls.emoji,
     className: 'control-item dropdown bf-emoji-dropdown'
   }, external_react_default.a.createElement("div", {
     className: "bf-emojis-wrap"
@@ -3071,7 +3071,7 @@ var LetterSpacing_toggleLetterSpacing = function toggleLetterSpacing(event, prop
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
-    hoverTitle: props.language.controls.letterSpacing,
+    title: props.language.controls.letterSpacing,
     className: 'control-item dropdown bf-letter-spacing-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "bf-letter-spacings"
@@ -3126,7 +3126,7 @@ var TextIndent_toggleTextIndent = function toggleTextIndent(event, props) {
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
-    hoverTitle: props.language.controls.textIndent,
+    title: props.language.controls.textIndent,
     className: 'control-item dropdown bf-indent-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "bf-text-indents"
@@ -3672,9 +3672,9 @@ function (_React$Component) {
             className: 'control-item extend-control-item dropdown ' + controlItem.className,
             caption: controlItem.text,
             htmlCaption: controlItem.html,
-            showDropDownArrow: controlItem.showDropDownArrow,
+            showArrow: controlItem.showArrow,
             containerNode: controlItem.containerNode,
-            hoverTitle: controlItem.hoverTitle,
+            title: controlItem.title,
             arrowActive: controlItem.arrowActive,
             autoHide: controlItem.autoHide,
             disabled: controlItem.disabled,
@@ -3684,7 +3684,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.hoverTitle,
+            title: controlItem.title,
             className: 'control-item extend-control-item button ' + controlItem.className,
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -3717,7 +3717,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.hoverTitle,
+            title: controlItem.title,
             className: 'control-item button ' + controlItem.className,
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -4245,7 +4245,9 @@ external_draft_js_["EditorState"].createFrom = function (content, options) {
 // 支持param.success时设置媒体文件的更多属性（尺寸等）
 // 2.1.0版本开发计划
 // [ ]美化UI，包括图标和界面风格
+// [ ]优化控件title提示
 // 2.2.0版本开发计划
+// [ ]允许自定义快捷键
 // [ ]优化图片param.success，支持传入link等
 // [ ]简化上传配置流程
 // [ ]支持draftjs插件机制

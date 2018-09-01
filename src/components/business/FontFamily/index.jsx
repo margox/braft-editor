@@ -39,7 +39,7 @@ export default (props) => {
     <DropDown
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
-      hoverTitle={props.language.controls.fontFamily}
+      title={props.language.controls.fontFamily}
       arrowActive={currentIndex === 0}
       className={'control-item dropdown font-family-dropdown'}
     >

@@ -26,9 +26,9 @@ export default (props) => {
   return (
     <DropDown
       caption={props.defaultCaption}
-      showDropDownArrow={false}
+      showArrow={false}
       containerNode={props.containerNode}
-      hoverTitle={props.language.controls.emoji}
+      title={props.language.controls.emoji}
       className={'control-item dropdown bf-emoji-dropdown'}
     >
       <div className='bf-emojis-wrap'>

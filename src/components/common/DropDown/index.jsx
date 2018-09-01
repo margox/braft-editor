@@ -60,7 +60,7 @@ export default class DropDown extends React.Component {
   render () {
 
     let { active, offset, maxHeight } = this.state
-    let { caption, htmlCaption, hoverTitle, disabled, showDropDownArrow, arrowActive, className, children } = this.props
+    let { caption, htmlCaption, title, disabled, showArrow, arrowActive, className, children } = this.props
 
     disabled && (active = false)
 
@@ -73,7 +73,7 @@ export default class DropDown extends React.Component {
           <button
             type='button'
             className='dropdown-handler'
-            title={hoverTitle}
+            title={title}
             data-braft-component-id={this.componentId}
             dangerouslySetInnerHTML={htmlCaption ? {__html: htmlCaption} : null}
             ref={(instance) => this.dropDownHandlerElement = instance}
@@ -82,12 +82,12 @@ export default class DropDown extends React.Component {
           <button
             type='button'
             className='dropdown-handler'
-            title={hoverTitle}
+            title={title}
             data-braft-component-id={this.componentId}
             ref={(instance) => this.dropDownHandlerElement = instance}
           >
             <span>{caption}</span>
-            {showDropDownArrow !== false ? <i className='bfi-drop-down'></i> : null}
+            {showArrow !== false ? <i className='bfi-drop-down'></i> : null}
           </button>
         )}
         <div

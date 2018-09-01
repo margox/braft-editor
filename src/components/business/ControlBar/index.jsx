@@ -260,9 +260,9 @@ export default class ControlBar extends React.Component {
                   className={'control-item extend-control-item dropdown ' + controlItem.className}
                   caption={controlItem.text}
                   htmlCaption={controlItem.html}
-                  showDropDownArrow={controlItem.showDropDownArrow}
+                  showArrow={controlItem.showArrow}
                   containerNode={controlItem.containerNode}
-                  hoverTitle={controlItem.hoverTitle}
+                  title={controlItem.title}
                   arrowActive={controlItem.arrowActive}
                   autoHide={controlItem.autoHide}
                   disabled={controlItem.disabled}
@@ -276,7 +276,7 @@ export default class ControlBar extends React.Component {
                 <button
                   type='button'
                   key={index}
-                  title={controlItem.hoverTitle}
+                  title={controlItem.title}
                   className={'control-item extend-control-item button ' + controlItem.className}
                   dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
                   onClick={(event) => {
@@ -307,7 +307,7 @@ export default class ControlBar extends React.Component {
                 <button
                   type='button'
                   key={index}
-                  title={controlItem.hoverTitle}
+                  title={controlItem.title}
                   className={'control-item button ' + controlItem.className}
                   dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
                   onClick={(event) => controlItem.onClick && controlItem.onClick(event)}

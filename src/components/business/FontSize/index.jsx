@@ -39,7 +39,7 @@ export default (props) => {
     <DropDown
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
-      hoverTitle={props.language.controls.fontSize}
+      title={props.language.controls.fontSize}
       className={'control-item dropdown bf-font-size-dropdown'}
     >
       <ul className='bf-font-sizes'>

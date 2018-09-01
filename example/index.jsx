@@ -15,6 +15,11 @@ class Demo extends React.Component {
 
   }
 
+  componentDidMount () {
+    console.log(BraftEditor.defaultProps)
+
+  }
+
   handleChange = (editorState) => {
     this.setState({ editorState })
   }
@@ -78,11 +83,20 @@ class Demo extends React.Component {
 
   render() {
 
+    const controls = BraftEditor.defaultProps.controls.map(item => {
+      return item === 'bold' ? {
+        key: 'bold', // 使用key来指定控件类型
+        title: '加粗选中文字哦', // 自定义控件title
+        text: '点我加粗', // 使用自定义文案来代替默认图标(B)，此处也可传入jsx
+      } : item
+    })
+
     return (
       <div>
         <div className="demo" id="demo">
           <BraftEditor
             hooks={this.hooks}
+            controls={controls}
             media={{
               // uploadFn: this.uploadFn
             }}

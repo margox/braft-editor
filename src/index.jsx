@@ -50,8 +50,10 @@ export { EditorState, editorDecorators }
 
 // 2.1.0版本开发计划
 // [ ]美化UI，包括图标和界面风格
+// [ ]优化控件title提示
 
 // 2.2.0版本开发计划
+// [ ]允许自定义快捷键
 // [ ]优化图片param.success，支持传入link等
 // [ ]简化上传配置流程
 // [ ]支持draftjs插件机制

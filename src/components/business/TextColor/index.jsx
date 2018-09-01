@@ -42,8 +42,8 @@ export default class TextColor extends React.Component {
     return (
       <DropDown
         caption={caption}
-        hoverTitle={this.props.language.controls.color}
-        showDropDownArrow={false}
+        title={this.props.language.controls.color}
+        showArrow={false}
         containerNode={this.props.containerNode}
         componentId={this.dropDownComponentId}
         ref={(instance) => this.dropDownComponent = instance}

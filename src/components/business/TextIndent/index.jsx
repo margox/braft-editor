@@ -39,7 +39,7 @@ export default (props) => {
     <DropDown
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
-      hoverTitle={props.language.controls.textIndent}
+      title={props.language.controls.textIndent}
       className={'control-item dropdown bf-indent-dropdown'}
     >
       <ul className='bf-text-indents'>

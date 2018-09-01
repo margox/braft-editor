@@ -13,7 +13,7 @@ export default (props) => {
     <DropDown
       caption={caption}
       containerNode={props.containerNode}
-      hoverTitle={props.language.controls.headings}
+      title={props.language.controls.headings}
       arrowActive={currentHeadingIndex === 0}
       className={'control-item dropdown headings-dropdown'}
     >

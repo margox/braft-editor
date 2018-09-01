@@ -39,7 +39,7 @@ export default (props) => {
     <DropDown
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
-      hoverTitle={props.language.controls.lineHeight}
+      title={props.language.controls.lineHeight}
       className={'control-item dropdown bf-line-height-dropdown'}
     >
       <ul className='bf-line-heights'>
