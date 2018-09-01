@@ -24,7 +24,7 @@ class Demo extends React.Component {
     const xhr = new XMLHttpRequest
     const fd = new FormData()
 
-    const successFn = (response) => {
+    const successFn = () => {
       param.success({
         url: JSON.parse(xhr.responseText)[0].url,
         meta: {
@@ -39,7 +39,7 @@ class Demo extends React.Component {
       param.progress(event.loaded / event.total * 100)
     }
 
-    const errorFn = (response) => {
+    const errorFn = () => {
       param.error({
         msg: "unable to upload."
       })

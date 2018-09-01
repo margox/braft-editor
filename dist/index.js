@@ -719,7 +719,7 @@ var external_draft_js_ = __webpack_require__(9);
 // CONCATENATED MODULE: ./configs/props.js
 /* harmony default export */ var configs_props = ({
   language: 'zh',
-  controls: ['undo', 'redo', 'separator', 'font-size', 'font-family', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'link', 'split', 'hr', 'separator', 'media', 'separator', 'clear'],
+  controls: ['undo', 'redo', 'separator', 'font-size', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'link', 'split', 'hr', 'separator', 'media', 'separator', 'clear'],
   excludeControls: [],
   extendControls: [],
   extendAtomics: [],
