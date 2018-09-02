@@ -54,9 +54,7 @@ export default {
   textBackgroundColor: true,
   letterSpacings: [0, 1, 2, 3, 4, 5, 6],
   textIndents: [0, 14, 21, 28],
-  lineHeights: [
-    '1', '1.2', '1.5', '1.75', '2', '2.5', '3', '4'
-  ],
+  lineHeights: [1, 1.2, 1.5, 1.75, 2, 2.5, 3, 4],
   fontSizes: [
     12, 14, 16, 18, 20, 24,
     28, 30, 32, 36, 40, 48,
