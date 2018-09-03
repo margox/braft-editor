@@ -73,7 +73,7 @@ export default class DropDown extends React.Component {
           <button
             type='button'
             className='dropdown-handler'
-            title={title}
+            data-title={title}
             data-braft-component-id={this.componentId}
             dangerouslySetInnerHTML={htmlCaption ? {__html: htmlCaption} : null}
             ref={(instance) => this.dropDownHandlerElement = instance}
@@ -82,7 +82,7 @@ export default class DropDown extends React.Component {
           <button
             type='button'
             className='dropdown-handler'
-            title={title}
+            data-title={title}
             data-braft-component-id={this.componentId}
             ref={(instance) => this.dropDownHandlerElement = instance}
           >

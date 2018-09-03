@@ -44,7 +44,7 @@ export default class TextAlign extends React.Component {
               <button
                 type='button'
                 key={index}
-                title={textAlignmentTitles[index]}
+                data-title={textAlignmentTitles[index]}
                 data-alignment={item}
                 className={'control-item button ' + (item === this.state.currentAlignment ? 'active' : null)}
                 onClick={this.setAlignment}
