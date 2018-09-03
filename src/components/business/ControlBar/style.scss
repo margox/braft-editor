@@ -19,6 +19,47 @@
     }
   }
 
+  [data-title] {
+    position: relative;
+    &::before,
+    &::after{
+      pointer-events: none;
+      opacity: 0;
+      transform: translateX(-50%) translateY(-5px);
+      transition: opacity .3s, transform .3s;
+    }
+    &::before{
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-top: 2px;
+      border: 5px solid transparent;
+      border-bottom-color: $COLOR_DARK;
+      content: '';
+    }
+    &::after{
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      margin-top: 12px;
+      padding: 5px;
+      background-color: $COLOR_DARK;
+      border-radius: 2px;
+      color: #fff;
+      font-size: 12px;
+      line-height: 16px;
+      white-space: nowrap;
+      content: attr(data-title);
+    }
+    &:hover{
+      &::before,
+      &::after{
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+  }
+
   input {
     outline: none;
   }
