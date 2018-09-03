@@ -1,3 +1,4 @@
+import './style.scss'
 import React from 'react'
 import Switch from 'components/common/Switch'
 import DropDown from 'components/common/DropDown'
@@ -70,7 +71,7 @@ export default class LinkEditor extends React.Component {
         </DropDown>
         <button
           type='button'
-          title={this.props.language.controls.unlink}
+          data-title={this.props.language.controls.unlink}
           className='control-item button'
           onClick={this.handleUnlink}
           disabled={!textSelected || !href}
