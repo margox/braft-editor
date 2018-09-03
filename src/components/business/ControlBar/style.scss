@@ -21,6 +21,7 @@
 
   [data-title] {
     position: relative;
+    z-index: 2;
     &::before,
     &::after{
       pointer-events: none;
@@ -32,7 +33,7 @@
       position: absolute;
       top: 100%;
       left: 50%;
-      margin-top: 2px;
+      margin-top: 3px;
       border: 5px solid transparent;
       border-bottom-color: $COLOR_DARK;
       content: '';
@@ -45,6 +46,7 @@
       padding: 5px;
       background-color: $COLOR_DARK;
       border-radius: 2px;
+      box-shadow: 0 5px 15px rgba(#000, .2);
       color: #fff;
       font-size: 12px;
       line-height: 16px;
