@@ -15,7 +15,7 @@ EditorState.prototype.toRAW = function (noStringify) {
 // 为EditorState对象增加新的静态方法，用于从raw或者html内容创建ediorState
 EditorState.createFrom = (content, options) => {
 
-  if (typeof content === 'object' && content.blocks && content.entityMap) {
+  if (typeof content === 'object' && content && content.blocks && content.entityMap) {
     return convertRawToEditorState(content, editorDecorators)
   } else if (typeof content === 'string') {
     try {

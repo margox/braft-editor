@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor from '../src'
+import BraftEditor, { EditorState } from '../src'
+import { ContentUtils } from 'braft-utils'
 // import '../dist/index.css'
 
 class Demo extends React.Component {
@@ -9,19 +10,20 @@ class Demo extends React.Component {
 
     super(props)
     this.state = {
-      editorState: null
+      editorState: EditorState.createFrom('')
     }
     this.editorInstance = null
 
   }
 
-  componentDidMount () {
-    console.log(BraftEditor.defaultProps)
-
-  }
-
   handleChange = (editorState) => {
     this.setState({ editorState })
+  }
+
+  insertText = (text) => {
+    this.setState({
+        editorState: ContentUtils.insertText(this.state.editorState, text)
+    })
   }
 
   uploadFn = (param) => {
@@ -91,12 +93,24 @@ class Demo extends React.Component {
       } : item
     })
 
+    const extendControls = [
+      {
+        key: 'insert-123',
+        type: 'button',
+        text: 'Insert 123',
+        onClick: () => {
+          this.insertText('123')
+        }
+      }
+    ]
+
     return (
       <div>
         <div className="demo" id="demo">
           <BraftEditor
             hooks={this.hooks}
             controls={controls}
+            extendControls={extendControls}
             media={{
               // uploadFn: this.uploadFn
             }}
