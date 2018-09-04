@@ -34,7 +34,7 @@ import React from 'react'
 // 引入编辑器以及EditorState子模块
 import BraftEditor, { EditorState } from 'braft-editor'
 // 引入编辑器样式
-import 'braft-editor/dist/braft.css'
+import 'braft-editor/dist/index.css'
 
 export default class EditorDemo extends React.Component {
 
