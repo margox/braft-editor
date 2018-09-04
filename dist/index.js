@@ -7,54 +7,10 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("braft-convert"), require("react-dom"), require("immutable"), require("braft-finder")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["braft-convert"], root["react-dom"], root["immutable"], root["braft-finder"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__26__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__) {
 return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	function webpackJsonpCallback(data) {
-/******/ 		var chunkIds = data[0];
-/******/ 		var moreModules = data[1];
-/******/
-/******/
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [];
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
-/******/
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/
-/******/ 	};
-/******/
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 	// Promise = chunk loading, 0 = chunk loaded
-/******/ 	var installedChunks = {
-/******/ 		0: 0
-/******/ 	};
-/******/
-/******/
-/******/
-/******/ 	// script path function
-/******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + ".index.js"
-/******/ 	}
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -133,19 +89,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-/******/
-/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
-/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
-/******/ 	jsonpArray.push = webpackJsonpCallback;
-/******/ 	jsonpArray = jsonpArray.slice();
-/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
-/******/ 	var parentJsonpFunction = oldJsonpFunction;
-/******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -199,7 +145,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(22);
+var setPrototypeOf = __webpack_require__(23);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -344,11 +290,11 @@ module.exports = _extends;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(25);
+var arrayWithoutHoles = __webpack_require__(26);
 
-var iterableToArray = __webpack_require__(24);
+var iterableToArray = __webpack_require__(25);
 
-var nonIterableSpread = __webpack_require__(23);
+var nonIterableSpread = __webpack_require__(24);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
@@ -394,11 +340,11 @@ module.exports = _typeof;
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(21);
+var arrayWithHoles = __webpack_require__(22);
 
-var iterableToArrayLimit = __webpack_require__(20);
+var iterableToArrayLimit = __webpack_require__(21);
 
-var nonIterableRest = __webpack_require__(19);
+var nonIterableRest = __webpack_require__(20);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
@@ -414,6 +360,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
 
 /***/ }),
 /* 18 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
+
+/***/ }),
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -693,6 +645,10 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
   'zh': zh,
   'zh-hant': zh_hant
 });
+// EXTERNAL MODULE: external "braft-finder"
+var external_braft_finder_ = __webpack_require__(18);
+var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_braft_finder_);
+
 // EXTERNAL MODULE: external "braft-utils"
 var external_braft_utils_ = __webpack_require__(3);
 
@@ -1327,14 +1283,14 @@ function (_React$Component) {
               return _this2.executeCommand(imageControlItems[item].command);
             }
           }, imageControlItems[item].text);
-        } else if (item && item.onClick && item.text) {
+        } else if (item && item.onClick && (item.render || item.text)) {
           return external_react_default.a.createElement("a", {
             key: index,
             href: "javascript:void(0);",
             onClick: function onClick() {
               return _this2.executeCommand(item.onClick);
             }
-          }, item.text);
+          }, item.render ? item.render(mediaData) : item.text);
         } else {
           return null;
         }
@@ -3773,6 +3729,7 @@ function (_React$Component) {
 
 
 
+
 var buildHooks = function buildHooks(hooks) {
   return function (hookName) {
     var defaultReturns = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -4010,8 +3967,6 @@ function (_React$Component) {
   createClass_default()(BraftEditor, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      var _this2 = this;
-
       var _this$props = this.props,
           controls = _this$props.controls,
           extendControls = _this$props.extendControls;
@@ -4019,17 +3974,12 @@ function (_React$Component) {
       if (toConsumableArray_default()(controls).concat(toConsumableArray_default()(extendControls)).find(function (item) {
         return item === 'media' || item.key === 'media';
       })) {
-        Promise.resolve(/* require.ensure */).then((function () {
-          var BraftFinder = __webpack_require__(26).default;
-
-          _this2.braftFinder = new BraftFinder({
-            language: _this2.props.language,
-            uploader: _this2.props.media.uploadFn,
-            validator: _this2.props.media.validateFn
-          });
-
-          _this2.forceUpdate();
-        }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+        this.braftFinder = new external_braft_finder_default.a({
+          language: this.props.language,
+          uploader: this.props.media.uploadFn,
+          validator: this.props.media.validateFn
+        });
+        this.forceUpdate();
       }
     }
   }, {
@@ -4059,7 +4009,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var _this$props2 = this.props,
           controls = _this$props2.controls,
@@ -4109,7 +4059,7 @@ function (_React$Component) {
         editorState: this.state.editorState,
         braftFinder: this.braftFinder,
         ref: function ref(instance) {
-          return _this3.controlBarInstance = instance;
+          return _this2.controlBarInstance = instance;
         },
         containerNode: this.state.containerNode,
         className: controlBarClassName,
@@ -4149,7 +4099,7 @@ function (_React$Component) {
 
       var draftProps = objectSpread_default()({
         ref: function ref(instance) {
-          _this3.draftInstance = instance;
+          _this2.draftInstance = instance;
         },
         editorState: this.state.editorState,
         handleKeyCommand: this.handleKeyCommand,
@@ -4267,7 +4217,7 @@ external_draft_js_["EditorState"].createFrom = function (content, options) {
 // [ ]初级表格功能
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -4277,7 +4227,7 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
@@ -4309,7 +4259,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -4319,7 +4269,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -4334,7 +4284,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
@@ -4344,7 +4294,7 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -4354,7 +4304,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 function _arrayWithoutHoles(arr) {
@@ -4368,12 +4318,6 @@ function _arrayWithoutHoles(arr) {
 }
 
 module.exports = _arrayWithoutHoles;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__26__;
 
 /***/ }),
 /* 27 */

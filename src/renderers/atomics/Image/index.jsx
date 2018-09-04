@@ -51,10 +51,10 @@ export default class Image extends React.Component {
             {imageControlItems[item].text}
           </a>
         )
-      } else if (item && item.onClick && item.text) {
+      } else if (item && item.onClick && (item.render || item.text)) {
         return (
           <a key={index} href='javascript:void(0);' onClick={() => this.executeCommand(item.onClick)}>
-            {item.text}
+            {item.render ? item.render(mediaData) : item.text}
           </a>
         )
       } else {

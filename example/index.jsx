@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor from '../src'
-// import '../dist/index.css'
+import BraftEditor from '../dist'
+import '../dist/index.css'
 
 class Demo extends React.Component {
 

@@ -1161,7 +1161,7 @@ braces@^2.3.0, braces@^2.3.1:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
-braft-convert@^2.0.1:
+braft-convert@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/braft-convert/-/braft-convert-2.0.2.tgz#de0f78a7868c6d740047a9168faf288bb7a09753"
   dependencies:

@@ -2,6 +2,7 @@ import 'draft-js/dist/Draft.css'
 import 'assets/scss/_base.scss'
 import React from 'react'
 import languages from 'languages'
+import BraftFinder from 'braft-finder'
 import { ColorUtils, ContentUtils } from 'braft-utils'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
@@ -49,15 +50,12 @@ export default class BraftEditor extends React.Component {
     const { controls, extendControls } = this.props
 
     if ([...controls, ...extendControls].find(item => item === 'media' || item.key === 'media')) {
-      require.ensure(['braft-finder'], () => {
-        const BraftFinder = require('braft-finder').default
-        this.braftFinder = new BraftFinder({
-          language: this.props.language,
-          uploader: this.props.media.uploadFn,
-          validator: this.props.media.validateFn
-        })
-        this.forceUpdate()
-      }, 'braft-finder')
+      this.braftFinder = new BraftFinder({
+        language: this.props.language,
+        uploader: this.props.media.uploadFn,
+        validator: this.props.media.validateFn
+      })
+      this.forceUpdate()
     }
 
   }
