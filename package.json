@@ -59,7 +59,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "braft-convert": "^2.0.1",
+    "braft-convert": "^2.0.2",
     "braft-finder": "^0.0.9",
     "braft-utils": "^0.0.16",
     "draft-convert": "^2.0.0",

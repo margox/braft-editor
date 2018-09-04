@@ -460,10 +460,10 @@ var defineProperty = __webpack_require__(2);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
-var Draft = __webpack_require__(50);
+var Draft = __webpack_require__(51);
 
 // EXTERNAL MODULE: ./assets/scss/_base.scss
-var _base = __webpack_require__(48);
+var _base = __webpack_require__(49);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(0);
@@ -799,10 +799,10 @@ var slicedToArray = __webpack_require__(16);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
 // EXTERNAL MODULE: ./renderers/atomics/Image/style.scss
-var Image_style = __webpack_require__(44);
+var Image_style = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./components/common/Switch/style.scss
-var Switch_style = __webpack_require__(43);
+var Switch_style = __webpack_require__(44);
 
 // CONCATENATED MODULE: ./components/common/Switch/index.jsx
 
@@ -1461,7 +1461,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
-var Video_style = __webpack_require__(42);
+var Video_style = __webpack_require__(43);
 
 // CONCATENATED MODULE: ./components/common/StaticContainer/index.jsx
 
@@ -1581,7 +1581,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(41);
+var Audio_style = __webpack_require__(42);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -1664,7 +1664,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(40);
+var Embed_style = __webpack_require__(41);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -1749,7 +1749,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(39);
+var HorizontalLine_style = __webpack_require__(40);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -2025,7 +2025,10 @@ var helpers_extends = __webpack_require__(11);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(38);
+var ControlBar_style = __webpack_require__(39);
+
+// EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
+var LinkEditor_style = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
 var DropDown_style = __webpack_require__(37);
@@ -2176,7 +2179,7 @@ function (_React$Component) {
       }, htmlCaption ? external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
-        title: title,
+        "data-title": title,
         "data-braft-component-id": this.componentId,
         dangerouslySetInnerHTML: htmlCaption ? {
           __html: htmlCaption
@@ -2187,7 +2190,7 @@ function (_React$Component) {
       }) : external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
-        title: title,
+        "data-title": title,
         "data-braft-component-id": this.componentId,
         ref: function ref(instance) {
           return _this4.dropDownHandlerElement = instance;
@@ -2278,6 +2281,7 @@ function (_React$Component) {
 
 
 // CONCATENATED MODULE: ./components/business/LinkEditor/index.jsx
+
 
 
 
@@ -2449,7 +2453,7 @@ function (_React$Component) {
         className: "default pull-right"
       }, this.props.language.base.cancel)))), external_react_default.a.createElement("button", {
         type: "button",
-        title: this.props.language.controls.unlink,
+        "data-title": this.props.language.controls.unlink,
         className: "control-item button",
         onClick: this.handleUnlink,
         disabled: !textSelected || !href
@@ -2970,7 +2974,7 @@ function (_React$Component) {
         return external_react_default.a.createElement("button", {
           type: "button",
           key: index,
-          title: textAlignmentTitles[index],
+          "data-title": textAlignmentTitles[index],
           "data-alignment": item,
           className: 'control-item button ' + (item === _this2.state.currentAlignment ? 'active' : null),
           onClick: _this2.setAlignment
@@ -3662,7 +3666,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: "control-item media button",
             onClick: _this3.openBraftFinder
           }, controlItem.text);
@@ -3684,7 +3688,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: 'control-item extend-control-item button ' + controlItem.className,
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -3717,7 +3721,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: 'control-item button ' + controlItem.className,
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -3730,7 +3734,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: _this3.getControlItemClassName({
               type: controlItem.type,
               command: controlItem.command
@@ -4480,17 +4484,23 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__26__;
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */
+/* 45 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 49 */,
-/* 50 */
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
