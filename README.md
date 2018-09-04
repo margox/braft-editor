@@ -45,7 +45,7 @@ export default class EditorDemo extends React.Component {
     const htmlContent = await fetchEditorContent()
     // 使用EditorState.createFrom将html字符串转换为编辑器需要的editorState数据
     this.setState({
-      editorState: EditorState.createFrom(htmlContent)。
+      editorState: EditorState.createFrom(htmlContent)
     })
   }
 
