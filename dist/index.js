@@ -3783,7 +3783,7 @@ function (_React$Component) {
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onTab", function (event) {
       if (external_braft_utils_["ContentUtils"].getSelectionBlockType(_this.state.editorState) === 'code-block') {
-        _this.insertText(' '.repeat(_this.props.tabIndents), false);
+        _this.setValue(external_braft_utils_["ContentUtils"].insertText(_this.state.editorState, ' '.repeat(_this.props.tabIndents)));
 
         event.preventDefault();
         return false;

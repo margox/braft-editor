@@ -113,7 +113,7 @@ export default class BraftEditor extends React.Component {
   onTab = (event) => {
 
     if (ContentUtils.getSelectionBlockType(this.state.editorState) === 'code-block') {
-      this.insertText(' '.repeat(this.props.tabIndents), false)
+      this.setValue(ContentUtils.insertText(this.state.editorState, ' '.repeat(this.props.tabIndents)))
       event.preventDefault()
       return false
     }
