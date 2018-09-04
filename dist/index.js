@@ -7,54 +7,10 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("braft-convert"), require("react-dom"), require("immutable"), require("braft-finder")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["braft-convert"], root["react-dom"], root["immutable"], root["braft-finder"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__26__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__) {
 return /******/ (function(modules) { // webpackBootstrap
-/******/ 	// install a JSONP callback for chunk loading
-/******/ 	function webpackJsonpCallback(data) {
-/******/ 		var chunkIds = data[0];
-/******/ 		var moreModules = data[1];
-/******/
-/******/
-/******/ 		// add "moreModules" to the modules object,
-/******/ 		// then flag all "chunkIds" as loaded and fire callback
-/******/ 		var moduleId, chunkId, i = 0, resolves = [];
-/******/ 		for(;i < chunkIds.length; i++) {
-/******/ 			chunkId = chunkIds[i];
-/******/ 			if(installedChunks[chunkId]) {
-/******/ 				resolves.push(installedChunks[chunkId][0]);
-/******/ 			}
-/******/ 			installedChunks[chunkId] = 0;
-/******/ 		}
-/******/ 		for(moduleId in moreModules) {
-/******/ 			if(Object.prototype.hasOwnProperty.call(moreModules, moduleId)) {
-/******/ 				modules[moduleId] = moreModules[moduleId];
-/******/ 			}
-/******/ 		}
-/******/ 		if(parentJsonpFunction) parentJsonpFunction(data);
-/******/
-/******/ 		while(resolves.length) {
-/******/ 			resolves.shift()();
-/******/ 		}
-/******/
-/******/ 	};
-/******/
-/******/
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
-/******/
-/******/ 	// object to store loaded and loading chunks
-/******/ 	// undefined = chunk not loaded, null = chunk preloaded/prefetched
-/******/ 	// Promise = chunk loading, 0 = chunk loaded
-/******/ 	var installedChunks = {
-/******/ 		0: 0
-/******/ 	};
-/******/
-/******/
-/******/
-/******/ 	// script path function
-/******/ 	function jsonpScriptSrc(chunkId) {
-/******/ 		return __webpack_require__.p + "" + chunkId + ".index.js"
-/******/ 	}
 /******/
 /******/ 	// The require function
 /******/ 	function __webpack_require__(moduleId) {
@@ -133,19 +89,9 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "/";
 /******/
-/******/ 	// on error function for async loading
-/******/ 	__webpack_require__.oe = function(err) { console.error(err); throw err; };
-/******/
-/******/ 	var jsonpArray = window["webpackJsonp"] = window["webpackJsonp"] || [];
-/******/ 	var oldJsonpFunction = jsonpArray.push.bind(jsonpArray);
-/******/ 	jsonpArray.push = webpackJsonpCallback;
-/******/ 	jsonpArray = jsonpArray.slice();
-/******/ 	for(var i = 0; i < jsonpArray.length; i++) webpackJsonpCallback(jsonpArray[i]);
-/******/ 	var parentJsonpFunction = oldJsonpFunction;
-/******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -199,7 +145,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(22);
+var setPrototypeOf = __webpack_require__(23);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -344,11 +290,11 @@ module.exports = _extends;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(25);
+var arrayWithoutHoles = __webpack_require__(26);
 
-var iterableToArray = __webpack_require__(24);
+var iterableToArray = __webpack_require__(25);
 
-var nonIterableSpread = __webpack_require__(23);
+var nonIterableSpread = __webpack_require__(24);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
@@ -394,11 +340,11 @@ module.exports = _typeof;
 /* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(21);
+var arrayWithHoles = __webpack_require__(22);
 
-var iterableToArrayLimit = __webpack_require__(20);
+var iterableToArrayLimit = __webpack_require__(21);
 
-var nonIterableRest = __webpack_require__(19);
+var nonIterableRest = __webpack_require__(20);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
@@ -414,6 +360,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
 
 /***/ }),
 /* 18 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
+
+/***/ }),
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -460,10 +412,10 @@ var defineProperty = __webpack_require__(2);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
-var Draft = __webpack_require__(50);
+var Draft = __webpack_require__(51);
 
 // EXTERNAL MODULE: ./assets/scss/_base.scss
-var _base = __webpack_require__(48);
+var _base = __webpack_require__(49);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(0);
@@ -693,6 +645,10 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
   'zh': zh,
   'zh-hant': zh_hant
 });
+// EXTERNAL MODULE: external "braft-finder"
+var external_braft_finder_ = __webpack_require__(18);
+var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_braft_finder_);
+
 // EXTERNAL MODULE: external "braft-utils"
 var external_braft_utils_ = __webpack_require__(3);
 
@@ -799,10 +755,10 @@ var slicedToArray = __webpack_require__(16);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
 // EXTERNAL MODULE: ./renderers/atomics/Image/style.scss
-var Image_style = __webpack_require__(44);
+var Image_style = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./components/common/Switch/style.scss
-var Switch_style = __webpack_require__(43);
+var Switch_style = __webpack_require__(44);
 
 // CONCATENATED MODULE: ./components/common/Switch/index.jsx
 
@@ -1461,7 +1417,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
-var Video_style = __webpack_require__(42);
+var Video_style = __webpack_require__(43);
 
 // CONCATENATED MODULE: ./components/common/StaticContainer/index.jsx
 
@@ -1581,7 +1537,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(41);
+var Audio_style = __webpack_require__(42);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -1664,7 +1620,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(40);
+var Embed_style = __webpack_require__(41);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -1749,7 +1705,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(39);
+var HorizontalLine_style = __webpack_require__(40);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -2025,7 +1981,10 @@ var helpers_extends = __webpack_require__(11);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(38);
+var ControlBar_style = __webpack_require__(39);
+
+// EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
+var LinkEditor_style = __webpack_require__(38);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
 var DropDown_style = __webpack_require__(37);
@@ -2176,7 +2135,7 @@ function (_React$Component) {
       }, htmlCaption ? external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
-        title: title,
+        "data-title": title,
         "data-braft-component-id": this.componentId,
         dangerouslySetInnerHTML: htmlCaption ? {
           __html: htmlCaption
@@ -2187,7 +2146,7 @@ function (_React$Component) {
       }) : external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
-        title: title,
+        "data-title": title,
         "data-braft-component-id": this.componentId,
         ref: function ref(instance) {
           return _this4.dropDownHandlerElement = instance;
@@ -2278,6 +2237,7 @@ function (_React$Component) {
 
 
 // CONCATENATED MODULE: ./components/business/LinkEditor/index.jsx
+
 
 
 
@@ -2449,7 +2409,7 @@ function (_React$Component) {
         className: "default pull-right"
       }, this.props.language.base.cancel)))), external_react_default.a.createElement("button", {
         type: "button",
-        title: this.props.language.controls.unlink,
+        "data-title": this.props.language.controls.unlink,
         className: "control-item button",
         onClick: this.handleUnlink,
         disabled: !textSelected || !href
@@ -2970,7 +2930,7 @@ function (_React$Component) {
         return external_react_default.a.createElement("button", {
           type: "button",
           key: index,
-          title: textAlignmentTitles[index],
+          "data-title": textAlignmentTitles[index],
           "data-alignment": item,
           className: 'control-item button ' + (item === _this2.state.currentAlignment ? 'active' : null),
           onClick: _this2.setAlignment
@@ -3662,7 +3622,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: "control-item media button",
             onClick: _this3.openBraftFinder
           }, controlItem.text);
@@ -3684,7 +3644,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: 'control-item extend-control-item button ' + controlItem.className,
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -3717,7 +3677,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: 'control-item button ' + controlItem.className,
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -3730,7 +3690,7 @@ function (_React$Component) {
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
-            title: controlItem.title,
+            "data-title": controlItem.title,
             className: _this3.getControlItemClassName({
               type: controlItem.type,
               command: controlItem.command
@@ -3749,6 +3709,7 @@ function (_React$Component) {
 
 
 // CONCATENATED MODULE: ./editor/index.jsx
+
 
 
 
@@ -4006,8 +3967,6 @@ function (_React$Component) {
   createClass_default()(BraftEditor, [{
     key: "componentWillMount",
     value: function componentWillMount() {
-      var _this2 = this;
-
       var _this$props = this.props,
           controls = _this$props.controls,
           extendControls = _this$props.extendControls;
@@ -4015,17 +3974,12 @@ function (_React$Component) {
       if (toConsumableArray_default()(controls).concat(toConsumableArray_default()(extendControls)).find(function (item) {
         return item === 'media' || item.key === 'media';
       })) {
-        Promise.resolve(/* require.ensure */).then((function () {
-          var BraftFinder = __webpack_require__(26).default;
-
-          _this2.braftFinder = new BraftFinder({
-            language: _this2.props.language,
-            uploader: _this2.props.media.uploadFn,
-            validator: _this2.props.media.validateFn
-          });
-
-          _this2.forceUpdate();
-        }).bind(null, __webpack_require__)).catch(__webpack_require__.oe);
+        this.braftFinder = new external_braft_finder_default.a({
+          language: this.props.language,
+          uploader: this.props.media.uploadFn,
+          validator: this.props.media.validateFn
+        });
+        this.forceUpdate();
       }
     }
   }, {
@@ -4055,7 +4009,7 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this2 = this;
 
       var _this$props2 = this.props,
           controls = _this$props2.controls,
@@ -4105,7 +4059,7 @@ function (_React$Component) {
         editorState: this.state.editorState,
         braftFinder: this.braftFinder,
         ref: function ref(instance) {
-          return _this3.controlBarInstance = instance;
+          return _this2.controlBarInstance = instance;
         },
         containerNode: this.state.containerNode,
         className: controlBarClassName,
@@ -4145,7 +4099,7 @@ function (_React$Component) {
 
       var draftProps = objectSpread_default()({
         ref: function ref(instance) {
-          _this3.draftInstance = instance;
+          _this2.draftInstance = instance;
         },
         editorState: this.state.editorState,
         handleKeyCommand: this.handleKeyCommand,
@@ -4263,7 +4217,7 @@ external_draft_js_["EditorState"].createFrom = function (content, options) {
 // [ ]初级表格功能
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -4273,7 +4227,7 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
@@ -4305,7 +4259,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -4315,7 +4269,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -4330,7 +4284,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
@@ -4340,7 +4294,7 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -4350,7 +4304,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 function _arrayWithoutHoles(arr) {
@@ -4364,12 +4318,6 @@ function _arrayWithoutHoles(arr) {
 }
 
 module.exports = _arrayWithoutHoles;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__26__;
 
 /***/ }),
 /* 27 */
@@ -4480,17 +4428,23 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__26__;
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 45 */,
-/* 46 */,
-/* 47 */,
-/* 48 */
+/* 45 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 49 */,
-/* 50 */
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 50 */,
+/* 51 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
