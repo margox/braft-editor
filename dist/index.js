@@ -1283,14 +1283,14 @@ function (_React$Component) {
               return _this2.executeCommand(imageControlItems[item].command);
             }
           }, imageControlItems[item].text);
-        } else if (item && item.onClick && item.text) {
+        } else if (item && item.onClick && (item.render || item.text)) {
           return external_react_default.a.createElement("a", {
             key: index,
             href: "javascript:void(0);",
             onClick: function onClick() {
               return _this2.executeCommand(item.onClick);
             }
-          }, item.text);
+          }, item.render ? item.render(mediaData) : item.text);
         } else {
           return null;
         }
