@@ -1,6 +1,6 @@
 # Braft Editor
 
-## 近期将会发布2.0全新版本，有入坑计划的同学，可以等待新版本发布之后再来
+## 此文档为旧版（1.x.x）文档，若使用最新版本（2.x.x），请查看[新版文档](https://www.yuque.com/margox/be/lzwpnr)
 
 ### 一个基于[draft-js](https://draftjs.org/)的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 
