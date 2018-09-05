@@ -1387,6 +1387,10 @@ function (_React$Component) {
   }, {
     key: "calcToolbarOffset",
     value: function calcToolbarOffset() {
+      if (!this.props.containerNode) {
+        return 0;
+      }
+
       var viewRect = this.props.containerNode.getBoundingClientRect();
       var toolbarRect = this.toolbarElement.getBoundingClientRect();
       var imageRect = this.imageElement.getBoundingClientRect();
@@ -3941,7 +3945,7 @@ function (_React$Component) {
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setEditorContainerNode", function (containerNode) {
       _this.setState({
         containerNode: containerNode
-      });
+      }, _this.forceRender);
     });
 
     _this.isFocused = false;
@@ -4168,7 +4172,7 @@ external_draft_js_["EditorState"].prototype.toRAW = function (noStringify) {
 
 
 external_draft_js_["EditorState"].createFrom = function (content, options) {
-  if (typeof_default()(content) === 'object' && content.blocks && content.entityMap) {
+  if (typeof_default()(content) === 'object' && content && content.blocks && content.entityMap) {
     return Object(external_braft_convert_["convertRawToEditorState"])(content, editorDecorators);
   } else if (typeof content === 'string') {
     try {

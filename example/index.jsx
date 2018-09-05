@@ -16,16 +16,6 @@ class Demo extends React.Component {
 
   }
 
-  componentDidMount () {
-
-    setTimeout(() => {
-      this.setState({
-        editorState: EditorState.createFrom('<div class="media-wrap image-wrap"><img src="https://cdn.nlark.com/lark/0/2018/png/10/1534424612826-99094002-4037-4331-97dd-3f4772ef307b.png" /></div>')
-      })
-    }, 1000)
-
-  }
-
   handleChange = (editorState) => {
     this.setState({ editorState })
   }
@@ -125,7 +115,7 @@ class Demo extends React.Component {
               // uploadFn: this.uploadFn
             }}
             onChange={this.handleChange}
-            value={this.state.editorState}
+            defaultValue={this.state.editorState}
           />
         </div>
       </div>

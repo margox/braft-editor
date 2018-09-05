@@ -375,7 +375,7 @@ export default class BraftEditor extends React.Component {
   }
 
   setEditorContainerNode = (containerNode) => {
-    this.setState({ containerNode })
+    this.setState({ containerNode }, this.forceRender)
   }
 
 }
