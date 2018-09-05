@@ -182,7 +182,7 @@
       height: auto;
       font-size: 0;
       resize: both;
-      outline-offset: -3px;
+      outline-offset: 1px;
       &:hover{
         outline: solid 1px $COLOR_ACTIVE;
       }
