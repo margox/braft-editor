@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor, { EditorState } from '../src'
+import BraftEditor, { EditorState } from '../dist'
 import { ContentUtils } from 'braft-utils'
-// import '../dist/index.css'
+import '../dist/index.css'
 
 class Demo extends React.Component {
 
