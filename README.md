@@ -55,7 +55,7 @@ export default class EditorDemo extends React.Component {
       editorState: null
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     // 假设此处从服务端获取html格式的编辑器内容
     const htmlContent = await fetchEditorContent()
     // 使用EditorState.createFrom将html字符串转换为编辑器需要的editorState数据
