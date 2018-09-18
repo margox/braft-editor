@@ -33,6 +33,7 @@ export default class BraftEditor extends React.Component {
       this.blockRenderMap = props.blockRenderMapFn(this.blockRenderMap)
     }
 
+    this.isLiving = false
     this.braftFinder = null
     const defaultEditorState = ContentUtils.isEditorState(props.defaultValue) ? props.defaultValue : ContentUtils.createEmptyEditorState(editorDecorators)
 
@@ -47,13 +48,14 @@ export default class BraftEditor extends React.Component {
 
   componentWillMount () {
 
-    const { controls, extendControls } = this.props
+    const { language, media, controls, extendControls } = this.props
+    const { uploadFn, validateFn } = { ...defaultProps.media, ...media }
 
     if ([...controls, ...extendControls].find(item => item === 'media' || item.key === 'media')) {
       this.braftFinder = new BraftFinder({
-        language: this.props.language,
-        uploader: this.props.media.uploadFn,
-        validator: this.props.media.validateFn
+        language: language,
+        uploader: uploadFn,
+        validator: validateFn
       })
       this.forceUpdate()
     }
@@ -70,6 +72,8 @@ export default class BraftEditor extends React.Component {
       // console.warn('')
     }
 
+    this.isLiving = true
+
   }
 
   componentWillReceiveProps (nextProps) {
@@ -82,6 +86,10 @@ export default class BraftEditor extends React.Component {
       // console.warn('')
     }
 
+  }
+
+  componentWillUnmount () {
+    this.isLiving = false
   }
 
   onChange = (editorState) => {
@@ -219,7 +227,7 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  handleDroppedFiles = (selectionState, files) => {
+  handleDroppedFiles = (_, files) => {
     return this.resolveFiles(files)
   }
 
@@ -227,7 +235,7 @@ export default class BraftEditor extends React.Component {
     return this.resolveFiles(files)
   }
 
-  handlePastedText = (text, htmlString) => {
+  handlePastedText = (_, htmlString) => {
 
     if (!htmlString || this.props.stripPastedStyles) {
       return false
@@ -247,14 +255,18 @@ export default class BraftEditor extends React.Component {
 
   resolveFiles = (files) => {
 
-    if (files[0] && files[0].type.indexOf('image') > -1 && this.props.media && this.props.media.pasteImage) {
+    const { pasteImage } = { ...defaultProps.media, ...this.props.media }
 
-      this.braftFinder.uploadImage(files[0], image => {
-        this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
+    pasteImage && files.slice(0, 5).forEach((file) => {
+
+      file && file.type.indexOf('image') > -1 && this.braftFinder.uploadImage(file, image => {
+        this.isLiving && this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
       })
-  
-      return 'handled'
 
+    })
+
+    if (files[0] && files[0].type.indexOf('image') > -1 && pasteImage) {
+      return 'handled'
     }
 
     return 'not-handled'
@@ -298,7 +310,12 @@ export default class BraftEditor extends React.Component {
       ...media.externals
     } : defaultProps.media.externals
 
-    media = { ...defaultProps.media, ...media, externalMedias }
+    const accepts = media && media.accepts ? {
+      ...defaultProps.media.accepts,
+      ...media.accepts
+    } : defaultProps.media.accepts
+
+    media = { ...defaultProps.media, ...media, externalMedias, accepts }
 
     if (!media.uploadFn) {
       media.video = false

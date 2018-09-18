@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("braft-convert"), require("react-dom"), require("immutable"), require("braft-finder")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["braft-convert"], root["react-dom"], root["immutable"], root["braft-finder"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -231,12 +231,6 @@ module.exports = _classCallCheck;
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(2);
@@ -261,6 +255,12 @@ function _objectSpread(target) {
 }
 
 module.exports = _objectSpread;
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 /* 11 */
@@ -376,7 +376,7 @@ var helpers_typeof = __webpack_require__(15);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(10);
+var objectSpread = __webpack_require__(9);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/toConsumableArray.js
@@ -653,7 +653,7 @@ var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_
 var external_braft_utils_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external "draft-js"
-var external_draft_js_ = __webpack_require__(9);
+var external_draft_js_ = __webpack_require__(10);
 
 // CONCATENATED MODULE: ./configs/keybindings.js
  // TODO
@@ -698,6 +698,11 @@ var external_draft_js_ = __webpack_require__(9);
     onBeforeInsert: null,
     onInsert: null,
     onChange: null,
+    accepts: {
+      image: 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg',
+      video: 'video/mp4',
+      audio: 'audio/mp3'
+    },
     externals: {
       audio: true,
       video: true,
@@ -1521,15 +1526,15 @@ function (_React$Component) {
           url = mediaData.url,
           meta = mediaData.meta;
       return external_react_default.a.createElement("div", {
-        className: "bf-video",
+        className: "bf-video-wrap",
         onMouseOver: this.showToolbar,
         onMouseLeave: this.hideToolbar
       }, external_react_default.a.createElement(StaticContainer_default, null, external_react_default.a.createElement("video", {
         controls: true,
         src: src || url,
-        poster: meta.poster
+        poster: meta ? meta.poster || '' : ''
       })), toolbarVisible ? external_react_default.a.createElement("div", {
-        className: "bf-embed-toolbar"
+        className: "bf-media-toolbar"
       }, external_react_default.a.createElement("a", {
         onClick: this.removeVideo
       }, "\uE9AC")) : null);
@@ -3399,6 +3404,7 @@ function (_React$Component) {
         width: 640,
         showFooter: false,
         children: external_react_default.a.createElement(MediaLibrary, {
+          accepts: mediaProps.accepts,
           onCancel: _this.closeBraftFinder,
           onInsert: _this.insertMedias,
           onChange: mediaProps.onChange,
@@ -3489,8 +3495,6 @@ function (_React$Component) {
       } else if (type === 'editor-method') {
         this.props.editor[command] && this.props.editor[command]();
       }
-
-      this.props.editor.requestFocus();
     }
   }, {
     key: "render",
@@ -3526,7 +3530,8 @@ function (_React$Component) {
       };
       var renderedControls = [];
       return external_react_default.a.createElement("div", {
-        className: "bf-controlbar"
+        className: "bf-controlbar",
+        onMouseDown: this.preventDefault
       }, toConsumableArray_default()(controls).concat(toConsumableArray_default()(extendControls)).map(function (item, index) {
         var itemKey = typeof item === 'string' ? item : item.key;
 
@@ -3706,6 +3711,16 @@ function (_React$Component) {
         }
       }));
     }
+  }, {
+    key: "preventDefault",
+    value: function preventDefault(event) {
+      var tagName = event.target.tagName.toLowerCase();
+
+      if (tagName === 'input' || tagName === 'label') {// ...
+      } else {
+        event.preventDefault();
+      }
+    }
   }]);
 
   return ControlBar;
@@ -3882,7 +3897,7 @@ function (_React$Component) {
       return 'not-handled';
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDroppedFiles", function (selectionState, files) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDroppedFiles", function (_, files) {
       return _this.resolveFiles(files);
     });
 
@@ -3890,7 +3905,7 @@ function (_React$Component) {
       return _this.resolveFiles(files);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedText", function (text, htmlString) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedText", function (_, htmlString) {
       if (!htmlString || _this.props.stripPastedStyles) {
         return false;
       }
@@ -3911,11 +3926,16 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "resolveFiles", function (files) {
-      if (files[0] && files[0].type.indexOf('image') > -1 && _this.props.media && _this.props.media.pasteImage) {
-        _this.braftFinder.uploadImage(files[0], function (image) {
-          _this.setValue(external_braft_utils_["ContentUtils"].insertMedias(_this.state.editorState, [image]));
-        });
+      var _defaultProps$media$_ = objectSpread_default()({}, configs_props.media, _this.props.media),
+          pasteImage = _defaultProps$media$_.pasteImage;
 
+      pasteImage && files.slice(0, 5).forEach(function (file) {
+        file && file.type.indexOf('image') > -1 && _this.braftFinder.uploadImage(file, function (image) {
+          _this.isLiving && _this.setValue(external_braft_utils_["ContentUtils"].insertMedias(_this.state.editorState, [image]));
+        });
+      });
+
+      if (files[0] && files[0].type.indexOf('image') > -1 && pasteImage) {
         return 'handled';
       }
 
@@ -3957,6 +3977,7 @@ function (_React$Component) {
       _this.blockRenderMap = props.blockRenderMapFn(_this.blockRenderMap);
     }
 
+    _this.isLiving = false;
     _this.braftFinder = null;
     var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(props.defaultValue) ? props.defaultValue : external_braft_utils_["ContentUtils"].createEmptyEditorState(editorDecorators);
     _this.state = {
@@ -3972,16 +3993,22 @@ function (_React$Component) {
     key: "componentWillMount",
     value: function componentWillMount() {
       var _this$props = this.props,
+          language = _this$props.language,
+          media = _this$props.media,
           controls = _this$props.controls,
           extendControls = _this$props.extendControls;
+
+      var _defaultProps$media$m = objectSpread_default()({}, configs_props.media, media),
+          uploadFn = _defaultProps$media$m.uploadFn,
+          validateFn = _defaultProps$media$m.validateFn;
 
       if (toConsumableArray_default()(controls).concat(toConsumableArray_default()(extendControls)).find(function (item) {
         return item === 'media' || item.key === 'media';
       })) {
         this.braftFinder = new external_braft_finder_default.a({
-          language: this.props.language,
-          uploader: this.props.media.uploadFn,
-          validator: this.props.media.validateFn
+          language: language,
+          uploader: uploadFn,
+          validator: validateFn
         });
         this.forceUpdate();
       }
@@ -3997,6 +4024,8 @@ function (_React$Component) {
         });
       } else if (editorState) {// console.warn('')
       }
+
+      this.isLiving = true;
     }
   }, {
     key: "componentWillReceiveProps",
@@ -4009,6 +4038,11 @@ function (_React$Component) {
         });
       } else if (editorState) {// console.warn('')
       }
+    }
+  }, {
+    key: "componentWillUnmount",
+    value: function componentWillUnmount() {
+      this.isLiving = false;
     }
   }, {
     key: "render",
@@ -4049,8 +4083,10 @@ function (_React$Component) {
       });
       language = languages[language] || languages[configs_props.language];
       var externalMedias = media && media.externals ? objectSpread_default()({}, configs_props.media.externals, media.externals) : configs_props.media.externals;
+      var accepts = media && media.accepts ? objectSpread_default()({}, configs_props.media.accepts, media.accepts) : configs_props.media.accepts;
       media = objectSpread_default()({}, configs_props.media, media, {
-        externalMedias: externalMedias
+        externalMedias: externalMedias,
+        accepts: accepts
       });
 
       if (!media.uploadFn) {
@@ -4198,12 +4234,12 @@ external_draft_js_["EditorState"].createFrom = function (content, options) {
 // [√]media.validateFn支持异步函数
 // [√]优化音视频在编辑器内的预览体验
 // [√]标准化代码，引入ESLint
+// [√]美化控件title展示
 // ---------------------------
 // 优化全选会选择上传中的项目的问题
 // 支持param.success时设置媒体文件的更多属性（尺寸等）
 // 2.1.0版本开发计划
-// [ ]美化UI，包括图标和界面风格
-// [ ]优化控件title提示
+// [ ]支持样式的开关模式
 // 2.2.0版本开发计划
 // [ ]允许自定义快捷键
 // [ ]优化图片param.success，支持传入link等
@@ -4219,6 +4255,8 @@ external_draft_js_["EditorState"].createFrom = function (content, options) {
 // [ ]图片裁切等简单的编辑功能
 // [ ]代码块交互强化
 // [ ]初级表格功能
+// 2.4.00版本开发计划
+// [ ]美化UI，包括图标和界面风格
 
 /***/ }),
 /* 20 */

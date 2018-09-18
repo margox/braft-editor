@@ -111,9 +111,6 @@ class Demo extends React.Component {
             hooks={this.hooks}
             controls={controls}
             extendControls={extendControls}
-            media={{
-              // uploadFn: this.uploadFn
-            }}
             onChange={this.handleChange}
             defaultValue={this.state.editorState}
           />

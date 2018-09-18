@@ -97,6 +97,7 @@ export default class ControlBar extends React.Component {
       showFooter: false,
       children: (
         <MediaLibrary
+          accepts={mediaProps.accepts}
           onCancel={this.closeBraftFinder}
           onInsert={this.insertMedias}
           onChange={mediaProps.onChange}

@@ -1,6 +1,6 @@
 {
   "name": "braft-editor",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Rich Text Editor Based On Draft.js",
   "main": "dist/index.js",
   "author": "Margox",
@@ -60,8 +60,8 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "braft-convert": "^2.0.2",
-    "braft-finder": "^0.0.9",
-    "braft-utils": "^0.0.16",
+    "braft-finder": "^0.0.10",
+    "braft-utils": "^0.0.17",
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",
     "draftjs-utils": "^0.9.4"

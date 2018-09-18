@@ -32,6 +32,11 @@ export default {
     onBeforeInsert: null,
     onInsert: null,
     onChange: null,
+    accepts: {
+      image: 'image/png,image/jpeg,image/gif,image/webp,image/apng,image/svg',
+      video: 'video/mp4',
+      audio: 'audio/mp3'
+    },
     externals: {
       audio: true,
       video: true,

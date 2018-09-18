@@ -17,7 +17,7 @@ export default class Video extends React.Component {
 
     return (
       <div
-        className='bf-video'
+        className='bf-video-wrap'
         onMouseOver={this.showToolbar}
         onMouseLeave={this.hideToolbar}
       >
@@ -25,7 +25,7 @@ export default class Video extends React.Component {
           <video controls src={src || url} poster={meta ? meta.poster || '' : ''}/>
         </StaticContainer>
         {toolbarVisible ? (
-          <div className='bf-embed-toolbar'>
+          <div className='bf-media-toolbar'>
             <a onClick={this.removeVideo}>&#xe9ac;</a>
           </div>
         ) : null}
