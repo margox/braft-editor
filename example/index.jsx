@@ -1,8 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor, { EditorState } from '../dist'
+import BraftEditor, { EditorState } from '../src'
 import { ContentUtils } from 'braft-utils'
-import '../dist/index.css'
+// import '../dist/index.css'
 
 class Demo extends React.Component {
 
@@ -22,7 +22,7 @@ class Demo extends React.Component {
 
   insertText = (text) => {
     this.setState({
-        editorState: ContentUtils.insertText(this.state.editorState, text)
+      editorState: ContentUtils.insertText(this.state.editorState, text)
     })
   }
 

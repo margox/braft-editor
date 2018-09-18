@@ -75,8 +75,6 @@ export default class ControlBar extends React.Component {
       this.props.editor[command] && this.props.editor[command]()
     }
 
-    this.props.editor.requestFocus()
-
   }
 
   openBraftFinder = () => {
@@ -143,7 +141,7 @@ export default class ControlBar extends React.Component {
     const renderedControls = []
 
     return (
-      <div className='bf-controlbar'>
+      <div className='bf-controlbar' onMouseDown={this.preventDefault}>
         {
           [
             ...controls,
@@ -335,6 +333,18 @@ export default class ControlBar extends React.Component {
         }
       </div>
     )
+
+  }
+
+  preventDefault (event) {
+
+    const tagName = event.target.tagName.toLowerCase()
+
+    if (tagName === 'input' || tagName === 'label') {
+      // ...
+    } else {
+      event.preventDefault()
+    }
 
   }
 

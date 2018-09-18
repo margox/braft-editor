@@ -22,7 +22,7 @@ export default class Video extends React.Component {
         onMouseLeave={this.hideToolbar}
       >
         <StaticContainer>
-          <video controls src={src || url} poster={meta.poster}/>
+          <video controls src={src || url} poster={meta ? meta.poster || '' : ''}/>
         </StaticContainer>
         {toolbarVisible ? (
           <div className='bf-embed-toolbar'>
