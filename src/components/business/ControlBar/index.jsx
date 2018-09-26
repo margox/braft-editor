@@ -95,7 +95,7 @@ export default class ControlBar extends React.Component {
       language: this.props.language,
       width: 640,
       showFooter: false,
-      children: (
+      component: (
         <MediaLibrary
           accepts={mediaProps.accepts}
           onCancel={this.closeBraftFinder}

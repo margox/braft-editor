@@ -1,6 +1,10 @@
 /example
 /src
 /node_modules
+/build
+.eslintignore
+.eslintrc
+.eslintrc.js
 .babelrc
 .gitignore
 webpack.config.base.js

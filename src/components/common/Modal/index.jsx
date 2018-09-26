@@ -67,7 +67,7 @@ export default class Modal extends React.Component {
       return false
     }
 
-    let { title, className, width, height, children, confirmable, showFooter, showCancel, showConfirm, showClose, cancelText, confirmText, bottomText, language } = props
+    let { title, className, width, height, children, component, confirmable, showFooter, showCancel, showConfirm, showClose, cancelText, confirmText, bottomText, language } = props
 
     typeof showCancel === 'undefined' && (showCancel = true)
     typeof showClose === 'undefined' && (showClose = true)
@@ -80,9 +80,9 @@ export default class Modal extends React.Component {
         <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className='bf-modal-content'>
           <div className='bf-modal-header'>
             <h3 className='bf-modal-caption'>{title}</h3>
-            {showClose && <button type='button' onClick={this.close} className='bf-modal-close-button'><i className='bf-icon-close'></i></button>}
+            {showClose && <button type='button' onClick={this.close} className='bf-modal-close-button'><i className='bfi-close'></i></button>}
           </div>
-          <div className='bf-modal-body'>{children}</div>
+          <div className='bf-modal-body'>{children || component}</div>
           {showFooter ? (
             <div className='bf-modal-footer'>
               <div className='bf-modal-addon-text'>{bottomText}</div>

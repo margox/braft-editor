@@ -1168,6 +1168,18 @@ braft-convert@^2.0.2:
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
 
+braft-editor@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/braft-editor/-/braft-editor-2.0.7.tgz#bbce8ff23d71139c49f2c75b649e68ec44409fbb"
+  dependencies:
+    "@babel/runtime" "^7.0.0"
+    braft-convert "^2.0.2"
+    braft-finder "^0.0.10"
+    braft-utils "^0.0.17"
+    draft-convert "^2.0.0"
+    draft-js "^0.10.3"
+    draftjs-utils "^0.9.4"
+
 braft-finder@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.10.tgz#1620cd56f423bca07978db3faf646a03f56fdb52"

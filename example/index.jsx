@@ -95,12 +95,31 @@ class Demo extends React.Component {
 
     const extendControls = [
       {
-        key: 'insert-123',
+        key: 'custom-button',
         type: 'button',
-        text: 'Insert 123',
+        text: '按钮',
         onClick: () => {
-          this.insertText('123')
+          alert('你好啊！')
         }
+      }, {
+        key: 'custom-dropdown',
+        type: 'dropdown',
+        text: '下拉组件',
+        component: <div style={{color: '#fff', padding: 10}}>你好啊！</div>
+      }, {
+        key: 'custom-modal',
+        type: 'modal',
+        text: '模态框',
+        modal: {
+          id: 'my-moda-1',
+          title: '你好啊',
+          component: (
+            <div style={{width: 400, padding: '0 10px'}}>
+              <img src="https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg" style={{width: '100%', height: 'auto'}}/>
+            </div>
+          )
+        }
+        
       }
     ]
 

@@ -3221,6 +3221,7 @@ function (_React$Component) {
           width = props.width,
           height = props.height,
           children = props.children,
+          component = props.component,
           confirmable = props.confirmable,
           showFooter = props.showFooter,
           showCancel = props.showCancel,
@@ -3233,6 +3234,7 @@ function (_React$Component) {
       typeof showCancel === 'undefined' && (showCancel = true);
       typeof showClose === 'undefined' && (showClose = true);
       typeof showConfirm === 'undefined' && (showConfirm = true);
+      typeof showFooter === 'undefined' && (showFooter = true);
       var childComponent = external_react_default.a.createElement("div", {
         className: 'bf-modal ' + (className || '')
       }, external_react_default.a.createElement("div", {
@@ -3253,10 +3255,10 @@ function (_React$Component) {
         onClick: this.close,
         className: "bf-modal-close-button"
       }, external_react_default.a.createElement("i", {
-        className: "bf-icon-close"
+        className: "bfi-close"
       }))), external_react_default.a.createElement("div", {
         className: "bf-modal-body"
-      }, children), showFooter ? external_react_default.a.createElement("div", {
+      }, children || component), showFooter ? external_react_default.a.createElement("div", {
         className: "bf-modal-footer"
       }, external_react_default.a.createElement("div", {
         className: "bf-modal-addon-text"
@@ -3403,7 +3405,7 @@ function (_React$Component) {
         language: _this.props.language,
         width: 640,
         showFooter: false,
-        children: external_react_default.a.createElement(MediaLibrary, {
+        component: external_react_default.a.createElement(MediaLibrary, {
           accepts: mediaProps.accepts,
           onCancel: _this.closeBraftFinder,
           onInsert: _this.insertMedias,
@@ -3636,19 +3638,18 @@ function (_React$Component) {
             onClick: _this3.openBraftFinder
           }, controlItem.text);
         } else if (controlItem.type === 'dropdown') {
-          return external_react_default.a.createElement(DropDown_DropDown, {
+          return external_react_default.a.createElement(DropDown_DropDown, extends_default()({
             key: index,
             className: 'control-item extend-control-item dropdown ' + controlItem.className,
             caption: controlItem.text,
             htmlCaption: controlItem.html,
             showArrow: controlItem.showArrow,
-            containerNode: controlItem.containerNode,
             title: controlItem.title,
             arrowActive: controlItem.arrowActive,
             autoHide: controlItem.autoHide,
             disabled: controlItem.disabled,
             ref: controlItem.ref
-          }, controlItem.component);
+          }, commonProps), controlItem.component);
         } else if (controlItem.type === 'modal') {
           return external_react_default.a.createElement("button", {
             type: "button",
@@ -4238,6 +4239,8 @@ external_draft_js_["EditorState"].createFrom = function (content, options) {
 // ---------------------------
 // 优化全选会选择上传中的项目的问题
 // 支持param.success时设置媒体文件的更多属性（尺寸等）
+// 修复扩展Dropdown报错问题
+// 修复扩展Modal再次点开底栏消失的问题
 // 2.1.0版本开发计划
 // [ ]支持样式的开关模式
 // 2.2.0版本开发计划
