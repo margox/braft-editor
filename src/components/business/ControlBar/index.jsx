@@ -260,12 +260,12 @@ export default class ControlBar extends React.Component {
                   caption={controlItem.text}
                   htmlCaption={controlItem.html}
                   showArrow={controlItem.showArrow}
-                  containerNode={controlItem.containerNode}
                   title={controlItem.title}
                   arrowActive={controlItem.arrowActive}
                   autoHide={controlItem.autoHide}
                   disabled={controlItem.disabled}
                   ref={controlItem.ref}
+                  {...commonProps}
                 >
                   {controlItem.component}
                 </DropDown>

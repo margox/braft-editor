@@ -72,6 +72,7 @@ export default class Modal extends React.Component {
     typeof showCancel === 'undefined' && (showCancel = true)
     typeof showClose === 'undefined' && (showClose = true)
     typeof showConfirm === 'undefined' && (showConfirm = true)
+    typeof showFooter === 'undefined' && (showFooter = true)
 
     const childComponent = (
       <div className={'bf-modal ' + (className || '')}>
