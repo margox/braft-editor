@@ -14,6 +14,10 @@ const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
   return hooks[hookName] || (() => defaultReturns)
 }
 
+const filterColors = (colors, colors2) => {
+  return colors.filter(item => colors2.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+}
+
 export const editorDecorators = new CompositeDecorator(decorators)
 
 export default class BraftEditor extends React.Component {
@@ -67,7 +71,14 @@ export default class BraftEditor extends React.Component {
     const { value: editorState } = this.props
 
     if (ContentUtils.isEditorState(editorState)) {
-      this.setState({ editorState })
+
+      const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
+
+      this.setState({
+        tempColors: filterColors([...this.state.tempColors, ...tempColors], this.props.colors),
+        editorState: editorState
+      })
+
     } else if (editorState) {
       // console.warn('')
     }
@@ -81,7 +92,20 @@ export default class BraftEditor extends React.Component {
     const { value: editorState } = nextProps
 
     if (ContentUtils.isEditorState(editorState)) {
-      this.setState({ editorState })
+
+      if (editorState !== this.state.editorState) {
+
+        const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
+
+        this.setState({
+          tempColors: filterColors([...this.state.tempColors, ...tempColors], this.props.colors),
+          editorState: editorState
+        })
+
+      } else {
+        this.setState({ editorState })
+      }
+
     } else if (editorState) {
       // console.warn('')
     }

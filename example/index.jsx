@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import BraftEditor, { EditorState } from '../src'
+import BraftEditor from '../src'
 import { ContentUtils } from 'braft-utils'
 // import '../dist/index.css'
 
@@ -10,7 +10,7 @@ class Demo extends React.Component {
 
     super(props)
     this.state = {
-      editorState: EditorState.createFrom()
+      editorState: BraftEditor.createEditorState('<p><span style="color:#0098aa;">123123123</span></p>')
     }
     this.editorInstance = null
 
@@ -22,7 +22,7 @@ class Demo extends React.Component {
 
   insertText = (text) => {
     this.setState({
-      editorState: ContentUtils.insertText(this.state.editorState, text)
+      editorState: BraftEditor.createEditorState('<p><span style="color:#ff98ae;">aaaaa</span></p>')//ContentUtils.insertText(this.state.editorState, text)
     })
   }
 
@@ -99,7 +99,7 @@ class Demo extends React.Component {
         type: 'button',
         text: '按钮',
         onClick: () => {
-          alert('你好啊！')
+          this.insertText('123')
         }
       }, {
         key: 'custom-dropdown',
@@ -131,7 +131,7 @@ class Demo extends React.Component {
             controls={controls}
             extendControls={extendControls}
             onChange={this.handleChange}
-            defaultValue={this.state.editorState}
+            value={this.state.editorState}
           />
         </div>
       </div>

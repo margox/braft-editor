@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("braft-convert"), require("react-dom"), require("immutable"), require("braft-finder")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["braft-convert"], root["react-dom"], root["immutable"], root["braft-finder"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -231,6 +231,12 @@ module.exports = _classCallCheck;
 
 /***/ }),
 /* 9 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
+
+/***/ }),
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(2);
@@ -257,13 +263,23 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 10 */
-/***/ (function(module, exports) {
+/* 11 */
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
+var arrayWithoutHoles = __webpack_require__(26);
+
+var iterableToArray = __webpack_require__(25);
+
+var nonIterableSpread = __webpack_require__(24);
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports) {
 
 function _extends() {
@@ -285,22 +301,6 @@ function _extends() {
 }
 
 module.exports = _extends;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(26);
-
-var iterableToArray = __webpack_require__(25);
-
-var nonIterableSpread = __webpack_require__(24);
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
 
 /***/ }),
 /* 13 */
@@ -376,11 +376,11 @@ var helpers_typeof = __webpack_require__(15);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(9);
+var objectSpread = __webpack_require__(10);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/toConsumableArray.js
-var toConsumableArray = __webpack_require__(12);
+var toConsumableArray = __webpack_require__(11);
 var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/classCallCheck.js
@@ -653,7 +653,7 @@ var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_
 var external_braft_utils_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external "draft-js"
-var external_draft_js_ = __webpack_require__(10);
+var external_draft_js_ = __webpack_require__(9);
 
 // CONCATENATED MODULE: ./configs/keybindings.js
  // TODO
@@ -1986,7 +1986,7 @@ var getBlockStyleFn = blockStyles;
 var getCustomStyleMap = inlineStyles;
 var renderers_decorators = decorators;
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(11);
+var helpers_extends = __webpack_require__(12);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
@@ -3759,6 +3759,14 @@ var buildHooks = function buildHooks(hooks) {
   };
 };
 
+var filterColors = function filterColors(colors, colors2) {
+  return colors.filter(function (item) {
+    return colors2.indexOf(item) === -1;
+  }).filter(function (item, index, array) {
+    return array.indexOf(item) === index;
+  });
+};
+
 var editorDecorators = new external_draft_js_["CompositeDecorator"](renderers_decorators);
 
 var editor_BraftEditor =
@@ -4020,7 +4028,9 @@ function (_React$Component) {
       var editorState = this.props.value;
 
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
+        var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
         this.setState({
+          tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.props.colors),
           editorState: editorState
         });
       } else if (editorState) {// console.warn('')
@@ -4034,9 +4044,17 @@ function (_React$Component) {
       var editorState = nextProps.value;
 
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
-        this.setState({
-          editorState: editorState
-        });
+        if (editorState !== this.state.editorState) {
+          var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
+          this.setState({
+            tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.props.colors),
+            editorState: editorState
+          });
+        } else {
+          this.setState({
+            editorState: editorState
+          });
+        }
       } else if (editorState) {// console.warn('')
       }
     }
@@ -4222,25 +4240,11 @@ external_draft_js_["EditorState"].createFrom = function (content, options) {
   }
 };
 
+editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createFrom;
 /* harmony default export */ var index_0 = __webpack_exports__["default"] = (editor_BraftEditor);
- // 2.0.0开发计划
-// [ ]完善各模块文档说明
-// [√]添加更多钩子（插入链接、切换样式等）
-// [√]优化内置的图片伪上传功能，用base64代替blob
-// [√]支持自定义图片工具栏按钮
-// [√]支持通过属性扩展customStyleMap, blockStyleFn, keyBindingFn, blockRendererFn, blockRenderMap等
-// [√]允许完全设置控制栏的按钮（['media', { key: 'blod', text: 'xxx' }）
-// [√]允许在工具栏和内容区域直接插入自定义的组件[componentBelowControlBar]
-// [√]支持定义DropDown组件的样式
-// [√]media.validateFn支持异步函数
-// [√]优化音视频在编辑器内的预览体验
-// [√]标准化代码，引入ESLint
-// [√]美化控件title展示
-// ---------------------------
+ // 近期开发计划
 // 优化全选会选择上传中的项目的问题
 // 支持param.success时设置媒体文件的更多属性（尺寸等）
-// 修复扩展Dropdown报错问题
-// 修复扩展Modal再次点开底栏消失的问题
 // 2.1.0版本开发计划
 // [ ]支持样式的开关模式
 // 2.2.0版本开发计划

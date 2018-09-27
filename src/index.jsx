@@ -29,27 +29,14 @@ EditorState.createFrom = (content, options) => {
 
 }
 
+BraftEditor.createEditorState = EditorState.createFrom
+
 export default BraftEditor
 export { EditorState, editorDecorators }
 
-// 2.0.0开发计划
-// [ ]完善各模块文档说明
-// [√]添加更多钩子（插入链接、切换样式等）
-// [√]优化内置的图片伪上传功能，用base64代替blob
-// [√]支持自定义图片工具栏按钮
-// [√]支持通过属性扩展customStyleMap, blockStyleFn, keyBindingFn, blockRendererFn, blockRenderMap等
-// [√]允许完全设置控制栏的按钮（['media', { key: 'blod', text: 'xxx' }）
-// [√]允许在工具栏和内容区域直接插入自定义的组件[componentBelowControlBar]
-// [√]支持定义DropDown组件的样式
-// [√]media.validateFn支持异步函数
-// [√]优化音视频在编辑器内的预览体验
-// [√]标准化代码，引入ESLint
-// [√]美化控件title展示
-// ---------------------------
+// 近期开发计划
 // 优化全选会选择上传中的项目的问题
 // 支持param.success时设置媒体文件的更多属性（尺寸等）
-// 修复扩展Dropdown报错问题
-// 修复扩展Modal再次点开底栏消失的问题
 
 // 2.1.0版本开发计划
 // [ ]支持样式的开关模式

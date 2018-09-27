@@ -20,6 +20,9 @@
 - ...更多特性开发中
 
 ## 更新记录
+- 2018-09-27 v2.0.8
+  - 修复了无法检测初始化内容中的文字颜色的问题
+  - 新增了BraftEditor.createEditorState静态方法
 - 2018-09-26 v2.0.7
   - 修复扩展下拉组件无法使用的问题
   - 修复扩展弹窗组件再次点开时底栏消失的问题
@@ -52,9 +55,7 @@ npm install braft-editor --save
 
 ```jsx
 import React from 'react'
-// 引入编辑器以及EditorState子模块
-import BraftEditor, { EditorState } from 'braft-editor'
-// 引入编辑器样式
+import BraftEditor from 'braft-editor'
 import 'braft-editor/dist/index.css'
 
 export default class EditorDemo extends React.Component {
@@ -66,9 +67,9 @@ export default class EditorDemo extends React.Component {
   async componentDidMount () {
     // 假设此处从服务端获取html格式的编辑器内容
     const htmlContent = await fetchEditorContent()
-    // 使用EditorState.createFrom将html字符串转换为编辑器需要的editorState数据
+    // 使用BraftEditor.createEditorState将html字符串转换为编辑器需要的editorState数据
     this.setState({
-      editorState: EditorState.createFrom(htmlContent)
+      editorState: BraftEditor.createEditorState(htmlContent)
     })
   }
 
@@ -86,6 +87,7 @@ export default class EditorDemo extends React.Component {
   render () {
 
     const { editorState } = this.state
+
     return (
       <div className="my-component">
         <BraftEditor
@@ -105,4 +107,4 @@ export default class EditorDemo extends React.Component {
 
 -------
 
-## 更多介绍请查看[详细文档](https://www.yuque.com/margox/be/lzwpnr#zrs7hr)
+#### 更多介绍请查看[详细文档](https://www.yuque.com/margox/be/lzwpnr#zrs7hr)
