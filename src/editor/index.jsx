@@ -53,10 +53,11 @@ export default class BraftEditor extends React.Component {
   componentWillMount () {
 
     const { language, media, controls, extendControls } = this.props
-    const { uploadFn, validateFn } = { ...defaultProps.media, ...media }
+    const { uploadFn, validateFn, items } = { ...defaultProps.media, ...media }
 
     if ([...controls, ...extendControls].find(item => item === 'media' || item.key === 'media')) {
       this.braftFinder = new BraftFinder({
+        items: items,
         language: language,
         uploader: uploadFn,
         validator: validateFn
@@ -89,7 +90,11 @@ export default class BraftEditor extends React.Component {
 
   componentWillReceiveProps (nextProps) {
 
-    const { value: editorState } = nextProps
+    const { value: editorState, media } = nextProps
+
+    if (media && media.items && this.braftFinder) {
+      this.braftFinder.setItems(media.items)
+    }
 
     if (ContentUtils.isEditorState(editorState)) {
 

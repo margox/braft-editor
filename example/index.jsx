@@ -4,6 +4,30 @@ import BraftEditor from '../src'
 import { ContentUtils } from 'braft-utils'
 // import '../dist/index.css'
 
+const mediaItems = [
+  {
+    id: 1,
+    type: 'IMAGE',
+    url: 'https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg'
+  }, {
+    id: 2,
+    type: 'IMAGE',
+    url: 'https://margox.cn/wp-content/uploads/2017/05/IMG_4995-480x267.jpg'
+  }, {
+    id: 3,
+    type: 'IMAGE',
+    url: 'https://margox.cn/wp-content/uploads/2017/05/IMG_4984-480x267.jpg'
+  }, {
+    id: 4,
+    type: 'AUDIO',
+    url: 'https://margox.cn/wp-content/uploads/2016/10/Jesper-Kyd-Venice-Rooftops.mp3'
+  }, {
+    id: 5,
+    type: 'IMAGE',
+    url: 'https://margox.cn/wp-content/uploads/2016/02/DSC_6961-980x654.jpg'
+  }
+]
+
 class Demo extends React.Component {
 
   constructor(props) {
@@ -17,6 +41,7 @@ class Demo extends React.Component {
   }
 
   handleChange = (editorState) => {
+    console.log(editorState)
     this.setState({ editorState })
   }
 
@@ -127,6 +152,9 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            media={{
+              items: mediaItems
+            }}
             hooks={this.hooks}
             controls={controls}
             extendControls={extendControls}
