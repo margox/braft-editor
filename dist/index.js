@@ -4009,12 +4009,14 @@ function (_React$Component) {
 
       var _defaultProps$media$m = objectSpread_default()({}, configs_props.media, media),
           uploadFn = _defaultProps$media$m.uploadFn,
-          validateFn = _defaultProps$media$m.validateFn;
+          validateFn = _defaultProps$media$m.validateFn,
+          items = _defaultProps$media$m.items;
 
       if (toConsumableArray_default()(controls).concat(toConsumableArray_default()(extendControls)).find(function (item) {
         return item === 'media' || item.key === 'media';
       })) {
         this.braftFinder = new external_braft_finder_default.a({
+          items: items,
           language: language,
           uploader: uploadFn,
           validator: validateFn
@@ -4041,7 +4043,12 @@ function (_React$Component) {
   }, {
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(nextProps) {
-      var editorState = nextProps.value;
+      var editorState = nextProps.value,
+          media = nextProps.media;
+
+      if (media && media.items && this.braftFinder) {
+        this.braftFinder.setItems(media.items);
+      }
 
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
         if (editorState !== this.state.editorState) {

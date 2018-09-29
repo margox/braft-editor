@@ -28,6 +28,18 @@ const mediaItems = [
   }
 ]
 
+const mediaItems2 = [
+  {
+    id: 1,
+    type: 'IMAGE',
+    url: 'https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg'
+  }, {
+    id: 2,
+    type: 'IMAGE',
+    url: 'https://margox.cn/wp-content/uploads/2017/05/IMG_4995-480x267.jpg'
+  }
+]
+
 class Demo extends React.Component {
 
   constructor(props) {
@@ -152,9 +164,6 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            media={{
-              items: mediaItems
-            }}
             hooks={this.hooks}
             controls={controls}
             extendControls={extendControls}
