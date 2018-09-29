@@ -161,12 +161,12 @@ export default class BraftEditor extends React.Component {
 
   onFocus = () => {
     this.isFocused = true
-    this.props.onFocus && this.props.onFocus()
+    this.props.onFocus && this.props.onFocus(this.state.editorState)
   }
 
   onBlur = () => {
     this.isFocused = false
-    this.props.onBlur && this.props.onBlur()
+    this.props.onBlur && this.props.onBlur(this.state.editorState)
   }
 
   requestFocus = () => {

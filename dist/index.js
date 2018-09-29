@@ -3822,12 +3822,12 @@ function (_React$Component) {
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onFocus", function () {
       _this.isFocused = true;
-      _this.props.onFocus && _this.props.onFocus();
+      _this.props.onFocus && _this.props.onFocus(_this.state.editorState);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onBlur", function () {
       _this.isFocused = false;
-      _this.props.onBlur && _this.props.onBlur();
+      _this.props.onBlur && _this.props.onBlur(_this.state.editorState);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "requestFocus", function () {
