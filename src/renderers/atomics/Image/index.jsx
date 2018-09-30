@@ -317,6 +317,7 @@ export default class Image extends React.Component {
       toolbarVisible: false
     }, () => {
       this.props.editor.setDraftProps({ readOnly: false })
+      this.props.editor.requestFocus()
     })
 
   }

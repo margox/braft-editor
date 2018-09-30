@@ -2,6 +2,7 @@
 
 .bf-content{
   height: 500px;
+  padding-bottom: 10px;
   overflow: auto;
   font-size: 16px;
   img{
@@ -93,6 +94,9 @@
     padding: 15px;
     word-wrap: break-word;
     word-break: break-all;
+    > div{
+      padding-bottom: 20px;
+    }
     .braft-link{
       color: #4078c0;
     }
@@ -157,6 +161,7 @@
       display: inline-block;
     }
   }
+
   .bff-left{
     position: relative;
     z-index: 1;
@@ -168,6 +173,25 @@
     z-index: 1;
     float: right;
     margin: 0 0 0 10px;
+  }
+
+  .bftd-1{
+    text-indent: 2em;
+  }
+  .bftd-2{
+    text-indent: 4em;
+  }
+  .bftd-3{
+    text-indent: 6em;
+  }
+  .bftd-4{
+    text-indent: 8em;
+  }
+  .bftd-5{
+    text-indent: 10em;
+  }
+  .bftd-6{
+    text-indent: 12em;
   }
 
   .bf-media{

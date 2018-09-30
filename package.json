@@ -61,7 +61,7 @@
     "@babel/runtime": "^7.0.0",
     "braft-convert": "^2.1.0",
     "braft-finder": "^0.0.10",
-    "braft-utils": "^0.0.17",
+    "braft-utils": "^0.0.19",
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",
     "draftjs-utils": "^0.9.4"

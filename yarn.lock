@@ -1162,8 +1162,8 @@ braces@^2.3.0, braces@^2.3.1:
     to-regex "^3.0.1"
 
 braft-convert@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/braft-convert/-/braft-convert-2.1.0.tgz#9cf74771dbe15f9c11b776366cd6f1eddf0438b1"
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/braft-convert/-/braft-convert-2.1.3.tgz#99ab798508973e18b905adfbe2765581bdb808ef"
   dependencies:
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
@@ -1172,9 +1172,9 @@ braft-finder@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.10.tgz#1620cd56f423bca07978db3faf646a03f56fdb52"
 
-braft-utils@^0.0.17:
-  version "0.0.17"
-  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-0.0.17.tgz#2fa7979fa0a813fb1c3c0d95c25bb4ae7312e9d6"
+braft-utils@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-0.0.19.tgz#9f33e4f98d05d191e94494ff507d571aac43bbbe"
 
 brorand@^1.0.1:
   version "1.1.0"

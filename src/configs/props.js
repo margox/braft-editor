@@ -4,7 +4,8 @@ export default {
     'undo', 'redo', 'separator',
     'font-size', 'line-height', 'letter-spacing', 'separator',
     'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator',
-    'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'separator',
+    'superscript', 'subscript', 'remove-styles', 'emoji', 'separator',
+    'text-indent', 'text-align', 'separator',
     'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator',
     'link', 'split', 'hr', 'separator',
     'media', 'separator',
@@ -54,11 +55,10 @@ export default {
     '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784',
     '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'
   ],
-  tabIndents: 2,
+  codeTabIndents: 2,
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,
   letterSpacings: [0, 1, 2, 3, 4, 5, 6],
-  textIndents: [0, 14, 21, 28],
   lineHeights: [1, 1.2, 1.5, 1.75, 2, 2.5, 3, 4],
   fontSizes: [
     12, 14, 16, 18, 20, 24,

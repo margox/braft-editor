@@ -7,19 +7,19 @@ export default (options) => (styles, block) => {
 
   styles.forEach((style) => {
 
-    if (style.startsWith('COLOR-')) {
+    if (style.indexOf('COLOR-') === 0) {
       output.color = '#' + getStyleValue(style)
-    } else if (style.startsWith('BGCOLOR-')) {
+    } else if (style.indexOf('BGCOLOR-') === 0) {
       output.backgroundColor = '#' + getStyleValue(style)
-    } else if (style.startsWith('FONTSIZE-')) {
+    } else if (style.indexOf('FONTSIZE-') === 0) {
       output.fontSize = unitExportFn(getStyleValue(style), 'font-size', 'editor')
-    } else if (style.startsWith('LINEHEIGHT-')) {
+    } else if (style.indexOf('LINEHEIGHT-') === 0) {
       output.lineHeight = unitExportFn(getStyleValue(style), 'line-height', 'editor')
-    } else if (style.startsWith('LETTERSPACING-')) {
+    } else if (style.indexOf('LETTERSPACING-') === 0) {
       output.letterSpacing = unitExportFn(getStyleValue(style), 'letter-spacing', 'editor')
-    } else if (style.startsWith('TEXTINDENT-')) {
+    } else if (style.indexOf('TEXTINDENT-') === 0) {
       output.textIndent = unitExportFn(getStyleValue(style), 'text-indent', 'editor')
-    } else if (style.startsWith('FONTFAMILY-')) {
+    } else if (style.indexOf('FONTFAMILY-') === 0) {
       output.fontFamily = (fontFamilies.find(item => item.name === getStyleValue(style)) || {}).family || ''
     }
 

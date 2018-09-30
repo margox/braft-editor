@@ -5,8 +5,40 @@ import { ContentUtils } from 'braft-utils'
 
 const customStyleMap = {
   'UNDERDOT': {
-    textDecoration: 'underline'
+    textEmphasis: 'circle',
+    textEmphasisPosition: 'under',
+    WebkitTextEmphasis: 'circle',
+    WebkitTextEmphasisPosition: 'under'
   }
+}
+
+const styleExportFn = (style) => {
+
+  if (style === 'UNDERDOT') {
+    return <span style={customStyleMap.UNDERDOT}/>
+  }
+
+}
+
+const styleImportFn = (nodeName, node, currentStyle) => {
+
+  let newStyle = currentStyle;
+
+  [].forEach.call(node.style, (style) => {
+
+    if (nodeName === 'span' && style.indexOf('text-emphasis') !== -1) {
+      newStyle = newStyle.add('UNDERDOT')
+    }
+
+  })
+
+  return newStyle
+
+}
+
+const customLanguageFn = (language) => {
+  language.controls.clear = '删掉内容'
+  return language
 }
 
 class Demo extends React.Component {
@@ -16,7 +48,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState()
+      editorState: BraftEditor.createEditorState('<p><strong>撒<em>打<span style="text-decoration:line-through"><span style="text-emphasis:circle;text-emphasis-position:under;-webkit-text-emphasis:circle;-webkit-text-emphasis-position:under">算</span><span style="color:#07a9fe">打</span></span></em></strong></p>', { styleImportFn })
     }
 
   }
@@ -28,47 +60,20 @@ class Demo extends React.Component {
   toggleUnderDot = () => {
     this.setState({
       editorState: ContentUtils.toggleSelectionInlineStyle(this.state.editorState, 'UNDERDOT')
+    }, () => {
+      const blockData = ContentUtils.getSelectionBlockData(this.state.editorState)
+      console.log(blockData.toJS())
     })
   }
 
-  uploadFn = (param) => {
-
-    const xhr = new XMLHttpRequest
-    const fd = new FormData()
-
-    const successFn = () => {
-      param.success({
-        url: JSON.parse(xhr.responseText)[0].url,
-        meta: {
-          controls: true,
-          loop: true,
-          autoPlay: false,
-        }
-      })
-    }
-
-    const progressFn = (event) => {
-      param.progress(event.loaded / event.total * 100)
-    }
-
-    const errorFn = () => {
-      param.error({
-        msg: "unable to upload."
-      })
-    }
-
-    xhr.upload.addEventListener("progress", progressFn, false)
-    xhr.addEventListener("load", successFn, false)
-    xhr.addEventListener("error", errorFn, false)
-    xhr.addEventListener("abort", errorFn, false)
-
-    fd.append("file", param.file)
-    xhr.open("POST", "http://localhost:9090", true)
-    xhr.send(fd)
-
+  logHTML = () => {
+    console.log(this.state.editorState.toHTML())
   }
 
   render() {
+
+    const { editorState } = this.state
+    const underdotActive = ContentUtils.selectionHasInlineStyle(editorState, 'UNDERDOT')
 
     return (
       <div>
@@ -78,13 +83,20 @@ class Demo extends React.Component {
               {
                 key: 'underdot',
                 type: 'button',
-                text: '着重号',
+                text: underdotActive ? '取消着重' : '添加着重',
                 onClick: this.toggleUnderDot
+              }, {
+                key: 'preview',
+                type: 'button',
+                text: '输出HTML',
+                onClick: this.logHTML
               }
             ]}
+            customLanguageFn={customLanguageFn}
+            styleExportFn={styleExportFn}
             customStyleMap={customStyleMap}
             onChange={this.handleChange}
-            value={this.state.editorState}
+            value={editorState}
           />
         </div>
       </div>

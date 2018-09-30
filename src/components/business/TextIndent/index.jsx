@@ -1,60 +1,78 @@
-import './style.scss'
 import React from 'react'
-import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 
-const toggleTextIndent = (event, props) => {
+export default class TextAlign extends React.Component {
 
-  let textIndent = event.currentTarget.dataset.size
-  const hookReturns = props.hooks('toggle-text-indent', textIndent)(textIndent)
-
-  if (hookReturns === false) {
-    return false
+  state = {
+    currentIndent: 0
   }
 
-  if (!isNaN(hookReturns)) {
-    textIndent = hookReturns
+  componentWillReceiveProps (nextProps) {
+    this.setState({
+      currentIndent: ContentUtils.getSelectionBlockData(nextProps.editorState, 'textIndent') || 0
+    })
   }
 
-  props.editor.setValue(ContentUtils.toggleSelectionIndent(props.editorState, textIndent, props.textIndents))
-  props.editor.requestFocus()
+  increaseIndent = () => {
 
-}
+    const { currentIndent } = this.state
 
-export default (props) => {
-
-  let caption = null
-  let currentIndent = null
-
-  props.textIndents.find((item) => {
-    if (ContentUtils.selectionHasInlineStyle(props.editorState, 'INDENT-' + item)) {
-      caption = item
-      currentIndent = item
-      return true
+    if (currentIndent >= 6) {
+      return false
     }
-    return false
-  })
 
-  return (
-    <DropDown
-      caption={caption || props.defaultCaption}
-      containerNode={props.containerNode}
-      title={props.language.controls.textIndent}
-      className={'control-item dropdown bf-indent-dropdown'}
-    >
-      <ul className='bf-text-indents'>
-        {props.textIndents.map((item, index) => {
-          return (
-            <li
-              key={index}
-              className={item === currentIndent ? 'active' : null}
-              data-size={item}
-              onClick={(event) => toggleTextIndent(event, props)}
-            >{item}</li>
-          )
-        })}
-      </ul>
-    </DropDown>
-  )
+    let indent = this.props.hooks('increase-text-indent', currentIndent + 1)(currentIndent + 1)
+    isNaN(indent) && (indent = currentIndent + 1)
+
+    this.props.editor.setValue(ContentUtils.toggleSelectionIndent(this.props.editorState, indent, 6))
+    this.props.editor.requestFocus()
+
+  }
+
+  decreaseIndent = () => {
+
+    const { currentIndent } = this.state
+
+    if (currentIndent <= 0) {
+      return false
+    }
+
+    let indent = this.props.hooks('decrease-text-indent', currentIndent - 1)(currentIndent - 1)
+    isNaN(indent) && (indent = currentIndent - 1)
+
+    this.props.editor.setValue(ContentUtils.toggleSelectionIndent(this.props.editorState, indent, 6))
+    this.props.editor.requestFocus()
+
+  }
+
+  render () {
+
+    const { currentIndent } = this.state
+    const { language } = this.props
+
+    return (
+      <div className='control-item-group'>
+        <button
+          type='button'
+          data-title={language.controls.increaseIndent}
+          disabled={currentIndent >= 6}
+          className={`control-item button button-indent-increase${currentIndent > 0 && currentIndent < 6 ? ' active' : ''}`}
+          onClick={this.increaseIndent}
+        >
+          <i className={'bfi-indent-increase'}></i>
+        </button>
+        <button
+          type='button'
+          data-title={language.controls.decreaseIndent}
+          disabled={currentIndent <= 0}
+          className="control-item button button-indent-decrease"
+          onClick={this.decreaseIndent}
+        >
+          <i className={'bfi-indent-decrease'}></i>
+        </button>
+      </div>
+    )
+
+  }
 
 }

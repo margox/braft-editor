@@ -10,7 +10,7 @@ import FontFamilyPicker from 'components/business/FontFamily'
 import TextAlign from 'components/business/TextAlign'
 import EmojiPicker from 'components/business/EmojiPicker'
 import LetterSpacingPicker from 'components/business/LetterSpacing'
-import TextIndentPicker from 'components/business/TextIndent'
+import TextIndent from 'components/business/TextIndent'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
@@ -135,7 +135,7 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, textIndents} = this.props
+    const { editor, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const editorControls = getEditorControls(language)
     const commonProps = { editor, editorState, language, containerNode, hooks }
@@ -204,9 +204,8 @@ export default class ControlBar extends React.Component {
                 {...commonProps}
               />
             } else if (controlItem.type === 'text-indent') {
-              return <TextIndentPicker
+              return <TextIndent
                 key={index}
-                textIndents={textIndents}
                 defaultCaption={controlItem.title}
                 {...commonProps}
               />
@@ -315,10 +314,20 @@ export default class ControlBar extends React.Component {
                 </button>
               )
             } else {
+
+              let disabled = false
+
+              if (controlItem.command === 'undo') {
+                disabled = editorState.getUndoStack().size === 0
+              } else if (controlItem.command === 'redo') {
+                disabled = editorState.getRedoStack().size === 0
+              }
+
               return (
                 <button
                   type='button'
                   key={index}
+                  disabled={disabled}
                   data-title={controlItem.title}
                   className={this.getControlItemClassName({
                     type: controlItem.type,
