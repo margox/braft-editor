@@ -2,9 +2,14 @@ import BraftEditor, { editorDecorators } from './editor'
 import { EditorState } from 'draft-js'
 import { convertRawToEditorState, convertHTMLToEditorState, convertEditorStateToRaw, convertEditorStateToHTML } from 'braft-convert'
 
+EditorState.prototype.setConvertOptions = function (options = {}) {
+  this.convertOptions = options
+}
+
 // 为EditorState对象增加toHTML原型方法，用于将editorState转换成HTML字符串
-EditorState.prototype.toHTML = function () {
-  return convertEditorStateToHTML(this)
+EditorState.prototype.toHTML = function (options = {}) {
+  const convertOptions = this.convertOptions || {}
+  return convertEditorStateToHTML(this, {...convertOptions, ...options})
 }
 
 // 为EditorState对象增加toRAW原型方法，用于将editorState转换成RAW JSON对象或RAW JSON字符串
@@ -39,7 +44,7 @@ export { EditorState, editorDecorators }
 // 支持param.success时设置媒体文件的更多属性（尺寸等）
 
 // 2.1.0版本开发计划
-// [ ]支持样式的开关模式
+// [ ]增强扩展性
 
 // 2.2.0版本开发计划
 // [ ]允许自定义快捷键

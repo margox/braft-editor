@@ -7,7 +7,7 @@ import { ColorUtils, ContentUtils } from 'braft-utils'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
-import { getBlockRendererFn, customBlockRenderMap, getBlockStyleFn, getCustomStyleMap, decorators } from 'renderers'
+import { getBlockRendererFn, customBlockRenderMap, getBlockStyleFn, getCustomStyleMap, getCustomStyleFn, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
 
 const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
@@ -39,7 +39,13 @@ export default class BraftEditor extends React.Component {
 
     this.isLiving = false
     this.braftFinder = null
-    const defaultEditorState = ContentUtils.isEditorState(props.defaultValue) ? props.defaultValue : ContentUtils.createEmptyEditorState(editorDecorators)
+
+    const defaultEditorState = ContentUtils.isEditorState(props.defaultValue || props.value) ? (props.defaultValue || props.value) : ContentUtils.createEmptyEditorState(editorDecorators)
+
+    defaultEditorState.setConvertOptions({
+      fontFamilies: this.props.fontFamilies,
+      unitExportFn: this.props.unitExportFn
+    })
 
     this.state = {
       containerNode: null,
@@ -69,28 +75,38 @@ export default class BraftEditor extends React.Component {
 
   componentDidMount () {
 
-    const { value: editorState } = this.props
+    const { value: editorState, fontFamilies, unitExportFn } = this.props
 
     if (ContentUtils.isEditorState(editorState)) {
 
       const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
+      editorState.setConvertOptions({ fontFamilies, unitExportFn })
 
       this.setState({
         tempColors: filterColors([...this.state.tempColors, ...tempColors], this.props.colors),
         editorState: editorState
       })
 
-    } else if (editorState) {
-      // console.warn('')
     }
 
     this.isLiving = true
 
   }
 
+  componentDidUpdate (_, prevState) {
+
+    if (prevState.editorState !== this.state.editorState) {
+      this.state.editorState.setConvertOptions({
+        fontFamilies: this.props.fontFamilies,
+        unitExportFn: this.props.unitExportFn
+      })
+    }
+
+  }
+
   componentWillReceiveProps (nextProps) {
 
-    const { value: editorState, media } = nextProps
+    const { value: editorState, media, fontFamilies, unitExportFn } = nextProps
 
     if (media && media.items && this.braftFinder) {
       this.braftFinder.setItems(media.items)
@@ -101,6 +117,7 @@ export default class BraftEditor extends React.Component {
       if (editorState !== this.state.editorState) {
 
         const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
+        editorState.setConvertOptions({ fontFamilies, unitExportFn })
 
         this.setState({
           tempColors: filterColors([...this.state.tempColors, ...tempColors], this.props.colors),
@@ -111,8 +128,6 @@ export default class BraftEditor extends React.Component {
         this.setState({ editorState })
       }
 
-    } else if (editorState) {
-      // console.warn('')
     }
 
   }
@@ -326,7 +341,7 @@ export default class BraftEditor extends React.Component {
 
     let {
       controls, excludeControls, extendControls, disabled, media, language, colors, hooks,
-      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
+      unitExportFn, fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textIndents, textAligns, textBackgroundColor,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.props
 
@@ -371,10 +386,8 @@ export default class BraftEditor extends React.Component {
       imageControls, language, extendAtomics
     }, this.props.blockRendererFn)
 
-    const customStyleMap = getCustomStyleMap({
-      colors: [...colors, ...this.state.tempColors],
-      fontSizes, fontFamilies, lineHeights, letterSpacings, textIndents
-    }, this.props.customStyleMap)
+    const customStyleMap = getCustomStyleMap(this.props.customStyleMap)
+    const customStyleFn = getCustomStyleFn({ fontFamilies, unitExportFn, customStyleFn: this.props.customStyleFn })
 
     const draftProps = {
       ref: instance => { this.draftInstance = instance },
@@ -393,7 +406,8 @@ export default class BraftEditor extends React.Component {
       blockRenderMap: this.blockRenderMap,
       blockStyleFn: this.blockStyleFn,
       keyBindingFn: this.keyBindingFn,
-      customStyleMap, blockRendererFn,
+      customStyleMap, customStyleFn,
+      blockRendererFn,
       placeholder, stripPastedStyles,
       ...this.props.draftProps,
       ...this.state.draftProps

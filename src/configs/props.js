@@ -81,6 +81,7 @@ export default {
     name: 'Tahoma',
     family: 'tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif'
   }],
+  unitExportFn: unit => `${unit}px`,
   emojis: [
     '🤣', '🙌', '💚', '💛', '👏', '😉', '💯',
     '💕', '💞', '💘', '💙', '💝', '🖤', '💜',

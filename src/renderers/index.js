@@ -6,8 +6,9 @@ import Video from './atomics/Video'
 import Audio from './atomics/Audio'
 import Embed from './atomics/Embed'
 import HorizontalLine from './atomics/HorizontalLine'
-import _getBlockStyleFn from './styles/blockStyles'
-import _getCustomStyleMap from './styles/inlineStyles'
+import _getBlockStyleFn from './styles/blockStyleFn'
+import _getCustomStyleMap from './styles/inlineStyleMap'
+import _getCustomStyleFn from './styles/inlineStyleFn'
 import _decorators from './decorators'
 
 const getAtomicBlockComponent = (block, superProps) => (props) => {
@@ -83,4 +84,5 @@ export const customBlockRenderMap = Map({
 
 export const getBlockStyleFn = _getBlockStyleFn
 export const getCustomStyleMap = _getCustomStyleMap
+export const getCustomStyleFn = _getCustomStyleFn
 export const decorators = _decorators
