@@ -14,35 +14,13 @@ export default class TextAlign extends React.Component {
   }
 
   increaseIndent = () => {
-
-    const { currentIndent } = this.state
-
-    if (currentIndent >= 6) {
-      return false
-    }
-
-    let indent = this.props.hooks('increase-text-indent', currentIndent + 1)(currentIndent + 1)
-    isNaN(indent) && (indent = currentIndent + 1)
-
-    this.props.editor.setValue(ContentUtils.toggleSelectionIndent(this.props.editorState, indent, 6))
+    this.props.editor.setValue(ContentUtils.increaseSelectionIndent(this.props.editorState))
     this.props.editor.requestFocus()
-
   }
 
   decreaseIndent = () => {
-
-    const { currentIndent } = this.state
-
-    if (currentIndent <= 0) {
-      return false
-    }
-
-    let indent = this.props.hooks('decrease-text-indent', currentIndent - 1)(currentIndent - 1)
-    isNaN(indent) && (indent = currentIndent - 1)
-
-    this.props.editor.setValue(ContentUtils.toggleSelectionIndent(this.props.editorState, indent, 6))
+    this.props.editor.setValue(ContentUtils.decreaseSelectionIndent(this.props.editorState))
     this.props.editor.requestFocus()
-
   }
 
   render () {

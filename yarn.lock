@@ -1172,9 +1172,9 @@ braft-finder@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.10.tgz#1620cd56f423bca07978db3faf646a03f56fdb52"
 
-braft-utils@^0.0.19:
-  version "0.0.19"
-  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-0.0.19.tgz#9f33e4f98d05d191e94494ff507d571aac43bbbe"
+braft-utils@^0.0.22:
+  version "0.0.22"
+  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-0.0.22.tgz#b7b696514f0968eb91a3e5770bf674533b32ae92"
 
 brorand@^1.0.1:
   version "1.1.0"

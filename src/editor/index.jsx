@@ -6,6 +6,7 @@ import BraftFinder from 'braft-finder'
 import { ColorUtils, ContentUtils } from 'braft-utils'
 import { CompositeDecorator, DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
+import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, pastedFilesHandlers, pastedTextHandlers } from 'configs/handlers'
 import defaultProps from 'configs/props'
 import { getBlockRendererFn, customBlockRenderMap, getBlockStyleFn, getCustomStyleMap, getCustomStyleFn, decorators } from 'renderers'
 import ControlBar from 'components/business/ControlBar'
@@ -31,13 +32,7 @@ export default class BraftEditor extends React.Component {
     super(props)
 
     this.isFocused = false
-    this.keyBindingFn = getKeyBindingFn(props.customKeyBindingFn)
-    this.blockStyleFn = getBlockStyleFn(props.blockStyleFn)
     this.blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
-
-    if (props.blockRenderMapFn) {
-      this.blockRenderMap = props.blockRenderMapFn(this.blockRenderMap)
-    }
 
     this.isLiving = false
     this.braftFinder = null
@@ -131,9 +126,10 @@ export default class BraftEditor extends React.Component {
     this.isLiving = false
   }
 
-  onChange = (editorState) => {
+  onChange = (editorState, callback) => {
     this.setState({ editorState }, () => {
       this.props.onChange && this.props.onChange(editorState)
+      callback && callback(editorState)
     })
   }
 
@@ -149,8 +145,8 @@ export default class BraftEditor extends React.Component {
     return this.state.editorState
   }
 
-  setValue = (editorState) => {
-    return this.onChange(editorState)
+  setValue = (editorState, callback) => {
+    return this.onChange(editorState, callback)
   }
 
   forceRender = () => {
@@ -159,15 +155,7 @@ export default class BraftEditor extends React.Component {
 
   onTab = (event) => {
 
-    const blockType = ContentUtils.getSelectionBlockType(this.state.editorState)
-
-    if (blockType === 'code-block') {
-      this.setValue(ContentUtils.insertText(this.state.editorState, ' '.repeat(this.props.codeTabIndents)))
-      event.preventDefault()
-      return false
-    } else if (blockType !== 'atomic') {
-      const currentIndex = ContentUtils.getSelectionBlockData(this.state.editorState, 'textIndent') || 0
-      currentIndex < 6 && this.setValue(ContentUtils.toggleSelectionIndent(this.state.editorState, currentIndex + 1))
+    if (keyCommandHandlers('tab', this.state.editorState, this) === 'handled') {
       event.preventDefault()
     }
 
@@ -189,134 +177,19 @@ export default class BraftEditor extends React.Component {
     setTimeout(() => this.draftInstance.focus(), 0)
   }
 
-  handleKeyCommand = (command) => {
+  handleKeyCommand = (command, editorState) => keyCommandHandlers(command, editorState, this)
 
-    if (command === 'braft-save') {
-      this.props.onSave && this.props.onSave()
-      return 'handled'
-    }
+  handleReturn = (event, editorState) => returnHandlers(event, editorState, this)
 
-    const nextEditorState = ContentUtils.handleKeyCommand(this.state.editorState, command)
+  handleBeforeInput = (chars, editorState) => beforeInputHandlers(chars, editorState, this)
 
-    if (nextEditorState) {
-      this.setValue(nextEditorState)
-      return 'handled'
-    }
+  handleDrop = (selectionState, dataTransfer) => dropHandlers(selectionState, dataTransfer, this)
 
-    return 'not-handled'
+  handleDroppedFiles = (selectionState, files) => droppedFilesHandlers(selectionState, files, this)
 
-  }
+  handlePastedFiles = (files) => pastedFilesHandlers(files, this)
 
-  handleReturn = (event) => {
-
-    const currentBlock = ContentUtils.getSelectionBlock(this.state.editorState)
-    const currentBlockType = currentBlock.getType()
-
-    if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
-
-      if (currentBlock.getLength() === 0) {
-        this.setValue(ContentUtils.toggleSelectionBlockType(this.state.editorState, 'unstyled'))
-        return 'handled'
-      }
-
-      return 'not-handled'
-
-    } else if (currentBlockType === 'code-block') {
-
-      if (
-        event.which === 13 && (
-          event.getModifierState('Shift') ||
-          event.getModifierState('Alt') ||
-          event.getModifierState('Control')
-        )) {
-        this.setValue(ContentUtils.toggleSelectionBlockType(this.state.editorState, 'unstyled'))
-        return 'handled'
-      }
-
-      return 'not-handled'
-
-    } else {
-
-      const nextEditorState = ContentUtils.handleNewLine(this.state.editorState, event)
-
-      if (nextEditorState) {
-        this.setValue(nextEditorState)
-        return 'handled'
-      }
-
-      return 'not-handled'
-
-    }
-
-  }
-
-  handleDrop = (selectionState, dataTransfer) => {
-
-    if (window && window.__BRAFT_DRAGING__IMAGE__) {
-
-      let editorState = ContentUtils.removeBlock(this.state.editorState, window.__BRAFT_DRAGING__IMAGE__.block, selectionState)
-      editorState = ContentUtils.insertMedias(editorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData])
-
-      window.__BRAFT_DRAGING__IMAGE__ = null
-
-      this.setDraftProps({ readOnly: false })
-      this.setValue(editorState)
-
-      return 'handled'
-
-    } else if (!dataTransfer || !dataTransfer.getText()) {
-      return 'handled'
-    }
-
-    return 'not-handled'
-
-  }
-
-  handleDroppedFiles = (_, files) => {
-    return this.resolveFiles(files)
-  }
-
-  handlePastedFiles = (files) => {
-    return this.resolveFiles(files)
-  }
-
-  handlePastedText = (_, htmlString) => {
-
-    if (!htmlString || this.props.stripPastedStyles) {
-      return false
-    }
-
-    const tempColors = ColorUtils.detectColorsFromHTMLString(htmlString)
-
-    this.setState({
-      tempColors: [...this.state.tempColors, ...tempColors].filter(item => this.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
-    }, () => {
-      this.setValue(ContentUtils.insertHTML(this.state.editorState, htmlString))
-    })
-
-    return true
-
-  }
-
-  resolveFiles = (files) => {
-
-    const { pasteImage } = { ...defaultProps.media, ...this.props.media }
-
-    pasteImage && files.slice(0, 5).forEach((file) => {
-
-      file && file.type.indexOf('image') > -1 && this.braftFinder.uploadImage(file, image => {
-        this.isLiving && this.setValue(ContentUtils.insertMedias(this.state.editorState, [image]))
-      })
-
-    })
-
-    if (files[0] && files[0].type.indexOf('image') > -1 && pasteImage) {
-      return 'handled'
-    }
-
-    return 'not-handled'
-
-  }
+  handlePastedText = (text, html, editorState) => pastedTextHandlers(text, html, editorState, this)
 
   undo = () => {
     this.setValue(ContentUtils.undo(this.state.editorState))
@@ -335,7 +208,9 @@ export default class BraftEditor extends React.Component {
   }
 
   clearEditorContent = () => {
-    this.setValue(ContentUtils.clear(this.state.editorState))
+    this.setValue(ContentUtils.clear(this.state.editorState), (editorState) => {
+      this.setValue(ContentUtils.toggleSelectionIndent(editorState, 0))
+    })
   }
 
   render () {
@@ -387,15 +262,19 @@ export default class BraftEditor extends React.Component {
       containerNode: this.state.containerNode,
       imageControls, language, extendAtomics
     }, this.props.blockRendererFn)
-
+    const blockRenderMap = this.props.blockRenderMap ? this.blockRenderMap.merge(this.props.blockRenderMap) : this.blockRenderMap
+    const blockStyleFn = getBlockStyleFn(this.props.blockStyleFn)
     const customStyleMap = getCustomStyleMap(this.props.customStyleMap)
     const customStyleFn = getCustomStyleFn({ fontFamilies, unitExportFn, customStyleFn: this.props.customStyleFn })
+
+    const keyBindingFn = getKeyBindingFn(this.props.keyBindingFn)
 
     const draftProps = {
       ref: instance => { this.draftInstance = instance },
       editorState: this.state.editorState,
       handleKeyCommand: this.handleKeyCommand,
       handleReturn: this.handleReturn,
+      handleBeforeInput: this.handleBeforeInput,
       handleDrop: this.handleDrop,
       handleDroppedFiles: this.handleDroppedFiles,
       handlePastedText: this.handlePastedText,
@@ -405,12 +284,9 @@ export default class BraftEditor extends React.Component {
       onFocus: this.onFocus,
       onBlur: this.onBlur,
       readOnly: disabled,
-      blockRenderMap: this.blockRenderMap,
-      blockStyleFn: this.blockStyleFn,
-      keyBindingFn: this.keyBindingFn,
+      blockRenderMap, blockRendererFn, blockStyleFn,
       customStyleMap, customStyleFn,
-      blockRendererFn,
-      placeholder, stripPastedStyles,
+      keyBindingFn, placeholder, stripPastedStyles,
       ...this.props.draftProps,
       ...this.state.draftProps
     }

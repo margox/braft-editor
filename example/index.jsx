@@ -60,9 +60,6 @@ class Demo extends React.Component {
   toggleUnderDot = () => {
     this.setState({
       editorState: ContentUtils.toggleSelectionInlineStyle(this.state.editorState, 'UNDERDOT')
-    }, () => {
-      const blockData = ContentUtils.getSelectionBlockData(this.state.editorState)
-      console.log(blockData.toJS())
     })
   }
 

@@ -17,6 +17,7 @@ export default {
   componentBelowControlBar: null,
   media: {
     pasteImage: true,
+    imagePasteLimit: 5,
     image: true,
     video: true,
     audio: true,
