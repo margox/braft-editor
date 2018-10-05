@@ -59,15 +59,14 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.0.0",
-    "braft-convert": "^2.1.0",
+    "braft-convert": "^2.1.4",
     "braft-finder": "^0.0.10",
-    "braft-utils": "^0.0.22",
+    "braft-utils": "^0.0.23",
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",
     "draftjs-utils": "^0.9.4"
   },
   "peerDependencies": {
-    "braft-convert": "^1.9.7",
     "react": "^15.0.2|| ^16.0.0-rc || ^16.0.0",
     "react-dom": "^15.0.2|| ^16.0.0-rc || ^16.0.0"
   }

@@ -31,7 +31,7 @@ export default (lang) => [
     text: <i className="bfi-bold"></i>,
     type: 'inline-style',
     command: 'bold'
-  },{
+  }, {
     key: 'italic',
     title: lang.controls.italic,
     text: <i className="bfi-italic"></i>,

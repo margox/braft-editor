@@ -9,7 +9,7 @@ import HorizontalLine from './atomics/HorizontalLine'
 import _getBlockStyleFn from './styles/blockStyleFn'
 import _getCustomStyleMap from './styles/inlineStyleMap'
 import _getCustomStyleFn from './styles/inlineStyleFn'
-import _decorators from './decorators'
+import _getDecorators from './decorators'
 
 const getAtomicBlockComponent = (block, superProps) => (props) => {
 
@@ -85,4 +85,4 @@ export const customBlockRenderMap = Map({
 export const getBlockStyleFn = _getBlockStyleFn
 export const getCustomStyleMap = _getCustomStyleMap
 export const getCustomStyleFn = _getCustomStyleFn
-export const decorators = _decorators
+export const getDecorators = _getDecorators

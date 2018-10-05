@@ -14,6 +14,7 @@ import TextIndent from 'components/business/TextIndent'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
+import { extensionControls } from 'helpers/extension'
 
 const commandHookMap = {
   'inline-style': 'toggle-inline-style',
@@ -146,6 +147,7 @@ export default class ControlBar extends React.Component {
         {
           [
             ...controls,
+            ...extensionControls,
             ...extendControls
           ].map((item, index) => {
             let itemKey = typeof item === 'string' ? item : item.key

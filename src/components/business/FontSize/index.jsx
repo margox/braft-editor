@@ -28,7 +28,7 @@ export default (props) => {
 
   props.fontSizes.find((item) => {
     if (ContentUtils.selectionHasInlineStyle(props.editorState, 'FONTSIZE-' + item)) {
-      caption = item + 'px'
+      caption = item
       currentFontSize = item
       return true
     }
@@ -50,7 +50,7 @@ export default (props) => {
               className={item === currentFontSize ? 'active' : null}
               data-size={item}
               onClick={(event) => toggleFontSize(event, props)}
-            >{item + 'px'}</li>
+            >{item}</li>
           )
         })}
       </ul>

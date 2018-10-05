@@ -182,7 +182,7 @@ export const pastedTextHandlers = (text, html, editorState, editor) => {
   editor.setState({
     tempColors: [...editor.state.tempColors, ...tempColors].filter(item => editor.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
   }, () => {
-    editor.setValue(ContentUtils.insertHTML(editorState, html))
+    editor.setValue(ContentUtils.insertHTML(editorState, html, 'paste'))
   })
 
   return 'handled'

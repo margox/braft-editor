@@ -3,43 +3,44 @@ import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 import { ContentUtils } from 'braft-utils'
 
-const customStyleMap = {
-  'UNDERDOT': {
-    textEmphasis: 'circle',
-    textEmphasisPosition: 'under',
-    WebkitTextEmphasis: 'circle',
-    WebkitTextEmphasisPosition: 'under'
-  }
-}
-
-const styleExportFn = (style) => {
-
-  if (style === 'UNDERDOT') {
-    return <span style={customStyleMap.UNDERDOT}/>
-  }
-
-}
-
-const styleImportFn = (nodeName, node, currentStyle) => {
-
-  let newStyle = currentStyle;
-
-  [].forEach.call(node.style, (style) => {
-
-    if (nodeName === 'span' && style.indexOf('text-emphasis') !== -1) {
-      newStyle = newStyle.add('UNDERDOT')
+BraftEditor.use([
+  {
+    type: 'inline-style',
+    name: 'underdot',
+    control: {
+      text: '着重'
+    },
+    style: {
+      textEmphasis: 'circle',
+      textEmphasisPosition: 'under',
+      WebkitTextEmphasis: 'circle',
+      WebkitTextEmphasisPosition: 'under'
+    },
+    importer: (nodeName, node) => nodeName === 'span' && [].find.call(node.style, (styleName) => styleName.indexOf('text-emphasis') !== -1)
+  }, {
+    type: 'inline-style',
+    name: 'red',
+    control: {
+      text: '加红'
+    },
+    style: {
+      color: 'red'
+    },
+    importer: (nodeName, node) => nodeName === 'span' && node.style.color === 'red'
+  }, {
+    type: 'entity',
+    name: 'keybord-item',
+    component: (props) => <span className="keyboard-item">{props.children}</span>,
+    importer: (_, node) => {
+      if (node.classList && node.classList.contains('keyboard-item')) {
+        return {}
+      }
+    },
+    exporter: (_, originalText) => {
+      return <span className="keyboard-item">{originalText}</span>
     }
-
-  })
-
-  return newStyle
-
-}
-
-const customLanguageFn = (language) => {
-  language.controls.clear = '删掉内容'
-  return language
-}
+  }
+])
 
 class Demo extends React.Component {
 
@@ -48,19 +49,13 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState('<p><strong>撒<em>打<span style="text-decoration:line-through"><span style="text-emphasis:circle;text-emphasis-position:under;-webkit-text-emphasis:circle;-webkit-text-emphasis-position:under">算</span><span style="color:#07a9fe">打</span></span></em></strong></p>', { styleImportFn })
+      editorState: BraftEditor.createEditorState('<p>Press <span class="keyboard-item">Ctrl</span> + <span class="keyboard-item">V</span> to paste copied contents.</p>')
     }
 
   }
 
   handleChange = (editorState) => {
     this.setState({ editorState })
-  }
-
-  toggleUnderDot = () => {
-    this.setState({
-      editorState: ContentUtils.toggleSelectionInlineStyle(this.state.editorState, 'UNDERDOT')
-    })
   }
 
   logHTML = () => {
@@ -70,7 +65,6 @@ class Demo extends React.Component {
   render() {
 
     const { editorState } = this.state
-    const underdotActive = ContentUtils.selectionHasInlineStyle(editorState, 'UNDERDOT')
 
     return (
       <div>
@@ -78,20 +72,12 @@ class Demo extends React.Component {
           <BraftEditor
             extendControls={[
               {
-                key: 'underdot',
-                type: 'button',
-                text: underdotActive ? '取消着重' : '添加着重',
-                onClick: this.toggleUnderDot
-              }, {
                 key: 'preview',
                 type: 'button',
                 text: '输出HTML',
                 onClick: this.logHTML
               }
             ]}
-            customLanguageFn={customLanguageFn}
-            styleExportFn={styleExportFn}
-            customStyleMap={customStyleMap}
             onChange={this.handleChange}
             value={editorState}
           />
