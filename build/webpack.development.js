@@ -8,7 +8,7 @@ module.exports = merge(baseConfigs, {
   mode: 'development',
   devtool: 'source-map',
   entry: {
-    index : './example/index.jsx'
+    index : './playground/index.jsx'
   },
   output: {
     path: path.join(__dirname, './dist'),
@@ -17,12 +17,12 @@ module.exports = merge(baseConfigs, {
   plugins: [
     new ExtractTextPlugin('index.css'),
     new HtmlWebpackPlugin({
-      template: './example/index.html'
+      template: './playground/index.html'
     })
   ],
   devServer: {
     stats: { chunks:false },
-    contentBase: './example',
+    contentBase: './playground',
     port: 5998,
     hot: true
   }

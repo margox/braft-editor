@@ -61,9 +61,10 @@
     "@babel/runtime": "^7.0.0",
     "braft-convert": "^2.1.4",
     "braft-finder": "^0.0.10",
-    "braft-utils": "^0.0.23",
+    "braft-utils": "^2.1.0",
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",
+    "draft-js-multidecorators": "^1.0.0",
     "draftjs-utils": "^0.9.4"
   },
   "peerDependencies": {

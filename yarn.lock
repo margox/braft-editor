@@ -1172,9 +1172,9 @@ braft-finder@^0.0.10:
   version "0.0.10"
   resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.10.tgz#1620cd56f423bca07978db3faf646a03f56fdb52"
 
-braft-utils@^0.0.23:
-  version "0.0.23"
-  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-0.0.23.tgz#c4acd7d527ea745f08cdec33eb7b5039b6d2ab4a"
+braft-utils@^2.1.0:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-2.1.2.tgz#115480335a28c44a27e92711402771843d1657bb"
 
 brorand@^1.0.1:
   version "1.1.0"
@@ -2090,6 +2090,12 @@ draft-convert@^2.0.0:
   dependencies:
     immutable "~3.7.4"
     invariant "^2.2.1"
+
+draft-js-multidecorators@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/draft-js-multidecorators/-/draft-js-multidecorators-1.0.0.tgz#6c4be8d7b78dd2b966ee51ee6cc179b9b535e612"
+  dependencies:
+    immutable "*"
 
 draft-js@^0.10.3:
   version "0.10.5"
@@ -3196,6 +3202,10 @@ ignore-walk@^3.0.1:
 ignore@^4.0.2:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-4.0.6.tgz#750e3db5862087b4737ebac8207ffd1ef27b25fc"
+
+immutable@*:
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.8.2.tgz#c2439951455bb39913daf281376f1530e104adf3"
 
 immutable@~3.7.4:
   version "3.7.6"

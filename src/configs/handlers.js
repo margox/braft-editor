@@ -70,6 +70,8 @@ export const returnHandlers = (event, editorState, editor) => {
       return 'handled'
     }
 
+    return 'not-handled'
+
   } else if (currentBlockType === 'code-block') {
 
     if (
@@ -81,6 +83,8 @@ export const returnHandlers = (event, editorState, editor) => {
       editor.setValue(ContentUtils.toggleSelectionBlockType(editorState, 'unstyled'))
       return 'handled'
     }
+
+    return 'not-handled'
 
   }
 

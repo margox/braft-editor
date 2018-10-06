@@ -50,13 +50,15 @@ export default class ControlBar extends React.Component {
       className += ' active'
     } else if (type === 'block-type' && ContentUtils.getSelectionBlockType(this.props.editorState) === command) {
       className += ' active'
+    } else if (type === 'entity' && ContentUtils.getSelectionEntityType(this.props.editorState) === command) {
+      className += ' active'
     }
 
     return className
 
   }
 
-  applyControl (command, type) {
+  applyControl (command, type, data = {}) {
 
     const hookReturns = this.props.hooks(commandHookMap[type] || type, command)(command)
 
@@ -72,6 +74,12 @@ export default class ControlBar extends React.Component {
       this.props.editor.setValue(ContentUtils.toggleSelectionInlineStyle(this.props.editorState, command))
     } else if (type === 'block-type') {
       this.props.editor.setValue(ContentUtils.toggleSelectionBlockType(this.props.editorState, command))
+    } else if (type === 'entity') {
+      this.props.editor.setValue(ContentUtils.toggleSelectionEntity(this.props.editorState, {
+        type: command,
+        mutability: data.mutability || 'MUTABLE',
+        data: data.data || {}
+      }))
     } else if (type === 'editor-method') {
       this.props.editor[command] && this.props.editor[command]()
     }
@@ -141,15 +149,12 @@ export default class ControlBar extends React.Component {
     const editorControls = getEditorControls(language)
     const commonProps = { editor, editorState, language, containerNode, hooks }
     const renderedControls = []
+    const allControls = extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 
     return (
       <div className='bf-controlbar' onMouseDown={this.preventDefault}>
         {
-          [
-            ...controls,
-            ...extensionControls,
-            ...extendControls
-          ].map((item, index) => {
+          allControls.map((item, index) => {
             let itemKey = typeof item === 'string' ? item : item.key
             if (typeof itemKey !== 'string') {
               return null
@@ -335,7 +340,7 @@ export default class ControlBar extends React.Component {
                     type: controlItem.type,
                     command: controlItem.command
                   })}
-                  onClick={() => this.applyControl(controlItem.command, controlItem.type)}
+                  onClick={() => this.applyControl(controlItem.command, controlItem.type, controlItem.data)}
                 >
                   {controlItem.text}
                 </button>

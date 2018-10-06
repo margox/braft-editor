@@ -1,7 +1,7 @@
 import BraftEditor from './editor'
 import { EditorState } from 'draft-js'
 import { convertRawToEditorState, convertHTMLToEditorState, convertEditorStateToRaw, convertEditorStateToHTML } from 'braft-convert'
-import { createExtensibleEditor, extendStyleImportFn, extendEntityImportFn } from 'helpers/extension'
+import { createExtensibleEditor, compositeStyleImportFn, compositeEntityImportFn } from 'helpers/extension'
 import { getDecorators } from 'renderers'
 
 EditorState.prototype.setConvertOptions = function (options = {}) {
@@ -22,10 +22,8 @@ EditorState.prototype.toRAW = function (noStringify) {
 // 为EditorState对象增加新的静态方法，用于从raw或者html内容创建ediorState
 BraftEditor.createEditorState = EditorState.createFrom = (content, options = {}) => {
 
-  options.styleImportFn = extendStyleImportFn(options.styleImportFn)
-  options.entityImportFn = extendEntityImportFn(options.entityImportFn)
-
-  console.log(getDecorators())
+  options.styleImportFn = compositeStyleImportFn(options.styleImportFn)
+  options.entityImportFn = compositeEntityImportFn(options.entityImportFn)
 
   if (typeof content === 'object' && content && content.blocks && content.entityMap) {
     return convertRawToEditorState(content, getDecorators())
@@ -52,6 +50,9 @@ export { EditorState, getDecorators }
 // [ ]增强扩展性
 // [ ]完成font-size等样式的全量支持
 // [ ]支持无限制取色器
+
+// 2.2版本开发计划
+// [ ]支持代码块语法高亮
 
 // 2.3版本开发计划
 // [ ]增加代码块高亮支持

@@ -1,0 +1,9 @@
+{
+  "devDependencies": {
+    "formidable": "^1.2.1"
+  },
+  "dependencies": {
+    "draft-js-prism": "^1.0.6",
+    "prismjs": "^1.15.0"
+  }
+}

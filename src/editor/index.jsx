@@ -6,11 +6,11 @@ import BraftFinder from 'braft-finder'
 import { ColorUtils, ContentUtils } from 'braft-utils'
 import { DefaultDraftBlockRenderMap, Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
-import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, pastedFilesHandlers, pastedTextHandlers } from 'configs/handlers'
 import defaultProps from 'configs/props'
-import { getBlockRendererFn, customBlockRenderMap, getBlockStyleFn, getCustomStyleMap, getCustomStyleFn, getDecorators } from 'renderers'
+import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, pastedFilesHandlers, pastedTextHandlers } from 'configs/handlers'
+import { getBlockRendererFn, getBlockRenderMap, getBlockStyleFn, getCustomStyleMap, getCustomStyleFn, getDecorators } from 'renderers'
+import { compositeStyleImportFn, compositeStyleExportFn, compositeEntityImportFn, compositeEntityExportFn } from 'helpers/extension'
 import ControlBar from 'components/business/ControlBar'
-import { extendStyleImportFn, extendStyleExportFn, extendEntityImportFn, extendEntityExportFn } from 'helpers/extension'
 
 const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
   return hooks[hookName] || (() => defaultReturns)
@@ -24,10 +24,10 @@ const getConvertOptions = (props) => {
 
   const convertOptions = { ...defaultProps.converts, ...props.converts, fontFamilies: props.fontFamilies }
 
-  convertOptions.styleImportFn = extendStyleImportFn(convertOptions.styleImportFn)
-  convertOptions.styleExportFn = extendStyleExportFn(convertOptions.styleExportFn)
-  convertOptions.entityImportFn = extendEntityImportFn(convertOptions.entityImportFn)
-  convertOptions.entityExportFn = extendEntityExportFn(convertOptions.entityExportFn)
+  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn)
+  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn)
+  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn)
+  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn)
 
   return convertOptions
 
@@ -41,7 +41,7 @@ export default class BraftEditor extends React.Component {
 
     super(props)
 
-    this.blockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
+    this.blockRenderMap = DefaultDraftBlockRenderMap.merge(getBlockRenderMap())
     this.editorDecorators = getDecorators()
 
     this.isFocused = false
@@ -230,6 +230,19 @@ export default class BraftEditor extends React.Component {
     })
   }
 
+  setDraftProps (draftProps) {
+    this.setState({
+      draftProps: {
+        ...this.state.draftProps,
+        ...draftProps
+      }
+    })
+  }
+
+  setEditorContainerNode = (containerNode) => {
+    this.setState({ containerNode }, this.forceRender)
+  }
+
   render () {
 
     let {
@@ -319,19 +332,6 @@ export default class BraftEditor extends React.Component {
       </div>
     )
 
-  }
-
-  setDraftProps (draftProps) {
-    this.setState({
-      draftProps: {
-        ...this.state.draftProps,
-        ...draftProps
-      }
-    })
-  }
-
-  setEditorContainerNode = (containerNode) => {
-    this.setState({ containerNode }, this.forceRender)
   }
 
 }

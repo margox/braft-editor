@@ -1,9 +1,10 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
-import { ContentUtils } from 'braft-utils'
+import CodeHighlighter from './extensions/code-highlight'
 
 BraftEditor.use([
+  CodeHighlighter,
   {
     type: 'inline-style',
     name: 'underdot',
@@ -18,18 +19,11 @@ BraftEditor.use([
     },
     importer: (nodeName, node) => nodeName === 'span' && [].find.call(node.style, (styleName) => styleName.indexOf('text-emphasis') !== -1)
   }, {
-    type: 'inline-style',
-    name: 'red',
-    control: {
-      text: '加红'
-    },
-    style: {
-      color: 'red'
-    },
-    importer: (nodeName, node) => nodeName === 'span' && node.style.color === 'red'
-  }, {
     type: 'entity',
     name: 'keybord-item',
+    control: {
+      text: '按键'
+    },
     component: (props) => <span className="keyboard-item">{props.children}</span>,
     importer: (_, node) => {
       if (node.classList && node.classList.contains('keyboard-item')) {
@@ -49,7 +43,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState('<p>Press <span class="keyboard-item">Ctrl</span> + <span class="keyboard-item">V</span> to paste copied contents.</p>')
+      editorState: BraftEditor.createEditorState('<p></p><pre><code>console.log("Hello World!")</code></pre><p></p>')
     }
 
   }

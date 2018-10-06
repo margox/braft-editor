@@ -1,4 +1,4 @@
-import { extendInlineStyleMap } from 'helpers/extension'
+import { extensionInlineStyleMap } from 'helpers/extension'
 
 export default (customStyleMap = {}) => ({
   'SUPERSCRIPT': {
@@ -11,6 +11,6 @@ export default (customStyleMap = {}) => ({
     bottom: '-8px',
     fontSize: '11px'
   },
-  ...extendInlineStyleMap,
+  ...extensionInlineStyleMap,
   ...customStyleMap
 })

@@ -1,4 +1,4 @@
-import { extendInlineStyleFns } from 'helpers/extension'
+import { extensionInlineStyleFns } from 'helpers/extension'
 
 const getStyleValue = (style) => style.split('-')[1]
 
@@ -7,8 +7,8 @@ export default (options) => (styles, block) => {
   let output = {}
   const { fontFamilies, unitExportFn, customStyleFn } = options
 
-  Object.keys(extendInlineStyleFns).forEach(key => {
-    output = extendInlineStyleFns[key](styles, block, output) || output
+  Object.keys(extensionInlineStyleFns).forEach(key => {
+    output = extensionInlineStyleFns[key](styles, block, output) || output
   })
 
   output = customStyleFn ? customStyleFn(styles, block, output) : {}
