@@ -6,7 +6,7 @@ import Embed from 'renderers/atomics/Embed'
 import HorizontalLine from 'renderers/atomics/HorizontalLine'
 import { extensionBlockRendererFns } from 'helpers/extension'
 
-const getAtomicBlockComponent = (block, superProps) => (props) => {
+const getAtomicBlockComponent = (superProps) => (props) => {
 
   const entityKey = props.block.getEntityAt(0)
 
@@ -19,7 +19,8 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
   const mediaType = entity.getType()
   const mediaProps = {
     ...superProps,
-    block, mediaData, entityKey
+    block: props.block,
+    mediaData, entityKey
   }
 
   if (mediaType === 'IMAGE') {
@@ -48,31 +49,28 @@ const getAtomicBlockComponent = (block, superProps) => (props) => {
 
 }
 
-export default (props, customBlockRendererFn) => (block) => {
+export default (superProps, customBlockRendererFn) => (block) => {
 
+  const blockType = block.getType()
   let blockRenderer = null
 
   if (customBlockRendererFn) {
-    blockRenderer = customBlockRendererFn(block) || null
+    blockRenderer = customBlockRendererFn(superProps) || null
   }
 
   if (blockRenderer) {
     return blockRenderer
   }
 
-  Object.keys(extensionBlockRendererFns).find(key => {
-    const matchedResult = extensionBlockRendererFns[key](block, props)
-    matchedResult && (blockRenderer = matchedResult)
-    return !!matchedResult
-  })
+  blockRenderer = extensionBlockRendererFns[blockType] ? extensionBlockRendererFns[blockType](superProps) : null
 
   if (blockRenderer) {
     return blockRenderer
   }
 
-  if (block.getType() === 'atomic') {
+  if (blockType === 'atomic') {
     blockRenderer = {
-      component: getAtomicBlockComponent(block, props),
+      component: getAtomicBlockComponent(superProps),
       editable: false
     }
   }

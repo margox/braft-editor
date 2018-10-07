@@ -4,7 +4,7 @@ import BraftEditor from '../src'
 import CodeHighlighter from './extensions/code-highlight'
 
 BraftEditor.use([
-  CodeHighlighter,
+  CodeHighlighter(),
   {
     type: 'inline-style',
     name: 'underdot',

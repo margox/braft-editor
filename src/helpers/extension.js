@@ -3,7 +3,6 @@
 // - 允许指定可使用扩展的编辑器id
 
 import React from 'react'
-import { Map } from 'immutable'
 
 export const extensionControls = []
 export const extensionDecorators = []
@@ -16,6 +15,8 @@ export const extensionBlockStyleMap = {}
 
 export const extensionInlineStyleMap = {}
 export const extensionInlineStyleFns = {}
+
+export const extensionEditorHandlers = {}
 
 const styleImporters = {}
 const styleExporters = {}
@@ -164,18 +165,18 @@ const useExtension = (extension) => {
 
   } else if (extension.type === 'block') {
 
-    const blockName = extension.name
+    const blockType = extension.name
 
     if (extension.renderMap) {
-      extensionBlockRenderMap[blockName] = Map({
-        [blockName]: extension.renderMap
-      })
-    } else if (extension.rendererFn) {
-      extensionBlockRendererFns[blockName] = extension.rendererFn
+      extensionBlockRenderMap[blockType] = extension.renderMap
     }
 
-    extension.importer && (blockImporters[blockName] = extension.importer)
-    extension.exporter && (blockExporters[blockName] = extension.exporter)
+    if (extension.rendererFn) {
+      extensionBlockRendererFns[blockType] = extension.rendererFn
+    }
+
+    extension.importer && (blockImporters[blockType] = extension.importer)
+    extension.exporter && (blockExporters[blockType] = extension.exporter)
 
   } else if (extension.type === 'atomic') {
     // TODO

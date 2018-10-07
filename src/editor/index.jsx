@@ -4,12 +4,12 @@ import React from 'react'
 import languages from 'languages'
 import BraftFinder from 'braft-finder'
 import { ColorUtils, ContentUtils } from 'braft-utils'
-import { DefaultDraftBlockRenderMap, Editor } from 'draft-js'
+import { Editor } from 'draft-js'
 import getKeyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
 import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, pastedFilesHandlers, pastedTextHandlers } from 'configs/handlers'
 import { getBlockRendererFn, getBlockRenderMap, getBlockStyleFn, getCustomStyleMap, getCustomStyleFn, getDecorators } from 'renderers'
-import { compositeStyleImportFn, compositeStyleExportFn, compositeEntityImportFn, compositeEntityExportFn } from 'helpers/extension'
+import { compositeStyleImportFn, compositeStyleExportFn, compositeEntityImportFn, compositeEntityExportFn, compositeBlockImportFn, compositeBlockExportFn } from 'helpers/extension'
 import ControlBar from 'components/business/ControlBar'
 
 const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
@@ -28,6 +28,8 @@ const getConvertOptions = (props) => {
   convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn)
   convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn)
   convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn)
+  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn)
+  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn)
 
   return convertOptions
 
@@ -41,7 +43,7 @@ export default class BraftEditor extends React.Component {
 
     super(props)
 
-    this.blockRenderMap = DefaultDraftBlockRenderMap.merge(getBlockRenderMap())
+    this.blockRenderMap = 
     this.editorDecorators = getDecorators()
 
     this.isFocused = false
@@ -287,13 +289,15 @@ export default class BraftEditor extends React.Component {
 
     const { unitExportFn } = this.state.editorState.convertOptions
 
-    const blockRendererFn = getBlockRendererFn({
+    const commonProps = {
       editor: this, hooks,
       editorState: this.state.editorState,
       containerNode: this.state.containerNode,
       imageControls, language, extendAtomics
-    }, this.props.blockRendererFn)
-    const blockRenderMap = this.props.blockRenderMap ? this.blockRenderMap.merge(this.props.blockRenderMap) : this.blockRenderMap
+    }
+
+    const blockRendererFn = getBlockRendererFn(commonProps, this.props.blockRendererFn)
+    const blockRenderMap = getBlockRenderMap(commonProps, this.props.blockRenderMap)
     const blockStyleFn = getBlockStyleFn(this.props.blockStyleFn)
     const customStyleMap = getCustomStyleMap(this.props.customStyleMap)
     const customStyleFn = getCustomStyleFn({ fontFamilies, unitExportFn, customStyleFn: this.props.customStyleFn })
