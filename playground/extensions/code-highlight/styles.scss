@@ -10,7 +10,7 @@
     .syntax-switcher{
       position: relative;
       width: 120px;
-      height: 26px;
+      height: 28px;
       &:hover {
         span{
           background-color: #fff;
@@ -27,12 +27,14 @@
         left: 5px;
         display: block;
         width: 120px;
-        height: 26px;
+        height: 28px;
+        background-clip: padding-box;
         padding-left: 10px;
+        border: 1px solid rgba(#000, .1);
         border-radius: 3px 3px 0 0;
         color: #888;
         font-size: 12px;
-        line-height: 28px;
+        line-height: 26px;
         cursor: pointer;
         user-select: none;
       }
@@ -51,7 +53,8 @@
       list-style: none;
       overflow: auto;
       background-color: #fff;
-      border-top: 1px solid #ddd;
+      background-clip: padding-box;
+      border: 1px solid rgba(#000, .1);
       border-radius: 0 0 3px 3px;
       box-shadow: 1px 5px 10px rgba(#000, .1);
       li{
@@ -67,7 +70,29 @@
     }
   }
   .braft-code-block{
+    max-height: 400px;
+    overflow: auto;
     background-color: transparent;
     color: #eee;
+    counter-reset: line;
+    &.show-line-number > code {
+      display: block;
+      position: relative;
+      margin-left: 55px;
+      &::before {
+        position: absolute;
+        top: 0;
+        left: -55px;
+        width: 40px;
+        counter-increment: line;
+        content: counter(line);
+        display: inline-block;
+        border-right: 1px solid rgba(#fff, .1);
+        color: #666
+      }
+      &:hover::before{
+        color: #ddd;
+      }
+    }
   }
 }

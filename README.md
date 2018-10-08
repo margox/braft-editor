@@ -20,6 +20,15 @@
 - ...更多特性开发中
 
 ## 更新记录
+- 2018-10-08 v2.1.0
+  - 进一步增加可扩展性，包括增加自定义的entity、block和inline-style，以及扩展编辑器的转换规则
+  - 新增BraftEditor.use静态方法，用于载入全局扩展模块
+  - 新增单位转换功能(converts.unitImportFn和converts.unitExportFn属性)
+  - 新增onDelete、handleKeyCommand、handleReturn、handleBeforeInput等属性
+  - 新增defaultLinkTarget属性，用于指定链接的默认打开方式
+  - 新增editorState.isEmpty()实例方法，用于判断编辑器内容是否为空
+  - 新增段落缩进功能
+  - 其他细节优化
 - 2018-09-29 v2.0.10
   - 为onBlur和onFocus事件增加editorState参数
 - 2018-09-29 v2.0.9

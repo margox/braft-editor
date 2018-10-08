@@ -43,7 +43,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState('<p></p><pre><code>console.log("Hello World!")</code></pre><p></p>')
+      editorState: BraftEditor.createEditorState('<p><a href="a">asdadasd</a></p><pre data-lang="html"><code>&lt;a href=&quot;javascript:void(0);&quot;&gt;Hello World!&lt;/a&gt;</code></pre><p></p>')
     }
 
   }
@@ -64,6 +64,7 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            defaultLinkTarget="_blank"
             extendControls={[
               {
                 key: 'preview',

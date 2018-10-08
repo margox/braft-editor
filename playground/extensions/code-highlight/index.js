@@ -86,7 +86,7 @@ class CodeBlockWrapper extends React.Component {
       }
 
       const selectionState = SelectionState.createEmpty(this.codeBlockBlockKey)
-      const editorState = EditorState.acceptSelection(this.props.editorState, selectionState)
+      const editorState = EditorState.forceSelection(this.props.editorState, selectionState)
 
       this.props.editor.setValue(ContentUtils.setSelectionBlockData(editorState, { syntax }))
       this.setState({ syntax, syntaxName })
@@ -109,7 +109,7 @@ class CodeBlockWrapper extends React.Component {
             </ul>
           </div>
         </div>
-        <pre className="braft-code-block">{this.props.children}</pre>
+        <pre className={`braft-code-block${this.props.showLineNumber ? ' show-line-number' : ''}`} data-syntax={this.state.syntax}>{this.props.children}</pre>
       </div>
     )
 
@@ -129,7 +129,7 @@ const getCodeBlockBlock = (block) => {
     return null
   }
 
-  if (blockDOMNode.parentNode.nodeName !== 'pre') {
+  if (blockDOMNode.parentNode.nodeName.toLowerCase() !== 'pre') {
     return null
   }
 
@@ -151,6 +151,7 @@ const getCodeBlockRenderMap = (options) => (props) => {
 
 export default (options = {}) => {
 
+  const { showLineNumber, showTools } = options
   const syntaxs = options.syntaxs || [
     {
       name: 'JavaScript',
@@ -168,42 +169,68 @@ export default (options = {}) => {
     {
       type: 'block',
       name: 'code-block',
-      renderMap: getCodeBlockRenderMap({ syntaxs }),
-      // exporter: (contentState, block) => {
+      renderMap: getCodeBlockRenderMap({ syntaxs, showLineNumber, showTools }),
+      importer: (nodeName, node) => {
 
-      //   const previousBlock = contentState.getBlockBefore(block.key)
-      //   const nextBlock = contentState.getBlockAfter(block.key)
-      //   const previousBlockType = previousBlock && previousBlock.getType()
-      //   const nextBlockType = nextBlock && nextBlock.getType()
-      //   const syntax = block.data.syntax || 'unknown'
+        if (nodeName.toLowerCase() === 'pre') {
 
-      //   if (previousBlockType !== 'code-block' && nextBlockType !== 'code-block') {
-      //     return {
-      //       start: `<pre class="lang-${syntax}">`,
-      //       end: '</pre>'
-      //     }
-      //   }
+          try {
 
-      //   if (previousBlockType !== 'code-block') {
-      //     return {
-      //       start: `<pre class="lang-${syntax}">`,
-      //       end: '<br/>'
-      //     }
-      //   }
+            const syntax = node.dataset.lang
 
-      //   if (nextBlockType !== 'code-block') {
-      //     return {
-      //       start: '',
-      //       end: '</pre>'
-      //     }
-      //   }
+            return syntax ? {
+              type: 'code-block',
+              data: { syntax }
+            } : null
 
-      //   return {
-      //     start: '',
-      //     end: '<br/>',
-      //   }
+          } catch (error) {
+            return null
+          }
 
-      // }
+        }
+
+        return null
+
+      },
+      exporter: (contentState, block) => {
+
+        if (block.type.toLowerCase() !== 'code-block') {
+          return null
+        }
+
+        const previousBlock = contentState.getBlockBefore(block.key)
+        const nextBlock = contentState.getBlockAfter(block.key)
+        const previousBlockType = previousBlock && previousBlock.getType()
+        const nextBlockType = nextBlock && nextBlock.getType()
+        const syntax = block.data.syntax || syntaxs[0].syntax
+
+        if (previousBlockType !== 'code-block' && nextBlockType !== 'code-block') {
+          return {
+            start: `<pre data-lang="${syntax}" class="lang-${syntax}">`,
+            end: '</pre>'
+          }
+        }
+
+        if (previousBlockType !== 'code-block') {
+          return {
+            start: `<pre data-lang="${syntax}" class="lang-${syntax}">`,
+            end: '<br/>'
+          }
+        }
+
+        if (nextBlockType !== 'code-block') {
+          return {
+            start: '',
+            end: '</pre>'
+          }
+        }
+
+        return {
+          start: '',
+          end: '<br/>',
+        }
+
+      }
     }, {
       type: 'decorator',
       decorator: new PrismDecorator({

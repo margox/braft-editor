@@ -60,7 +60,7 @@ export const compositeEntityImportFn = (entityImportFn) => (nodeName, node, crea
 
 export const compositeEntityExportFn = (entityExportFn) => (entity, originalText) => {
   const entityType = entity.type.toUpperCase()
-  return entityExportFn ? entityExportFn(entity, originalText) : (entities[entityType].exporter ? entities[entityType].exporter(entity, originalText) : undefined)
+  return entityExportFn ? entityExportFn(entity, originalText) : (entities[entityType] && entities[entityType].exporter ? entities[entityType].exporter(entity, originalText) : undefined)
 }
 
 export const compositeBlockImportFn = (blockImportFn) => (nodeName, node, source) => {

@@ -144,7 +144,7 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor } = this.props
+    const { editor, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const editorControls = getEditorControls(language)
     const commonProps = { editor, editorState, language, containerNode, hooks }
@@ -233,6 +233,7 @@ export default class ControlBar extends React.Component {
             } else if (controlItem.type === 'link') {
               return <LinkEditor
                 key={index}
+                defaultLinkTarget={defaultLinkTarget}
                 {...commonProps}
               />
             } else if (controlItem.type === 'text-align') {

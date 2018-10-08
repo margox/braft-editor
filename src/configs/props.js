@@ -59,6 +59,7 @@ export default {
   codeTabIndents: 2,
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,
+  defaultLinkTarget: '',
   letterSpacings: [0, 1, 2, 3, 4, 5, 6],
   lineHeights: [1, 1.2, 1.5, 1.75, 2, 2.5, 3, 4],
   fontSizes: [

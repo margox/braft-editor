@@ -1,13 +1,13 @@
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory(require("react"), require("braft-utils"), require("draft-js"), require("braft-convert"), require("react-dom"), require("immutable"), require("braft-finder"));
+		module.exports = factory(require("react"), require("braft-utils"), require("draft-js"), require("immutable"), require("braft-convert"), require("react-dom"), require("braft-finder"));
 	else if(typeof define === 'function' && define.amd)
-		define(["react", "braft-utils", "draft-js", "braft-convert", "react-dom", "immutable", "braft-finder"], factory);
+		define(["react", "braft-utils", "draft-js", "immutable", "braft-convert", "react-dom", "braft-finder"], factory);
 	else {
-		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("braft-convert"), require("react-dom"), require("immutable"), require("braft-finder")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["braft-convert"], root["react-dom"], root["immutable"], root["braft-finder"]);
+		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("immutable"), require("braft-convert"), require("react-dom"), require("braft-finder")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["immutable"], root["braft-convert"], root["react-dom"], root["braft-finder"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__9__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__18__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__18__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 19);
+/******/ 	return __webpack_require__(__webpack_require__.s = 27);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -143,6 +143,71 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(16);
+
+var assertThisInitialized = __webpack_require__(1);
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+
+/***/ }),
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var setPrototypeOf = __webpack_require__(23);
@@ -165,78 +230,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(15);
-
-var assertThisInitialized = __webpack_require__(1);
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
 /* 9 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__9__;
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(2);
@@ -263,20 +257,26 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(26);
+var arrayWithoutHoles = __webpack_require__(20);
 
-var iterableToArray = __webpack_require__(25);
+var iterableToArray = __webpack_require__(21);
 
-var nonIterableSpread = __webpack_require__(24);
+var nonIterableSpread = __webpack_require__(22);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
 }
 
 module.exports = _toConsumableArray;
+
+/***/ }),
+/* 11 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 /* 12 */
@@ -318,6 +318,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__14__;
 /* 15 */
 /***/ (function(module, exports) {
 
+module.exports = __WEBPACK_EXTERNAL_MODULE__15__;
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports) {
+
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
 
 function _typeof(obj) {
@@ -337,26 +343,95 @@ function _typeof(obj) {
 module.exports = _typeof;
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(22);
+var Immutable = __webpack_require__(13);
 
-var iterableToArrayLimit = __webpack_require__(21);
+var KEY_SEPARATOR = '-';
 
-var nonIterableRest = __webpack_require__(20);
-
-function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+function MultiDecorator(decorators) {
+    this.decorators = Immutable.List(decorators);
 }
 
-module.exports = _slicedToArray;
+/**
+    Return list of decoration IDs per character
 
-/***/ }),
-/* 17 */
-/***/ (function(module, exports) {
+    @param {ContentBlock}
+    @return {List<String>}
+*/
+MultiDecorator.prototype.getDecorations = function(block) {
+    var decorations = Array(block.getText().length).fill(null);
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
+    this.decorators.forEach(function(decorator, i) {
+        var _decorations = decorator.getDecorations(block);
+
+        _decorations.forEach(function(key, offset) {
+            if (!key) {
+                return;
+            }
+
+            key = i + KEY_SEPARATOR + key;
+
+            decorations[offset] = key;
+        });
+    });
+
+    return Immutable.List(decorations);
+};
+
+/**
+    Return component to render a decoration
+
+    @param {String}
+    @return {Function}
+*/
+MultiDecorator.prototype.getComponentForKey = function(key) {
+    var decorator = this.getDecoratorForKey(key);
+    return decorator.getComponentForKey(
+        this.getInnerKey(key)
+    );
+};
+
+/**
+    Return props to render a decoration
+
+    @param {String}
+    @return {Object}
+*/
+MultiDecorator.prototype.getPropsForKey = function(key) {
+    var decorator = this.getDecoratorForKey(key);
+    return decorator.getPropsForKey(
+        this.getInnerKey(key)
+    );
+};
+
+/**
+    Return a decorator for a specific key
+
+    @param {String}
+    @return {Decorator}
+*/
+MultiDecorator.prototype.getDecoratorForKey = function(key) {
+    var parts = key.split(KEY_SEPARATOR);
+    var index = Number(parts[0]);
+
+    return this.decorators.get(index);
+};
+
+/**
+    Return inner key for a decorator
+
+    @param {String}
+    @return {String}
+*/
+MultiDecorator.prototype.getInnerKey = function(key) {
+    var parts = key.split(KEY_SEPARATOR);
+    return parts.slice(1).join(KEY_SEPARATOR);
+};
+
+module.exports = MultiDecorator;
+
 
 /***/ }),
 /* 18 */
@@ -366,29 +441,148 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__18__;
 
 /***/ }),
 /* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__(24);
+
+var iterableToArrayLimit = __webpack_require__(25);
+
+var nonIterableRest = __webpack_require__(26);
+
+function _slicedToArray(arr, i) {
+  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
+}
+
+module.exports = _slicedToArray;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports) {
+
+function _arrayWithoutHoles(arr) {
+  if (Array.isArray(arr)) {
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
+
+    return arr2;
+  }
+}
+
+module.exports = _arrayWithoutHoles;
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports) {
+
+function _iterableToArray(iter) {
+  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
+}
+
+module.exports = _iterableToArray;
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance");
+}
+
+module.exports = _nonIterableSpread;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+function _setPrototypeOf(o, p) {
+  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
+
+  return _setPrototypeOf(o, p);
+}
+
+module.exports = _setPrototypeOf;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+function _arrayWithHoles(arr) {
+  if (Array.isArray(arr)) return arr;
+}
+
+module.exports = _arrayWithHoles;
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports) {
+
+function _iterableToArrayLimit(arr, i) {
+  var _arr = [];
+  var _n = true;
+  var _d = false;
+  var _e = undefined;
+
+  try {
+    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+      _arr.push(_s.value);
+
+      if (i && _arr.length === i) break;
+    }
+  } catch (err) {
+    _d = true;
+    _e = err;
+  } finally {
+    try {
+      if (!_n && _i["return"] != null) _i["return"]();
+    } finally {
+      if (_d) throw _e;
+    }
+  }
+
+  return _arr;
+}
+
+module.exports = _iterableToArrayLimit;
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports) {
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance");
+}
+
+module.exports = _nonIterableRest;
+
+/***/ }),
+/* 27 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/typeof.js
-var helpers_typeof = __webpack_require__(15);
+var helpers_typeof = __webpack_require__(16);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(10);
+var objectSpread = __webpack_require__(9);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/toConsumableArray.js
-var toConsumableArray = __webpack_require__(11);
+var toConsumableArray = __webpack_require__(10);
 var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(8);
+var classCallCheck = __webpack_require__(4);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/createClass.js
-var createClass = __webpack_require__(7);
+var createClass = __webpack_require__(5);
 var createClass_default = /*#__PURE__*/__webpack_require__.n(createClass);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js
@@ -396,11 +590,11 @@ var possibleConstructorReturn = __webpack_require__(6);
 var possibleConstructorReturn_default = /*#__PURE__*/__webpack_require__.n(possibleConstructorReturn);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/getPrototypeOf.js
-var getPrototypeOf = __webpack_require__(5);
+var getPrototypeOf = __webpack_require__(7);
 var getPrototypeOf_default = /*#__PURE__*/__webpack_require__.n(getPrototypeOf);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/inherits.js
-var inherits = __webpack_require__(4);
+var inherits = __webpack_require__(8);
 var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/assertThisInitialized.js
@@ -412,10 +606,10 @@ var defineProperty = __webpack_require__(2);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
-var Draft = __webpack_require__(51);
+var Draft = __webpack_require__(28);
 
 // EXTERNAL MODULE: ./assets/scss/_base.scss
-var _base = __webpack_require__(49);
+var _base = __webpack_require__(30);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(0);
@@ -443,7 +637,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     bold: 'Bold',
     lineHeight: 'Line Height',
     letterSpacing: 'Letter Spacing',
-    textIndent: 'Indent at both ends',
+    textIndent: 'Text Indent',
+    increaseIndent: 'Increase Indent',
+    decreaseIndent: 'Decrease Indent',
     italic: 'Italic',
     underline: 'Underline',
     strikeThrough: 'Strike Through',
@@ -509,7 +705,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     fontSize: '字号',
     lineHeight: '行高',
     letterSpacing: '字间距',
-    textIndent: '两端缩进',
+    textIndent: '段落缩进',
+    increaseIndent: '增加缩进',
+    decreaseIndent: '减少缩进',
     border: '边框',
     color: '颜色',
     textColor: '文字颜色',
@@ -586,7 +784,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     bold: '加粗',
     lineHeight: '行高',
     letterSpacing: '字間距',
-    textIndent: '兩端縮進',
+    textIndent: '段落縮進',
+    increaseIndent: '增加縮進',
+    decreaseIndent: '减少縮進',
     border: '邊框',
     italic: '斜體',
     underline: '下劃線',
@@ -653,7 +853,7 @@ var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_
 var external_braft_utils_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external "draft-js"
-var external_draft_js_ = __webpack_require__(9);
+var external_draft_js_ = __webpack_require__(11);
 
 // CONCATENATED MODULE: ./configs/keybindings.js
  // TODO
@@ -675,13 +875,14 @@ var external_draft_js_ = __webpack_require__(9);
 // CONCATENATED MODULE: ./configs/props.js
 /* harmony default export */ var configs_props = ({
   language: 'zh',
-  controls: ['undo', 'redo', 'separator', 'font-size', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'link', 'split', 'hr', 'separator', 'media', 'separator', 'clear'],
+  controls: ['undo', 'redo', 'separator', 'font-size', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'separator', 'text-indent', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'link', 'split', 'hr', 'separator', 'media', 'separator', 'clear'],
   excludeControls: [],
   extendControls: [],
   extendAtomics: [],
   componentBelowControlBar: null,
   media: {
     pasteImage: true,
+    imagePasteLimit: 5,
     image: true,
     video: true,
     audio: true,
@@ -712,11 +913,11 @@ var external_draft_js_ = __webpack_require__(9);
   },
   imageControls: ['float-left', 'float-right', 'align-left', 'align-center', 'align-right', 'link', 'size', 'remove'],
   colors: ['#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff', '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784', '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'],
-  tabIndents: 2,
+  codeTabIndents: 2,
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,
+  defaultLinkTarget: '',
   letterSpacings: [0, 1, 2, 3, 4, 5, 6],
-  textIndents: [0, 14, 21, 28],
   lineHeights: [1, 1.2, 1.5, 1.75, 2, 2.5, 3, 4],
   fontSizes: [12, 14, 16, 18, 20, 24, 28, 30, 32, 36, 40, 48, 56, 64, 72, 96, 120, 144],
   fontFamilies: [{
@@ -735,6 +936,11 @@ var external_draft_js_ = __webpack_require__(9);
     name: 'Tahoma',
     family: 'tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif'
   }],
+  converts: {
+    unitExportFn: function unitExportFn(unit) {
+      return "".concat(unit, "px");
+    }
+  },
   emojis: ['🤣', '🙌', '💚', '💛', '👏', '😉', '💯', '💕', '💞', '💘', '💙', '💝', '🖤', '💜', '❤️', '😍', '😻', '💓', '💗', '😋', '😇', '😂', '😹', '😘', '💖', '😁', '😀', '🤞', '😲', '😄', '😊', '👍', '😌', '😃', '😅', '✌️', '🤗', '💋', '😗', '😽', '😚', '🤠', '😙', '😺', '👄', '😸', '😏', '😼', '👌', '😎', '😆', '😛', '🙏', '🤝', '🙂', '🤑', '😝', '😐', '😑', '🤤', '😤', '🙃', '🤡', '😶', '😪', '😴', '😵', '😓', '👊', '😦', '😷', '🤐', '😜', '🤓', '👻', '😥', '🙄', '🤔', '🤒', '🙁', '😔', '😯', '☹️', '☠️', '😰', '😩', '😖', '😕', '😒', '😣', '😢', '😮', '😿', '🤧', '😫', '🤥', '😞', '😬', '👎', '💀', '😳', '😨', '🤕', '🤢', '😱', '😭', '😠', '😈', '😧', '💔', '😟', '🙀', '💩', '👿', '😡', '😾', '🖕'],
   stripPastedStyles: false,
   className: '',
@@ -752,18 +958,392 @@ var external_draft_js_ = __webpack_require__(9);
   onDelete: null,
   onSave: null
 });
-// EXTERNAL MODULE: external "immutable"
-var external_immutable_ = __webpack_require__(17);
+// CONCATENATED MODULE: ./configs/handlers.js
 
+
+
+var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorState, editor) {
+  if (editor.props.handleKeyCommand && editor.props.handleKeyCommand(command, editorState) === 'handled') {
+    return 'handled';
+  }
+
+  if (command === 'braft-save') {
+    editor.props.onSave && editor.props.onSave(editorState);
+    return 'handled';
+  }
+
+  var _editor$props = editor.props,
+      controls = _editor$props.controls,
+      excludeControls = _editor$props.excludeControls;
+  var allowIndent = (controls.indexOf('text-indent') !== 0 || controls.find(function (item) {
+    return item.key === 'text-indent';
+  })) && excludeControls.indexOf('text-indent') === -1;
+  var cursorStart = editorState.getSelection().getStartOffset();
+  var cursorEnd = editorState.getSelection().getEndOffset();
+  var cursorIsAtFirst = cursorStart === 0 && cursorEnd === 0;
+
+  if (command === 'backspace') {
+    if (editor.props.onDelete && editor.props.onDelete(editorState) === false) {
+      return 'handled';
+    }
+
+    var blockType = external_braft_utils_["ContentUtils"].getSelectionBlockType(editorState);
+
+    if (allowIndent && cursorIsAtFirst && blockType !== 'code-block') {
+      editor.setValue(external_braft_utils_["ContentUtils"].decreaseSelectionIndent(editorState));
+    }
+  }
+
+  if (command === 'tab') {
+    var _blockType = external_braft_utils_["ContentUtils"].getSelectionBlockType(editorState);
+
+    if (_blockType === 'code-block') {
+      editor.setValue(external_braft_utils_["ContentUtils"].insertText(editorState, ' '.repeat(editor.props.codeTabIndents)));
+      return 'handled';
+    } else if (_blockType !== 'atomic' && allowIndent && cursorIsAtFirst) {
+      editor.setValue(external_braft_utils_["ContentUtils"].increaseSelectionIndent(editorState));
+      return 'handled';
+    }
+  }
+
+  var nextEditorState = external_braft_utils_["ContentUtils"].handleKeyCommand(editorState, command);
+
+  if (nextEditorState) {
+    editor.setValue(nextEditorState);
+    return 'handled';
+  }
+
+  return 'not-handled';
+};
+var handlers_returnHandlers = function returnHandlers(event, editorState, editor) {
+  if (editor.props.handleReturn && editor.props.handleReturn(event, editorState) === 'handled') {
+    return 'handled';
+  }
+
+  var currentBlock = external_braft_utils_["ContentUtils"].getSelectionBlock(editorState);
+  var currentBlockType = currentBlock.getType();
+
+  if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
+    if (currentBlock.getLength() === 0) {
+      editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBlockType(editorState, 'unstyled'));
+      return 'handled';
+    }
+
+    return 'not-handled';
+  } else if (currentBlockType === 'code-block') {
+    if (event.which === 13 && (event.getModifierState('Shift') || event.getModifierState('Alt') || event.getModifierState('Control'))) {
+      editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBlockType(editorState, 'unstyled'));
+      return 'handled';
+    }
+
+    return 'not-handled';
+  }
+
+  var nextEditorState = external_braft_utils_["ContentUtils"].handleNewLine(editorState, event);
+
+  if (nextEditorState) {
+    editor.setValue(nextEditorState);
+    return 'handled';
+  }
+
+  return 'not-handled';
+};
+var beforeInputHandlers = function beforeInputHandlers(chars, editorState, editor) {
+  if (editor.props.handleBeforeInput && editor.props.handleBeforeInput(chars, editorState) === 'handled') {
+    return 'handled';
+  }
+
+  return 'not-handled';
+};
+var handlers_dropHandlers = function dropHandlers(selectionState, dataTransfer, editor) {
+  if (window && window.__BRAFT_DRAGING__IMAGE__) {
+    var editorState = external_braft_utils_["ContentUtils"].removeBlock(external_braft_utils_["ContentUtils"].insertMedias(editorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]), window.__BRAFT_DRAGING__IMAGE__.block, selectionState);
+    window.__BRAFT_DRAGING__IMAGE__ = null;
+    editor.setDraftProps({
+      readOnly: false
+    });
+    editor.setValue(editorState);
+    return 'handled';
+  } else if (!dataTransfer || !dataTransfer.getText()) {
+    return 'handled';
+  }
+
+  return 'not-handled';
+};
+var handlers_handleFiles = function handleFiles(files, editor) {
+  var _editor$constructor$d = objectSpread_default()({}, editor.constructor.defaultProps.media, editor.props.media),
+      pasteImage = _editor$constructor$d.pasteImage,
+      imagePasteLimit = _editor$constructor$d.imagePasteLimit;
+
+  pasteImage && files.slice(0, imagePasteLimit).forEach(function (file) {
+    file && file.type.indexOf('image') > -1 && editor.braftFinder.uploadImage(file, function (image) {
+      editor.isLiving && editor.setValue(external_braft_utils_["ContentUtils"].insertMedias(editor.state.editorState, [image]));
+    });
+  });
+
+  if (files[0] && files[0].type.indexOf('image') > -1 && pasteImage) {
+    return 'handled';
+  }
+
+  return 'not-handled';
+};
+var droppedFilesHandlers = function droppedFilesHandlers(selectionState, files, editor) {
+  if (editor.props.handleDroppedFiles && editor.props.handleDroppedFiles(selectionState, files) === 'handled') {
+    return 'handled';
+  }
+
+  return handlers_handleFiles(files, editor);
+};
+var pastedFilesHandlers = function pastedFilesHandlers(files, editor) {
+  if (editor.props.handlePastedFiles && editor.props.handlePastedFiles(files) === 'handled') {
+    return 'handled';
+  }
+
+  return handlers_handleFiles(files, editor);
+};
+var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editorState, editor) {
+  if (editor.props.handlePastedText && editor.props.handlePastedText(text, html, editorState) === 'handled') {
+    return 'handled';
+  }
+
+  if (!html || editor.props.stripPastedStyles) {
+    return false;
+  }
+
+  var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromHTMLString(html);
+  editor.setState({
+    tempColors: toConsumableArray_default()(editor.state.tempColors).concat(toConsumableArray_default()(tempColors)).filter(function (item) {
+      return editor.props.colors.indexOf(item) === -1;
+    }).filter(function (item, index, array) {
+      return array.indexOf(item) === index;
+    })
+  }, function () {
+    editor.setValue(external_braft_utils_["ContentUtils"].insertHTML(editorState, html, 'paste'));
+  });
+  return 'handled';
+};
+// EXTERNAL MODULE: external "immutable"
+var external_immutable_ = __webpack_require__(13);
+var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_immutable_);
+
+// CONCATENATED MODULE: ./helpers/extension.js
+
+// TODO
+// - block、atomic类型的扩展支持
+// - 允许指定可使用扩展的编辑器id
+
+var extensionControls = [];
+var extensionDecorators = [];
+var extensionBlockRenderMap = {};
+var extensionBlockRendererFns = {};
+var extensionBlockStyleFns = {};
+var extensionBlockStyleMap = {};
+var extensionInlineStyleMap = {};
+var extensionInlineStyleFns = {};
+var extensionEditorHandlers = {};
+var styleImporters = {};
+var styleExporters = {};
+var blockImporters = {};
+var blockExporters = {};
+var entities = {};
+var compositeStyleImportFn = function compositeStyleImportFn(styleImportFn) {
+  return function (nodeName, node, style) {
+    Object.keys(styleImporters).forEach(function (key) {
+      if (styleImporters[key](nodeName, node)) {
+        style = style.add(key);
+      }
+    });
+    return styleImportFn ? styleImportFn(nodeName, node, style) : style;
+  };
+};
+var compositeStyleExportFn = function compositeStyleExportFn(styleExportFn) {
+  return function (style) {
+    return styleExportFn ? styleExportFn(style) : styleExporters[style] || undefined;
+  };
+};
+var compositeEntityImportFn = function compositeEntityImportFn(entityImportFn) {
+  return function (nodeName, node, createEntity, source) {
+    var result = entityImportFn ? entityImportFn(nodeName, node, createEntity, source) : null;
+
+    if (result) {
+      return result;
+    }
+
+    Object.keys(entities).find(function (key) {
+      var matchedEntity = entities[key].importer ? entities[key].importer(nodeName, node, source) : null;
+      matchedEntity && (result = createEntity(key, matchedEntity.mutability || 'MUTABLE', matchedEntity.data || {}));
+      return !!matchedEntity;
+    });
+    return result;
+  };
+};
+var compositeEntityExportFn = function compositeEntityExportFn(entityExportFn) {
+  return function (entity, originalText) {
+    var entityType = entity.type.toUpperCase();
+    return entityExportFn ? entityExportFn(entity, originalText) : entities[entityType] && entities[entityType].exporter ? entities[entityType].exporter(entity, originalText) : undefined;
+  };
+};
+var compositeBlockImportFn = function compositeBlockImportFn(blockImportFn) {
+  return function (nodeName, node, source) {
+    var result = blockImportFn ? blockImportFn(nodeName, node, source) : null;
+
+    if (result) {
+      return result;
+    }
+
+    Object.keys(blockImporters).find(function (key) {
+      var matchedBlock = blockImporters[key](nodeName, node, source);
+      matchedBlock && (result = matchedBlock);
+      return matchedBlock;
+    });
+    return result;
+  };
+};
+var compositeBlockExportFn = function compositeBlockExportFn(blockExportFn) {
+  return function (contentState, block) {
+    var result = blockExportFn ? blockExportFn(contentState, block) : null;
+
+    if (result) {
+      return result;
+    }
+
+    Object.keys(blockExporters).find(function (key) {
+      var matchedResult = blockExporters[key](contentState, block);
+      matchedResult && (result = matchedResult);
+      return matchedResult;
+    });
+    return result;
+  };
+};
+
+var extension_useExtension = function useExtension(extension) {
+  if (extension instanceof Array) {
+    extension.forEach(useExtension);
+    return false;
+  }
+
+  if (!extension || !extension.type || typeof extension.type !== 'string') {
+    return false;
+  }
+
+  if (extension.type === 'inline-style') {
+    var inlineStyleName = extension.name.toUpperCase();
+
+    if (extension.control) {
+      extensionControls.push(objectSpread_default()({
+        key: inlineStyleName,
+        type: 'inline-style',
+        command: inlineStyleName
+      }, extension.control));
+    }
+
+    extension.style && (extensionInlineStyleMap[inlineStyleName] = extension.style);
+    extension.styleFn && (extensionInlineStyleFns[inlineStyleName] = extension.styleFn);
+    extension.importer && (styleImporters[inlineStyleName] = extension.importer);
+    styleExporters[inlineStyleName] = extension.exporter ? extension.exporter(extension) : external_react_default.a.createElement("span", {
+      style: extension.style
+    });
+  } else if (extension.type === 'block-style') {// TODO
+    // const blockStyleName = extension.name
+    // extension.classNameMap && (extensionBlockStyleMap[blockStyleName] = extension.classNameMap)
+    // extension.styleFn && (extensionBlockStyleFns[blockStyleName] = extension.styleFn)
+  } else if (extension.type === 'entity') {
+    var entityName = extension.name.toUpperCase();
+
+    if (extension.control) {
+      extensionControls.push(objectSpread_default()({
+        key: entityName,
+        type: 'entity',
+        command: entityName,
+        mutability: extension.mutability || 'MUTABLE',
+        data: extension.data || {}
+      }, extension.control));
+    }
+
+    entities[entityName] = extension;
+    extensionDecorators.push({
+      type: 'entity',
+      decorator: {
+        key: entityName,
+        component: extension.component
+      }
+    });
+  } else if (extension.type === 'block') {
+    var blockType = extension.name;
+
+    if (extension.renderMap) {
+      extensionBlockRenderMap[blockType] = extension.renderMap;
+    }
+
+    if (extension.rendererFn) {
+      extensionBlockRendererFns[blockType] = extension.rendererFn;
+    }
+
+    extension.importer && (blockImporters[blockType] = extension.importer);
+    extension.exporter && (blockExporters[blockType] = extension.exporter);
+  } else if (extension.type === 'atomic') {// TODO
+  } else if (extension.type === 'decorator') {
+    var decorator = extension.decorator;
+
+    if (decorator && decorator.strategy && decorator.component) {
+      extensionDecorators.push({
+        type: 'strategy',
+        decorator: decorator
+      });
+    } else if (decorator && decorator.getDecorations) {
+      extensionDecorators.push({
+        type: 'class',
+        decorator: decorator
+      });
+    }
+  }
+};
+
+var createExtensibleEditor = function createExtensibleEditor(BraftEditor) {
+  BraftEditor.use = extension_useExtension;
+  return BraftEditor;
+};
+// CONCATENATED MODULE: ./renderers/block/blockRenderMap.js
+
+
+
+
+/* harmony default export */ var block_blockRenderMap = (function (props, blockRenderMap) {
+  var customBlockRenderMap = Object(external_immutable_["Map"])({
+    'atomic': {
+      element: ''
+    },
+    'code-block': {
+      element: 'code',
+      wrapper: external_react_default.a.createElement("pre", {
+        className: "braft-code-block"
+      })
+    }
+  });
+  Object.keys(extensionBlockRenderMap).forEach(function (key) {
+    if (typeof extensionBlockRenderMap[key] === 'function') {
+      customBlockRenderMap = customBlockRenderMap.merge(extensionBlockRenderMap[key](props));
+    } else if (extensionBlockRenderMap[key] instanceof external_immutable_["Map"]) {
+      customBlockRenderMap = customBlockRenderMap.merge(extensionBlockRenderMap[key]);
+    }
+  });
+
+  if (blockRenderMap && blockRenderMap instanceof external_immutable_["Map"]) {
+    customBlockRenderMap = customBlockRenderMap.merge(blockRenderMap);
+  }
+
+  customBlockRenderMap = external_draft_js_["DefaultDraftBlockRenderMap"].merge(customBlockRenderMap);
+  return customBlockRenderMap;
+});
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/slicedToArray.js
-var slicedToArray = __webpack_require__(16);
+var slicedToArray = __webpack_require__(19);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
 // EXTERNAL MODULE: ./renderers/atomics/Image/style.scss
-var Image_style = __webpack_require__(45);
+var Image_style = __webpack_require__(34);
 
 // EXTERNAL MODULE: ./components/common/Switch/style.scss
-var Switch_style = __webpack_require__(44);
+var Switch_style = __webpack_require__(35);
 
 // CONCATENATED MODULE: ./components/common/Switch/index.jsx
 
@@ -1231,6 +1811,8 @@ function (_React$Component) {
         _this.props.editor.setDraftProps({
           readOnly: false
         });
+
+        _this.props.editor.requestFocus();
       });
     });
 
@@ -1426,7 +2008,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
-var Video_style = __webpack_require__(43);
+var Video_style = __webpack_require__(36);
 
 // CONCATENATED MODULE: ./components/common/StaticContainer/index.jsx
 
@@ -1546,7 +2128,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(42);
+var Audio_style = __webpack_require__(37);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -1629,7 +2211,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(41);
+var Embed_style = __webpack_require__(38);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -1714,7 +2296,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(40);
+var HorizontalLine_style = __webpack_require__(39);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -1770,135 +2352,7 @@ function (_React$Component) {
 }(external_react_default.a.Component);
 
 
-// CONCATENATED MODULE: ./renderers/styles/blockStyles.js
-/* harmony default export */ var blockStyles = (function (customBlockStyleFn) {
-  return function (block) {
-    var blockAlignment = block.getData() && block.getData().get('textAlign');
-    var blockFloat = block.getData() && block.getData().get('float');
-    var result = '';
-
-    if (blockAlignment) {
-      result = "bfa-".concat(blockAlignment);
-    }
-
-    if (blockFloat) {
-      result += " bff-".concat(blockFloat);
-    }
-
-    if (customBlockStyleFn) {
-      result += customBlockStyleFn(block);
-    }
-
-    return result;
-  };
-});
-// CONCATENATED MODULE: ./renderers/styles/inlineStyles.js
-
-/* harmony default export */ var inlineStyles = (function (props) {
-  var customStyles = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  var colorStyles = {};
-  var bgColorStyles = {};
-  var fontSizeStyles = {};
-  var fontFamilyStyles = {};
-  var lineHeightStyles = {};
-  var letterSpacingtStyles = {};
-  var indentStyles = {};
-  props.colors.forEach(function (color) {
-    var color_id = color.replace('#', '').toUpperCase();
-    colorStyles['COLOR-' + color_id] = {
-      color: color
-    };
-    bgColorStyles['BGCOLOR-' + color_id] = {
-      backgroundColor: color
-    };
-  });
-  props.fontSizes.forEach(function (fontSize) {
-    fontSizeStyles['FONTSIZE-' + fontSize] = {
-      fontSize: fontSize
-    };
-  });
-  props.fontFamilies.forEach(function (fontFamily) {
-    fontFamilyStyles['FONTFAMILY-' + fontFamily.name.toUpperCase()] = {
-      fontFamily: fontFamily.family
-    };
-  });
-  props.lineHeights.forEach(function (lineHeight) {
-    lineHeightStyles['LINEHEIGHT-' + lineHeight] = {
-      lineHeight: lineHeight
-    };
-  });
-  props.letterSpacings.forEach(function (letterSpacing) {
-    letterSpacingtStyles['LETTERSPACING-' + letterSpacing] = {
-      letterSpacing: letterSpacing
-    };
-  });
-  props.textIndents.forEach(function (indent) {
-    indentStyles['INDENT-' + indent] = {
-      paddingLeft: indent,
-      paddingRight: indent
-    };
-  });
-  return objectSpread_default()({
-    'SUPERSCRIPT': {
-      position: 'relative',
-      top: '-8px',
-      fontSize: '11px'
-    },
-    'SUBSCRIPT': {
-      position: 'relative',
-      bottom: '-8px',
-      fontSize: '11px'
-    }
-  }, colorStyles, bgColorStyles, fontSizeStyles, fontFamilyStyles, lineHeightStyles, letterSpacingtStyles, indentStyles, customStyles);
-});
-// CONCATENATED MODULE: ./renderers/decorators/Link/index.jsx
-
-
-function handleStrategy(contentBlock, callback, contentState) {
-  contentBlock.findEntityRanges(function (character) {
-    var entityKey = character.getEntity();
-    return entityKey !== null && contentState.getEntity(entityKey).getType() === 'LINK';
-  }, callback);
-}
-
-var Link_Link = function Link(props) {
-  var children = props.children,
-      entityKey = props.entityKey,
-      contentState = props.contentState;
-
-  var _contentState$getEnti = contentState.getEntity(entityKey).getData(),
-      href = _contentState$getEnti.href,
-      target = _contentState$getEnti.target;
-
-  return external_react_default.a.createElement("span", {
-    className: "bf-link-wrap"
-  }, external_react_default.a.createElement("a", {
-    onClick: function onClick(event) {
-      return viewLink(event, href);
-    },
-    className: "bf-link",
-    href: href,
-    target: target
-  }, children));
-};
-
-var viewLink = function viewLink(event, link) {
-  if (event.getModifierState('Shift')) {
-    var tempLink = document.createElement('a');
-    tempLink.href = link;
-    tempLink.target = '_blank';
-    tempLink.click();
-  }
-};
-
-/* harmony default export */ var decorators_Link = ({
-  strategy: handleStrategy,
-  component: Link_Link
-});
-// CONCATENATED MODULE: ./renderers/decorators/index.js
-
-/* harmony default export */ var decorators = ([decorators_Link]);
-// CONCATENATED MODULE: ./renderers/index.js
+// CONCATENATED MODULE: ./renderers/block/blockRendererFn.js
 
 
 
@@ -1908,11 +2362,7 @@ var viewLink = function viewLink(event, link) {
 
 
 
-
-
-
-
-var renderers_getAtomicBlockComponent = function getAtomicBlockComponent(block, superProps) {
+var blockRendererFn_getAtomicBlockComponent = function getAtomicBlockComponent(superProps) {
   return function (props) {
     var entityKey = props.block.getEntityAt(0);
 
@@ -1925,7 +2375,7 @@ var renderers_getAtomicBlockComponent = function getAtomicBlockComponent(block, 
     var mediaType = entity.getType();
 
     var mediaProps = objectSpread_default()({}, superProps, {
-      block: block,
+      block: props.block,
       mediaData: mediaData,
       entityKey: entityKey
     });
@@ -1957,46 +2407,243 @@ var renderers_getAtomicBlockComponent = function getAtomicBlockComponent(block, 
   };
 };
 
-var getBlockRendererFn = function getBlockRendererFn(props, customBlockRendererFn) {
+/* harmony default export */ var block_blockRendererFn = (function (superProps, customBlockRendererFn) {
   return function (block) {
+    var blockType = block.getType();
     var blockRenderer = null;
 
-    if (block.getType() === 'atomic') {
+    if (customBlockRendererFn) {
+      blockRenderer = customBlockRendererFn(superProps) || null;
+    }
+
+    if (blockRenderer) {
+      return blockRenderer;
+    }
+
+    blockRenderer = extensionBlockRendererFns[blockType] ? extensionBlockRendererFns[blockType](superProps) : null;
+
+    if (blockRenderer) {
+      return blockRenderer;
+    }
+
+    if (blockType === 'atomic') {
       blockRenderer = {
-        component: renderers_getAtomicBlockComponent(block, props),
+        component: blockRendererFn_getAtomicBlockComponent(superProps),
         editable: false
       };
-    } else if (customBlockRendererFn) {
-      blockRenderer = customBlockRendererFn(block) || null;
     }
 
     return blockRenderer;
   };
-};
-var customBlockRenderMap = Object(external_immutable_["Map"])({
-  'atomic': {
-    element: ''
-  },
-  'code-block': {
-    element: 'code',
-    wrapper: external_draft_js_["DefaultDraftBlockRenderMap"].get('code-block').wrapper
-  }
 });
-var getBlockStyleFn = blockStyles;
-var getCustomStyleMap = inlineStyles;
-var renderers_decorators = decorators;
+// CONCATENATED MODULE: ./renderers/block/blockStyleFn.js
+/* harmony default export */ var block_blockStyleFn = (function (customBlockStyleFn) {
+  return function (block) {
+    var blockAlignment = block.getData() && block.getData().get('textAlign');
+    var blockIndent = block.getData() && block.getData().get('textIndent');
+    var blockFloat = block.getData() && block.getData().get('float');
+    var result = '';
+
+    if (blockAlignment) {
+      result = "bfa-".concat(blockAlignment);
+    }
+
+    if (blockIndent && blockIndent !== 0) {
+      result += " bftd-".concat(blockIndent);
+    }
+
+    if (blockFloat) {
+      result += " bff-".concat(blockFloat);
+    }
+
+    if (customBlockStyleFn) {
+      result += customBlockStyleFn(block) || '';
+    }
+
+    return result;
+  };
+});
+// CONCATENATED MODULE: ./renderers/inline/inlineStyleMap.js
+
+
+/* harmony default export */ var inlineStyleMap = (function () {
+  var customStyleMap = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  return objectSpread_default()({
+    'SUPERSCRIPT': {
+      position: 'relative',
+      top: '-8px',
+      fontSize: '11px'
+    },
+    'SUBSCRIPT': {
+      position: 'relative',
+      bottom: '-8px',
+      fontSize: '11px'
+    }
+  }, extensionInlineStyleMap, customStyleMap);
+});
+// CONCATENATED MODULE: ./renderers/inline/inlineStyleFn.js
+
+
+var getStyleValue = function getStyleValue(style) {
+  return style.split('-')[1];
+};
+
+/* harmony default export */ var inlineStyleFn = (function (options) {
+  return function (styles, block) {
+    var output = {};
+    var fontFamilies = options.fontFamilies,
+        unitExportFn = options.unitExportFn,
+        customStyleFn = options.customStyleFn;
+    Object.keys(extensionInlineStyleFns).forEach(function (key) {
+      output = extensionInlineStyleFns[key](styles, block, output) || output;
+    });
+    output = customStyleFn ? customStyleFn(styles, block, output) : {};
+    styles.forEach(function (style) {
+      if (style.indexOf('COLOR-') === 0) {
+        output.color = '#' + getStyleValue(style);
+      } else if (style.indexOf('BGCOLOR-') === 0) {
+        output.backgroundColor = '#' + getStyleValue(style);
+      } else if (style.indexOf('FONTSIZE-') === 0) {
+        output.fontSize = unitExportFn(getStyleValue(style), 'font-size', 'editor');
+      } else if (style.indexOf('LINEHEIGHT-') === 0) {
+        output.lineHeight = unitExportFn(getStyleValue(style), 'line-height', 'editor');
+      } else if (style.indexOf('LETTERSPACING-') === 0) {
+        output.letterSpacing = unitExportFn(getStyleValue(style), 'letter-spacing', 'editor');
+      } else if (style.indexOf('TEXTINDENT-') === 0) {
+        output.textIndent = unitExportFn(getStyleValue(style), 'text-indent', 'editor');
+      } else if (style.indexOf('FONTFAMILY-') === 0) {
+        output.fontFamily = (fontFamilies.find(function (item) {
+          return item.name === getStyleValue(style);
+        }) || {}).family || '';
+      }
+    });
+    return output;
+  };
+});
+// EXTERNAL MODULE: ../node_modules/draft-js-multidecorators/index.js
+var draft_js_multidecorators = __webpack_require__(17);
+var draft_js_multidecorators_default = /*#__PURE__*/__webpack_require__.n(draft_js_multidecorators);
+
+// CONCATENATED MODULE: ./renderers/decorators/Link/index.jsx
+
+/* harmony default export */ var Link = (function (props) {
+  var children = props.children,
+      entityKey = props.entityKey,
+      contentState = props.contentState;
+
+  var _contentState$getEnti = contentState.getEntity(entityKey).getData(),
+      href = _contentState$getEnti.href,
+      target = _contentState$getEnti.target;
+
+  return external_react_default.a.createElement("span", {
+    className: "bf-link-wrap"
+  }, external_react_default.a.createElement("a", {
+    onClick: function onClick(event) {
+      return viewLink(event, href);
+    },
+    className: "bf-link",
+    href: href,
+    target: target
+  }, children));
+});
+
+var viewLink = function viewLink(event, link) {
+  if (event.getModifierState('Shift')) {
+    var tempLink = document.createElement('a');
+    tempLink.href = link;
+    tempLink.target = '_blank';
+    tempLink.click();
+  }
+};
+// CONCATENATED MODULE: ./renderers/decorators/index.js
+
+
+
+
+
+
+var KEY_SEPARATOR = '-';
+
+draft_js_multidecorators_default.a.prototype.getDecorations = function (block, contentState) {
+  var decorations = Array(block.getText().length).fill(null);
+  this.decorators.forEach(function (decorator, i) {
+    decorator.getDecorations(block, contentState).forEach(function (key, offset) {
+      if (!key) {
+        return;
+      }
+
+      key = i + KEY_SEPARATOR + key;
+      decorations[offset] = key;
+    });
+  });
+  return external_immutable_default.a.List(decorations);
+};
+
+var builtinDecorators = [{
+  type: 'entity',
+  decorator: {
+    key: 'LINK',
+    component: Link
+  }
+}];
+
+var createStrategy = function createStrategy(type) {
+  return function (block, callback, contentState) {
+    block.findEntityRanges(function (character) {
+      var entityKey = character.getEntity();
+      return entityKey !== null && contentState.getEntity(entityKey).getType() === type;
+    }, callback);
+  };
+};
+
+/* harmony default export */ var decorators = (function () {
+  var entityDecorators = builtinDecorators.concat(toConsumableArray_default()(extensionDecorators.filter(function (item) {
+    return item.type === 'entity';
+  })));
+  var strategyDecorators = extensionDecorators.filter(function (item) {
+    return item.type === 'strategy';
+  });
+  var classDecorators = extensionDecorators.filter(function (item) {
+    return item.type === 'class';
+  });
+  return new draft_js_multidecorators_default.a(toConsumableArray_default()(classDecorators.map(function (item) {
+    return item.decorator;
+  })).concat([// combine decorators created with strategy
+  new external_draft_js_["CompositeDecorator"](strategyDecorators.map(function (item) {
+    return item.decorator;
+  })), // combine decorators for entities
+  new external_draft_js_["CompositeDecorator"](entityDecorators.map(function (item) {
+    return {
+      strategy: createStrategy(item.decorator.key),
+      component: item.decorator.component
+    };
+  }))]));
+});
+// CONCATENATED MODULE: ./renderers/index.js
+
+
+
+
+
+
+var getBlockRenderMap = block_blockRenderMap;
+var getBlockRendererFn = block_blockRendererFn;
+var getBlockStyleFn = block_blockStyleFn;
+var getCustomStyleMap = inlineStyleMap;
+var getCustomStyleFn = inlineStyleFn;
+var getDecorators = decorators;
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/extends.js
 var helpers_extends = __webpack_require__(12);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(39);
+var ControlBar_style = __webpack_require__(40);
 
 // EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
-var LinkEditor_style = __webpack_require__(38);
+var LinkEditor_style = __webpack_require__(41);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
-var DropDown_style = __webpack_require__(37);
+var DropDown_style = __webpack_require__(42);
 
 // CONCATENATED MODULE: ./helpers/responsive.js
 
@@ -2264,23 +2911,12 @@ var LinkEditor_LinkEditor =
 function (_React$Component) {
   inherits_default()(LinkEditor, _React$Component);
 
-  function LinkEditor() {
-    var _getPrototypeOf2;
-
+  function LinkEditor(props) {
     var _this;
 
     classCallCheck_default()(this, LinkEditor);
 
-    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(LinkEditor)).call.apply(_getPrototypeOf2, [this].concat(args)));
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
-      href: '',
-      target: ''
-    });
+    _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(LinkEditor).call(this, props));
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownComponent", null);
 
@@ -2344,19 +2980,23 @@ function (_React$Component) {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionLink(_this.props.editorState, href, target));
     });
 
+    _this.state = {
+      href: '',
+      target: props.defaultLinkTarget || ''
+    };
     return _this;
   }
 
   createClass_default()(LinkEditor, [{
     key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(next) {
-      var _ContentUtils$getSele = external_braft_utils_["ContentUtils"].getSelectionEntityData(next.editorState, 'LINK'),
+    value: function componentWillReceiveProps(nextProps) {
+      var _ContentUtils$getSele = external_braft_utils_["ContentUtils"].getSelectionEntityData(nextProps.editorState, 'LINK'),
           href = _ContentUtils$getSele.href,
           target = _ContentUtils$getSele.target;
 
       this.setState({
         href: href || '',
-        target: target || ''
+        target: typeof target === 'undefined' ? nextProps.defaultLinkTarget || '' : target || ''
       });
     }
   }, {
@@ -2433,7 +3073,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/Headings/style.scss
-var Headings_style = __webpack_require__(36);
+var Headings_style = __webpack_require__(43);
 
 // CONCATENATED MODULE: ./configs/maps.js
 
@@ -2523,10 +3163,10 @@ var blocks = {
   })));
 });
 // EXTERNAL MODULE: ./components/business/TextColor/style.scss
-var TextColor_style = __webpack_require__(35);
+var TextColor_style = __webpack_require__(44);
 
 // EXTERNAL MODULE: ./components/common/ColorPicker/style.scss
-var ColorPicker_style = __webpack_require__(34);
+var ColorPicker_style = __webpack_require__(45);
 
 // CONCATENATED MODULE: ./components/common/ColorPicker/index.jsx
 
@@ -2701,7 +3341,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/FontSize/style.scss
-var FontSize_style = __webpack_require__(33);
+var FontSize_style = __webpack_require__(46);
 
 // CONCATENATED MODULE: ./components/business/FontSize/index.jsx
 
@@ -2730,7 +3370,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
   var currentFontSize = null;
   props.fontSizes.find(function (item) {
     if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(props.editorState, 'FONTSIZE-' + item)) {
-      caption = item + 'px';
+      caption = item;
       currentFontSize = item;
       return true;
     }
@@ -2752,11 +3392,11 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
       onClick: function onClick(event) {
         return FontSize_toggleFontSize(event, props);
       }
-    }, item + 'px');
+    }, item);
   })));
 });
 // EXTERNAL MODULE: ./components/business/LineHeight/style.scss
-var LineHeight_style = __webpack_require__(32);
+var LineHeight_style = __webpack_require__(47);
 
 // CONCATENATED MODULE: ./components/business/LineHeight/index.jsx
 
@@ -2811,7 +3451,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/FontFamily/style.scss
-var FontFamily_style = __webpack_require__(31);
+var FontFamily_style = __webpack_require__(48);
 
 // CONCATENATED MODULE: ./components/business/FontFamily/index.jsx
 
@@ -2955,7 +3595,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/EmojiPicker/style.scss
-var EmojiPicker_style = __webpack_require__(30);
+var EmojiPicker_style = __webpack_require__(49);
 
 // CONCATENATED MODULE: ./components/business/EmojiPicker/index.jsx
 
@@ -3001,7 +3641,7 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
   }))));
 });
 // EXTERNAL MODULE: ./components/business/LetterSpacing/style.scss
-var LetterSpacing_style = __webpack_require__(29);
+var LetterSpacing_style = __webpack_require__(50);
 
 // CONCATENATED MODULE: ./components/business/LetterSpacing/index.jsx
 
@@ -3055,66 +3695,97 @@ var LetterSpacing_toggleLetterSpacing = function toggleLetterSpacing(event, prop
     }, item);
   })));
 });
-// EXTERNAL MODULE: ./components/business/TextIndent/style.scss
-var TextIndent_style = __webpack_require__(28);
-
 // CONCATENATED MODULE: ./components/business/TextIndent/index.jsx
 
 
 
 
 
-var TextIndent_toggleTextIndent = function toggleTextIndent(event, props) {
-  var textIndent = event.currentTarget.dataset.size;
-  var hookReturns = props.hooks('toggle-text-indent', textIndent)(textIndent);
 
-  if (hookReturns === false) {
-    return false;
-  }
 
-  if (!isNaN(hookReturns)) {
-    textIndent = hookReturns;
-  }
 
-  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionIndent(props.editorState, textIndent, props.textIndents));
-  props.editor.requestFocus();
-};
 
-/* harmony default export */ var TextIndent = (function (props) {
-  var caption = null;
-  var currentIndent = null;
-  props.textIndents.find(function (item) {
-    if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(props.editorState, 'INDENT-' + item)) {
-      caption = item;
-      currentIndent = item;
-      return true;
+
+var TextIndent_TextAlign =
+/*#__PURE__*/
+function (_React$Component) {
+  inherits_default()(TextAlign, _React$Component);
+
+  function TextAlign() {
+    var _getPrototypeOf2;
+
+    var _this;
+
+    classCallCheck_default()(this, TextAlign);
+
+    for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
     }
 
-    return false;
-  });
-  return external_react_default.a.createElement(DropDown_DropDown, {
-    caption: caption || props.defaultCaption,
-    containerNode: props.containerNode,
-    title: props.language.controls.textIndent,
-    className: 'control-item dropdown bf-indent-dropdown'
-  }, external_react_default.a.createElement("ul", {
-    className: "bf-text-indents"
-  }, props.textIndents.map(function (item, index) {
-    return external_react_default.a.createElement("li", {
-      key: index,
-      className: item === currentIndent ? 'active' : null,
-      "data-size": item,
-      onClick: function onClick(event) {
-        return TextIndent_toggleTextIndent(event, props);
-      }
-    }, item);
-  })));
-});
+    _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(TextAlign)).call.apply(_getPrototypeOf2, [this].concat(args)));
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
+      currentIndent: 0
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "increaseIndent", function () {
+      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].increaseSelectionIndent(_this.props.editorState));
+
+      _this.props.editor.requestFocus();
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "decreaseIndent", function () {
+      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].decreaseSelectionIndent(_this.props.editorState));
+
+      _this.props.editor.requestFocus();
+    });
+
+    return _this;
+  }
+
+  createClass_default()(TextAlign, [{
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(nextProps) {
+      this.setState({
+        currentIndent: external_braft_utils_["ContentUtils"].getSelectionBlockData(nextProps.editorState, 'textIndent') || 0
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var currentIndent = this.state.currentIndent;
+      var language = this.props.language;
+      return external_react_default.a.createElement("div", {
+        className: "control-item-group"
+      }, external_react_default.a.createElement("button", {
+        type: "button",
+        "data-title": language.controls.increaseIndent,
+        disabled: currentIndent >= 6,
+        className: "control-item button button-indent-increase".concat(currentIndent > 0 && currentIndent < 6 ? ' active' : ''),
+        onClick: this.increaseIndent
+      }, external_react_default.a.createElement("i", {
+        className: 'bfi-indent-increase'
+      })), external_react_default.a.createElement("button", {
+        type: "button",
+        "data-title": language.controls.decreaseIndent,
+        disabled: currentIndent <= 0,
+        className: "control-item button button-indent-decrease",
+        onClick: this.decreaseIndent
+      }, external_react_default.a.createElement("i", {
+        className: 'bfi-indent-decrease'
+      })));
+    }
+  }]);
+
+  return TextAlign;
+}(external_react_default.a.Component);
+
+
 // EXTERNAL MODULE: ./components/common/Modal/style.scss
-var Modal_style = __webpack_require__(27);
+var Modal_style = __webpack_require__(51);
 
 // EXTERNAL MODULE: external "react-dom"
-var external_react_dom_ = __webpack_require__(14);
+var external_react_dom_ = __webpack_require__(15);
 var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
 
 // CONCATENATED MODULE: ./components/common/Modal/index.jsx
@@ -3361,6 +4032,7 @@ var Modal_showModal = function showModal(props) {
 
 
 
+
 var commandHookMap = {
   'inline-style': 'toggle-inline-style',
   'block-type': 'change-block-type',
@@ -3473,6 +4145,8 @@ function (_React$Component) {
         className += ' active';
       } else if (type === 'block-type' && external_braft_utils_["ContentUtils"].getSelectionBlockType(this.props.editorState) === command) {
         className += ' active';
+      } else if (type === 'entity' && external_braft_utils_["ContentUtils"].getSelectionEntityType(this.props.editorState) === command) {
+        className += ' active';
       }
 
       return className;
@@ -3480,6 +4154,7 @@ function (_React$Component) {
   }, {
     key: "applyControl",
     value: function applyControl(command, type) {
+      var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
       var hookReturns = this.props.hooks(commandHookMap[type] || type, command)(command);
 
       if (hookReturns === false) {
@@ -3494,6 +4169,12 @@ function (_React$Component) {
         this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionInlineStyle(this.props.editorState, command));
       } else if (type === 'block-type') {
         this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBlockType(this.props.editorState, command));
+      } else if (type === 'entity') {
+        this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionEntity(this.props.editorState, {
+          type: command,
+          mutability: data.mutability || 'MUTABLE',
+          data: data.data || {}
+        }));
       } else if (type === 'editor-method') {
         this.props.editor[command] && this.props.editor[command]();
       }
@@ -3520,7 +4201,7 @@ function (_React$Component) {
           letterSpacings = _this$props2.letterSpacings,
           textAligns = _this$props2.textAligns,
           textBackgroundColor = _this$props2.textBackgroundColor,
-          textIndents = _this$props2.textIndents;
+          defaultLinkTarget = _this$props2.defaultLinkTarget;
       var currentBlockType = external_braft_utils_["ContentUtils"].getSelectionBlockType(editorState);
       var editorControls = configs_controls(language);
       var commonProps = {
@@ -3531,10 +4212,11 @@ function (_React$Component) {
         hooks: hooks
       };
       var renderedControls = [];
+      var allControls = extensionControls.length ? toConsumableArray_default()(controls).concat(['separator'], toConsumableArray_default()(extensionControls), toConsumableArray_default()(extendControls)) : toConsumableArray_default()(controls).concat(toConsumableArray_default()(extensionControls), toConsumableArray_default()(extendControls));
       return external_react_default.a.createElement("div", {
         className: "bf-controlbar",
         onMouseDown: this.preventDefault
-      }, toConsumableArray_default()(controls).concat(toConsumableArray_default()(extendControls)).map(function (item, index) {
+      }, allControls.map(function (item, index) {
         var itemKey = typeof item === 'string' ? item : item.key;
 
         if (typeof itemKey !== 'string') {
@@ -3599,9 +4281,8 @@ function (_React$Component) {
             defaultCaption: controlItem.title
           }, commonProps));
         } else if (controlItem.type === 'text-indent') {
-          return external_react_default.a.createElement(TextIndent, extends_default()({
+          return external_react_default.a.createElement(TextIndent_TextAlign, extends_default()({
             key: index,
-            textIndents: textIndents,
             defaultCaption: controlItem.title
           }, commonProps));
         } else if (controlItem.type === 'font-family') {
@@ -3618,7 +4299,8 @@ function (_React$Component) {
           }, commonProps));
         } else if (controlItem.type === 'link') {
           return external_react_default.a.createElement(LinkEditor_LinkEditor, extends_default()({
-            key: index
+            key: index,
+            defaultLinkTarget: defaultLinkTarget
           }, commonProps));
         } else if (controlItem.type === 'text-align') {
           return external_react_default.a.createElement(TextAlign_TextAlign, extends_default()({
@@ -3697,16 +4379,25 @@ function (_React$Component) {
             }
           }, !controlItem.html ? controlItem.text : null);
         } else {
+          var disabled = false;
+
+          if (controlItem.command === 'undo') {
+            disabled = editorState.getUndoStack().size === 0;
+          } else if (controlItem.command === 'redo') {
+            disabled = editorState.getRedoStack().size === 0;
+          }
+
           return external_react_default.a.createElement("button", {
             type: "button",
             key: index,
+            disabled: disabled,
             "data-title": controlItem.title,
             className: _this3.getControlItemClassName({
               type: controlItem.type,
               command: controlItem.command
             }),
             onClick: function onClick() {
-              return _this3.applyControl(controlItem.command, controlItem.type);
+              return _this3.applyControl(controlItem.command, controlItem.type, controlItem.data);
             }
           }, controlItem.text);
         }
@@ -3750,6 +4441,8 @@ function (_React$Component) {
 
 
 
+
+
 var buildHooks = function buildHooks(hooks) {
   return function (hookName) {
     var defaultReturns = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -3767,7 +4460,19 @@ var filterColors = function filterColors(colors, colors2) {
   });
 };
 
-var editorDecorators = new external_draft_js_["CompositeDecorator"](renderers_decorators);
+var editor_getConvertOptions = function getConvertOptions(props) {
+  var convertOptions = objectSpread_default()({}, configs_props.converts, props.converts, {
+    fontFamilies: props.fontFamilies
+  });
+
+  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn);
+  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn);
+  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn);
+  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn);
+  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn);
+  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn);
+  return convertOptions;
+};
 
 var editor_BraftEditor =
 /*#__PURE__*/
@@ -3781,11 +4486,16 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(BraftEditor).call(this, props));
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onChange", function (editorState) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onChange", function (editorState, callback) {
+      if (!editorState.convertOptions) {
+        editorState.setConvertOptions(editor_getConvertOptions(_this.props));
+      }
+
       _this.setState({
         editorState: editorState
       }, function () {
         _this.props.onChange && _this.props.onChange(editorState);
+        callback && callback(editorState);
       });
     });
 
@@ -3801,20 +4511,17 @@ function (_React$Component) {
       return _this.state.editorState;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setValue", function (editorState) {
-      return _this.onChange(editorState);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setValue", function (editorState, callback) {
+      return _this.onChange(editorState, callback);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "forceRender", function () {
-      return _this.setValue(external_braft_utils_["ContentUtils"].createEditorState(_this.state.editorState.getCurrentContent(), editorDecorators));
+      return _this.setValue(external_braft_utils_["ContentUtils"].createEditorState(_this.state.editorState.getCurrentContent(), _this.editorDecorators));
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onTab", function (event) {
-      if (external_braft_utils_["ContentUtils"].getSelectionBlockType(_this.state.editorState) === 'code-block') {
-        _this.setValue(external_braft_utils_["ContentUtils"].insertText(_this.state.editorState, ' '.repeat(_this.props.tabIndents)));
-
+      if (handlers_keyCommandHandlers('tab', _this.state.editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this))) === 'handled') {
         event.preventDefault();
-        return false;
       }
 
       _this.props.onTab && _this.props.onTab(event);
@@ -3836,119 +4543,32 @@ function (_React$Component) {
       }, 0);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleKeyCommand", function (command) {
-      if (command === 'braft-save') {
-        _this.props.onSave && _this.props.onSave();
-        return 'handled';
-      }
-
-      var nextEditorState = external_braft_utils_["ContentUtils"].handleKeyCommand(_this.state.editorState, command);
-
-      if (nextEditorState) {
-        _this.setValue(nextEditorState);
-
-        return 'handled';
-      }
-
-      return 'not-handled';
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleKeyCommand", function (command, editorState) {
+      return handlers_keyCommandHandlers(command, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleReturn", function (event) {
-      var currentBlock = external_braft_utils_["ContentUtils"].getSelectionBlock(_this.state.editorState);
-      var currentBlockType = currentBlock.getType();
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleReturn", function (event, editorState) {
+      return handlers_returnHandlers(event, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
+    });
 
-      if (currentBlockType === 'unordered-list-item' || currentBlockType === 'ordered-list-item') {
-        if (currentBlock.getLength() === 0) {
-          _this.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBlockType(_this.state.editorState, 'unstyled'));
-
-          return 'handled';
-        }
-
-        return 'not-handled';
-      } else if (currentBlockType === 'code-block') {
-        if (event.which === 13 && (event.getModifierState('Shift') || event.getModifierState('Alt') || event.getModifierState('Control'))) {
-          _this.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBlockType(_this.state.editorState, 'unstyled'));
-
-          return 'handled';
-        }
-
-        return 'not-handled';
-      } else {
-        var nextEditorState = external_braft_utils_["ContentUtils"].handleNewLine(_this.state.editorState, event);
-
-        if (nextEditorState) {
-          _this.setValue(nextEditorState);
-
-          return 'handled';
-        }
-
-        return 'not-handled';
-      }
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleBeforeInput", function (chars, editorState) {
+      return beforeInputHandlers(chars, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDrop", function (selectionState, dataTransfer) {
-      if (window && window.__BRAFT_DRAGING__IMAGE__) {
-        var editorState = external_braft_utils_["ContentUtils"].removeBlock(_this.state.editorState, window.__BRAFT_DRAGING__IMAGE__.block, selectionState);
-        editorState = external_braft_utils_["ContentUtils"].insertMedias(editorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]);
-        window.__BRAFT_DRAGING__IMAGE__ = null;
-
-        _this.setDraftProps({
-          readOnly: false
-        });
-
-        _this.setValue(editorState);
-
-        return 'handled';
-      } else if (!dataTransfer || !dataTransfer.getText()) {
-        return 'handled';
-      }
-
-      return 'not-handled';
+      return handlers_dropHandlers(selectionState, dataTransfer, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDroppedFiles", function (_, files) {
-      return _this.resolveFiles(files);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDroppedFiles", function (selectionState, files) {
+      return droppedFilesHandlers(selectionState, files, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedFiles", function (files) {
-      return _this.resolveFiles(files);
+      return pastedFilesHandlers(files, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedText", function (_, htmlString) {
-      if (!htmlString || _this.props.stripPastedStyles) {
-        return false;
-      }
-
-      var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromHTMLString(htmlString);
-
-      _this.setState({
-        tempColors: toConsumableArray_default()(_this.state.tempColors).concat(toConsumableArray_default()(tempColors)).filter(function (item) {
-          return _this.props.colors.indexOf(item) === -1;
-        }).filter(function (item, index, array) {
-          return array.indexOf(item) === index;
-        })
-      }, function () {
-        _this.setValue(external_braft_utils_["ContentUtils"].insertHTML(_this.state.editorState, htmlString));
-      });
-
-      return true;
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "resolveFiles", function (files) {
-      var _defaultProps$media$_ = objectSpread_default()({}, configs_props.media, _this.props.media),
-          pasteImage = _defaultProps$media$_.pasteImage;
-
-      pasteImage && files.slice(0, 5).forEach(function (file) {
-        file && file.type.indexOf('image') > -1 && _this.braftFinder.uploadImage(file, function (image) {
-          _this.isLiving && _this.setValue(external_braft_utils_["ContentUtils"].insertMedias(_this.state.editorState, [image]));
-        });
-      });
-
-      if (files[0] && files[0].type.indexOf('image') > -1 && pasteImage) {
-        return 'handled';
-      }
-
-      return 'not-handled';
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedText", function (text, html, editorState) {
+      return handlers_pastedTextHandlers(text, html, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "undo", function () {
@@ -3968,7 +4588,9 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "clearEditorContent", function () {
-      _this.setValue(external_braft_utils_["ContentUtils"].clear(_this.state.editorState));
+      _this.setValue(external_braft_utils_["ContentUtils"].clear(_this.state.editorState), function (editorState) {
+        _this.setValue(external_braft_utils_["ContentUtils"].toggleSelectionIndent(editorState, 0));
+      });
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setEditorContainerNode", function (containerNode) {
@@ -3977,18 +4599,12 @@ function (_React$Component) {
       }, _this.forceRender);
     });
 
+    _this.blockRenderMap = _this.editorDecorators = getDecorators();
     _this.isFocused = false;
-    _this.keyBindingFn = keybindings(props.customKeyBindingFn);
-    _this.blockStyleFn = getBlockStyleFn(props.blockStyleFn);
-    _this.blockRenderMap = external_draft_js_["DefaultDraftBlockRenderMap"].merge(customBlockRenderMap);
-
-    if (props.blockRenderMapFn) {
-      _this.blockRenderMap = props.blockRenderMapFn(_this.blockRenderMap);
-    }
-
     _this.isLiving = false;
     _this.braftFinder = null;
-    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(props.defaultValue) ? props.defaultValue : external_braft_utils_["ContentUtils"].createEmptyEditorState(editorDecorators);
+    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(props.defaultValue || props.value) ? props.defaultValue || props.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
+    defaultEditorState.setConvertOptions(editor_getConvertOptions(props));
     _this.state = {
       containerNode: null,
       tempColors: [],
@@ -4031,14 +4647,21 @@ function (_React$Component) {
 
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
         var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
+        editorState.setConvertOptions(editor_getConvertOptions(this.props));
         this.setState({
           tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.props.colors),
           editorState: editorState
         });
-      } else if (editorState) {// console.warn('')
       }
 
       this.isLiving = true;
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(_, prevState) {
+      if (prevState.editorState !== this.state.editorState) {
+        this.state.editorState.setConvertOptions(editor_getConvertOptions(this.props));
+      }
     }
   }, {
     key: "componentWillReceiveProps",
@@ -4053,6 +4676,7 @@ function (_React$Component) {
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
         if (editorState !== this.state.editorState) {
           var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
+          editorState.setConvertOptions(editor_getConvertOptions(nextProps));
           this.setState({
             tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.props.colors),
             editorState: editorState
@@ -4062,13 +4686,19 @@ function (_React$Component) {
             editorState: editorState
           });
         }
-      } else if (editorState) {// console.warn('')
       }
     }
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.isLiving = false;
+    }
+  }, {
+    key: "setDraftProps",
+    value: function setDraftProps(draftProps) {
+      this.setState({
+        draftProps: objectSpread_default()({}, this.state.draftProps, draftProps)
+      });
     }
   }, {
     key: "render",
@@ -4091,9 +4721,9 @@ function (_React$Component) {
           imageControls = _this$props2.imageControls,
           lineHeights = _this$props2.lineHeights,
           letterSpacings = _this$props2.letterSpacings,
-          textIndents = _this$props2.textIndents,
           textAligns = _this$props2.textAligns,
           textBackgroundColor = _this$props2.textBackgroundColor,
+          defaultLinkTarget = _this$props2.defaultLinkTarget,
           extendAtomics = _this$props2.extendAtomics,
           className = _this$props2.className,
           style = _this$props2.style,
@@ -4107,7 +4737,7 @@ function (_React$Component) {
       controls = controls.filter(function (item) {
         return excludeControls.indexOf(item) === -1;
       });
-      language = languages[language] || languages[configs_props.language];
+      language = (typeof language === 'function' ? language(languages) : languages[language]) || languages[configs_props.language];
       var externalMedias = media && media.externals ? objectSpread_default()({}, configs_props.media.externals, media.externals) : configs_props.media.externals;
       var accepts = media && media.accepts ? objectSpread_default()({}, configs_props.media.accepts, media.accepts) : configs_props.media.accepts;
       media = objectSpread_default()({}, configs_props.media, media, {
@@ -4141,11 +4771,12 @@ function (_React$Component) {
         emojis: emojis,
         lineHeights: lineHeights,
         letterSpacings: letterSpacings,
-        textIndents: textIndents,
         textAligns: textAligns,
-        textBackgroundColor: textBackgroundColor
+        textBackgroundColor: textBackgroundColor,
+        defaultLinkTarget: defaultLinkTarget
       };
-      var blockRendererFn = getBlockRendererFn({
+      var unitExportFn = this.state.editorState.convertOptions.unitExportFn;
+      var commonProps = {
         editor: this,
         hooks: hooks,
         editorState: this.state.editorState,
@@ -4153,15 +4784,17 @@ function (_React$Component) {
         imageControls: imageControls,
         language: language,
         extendAtomics: extendAtomics
-      }, this.props.blockRendererFn);
-      var customStyleMap = getCustomStyleMap({
-        colors: toConsumableArray_default()(colors).concat(toConsumableArray_default()(this.state.tempColors)),
-        fontSizes: fontSizes,
+      };
+      var blockRendererFn = getBlockRendererFn(commonProps, this.props.blockRendererFn);
+      var blockRenderMap = getBlockRenderMap(commonProps, this.props.blockRenderMap);
+      var blockStyleFn = getBlockStyleFn(this.props.blockStyleFn);
+      var customStyleMap = getCustomStyleMap(this.props.customStyleMap);
+      var customStyleFn = getCustomStyleFn({
         fontFamilies: fontFamilies,
-        lineHeights: lineHeights,
-        letterSpacings: letterSpacings,
-        textIndents: textIndents
-      }, this.props.customStyleMap);
+        unitExportFn: unitExportFn,
+        customStyleFn: this.props.customStyleFn
+      });
+      var keyBindingFn = keybindings(this.props.keyBindingFn);
 
       var draftProps = objectSpread_default()({
         ref: function ref(instance) {
@@ -4170,6 +4803,7 @@ function (_React$Component) {
         editorState: this.state.editorState,
         handleKeyCommand: this.handleKeyCommand,
         handleReturn: this.handleReturn,
+        handleBeforeInput: this.handleBeforeInput,
         handleDrop: this.handleDrop,
         handleDroppedFiles: this.handleDroppedFiles,
         handlePastedText: this.handlePastedText,
@@ -4179,11 +4813,12 @@ function (_React$Component) {
         onFocus: this.onFocus,
         onBlur: this.onBlur,
         readOnly: disabled,
-        blockRenderMap: this.blockRenderMap,
-        blockStyleFn: this.blockStyleFn,
-        keyBindingFn: this.keyBindingFn,
-        customStyleMap: customStyleMap,
+        blockRenderMap: blockRenderMap,
         blockRendererFn: blockRendererFn,
+        blockStyleFn: blockStyleFn,
+        customStyleMap: customStyleMap,
+        customStyleFn: customStyleFn,
+        keyBindingFn: keyBindingFn,
         placeholder: placeholder,
         stripPastedStyles: stripPastedStyles
       }, this.props.draftProps, this.state.draftProps);
@@ -4197,13 +4832,6 @@ function (_React$Component) {
         style: contentStyle
       }, external_react_default.a.createElement(external_draft_js_["Editor"], draftProps)));
     }
-  }, {
-    key: "setDraftProps",
-    value: function setDraftProps(draftProps) {
-      this.setState({
-        draftProps: objectSpread_default()({}, this.state.draftProps, draftProps)
-      });
-    }
   }]);
 
   return BraftEditor;
@@ -4213,173 +4841,78 @@ defineProperty_default()(editor_BraftEditor, "defaultProps", configs_props);
 
 
 // EXTERNAL MODULE: external "braft-convert"
-var external_braft_convert_ = __webpack_require__(13);
+var external_braft_convert_ = __webpack_require__(14);
 
 // CONCATENATED MODULE: ./index.jsx
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "EditorState", function() { return external_draft_js_["EditorState"]; });
-/* concated harmony reexport */__webpack_require__.d(__webpack_exports__, "editorDecorators", function() { return editorDecorators; });
+/* concated harmony reexport EditorState */__webpack_require__.d(__webpack_exports__, "EditorState", function() { return external_draft_js_["EditorState"]; });
+/* concated harmony reexport getDecorators */__webpack_require__.d(__webpack_exports__, "getDecorators", function() { return getDecorators; });
 
 
 
- // 为EditorState对象增加toHTML原型方法，用于将editorState转换成HTML字符串
+
+
+
+
+
+external_draft_js_["EditorState"].prototype.setConvertOptions = function () {
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  this.convertOptions = options;
+};
 
 external_draft_js_["EditorState"].prototype.toHTML = function () {
-  return Object(external_braft_convert_["convertEditorStateToHTML"])(this);
-}; // 为EditorState对象增加toRAW原型方法，用于将editorState转换成RAW JSON对象或RAW JSON字符串
-
+  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var convertOptions = this.convertOptions || {};
+  return Object(external_braft_convert_["convertEditorStateToHTML"])(this, objectSpread_default()({}, convertOptions, options));
+};
 
 external_draft_js_["EditorState"].prototype.toRAW = function (noStringify) {
   return noStringify ? Object(external_braft_convert_["convertEditorStateToRaw"])(this) : JSON.stringify(Object(external_braft_convert_["convertEditorStateToRaw"])(this));
-}; // 为EditorState对象增加新的静态方法，用于从raw或者html内容创建ediorState
+};
 
+external_draft_js_["EditorState"].prototype.isEmpty = function () {
+  return !this.getCurrentContent().hasText();
+};
 
-external_draft_js_["EditorState"].createFrom = function (content, options) {
+editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createFrom = function (content) {
+  var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  options.styleImportFn = compositeStyleImportFn(options.styleImportFn);
+  options.entityImportFn = compositeEntityImportFn(options.entityImportFn);
+  options.blockImportFn = compositeBlockImportFn(options.blockImportFn);
+
   if (typeof_default()(content) === 'object' && content && content.blocks && content.entityMap) {
-    return Object(external_braft_convert_["convertRawToEditorState"])(content, editorDecorators);
+    return Object(external_braft_convert_["convertRawToEditorState"])(content, getDecorators());
   } else if (typeof content === 'string') {
     try {
       return external_draft_js_["EditorState"].createFrom(JSON.parse(content), options);
     } catch (error) {
-      return Object(external_braft_convert_["convertHTMLToEditorState"])(content, editorDecorators, options);
+      return Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(), options, 'create');
     }
   } else {
-    return external_draft_js_["EditorState"].createEmpty(editorDecorators);
+    return external_draft_js_["EditorState"].createEmpty(getDecorators());
   }
 };
 
-editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createFrom;
-/* harmony default export */ var index_0 = __webpack_exports__["default"] = (editor_BraftEditor);
- // 近期开发计划
-// 优化全选会选择上传中的项目的问题
-// 支持param.success时设置媒体文件的更多属性（尺寸等）
-// 2.1.0版本开发计划
-// [ ]支持样式的开关模式
-// 2.2.0版本开发计划
-// [ ]允许自定义快捷键
-// [ ]优化图片param.success，支持传入link等
-// [ ]简化上传配置流程
-// [ ]支持draftjs插件机制
-// [ ]支持媒体库组件的更多个性化配置（placeholder等）
-// [ ]支持非媒体类附件
-// [ ]优化HTML格式无法存储媒体名称的问题 
+/* harmony default export */ var index_0 = __webpack_exports__["default"] = (createExtensibleEditor(editor_BraftEditor));
+ // 2.1版本开发计划
+// [ ]增强扩展性
 // [ ]完成font-size等样式的全量支持
-// 2.3.0版本开发计划
+// [ ]支持无限制取色器
+// [ ]支持替换内置控件
+// [ ]允许自定义快捷键
+// 2.2版本开发计划
+// [ ]支持非媒体类附件
+// [ ]优化全选会选择上传中的项目的问题
+// [ ]支持param.success时设置媒体文件的更多属性（尺寸、图片链接等）
+// [ ]简化上传配置流程
+// [ ]支持媒体库组件的更多个性化配置（placeholder等）
+// [ ]优化HTML格式无法存储媒体名称的问题 
+// 2.3版本开发计划
 // [ ]优化换行与空格
 // [ ]支持自定义Atomic组件
 // [ ]图片裁切等简单的编辑功能
-// [ ]代码块交互强化
 // [ ]初级表格功能
-// 2.4.00版本开发计划
+// 2.4版本开发计划
 // [ ]美化UI，包括图标和界面风格
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-function _nonIterableRest() {
-  throw new TypeError("Invalid attempt to destructure non-iterable instance");
-}
-
-module.exports = _nonIterableRest;
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-function _iterableToArrayLimit(arr, i) {
-  var _arr = [];
-  var _n = true;
-  var _d = false;
-  var _e = undefined;
-
-  try {
-    for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
-      _arr.push(_s.value);
-
-      if (i && _arr.length === i) break;
-    }
-  } catch (err) {
-    _d = true;
-    _e = err;
-  } finally {
-    try {
-      if (!_n && _i["return"] != null) _i["return"]();
-    } finally {
-      if (_d) throw _e;
-    }
-  }
-
-  return _arr;
-}
-
-module.exports = _iterableToArrayLimit;
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-function _arrayWithHoles(arr) {
-  if (Array.isArray(arr)) return arr;
-}
-
-module.exports = _arrayWithHoles;
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports) {
-
-function _setPrototypeOf(o, p) {
-  module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
-    o.__proto__ = p;
-    return o;
-  };
-
-  return _setPrototypeOf(o, p);
-}
-
-module.exports = _setPrototypeOf;
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports) {
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance");
-}
-
-module.exports = _nonIterableSpread;
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-function _iterableToArray(iter) {
-  if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
-}
-
-module.exports = _iterableToArray;
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports) {
-
-function _arrayWithoutHoles(arr) {
-  if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
-      arr2[i] = arr[i];
-    }
-
-    return arr2;
-  }
-}
-
-module.exports = _arrayWithoutHoles;
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ }),
 /* 28 */
@@ -4388,36 +4921,16 @@ module.exports = _arrayWithoutHoles;
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 29 */,
 /* 30 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 31 */,
+/* 32 */,
+/* 33 */,
 /* 34 */
 /***/ (function(module, exports) {
 
@@ -4490,16 +5003,36 @@ module.exports = _arrayWithoutHoles;
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 46 */,
-/* 47 */,
-/* 48 */,
+/* 46 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 47 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 48 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 49 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 50 */,
+/* 50 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 51 */
 /***/ (function(module, exports) {
 

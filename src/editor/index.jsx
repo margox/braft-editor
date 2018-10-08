@@ -249,7 +249,7 @@ export default class BraftEditor extends React.Component {
 
     let {
       controls, excludeControls, extendControls, disabled, media, language, colors, hooks,
-      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor,
+      fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.props
 
@@ -284,7 +284,7 @@ export default class BraftEditor extends React.Component {
       style: controlBarStyle, hooks,
       colors: [...colors, ...this.state.tempColors],
       media, controls, language, extendControls, fontSizes, fontFamilies,
-      emojis, lineHeights, letterSpacings, textAligns, textBackgroundColor
+      emojis, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget
     }
 
     const { unitExportFn } = this.state.editorState.convertOptions

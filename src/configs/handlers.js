@@ -19,11 +19,13 @@ export const keyCommandHandlers = (command, editorState, editor) => {
 
   if (command === 'backspace') {
 
-    if (editor.props.onDelete && editor.props.onDelete(editorState) === 'handled') {
+    if (editor.props.onDelete && editor.props.onDelete(editorState) === false) {
       return 'handled'
     }
 
-    if (allowIndent && cursorIsAtFirst) {
+    const blockType = ContentUtils.getSelectionBlockType(editorState)
+
+    if (allowIndent && cursorIsAtFirst && blockType !== 'code-block') {
       editor.setValue(ContentUtils.decreaseSelectionIndent(editorState))
     }
 

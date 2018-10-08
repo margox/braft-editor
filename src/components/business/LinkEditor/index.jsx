@@ -6,19 +6,25 @@ import { ContentUtils } from 'braft-utils'
 
 export default class LinkEditor extends React.Component {
 
-  state = {
-    href: '',
-    target: ''
+  constructor (props) {
+
+    super(props)
+
+    this.state = {
+      href: '',
+      target: props.defaultLinkTarget || ''
+    }
+
   }
 
   dropDownComponent = null
 
-  componentWillReceiveProps (next) {
+  componentWillReceiveProps (nextProps) {
 
-    const { href, target } = ContentUtils.getSelectionEntityData(next.editorState, 'LINK')
+    const { href, target } = ContentUtils.getSelectionEntityData(nextProps.editorState, 'LINK')
     this.setState({
       href: href || '',
-      target: target || ''
+      target: typeof target === 'undefined' ? (nextProps.defaultLinkTarget || '') : (target || '')
     })
 
   }
