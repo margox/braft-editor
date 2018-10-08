@@ -13,7 +13,7 @@ node_modules
 *.vi
 *~
 *.sass-cache
-/example/server/temp/*
+/playground/server/temp/*
 
 # OS or Editor folders
 .DS_Store
