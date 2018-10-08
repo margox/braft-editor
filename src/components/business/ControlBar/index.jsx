@@ -263,7 +263,7 @@ export default class ControlBar extends React.Component {
               return (
                 <DropDown
                   key={index}
-                  className={'control-item extend-control-item dropdown ' + controlItem.className}
+                  className={`control-item extend-control-item dropdown ${controlItem.className || ''}`}
                   caption={controlItem.text}
                   htmlCaption={controlItem.html}
                   showArrow={controlItem.showArrow}
@@ -283,7 +283,7 @@ export default class ControlBar extends React.Component {
                   type='button'
                   key={index}
                   data-title={controlItem.title}
-                  className={'control-item extend-control-item button ' + controlItem.className}
+                  className={`control-item extend-control-item button ${controlItem.className || ''}`}
                   dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
                   onClick={(event) => {
                     if (controlItem.modal && controlItem.modal.id) {
@@ -305,7 +305,7 @@ export default class ControlBar extends React.Component {
               return (
                 <div
                   key={index}
-                  className={'control-item component-wrapper ' + controlItem.className}
+                  className={`component-wrapper ${controlItem.className || ''}`}
                 >{controlItem.component}</div>
               )
             } else if (controlItem.type === 'button') {
@@ -314,7 +314,7 @@ export default class ControlBar extends React.Component {
                   type='button'
                   key={index}
                   data-title={controlItem.title}
-                  className={'control-item button ' + controlItem.className}
+                  className={`control-item button ${controlItem.className || ''}`}
                   dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
                   onClick={(event) => controlItem.onClick && controlItem.onClick(event)}
                 >

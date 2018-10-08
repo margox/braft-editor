@@ -7,8 +7,7 @@ export default {
     'superscript', 'subscript', 'remove-styles', 'emoji', 'separator',
     'text-indent', 'text-align', 'separator',
     'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator',
-    'link', 'split', 'hr', 'separator',
-    'media', 'separator',
+    'media', 'link', 'split', 'hr', 'separator',
     'clear'
   ],
   excludeControls: [],

@@ -24,6 +24,9 @@ $ttfPath: '../icons/icons.ttf';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
+  .bfi-clear_all:before {
+    content: "\e0b8";
+  }
   .bfi-format_clear:before {
     content: "\e239";
   }

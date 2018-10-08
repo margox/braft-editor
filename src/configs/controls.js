@@ -134,7 +134,7 @@ export default (lang) => [
   }, {
     key: 'clear',
     title: lang.controls.clear,
-    text: lang.controls.clear,
+    text: <i className="bfi-clear_all"></i>,
     type: 'editor-method',
     command: 'clearEditorContent'
   }, {
