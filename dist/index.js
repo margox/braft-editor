@@ -1146,7 +1146,9 @@ var blockExporters = [];
 
 var filterByEditorId = function filterByEditorId(items, editorId) {
   if (!editorId) {
-    return items.map(function (item) {
+    return items.filter(function (item) {
+      return !item.includeEditors;
+    }).map(function (item) {
       return item.data;
     });
   }

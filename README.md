@@ -20,6 +20,8 @@
 - ...更多特性开发中
 
 ## 更新记录
+- 2018-10-09 v2.1.3
+  - 优化BraftEditor.use
 - 2018-10-09 v2.1.2
   - BraftEditor.use支持includeEditors和excludeEditors参数以针对不同编辑器启用不同扩展
   - 修复问题[#244](https://github.com/margox/braft-editor/issues/244)

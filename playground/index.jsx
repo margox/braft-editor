@@ -8,8 +8,7 @@ BraftEditor.use([
     showLineNumber: true
   }),
   {
-    // includeEditors: ['demo-editor-1'],
-    excludeEditors: ['demo-editor-1'],
+    includeEditors: ['demo-editor'],
     type: 'inline-style',
     name: 'underdot',
     control: {
@@ -74,7 +73,6 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            id="demo-editor"
             defaultLinkTarget="_blank"
             excludeControls={excludeControls}
             extendControls={[

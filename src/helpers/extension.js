@@ -23,7 +23,7 @@ const blockExporters = []
 const filterByEditorId = (items, editorId) => {
 
   if (!editorId) {
-    return items.map(item => item.data)
+    return items.filter(item => !item.includeEditors).map(item => item.data)
   }
 
   return items.map(item => {
