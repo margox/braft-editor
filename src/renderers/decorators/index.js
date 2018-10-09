@@ -1,7 +1,7 @@
 import { CompositeDecorator } from 'draft-js'
 import CombineDecorators from 'draft-js-multidecorators'
 import Immutable from 'immutable'
-import { extensionDecorators } from 'helpers/extension'
+import { getExtensionDecorators } from 'helpers/extension'
 import Link from './Link'
 
 const KEY_SEPARATOR = '-'
@@ -48,7 +48,9 @@ const createStrategy = (type) => (block, callback, contentState) => {
 
 }
 
-export default () => {
+export default (editorId) => {
+
+  const extensionDecorators = getExtensionDecorators(editorId)
 
   const entityDecorators = [
     ...builtinDecorators,

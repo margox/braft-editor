@@ -4,31 +4,75 @@
 
 import React from 'react'
 
-export const extensionControls = []
-export const extensionDecorators = []
+const extensionControls = []
+const extensionDecorators = []
 
-export const extensionBlockRenderMap = {}
-export const extensionBlockRendererFns= {}
+const extensionBlockRenderMaps = []
+const extensionBlockRendererFns= []
 
-export const extensionBlockStyleFns = {}
-export const extensionBlockStyleMap = {}
+const extensionInlineStyleMaps = []
+const extensionInlineStyleFns = []
 
-export const extensionInlineStyleMap = {}
-export const extensionInlineStyleFns = {}
+const extensionEntities = []
 
-export const extensionEditorHandlers = {}
+const inlineStyleImporters = []
+const inlineStyleExporters = []
+const blockImporters = []
+const blockExporters = []
 
-const styleImporters = {}
-const styleExporters = {}
-const blockImporters = {}
-const blockExporters = {}
-const entities = {}
+const filterByEditorId = (items, editorId) => {
 
-export const compositeStyleImportFn = (styleImportFn) => (nodeName, node, style) => {
+  if (!editorId) {
+    return items.map(item => item.data)
+  }
 
-  Object.keys(styleImporters).forEach(key => {
-    if (styleImporters[key](nodeName, node)) {
-      style = style.add(key)
+  return items.map(item => {
+
+    if (!item.includeEditors && !item.excludeEditors) {
+      return item.data
+    }
+
+    if (item.includeEditors) {
+      return item.includeEditors.indexOf(editorId) !== -1 ? item.data : false
+    }
+
+    if (item.excludeEditors) {
+      return item.excludeEditors.indexOf(editorId) !== -1 ? false : item.data
+    }
+
+    return false
+
+  }).filter(item => item)
+
+}
+
+export const getExtensionControls = (editorId) => filterByEditorId(extensionControls, editorId)
+
+export const getExtensionDecorators = (editorId) => filterByEditorId(extensionDecorators, editorId, 'decorators')
+
+export const getExtensionBlockRenderMaps = (editorId) => filterByEditorId(extensionBlockRenderMaps, editorId)
+
+export const getExtensionBlockRendererFns = (editorId) => filterByEditorId(extensionBlockRendererFns, editorId)
+
+export const getExtensionInlineStyleMap = (editorId) => {
+
+  let inlineStyleMap = {}
+
+  filterByEditorId(extensionInlineStyleMaps, editorId).forEach(item => {
+    inlineStyleMap[item.inlineStyleName] = item.styleMap
+  })
+
+  return inlineStyleMap
+
+}
+
+export const getExtensionInlineStyleFns = (editorId) => filterByEditorId(extensionInlineStyleFns, editorId)
+
+export const compositeStyleImportFn = (styleImportFn, editorId) => (nodeName, node, style) => {
+
+  filterByEditorId(inlineStyleImporters, editorId).forEach(styleImporter => {
+    if (styleImporter.importer && styleImporter.importer(nodeName, node)) {
+      style = style.add(styleImporter.inlineStyleName)
     }
   })
 
@@ -36,11 +80,27 @@ export const compositeStyleImportFn = (styleImportFn) => (nodeName, node, style)
 
 }
 
-export const compositeStyleExportFn = (styleExportFn) => (style) => {
-  return styleExportFn ? styleExportFn(style) : (styleExporters[style] || undefined)
+export const compositeStyleExportFn = (styleExportFn, editorId) => (style) => {
+
+  style = style.toUpperCase()
+  let result = styleExportFn ? styleExportFn(style) : undefined
+
+  if (result) {
+    return result
+  }
+
+  filterByEditorId(inlineStyleExporters, editorId).find((item) => {
+    if (item.inlineStyleName === style) {
+      result = item.exporter
+      return true
+    }
+  })
+
+  return result
+
 }
 
-export const compositeEntityImportFn = (entityImportFn) => (nodeName, node, createEntity, source) => {
+export const compositeEntityImportFn = (entityImportFn, editorId) => (nodeName, node, createEntity, source) => {
 
   let result = entityImportFn ? entityImportFn(nodeName, node, createEntity, source) : null
 
@@ -48,22 +108,38 @@ export const compositeEntityImportFn = (entityImportFn) => (nodeName, node, crea
     return result
   }
 
-  Object.keys(entities).find(key => {
-    const matchedEntity = entities[key].importer ? entities[key].importer(nodeName, node, source) : null
-    matchedEntity && (result = createEntity(key, matchedEntity.mutability || 'MUTABLE', matchedEntity.data || {}))
-    return !!matchedEntity
+  filterByEditorId(extensionEntities, editorId).find(entityItem => {
+    const matched = entityItem.importer ? entityItem.importer(nodeName, node, source) : null
+    matched && (result = createEntity(entityItem.entityType, matched.mutability || 'MUTABLE', matched.data || {}))
+    return !!matched
   })
 
   return result
 
 }
 
-export const compositeEntityExportFn = (entityExportFn) => (entity, originalText) => {
+export const compositeEntityExportFn = (entityExportFn, editorId) => (entity, originalText) => {
+
+  let result = entityExportFn ? entityExportFn(entity, originalText) : undefined
+
+  if (result) {
+    return result
+  }
+
   const entityType = entity.type.toUpperCase()
-  return entityExportFn ? entityExportFn(entity, originalText) : (entities[entityType] && entities[entityType].exporter ? entities[entityType].exporter(entity, originalText) : undefined)
+
+  filterByEditorId(extensionEntities, editorId).find(entityItem => {
+    if (entityItem.entityType === entityType) {
+      result = entityItem.exporter ? entityItem.exporter(entity, originalText) : undefined
+      return true
+    }
+  })
+
+  return result
+
 }
 
-export const compositeBlockImportFn = (blockImportFn) => (nodeName, node, source) => {
+export const compositeBlockImportFn = (blockImportFn, editorId) => (nodeName, node, source) => {
 
   let result = blockImportFn ? blockImportFn(nodeName, node, source) : null
 
@@ -71,17 +147,17 @@ export const compositeBlockImportFn = (blockImportFn) => (nodeName, node, source
     return result
   }
 
-  Object.keys(blockImporters).find(key => {
-    const matchedBlock = blockImporters[key](nodeName, node, source)
-    matchedBlock && (result = matchedBlock)
-    return matchedBlock
+  filterByEditorId(blockImporters, editorId).find(blockImporter => {
+    const matched = blockImporter.importer ? blockImporter.importer(nodeName, node, source) : undefined
+    matched && (result = matched)
+    return !!matched
   })
 
   return result
 
 }
 
-export const compositeBlockExportFn = (blockExportFn) => (contentState, block) => {
+export const compositeBlockExportFn = (blockExportFn, editorId) => (contentState, block) => {
 
   let result = blockExportFn ? blockExportFn(contentState, block) : null
 
@@ -89,10 +165,10 @@ export const compositeBlockExportFn = (blockExportFn) => (contentState, block) =
     return result
   }
 
-  Object.keys(blockExporters).find(key => {
-    const matchedResult = blockExporters[key](contentState, block)
-    matchedResult && (result = matchedResult)
-    return matchedResult
+  filterByEditorId(blockExporters, editorId).find(blockExporter => {
+    const matched = blockExporter.exporter ? blockExporter.exporter(contentState, block) : undefined
+    matched && (result = matched)
+    return !!matched
   })
 
   return result
@@ -110,56 +186,107 @@ const useExtension = (extension) => {
     return false
   }
 
+  const { includeEditors, excludeEditors } = extension
+
   if (extension.type === 'inline-style') {
 
     const inlineStyleName = extension.name.toUpperCase()
 
     if (extension.control) {
       extensionControls.push({
-        key: inlineStyleName,
-        type: 'inline-style',
-        command: inlineStyleName,
-        ...extension.control
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          key: inlineStyleName,
+          type: 'inline-style',
+          command: inlineStyleName,
+          ...extension.control
+        }
       })
     }
 
-    extension.style && (extensionInlineStyleMap[inlineStyleName] = extension.style)
-    extension.styleFn && (extensionInlineStyleFns[inlineStyleName] = extension.styleFn)
-    extension.importer && (styleImporters[inlineStyleName] = extension.importer)
+    if (extension.style) {
+      extensionInlineStyleMaps.push({
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          inlineStyleName: inlineStyleName,
+          styleMap: extension.style
+        }
+      })
+    }
 
-    styleExporters[inlineStyleName] = extension.exporter ? extension.exporter(extension) : <span style={extension.style}/>
+    if (extension.styleFn) {
+      extensionInlineStyleFns.push({
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          inlineStyleName: inlineStyleName,
+          styleFn: extension.styleFn
+        }
+      })
+    }
+
+    if (extension.importer) {
+      inlineStyleImporters.push({
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          inlineStyleName: inlineStyleName,
+          importer: extension.importer
+        }
+      })
+    }
+
+    inlineStyleExporters.push({
+      includeEditors: includeEditors,
+      excludeEditors: excludeEditors,
+      data: {
+        inlineStyleName: inlineStyleName,
+        exporter: extension.exporter ? extension.exporter(extension) : <span style={extension.style}/>
+      }
+    })
 
   } else if (extension.type === 'block-style') {
-
     // TODO
-
-    // const blockStyleName = extension.name
-
-    // extension.classNameMap && (extensionBlockStyleMap[blockStyleName] = extension.classNameMap)
-    // extension.styleFn && (extensionBlockStyleFns[blockStyleName] = extension.styleFn)
-
   } else if (extension.type === 'entity') {
 
-    const entityName = extension.name.toUpperCase()
+    const entityType = extension.name.toUpperCase()
 
     if (extension.control) {
       extensionControls.push({
-        key: entityName,
-        type: 'entity',
-        command: entityName,
-        mutability: extension.mutability || 'MUTABLE',
-        data: extension.data || {},
-        ...extension.control
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          key: entityType,
+          type: 'entity',
+          command: entityType,
+          mutability: extension.mutability || 'MUTABLE',
+          data: extension.data || {},
+          ...extension.control
+        }
       })
     }
 
-    entities[entityName] = extension
+    extensionEntities.push({
+      includeEditors: includeEditors,
+      excludeEditors: excludeEditors,
+      data: {
+        entityType: entityType,
+        importer: extension.importer,
+        exporter: extension.exporter
+      }
+    })
 
     extensionDecorators.push({
-      type: 'entity',
-      decorator: {
-        key: entityName,
-        component: extension.component
+      includeEditors: includeEditors,
+      excludeEditors: excludeEditors,
+      data: {
+        type: 'entity',
+        decorator: {
+          key: entityType,
+          component: extension.component
+        }
       }
     })
 
@@ -168,15 +295,48 @@ const useExtension = (extension) => {
     const blockType = extension.name
 
     if (extension.renderMap) {
-      extensionBlockRenderMap[blockType] = extension.renderMap
+      extensionBlockRenderMaps.push({
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          blockType: blockType,
+          renderMap: extension.renderMap
+        }
+      })
     }
 
     if (extension.rendererFn) {
-      extensionBlockRendererFns[blockType] = extension.rendererFn
+      extensionBlockRendererFns.push({
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          blockType: blockType,
+          rendererFn: extension.rendererFn
+        }
+      })
     }
 
-    extension.importer && (blockImporters[blockType] = extension.importer)
-    extension.exporter && (blockExporters[blockType] = extension.exporter)
+    if (extension.importer) {
+      blockImporters.push({
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          blockType: blockType,
+          importer: extension.importer
+        }
+      })
+    }
+
+    if (extension.exporter) {
+      blockExporters.push({
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          blockType: blockType,
+          exporter: extension.exporter
+        }
+      })
+    }
 
   } else if (extension.type === 'atomic') {
     // TODO
@@ -186,13 +346,21 @@ const useExtension = (extension) => {
 
     if (decorator && decorator.strategy && decorator.component) {
       extensionDecorators.push({
-        type: 'strategy',
-        decorator: decorator
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          type: 'strategy',
+          decorator: decorator
+        }
       })
     } else if (decorator && decorator.getDecorations) {
       extensionDecorators.push({
-        type: 'class',
-        decorator: decorator
+        includeEditors: includeEditors,
+        excludeEditors: excludeEditors,
+        data: {
+          type: 'class',
+          decorator: decorator
+        }
       })
     }
 

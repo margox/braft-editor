@@ -23,20 +23,20 @@ EditorState.prototype.isEmpty = function () {
 
 BraftEditor.createEditorState = EditorState.createFrom = (content, options = {}) => {
 
-  options.styleImportFn = compositeStyleImportFn(options.styleImportFn)
-  options.entityImportFn = compositeEntityImportFn(options.entityImportFn)
-  options.blockImportFn = compositeBlockImportFn(options.blockImportFn)
+  options.styleImportFn = compositeStyleImportFn(options.styleImportFn, options.editorId)
+  options.entityImportFn = compositeEntityImportFn(options.entityImportFn, options.editorId)
+  options.blockImportFn = compositeBlockImportFn(options.blockImportFn, options.editorId)
 
   if (typeof content === 'object' && content && content.blocks && content.entityMap) {
-    return convertRawToEditorState(content, getDecorators())
+    return convertRawToEditorState(content, getDecorators(options.editorId))
   } else if (typeof content === 'string') {
     try {
       return EditorState.createFrom(JSON.parse(content), options)
     } catch (error) {
-      return convertHTMLToEditorState(content, getDecorators(), options, 'create')
+      return convertHTMLToEditorState(content, getDecorators(options.editorId), options, 'create')
     }
   } else {
-    return EditorState.createEmpty(getDecorators())
+    return EditorState.createEmpty(getDecorators(options.editorId))
   }
 
 }

@@ -4,7 +4,7 @@ import Video from 'renderers/atomics/Video'
 import Audio from 'renderers/atomics/Audio'
 import Embed from 'renderers/atomics/Embed'
 import HorizontalLine from 'renderers/atomics/HorizontalLine'
-import { extensionBlockRendererFns } from 'helpers/extension'
+import { getExtensionBlockRendererFns } from 'helpers/extension'
 
 const getAtomicBlockComponent = (superProps) => (props) => {
 
@@ -62,7 +62,14 @@ export default (superProps, customBlockRendererFn) => (block) => {
     return blockRenderer
   }
 
-  blockRenderer = extensionBlockRendererFns[blockType] ? extensionBlockRendererFns[blockType](superProps) : null
+  const extensionBlockRendererFns = getExtensionBlockRendererFns(superProps.editorId)
+
+  extensionBlockRendererFns.find(item => {
+    if (item.blockType === blockType) {
+      blockRenderer = item.rendererFn ? item.rendererFn(superProps) : null
+      return true
+    }
+  })
 
   if (blockRenderer) {
     return blockRenderer

@@ -20,16 +20,20 @@ const filterColors = (colors, colors2) => {
   return colors.filter(item => colors2.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
 }
 
+const isControlEnabled = (props, controlName) => {
+  return [...props.controls, ...props.extendControls].find(item => item === controlName || item.key === controlName) && props.excludeControls.indexOf(controlName) === -1
+}
+
 const getConvertOptions = (props) => {
 
   const convertOptions = { ...defaultProps.converts, ...props.converts, fontFamilies: props.fontFamilies }
 
-  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn)
-  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn)
-  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn)
-  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn)
-  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn)
-  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn)
+  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn, props.id)
+  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn, props.id)
+  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn, props.id)
+  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn, props.id)
+  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn, props.id)
+  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn, props.id)
 
   return convertOptions
 
@@ -43,8 +47,7 @@ export default class BraftEditor extends React.Component {
 
     super(props)
 
-    this.blockRenderMap = 
-    this.editorDecorators = getDecorators()
+    this.editorDecorators = getDecorators(props.id)
 
     this.isFocused = false
     this.isLiving = false
@@ -64,17 +67,21 @@ export default class BraftEditor extends React.Component {
 
   componentWillMount () {
 
-    const { language, media, controls, extendControls } = this.props
-    const { uploadFn, validateFn, items } = { ...defaultProps.media, ...media }
+    const { language, media } = this.props
 
-    if ([...controls, ...extendControls].find(item => item === 'media' || item.key === 'media')) {
+    if (isControlEnabled(this.props)) {
+
+      const { uploadFn, validateFn, items } = { ...defaultProps.media, ...media }
+
       this.braftFinder = new BraftFinder({
         items: items,
         language: language,
         uploader: uploadFn,
         validator: validateFn
       })
+
       this.forceUpdate()
+
     }
 
   }
@@ -109,7 +116,22 @@ export default class BraftEditor extends React.Component {
 
   componentWillReceiveProps (nextProps) {
 
-    const { value: editorState, media } = nextProps
+    const { value: editorState, media, language } = nextProps
+
+    if (!isControlEnabled(this.props) && isControlEnabled(nextProps) && !this.braftFinder) {
+
+      const { uploadFn, validateFn, items } = { ...defaultProps.media, ...media }
+
+      this.braftFinder = new BraftFinder({
+        items: items,
+        language: language,
+        uploader: uploadFn,
+        validator: validateFn
+      })
+
+      this.forceUpdate()
+
+    }
 
     if (media && media.items && this.braftFinder) {
       this.braftFinder.setItems(media.items)
@@ -248,7 +270,7 @@ export default class BraftEditor extends React.Component {
   render () {
 
     let {
-      controls, excludeControls, extendControls, disabled, media, language, colors, hooks,
+      id: editorId, controls, excludeControls, extendControls, disabled, media, language, colors, hooks,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.props
@@ -283,14 +305,14 @@ export default class BraftEditor extends React.Component {
       className: controlBarClassName,
       style: controlBarStyle, hooks,
       colors: [...colors, ...this.state.tempColors],
-      media, controls, language, extendControls, fontSizes, fontFamilies,
+      editorId, media, controls, language, extendControls, fontSizes, fontFamilies,
       emojis, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget
     }
 
     const { unitExportFn } = this.state.editorState.convertOptions
 
     const commonProps = {
-      editor: this, hooks,
+      editor: this, editorId, hooks,
       editorState: this.state.editorState,
       containerNode: this.state.containerNode,
       imageControls, language, extendAtomics
@@ -299,8 +321,8 @@ export default class BraftEditor extends React.Component {
     const blockRendererFn = getBlockRendererFn(commonProps, this.props.blockRendererFn)
     const blockRenderMap = getBlockRenderMap(commonProps, this.props.blockRenderMap)
     const blockStyleFn = getBlockStyleFn(this.props.blockStyleFn)
-    const customStyleMap = getCustomStyleMap(this.props.customStyleMap)
-    const customStyleFn = getCustomStyleFn({ fontFamilies, unitExportFn, customStyleFn: this.props.customStyleFn })
+    const customStyleMap = getCustomStyleMap(commonProps, this.props.customStyleMap)
+    const customStyleFn = getCustomStyleFn(commonProps, { fontFamilies, unitExportFn, customStyleFn: this.props.customStyleFn })
 
     const keyBindingFn = getKeyBindingFn(this.props.keyBindingFn)
 

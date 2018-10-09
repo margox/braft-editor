@@ -1,6 +1,7 @@
 @import '~prismjs/themes/prism-tomorrow.css';
 
 .bf-container .public-DraftEditor-content .braft-code-block-wrapper{
+  margin: 10px 0;
   background-color: #21242a;
   border-radius: 3px;
   .braft-code-block-header{
@@ -71,6 +72,7 @@
   }
   .braft-code-block{
     max-height: 400px;
+    margin: 0;
     overflow: auto;
     background-color: transparent;
     color: #eee;

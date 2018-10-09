@@ -14,7 +14,7 @@ import TextIndent from 'components/business/TextIndent'
 import DropDown from 'components/common/DropDown'
 import { ContentUtils } from 'braft-utils'
 import { showModal } from 'components/common/Modal'
-import { extensionControls } from 'helpers/extension'
+import { getExtensionControls } from 'helpers/extension'
 
 const commandHookMap = {
   'inline-style': 'toggle-inline-style',
@@ -144,11 +144,13 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
+    const { editor, editorId, editorState, controls, media, extendControls, language, hooks, colors, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
-    const editorControls = getEditorControls(language)
     const commonProps = { editor, editorState, language, containerNode, hooks }
+    
     const renderedControls = []
+    const editorControls = getEditorControls(language)
+    const extensionControls = getExtensionControls(editorId)
     const allControls = extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 
     return (

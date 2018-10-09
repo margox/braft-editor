@@ -4,8 +4,12 @@ import BraftEditor from '../src'
 import CodeHighlighter from './extensions/code-highlight'
 
 BraftEditor.use([
-  CodeHighlighter(),
+  CodeHighlighter({
+    showLineNumber: true
+  }),
   {
+    // includeEditors: ['demo-editor-1'],
+    excludeEditors: ['demo-editor-1'],
     type: 'inline-style',
     name: 'underdot',
     control: {
@@ -43,7 +47,10 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState('<p><a href="a">asdadasd</a></p><pre data-lang="html"><code>&lt;a href=&quot;javascript:void(0);&quot;&gt;Hello World!&lt;/a&gt;</code></pre><p></p>')
+      editorState: BraftEditor.createEditorState('<p><a href="a">asdadasd</a></p><pre data-lang="html"><code>&lt;a href=&quot;javascript:void(0);&quot;&gt;Hello World!&lt;/a&gt;</code></pre><p></p>', {
+        editorId: 'demo-editor'
+      }),
+      excludeControls: ['media']
     }
 
   }
@@ -53,18 +60,23 @@ class Demo extends React.Component {
   }
 
   logHTML = () => {
+    this.setState({
+      excludeControls: []
+    })
     console.log(this.state.editorState.toHTML())
   }
 
   render() {
 
-    const { editorState } = this.state
+    const { editorState, excludeControls } = this.state
 
     return (
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            id="demo-editor"
             defaultLinkTarget="_blank"
+            excludeControls={excludeControls}
             extendControls={[
               {
                 key: 'preview',

@@ -151,7 +151,7 @@ const getCodeBlockRenderMap = (options) => (props) => {
 
 export default (options = {}) => {
 
-  const { showLineNumber, showTools } = options
+  const { showLineNumber, showTools, includeEditors, excludeEditors } = options
   const syntaxs = options.syntaxs || [
     {
       name: 'JavaScript',
@@ -169,6 +169,7 @@ export default (options = {}) => {
     {
       type: 'block',
       name: 'code-block',
+      includeEditors, excludeEditors,
       renderMap: getCodeBlockRenderMap({ syntaxs, showLineNumber, showTools }),
       importer: (nodeName, node) => {
 
@@ -233,6 +234,7 @@ export default (options = {}) => {
       }
     }, {
       type: 'decorator',
+      includeEditors, excludeEditors,
       decorator: new PrismDecorator({
         prism: Prism,
         getSyntax: getCodeBlockBlock,
