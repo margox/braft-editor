@@ -1,0 +1,26 @@
+.text-color-dropdown{
+
+  .dropdown-content{
+    background-color: #fff;
+    border: 1px solid #ccc;
+    .dropdown-arrow{
+      border-bottom-color: #ccc;
+    }
+  }
+
+  .bf-text-color-picker-wrap{
+    margin: 0;
+  }
+
+  .bf-color-switch-buttons button{
+    color: #666;
+    &.active{
+      color: #fff;
+    }
+  }
+
+  .sketch-picker{
+    border-radius: 0 !important;
+  }
+
+}

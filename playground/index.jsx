@@ -2,11 +2,19 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 import CodeHighlighter from './extensions/code-highlight'
+import EnhancedColorPicker from './extensions/enhanced-color-picker'
 
 BraftEditor.use([
   CodeHighlighter({
     showLineNumber: true
   }),
+  {
+    type: 'prop-interception',
+    interceptor: (props, editor) => {
+      props.colorPicker = EnhancedColorPicker
+      return props
+    }
+  },
   {
     includeEditors: ['demo-editor'],
     type: 'inline-style',
@@ -48,8 +56,7 @@ class Demo extends React.Component {
     this.state = {
       editorState: BraftEditor.createEditorState('<p><a href="a">asdadasd</a></p><pre data-lang="html"><code>&lt;a href=&quot;javascript:void(0);&quot;&gt;Hello World!&lt;/a&gt;</code></pre><p></p>', {
         editorId: 'demo-editor'
-      }),
-      excludeControls: ['media']
+      })
     }
 
   }
@@ -59,9 +66,6 @@ class Demo extends React.Component {
   }
 
   logHTML = () => {
-    this.setState({
-      excludeControls: []
-    })
     console.log(this.state.editorState.toHTML())
   }
 
@@ -74,7 +78,6 @@ class Demo extends React.Component {
         <div className="demo" id="demo">
           <BraftEditor
             defaultLinkTarget="_blank"
-            excludeControls={excludeControls}
             extendControls={[
               {
                 key: 'preview',

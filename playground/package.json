@@ -4,6 +4,7 @@
   },
   "dependencies": {
     "draft-js-prism": "^1.0.6",
-    "prismjs": "^1.15.0"
+    "prismjs": "^1.15.0",
+    "react-color": "^2.14.1"
   }
 }
