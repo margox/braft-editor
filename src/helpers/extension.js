@@ -7,6 +7,8 @@ import React from 'react'
 const extensionControls = []
 const extensionDecorators = []
 
+const propInterceptors = []
+
 const extensionBlockRenderMaps = []
 const extensionBlockRendererFns= []
 
@@ -45,6 +47,8 @@ const filterByEditorId = (items, editorId) => {
   }).filter(item => item)
 
 }
+
+export const getPropInterceptors = (editorId) => filterByEditorId(propInterceptors, editorId)
 
 export const getExtensionControls = (editorId) => filterByEditorId(extensionControls, editorId)
 
@@ -363,6 +367,14 @@ const useExtension = (extension) => {
         }
       })
     }
+
+  } else if (extension.type === 'prop-interception') {
+
+    propInterceptors.push({
+      includeEditors: includeEditors,
+      excludeEditors: excludeEditors,
+      data: extension.interceptor
+    })
 
   }
 

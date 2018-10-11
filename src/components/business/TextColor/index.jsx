@@ -1,7 +1,7 @@
 import './style.scss'
 import React from 'react'
 import DropDown from 'components/common/DropDown'
-import ColorPicker from 'components/common/ColorPicker'
+import BuiltinColorPicker from 'components/common/ColorPicker'
 import { BaseUtils, ContentUtils } from 'braft-utils'
 
 export default class TextColor extends React.Component {
@@ -18,16 +18,18 @@ export default class TextColor extends React.Component {
     let currentColor = null
     let { colorType } = this.state
 
-    this.props.colors.forEach((color) => {
-      let color_id = color.replace('#', '')
-      if (ContentUtils.selectionHasInlineStyle(this.props.editorState, 'COLOR-' + color_id)) {
-        captionStyle.color = color
-        colorType === 'color' && (currentColor = color)
+    const selectionStyles = this.props.editorState.getCurrentInlineStyle().toJS()
+
+    selectionStyles.forEach(style => {
+
+      if (style.indexOf('COLOR-') === 0) {
+        captionStyle.color = '#' + style.split('-')[1]
+        colorType === 'color' && (currentColor = captionStyle.color)
       }
 
-      if (ContentUtils.selectionHasInlineStyle(this.props.editorState, 'BGCOLOR-' + color_id)) {
-        captionStyle.backgroundColor = color
-        colorType === 'background-color' && (currentColor = color)
+      if (style.indexOf('BGCOLOR-') === 0) {
+        captionStyle.backgroundColor = '#' + style.split('-')[1]
+        colorType === 'background-color' && (currentColor = captionStyle.backgroundColor)
       }
 
     })
@@ -38,6 +40,8 @@ export default class TextColor extends React.Component {
         <span className='path2'></span>
       </i>
     )
+
+    const ColorPicker = this.props.colorPicker || BuiltinColorPicker
 
     return (
       <DropDown
@@ -70,10 +74,9 @@ export default class TextColor extends React.Component {
           </div>
           <ColorPicker
             width={200}
-            language={this.props.language}
-            current={currentColor}
+            color={currentColor || this.props.colors[0]}
             disableAlpha={true}
-            colors={this.props.colors}
+            presetColors={this.props.colors}
             onChange={this.toggleColor}
           />
         </div>
@@ -88,7 +91,7 @@ export default class TextColor extends React.Component {
     })
   }
 
-  toggleColor = (color) => {
+  toggleColor = (color, keepPicker) => {
 
     const hookReturns = this.props.hooks(`toggle-text-${this.state.colorType}`, color)(color)
 
@@ -100,14 +103,24 @@ export default class TextColor extends React.Component {
       color =  hookReturns
     }
 
+    const selectionStyles = this.props.editorState.getCurrentInlineStyle().toJS()
+
     if (this.state.colorType === 'color') {
-      this.props.editor.setValue(ContentUtils.toggleSelectionColor(this.props.editorState, color, this.props.colors))
+      this.props.editor.setValue(ContentUtils.toggleSelectionColor(
+        this.props.editorState, color,
+        selectionStyles.filter(item => item.indexOf('COLOR-') === 0).map(item => `#${item.split('-')[1]}`)
+      ))
     } else {
-      this.props.editor.setValue(ContentUtils.toggleSelectionBackgroundColor(this.props.editorState, color, this.props.colors))
+      this.props.editor.setValue(ContentUtils.toggleSelectionBackgroundColor(
+        this.props.editorState, color,
+        selectionStyles.filter(item => item.indexOf('BGCOLOR-') === 0).map(item => `#${item.split('-')[1]}`)
+      ))
     }
 
-    this.dropDownComponent.hide()
-    this.props.editor.requestFocus()
+    if (!keepPicker) {
+      this.dropDownComponent.hide()
+      this.props.editor.requestFocus()
+    }
 
   }
 
