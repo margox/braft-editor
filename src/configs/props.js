@@ -56,6 +56,8 @@ export default {
     '#c0392b', '#d35400', '#f39c12', '#fdda00'
   ],
   colorPicker: null,
+  colorPickerTheme: 'dark',
+  colorPickerAutoHide: true,
   codeTabIndents: 2,
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,

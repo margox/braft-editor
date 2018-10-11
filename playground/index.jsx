@@ -1,51 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
-import CodeHighlighter from './extensions/code-highlight'
 import EnhancedColorPicker from './extensions/enhanced-color-picker'
 
-BraftEditor.use([
-  CodeHighlighter({
-    showLineNumber: true
-  }),
-  {
-    type: 'prop-interception',
-    interceptor: (props, editor) => {
-      props.colorPicker = EnhancedColorPicker
-      return props
-    }
-  },
-  {
-    includeEditors: ['demo-editor'],
-    type: 'inline-style',
-    name: 'underdot',
-    control: {
-      text: '着重'
-    },
-    style: {
-      textEmphasis: 'circle',
-      textEmphasisPosition: 'under',
-      WebkitTextEmphasis: 'circle',
-      WebkitTextEmphasisPosition: 'under'
-    },
-    importer: (nodeName, node) => nodeName === 'span' && [].find.call(node.style, (styleName) => styleName.indexOf('text-emphasis') !== -1)
-  }, {
-    type: 'entity',
-    name: 'keybord-item',
-    control: {
-      text: '按键'
-    },
-    component: (props) => <span className="keyboard-item">{props.children}</span>,
-    importer: (_, node) => {
-      if (node.classList && node.classList.contains('keyboard-item')) {
-        return {}
-      }
-    },
-    exporter: (_, originalText) => {
-      return <span className="keyboard-item">{originalText}</span>
-    }
-  }
-])
+BraftEditor.use(EnhancedColorPicker({
+  theme: 'light'
+}))
 
 class Demo extends React.Component {
 
@@ -54,9 +14,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState('<p><a href="a">asdadasd</a></p><pre data-lang="html"><code>&lt;a href=&quot;javascript:void(0);&quot;&gt;Hello World!&lt;/a&gt;</code></pre><p></p>', {
-        editorId: 'demo-editor'
-      })
+      editorState: BraftEditor.createEditorState(null)
     }
 
   }
@@ -65,30 +23,14 @@ class Demo extends React.Component {
     this.setState({ editorState })
   }
 
-  logHTML = () => {
-    console.log(this.state.editorState.toHTML())
-  }
-
   render() {
 
-    const { editorState, excludeControls } = this.state
+    const { editorState } = this.state
 
     return (
       <div>
         <div className="demo" id="demo">
-          <BraftEditor
-            defaultLinkTarget="_blank"
-            extendControls={[
-              {
-                key: 'preview',
-                type: 'button',
-                text: '输出HTML',
-                onClick: this.logHTML
-              }
-            ]}
-            onChange={this.handleChange}
-            value={editorState}
-          />
+          <BraftEditor onChange={this.handleChange} value={editorState}/>
         </div>
       </div>
     )

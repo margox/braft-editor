@@ -60,9 +60,10 @@ export default class DropDown extends React.Component {
   render () {
 
     let { active, offset, maxHeight } = this.state
-    let { caption, htmlCaption, title, disabled, showArrow, arrowActive, className, children } = this.props
+    let { caption, htmlCaption, title, disabled, showArrow, arrowActive, className, children, theme } = this.props
 
     disabled && (active = false)
+    theme === 'light' && (className = ' light-theme ' + className)
 
     return (
       <div

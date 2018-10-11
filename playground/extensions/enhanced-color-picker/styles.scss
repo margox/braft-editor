@@ -1,26 +1,96 @@
-.text-color-dropdown{
-
-  .dropdown-content{
-    background-color: #fff;
-    border: 1px solid #ccc;
-    .dropdown-arrow{
-      border-bottom-color: #ccc;
-    }
-  }
+.bf-dropdown.text-color-dropdown{
 
   .bf-text-color-picker-wrap{
     margin: 0;
   }
 
-  .bf-color-switch-buttons button{
-    color: #666;
-    &.active{
-      color: #fff;
+  .bf-color-switch-buttons {
+    height: 36px;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+    button{
+      height: 36px;
+      border-bottom: 1px solid rgba(#fff, .1);
+      color: rgba(#fff, .5);
+      line-height: 36px;
+      &.active{
+        background-color: transparent;
+        border-bottom-color: #3498db;
+        color: #3498db;
+      }
+    }
+  }
+
+  &.light-theme{
+    .bf-color-switch-buttons{
+      button{
+        border-bottom: 1px solid #ccc;
+        color: #616569;
+        &.active{
+          border-bottom-color: #3498db;
+          color: #3498db;
+        }
+      }
+    }
+  }
+
+  .braft-color-picker{
+    .footer{
+      padding: 10px 5px;
+      border-top: 1px solid rgba(#fff, .1);
+      .button{
+        display: inline-block;
+        width: 95px;
+        height: 26px;
+        margin: 0 5px;
+        padding: 0;
+        background-color: rgba(#fff, .1);
+        color: #fff;
+        font-size: 12px;
+        &:hover{
+          background-color: rgba(#fff, .2);
+        }
+      }
+    }
+    &.light-theme{
+      .footer{
+        border-top: 1px solid rgba(#000, .15);
+        .button{
+          background-color: #f1f1f1;
+          color: #919599;
+          font-size: 12px;
+          &:hover{
+            background-color: #e1e1e1;
+          }
+        }
+      }
+    }
+    &.dark-theme{
+      .sketch-picker{
+        .saturation-black{
+          outline: 1px solid rgba(#fff, .2);
+          outline-offset: -1px;
+        }
+        input{
+          background-color: rgba(#fff, .05) !important;
+          box-shadow: 0 0 0 1px rgba(#fff, .1) !important;
+          color: #999 !important;
+          & + span{
+            color: #818589 !important;
+          }
+        }
+        .flexbox-fix:nth-child(4){
+          border-top-color: rgba(#fff, .1) !important;
+        }
+      }
     }
   }
 
   .sketch-picker{
+    background-color: transparent !important;
     border-radius: 0 !important;
+    box-shadow: none !important;
   }
 
 }

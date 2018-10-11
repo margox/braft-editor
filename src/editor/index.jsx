@@ -176,6 +176,8 @@ export default class BraftEditor extends React.Component {
         this.setState({
           tempColors: filterColors([...this.state.tempColors, ...tempColors], currentProps.colors),
           editorState: editorState
+        }, () => {
+          nextProps.onChange && nextProps.onChange(editorState)
         })
 
       } else {
@@ -306,7 +308,7 @@ export default class BraftEditor extends React.Component {
     const props = this.getProps()
 
     let {
-      id: editorId, controls, excludeControls, extendControls, disabled, media, language, colors, colorPicker, hooks,
+      id: editorId, controls, excludeControls, extendControls, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = props
@@ -341,7 +343,7 @@ export default class BraftEditor extends React.Component {
       className: controlBarClassName,
       style: controlBarStyle,
       colors: [...colors, ...this.state.tempColors],
-      colorPicker, hooks, editorId, media, controls, language, extendControls, fontSizes, fontFamilies,
+      colorPicker, colorPickerTheme, colorPickerAutoHide, hooks, editorId, media, controls, language, extendControls, fontSizes, fontFamilies,
       emojis, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget
     }
 

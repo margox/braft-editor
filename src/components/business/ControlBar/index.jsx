@@ -22,6 +22,22 @@ const commandHookMap = {
   'editor-method': 'exec-editor-command'
 }
 
+const mergeControls = (builtControls, extensionControls, extendControls) => {
+
+  return builtControls.map(item => {
+    return extendControls.find(subItem => {
+      return subItem.replace === (item.key || item)
+    }) || extensionControls.find(subItem => {
+      return subItem.replace === (item.key || item)
+    }) || item
+  }).concat(extensionControls.length ? 'separator' : '').concat(extensionControls.filter(item => {
+    return !item.replace
+  })).concat(extendControls.filter(item => {
+    return !item.replace
+  }))
+
+}
+
 export default class ControlBar extends React.Component {
 
   mediaLibiraryModal = null
@@ -144,14 +160,14 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorId, editorState, controls, media, extendControls, language, hooks, colors, colorPicker, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
+    const { editor, editorId, editorState, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const commonProps = { editor, editorState, language, containerNode, hooks }
-    
+
     const renderedControls = []
     const editorControls = getEditorControls(language)
     const extensionControls = getExtensionControls(editorId)
-    const allControls = extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
+    const allControls = mergeControls(controls, extensionControls, extendControls)//extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 
     return (
       <div className='bf-controlbar' onMouseDown={this.preventDefault}>
@@ -189,6 +205,8 @@ export default class ControlBar extends React.Component {
                 key={index}
                 colors={colors}
                 colorPicker={colorPicker}
+                theme={colorPickerTheme}
+                autoHide={colorPickerAutoHide}
                 enableBackgroundColor={textBackgroundColor}
                 {...commonProps}
               />
@@ -272,6 +290,7 @@ export default class ControlBar extends React.Component {
                   showArrow={controlItem.showArrow}
                   title={controlItem.title}
                   arrowActive={controlItem.arrowActive}
+                  theme={controlItem.theme}
                   autoHide={controlItem.autoHide}
                   disabled={controlItem.disabled}
                   ref={controlItem.ref}
@@ -324,7 +343,7 @@ export default class ControlBar extends React.Component {
                   {!controlItem.html ? controlItem.text : null}
                 </button>
               )
-            } else {
+            } else if (controlItem) {
 
               let disabled = false
 

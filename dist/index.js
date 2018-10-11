@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("immutable"), require("braft-convert"), require("react-dom"), require("braft-finder")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["immutable"], root["braft-convert"], root["react-dom"], root["braft-finder"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__11__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__17__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__17__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -258,6 +258,12 @@ module.exports = _objectSpread;
 
 /***/ }),
 /* 10 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var arrayWithoutHoles = __webpack_require__(21);
@@ -271,12 +277,6 @@ function _toConsumableArray(arr) {
 }
 
 module.exports = _toConsumableArray;
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__11__;
 
 /***/ }),
 /* 12 */
@@ -602,7 +602,7 @@ var defineProperty = __webpack_require__(2);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/toConsumableArray.js
-var toConsumableArray = __webpack_require__(10);
+var toConsumableArray = __webpack_require__(11);
 var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
 
 // EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
@@ -853,7 +853,11 @@ var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_
 var external_braft_utils_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external "draft-js"
-var external_draft_js_ = __webpack_require__(11);
+var external_draft_js_ = __webpack_require__(10);
+
+// EXTERNAL MODULE: external "immutable"
+var external_immutable_ = __webpack_require__(13);
+var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_immutable_);
 
 // CONCATENATED MODULE: ./configs/keybindings.js
  // TODO
@@ -912,7 +916,10 @@ var external_draft_js_ = __webpack_require__(11);
     }
   },
   imageControls: ['float-left', 'float-right', 'align-left', 'align-center', 'align-right', 'link', 'size', 'remove'],
-  colors: ['#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff', '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784', '#c0392b', '#d35400', '#f39c12', '#fdda00', '#7f8c8d', '#2c3e50'],
+  colors: ['#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff', '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784', '#c0392b', '#d35400', '#f39c12', '#fdda00'],
+  colorPicker: null,
+  colorPickerTheme: 'dark',
+  colorPickerAutoHide: true,
   codeTabIndents: 2,
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,
@@ -1122,10 +1129,6 @@ var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editor
   });
   return 'handled';
 };
-// EXTERNAL MODULE: external "immutable"
-var external_immutable_ = __webpack_require__(13);
-var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_immutable_);
-
 // CONCATENATED MODULE: ./helpers/extension.js
 
 // TODO
@@ -1134,6 +1137,7 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
 
 var extension_extensionControls = [];
 var extension_extensionDecorators = [];
+var extension_propInterceptors = [];
 var extension_extensionBlockRenderMaps = [];
 var extension_extensionBlockRendererFns = [];
 var extensionInlineStyleMaps = [];
@@ -1172,6 +1176,9 @@ var filterByEditorId = function filterByEditorId(items, editorId) {
   });
 };
 
+var getPropInterceptors = function getPropInterceptors(editorId) {
+  return filterByEditorId(extension_propInterceptors, editorId);
+};
 var getExtensionControls = function getExtensionControls(editorId) {
   return filterByEditorId(extension_extensionControls, editorId);
 };
@@ -1302,7 +1309,13 @@ var extension_useExtension = function useExtension(extension) {
   var includeEditors = extension.includeEditors,
       excludeEditors = extension.excludeEditors;
 
-  if (extension.type === 'inline-style') {
+  if (extension.type === 'control') {
+    extension_extensionControls.push({
+      includeEditors: includeEditors,
+      excludeEditors: excludeEditors,
+      data: extension.control
+    });
+  } else if (extension.type === 'inline-style') {
     var inlineStyleName = extension.name.toUpperCase();
 
     if (extension.control) {
@@ -1372,8 +1385,10 @@ var extension_useExtension = function useExtension(extension) {
           key: entityType,
           type: 'entity',
           command: entityType,
-          mutability: extension.mutability || 'MUTABLE',
-          data: extension.data || {}
+          data: {
+            mutability: extension.mutability || 'MUTABLE',
+            data: extension.data || {}
+          }
         }, extension.control)
       });
     }
@@ -1467,6 +1482,12 @@ var extension_useExtension = function useExtension(extension) {
         }
       });
     }
+  } else if (extension.type === 'prop-interception') {
+    extension_propInterceptors.push({
+      includeEditors: includeEditors,
+      excludeEditors: excludeEditors,
+      data: extension.interceptor
+    });
   }
 };
 
@@ -2966,8 +2987,10 @@ function (_React$Component) {
           showArrow = _this$props.showArrow,
           arrowActive = _this$props.arrowActive,
           className = _this$props.className,
-          children = _this$props.children;
+          children = _this$props.children,
+          theme = _this$props.theme;
       disabled && (active = false);
+      theme === 'light' && (className = ' light-theme ' + className);
       return external_react_default.a.createElement("div", {
         id: this.componentId,
         className: 'bf-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className
@@ -3354,15 +3377,13 @@ var ColorPicker_style = __webpack_require__(45);
 // CONCATENATED MODULE: ./components/common/ColorPicker/index.jsx
 
 
-/* harmony default export */ var ColorPicker = (function (props) {
-  var current = props.current,
-      colors = props.colors;
+/* harmony default export */ var common_ColorPicker = (function (props) {
   return external_react_default.a.createElement("div", {
     className: "bf-colors-wrap"
   }, external_react_default.a.createElement("ul", {
     className: "bf-colors"
-  }, colors.map(function (item, index) {
-    var className = item === current ? 'color-item active' : 'color-item';
+  }, props.presetColors.map(function (item, index) {
+    var className = props.color && item.toLowerCase() === props.color.toLowerCase() ? 'color-item active' : 'color-item';
     return external_react_default.a.createElement("li", {
       key: index,
       title: item,
@@ -3372,7 +3393,7 @@ var ColorPicker_style = __webpack_require__(45);
       },
       "data-color": item.replace('#', ''),
       onClick: function onClick(e) {
-        return props.onChange(e.currentTarget.dataset.color);
+        props.onChange(e.currentTarget.dataset.color, true);
       }
     });
   })));
@@ -3423,26 +3444,40 @@ function (_React$Component) {
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleColor", function (color) {
-      var hookReturns = _this.props.hooks("toggle-text-".concat(_this.state.colorType), color)(color);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleColor", function (color, closePicker) {
+      if (color) {
+        var hookReturns = _this.props.hooks("toggle-text-".concat(_this.state.colorType), color)(color);
 
-      if (hookReturns === false) {
-        return false;
+        if (hookReturns === false) {
+          return false;
+        }
+
+        if (typeof hookReturns === 'string') {
+          color = hookReturns;
+        }
+
+        var selectionStyles = _this.props.editorState.getCurrentInlineStyle().toJS();
+
+        if (_this.state.colorType === 'color') {
+          _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionColor(_this.props.editorState, color, selectionStyles.filter(function (item) {
+            return item.indexOf('COLOR-') === 0;
+          }).map(function (item) {
+            return "#".concat(item.split('-')[1]);
+          })));
+        } else {
+          _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBackgroundColor(_this.props.editorState, color, selectionStyles.filter(function (item) {
+            return item.indexOf('BGCOLOR-') === 0;
+          }).map(function (item) {
+            return "#".concat(item.split('-')[1]);
+          })));
+        }
       }
 
-      if (typeof hookReturns === 'string') {
-        color = hookReturns;
+      if (closePicker) {
+        _this.dropDownComponent.hide();
+
+        _this.props.editor.requestFocus();
       }
-
-      if (_this.state.colorType === 'color') {
-        _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionColor(_this.props.editorState, color, _this.props.colors));
-      } else {
-        _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBackgroundColor(_this.props.editorState, color, _this.props.colors));
-      }
-
-      _this.dropDownComponent.hide();
-
-      _this.props.editor.requestFocus();
     });
 
     return _this;
@@ -3456,17 +3491,16 @@ function (_React$Component) {
       var captionStyle = {};
       var currentColor = null;
       var colorType = this.state.colorType;
-      this.props.colors.forEach(function (color) {
-        var color_id = color.replace('#', '');
-
-        if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(_this2.props.editorState, 'COLOR-' + color_id)) {
-          captionStyle.color = color;
-          colorType === 'color' && (currentColor = color);
+      var selectionStyles = this.props.editorState.getCurrentInlineStyle().toJS();
+      selectionStyles.forEach(function (style) {
+        if (style.indexOf('COLOR-') === 0) {
+          captionStyle.color = '#' + style.split('-')[1];
+          colorType === 'color' && (currentColor = captionStyle.color);
         }
 
-        if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(_this2.props.editorState, 'BGCOLOR-' + color_id)) {
-          captionStyle.backgroundColor = color;
-          colorType === 'background-color' && (currentColor = color);
+        if (style.indexOf('BGCOLOR-') === 0) {
+          captionStyle.backgroundColor = '#' + style.split('-')[1];
+          colorType === 'background-color' && (currentColor = captionStyle.backgroundColor);
         }
       });
       var caption = external_react_default.a.createElement("i", {
@@ -3477,10 +3511,13 @@ function (_React$Component) {
       }), external_react_default.a.createElement("span", {
         className: "path2"
       }));
+      var ColorPicker = this.props.colorPicker || common_ColorPicker;
       return external_react_default.a.createElement(DropDown_DropDown, {
         caption: caption,
         title: this.props.language.controls.color,
         showArrow: false,
+        autoHide: this.props.autoHide,
+        theme: this.props.theme,
         containerNode: this.props.containerNode,
         componentId: this.dropDownComponentId,
         ref: function ref(instance) {
@@ -3510,10 +3547,9 @@ function (_React$Component) {
         onClick: this.switchColorType
       }, this.props.language.controls.backgroundColor)), external_react_default.a.createElement(ColorPicker, {
         width: 200,
-        language: this.props.language,
-        current: currentColor,
+        color: currentColor,
         disableAlpha: true,
-        colors: this.props.colors,
+        presetColors: this.props.colors,
         onChange: this.toggleColor
       })));
     }
@@ -4215,11 +4251,24 @@ var Modal_showModal = function showModal(props) {
 
 
 
-
 var commandHookMap = {
   'inline-style': 'toggle-inline-style',
   'block-type': 'change-block-type',
   'editor-method': 'exec-editor-command'
+};
+
+var mergeControls = function mergeControls(builtControls, extensionControls, extendControls) {
+  return builtControls.map(function (item) {
+    return extendControls.find(function (subItem) {
+      return subItem.replace === (item.key || item);
+    }) || extensionControls.find(function (subItem) {
+      return subItem.replace === (item.key || item);
+    }) || item;
+  }).concat(extensionControls.length ? 'separator' : '').concat(extensionControls.filter(function (item) {
+    return !item.replace;
+  })).concat(extendControls.filter(function (item) {
+    return !item.replace;
+  }));
 };
 
 var ControlBar_ControlBar =
@@ -4377,6 +4426,9 @@ function (_React$Component) {
           language = _this$props2.language,
           hooks = _this$props2.hooks,
           colors = _this$props2.colors,
+          colorPicker = _this$props2.colorPicker,
+          colorPickerTheme = _this$props2.colorPickerTheme,
+          colorPickerAutoHide = _this$props2.colorPickerAutoHide,
           fontSizes = _this$props2.fontSizes,
           fontFamilies = _this$props2.fontFamilies,
           emojis = _this$props2.emojis,
@@ -4397,7 +4449,8 @@ function (_React$Component) {
       var renderedControls = [];
       var editorControls = configs_controls(language);
       var extensionControls = getExtensionControls(editorId);
-      var allControls = extensionControls.length ? toConsumableArray_default()(controls).concat(['separator'], toConsumableArray_default()(extensionControls), toConsumableArray_default()(extendControls)) : toConsumableArray_default()(controls).concat(toConsumableArray_default()(extensionControls), toConsumableArray_default()(extendControls));
+      var allControls = mergeControls(controls, extensionControls, extendControls); //extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
+
       return external_react_default.a.createElement("div", {
         className: "bf-controlbar",
         onMouseDown: this.preventDefault
@@ -4445,6 +4498,9 @@ function (_React$Component) {
           return external_react_default.a.createElement(TextColor_TextColor, extends_default()({
             key: index,
             colors: colors,
+            colorPicker: colorPicker,
+            theme: colorPickerTheme,
+            autoHide: colorPickerAutoHide,
             enableBackgroundColor: textBackgroundColor
           }, commonProps));
         } else if (controlItem.type === 'font-size') {
@@ -4513,6 +4569,7 @@ function (_React$Component) {
             showArrow: controlItem.showArrow,
             title: controlItem.title,
             arrowActive: controlItem.arrowActive,
+            theme: controlItem.theme,
             autoHide: controlItem.autoHide,
             disabled: controlItem.disabled,
             ref: controlItem.ref
@@ -4563,7 +4620,7 @@ function (_React$Component) {
               return controlItem.onClick && controlItem.onClick(event);
             }
           }, !controlItem.html ? controlItem.text : null);
-        } else {
+        } else if (controlItem) {
           var disabled = false;
 
           if (controlItem.command === 'undo') {
@@ -4605,6 +4662,7 @@ function (_React$Component) {
 
 
 // CONCATENATED MODULE: ./editor/index.jsx
+
 
 
 
@@ -4670,22 +4728,24 @@ var editor_BraftEditor =
 function (_React$Component) {
   inherits_default()(BraftEditor, _React$Component);
 
-  function BraftEditor(props) {
+  function BraftEditor(_props) {
     var _this;
 
     classCallCheck_default()(this, BraftEditor);
 
-    _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(BraftEditor).call(this, props));
+    _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(BraftEditor).call(this, _props));
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onChange", function (editorState, callback) {
+      var props = _this.getProps();
+
       if (!editorState.convertOptions) {
-        editorState.setConvertOptions(editor_getConvertOptions(_this.props));
+        editorState.setConvertOptions(editor_getConvertOptions(props));
       }
 
       _this.setState({
         editorState: editorState
       }, function () {
-        _this.props.onChange && _this.props.onChange(editorState);
+        props.onChange && props.onChange(editorState);
         callback && callback(editorState);
       });
     });
@@ -4715,17 +4775,25 @@ function (_React$Component) {
         event.preventDefault();
       }
 
-      _this.props.onTab && _this.props.onTab(event);
+      var props = _this.getProps();
+
+      props.onTab && props.onTab(event);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onFocus", function () {
       _this.isFocused = true;
-      _this.props.onFocus && _this.props.onFocus(_this.state.editorState);
+
+      var props = _this.getProps();
+
+      props.onFocus && props.onFocus(_this.state.editorState);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onBlur", function () {
       _this.isFocused = false;
-      _this.props.onBlur && _this.props.onBlur(_this.state.editorState);
+
+      var props = _this.getProps();
+
+      props.onBlur && props.onBlur(_this.state.editorState);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "requestFocus", function () {
@@ -4790,12 +4858,13 @@ function (_React$Component) {
       }, _this.forceRender);
     });
 
-    _this.editorDecorators = getDecorators(props.id);
+    _props = _this.getProps(_props);
+    _this.editorDecorators = getDecorators(_props.id);
     _this.isFocused = false;
     _this.isLiving = false;
     _this.braftFinder = null;
-    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(props.defaultValue || props.value) ? props.defaultValue || props.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
-    defaultEditorState.setConvertOptions(editor_getConvertOptions(props));
+    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(_props.defaultValue || _props.value) ? _props.defaultValue || _props.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
+    defaultEditorState.setConvertOptions(editor_getConvertOptions(_props));
     _this.state = {
       containerNode: null,
       tempColors: [],
@@ -4806,13 +4875,32 @@ function (_React$Component) {
   }
 
   createClass_default()(BraftEditor, [{
+    key: "getProps",
+    value: function getProps(props) {
+      var _this2 = this;
+
+      props = props || this.props;
+      var propInterceptors = getPropInterceptors(props.editorId);
+
+      if (propInterceptors.length === 0) {
+        return props;
+      }
+
+      var porpsMap = Object(external_immutable_["Map"])(props);
+      propInterceptors.forEach(function (interceptor) {
+        porpsMap = porpsMap.merge(Object(external_immutable_["Map"])(interceptor(porpsMap.toJS(), _this2) || {}));
+      });
+      return porpsMap.toJS();
+    }
+  }, {
     key: "componentWillMount",
     value: function componentWillMount() {
-      var _this$props = this.props,
-          language = _this$props.language,
-          media = _this$props.media;
+      var props = this.getProps();
 
-      if (editor_isControlEnabled(this.props)) {
+      if (editor_isControlEnabled(props)) {
+        var language = props.language,
+            media = props.media;
+
         var _defaultProps$media$m = objectSpread_default()({}, configs_props.media, media),
             uploadFn = _defaultProps$media$m.uploadFn,
             validateFn = _defaultProps$media$m.validateFn,
@@ -4830,14 +4918,17 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var editorState = this.props.value;
+      var props = this.getProps();
+      var editorState = props.value;
 
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
         var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
-        editorState.setConvertOptions(editor_getConvertOptions(this.props));
+        editorState.setConvertOptions(editor_getConvertOptions(props));
         this.setState({
-          tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.props.colors),
+          tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), props.colors),
           editorState: editorState
+        }, function () {
+          props.onChange && props.onChange(editorState);
         });
       }
 
@@ -4847,17 +4938,19 @@ function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(_, prevState) {
       if (prevState.editorState !== this.state.editorState) {
-        this.state.editorState.setConvertOptions(editor_getConvertOptions(this.props));
+        this.state.editorState.setConvertOptions(editor_getConvertOptions(this.getProps()));
       }
     }
   }, {
     key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(nextProps) {
+    value: function componentWillReceiveProps(props) {
+      var currentProps = this.getProps();
+      var nextProps = this.getProps(props);
       var editorState = nextProps.value,
           media = nextProps.media,
           language = nextProps.language;
 
-      if (!editor_isControlEnabled(this.props) && editor_isControlEnabled(nextProps) && !this.braftFinder) {
+      if (!editor_isControlEnabled(currentProps) && editor_isControlEnabled(nextProps) && !this.braftFinder) {
         var _defaultProps$media$m2 = objectSpread_default()({}, configs_props.media, media),
             uploadFn = _defaultProps$media$m2.uploadFn,
             validateFn = _defaultProps$media$m2.validateFn,
@@ -4881,8 +4974,10 @@ function (_React$Component) {
           var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
           editorState.setConvertOptions(editor_getConvertOptions(nextProps));
           this.setState({
-            tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.props.colors),
+            tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), currentProps.colors),
             editorState: editorState
+          }, function () {
+            nextProps.onChange && nextProps.onChange(editorState);
           });
         } else {
           this.setState({
@@ -4906,37 +5001,40 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this2 = this;
+      var _this3 = this;
 
-      var _this$props2 = this.props,
-          editorId = _this$props2.id,
-          controls = _this$props2.controls,
-          excludeControls = _this$props2.excludeControls,
-          extendControls = _this$props2.extendControls,
-          disabled = _this$props2.disabled,
-          media = _this$props2.media,
-          language = _this$props2.language,
-          colors = _this$props2.colors,
-          hooks = _this$props2.hooks,
-          fontSizes = _this$props2.fontSizes,
-          fontFamilies = _this$props2.fontFamilies,
-          emojis = _this$props2.emojis,
-          placeholder = _this$props2.placeholder,
-          imageControls = _this$props2.imageControls,
-          lineHeights = _this$props2.lineHeights,
-          letterSpacings = _this$props2.letterSpacings,
-          textAligns = _this$props2.textAligns,
-          textBackgroundColor = _this$props2.textBackgroundColor,
-          defaultLinkTarget = _this$props2.defaultLinkTarget,
-          extendAtomics = _this$props2.extendAtomics,
-          className = _this$props2.className,
-          style = _this$props2.style,
-          controlBarClassName = _this$props2.controlBarClassName,
-          controlBarStyle = _this$props2.controlBarStyle,
-          contentClassName = _this$props2.contentClassName,
-          contentStyle = _this$props2.contentStyle,
-          stripPastedStyles = _this$props2.stripPastedStyles,
-          componentBelowControlBar = _this$props2.componentBelowControlBar;
+      var props = this.getProps();
+      var editorId = props.id,
+          controls = props.controls,
+          excludeControls = props.excludeControls,
+          extendControls = props.extendControls,
+          disabled = props.disabled,
+          media = props.media,
+          language = props.language,
+          colors = props.colors,
+          colorPicker = props.colorPicker,
+          colorPickerTheme = props.colorPickerTheme,
+          colorPickerAutoHide = props.colorPickerAutoHide,
+          hooks = props.hooks,
+          fontSizes = props.fontSizes,
+          fontFamilies = props.fontFamilies,
+          emojis = props.emojis,
+          placeholder = props.placeholder,
+          imageControls = props.imageControls,
+          lineHeights = props.lineHeights,
+          letterSpacings = props.letterSpacings,
+          textAligns = props.textAligns,
+          textBackgroundColor = props.textBackgroundColor,
+          defaultLinkTarget = props.defaultLinkTarget,
+          extendAtomics = props.extendAtomics,
+          className = props.className,
+          style = props.style,
+          controlBarClassName = props.controlBarClassName,
+          controlBarStyle = props.controlBarStyle,
+          contentClassName = props.contentClassName,
+          contentStyle = props.contentStyle,
+          stripPastedStyles = props.stripPastedStyles,
+          componentBelowControlBar = props.componentBelowControlBar;
       hooks = buildHooks(hooks);
       controls = controls.filter(function (item) {
         return excludeControls.indexOf(item) === -1;
@@ -4959,13 +5057,16 @@ function (_React$Component) {
         editorState: this.state.editorState,
         braftFinder: this.braftFinder,
         ref: function ref(instance) {
-          return _this2.controlBarInstance = instance;
+          return _this3.controlBarInstance = instance;
         },
         containerNode: this.state.containerNode,
         className: controlBarClassName,
         style: controlBarStyle,
-        hooks: hooks,
         colors: toConsumableArray_default()(colors).concat(toConsumableArray_default()(this.state.tempColors)),
+        colorPicker: colorPicker,
+        colorPickerTheme: colorPickerTheme,
+        colorPickerAutoHide: colorPickerAutoHide,
+        hooks: hooks,
         editorId: editorId,
         media: media,
         controls: controls,
@@ -4991,20 +5092,20 @@ function (_React$Component) {
         language: language,
         extendAtomics: extendAtomics
       };
-      var blockRendererFn = getBlockRendererFn(commonProps, this.props.blockRendererFn);
-      var blockRenderMap = getBlockRenderMap(commonProps, this.props.blockRenderMap);
-      var blockStyleFn = getBlockStyleFn(this.props.blockStyleFn);
-      var customStyleMap = getCustomStyleMap(commonProps, this.props.customStyleMap);
+      var blockRendererFn = getBlockRendererFn(commonProps, props.blockRendererFn);
+      var blockRenderMap = getBlockRenderMap(commonProps, props.blockRenderMap);
+      var blockStyleFn = getBlockStyleFn(props.blockStyleFn);
+      var customStyleMap = getCustomStyleMap(commonProps, props.customStyleMap);
       var customStyleFn = getCustomStyleFn(commonProps, {
         fontFamilies: fontFamilies,
         unitExportFn: unitExportFn,
-        customStyleFn: this.props.customStyleFn
+        customStyleFn: props.customStyleFn
       });
-      var keyBindingFn = keybindings(this.props.keyBindingFn);
+      var keyBindingFn = keybindings(props.keyBindingFn);
 
       var draftProps = objectSpread_default()({
         ref: function ref(instance) {
-          _this2.draftInstance = instance;
+          _this3.draftInstance = instance;
         },
         editorState: this.state.editorState,
         handleKeyCommand: this.handleKeyCommand,
@@ -5027,7 +5128,7 @@ function (_React$Component) {
         keyBindingFn: keyBindingFn,
         placeholder: placeholder,
         stripPastedStyles: stripPastedStyles
-      }, this.props.draftProps, this.state.draftProps);
+      }, props.draftProps, this.state.draftProps);
 
       return external_react_default.a.createElement("div", {
         ref: this.setEditorContainerNode,

@@ -48,6 +48,8 @@ export default class TextColor extends React.Component {
         caption={caption}
         title={this.props.language.controls.color}
         showArrow={false}
+        autoHide={this.props.autoHide}
+        theme={this.props.theme}
         containerNode={this.props.containerNode}
         componentId={this.dropDownComponentId}
         ref={(instance) => this.dropDownComponent = instance}
@@ -74,7 +76,7 @@ export default class TextColor extends React.Component {
           </div>
           <ColorPicker
             width={200}
-            color={currentColor || this.props.colors[0]}
+            color={currentColor}
             disableAlpha={true}
             presetColors={this.props.colors}
             onChange={this.toggleColor}
@@ -91,33 +93,37 @@ export default class TextColor extends React.Component {
     })
   }
 
-  toggleColor = (color, keepPicker) => {
+  toggleColor = (color, closePicker) => {
 
-    const hookReturns = this.props.hooks(`toggle-text-${this.state.colorType}`, color)(color)
+    if (color) {
 
-    if (hookReturns === false) {
-      return false
+      const hookReturns = this.props.hooks(`toggle-text-${this.state.colorType}`, color)(color)
+
+      if (hookReturns === false) {
+        return false
+      }
+
+      if (typeof hookReturns === 'string') {
+        color =  hookReturns
+      }
+
+      const selectionStyles = this.props.editorState.getCurrentInlineStyle().toJS()
+
+      if (this.state.colorType === 'color') {
+        this.props.editor.setValue(ContentUtils.toggleSelectionColor(
+          this.props.editorState, color,
+          selectionStyles.filter(item => item.indexOf('COLOR-') === 0).map(item => `#${item.split('-')[1]}`)
+        ))
+      } else {
+        this.props.editor.setValue(ContentUtils.toggleSelectionBackgroundColor(
+          this.props.editorState, color,
+          selectionStyles.filter(item => item.indexOf('BGCOLOR-') === 0).map(item => `#${item.split('-')[1]}`)
+        ))
+      }
+
     }
 
-    if (typeof hookReturns === 'string') {
-      color =  hookReturns
-    }
-
-    const selectionStyles = this.props.editorState.getCurrentInlineStyle().toJS()
-
-    if (this.state.colorType === 'color') {
-      this.props.editor.setValue(ContentUtils.toggleSelectionColor(
-        this.props.editorState, color,
-        selectionStyles.filter(item => item.indexOf('COLOR-') === 0).map(item => `#${item.split('-')[1]}`)
-      ))
-    } else {
-      this.props.editor.setValue(ContentUtils.toggleSelectionBackgroundColor(
-        this.props.editorState, color,
-        selectionStyles.filter(item => item.indexOf('BGCOLOR-') === 0).map(item => `#${item.split('-')[1]}`)
-      ))
-    }
-
-    if (!keepPicker) {
+    if (closePicker) {
       this.dropDownComponent.hide()
       this.props.editor.requestFocus()
     }

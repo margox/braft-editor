@@ -192,7 +192,15 @@ const useExtension = (extension) => {
 
   const { includeEditors, excludeEditors } = extension
 
-  if (extension.type === 'inline-style') {
+  if (extension.type === 'control') {
+
+    extensionControls.push({
+      includeEditors: includeEditors,
+      excludeEditors: excludeEditors,
+      data: extension.control
+    })
+
+  } else if (extension.type === 'inline-style') {
 
     const inlineStyleName = extension.name.toUpperCase()
 
@@ -265,8 +273,10 @@ const useExtension = (extension) => {
           key: entityType,
           type: 'entity',
           command: entityType,
-          mutability: extension.mutability || 'MUTABLE',
-          data: extension.data || {},
+          data: {
+            mutability: extension.mutability || 'MUTABLE',
+            data: extension.data || {},
+          },
           ...extension.control
         }
       })
