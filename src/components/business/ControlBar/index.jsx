@@ -24,6 +24,10 @@ const commandHookMap = {
 
 const mergeControls = (builtControls, extensionControls, extendControls) => {
 
+  if (extensionControls.length === 0 && extendControls.length === 0) {
+    return builtControls
+  }
+
   return builtControls.map(item => {
     return extendControls.find(subItem => {
       return subItem.replace === (item.key || item)

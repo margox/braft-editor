@@ -48,16 +48,15 @@ export default class BraftEditor extends React.Component {
 
     super(props)
 
-    props = this.getProps(props)
-
-    this.editorDecorators = getDecorators(props.id)
+    this.editorProps = this.getEditorProps(props)
+    this.editorDecorators = getDecorators(this.editorProps.id)
 
     this.isFocused = false
     this.isLiving = false
     this.braftFinder = null
 
-    const defaultEditorState = ContentUtils.isEditorState(props.defaultValue || props.value) ? (props.defaultValue || props.value) : ContentUtils.createEmptyEditorState(this.editorDecorators)
-    defaultEditorState.setConvertOptions(getConvertOptions(props))
+    const defaultEditorState = ContentUtils.isEditorState(this.editorProps.defaultValue || this.editorProps.value) ? (this.editorProps.defaultValue || this.editorProps.value) : ContentUtils.createEmptyEditorState(this.editorDecorators)
+    defaultEditorState.setConvertOptions(getConvertOptions(this.editorProps))
 
     this.state = {
       containerNode: null,
@@ -68,7 +67,7 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  getProps (props) {
+  getEditorProps (props) {
 
     props = props || this.props
 
@@ -90,11 +89,9 @@ export default class BraftEditor extends React.Component {
 
   componentWillMount () {
 
-    const props = this.getProps()
+    if (isControlEnabled(this.editorProps, 'media')) {
 
-    if (isControlEnabled(props)) {
-
-      const { language, media } = props
+      const { language, media } = this.editorProps
       const { uploadFn, validateFn, items } = { ...defaultProps.media, ...media }
 
       this.braftFinder = new BraftFinder({
@@ -112,19 +109,19 @@ export default class BraftEditor extends React.Component {
 
   componentDidMount () {
 
-    const props = this.getProps()
-    const { value: editorState } = props
+    this.editorProps = this.getEditorProps()
+    const { value: editorState } = this.editorProps
 
     if (ContentUtils.isEditorState(editorState)) {
 
       const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
-      editorState.setConvertOptions(getConvertOptions(props))
+      editorState.setConvertOptions(getConvertOptions(this.editorProps))
 
       this.setState({
-        tempColors: filterColors([...this.state.tempColors, ...tempColors], props.colors),
+        tempColors: filterColors([...this.state.tempColors, ...tempColors], this.editorProps.colors),
         editorState: editorState
       }, () => {
-        props.onChange && props.onChange(editorState)
+        this.editorProps.onChange && this.editorProps.onChange(editorState)
       })
 
     }
@@ -136,18 +133,19 @@ export default class BraftEditor extends React.Component {
   componentDidUpdate (_, prevState) {
 
     if (prevState.editorState !== this.state.editorState) {
-      this.state.editorState.setConvertOptions(getConvertOptions(this.getProps()))
+      this.state.editorState.setConvertOptions(getConvertOptions(this.editorProps))
     }
 
   }
 
   componentWillReceiveProps (props) {
 
-    const currentProps = this.getProps()
-    const nextProps = this.getProps(props)
-    const { value: editorState, media, language } = nextProps
+    this.editorProps = this.getEditorProps(props)
 
-    if (!isControlEnabled(currentProps) && isControlEnabled(nextProps) && !this.braftFinder) {
+    const { value: editorState, media, language } = this.editorProps
+    const currentProps = this.getEditorProps()
+
+    if (!isControlEnabled(currentProps, 'media') && isControlEnabled(this.editorProps, 'media') && !this.braftFinder) {
 
       const { uploadFn, validateFn, items } = { ...defaultProps.media, ...media }
 
@@ -171,13 +169,13 @@ export default class BraftEditor extends React.Component {
       if (editorState !== this.state.editorState) {
 
         const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
-        editorState.setConvertOptions(getConvertOptions(nextProps))
+        editorState.setConvertOptions(getConvertOptions(this.editorProps))
 
         this.setState({
           tempColors: filterColors([...this.state.tempColors, ...tempColors], currentProps.colors),
           editorState: editorState
         }, () => {
-          nextProps.onChange && nextProps.onChange(editorState)
+          this.editorProps.onChange && this.editorProps.onChange(editorState)
         })
 
       } else {
@@ -194,14 +192,12 @@ export default class BraftEditor extends React.Component {
 
   onChange = (editorState, callback) => {
 
-    const props = this.getProps()
-
     if (!editorState.convertOptions) {
-      editorState.setConvertOptions(getConvertOptions(props))
+      editorState.setConvertOptions(getConvertOptions(this.editorProps))
     }
 
     this.setState({ editorState }, () => {
-      props.onChange && props.onChange(editorState)
+      this.editorProps.onChange && this.editorProps.onChange(editorState)
       callback && callback(editorState)
     })
 
@@ -233,21 +229,18 @@ export default class BraftEditor extends React.Component {
       event.preventDefault()
     }
 
-    const props = this.getProps()
-    props.onTab && props.onTab(event)
+    this.editorProps.onTab && this.editorProps.onTab(event)
 
   }
 
   onFocus = () => {
     this.isFocused = true
-    const props = this.getProps()
-    props.onFocus && props.onFocus(this.state.editorState)
+    this.editorProps.onFocus && this.editorProps.onFocus(this.state.editorState)
   }
 
   onBlur = () => {
     this.isFocused = false
-    const props = this.getProps()
-    props.onBlur && props.onBlur(this.state.editorState)
+    this.editorProps.onBlur && this.editorProps.onBlur(this.state.editorState)
   }
 
   requestFocus = () => {
@@ -305,13 +298,11 @@ export default class BraftEditor extends React.Component {
 
   render () {
 
-    const props = this.getProps()
-
     let {
       id: editorId, controls, excludeControls, extendControls, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
-    } = props
+    } = this.editorProps
 
     hooks = buildHooks(hooks)
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
@@ -356,13 +347,13 @@ export default class BraftEditor extends React.Component {
       imageControls, language, extendAtomics
     }
 
-    const blockRendererFn = getBlockRendererFn(commonProps, props.blockRendererFn)
-    const blockRenderMap = getBlockRenderMap(commonProps, props.blockRenderMap)
-    const blockStyleFn = getBlockStyleFn(props.blockStyleFn)
-    const customStyleMap = getCustomStyleMap(commonProps, props.customStyleMap)
-    const customStyleFn = getCustomStyleFn(commonProps, { fontFamilies, unitExportFn, customStyleFn: props.customStyleFn })
+    const blockRendererFn = getBlockRendererFn(commonProps, this.editorProps.blockRendererFn)
+    const blockRenderMap = getBlockRenderMap(commonProps, this.editorProps.blockRenderMap)
+    const blockStyleFn = getBlockStyleFn(this.editorProps.blockStyleFn)
+    const customStyleMap = getCustomStyleMap(commonProps, this.editorProps.customStyleMap)
+    const customStyleFn = getCustomStyleFn(commonProps, { fontFamilies, unitExportFn, customStyleFn: this.editorProps.customStyleFn })
 
-    const keyBindingFn = getKeyBindingFn(props.keyBindingFn)
+    const keyBindingFn = getKeyBindingFn(this.editorProps.keyBindingFn)
 
     const draftProps = {
       ref: instance => { this.draftInstance = instance },
@@ -382,7 +373,7 @@ export default class BraftEditor extends React.Component {
       blockRenderMap, blockRendererFn, blockStyleFn,
       customStyleMap, customStyleFn,
       keyBindingFn, placeholder, stripPastedStyles,
-      ...props.draftProps,
+      ...this.editorProps.draftProps,
       ...this.state.draftProps
     }
 

@@ -970,18 +970,18 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
 
 
 var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorState, editor) {
-  if (editor.props.handleKeyCommand && editor.props.handleKeyCommand(command, editorState) === 'handled') {
+  if (editor.editorProps.handleKeyCommand && editor.editorProps.handleKeyCommand(command, editorState) === 'handled') {
     return 'handled';
   }
 
   if (command === 'braft-save') {
-    editor.props.onSave && editor.props.onSave(editorState);
+    editor.editorProps.onSave && editor.editorProps.onSave(editorState);
     return 'handled';
   }
 
-  var _editor$props = editor.props,
-      controls = _editor$props.controls,
-      excludeControls = _editor$props.excludeControls;
+  var _editor$editorProps = editor.editorProps,
+      controls = _editor$editorProps.controls,
+      excludeControls = _editor$editorProps.excludeControls;
   var allowIndent = (controls.indexOf('text-indent') !== 0 || controls.find(function (item) {
     return item.key === 'text-indent';
   })) && excludeControls.indexOf('text-indent') === -1;
@@ -990,7 +990,7 @@ var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorSta
   var cursorIsAtFirst = cursorStart === 0 && cursorEnd === 0;
 
   if (command === 'backspace') {
-    if (editor.props.onDelete && editor.props.onDelete(editorState) === false) {
+    if (editor.editorProps.onDelete && editor.editorProps.onDelete(editorState) === false) {
       return 'handled';
     }
 
@@ -1005,7 +1005,7 @@ var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorSta
     var _blockType = external_braft_utils_["ContentUtils"].getSelectionBlockType(editorState);
 
     if (_blockType === 'code-block') {
-      editor.setValue(external_braft_utils_["ContentUtils"].insertText(editorState, ' '.repeat(editor.props.codeTabIndents)));
+      editor.setValue(external_braft_utils_["ContentUtils"].insertText(editorState, ' '.repeat(editor.editorProps.codeTabIndents)));
       return 'handled';
     } else if (_blockType !== 'atomic' && allowIndent && cursorIsAtFirst) {
       editor.setValue(external_braft_utils_["ContentUtils"].increaseSelectionIndent(editorState));
@@ -1023,7 +1023,7 @@ var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorSta
   return 'not-handled';
 };
 var handlers_returnHandlers = function returnHandlers(event, editorState, editor) {
-  if (editor.props.handleReturn && editor.props.handleReturn(event, editorState) === 'handled') {
+  if (editor.editorProps.handleReturn && editor.editorProps.handleReturn(event, editorState) === 'handled') {
     return 'handled';
   }
 
@@ -1056,7 +1056,7 @@ var handlers_returnHandlers = function returnHandlers(event, editorState, editor
   return 'not-handled';
 };
 var beforeInputHandlers = function beforeInputHandlers(chars, editorState, editor) {
-  if (editor.props.handleBeforeInput && editor.props.handleBeforeInput(chars, editorState) === 'handled') {
+  if (editor.editorProps.handleBeforeInput && editor.editorProps.handleBeforeInput(chars, editorState) === 'handled') {
     return 'handled';
   }
 
@@ -1078,7 +1078,7 @@ var handlers_dropHandlers = function dropHandlers(selectionState, dataTransfer, 
   return 'not-handled';
 };
 var handlers_handleFiles = function handleFiles(files, editor) {
-  var _editor$constructor$d = objectSpread_default()({}, editor.constructor.defaultProps.media, editor.props.media),
+  var _editor$constructor$d = objectSpread_default()({}, editor.constructor.defaultProps.media, editor.editorProps.media),
       pasteImage = _editor$constructor$d.pasteImage,
       imagePasteLimit = _editor$constructor$d.imagePasteLimit;
 
@@ -1095,32 +1095,32 @@ var handlers_handleFiles = function handleFiles(files, editor) {
   return 'not-handled';
 };
 var droppedFilesHandlers = function droppedFilesHandlers(selectionState, files, editor) {
-  if (editor.props.handleDroppedFiles && editor.props.handleDroppedFiles(selectionState, files) === 'handled') {
+  if (editor.editorProps.handleDroppedFiles && editor.editorProps.handleDroppedFiles(selectionState, files) === 'handled') {
     return 'handled';
   }
 
   return handlers_handleFiles(files, editor);
 };
 var pastedFilesHandlers = function pastedFilesHandlers(files, editor) {
-  if (editor.props.handlePastedFiles && editor.props.handlePastedFiles(files) === 'handled') {
+  if (editor.editorProps.handlePastedFiles && editor.editorProps.handlePastedFiles(files) === 'handled') {
     return 'handled';
   }
 
   return handlers_handleFiles(files, editor);
 };
 var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editorState, editor) {
-  if (editor.props.handlePastedText && editor.props.handlePastedText(text, html, editorState) === 'handled') {
+  if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState) === 'handled') {
     return 'handled';
   }
 
-  if (!html || editor.props.stripPastedStyles) {
+  if (!html || editor.editorProps.stripPastedStyles) {
     return false;
   }
 
   var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromHTMLString(html);
   editor.setState({
     tempColors: toConsumableArray_default()(editor.state.tempColors).concat(toConsumableArray_default()(tempColors)).filter(function (item) {
-      return editor.props.colors.indexOf(item) === -1;
+      return editor.editorProps.colors.indexOf(item) === -1;
     }).filter(function (item, index, array) {
       return array.indexOf(item) === index;
     })
@@ -4258,6 +4258,10 @@ var commandHookMap = {
 };
 
 var mergeControls = function mergeControls(builtControls, extensionControls, extendControls) {
+  if (extensionControls.length === 0 && extendControls.length === 0) {
+    return builtControls;
+  }
+
   return builtControls.map(function (item) {
     return extendControls.find(function (subItem) {
       return subItem.replace === (item.key || item);
@@ -4728,24 +4732,22 @@ var editor_BraftEditor =
 function (_React$Component) {
   inherits_default()(BraftEditor, _React$Component);
 
-  function BraftEditor(_props) {
+  function BraftEditor(props) {
     var _this;
 
     classCallCheck_default()(this, BraftEditor);
 
-    _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(BraftEditor).call(this, _props));
+    _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(BraftEditor).call(this, props));
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onChange", function (editorState, callback) {
-      var props = _this.getProps();
-
       if (!editorState.convertOptions) {
-        editorState.setConvertOptions(editor_getConvertOptions(props));
+        editorState.setConvertOptions(editor_getConvertOptions(_this.editorProps));
       }
 
       _this.setState({
         editorState: editorState
       }, function () {
-        props.onChange && props.onChange(editorState);
+        _this.editorProps.onChange && _this.editorProps.onChange(editorState);
         callback && callback(editorState);
       });
     });
@@ -4775,25 +4777,17 @@ function (_React$Component) {
         event.preventDefault();
       }
 
-      var props = _this.getProps();
-
-      props.onTab && props.onTab(event);
+      _this.editorProps.onTab && _this.editorProps.onTab(event);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onFocus", function () {
       _this.isFocused = true;
-
-      var props = _this.getProps();
-
-      props.onFocus && props.onFocus(_this.state.editorState);
+      _this.editorProps.onFocus && _this.editorProps.onFocus(_this.state.editorState);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onBlur", function () {
       _this.isFocused = false;
-
-      var props = _this.getProps();
-
-      props.onBlur && props.onBlur(_this.state.editorState);
+      _this.editorProps.onBlur && _this.editorProps.onBlur(_this.state.editorState);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "requestFocus", function () {
@@ -4858,13 +4852,13 @@ function (_React$Component) {
       }, _this.forceRender);
     });
 
-    _props = _this.getProps(_props);
-    _this.editorDecorators = getDecorators(_props.id);
+    _this.editorProps = _this.getEditorProps(props);
+    _this.editorDecorators = getDecorators(_this.editorProps.id);
     _this.isFocused = false;
     _this.isLiving = false;
     _this.braftFinder = null;
-    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(_props.defaultValue || _props.value) ? _props.defaultValue || _props.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
-    defaultEditorState.setConvertOptions(editor_getConvertOptions(_props));
+    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(_this.editorProps.defaultValue || _this.editorProps.value) ? _this.editorProps.defaultValue || _this.editorProps.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
+    defaultEditorState.setConvertOptions(editor_getConvertOptions(_this.editorProps));
     _this.state = {
       containerNode: null,
       tempColors: [],
@@ -4875,8 +4869,8 @@ function (_React$Component) {
   }
 
   createClass_default()(BraftEditor, [{
-    key: "getProps",
-    value: function getProps(props) {
+    key: "getEditorProps",
+    value: function getEditorProps(props) {
       var _this2 = this;
 
       props = props || this.props;
@@ -4895,11 +4889,10 @@ function (_React$Component) {
   }, {
     key: "componentWillMount",
     value: function componentWillMount() {
-      var props = this.getProps();
-
-      if (editor_isControlEnabled(props)) {
-        var language = props.language,
-            media = props.media;
+      if (editor_isControlEnabled(this.editorProps, 'media')) {
+        var _this$editorProps = this.editorProps,
+            language = _this$editorProps.language,
+            media = _this$editorProps.media;
 
         var _defaultProps$media$m = objectSpread_default()({}, configs_props.media, media),
             uploadFn = _defaultProps$media$m.uploadFn,
@@ -4918,17 +4911,19 @@ function (_React$Component) {
   }, {
     key: "componentDidMount",
     value: function componentDidMount() {
-      var props = this.getProps();
-      var editorState = props.value;
+      var _this3 = this;
+
+      this.editorProps = this.getEditorProps();
+      var editorState = this.editorProps.value;
 
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
         var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
-        editorState.setConvertOptions(editor_getConvertOptions(props));
+        editorState.setConvertOptions(editor_getConvertOptions(this.editorProps));
         this.setState({
-          tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), props.colors),
+          tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.editorProps.colors),
           editorState: editorState
         }, function () {
-          props.onChange && props.onChange(editorState);
+          _this3.editorProps.onChange && _this3.editorProps.onChange(editorState);
         });
       }
 
@@ -4938,19 +4933,22 @@ function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate(_, prevState) {
       if (prevState.editorState !== this.state.editorState) {
-        this.state.editorState.setConvertOptions(editor_getConvertOptions(this.getProps()));
+        this.state.editorState.setConvertOptions(editor_getConvertOptions(this.editorProps));
       }
     }
   }, {
     key: "componentWillReceiveProps",
     value: function componentWillReceiveProps(props) {
-      var currentProps = this.getProps();
-      var nextProps = this.getProps(props);
-      var editorState = nextProps.value,
-          media = nextProps.media,
-          language = nextProps.language;
+      var _this4 = this;
 
-      if (!editor_isControlEnabled(currentProps) && editor_isControlEnabled(nextProps) && !this.braftFinder) {
+      this.editorProps = this.getEditorProps(props);
+      var _this$editorProps2 = this.editorProps,
+          editorState = _this$editorProps2.value,
+          media = _this$editorProps2.media,
+          language = _this$editorProps2.language;
+      var currentProps = this.getEditorProps();
+
+      if (!editor_isControlEnabled(currentProps, 'media') && editor_isControlEnabled(this.editorProps, 'media') && !this.braftFinder) {
         var _defaultProps$media$m2 = objectSpread_default()({}, configs_props.media, media),
             uploadFn = _defaultProps$media$m2.uploadFn,
             validateFn = _defaultProps$media$m2.validateFn,
@@ -4972,12 +4970,12 @@ function (_React$Component) {
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
         if (editorState !== this.state.editorState) {
           var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
-          editorState.setConvertOptions(editor_getConvertOptions(nextProps));
+          editorState.setConvertOptions(editor_getConvertOptions(this.editorProps));
           this.setState({
             tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), currentProps.colors),
             editorState: editorState
           }, function () {
-            nextProps.onChange && nextProps.onChange(editorState);
+            _this4.editorProps.onChange && _this4.editorProps.onChange(editorState);
           });
         } else {
           this.setState({
@@ -5001,40 +4999,40 @@ function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this3 = this;
+      var _this5 = this;
 
-      var props = this.getProps();
-      var editorId = props.id,
-          controls = props.controls,
-          excludeControls = props.excludeControls,
-          extendControls = props.extendControls,
-          disabled = props.disabled,
-          media = props.media,
-          language = props.language,
-          colors = props.colors,
-          colorPicker = props.colorPicker,
-          colorPickerTheme = props.colorPickerTheme,
-          colorPickerAutoHide = props.colorPickerAutoHide,
-          hooks = props.hooks,
-          fontSizes = props.fontSizes,
-          fontFamilies = props.fontFamilies,
-          emojis = props.emojis,
-          placeholder = props.placeholder,
-          imageControls = props.imageControls,
-          lineHeights = props.lineHeights,
-          letterSpacings = props.letterSpacings,
-          textAligns = props.textAligns,
-          textBackgroundColor = props.textBackgroundColor,
-          defaultLinkTarget = props.defaultLinkTarget,
-          extendAtomics = props.extendAtomics,
-          className = props.className,
-          style = props.style,
-          controlBarClassName = props.controlBarClassName,
-          controlBarStyle = props.controlBarStyle,
-          contentClassName = props.contentClassName,
-          contentStyle = props.contentStyle,
-          stripPastedStyles = props.stripPastedStyles,
-          componentBelowControlBar = props.componentBelowControlBar;
+      var _this$editorProps3 = this.editorProps,
+          editorId = _this$editorProps3.id,
+          controls = _this$editorProps3.controls,
+          excludeControls = _this$editorProps3.excludeControls,
+          extendControls = _this$editorProps3.extendControls,
+          disabled = _this$editorProps3.disabled,
+          media = _this$editorProps3.media,
+          language = _this$editorProps3.language,
+          colors = _this$editorProps3.colors,
+          colorPicker = _this$editorProps3.colorPicker,
+          colorPickerTheme = _this$editorProps3.colorPickerTheme,
+          colorPickerAutoHide = _this$editorProps3.colorPickerAutoHide,
+          hooks = _this$editorProps3.hooks,
+          fontSizes = _this$editorProps3.fontSizes,
+          fontFamilies = _this$editorProps3.fontFamilies,
+          emojis = _this$editorProps3.emojis,
+          placeholder = _this$editorProps3.placeholder,
+          imageControls = _this$editorProps3.imageControls,
+          lineHeights = _this$editorProps3.lineHeights,
+          letterSpacings = _this$editorProps3.letterSpacings,
+          textAligns = _this$editorProps3.textAligns,
+          textBackgroundColor = _this$editorProps3.textBackgroundColor,
+          defaultLinkTarget = _this$editorProps3.defaultLinkTarget,
+          extendAtomics = _this$editorProps3.extendAtomics,
+          className = _this$editorProps3.className,
+          style = _this$editorProps3.style,
+          controlBarClassName = _this$editorProps3.controlBarClassName,
+          controlBarStyle = _this$editorProps3.controlBarStyle,
+          contentClassName = _this$editorProps3.contentClassName,
+          contentStyle = _this$editorProps3.contentStyle,
+          stripPastedStyles = _this$editorProps3.stripPastedStyles,
+          componentBelowControlBar = _this$editorProps3.componentBelowControlBar;
       hooks = buildHooks(hooks);
       controls = controls.filter(function (item) {
         return excludeControls.indexOf(item) === -1;
@@ -5057,7 +5055,7 @@ function (_React$Component) {
         editorState: this.state.editorState,
         braftFinder: this.braftFinder,
         ref: function ref(instance) {
-          return _this3.controlBarInstance = instance;
+          return _this5.controlBarInstance = instance;
         },
         containerNode: this.state.containerNode,
         className: controlBarClassName,
@@ -5092,20 +5090,20 @@ function (_React$Component) {
         language: language,
         extendAtomics: extendAtomics
       };
-      var blockRendererFn = getBlockRendererFn(commonProps, props.blockRendererFn);
-      var blockRenderMap = getBlockRenderMap(commonProps, props.blockRenderMap);
-      var blockStyleFn = getBlockStyleFn(props.blockStyleFn);
-      var customStyleMap = getCustomStyleMap(commonProps, props.customStyleMap);
+      var blockRendererFn = getBlockRendererFn(commonProps, this.editorProps.blockRendererFn);
+      var blockRenderMap = getBlockRenderMap(commonProps, this.editorProps.blockRenderMap);
+      var blockStyleFn = getBlockStyleFn(this.editorProps.blockStyleFn);
+      var customStyleMap = getCustomStyleMap(commonProps, this.editorProps.customStyleMap);
       var customStyleFn = getCustomStyleFn(commonProps, {
         fontFamilies: fontFamilies,
         unitExportFn: unitExportFn,
-        customStyleFn: props.customStyleFn
+        customStyleFn: this.editorProps.customStyleFn
       });
-      var keyBindingFn = keybindings(props.keyBindingFn);
+      var keyBindingFn = keybindings(this.editorProps.keyBindingFn);
 
       var draftProps = objectSpread_default()({
         ref: function ref(instance) {
-          _this3.draftInstance = instance;
+          _this5.draftInstance = instance;
         },
         editorState: this.state.editorState,
         handleKeyCommand: this.handleKeyCommand,
@@ -5128,7 +5126,7 @@ function (_React$Component) {
         keyBindingFn: keyBindingFn,
         placeholder: placeholder,
         stripPastedStyles: stripPastedStyles
-      }, props.draftProps, this.state.draftProps);
+      }, this.editorProps.draftProps, this.state.draftProps);
 
       return external_react_default.a.createElement("div", {
         ref: this.setEditorContainerNode,

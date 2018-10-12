@@ -2,16 +2,16 @@ import { ContentUtils, ColorUtils } from 'braft-utils'
 
 export const keyCommandHandlers = (command, editorState, editor) => {
 
-  if (editor.props.handleKeyCommand && editor.props.handleKeyCommand(command, editorState) === 'handled') {
+  if (editor.editorProps.handleKeyCommand && editor.editorProps.handleKeyCommand(command, editorState) === 'handled') {
     return 'handled'
   }
 
   if (command === 'braft-save') {
-    editor.props.onSave && editor.props.onSave(editorState)
+    editor.editorProps.onSave && editor.editorProps.onSave(editorState)
     return 'handled'
   }
 
-  const { controls, excludeControls } = editor.props
+  const { controls, excludeControls } = editor.editorProps
   const allowIndent = (controls.indexOf('text-indent') !== 0 || controls.find(item => item.key === 'text-indent')) && excludeControls.indexOf('text-indent') === -1
   const cursorStart = editorState.getSelection().getStartOffset()
   const cursorEnd = editorState.getSelection().getEndOffset()
@@ -19,7 +19,7 @@ export const keyCommandHandlers = (command, editorState, editor) => {
 
   if (command === 'backspace') {
 
-    if (editor.props.onDelete && editor.props.onDelete(editorState) === false) {
+    if (editor.editorProps.onDelete && editor.editorProps.onDelete(editorState) === false) {
       return 'handled'
     }
 
@@ -36,7 +36,7 @@ export const keyCommandHandlers = (command, editorState, editor) => {
     const blockType = ContentUtils.getSelectionBlockType(editorState)
 
     if (blockType === 'code-block') {
-      editor.setValue(ContentUtils.insertText(editorState, ' '.repeat(editor.props.codeTabIndents)))
+      editor.setValue(ContentUtils.insertText(editorState, ' '.repeat(editor.editorProps.codeTabIndents)))
       return 'handled'
     } else if (blockType !== 'atomic' && allowIndent && cursorIsAtFirst) {
       editor.setValue(ContentUtils.increaseSelectionIndent(editorState))
@@ -58,7 +58,7 @@ export const keyCommandHandlers = (command, editorState, editor) => {
 
 export const returnHandlers = (event, editorState, editor) => {
 
-  if (editor.props.handleReturn && editor.props.handleReturn(event, editorState) === 'handled') {
+  if (editor.editorProps.handleReturn && editor.editorProps.handleReturn(event, editorState) === 'handled') {
     return 'handled'
   }
 
@@ -103,7 +103,7 @@ export const returnHandlers = (event, editorState, editor) => {
 
 export const beforeInputHandlers = (chars, editorState, editor) => {
 
-  if (editor.props.handleBeforeInput && editor.props.handleBeforeInput(chars, editorState) === 'handled') {
+  if (editor.editorProps.handleBeforeInput && editor.editorProps.handleBeforeInput(chars, editorState) === 'handled') {
     return 'handled'
   }
 
@@ -137,7 +137,7 @@ export const dropHandlers = (selectionState, dataTransfer, editor) => {
 
 export const handleFiles = (files, editor) => {
 
-  const { pasteImage, imagePasteLimit } = { ...editor.constructor.defaultProps.media, ...editor.props.media }
+  const { pasteImage, imagePasteLimit } = { ...editor.constructor.defaultProps.media, ...editor.editorProps.media }
 
   pasteImage && files.slice(0, imagePasteLimit).forEach((file) => {
     file && file.type.indexOf('image') > -1 && editor.braftFinder.uploadImage(file, image => {
@@ -155,7 +155,7 @@ export const handleFiles = (files, editor) => {
 
 export const droppedFilesHandlers = (selectionState, files, editor) => {
 
-  if (editor.props.handleDroppedFiles && editor.props.handleDroppedFiles(selectionState, files) === 'handled') {
+  if (editor.editorProps.handleDroppedFiles && editor.editorProps.handleDroppedFiles(selectionState, files) === 'handled') {
     return 'handled'
   }
 
@@ -165,7 +165,7 @@ export const droppedFilesHandlers = (selectionState, files, editor) => {
 
 export const pastedFilesHandlers = (files, editor) => {
 
-  if (editor.props.handlePastedFiles && editor.props.handlePastedFiles(files) === 'handled') {
+  if (editor.editorProps.handlePastedFiles && editor.editorProps.handlePastedFiles(files) === 'handled') {
     return 'handled'
   }
 
@@ -175,18 +175,18 @@ export const pastedFilesHandlers = (files, editor) => {
 
 export const pastedTextHandlers = (text, html, editorState, editor) => {
 
-  if (editor.props.handlePastedText && editor.props.handlePastedText(text, html, editorState) === 'handled') {
+  if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState) === 'handled') {
     return 'handled'
   }
 
-  if (!html || editor.props.stripPastedStyles) {
+  if (!html || editor.editorProps.stripPastedStyles) {
     return false
   }
 
   const tempColors = ColorUtils.detectColorsFromHTMLString(html)
 
   editor.setState({
-    tempColors: [...editor.state.tempColors, ...tempColors].filter(item => editor.props.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+    tempColors: [...editor.state.tempColors, ...tempColors].filter(item => editor.editorProps.colors.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
   }, () => {
     editor.setValue(ContentUtils.insertHTML(editorState, html, 'paste'))
   })

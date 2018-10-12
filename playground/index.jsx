@@ -1,11 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
-import EnhancedColorPicker from './extensions/enhanced-color-picker'
-
-BraftEditor.use(EnhancedColorPicker({
-  theme: 'light'
-}))
 
 class Demo extends React.Component {
 
