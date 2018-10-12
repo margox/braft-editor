@@ -1,8 +1,8 @@
 # Braft Editor
 
 #### 一个基于draft-js的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
-#### [使用文档](https://www.yuque.com/margox/be) [在线演示](http://margox.github.io/braft-editor/)
-##### 注意，项目当前版本为2.0，如果你使用的是1.x.x版本，请参阅[旧版本文档](https://github.com/margox/braft-editor/blob/old-master/README.md)
+#### [使用文档](https://www.yuque.com/margox/be) [在线演示](https://braft.margox.cn/demos/basic)
+##### 注意，项目当前版本为2.1，如果你使用的是1.x.x版本，请参阅[旧版本文档](https://github.com/margox/braft-editor/blob/old-master/README.md)
 
 
 交流反馈请加QQ群：725634541
@@ -20,6 +20,8 @@
 - ...更多特性开发中
 
 ## 更新记录
+- 2018-10-12 v2.1.6
+  - 修复controlBarClassName和controlBarStyle属性无效的问题
 - 2018-10-11 v2.1.4
   - 修复异步设置编辑器数据不会触发onChange的问题
 - 2018-10-09 v2.1.3

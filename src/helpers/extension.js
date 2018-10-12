@@ -1,6 +1,5 @@
 // TODO
-// - block、atomic类型的扩展支持
-// - 允许指定可使用扩展的编辑器id
+// - block-style和atomic类型的扩展支持
 
 import React from 'react'
 

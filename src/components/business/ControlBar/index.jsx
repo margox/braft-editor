@@ -164,7 +164,7 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorId, editorState, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
+    const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const commonProps = { editor, editorState, language, containerNode, hooks }
 
@@ -174,7 +174,7 @@ export default class ControlBar extends React.Component {
     const allControls = mergeControls(controls, extensionControls, extendControls)//extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 
     return (
-      <div className='bf-controlbar' onMouseDown={this.preventDefault}>
+      <div className={`bf-controlbar ${className || ''}`} style={style} onMouseDown={this.preventDefault}>
         {
           allControls.map((item, index) => {
             let itemKey = typeof item === 'string' ? item : item.key
