@@ -37,7 +37,7 @@ export default class TextAlign extends React.Component {
     ]
 
     return (
-      <div className='control-item-group'>
+      <React.Fragment>
         {
           this.props.textAligns.map((item, index) => {
             return (
@@ -54,7 +54,7 @@ export default class TextAlign extends React.Component {
             )
           })
         }
-      </div>
+      </React.Fragment>
     )
 
   }

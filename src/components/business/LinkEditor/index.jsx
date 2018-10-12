@@ -36,7 +36,7 @@ export default class LinkEditor extends React.Component {
     const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
-      <div className='control-item-group'>
+      <React.Fragment>
         <DropDown
           caption={caption}
           title={this.props.language.controls.link}
@@ -84,7 +84,7 @@ export default class LinkEditor extends React.Component {
         >
           <i className='bfi-link-off'></i>
         </button>
-      </div>
+      </React.Fragment>
     )
 
   }
