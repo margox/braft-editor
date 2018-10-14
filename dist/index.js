@@ -2821,8 +2821,7 @@ function (_React$Component) {
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
       active: false,
-      offset: 0,
-      maxHeight: 100
+      offset: 0
     });
 
     return _this;
@@ -2873,8 +2872,7 @@ function (_React$Component) {
 
       var _this$state = this.state,
           active = _this$state.active,
-          offset = _this$state.offset,
-          maxHeight = _this$state.maxHeight;
+          offset = _this$state.offset;
       var _this$props = this.props,
           caption = _this$props.caption,
           htmlCaption = _this$props.htmlCaption,
@@ -2925,20 +2923,15 @@ function (_React$Component) {
         },
         className: 'dropdown-arrow' + (arrowActive ? ' active' : '')
       }), external_react_default.a.createElement("div", {
-        className: "dropdown-content-inner",
-        style: {
-          maxHeight: maxHeight
-        }
+        className: "dropdown-content-inner"
       }, children)));
     }
   }, {
     key: "fixDropDownPosition",
     value: function fixDropDownPosition() {
       var viewRect = this.props.containerNode.getBoundingClientRect();
-      var editorContentRect = this.props.containerNode.querySelector('.bf-content').getBoundingClientRect();
       var handlerRect = this.dropDownHandlerElement.getBoundingClientRect();
       var contentRect = this.dropDownContentElement.getBoundingClientRect();
-      var maxHeight = editorContentRect.height + (editorContentRect.top - (handlerRect.top + handlerRect.height)) - 30;
       var offset = 0;
       var right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2;
       var left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2;
@@ -2951,10 +2944,9 @@ function (_React$Component) {
         offset = left * -1 + 10;
       }
 
-      if (offset !== this.state.offset || maxHeight !== this.state.maxHeight) {
+      if (offset !== this.state.offset) {
         this.setState({
-          offset: offset,
-          maxHeight: maxHeight
+          offset: offset
         });
       }
     }
@@ -3113,9 +3105,7 @@ function (_React$Component) {
         className: "bfi-link"
       });
       var textSelected = !external_braft_utils_["ContentUtils"].isSelectionCollapsed(this.props.editorState) && external_braft_utils_["ContentUtils"].getSelectionBlockType(this.props.editorState) !== 'atomic';
-      return external_react_default.a.createElement("div", {
-        className: "control-item-group"
-      }, external_react_default.a.createElement(DropDown_DropDown, {
+      return external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(DropDown_DropDown, {
         caption: caption,
         title: this.props.language.controls.link,
         autoHide: false,
@@ -3688,9 +3678,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var textAlignmentTitles = [this.props.language.controls.alignLeft, this.props.language.controls.alignCenter, this.props.language.controls.alignRight, this.props.language.controls.alignJustify];
-      return external_react_default.a.createElement("div", {
-        className: "control-item-group"
-      }, this.props.textAligns.map(function (item, index) {
+      return external_react_default.a.createElement(external_react_default.a.Fragment, null, this.props.textAligns.map(function (item, index) {
         return external_react_default.a.createElement("button", {
           type: "button",
           key: index,
@@ -3870,9 +3858,7 @@ function (_React$Component) {
     value: function render() {
       var currentIndent = this.state.currentIndent;
       var language = this.props.language;
-      return external_react_default.a.createElement("div", {
-        className: "control-item-group"
-      }, external_react_default.a.createElement("button", {
+      return external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement("button", {
         type: "button",
         "data-title": language.controls.increaseIndent,
         disabled: currentIndent >= 6,

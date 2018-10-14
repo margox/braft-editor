@@ -12,8 +12,7 @@ export default class DropDown extends React.Component {
   componentId = this.props.componentId || ('BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex())
   state = {
     active: false,
-    offset: 0,
-    maxHeight: 100
+    offset: 0
   }
 
   componentDidMount () {
@@ -59,7 +58,7 @@ export default class DropDown extends React.Component {
 
   render () {
 
-    let { active, offset, maxHeight } = this.state
+    let { active, offset } = this.state
     let { caption, htmlCaption, title, disabled, showArrow, arrowActive, className, children, theme } = this.props
 
     disabled && (active = false)
@@ -100,10 +99,7 @@ export default class DropDown extends React.Component {
             style={{marginLeft: offset * -1}}
             className={'dropdown-arrow' + (arrowActive ? ' active' : '')}
           ></i>
-          <div
-            className='dropdown-content-inner'
-            style={{ maxHeight }}
-          >
+          <div className='dropdown-content-inner'>
             {children}
           </div>
         </div>
@@ -115,11 +111,8 @@ export default class DropDown extends React.Component {
   fixDropDownPosition () {
 
     const viewRect = this.props.containerNode.getBoundingClientRect()
-    const editorContentRect = this.props.containerNode.querySelector('.bf-content').getBoundingClientRect()
     const handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
     const contentRect = this.dropDownContentElement.getBoundingClientRect()
-
-    const maxHeight = editorContentRect.height + (editorContentRect.top - (handlerRect.top + handlerRect.height)) - 30
 
     let offset = 0
     let right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2
@@ -134,8 +127,8 @@ export default class DropDown extends React.Component {
       offset = left * -1 + 10
     }
 
-    if (offset !== this.state.offset || maxHeight !== this.state.maxHeight) {
-      this.setState({ offset, maxHeight })
+    if (offset !== this.state.offset) {
+      this.setState({ offset })
     }
 
   }
