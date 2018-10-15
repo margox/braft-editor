@@ -944,8 +944,8 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
     family: 'tahoma, arial, "Hiragino Sans GB", 宋体, sans-serif'
   }],
   converts: {
-    unitExportFn: function unitExportFn(unit) {
-      return "".concat(unit, "px");
+    unitExportFn: function unitExportFn(value, type) {
+      return type === 'line-height' ? value : "".concat(value, "px");
     }
   },
   emojis: ['🤣', '🙌', '💚', '💛', '👏', '😉', '💯', '💕', '💞', '💘', '💙', '💝', '🖤', '💜', '❤️', '😍', '😻', '💓', '💗', '😋', '😇', '😂', '😹', '😘', '💖', '😁', '😀', '🤞', '😲', '😄', '😊', '👍', '😌', '😃', '😅', '✌️', '🤗', '💋', '😗', '😽', '😚', '🤠', '😙', '😺', '👄', '😸', '😏', '😼', '👌', '😎', '😆', '😛', '🙏', '🤝', '🙂', '🤑', '😝', '😐', '😑', '🤤', '😤', '🙃', '🤡', '😶', '😪', '😴', '😵', '😓', '👊', '😦', '😷', '🤐', '😜', '🤓', '👻', '😥', '🙄', '🤔', '🤒', '🙁', '😔', '😯', '☹️', '☠️', '😰', '😩', '😖', '😕', '😒', '😣', '😢', '😮', '😿', '🤧', '😫', '🤥', '😞', '😬', '👎', '💀', '😳', '😨', '🤕', '🤢', '😱', '😭', '😠', '😈', '😧', '💔', '😟', '🙀', '💩', '👿', '😡', '😾', '🖕'],
@@ -4845,6 +4845,7 @@ function (_React$Component) {
     _this.isFocused = false;
     _this.isLiving = false;
     _this.braftFinder = null;
+    _this.valueInitialized = !!(_this.editorProps.defaultValue || _this.editorProps.value);
     var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(_this.editorProps.defaultValue || _this.editorProps.value) ? _this.editorProps.defaultValue || _this.editorProps.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
     defaultEditorState.setConvertOptions(editor_getConvertOptions(_this.editorProps));
     _this.state = {
@@ -4955,19 +4956,27 @@ function (_React$Component) {
         this.braftFinder.setItems(media.items);
       }
 
-      if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
-        if (editorState !== this.state.editorState) {
-          var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
-          editorState.setConvertOptions(editor_getConvertOptions(this.editorProps));
+      var nextEditorState;
+
+      if (!this.valueInitialized && typeof this.props.defaultValue === 'undefined' && external_braft_utils_["ContentUtils"].isEditorState(props.defaultValue)) {
+        nextEditorState = props.defaultValue;
+      } else if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
+        nextEditorState = editorState;
+      }
+
+      if (nextEditorState) {
+        if (nextEditorState && nextEditorState !== this.state.editorState) {
+          var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(nextEditorState.toRAW(true));
+          nextEditorState.setConvertOptions(editor_getConvertOptions(this.editorProps));
           this.setState({
             tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), currentProps.colors),
-            editorState: editorState
+            editorState: nextEditorState
           }, function () {
-            _this4.editorProps.onChange && _this4.editorProps.onChange(editorState);
+            _this4.editorProps.onChange && _this4.editorProps.onChange(nextEditorState);
           });
         } else {
           this.setState({
-            editorState: editorState
+            editorState: nextEditorState
           });
         }
       }

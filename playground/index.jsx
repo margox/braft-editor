@@ -22,17 +22,20 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState(null)
+      editorState: undefined,//BraftEditor.createEditorState(null)
     }
 
   }
 
   handleChange = (editorState) => {
+    console.log(editorState)
     this.setState({ editorState })
   }
 
   logHTML = () => {
-    console.log(this.state.editorState.toHTML())
+    this.setState({
+      editorState: BraftEditor.createEditorState('<p>Hello <b>World</b></p>')
+    })
   }
 
   render() {
@@ -50,7 +53,7 @@ class Demo extends React.Component {
     return (
       <div>
         <div className="demo" id="demo">
-          <BraftEditor extendControls={extendControls} converts={{ blockExportFn }} onChange={this.handleChange} value={editorState}/>
+          <BraftEditor defaultValue={this.state.editorState} onChange={this.handleChange} extendControls={extendControls}/>
         </div>
       </div>
     )

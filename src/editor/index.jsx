@@ -54,6 +54,7 @@ export default class BraftEditor extends React.Component {
     this.isFocused = false
     this.isLiving = false
     this.braftFinder = null
+    this.valueInitialized = !!(this.editorProps.defaultValue || this.editorProps.value)
 
     const defaultEditorState = ContentUtils.isEditorState(this.editorProps.defaultValue || this.editorProps.value) ? (this.editorProps.defaultValue || this.editorProps.value) : ContentUtils.createEmptyEditorState(this.editorDecorators)
     defaultEditorState.setConvertOptions(getConvertOptions(this.editorProps))
@@ -164,22 +165,32 @@ export default class BraftEditor extends React.Component {
       this.braftFinder.setItems(media.items)
     }
 
-    if (ContentUtils.isEditorState(editorState)) {
+    let nextEditorState
 
-      if (editorState !== this.state.editorState) {
+    if (!this.valueInitialized && typeof this.props.defaultValue === 'undefined' && ContentUtils.isEditorState(props.defaultValue)) {
+      nextEditorState = props.defaultValue
+    } else if (ContentUtils.isEditorState(editorState)) {
+      nextEditorState = editorState
+    }
 
-        const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
-        editorState.setConvertOptions(getConvertOptions(this.editorProps))
+    if (nextEditorState) {
 
+      if (nextEditorState && nextEditorState !== this.state.editorState) {
+
+        const tempColors = ColorUtils.detectColorsFromDraftState(nextEditorState.toRAW(true))
+        nextEditorState.setConvertOptions(getConvertOptions(this.editorProps))
+  
         this.setState({
           tempColors: filterColors([...this.state.tempColors, ...tempColors], currentProps.colors),
-          editorState: editorState
+          editorState: nextEditorState
         }, () => {
-          this.editorProps.onChange && this.editorProps.onChange(editorState)
+          this.editorProps.onChange && this.editorProps.onChange(nextEditorState)
         })
-
+  
       } else {
-        this.setState({ editorState })
+        this.setState({
+          editorState: nextEditorState
+        })
       }
 
     }
