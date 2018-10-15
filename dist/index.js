@@ -4862,7 +4862,7 @@ function (_React$Component) {
       var _this2 = this;
 
       props = props || this.props;
-      var propInterceptors = getPropInterceptors(props.editorId);
+      var propInterceptors = getPropInterceptors(props.id);
 
       if (propInterceptors.length === 0) {
         return props;

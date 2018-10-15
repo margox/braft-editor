@@ -71,7 +71,7 @@ export default class BraftEditor extends React.Component {
 
     props = props || this.props
 
-    const propInterceptors = getPropInterceptors(props.editorId)
+    const propInterceptors = getPropInterceptors(props.id)
 
     if (propInterceptors.length === 0) {
       return props
