@@ -163,6 +163,13 @@
     }
   }
 
+  .bff-left,
+  .bff-right{
+    &:hover{
+      z-index: 2;
+    }
+  }
+
   .bff-left{
     position: relative;
     z-index: 1;

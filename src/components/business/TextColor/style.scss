@@ -1,38 +1,52 @@
 @import '~scssinc';
 
-.text-color-dropdown button.dropdown-handler {
-  span{
-    width: 36px;
-    padding: 0;
-    overflow: hidden;
-    border-radius: 2px;
-  }
-}
+.text-color-dropdown {
 
-.bf-text-color-picker-wrap{
-  margin: 10px;
-  overflow: hidden;
-}
-
-.bf-color-switch-buttons{
-  height: 30px;
-  margin: 10px;
-  overflow: hidden;
-  border-radius: 2px;
-  box-shadow: inset 0 0 0 1px $COLOR_ACTIVE;
-  button{
-    float: left;
-    width: 50%;
-    height: 30px;
-    background-color: transparent;
-    border: none;
-    color: #fff;
-    font-size: 12px;
-    font-weight: normal;
-    text-transform: uppercase;
-    cursor: pointer;
-    &.active{
-      background-color: $COLOR_ACTIVE;
+  &.light-theme{
+    .bf-color-switch-buttons{
+      button{
+        border-bottom: 1px solid #ccc;
+        color: #616569;
+        &.active{
+          border-bottom-color: #3498db;
+          color: #3498db;
+        }
+      }
     }
   }
+
+  button.dropdown-handler {
+    span{
+      width: 36px;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 2px;
+    }
+  }
+
+  .bf-text-color-picker-wrap{
+    overflow: hidden;
+  }
+  
+  .bf-color-switch-buttons{
+    height: 36px;
+    button{
+      float: left;
+      width: 50%;
+      height: 36px;
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(#fff, .1);
+      color: rgba(#fff, .5);
+      font-size: 12px;
+      font-weight: normal;
+      text-transform: uppercase;
+      cursor: pointer;
+      &.active{
+        border-bottom-color: #3498db;
+        color: #3498db;
+      }
+    }
+  }
+
 }
