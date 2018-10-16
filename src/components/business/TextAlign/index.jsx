@@ -36,26 +36,18 @@ export default class TextAlign extends React.Component {
       this.props.language.controls.alignJustify
     ]
 
-    return (
-      <React.Fragment>
-        {
-          this.props.textAligns.map((item, index) => {
-            return (
-              <button
-                type='button'
-                key={index}
-                data-title={textAlignmentTitles[index]}
-                data-alignment={item}
-                className={'control-item button ' + (item === this.state.currentAlignment ? 'active' : null)}
-                onClick={this.setAlignment}
-              >
-                <i className={'bfi-align-' + item}></i>
-              </button>
-            )
-          })
-        }
-      </React.Fragment>
-    )
+    return this.props.textAligns.map((item, index) => (
+      <button
+        type='button'
+        key={index}
+        data-title={textAlignmentTitles[index]}
+        data-alignment={item}
+        className={'control-item button ' + (item === this.state.currentAlignment ? 'active' : null)}
+        onClick={this.setAlignment}
+      >
+        <i className={'bfi-align-' + item}></i>
+      </button>
+    ))
 
   }
 

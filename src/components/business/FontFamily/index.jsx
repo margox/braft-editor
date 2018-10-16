@@ -16,7 +16,7 @@ const toggleFontFamily = (event, props) => {
     fontFamilyName = hookReturns
   }
 
-  props.editor.setValue(ContentUtils.toggleSelectionFontFamily(props.editorState, fontFamilyName, props.fontFamilies))
+  props.editor.setValue(ContentUtils.toggleSelectionFontFamily(props.editorState, fontFamilyName))
   props.editor.requestFocus()
 
 }

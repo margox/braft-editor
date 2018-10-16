@@ -36,8 +36,9 @@ export default class LinkEditor extends React.Component {
     const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
-      <React.Fragment>
+      [
         <DropDown
+          key={0}
           caption={caption}
           title={this.props.language.controls.link}
           autoHide={false}
@@ -74,8 +75,9 @@ export default class LinkEditor extends React.Component {
               <button type='button' onClick={this.handleCancel} className='default pull-right'>{this.props.language.base.cancel}</button>
             </div>
           </div>
-        </DropDown>
+        </DropDown>,
         <button
+          key={1}
           type='button'
           data-title={this.props.language.controls.unlink}
           className='control-item button'
@@ -84,7 +86,7 @@ export default class LinkEditor extends React.Component {
         >
           <i className='bfi-link-off'></i>
         </button>
-      </React.Fragment>
+      ]
     )
 
   }

@@ -16,7 +16,7 @@ const toggleLetterSpacing = (event, props) => {
     letterSpacing = hookReturns
   }
 
-  props.editor.setValue(ContentUtils.toggleSelectionLetterSpacing(props.editorState, letterSpacing, props.letterSpacings))
+  props.editor.setValue(ContentUtils.toggleSelectionLetterSpacing(props.editorState, letterSpacing))
   props.editor.requestFocus()
 
 }

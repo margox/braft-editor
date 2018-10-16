@@ -107,18 +107,10 @@ export default class TextColor extends React.Component {
         color =  hookReturns
       }
 
-      const selectionStyles = this.props.editorState.getCurrentInlineStyle().toJS()
-
       if (this.state.colorType === 'color') {
-        this.props.editor.setValue(ContentUtils.toggleSelectionColor(
-          this.props.editorState, color,
-          selectionStyles.filter(item => item.indexOf('COLOR-') === 0).map(item => `#${item.split('-')[1]}`)
-        ))
+        this.props.editor.setValue(ContentUtils.toggleSelectionColor(this.props.editorState, color))
       } else {
-        this.props.editor.setValue(ContentUtils.toggleSelectionBackgroundColor(
-          this.props.editorState, color,
-          selectionStyles.filter(item => item.indexOf('BGCOLOR-') === 0).map(item => `#${item.split('-')[1]}`)
-        ))
+        this.props.editor.setValue(ContentUtils.toggleSelectionBackgroundColor(this.props.editorState, color))
       }
 
     }

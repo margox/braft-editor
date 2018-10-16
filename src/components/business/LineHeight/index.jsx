@@ -16,7 +16,7 @@ const toggleLineHeight = (event, props) => {
     lineHeight = hookReturns
   }
 
-  props.editor.setValue(ContentUtils.toggleSelectionLineHeight(props.editorState, lineHeight, props.lineHeights))
+  props.editor.setValue(ContentUtils.toggleSelectionLineHeight(props.editorState, lineHeight))
   props.editor.requestFocus()
 
 }

@@ -29,8 +29,9 @@ export default class TextAlign extends React.Component {
     const { language } = this.props
 
     return (
-      <React.Fragment>
+      [
         <button
+          key={0}
           type='button'
           data-title={language.controls.increaseIndent}
           disabled={currentIndent >= 6}
@@ -38,8 +39,9 @@ export default class TextAlign extends React.Component {
           onClick={this.increaseIndent}
         >
           <i className={'bfi-indent-increase'}></i>
-        </button>
+        </button>,
         <button
+          key={1}
           type='button'
           data-title={language.controls.decreaseIndent}
           disabled={currentIndent <= 0}
@@ -48,7 +50,7 @@ export default class TextAlign extends React.Component {
         >
           <i className={'bfi-indent-decrease'}></i>
         </button>
-      </React.Fragment>
+      ]
     )
 
   }

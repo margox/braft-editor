@@ -3208,7 +3208,8 @@ function (_React$Component) {
         className: "bfi-link"
       });
       var textSelected = !external_braft_utils_["ContentUtils"].isSelectionCollapsed(this.props.editorState) && external_braft_utils_["ContentUtils"].getSelectionBlockType(this.props.editorState) !== 'atomic';
-      return external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement(DropDown_DropDown, {
+      return [external_react_default.a.createElement(DropDown_DropDown, {
+        key: 0,
         caption: caption,
         title: this.props.language.controls.link,
         autoHide: false,
@@ -3252,6 +3253,7 @@ function (_React$Component) {
         onClick: this.handleCancel,
         className: "default pull-right"
       }, this.props.language.base.cancel)))), external_react_default.a.createElement("button", {
+        key: 1,
         type: "button",
         "data-title": this.props.language.controls.unlink,
         className: "control-item button",
@@ -3259,7 +3261,7 @@ function (_React$Component) {
         disabled: !textSelected || !href
       }, external_react_default.a.createElement("i", {
         className: "bfi-link-off"
-      })));
+      }))];
     }
   }]);
 
@@ -3445,20 +3447,10 @@ function (_React$Component) {
           color = hookReturns;
         }
 
-        var selectionStyles = _this.props.editorState.getCurrentInlineStyle().toJS();
-
         if (_this.state.colorType === 'color') {
-          _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionColor(_this.props.editorState, color, selectionStyles.filter(function (item) {
-            return item.indexOf('COLOR-') === 0;
-          }).map(function (item) {
-            return "#".concat(item.split('-')[1]);
-          })));
+          _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionColor(_this.props.editorState, color));
         } else {
-          _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBackgroundColor(_this.props.editorState, color, selectionStyles.filter(function (item) {
-            return item.indexOf('BGCOLOR-') === 0;
-          }).map(function (item) {
-            return "#".concat(item.split('-')[1]);
-          })));
+          _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBackgroundColor(_this.props.editorState, color));
         }
       }
 
@@ -3569,7 +3561,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
     fontSize = hookReturns;
   }
 
-  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionFontSize(props.editorState, fontSize, props.fontSizes));
+  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionFontSize(props.editorState, fontSize));
   props.editor.requestFocus();
 };
 
@@ -3624,7 +3616,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
     lineHeight = hookReturns;
   }
 
-  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionLineHeight(props.editorState, lineHeight, props.lineHeights));
+  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionLineHeight(props.editorState, lineHeight));
   props.editor.requestFocus();
 };
 
@@ -3679,7 +3671,7 @@ var FontFamily_toggleFontFamily = function toggleFontFamily(event, props) {
     fontFamilyName = hookReturns;
   }
 
-  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionFontFamily(props.editorState, fontFamilyName, props.fontFamilies));
+  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionFontFamily(props.editorState, fontFamilyName));
   props.editor.requestFocus();
 };
 
@@ -3781,7 +3773,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var textAlignmentTitles = [this.props.language.controls.alignLeft, this.props.language.controls.alignCenter, this.props.language.controls.alignRight, this.props.language.controls.alignJustify];
-      return external_react_default.a.createElement(external_react_default.a.Fragment, null, this.props.textAligns.map(function (item, index) {
+      return this.props.textAligns.map(function (item, index) {
         return external_react_default.a.createElement("button", {
           type: "button",
           key: index,
@@ -3792,7 +3784,7 @@ function (_React$Component) {
         }, external_react_default.a.createElement("i", {
           className: 'bfi-align-' + item
         }));
-      }));
+      });
     }
   }]);
 
@@ -3867,7 +3859,7 @@ var LetterSpacing_toggleLetterSpacing = function toggleLetterSpacing(event, prop
     letterSpacing = hookReturns;
   }
 
-  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionLetterSpacing(props.editorState, letterSpacing, props.letterSpacings));
+  props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionLetterSpacing(props.editorState, letterSpacing));
   props.editor.requestFocus();
 };
 
@@ -3961,7 +3953,8 @@ function (_React$Component) {
     value: function render() {
       var currentIndent = this.state.currentIndent;
       var language = this.props.language;
-      return external_react_default.a.createElement(external_react_default.a.Fragment, null, external_react_default.a.createElement("button", {
+      return [external_react_default.a.createElement("button", {
+        key: 0,
         type: "button",
         "data-title": language.controls.increaseIndent,
         disabled: currentIndent >= 6,
@@ -3970,6 +3963,7 @@ function (_React$Component) {
       }, external_react_default.a.createElement("i", {
         className: 'bfi-indent-increase'
       })), external_react_default.a.createElement("button", {
+        key: 1,
         type: "button",
         "data-title": language.controls.decreaseIndent,
         disabled: currentIndent <= 0,
@@ -3977,7 +3971,7 @@ function (_React$Component) {
         onClick: this.decreaseIndent
       }, external_react_default.a.createElement("i", {
         className: 'bfi-indent-decrease'
-      })));
+      }))];
     }
   }]);
 

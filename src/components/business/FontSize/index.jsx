@@ -16,7 +16,7 @@ const toggleFontSize = (event, props) => {
     fontSize = hookReturns
   }
 
-  props.editor.setValue(ContentUtils.toggleSelectionFontSize(props.editorState, fontSize, props.fontSizes))
+  props.editor.setValue(ContentUtils.toggleSelectionFontSize(props.editorState, fontSize))
   props.editor.requestFocus()
 
 }
