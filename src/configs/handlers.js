@@ -1,4 +1,5 @@
 import { ContentUtils, ColorUtils } from 'braft-utils'
+import { handleNewLine } from 'draftjs-utils'
 
 export const keyCommandHandlers = (command, editorState, editor) => {
 
@@ -90,7 +91,7 @@ export const returnHandlers = (event, editorState, editor) => {
 
   }
 
-  const nextEditorState = ContentUtils.handleNewLine(editorState, event)
+  const nextEditorState = handleNewLine(editorState, event)
 
   if (nextEditorState) {
     editor.setValue(nextEditorState)
