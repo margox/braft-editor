@@ -24,7 +24,7 @@ const commandHookMap = {
 
 const mergeControls = (commonProps, builtControls, extensionControls, extendControls) => {
 
-  extensionControls = builtControls.map(item => typeof item === 'function' ? item(commonProps) : item)
+  extensionControls = extensionControls.map(item => typeof item === 'function' ? item(commonProps) : item)
   extendControls = extendControls.map(item => typeof item === 'function' ? item(commonProps) : item)
 
   if (extensionControls.length === 0 && extendControls.length === 0) {

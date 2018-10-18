@@ -4247,7 +4247,7 @@ var commandHookMap = {
 };
 
 var mergeControls = function mergeControls(commonProps, builtControls, extensionControls, extendControls) {
-  extensionControls = builtControls.map(function (item) {
+  extensionControls = extensionControls.map(function (item) {
     return typeof item === 'function' ? item(commonProps) : item;
   });
   extendControls = extendControls.map(function (item) {
@@ -4997,6 +4997,7 @@ function (_React$Component) {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
       this.isLiving = false;
+      this.controlBarInstance && this.controlBarInstance.closeBraftFinder();
     }
   }, {
     key: "setDraftProps",

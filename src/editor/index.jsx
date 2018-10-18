@@ -199,6 +199,7 @@ export default class BraftEditor extends React.Component {
 
   componentWillUnmount () {
     this.isLiving = false
+    this.controlBarInstance && this.controlBarInstance.closeBraftFinder()
   }
 
   onChange = (editorState, callback) => {
