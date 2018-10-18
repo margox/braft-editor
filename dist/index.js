@@ -1390,7 +1390,7 @@ var extension_useExtension = function useExtension(extension) {
       extension_extensionControls.push({
         includeEditors: includeEditors,
         excludeEditors: excludeEditors,
-        data: objectSpread_default()({
+        data: typeof extension.control === 'function' ? extension.control : objectSpread_default()({
           key: entityType,
           type: 'entity',
           command: entityType,
@@ -4436,6 +4436,7 @@ function (_React$Component) {
       var currentBlockType = external_braft_utils_["ContentUtils"].getSelectionBlockType(editorState);
       var commonProps = {
         editor: editor,
+        editorId: editorId,
         editorState: editorState,
         language: language,
         containerNode: containerNode,
@@ -4451,6 +4452,7 @@ function (_React$Component) {
         style: style,
         onMouseDown: this.preventDefault
       }, allControls.map(function (item, index) {
+        item = typeof item === 'function' ? item(commonProps) : item;
         var itemKey = typeof item === 'string' ? item : item.key;
 
         if (typeof itemKey !== 'string') {

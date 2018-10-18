@@ -268,7 +268,7 @@ const useExtension = (extension) => {
       extensionControls.push({
         includeEditors: includeEditors,
         excludeEditors: excludeEditors,
-        data: {
+        data: typeof extension.control === 'function' ? extension.control : {
           key: entityType,
           type: 'entity',
           command: entityType,

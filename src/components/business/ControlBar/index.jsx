@@ -166,7 +166,7 @@ export default class ControlBar extends React.Component {
 
     const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
-    const commonProps = { editor, editorState, language, containerNode, hooks }
+    const commonProps = { editor, editorId, editorState, language, containerNode, hooks }
 
     const renderedControls = []
     const editorControls = getEditorControls(language)
@@ -177,6 +177,8 @@ export default class ControlBar extends React.Component {
       <div className={`bf-controlbar ${className || ''}`} style={style} onMouseDown={this.preventDefault}>
         {
           allControls.map((item, index) => {
+
+            item = typeof item === 'function' ? item(commonProps) : item
             let itemKey = typeof item === 'string' ? item : item.key
             if (typeof itemKey !== 'string') {
               return null

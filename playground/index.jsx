@@ -2,19 +2,6 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 
-const blockExportFn = (contentState, block) => {
-
-  const previousBlock = contentState.getBlockBefore(block.key)
-
-  if (block.type === 'unstyled' && previousBlock && previousBlock.getType() === 'atomic') {
-    return {
-      start: '',
-      end: '',
-    }
-  }
-
-}
-
 class Demo extends React.Component {
 
   constructor(props) {
@@ -28,7 +15,6 @@ class Demo extends React.Component {
   }
 
   handleChange = (editorState) => {
-    console.log(editorState)
     this.setState({ editorState })
   }
 
@@ -42,12 +28,14 @@ class Demo extends React.Component {
 
     const { editorState } = this.state
     const extendControls = [
-      {
+      (props) => ({
         key: 'log-html',
         type: 'button',
-        text: '输出HTML',
-        onClick: this.logHTML
-      }
+        text: 'Log HTML',
+        onClick: () => {
+          console.log(props.editorState.toHTML())
+        }
+      })
     ]
 
     return (
