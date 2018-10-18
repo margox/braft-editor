@@ -40,7 +40,7 @@ export default class TextAlign extends React.Component {
           onClick={this.increaseIndent}
         >
           <i className={'bfi-indent-increase'}></i>
-        </button>,
+        </button>
         <button
           key={1}
           type='button'

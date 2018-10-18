@@ -3099,7 +3099,19 @@ function (_React$Component) {
 }(external_react_default.a.Component);
 
 
+// CONCATENATED MODULE: ./components/business/ControlGroup/index.jsx
+
+/* harmony default export */ var ControlGroup = (function (props) {
+  if (external_react_default.a.Fragment) {
+    return external_react_default.a.createElement(external_react_default.a.Fragment, null, props.children);
+  } else {
+    return external_react_default.a.createElement("div", {
+      className: "control-item-group"
+    }, props.children);
+  }
+});
 // CONCATENATED MODULE: ./components/business/LinkEditor/index.jsx
+
 
 
 
@@ -3218,7 +3230,7 @@ function (_React$Component) {
         className: "bfi-link"
       });
       var textSelected = !external_braft_utils_["ContentUtils"].isSelectionCollapsed(this.props.editorState) && external_braft_utils_["ContentUtils"].getSelectionBlockType(this.props.editorState) !== 'atomic';
-      return [external_react_default.a.createElement(DropDown_DropDown, {
+      return external_react_default.a.createElement(ControlGroup, null, external_react_default.a.createElement(DropDown_DropDown, {
         key: 0,
         caption: caption,
         title: this.props.language.controls.link,
@@ -3271,7 +3283,7 @@ function (_React$Component) {
         disabled: !textSelected || !href
       }, external_react_default.a.createElement("i", {
         className: "bfi-link-off"
-      }))];
+      })));
     }
   }]);
 
@@ -3731,6 +3743,7 @@ var FontFamily_toggleFontFamily = function toggleFontFamily(event, props) {
 
 
 
+
 var TextAlign_TextAlign =
 /*#__PURE__*/
 function (_React$Component) {
@@ -3783,7 +3796,7 @@ function (_React$Component) {
       var _this2 = this;
 
       var textAlignmentTitles = [this.props.language.controls.alignLeft, this.props.language.controls.alignCenter, this.props.language.controls.alignRight, this.props.language.controls.alignJustify];
-      return this.props.textAligns.map(function (item, index) {
+      return external_react_default.a.createElement(ControlGroup, null, this.props.textAligns.map(function (item, index) {
         return external_react_default.a.createElement("button", {
           type: "button",
           key: index,
@@ -3794,7 +3807,7 @@ function (_React$Component) {
         }, external_react_default.a.createElement("i", {
           className: 'bfi-align-' + item
         }));
-      });
+      }));
     }
   }]);
 
@@ -3914,6 +3927,7 @@ var LetterSpacing_toggleLetterSpacing = function toggleLetterSpacing(event, prop
 
 
 
+
 var TextIndent_TextAlign =
 /*#__PURE__*/
 function (_React$Component) {
@@ -3963,7 +3977,7 @@ function (_React$Component) {
     value: function render() {
       var currentIndent = this.state.currentIndent;
       var language = this.props.language;
-      return [external_react_default.a.createElement("button", {
+      return external_react_default.a.createElement(ControlGroup, null, external_react_default.a.createElement("button", {
         key: 0,
         type: "button",
         "data-title": language.controls.increaseIndent,
@@ -3981,7 +3995,7 @@ function (_React$Component) {
         onClick: this.decreaseIndent
       }, external_react_default.a.createElement("i", {
         className: 'bfi-indent-decrease'
-      }))];
+      })));
     }
   }]);
 
