@@ -22,7 +22,10 @@ const commandHookMap = {
   'editor-method': 'exec-editor-command'
 }
 
-const mergeControls = (builtControls, extensionControls, extendControls) => {
+const mergeControls = (commonProps, builtControls, extensionControls, extendControls) => {
+
+  extensionControls = builtControls.map(item => typeof item === 'function' ? item(commonProps) : item)
+  extendControls = extendControls.map(item => typeof item === 'function' ? item(commonProps) : item)
 
   if (extensionControls.length === 0 && extendControls.length === 0) {
     return builtControls
@@ -171,14 +174,13 @@ export default class ControlBar extends React.Component {
     const renderedControls = []
     const editorControls = getEditorControls(language)
     const extensionControls = getExtensionControls(editorId)
-    const allControls = mergeControls(controls, extensionControls, extendControls)//extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
+    const allControls = mergeControls(commonProps, controls, extensionControls, extendControls)//extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 
     return (
       <div className={`bf-controlbar ${className || ''}`} style={style} onMouseDown={this.preventDefault}>
         {
           allControls.map((item, index) => {
 
-            item = typeof item === 'function' ? item(commonProps) : item
             let itemKey = typeof item === 'string' ? item : item.key
             if (typeof itemKey !== 'string') {
               return null

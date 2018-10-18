@@ -4246,7 +4246,14 @@ var commandHookMap = {
   'editor-method': 'exec-editor-command'
 };
 
-var mergeControls = function mergeControls(builtControls, extensionControls, extendControls) {
+var mergeControls = function mergeControls(commonProps, builtControls, extensionControls, extendControls) {
+  extensionControls = builtControls.map(function (item) {
+    return typeof item === 'function' ? item(commonProps) : item;
+  });
+  extendControls = extendControls.map(function (item) {
+    return typeof item === 'function' ? item(commonProps) : item;
+  });
+
   if (extensionControls.length === 0 && extendControls.length === 0) {
     return builtControls;
   }
@@ -4445,14 +4452,13 @@ function (_React$Component) {
       var renderedControls = [];
       var editorControls = configs_controls(language);
       var extensionControls = getExtensionControls(editorId);
-      var allControls = mergeControls(controls, extensionControls, extendControls); //extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
+      var allControls = mergeControls(commonProps, controls, extensionControls, extendControls); //extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 
       return external_react_default.a.createElement("div", {
         className: "bf-controlbar ".concat(className || ''),
         style: style,
         onMouseDown: this.preventDefault
       }, allControls.map(function (item, index) {
-        item = typeof item === 'function' ? item(commonProps) : item;
         var itemKey = typeof item === 'string' ? item : item.key;
 
         if (typeof itemKey !== 'string') {

@@ -32,6 +32,7 @@ class Demo extends React.Component {
         key: 'log-html',
         type: 'button',
         text: 'Log HTML',
+        replace: 'emoji',
         onClick: () => {
           console.log(props.editorState.toHTML())
         }
