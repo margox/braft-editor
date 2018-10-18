@@ -1,5 +1,6 @@
 import React from 'react'
 import { ContentUtils } from 'braft-utils'
+import ControlGroup from 'components/business/ControlGroup'
 
 export default class TextAlign extends React.Component {
 
@@ -36,19 +37,22 @@ export default class TextAlign extends React.Component {
       this.props.language.controls.alignJustify
     ]
 
-    return this.props.textAligns.map((item, index) => (
-      <button
-        type='button'
-        key={index}
-        data-title={textAlignmentTitles[index]}
-        data-alignment={item}
-        className={'control-item button ' + (item === this.state.currentAlignment ? 'active' : null)}
-        onClick={this.setAlignment}
-      >
-        <i className={'bfi-align-' + item}></i>
-      </button>
-    ))
-
+    return (
+      <ControlGroup>
+        {this.props.textAligns.map((item, index) => (
+          <button
+            type='button'
+            key={index}
+            data-title={textAlignmentTitles[index]}
+            data-alignment={item}
+            className={'control-item button ' + (item === this.state.currentAlignment ? 'active' : null)}
+            onClick={this.setAlignment}
+          >
+            <i className={'bfi-align-' + item}></i>
+          </button>
+        ))}
+      </ControlGroup>
+    )
   }
 
 }

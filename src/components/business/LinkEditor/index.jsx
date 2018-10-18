@@ -2,6 +2,7 @@ import './style.scss'
 import React from 'react'
 import Switch from 'components/common/Switch'
 import DropDown from 'components/common/DropDown'
+import ControlGroup from 'components/business/ControlGroup'
 import { ContentUtils } from 'braft-utils'
 
 export default class LinkEditor extends React.Component {
@@ -36,7 +37,7 @@ export default class LinkEditor extends React.Component {
     const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
-      [
+      <ControlGroup>
         <DropDown
           key={0}
           caption={caption}
@@ -75,7 +76,7 @@ export default class LinkEditor extends React.Component {
               <button type='button' onClick={this.handleCancel} className='default pull-right'>{this.props.language.base.cancel}</button>
             </div>
           </div>
-        </DropDown>,
+        </DropDown>
         <button
           key={1}
           type='button'
@@ -86,7 +87,7 @@ export default class LinkEditor extends React.Component {
         >
           <i className='bfi-link-off'></i>
         </button>
-      ]
+      </ControlGroup>
     )
 
   }

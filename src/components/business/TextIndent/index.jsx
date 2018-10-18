@@ -1,5 +1,6 @@
 import React from 'react'
 import { ContentUtils } from 'braft-utils'
+import ControlGroup from 'components/business/ControlGroup'
 
 export default class TextAlign extends React.Component {
 
@@ -29,7 +30,7 @@ export default class TextAlign extends React.Component {
     const { language } = this.props
 
     return (
-      [
+      <ControlGroup>
         <button
           key={0}
           type='button'
@@ -50,7 +51,7 @@ export default class TextAlign extends React.Component {
         >
           <i className={'bfi-indent-decrease'}></i>
         </button>
-      ]
+      </ControlGroup>
     )
 
   }
