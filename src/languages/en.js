@@ -47,7 +47,7 @@ export default {
     unlink: 'Unlink',
     hr: 'Horizontal Line',
     media: 'Media',
-    mediaLibirary: 'Media Libirary',
+    mediaLibirary: 'Media Library',
     emoji: 'Emoji'
   },
   linkEditor: {
