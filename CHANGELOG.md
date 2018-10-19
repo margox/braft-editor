@@ -1,4 +1,9 @@
 ### 历史更新记录
+- 2018-10-19 v2.1.18
+  - 新增(伪)全屏控制组件(控件名:fullscreen)和onFullscreen回调
+  - 新增editorState.toText方法用于获取编辑器纯文本内容
+  - 新增readOnly属性，与disabled属性区别是不会禁止选择编辑器区域的内容
+  - 修复了React15.x中脚本报错的问题
 - 2018-10-18 v2.1.16
   - 修复编辑器组件卸载后未关闭的媒体库弹窗没有自动关闭的问题
   - extendControls数组元素支持传入函数，可以从函数参数中获取到编辑器实例与editorState
