@@ -8,7 +8,8 @@ export default {
     'text-indent', 'text-align', 'separator',
     'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator',
     'media', 'link', 'split', 'hr', 'separator',
-    'clear'
+    'clear', 'separator',
+    'fullscreen'
   ],
   excludeControls: [],
   extendControls: [],

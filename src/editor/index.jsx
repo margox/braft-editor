@@ -63,6 +63,7 @@ export default class BraftEditor extends React.Component {
       containerNode: null,
       tempColors: [],
       editorState: defaultEditorState,
+      isFullscreen: false,
       draftProps: {}
     }
 
@@ -295,6 +296,16 @@ export default class BraftEditor extends React.Component {
     })
   }
 
+  toggleFullscreen = (fullscreen) => {
+
+    this.setState({
+      isFullscreen: typeof fullscreen !== 'undefined' ? fullscreen : !this.state.isFullscreen
+    }, () => {
+      this.editorProps.onFullscreen && this.editorProps.onFullscreen(this.state.isFullscreen)
+    })
+
+  }
+
   setDraftProps (draftProps) {
     this.setState({
       draftProps: {
@@ -311,14 +322,16 @@ export default class BraftEditor extends React.Component {
   render () {
 
     let {
-      id: editorId, controls, excludeControls, extendControls, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
+      id: editorId, controls, excludeControls, extendControls, readOnly, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.editorProps
 
+    const { isFullscreen } = this.state
+
     hooks = buildHooks(hooks)
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
-    language = (typeof language === 'function' ? language(languages) : languages[language]) || languages[defaultProps.language]
+    language = (typeof language === 'function' ? language(languages, 'braft-editor') : languages[language]) || languages[defaultProps.language]
 
     const externalMedias = media && media.externals ? {
       ...defaultProps.media.externals,
@@ -381,7 +394,7 @@ export default class BraftEditor extends React.Component {
       onTab: this.onTab,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      readOnly: disabled,
+      readOnly: disabled || readOnly,
       blockRenderMap, blockRendererFn, blockStyleFn,
       customStyleMap, customStyleFn,
       keyBindingFn, placeholder, stripPastedStyles,
@@ -390,7 +403,7 @@ export default class BraftEditor extends React.Component {
     }
 
     return (
-      <div ref={this.setEditorContainerNode} className={`bf-container ${className} ${(disabled ? 'disabled' : '')}`} style={style}>
+      <div ref={this.setEditorContainerNode} className={`bf-container ${className}${(disabled ? ' disabled' : '')}${(readOnly ? ' read-only' : '')}${isFullscreen ? ' fullscreen' : ''}`} style={style}>
         <ControlBar {...controlBarProps} />
         {componentBelowControlBar}
         <div className={`bf-content ${contentClassName}`} style={contentStyle}>
