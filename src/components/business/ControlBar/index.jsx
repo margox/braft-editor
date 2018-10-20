@@ -172,7 +172,7 @@ export default class ControlBar extends React.Component {
     const commonProps = { editor, editorId, editorState, language, containerNode, hooks }
 
     const renderedControls = []
-    const editorControls = getEditorControls(language)
+    const editorControls = getEditorControls(language, editor)
     const extensionControls = getExtensionControls(editorId)
     const allControls = mergeControls(commonProps, controls, extensionControls, extendControls)//extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 

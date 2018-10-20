@@ -48,7 +48,9 @@ export default {
     hr: 'Horizontal Line',
     media: 'Media',
     mediaLibirary: 'Media Library',
-    emoji: 'Emoji'
+    emoji: 'Emoji',
+    fullscreen: 'Fullscreen',
+    exitFullscreen: 'Exit Fullscreen',
   },
   linkEditor: {
     inputPlaceHolder: 'Input link URL',

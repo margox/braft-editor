@@ -672,7 +672,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     hr: 'Horizontal Line',
     media: 'Media',
     mediaLibirary: 'Media Libirary',
-    emoji: 'Emoji'
+    emoji: 'Emoji',
+    fullscreen: 'Fullscreen',
+    exitFullscreen: 'Exit Fullscreen'
   },
   linkEditor: {
     inputPlaceHolder: 'Input link URL',
@@ -746,7 +748,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     hr: '水平线',
     media: '媒体',
     mediaLibirary: '媒体库',
-    emoji: '小表情'
+    emoji: '小表情',
+    fullscreen: '全屏',
+    exitFullscreen: '退出全屏'
   },
   linkEditor: {
     inputPlaceHolder: '输入链接地址',
@@ -820,7 +824,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     hr: '水平线',
     media: '媒體',
     mediaLibirary: '媒體库',
-    emoji: '小表情'
+    emoji: '小表情',
+    fullscreen: '全熒幕',
+    exitFullscreen: '退出全熒幕'
   },
   linkEditor: {
     inputPlaceHolder: '輸入鏈接地址',
@@ -885,7 +891,7 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
 // CONCATENATED MODULE: ./configs/props.js
 /* harmony default export */ var configs_props = ({
   language: 'zh',
-  controls: ['undo', 'redo', 'separator', 'font-size', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'separator', 'text-indent', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'media', 'link', 'split', 'hr', 'separator', 'clear'],
+  controls: ['undo', 'redo', 'separator', 'font-size', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'separator', 'text-indent', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'media', 'link', 'split', 'hr', 'separator', 'clear', 'separator', 'fullscreen'],
   excludeControls: [],
   extendControls: [],
   extendAtomics: [],
@@ -1563,7 +1569,7 @@ var Switch_style = __webpack_require__(36);
 });
 // CONCATENATED MODULE: ./configs/controls.js
 
-/* harmony default export */ var configs_controls = (function (lang) {
+/* harmony default export */ var configs_controls = (function (lang, editor) {
   return [{
     key: 'undo',
     title: lang.controls.undo,
@@ -1734,6 +1740,14 @@ var Switch_style = __webpack_require__(36);
     }),
     type: 'editor-method',
     command: 'clearEditorContent'
+  }, {
+    key: 'fullscreen',
+    title: editor.state.isFullscreen ? lang.controls.exitFullscreen : lang.controls.fullscreen,
+    text: external_react_default.a.createElement("i", {
+      className: editor.state.isFullscreen ? 'bfi-fullscreen-exit' : 'bfi-fullscreen'
+    }),
+    type: 'editor-method',
+    command: 'toggleFullscreen'
   }, {
     key: 'modal',
     type: 'modal'
@@ -4464,7 +4478,7 @@ function (_React$Component) {
         hooks: hooks
       };
       var renderedControls = [];
-      var editorControls = configs_controls(language);
+      var editorControls = configs_controls(language, editor);
       var extensionControls = getExtensionControls(editorId);
       var allControls = mergeControls(commonProps, controls, extensionControls, extendControls); //extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
 
@@ -4860,6 +4874,14 @@ function (_React$Component) {
       });
     });
 
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleFullscreen", function (fullscreen) {
+      _this.setState({
+        isFullscreen: typeof fullscreen !== 'undefined' ? fullscreen : !_this.state.isFullscreen
+      }, function () {
+        _this.editorProps.onFullscreen && _this.editorProps.onFullscreen(_this.state.isFullscreen);
+      });
+    });
+
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setEditorContainerNode", function (containerNode) {
       _this.setState({
         containerNode: containerNode
@@ -4878,6 +4900,7 @@ function (_React$Component) {
       containerNode: null,
       tempColors: [],
       editorState: defaultEditorState,
+      isFullscreen: false,
       draftProps: {}
     };
     return _this;
@@ -5030,6 +5053,7 @@ function (_React$Component) {
           controls = _this$editorProps3.controls,
           excludeControls = _this$editorProps3.excludeControls,
           extendControls = _this$editorProps3.extendControls,
+          readOnly = _this$editorProps3.readOnly,
           disabled = _this$editorProps3.disabled,
           media = _this$editorProps3.media,
           language = _this$editorProps3.language,
@@ -5057,11 +5081,12 @@ function (_React$Component) {
           contentStyle = _this$editorProps3.contentStyle,
           stripPastedStyles = _this$editorProps3.stripPastedStyles,
           componentBelowControlBar = _this$editorProps3.componentBelowControlBar;
+      var isFullscreen = this.state.isFullscreen;
       hooks = buildHooks(hooks);
       controls = controls.filter(function (item) {
         return excludeControls.indexOf(item) === -1;
       });
-      language = (typeof language === 'function' ? language(languages) : languages[language]) || languages[configs_props.language];
+      language = (typeof language === 'function' ? language(languages, 'braft-editor') : languages[language]) || languages[configs_props.language];
       var externalMedias = media && media.externals ? objectSpread_default()({}, configs_props.media.externals, media.externals) : configs_props.media.externals;
       var accepts = media && media.accepts ? objectSpread_default()({}, configs_props.media.accepts, media.accepts) : configs_props.media.accepts;
       media = objectSpread_default()({}, configs_props.media, media, {
@@ -5141,7 +5166,7 @@ function (_React$Component) {
         onTab: this.onTab,
         onFocus: this.onFocus,
         onBlur: this.onBlur,
-        readOnly: disabled,
+        readOnly: disabled || readOnly,
         blockRenderMap: blockRenderMap,
         blockRendererFn: blockRendererFn,
         blockStyleFn: blockStyleFn,
@@ -5154,7 +5179,7 @@ function (_React$Component) {
 
       return external_react_default.a.createElement("div", {
         ref: this.setEditorContainerNode,
-        className: "bf-container ".concat(className, " ").concat(disabled ? 'disabled' : ''),
+        className: "bf-container ".concat(className).concat(disabled ? ' disabled' : '').concat(readOnly ? ' read-only' : '').concat(isFullscreen ? ' fullscreen' : ''),
         style: style
       }, external_react_default.a.createElement(ControlBar_ControlBar, controlBarProps), componentBelowControlBar, external_react_default.a.createElement("div", {
         className: "bf-content ".concat(contentClassName),
@@ -5196,6 +5221,10 @@ external_draft_js_["EditorState"].prototype.toHTML = function () {
 
 external_draft_js_["EditorState"].prototype.toRAW = function (noStringify) {
   return noStringify ? Object(external_braft_convert_["convertEditorStateToRaw"])(this) : JSON.stringify(Object(external_braft_convert_["convertEditorStateToRaw"])(this));
+};
+
+external_draft_js_["EditorState"].prototype.toText = function () {
+  return this.getCurrentContent().getPlainText();
 };
 
 external_draft_js_["EditorState"].prototype.isEmpty = function () {

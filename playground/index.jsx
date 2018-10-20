@@ -9,7 +9,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: undefined,//BraftEditor.createEditorState(null)
+      editorState: BraftEditor.createEditorState('<p>Hello World!</p>')
     }
 
   }
@@ -18,31 +18,14 @@ class Demo extends React.Component {
     this.setState({ editorState })
   }
 
-  logHTML = () => {
-    this.setState({
-      editorState: BraftEditor.createEditorState('<p>Hello <b>World</b></p>')
-    })
-  }
-
   render() {
 
     const { editorState } = this.state
-    const extendControls = [
-      (props) => ({
-        key: 'log-html',
-        type: 'button',
-        text: 'Log HTML',
-        replace: 'emoji',
-        onClick: () => {
-          console.log(props.editorState.toHTML())
-        }
-      })
-    ]
 
     return (
       <div>
         <div className="demo" id="demo">
-          <BraftEditor defaultValue={this.state.editorState} onChange={this.handleChange} extendControls={extendControls}/>
+          <BraftEditor onFullscreen={console.log} value={this.state.editorState} onChange={this.handleChange} />
         </div>
       </div>
     )

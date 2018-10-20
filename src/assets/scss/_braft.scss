@@ -24,6 +24,28 @@
     filter: grayscale(70%);
   }
 
+  &.read-only{
+    .bf-controlbar{
+      pointer-events: none;
+    }
+  }
+
+  &.fullscreen{
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    z-index: 99999;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: #fff;
+    .bf-content{
+      flex-grow: 1;
+      height: auto;
+    }
+  }
+
   .input-group{
     display: block;
     input{

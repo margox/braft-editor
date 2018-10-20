@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default (lang) => [
+export default (lang, editor) => [
   {
     key: 'undo',
     title: lang.controls.undo,
@@ -137,6 +137,12 @@ export default (lang) => [
     text: <i className="bfi-clear_all"></i>,
     type: 'editor-method',
     command: 'clearEditorContent'
+  }, {
+    key: 'fullscreen',
+    title: editor.state.isFullscreen ? lang.controls.exitFullscreen : lang.controls.fullscreen,
+    text: <i className={editor.state.isFullscreen ? 'bfi-fullscreen-exit' : 'bfi-fullscreen'}></i>,
+    type: 'editor-method',
+    command: 'toggleFullscreen'
   }, {
     key: 'modal',
     type: 'modal',

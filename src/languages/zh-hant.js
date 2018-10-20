@@ -49,7 +49,9 @@ export default {
     hr: '水平线',
     media: '媒體',
     mediaLibirary: '媒體库',
-    emoji: '小表情'
+    emoji: '小表情',
+    fullscreen: '全熒幕',
+    exitFullscreen: '退出全熒幕',
   },
   linkEditor: {
     inputPlaceHolder: '輸入鏈接地址',

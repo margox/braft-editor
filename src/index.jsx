@@ -17,6 +17,10 @@ EditorState.prototype.toRAW = function (noStringify) {
   return noStringify ? convertEditorStateToRaw(this) : JSON.stringify(convertEditorStateToRaw(this))
 }
 
+EditorState.prototype.toText = function () {
+  return this.getCurrentContent().getPlainText()
+}
+
 EditorState.prototype.isEmpty = function () {
   return !this.getCurrentContent().hasText()
 }
