@@ -671,7 +671,7 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     unlink: 'Unlink',
     hr: 'Horizontal Line',
     media: 'Media',
-    mediaLibirary: 'Media Libirary',
+    mediaLibirary: 'Media Library',
     emoji: 'Emoji',
     fullscreen: 'Fullscreen',
     exitFullscreen: 'Exit Fullscreen'
@@ -848,14 +848,89 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     embed: '嵌入式媒體'
   }
 });
+// CONCATENATED MODULE: ./languages/pl.js
+/* harmony default export */ var pl = ({
+  base: {
+    remove: 'Usuń',
+    cancel: 'Anuluj',
+    confirm: 'Potwierdź',
+    inert: 'Wstaw',
+    width: 'Szerokość',
+    height: 'Wysokość'
+  },
+  controls: {
+    clear: 'Wyczyść',
+    undo: 'Cofnij',
+    redo: 'Przywróć',
+    fontSize: 'Wielkość',
+    color: 'Kolor',
+    textColor: 'Kolor tekstu',
+    tempColors: 'Kolory',
+    backgroundColor: 'Tło',
+    bold: 'Pogrubienie',
+    lineHeight: 'Wysokość linii',
+    letterSpacing: 'Odstęp znaków',
+    textIndent: 'Wcięcie tekstu',
+    increaseIndent: 'Zwiększ wcięcie',
+    decreaseIndent: 'Zmniejsz wcięcie',
+    italic: 'Italiki',
+    underline: 'Podkreślenie',
+    strikeThrough: 'Przekreślenie',
+    fontFamily: 'Czcionka',
+    textAlign: 'Wyrównanie tekstu',
+    alignLeft: 'Do lewej',
+    alignCenter: 'Wycentruj',
+    alignRight: 'Do prawej',
+    alignJustify: 'Wyjustuj',
+    floatLeft: 'Do lewej',
+    floatRight: 'Do prawej',
+    superScript: 'Superskrypt',
+    subScript: 'Subskrypt',
+    removeStyles: 'Usuń stylowanie',
+    headings: 'Nagłówki',
+    header: 'Nagłówek',
+    normal: 'Normalny',
+    orderedList: 'Lista uporządkowana',
+    unorderedList: 'Lista nieuporządkowana',
+    blockQuote: 'Cytat',
+    code: 'Kod',
+    link: 'Link',
+    unlink: 'Usuń link',
+    hr: 'Linia pozioma',
+    media: 'Media',
+    mediaLibirary: 'Biblioteka mediów',
+    emoji: 'Emoji'
+  },
+  linkEditor: {
+    inputPlaceHolder: 'Adres URL',
+    inputWithEnterPlaceHolder: 'Wpisz adres URL i naciśnij Enter',
+    openInNewWindow: 'Otwórz w nowym oknie',
+    removeLink: 'Usuń link'
+  },
+  audioPlayer: {
+    title: 'Odtwórz audio'
+  },
+  videoPlayer: {
+    title: 'Odtwórz wideo',
+    embedTitle: 'Tytuł'
+  },
+  media: {
+    image: 'Obraz',
+    video: 'Wideo',
+    audio: 'Audio',
+    embed: 'Obiekt osadzony'
+  }
+});
 // CONCATENATED MODULE: ./languages/index.js
+
 
 
 
 /* harmony default export */ var languages = ({
   'en': en,
   'zh': zh,
-  'zh-hant': zh_hant
+  'zh-hant': zh_hant,
+  'pl': pl
 });
 // EXTERNAL MODULE: external "braft-finder"
 var external_braft_finder_ = __webpack_require__(17);
