@@ -1,5 +1,9 @@
 {
   "devDependencies": {
     "formidable": "^1.2.1"
+  },
+  "dependencies": {
+    "braft-extensions": "^0.0.3",
+    "react-color": "^2.14.1"
   }
 }

@@ -985,6 +985,7 @@ var external_draftjs_utils_ = __webpack_require__(19);
 
 
 
+
 var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorState, editor) {
   if (editor.editorProps.handleKeyCommand && editor.editorProps.handleKeyCommand(command, editorState) === 'handled') {
     return 'handled';
@@ -1060,6 +1061,15 @@ var handlers_returnHandlers = function returnHandlers(event, editorState, editor
     }
 
     return 'not-handled';
+  } else if (currentBlockType === 'blockquote') {
+    if (event.which === 13) {
+      if (event.getModifierState('Shift') || event.getModifierState('Alt') || event.getModifierState('Control')) {
+        event.which = 0;
+      } else {
+        editor.setValue(external_draft_js_["RichUtils"].insertSoftNewline(editorState));
+        return 'handled';
+      }
+    }
   }
 
   var nextEditorState = Object(external_draftjs_utils_["handleNewLine"])(editorState, event);
@@ -4775,7 +4785,7 @@ function (_React$Component) {
       _this.setState({
         editorState: editorState
       }, function () {
-        _this.editorProps.onChange && _this.editorProps.onChange(editorState);
+        _this.props.onChange && _this.props.onChange(editorState);
         callback && callback(editorState);
       });
     });
@@ -4893,8 +4903,8 @@ function (_React$Component) {
     _this.isFocused = false;
     _this.isLiving = false;
     _this.braftFinder = null;
-    _this.valueInitialized = !!(_this.editorProps.defaultValue || _this.editorProps.value);
-    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(_this.editorProps.defaultValue || _this.editorProps.value) ? _this.editorProps.defaultValue || _this.editorProps.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
+    _this.valueInitialized = !!(_this.props.defaultValue || _this.props.value);
+    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(_this.props.defaultValue || _this.props.value) ? _this.props.defaultValue || _this.props.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
     defaultEditorState.setConvertOptions(editor_getConvertOptions(_this.editorProps));
     _this.state = {
       containerNode: null,
@@ -4952,7 +4962,7 @@ function (_React$Component) {
       var _this3 = this;
 
       this.editorProps = this.getEditorProps();
-      var editorState = this.editorProps.value;
+      var editorState = this.props.value;
 
       if (external_braft_utils_["ContentUtils"].isEditorState(editorState)) {
         var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(editorState.toRAW(true));
@@ -4961,7 +4971,7 @@ function (_React$Component) {
           tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.editorProps.colors),
           editorState: editorState
         }, function () {
-          _this3.editorProps.onChange && _this3.editorProps.onChange(editorState);
+          _this3.props.onChange && _this3.props.onChange(editorState);
         });
       }
 
@@ -4980,8 +4990,8 @@ function (_React$Component) {
       var _this4 = this;
 
       this.editorProps = this.getEditorProps(props);
+      var editorState = props.value;
       var _this$editorProps2 = this.editorProps,
-          editorState = _this$editorProps2.value,
           media = _this$editorProps2.media,
           language = _this$editorProps2.language;
       var currentProps = this.getEditorProps();
@@ -5021,7 +5031,7 @@ function (_React$Component) {
             tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), currentProps.colors),
             editorState: nextEditorState
           }, function () {
-            _this4.editorProps.onChange && _this4.editorProps.onChange(nextEditorState);
+            _this4.props.onChange && _this4.props.onChange(nextEditorState);
           });
         } else {
           this.setState({

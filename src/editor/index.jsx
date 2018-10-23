@@ -54,9 +54,9 @@ export default class BraftEditor extends React.Component {
     this.isFocused = false
     this.isLiving = false
     this.braftFinder = null
-    this.valueInitialized = !!(this.editorProps.defaultValue || this.editorProps.value)
+    this.valueInitialized = !!(this.props.defaultValue || this.props.value)
 
-    const defaultEditorState = ContentUtils.isEditorState(this.editorProps.defaultValue || this.editorProps.value) ? (this.editorProps.defaultValue || this.editorProps.value) : ContentUtils.createEmptyEditorState(this.editorDecorators)
+    const defaultEditorState = ContentUtils.isEditorState(this.props.defaultValue || this.props.value) ? (this.props.defaultValue || this.props.value) : ContentUtils.createEmptyEditorState(this.editorDecorators)
     defaultEditorState.setConvertOptions(getConvertOptions(this.editorProps))
 
     this.state = {
@@ -112,7 +112,7 @@ export default class BraftEditor extends React.Component {
   componentDidMount () {
 
     this.editorProps = this.getEditorProps()
-    const { value: editorState } = this.editorProps
+    const { value: editorState } = this.props
 
     if (ContentUtils.isEditorState(editorState)) {
 
@@ -123,7 +123,7 @@ export default class BraftEditor extends React.Component {
         tempColors: filterColors([...this.state.tempColors, ...tempColors], this.editorProps.colors),
         editorState: editorState
       }, () => {
-        this.editorProps.onChange && this.editorProps.onChange(editorState)
+        this.props.onChange && this.props.onChange(editorState)
       })
 
     }
@@ -144,7 +144,8 @@ export default class BraftEditor extends React.Component {
 
     this.editorProps = this.getEditorProps(props)
 
-    const { value: editorState, media, language } = this.editorProps
+    const { value: editorState } = props
+    const { media, language } = this.editorProps
     const currentProps = this.getEditorProps()
 
     if (!isControlEnabled(currentProps, 'media') && isControlEnabled(this.editorProps, 'media') && !this.braftFinder) {
@@ -185,7 +186,7 @@ export default class BraftEditor extends React.Component {
           tempColors: filterColors([...this.state.tempColors, ...tempColors], currentProps.colors),
           editorState: nextEditorState
         }, () => {
-          this.editorProps.onChange && this.editorProps.onChange(nextEditorState)
+          this.props.onChange && this.props.onChange(nextEditorState)
         })
   
       } else {
@@ -210,7 +211,7 @@ export default class BraftEditor extends React.Component {
     }
 
     this.setState({ editorState }, () => {
-      this.editorProps.onChange && this.editorProps.onChange(editorState)
+      this.props.onChange && this.props.onChange(editorState)
       callback && callback(editorState)
     })
 

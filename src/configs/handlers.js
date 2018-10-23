@@ -1,4 +1,5 @@
 import { ContentUtils, ColorUtils } from 'braft-utils'
+import { RichUtils } from 'draft-js'
 import { handleNewLine } from 'draftjs-utils'
 
 export const keyCommandHandlers = (command, editorState, editor) => {
@@ -88,6 +89,23 @@ export const returnHandlers = (event, editorState, editor) => {
     }
 
     return 'not-handled'
+
+  } else if (currentBlockType === 'blockquote') {
+
+    if (event.which === 13) {
+
+      if (
+        event.getModifierState('Shift') ||
+        event.getModifierState('Alt') ||
+        event.getModifierState('Control')
+      ) {
+        event.which = 0
+      } else {
+        editor.setValue(RichUtils.insertSoftNewline(editorState))
+        return 'handled'
+      }
+
+    }
 
   }
 
