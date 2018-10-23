@@ -23,6 +23,7 @@
 ## 近期更新记录
 
 - 2018-10-23 v2.1.19
+  - 增加波兰语言支持，braft-finder需要更新至0.0.13，非常感谢[Paweł Krefta](https://github.com/pkrefta)的贡献！
   - 支持在引语块中输入多行内容，按Shift+Enter可跳出引语块
   - 修复部分扩展模块会导致无法外部更改editorState无效的问题
   - 优化代码块内容输出
