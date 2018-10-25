@@ -264,22 +264,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__10__;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var arrayWithoutHoles = __webpack_require__(22);
-
-var iterableToArray = __webpack_require__(23);
-
-var nonIterableSpread = __webpack_require__(24);
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
-}
-
-module.exports = _toConsumableArray;
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports) {
 
 function _extends() {
@@ -301,6 +285,22 @@ function _extends() {
 }
 
 module.exports = _extends;
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithoutHoles = __webpack_require__(22);
+
+var iterableToArray = __webpack_require__(23);
+
+var nonIterableSpread = __webpack_require__(24);
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+module.exports = _toConsumableArray;
 
 /***/ }),
 /* 13 */
@@ -608,7 +608,7 @@ var defineProperty = __webpack_require__(2);
 var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/toConsumableArray.js
-var toConsumableArray = __webpack_require__(11);
+var toConsumableArray = __webpack_require__(12);
 var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
 
 // EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
@@ -1628,6 +1628,10 @@ var createExtensibleEditor = function createExtensibleEditor(BraftEditor) {
   customBlockRenderMap = external_draft_js_["DefaultDraftBlockRenderMap"].merge(customBlockRenderMap);
   return customBlockRenderMap;
 });
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/extends.js
+var helpers_extends = __webpack_require__(11);
+var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
+
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/slicedToArray.js
 var slicedToArray = __webpack_require__(20);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
@@ -1907,6 +1911,7 @@ var imageControlItems = {
 
 
 
+
 var Image_Image =
 /*#__PURE__*/
 function (_React$Component) {
@@ -2144,7 +2149,8 @@ function (_React$Component) {
           link = mediaData.link,
           link_target = mediaData.link_target,
           width = mediaData.width,
-          height = mediaData.height;
+          height = mediaData.height,
+          meta = mediaData.meta;
       var imageStyles = {};
       var clearFix = false;
 
@@ -2173,14 +2179,14 @@ function (_React$Component) {
               return _this2.executeCommand(imageControlItems[item].command);
             }
           }, imageControlItems[item].text);
-        } else if (item && item.onClick && (item.render || item.text)) {
-          return external_react_default.a.createElement("a", {
+        } else if (item && (item.render || item.text)) {
+          return item.render ? item.render(mediaData) : external_react_default.a.createElement("a", {
             key: index,
             href: "javascript:void(0);",
             onClick: function onClick() {
-              return _this2.executeCommand(item.onClick);
+              return item.onClick && _this2.executeCommand(item.onClick);
             }
-          }, item.render ? item.render(mediaData) : item.text);
+          }, item.text);
         } else {
           return null;
         }
@@ -2253,18 +2259,14 @@ function (_React$Component) {
           marginLeft: toolbarOffset * -1
         },
         className: "bf-media-toolbar-arrow"
-      })) : null, external_react_default.a.createElement("img", {
+      })) : null, external_react_default.a.createElement("img", extends_default()({
         ref: function ref(instance) {
           return _this2.imageElement = instance;
         },
         src: src || url,
-        style: {
-          width: width,
-          height: height
-        },
         width: width,
         height: height
-      })), clearFix && external_react_default.a.createElement("div", {
+      }, meta))), clearFix && external_react_default.a.createElement("div", {
         className: "clearfix",
         style: {
           clear: 'both',
@@ -2944,10 +2946,6 @@ var getBlockStyleFn = block_blockStyleFn;
 var getCustomStyleMap = inlineStyleMap;
 var getCustomStyleFn = inlineStyleFn;
 var getDecorators = decorators;
-// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(12);
-var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
-
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
 var ControlBar_style = __webpack_require__(41);
 

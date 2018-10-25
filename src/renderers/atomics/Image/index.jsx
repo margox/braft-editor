@@ -24,7 +24,7 @@ export default class Image extends React.Component {
 
     let float = blockData.get('float')
     let alignment = blockData.get('alignment')
-    let { src, url, link, link_target, width, height } = mediaData
+    let { src, url, link, link_target, width, height, meta } = mediaData
     let imageStyles = {}
     let clearFix = false
 
@@ -51,12 +51,8 @@ export default class Image extends React.Component {
             {imageControlItems[item].text}
           </a>
         )
-      } else if (item && item.onClick && (item.render || item.text)) {
-        return (
-          <a key={index} href='javascript:void(0);' onClick={() => this.executeCommand(item.onClick)}>
-            {item.render ? item.render(mediaData) : item.text}
-          </a>
-        )
+      } else if (item && (item.render || item.text)) {
+        return item.render ? item.render(mediaData) : <a key={index} href='javascript:void(0);' onClick={() => item.onClick && this.executeCommand(item.onClick)}>{item.text}</a>
       } else {
         return null
       }
@@ -114,7 +110,10 @@ export default class Image extends React.Component {
           ) : null}
           <img
             ref={instance => this.imageElement = instance}
-            src={src || url} style={{width, height}} width={width} height={height}
+            src={src || url}
+            width={width}
+            height={height}
+            {...meta}
           />
         </div>
         {clearFix && <div className='clearfix' style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}

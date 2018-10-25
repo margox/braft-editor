@@ -233,7 +233,6 @@
     img{
       display: inline-block;
       max-width: 100%;
-      height: auto;
       font-size: 0;
       resize: both;
       outline-offset: 1px;
@@ -270,7 +269,7 @@
     }
     a{
       display: inline-block;
-      width: 40px;
+      min-width: 40px;
       height: 40px;
       color: rgba(#fff, .5);
       font-family: 'braft-icons';

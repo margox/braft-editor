@@ -22,6 +22,9 @@
 
 ## 近期更新记录
 
+- 2018-10-25 v2.1.20
+  - 支持在uploadFn中调用param.success传入width和height属性（需要更新braft-utils至v3.0.5）
+  - imageControls中的自定义控件显示优化
 - 2018-10-23 v2.1.19
   - 增加波兰语言支持，braft-finder需要更新至0.0.13，非常感谢[Paweł Krefta](https://github.com/pkrefta)的贡献！
   - 支持在引语块中输入多行内容，按Shift+Enter可跳出引语块

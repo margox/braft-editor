@@ -2,10 +2,21 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 import { ContentUtils } from 'braft-utils'
-import ColorPicker from 'braft-extensions/dist/color-picker'
-import 'braft-extensions/dist/color-picker.css'
 
-BraftEditor.use(ColorPicker())
+const uploadFn = (param) => {
+
+  param.success({
+    url: URL.createObjectURL(param.file),
+    width: 100,
+    height: 100,
+    meta: {
+      a: '123',
+      b: '345',
+      title: 'hello'
+    }
+  })
+
+}
 
 class Demo extends React.Component {
 
@@ -14,7 +25,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
-      editorState: BraftEditor.createEditorState('<pre><code>if (previousBlockType !== &#x27;code-block&#x27;) {</code><code>  return {</code><code>    start: &#x27;&lt;pre&gt;&lt;code&gt;&#x27;,</code><code>    end: &#x27;&lt;/code&gt;&lt;/pre&gt;&#x27;</code><code>  };</code><code>}</code></pre>')
+      editorState: BraftEditor.createEditorState(null)
     }
 
   }
@@ -34,12 +45,21 @@ class Demo extends React.Component {
     return (
       <div>
         <div className="demo" id="demo">
-          <BraftEditor extendControls={[{
-            key: 'log-html',
-            type: 'button',
-            text: 'Log HTML',
-            onClick: this.logHTML
-          }]} value={this.state.editorState} onChange={this.handleChange} />
+          <BraftEditor
+            extendControls={[{
+              key: 'log-html',
+              type: 'button',
+              text: 'Log HTML',
+              onClick: this.logHTML
+            }]}
+            placeholder="你好啊"
+            readOnly={true}
+            media={{
+              uploadFn: uploadFn
+            }}
+            value={this.state.editorState}
+            onChange={this.handleChange}
+          />
         </div>
       </div>
     )
