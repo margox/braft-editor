@@ -69,7 +69,7 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  getEditorProps (props) {
+  getEditorProps ({value, defaultValue, onChange, ...props}) {// eslint-disable-line no-unused-vars
 
     props = props || this.props
 
