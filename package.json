@@ -60,7 +60,7 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "braft-convert": "^2.1.4",
-    "braft-finder": "^0.0.12",
+    "braft-finder": "^0.0.14",
     "braft-utils": "^3.0.4",
     "draft-convert": "^2.0.0",
     "draft-js": "^0.10.3",
