@@ -69,17 +69,18 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  getEditorProps ({value, defaultValue, onChange, ...props}) {// eslint-disable-line no-unused-vars
+  getEditorProps (props) {
 
     props = props || this.props
 
-    const propInterceptors = getPropInterceptors(props.id)
+    const {value, defaultValue, onChange, ...restProps} = props// eslint-disable-line no-unused-vars
+    const propInterceptors = getPropInterceptors(restProps.id)
 
     if (propInterceptors.length === 0) {
-      return props
+      return restProps
     }
 
-    let porpsMap = Map(props)
+    let porpsMap = Map(restProps)
 
     propInterceptors.forEach(interceptor => {
       porpsMap = porpsMap.merge(Map(interceptor(porpsMap.toJS(), this) || {}))

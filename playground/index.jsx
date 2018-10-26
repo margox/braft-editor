@@ -8,12 +8,7 @@ const uploadFn = (param) => {
   param.success({
     url: URL.createObjectURL(param.file),
     width: 100,
-    height: 100,
-    meta: {
-      a: '123',
-      b: '345',
-      title: 'hello'
-    }
+    height: 100
   })
 
 }
@@ -52,12 +47,8 @@ class Demo extends React.Component {
               text: 'Log HTML',
               onClick: this.logHTML
             }]}
-            placeholder="你好啊"
-            readOnly={true}
-            media={{
-              uploadFn: uploadFn
-            }}
-            value={this.state.editorState}
+            media={{ uploadFn }}
+            value={editorState}
             onChange={this.handleChange}
           />
         </div>

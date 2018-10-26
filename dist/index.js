@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("immutable"), require("braft-convert"), require("react-dom"), require("braft-finder"), require("draftjs-utils")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["immutable"], root["braft-convert"], root["react-dom"], root["braft-finder"], root["draftjs-utils"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__19__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__20__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 28);
+/******/ 	return __webpack_require__(__webpack_require__.s = 30);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -210,7 +210,7 @@ module.exports = _getPrototypeOf;
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(21);
+var setPrototypeOf = __webpack_require__(23);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -290,11 +290,11 @@ module.exports = _extends;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(22);
+var arrayWithoutHoles = __webpack_require__(24);
 
-var iterableToArray = __webpack_require__(23);
+var iterableToArray = __webpack_require__(25);
 
-var nonIterableSpread = __webpack_require__(24);
+var nonIterableSpread = __webpack_require__(26);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
@@ -441,19 +441,46 @@ module.exports = MultiDecorator;
 
 /***/ }),
 /* 19 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__19__;
+var objectWithoutPropertiesLoose = __webpack_require__(22);
+
+function _objectWithoutProperties(source, excluded) {
+  if (source == null) return {};
+  var target = objectWithoutPropertiesLoose(source, excluded);
+  var key, i;
+
+  if (Object.getOwnPropertySymbols) {
+    var sourceSymbolKeys = Object.getOwnPropertySymbols(source);
+
+    for (i = 0; i < sourceSymbolKeys.length; i++) {
+      key = sourceSymbolKeys[i];
+      if (excluded.indexOf(key) >= 0) continue;
+      if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue;
+      target[key] = source[key];
+    }
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutProperties;
 
 /***/ }),
 /* 20 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__20__;
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(25);
+var arrayWithHoles = __webpack_require__(27);
 
-var iterableToArrayLimit = __webpack_require__(26);
+var iterableToArrayLimit = __webpack_require__(28);
 
-var nonIterableRest = __webpack_require__(27);
+var nonIterableRest = __webpack_require__(29);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
@@ -462,7 +489,28 @@ function _slicedToArray(arr, i) {
 module.exports = _slicedToArray;
 
 /***/ }),
-/* 21 */
+/* 22 */
+/***/ (function(module, exports) {
+
+function _objectWithoutPropertiesLoose(source, excluded) {
+  if (source == null) return {};
+  var target = {};
+  var sourceKeys = Object.keys(source);
+  var key, i;
+
+  for (i = 0; i < sourceKeys.length; i++) {
+    key = sourceKeys[i];
+    if (excluded.indexOf(key) >= 0) continue;
+    target[key] = source[key];
+  }
+
+  return target;
+}
+
+module.exports = _objectWithoutPropertiesLoose;
+
+/***/ }),
+/* 23 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -477,7 +525,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf;
 
 /***/ }),
-/* 22 */
+/* 24 */
 /***/ (function(module, exports) {
 
 function _arrayWithoutHoles(arr) {
@@ -493,7 +541,7 @@ function _arrayWithoutHoles(arr) {
 module.exports = _arrayWithoutHoles;
 
 /***/ }),
-/* 23 */
+/* 25 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -503,7 +551,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray;
 
 /***/ }),
-/* 24 */
+/* 26 */
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
@@ -513,7 +561,7 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread;
 
 /***/ }),
-/* 25 */
+/* 27 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -523,7 +571,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
@@ -555,7 +603,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit;
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -565,7 +613,7 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -578,6 +626,10 @@ var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectSpread.js
 var objectSpread = __webpack_require__(9);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
+
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectWithoutProperties.js
+var objectWithoutProperties = __webpack_require__(19);
+var objectWithoutProperties_default = /*#__PURE__*/__webpack_require__.n(objectWithoutProperties);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/classCallCheck.js
 var classCallCheck = __webpack_require__(4);
@@ -612,10 +664,10 @@ var toConsumableArray = __webpack_require__(12);
 var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
 
 // EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
-var Draft = __webpack_require__(29);
+var Draft = __webpack_require__(31);
 
 // EXTERNAL MODULE: ./assets/scss/_base.scss
-var _base = __webpack_require__(31);
+var _base = __webpack_require__(33);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(0);
@@ -1053,7 +1105,7 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
   onSave: null
 });
 // EXTERNAL MODULE: external "draftjs-utils"
-var external_draftjs_utils_ = __webpack_require__(19);
+var external_draftjs_utils_ = __webpack_require__(20);
 
 // CONCATENATED MODULE: ./configs/handlers.js
 
@@ -1165,12 +1217,14 @@ var beforeInputHandlers = function beforeInputHandlers(chars, editorState, edito
 };
 var handlers_dropHandlers = function dropHandlers(selectionState, dataTransfer, editor) {
   if (window && window.__BRAFT_DRAGING__IMAGE__) {
-    var editorState = external_braft_utils_["ContentUtils"].removeBlock(external_braft_utils_["ContentUtils"].insertMedias(editorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]), window.__BRAFT_DRAGING__IMAGE__.block, selectionState);
+    var nextEditorState = external_draft_js_["EditorState"].forceSelection(editor.state.editorState, selectionState);
+    nextEditorState = external_braft_utils_["ContentUtils"].insertMedias(nextEditorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]);
+    nextEditorState = external_braft_utils_["ContentUtils"].removeBlock(nextEditorState, window.__BRAFT_DRAGING__IMAGE__.block, nextEditorState.getSelection());
     window.__BRAFT_DRAGING__IMAGE__ = null;
     editor.setDraftProps({
       readOnly: false
     });
-    editor.setValue(editorState);
+    editor.setValue(nextEditorState);
     return 'handled';
   } else if (!dataTransfer || !dataTransfer.getText()) {
     return 'handled';
@@ -1633,14 +1687,14 @@ var helpers_extends = __webpack_require__(11);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/slicedToArray.js
-var slicedToArray = __webpack_require__(20);
+var slicedToArray = __webpack_require__(21);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
 // EXTERNAL MODULE: ./renderers/atomics/Image/style.scss
-var Image_style = __webpack_require__(35);
+var Image_style = __webpack_require__(37);
 
 // EXTERNAL MODULE: ./components/common/Switch/style.scss
-var Switch_style = __webpack_require__(36);
+var Switch_style = __webpack_require__(38);
 
 // CONCATENATED MODULE: ./components/common/Switch/index.jsx
 
@@ -2313,7 +2367,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
-var Video_style = __webpack_require__(37);
+var Video_style = __webpack_require__(39);
 
 // CONCATENATED MODULE: ./components/common/StaticContainer/index.jsx
 
@@ -2433,7 +2487,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(38);
+var Audio_style = __webpack_require__(40);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -2516,7 +2570,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(39);
+var Embed_style = __webpack_require__(41);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -2601,7 +2655,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(40);
+var HorizontalLine_style = __webpack_require__(42);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -2947,13 +3001,13 @@ var getCustomStyleMap = inlineStyleMap;
 var getCustomStyleFn = inlineStyleFn;
 var getDecorators = decorators;
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(41);
+var ControlBar_style = __webpack_require__(43);
 
 // EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
-var LinkEditor_style = __webpack_require__(42);
+var LinkEditor_style = __webpack_require__(44);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
-var DropDown_style = __webpack_require__(43);
+var DropDown_style = __webpack_require__(45);
 
 // CONCATENATED MODULE: ./helpers/responsive.js
 
@@ -3389,7 +3443,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/Headings/style.scss
-var Headings_style = __webpack_require__(44);
+var Headings_style = __webpack_require__(46);
 
 // CONCATENATED MODULE: ./configs/maps.js
 
@@ -3479,10 +3533,10 @@ var blocks = {
   })));
 });
 // EXTERNAL MODULE: ./components/business/TextColor/style.scss
-var TextColor_style = __webpack_require__(45);
+var TextColor_style = __webpack_require__(47);
 
 // EXTERNAL MODULE: ./components/common/ColorPicker/style.scss
-var ColorPicker_style = __webpack_require__(46);
+var ColorPicker_style = __webpack_require__(48);
 
 // CONCATENATED MODULE: ./components/common/ColorPicker/index.jsx
 
@@ -3660,7 +3714,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/FontSize/style.scss
-var FontSize_style = __webpack_require__(47);
+var FontSize_style = __webpack_require__(49);
 
 // CONCATENATED MODULE: ./components/business/FontSize/index.jsx
 
@@ -3715,7 +3769,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/LineHeight/style.scss
-var LineHeight_style = __webpack_require__(48);
+var LineHeight_style = __webpack_require__(50);
 
 // CONCATENATED MODULE: ./components/business/LineHeight/index.jsx
 
@@ -3770,7 +3824,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/FontFamily/style.scss
-var FontFamily_style = __webpack_require__(49);
+var FontFamily_style = __webpack_require__(51);
 
 // CONCATENATED MODULE: ./components/business/FontFamily/index.jsx
 
@@ -3913,7 +3967,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/EmojiPicker/style.scss
-var EmojiPicker_style = __webpack_require__(50);
+var EmojiPicker_style = __webpack_require__(52);
 
 // CONCATENATED MODULE: ./components/business/EmojiPicker/index.jsx
 
@@ -3959,7 +4013,7 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
   }))));
 });
 // EXTERNAL MODULE: ./components/business/LetterSpacing/style.scss
-var LetterSpacing_style = __webpack_require__(51);
+var LetterSpacing_style = __webpack_require__(53);
 
 // CONCATENATED MODULE: ./components/business/LetterSpacing/index.jsx
 
@@ -4101,7 +4155,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/common/Modal/style.scss
-var Modal_style = __webpack_require__(52);
+var Modal_style = __webpack_require__(54);
 
 // EXTERNAL MODULE: external "react-dom"
 var external_react_dom_ = __webpack_require__(15);
@@ -4801,6 +4855,7 @@ function (_React$Component) {
 
 
 
+
 var buildHooks = function buildHooks(hooks) {
   return function (hookName) {
     var defaultReturns = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
@@ -4995,13 +5050,21 @@ function (_React$Component) {
       var _this2 = this;
 
       props = props || this.props;
-      var propInterceptors = getPropInterceptors(props.id);
+
+      var _props = props,
+          value = _props.value,
+          defaultValue = _props.defaultValue,
+          onChange = _props.onChange,
+          restProps = objectWithoutProperties_default()(_props, ["value", "defaultValue", "onChange"]); // eslint-disable-line no-unused-vars
+
+
+      var propInterceptors = getPropInterceptors(restProps.id);
 
       if (propInterceptors.length === 0) {
-        return props;
+        return restProps;
       }
 
-      var porpsMap = Object(external_immutable_["Map"])(props);
+      var porpsMap = Object(external_immutable_["Map"])(restProps);
       propInterceptors.forEach(function (interceptor) {
         porpsMap = porpsMap.merge(Object(external_immutable_["Map"])(interceptor(porpsMap.toJS(), _this2) || {}));
       });
@@ -5356,13 +5419,6 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 // [ ]美化UI，包括图标和界面风格
 
 /***/ }),
-/* 29 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 30 */,
 /* 31 */
 /***/ (function(module, exports) {
 
@@ -5370,20 +5426,15 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 
 /***/ }),
 /* 32 */,
-/* 33 */,
+/* 33 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 34 */,
-/* 35 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 35 */,
+/* 36 */,
 /* 37 */
 /***/ (function(module, exports) {
 
@@ -5475,6 +5526,18 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 
 /***/ }),
 /* 52 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

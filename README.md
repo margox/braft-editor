@@ -22,6 +22,8 @@
 
 ## 近期更新记录
 
+- 2018-10-26 v2.1.21
+  - 修复在编辑器中拖动图片移动位置导致脚本报错的问题
 - 2018-10-25 v2.1.20
   - 支持在uploadFn中调用param.success传入width和height属性（需要更新braft-utils至v3.0.5）
   - imageControls中的自定义控件显示优化

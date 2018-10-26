@@ -1,5 +1,5 @@
 import { ContentUtils, ColorUtils } from 'braft-utils'
-import { RichUtils } from 'draft-js'
+import { RichUtils, EditorState } from 'draft-js'
 import { handleNewLine } from 'draftjs-utils'
 
 export const keyCommandHandlers = (command, editorState, editor) => {
@@ -134,15 +134,14 @@ export const dropHandlers = (selectionState, dataTransfer, editor) => {
 
   if (window && window.__BRAFT_DRAGING__IMAGE__) {
 
-    const editorState = ContentUtils.removeBlock(
-      ContentUtils.insertMedias(editorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]),
-      window.__BRAFT_DRAGING__IMAGE__.block, selectionState
-    )
+    let nextEditorState = EditorState.forceSelection(editor.state.editorState, selectionState)
+    nextEditorState = ContentUtils.insertMedias(nextEditorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData])
+    nextEditorState = ContentUtils.removeBlock(nextEditorState, window.__BRAFT_DRAGING__IMAGE__.block, nextEditorState.getSelection())
 
     window.__BRAFT_DRAGING__IMAGE__ = null
 
     editor.setDraftProps({ readOnly: false })
-    editor.setValue(editorState)
+    editor.setValue(nextEditorState)
 
     return 'handled'
 
