@@ -13,7 +13,7 @@ export default class Audio extends React.Component {
 
     const { toolbarVisible } = this.state
     const { mediaData } = this.props
-    const { src, url } = mediaData
+    const { url } = mediaData
 
     return (
       <div
@@ -22,7 +22,7 @@ export default class Audio extends React.Component {
         onMouseLeave={this.hideToolbar}
       >
         <StaticContainer>
-          <audio controls src={src || url}/>
+          <audio controls src={url}/>
         </StaticContainer>
         {toolbarVisible ? (
           <div className='bf-media-toolbar'>

@@ -24,7 +24,7 @@ export default class Image extends React.Component {
 
     let float = blockData.get('float')
     let alignment = blockData.get('alignment')
-    let { src, url, link, link_target, width, height, meta } = mediaData
+    let { url, link, link_target, width, height, meta } = mediaData
     let imageStyles = {}
     let clearFix = false
 
@@ -110,7 +110,7 @@ export default class Image extends React.Component {
           ) : null}
           <img
             ref={instance => this.imageElement = instance}
-            src={src || url}
+            src={url}
             width={width}
             height={height}
             {...meta}

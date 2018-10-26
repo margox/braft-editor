@@ -13,7 +13,7 @@ export default class Video extends React.Component {
 
     const { toolbarVisible } = this.state
     const { mediaData } = this.props
-    const { src, url, meta } = mediaData
+    const { url, meta } = mediaData
 
     return (
       <div
@@ -22,7 +22,7 @@ export default class Video extends React.Component {
         onMouseLeave={this.hideToolbar}
       >
         <StaticContainer>
-          <video controls src={src || url} poster={meta ? meta.poster || '' : ''}/>
+          <video controls src={url} poster={meta ? meta.poster || '' : ''}/>
         </StaticContainer>
         {toolbarVisible ? (
           <div className='bf-media-toolbar'>

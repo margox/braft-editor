@@ -13,7 +13,7 @@ export default class Embed extends React.Component {
 
     const { toolbarVisible } = this.state
     const { mediaData } = this.props
-    const { src, url } = mediaData
+    const { url } = mediaData
 
     return (
       <div
@@ -22,7 +22,7 @@ export default class Embed extends React.Component {
         onMouseLeave={this.hideToolbar}
       >
         <StaticContainer>
-          <div className='bf-embed-player' dangerouslySetInnerHTML={{ __html: src || url}}></div>
+          <div className='bf-embed-player' dangerouslySetInnerHTML={{ __html: url}}></div>
         </StaticContainer>
         {toolbarVisible ? (
           <div className='bf-media-toolbar'>
