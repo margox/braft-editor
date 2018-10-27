@@ -47,14 +47,15 @@ const mergeControls = (commonProps, builtControls, extensionControls, extendCont
 
 export default class ControlBar extends React.Component {
 
+  allControls = []
   mediaLibiraryModal = null
   extendedModals = {}
 
   componentDidUpdate () {
 
-    const { controls, language } = this.props
+    const { language } = this.props
 
-    controls.forEach(item => {
+    this.allControls.forEach(item => {
       if (item.type === 'modal') {
         if (item.modal && item.modal.id && this.extendedModals[item.modal.id]) {
           this.extendedModals[item.modal.id].update({ ...item.modal, language })
@@ -174,7 +175,9 @@ export default class ControlBar extends React.Component {
     const renderedControls = []
     const editorControls = getEditorControls(language, editor)
     const extensionControls = getExtensionControls(editorId)
-    const allControls = mergeControls(commonProps, controls, extensionControls, extendControls)//extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
+    const allControls = mergeControls(commonProps, controls, extensionControls, extendControls)
+
+    this.allControls = allControls
 
     return (
       <div className={`bf-controlbar ${className || ''}`} style={style} onMouseDown={this.preventDefault}>

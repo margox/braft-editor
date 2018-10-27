@@ -2198,8 +2198,7 @@ function (_React$Component) {
       var blockData = this.props.block.getData();
       var float = blockData.get('float');
       var alignment = blockData.get('alignment');
-      var src = mediaData.src,
-          url = mediaData.url,
+      var url = mediaData.url,
           link = mediaData.link,
           link_target = mediaData.link_target,
           width = mediaData.width,
@@ -2317,7 +2316,7 @@ function (_React$Component) {
         ref: function ref(instance) {
           return _this2.imageElement = instance;
         },
-        src: src || url,
+        src: url,
         width: width,
         height: height
       }, meta))), clearFix && external_react_default.a.createElement("div", {
@@ -2463,8 +2462,7 @@ function (_React$Component) {
     value: function render() {
       var toolbarVisible = this.state.toolbarVisible;
       var mediaData = this.props.mediaData;
-      var src = mediaData.src,
-          url = mediaData.url,
+      var url = mediaData.url,
           meta = mediaData.meta;
       return external_react_default.a.createElement("div", {
         className: "bf-video-wrap",
@@ -2472,7 +2470,7 @@ function (_React$Component) {
         onMouseLeave: this.hideToolbar
       }, external_react_default.a.createElement(StaticContainer_default, null, external_react_default.a.createElement("video", {
         controls: true,
-        src: src || url,
+        src: url,
         poster: meta ? meta.poster || '' : ''
       })), toolbarVisible ? external_react_default.a.createElement("div", {
         className: "bf-media-toolbar"
@@ -2548,15 +2546,14 @@ function (_React$Component) {
     value: function render() {
       var toolbarVisible = this.state.toolbarVisible;
       var mediaData = this.props.mediaData;
-      var src = mediaData.src,
-          url = mediaData.url;
+      var url = mediaData.url;
       return external_react_default.a.createElement("div", {
         className: "bf-audio",
         onMouseOver: this.showToolbar,
         onMouseLeave: this.hideToolbar
       }, external_react_default.a.createElement(StaticContainer_default, null, external_react_default.a.createElement("audio", {
         controls: true,
-        src: src || url
+        src: url
       })), toolbarVisible ? external_react_default.a.createElement("div", {
         className: "bf-media-toolbar"
       }, external_react_default.a.createElement("a", {
@@ -2631,8 +2628,7 @@ function (_React$Component) {
     value: function render() {
       var toolbarVisible = this.state.toolbarVisible;
       var mediaData = this.props.mediaData;
-      var src = mediaData.src,
-          url = mediaData.url;
+      var url = mediaData.url;
       return external_react_default.a.createElement("div", {
         className: "bf-embed",
         onMouseOver: this.showToolbar,
@@ -2640,7 +2636,7 @@ function (_React$Component) {
       }, external_react_default.a.createElement(StaticContainer_default, null, external_react_default.a.createElement("div", {
         className: "bf-embed-player",
         dangerouslySetInnerHTML: {
-          __html: src || url
+          __html: url
         }
       })), toolbarVisible ? external_react_default.a.createElement("div", {
         className: "bf-media-toolbar"
@@ -2781,7 +2777,7 @@ var blockRendererFn_getAtomicBlockComponent = function getAtomicBlockComponent(s
 
     var extensionBlockRendererFns = getExtensionBlockRendererFns(superProps.editorId);
     extensionBlockRendererFns.find(function (item) {
-      if (item.blockType === blockType) {
+      if (item.blockType === blockType || item.blockType instanceof RegExp && item.blockType.test(blockType)) {
         blockRenderer = item.rendererFn ? item.rendererFn(superProps) : null;
         return true;
       }
@@ -4454,6 +4450,8 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(ControlBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "allControls", []);
+
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "mediaLibiraryModal", null);
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "extendedModals", {});
@@ -4518,10 +4516,8 @@ function (_React$Component) {
     value: function componentDidUpdate() {
       var _this2 = this;
 
-      var _this$props = this.props,
-          controls = _this$props.controls,
-          language = _this$props.language;
-      controls.forEach(function (item) {
+      var language = this.props.language;
+      this.allControls.forEach(function (item) {
         if (item.type === 'modal') {
           if (item.modal && item.modal.id && _this2.extendedModals[item.modal.id]) {
             _this2.extendedModals[item.modal.id].update(objectSpread_default()({}, item.modal, {
@@ -4581,30 +4577,30 @@ function (_React$Component) {
     value: function render() {
       var _this3 = this;
 
-      var _this$props2 = this.props,
-          editor = _this$props2.editor,
-          editorId = _this$props2.editorId,
-          editorState = _this$props2.editorState,
-          className = _this$props2.className,
-          style = _this$props2.style,
-          controls = _this$props2.controls,
-          media = _this$props2.media,
-          extendControls = _this$props2.extendControls,
-          language = _this$props2.language,
-          hooks = _this$props2.hooks,
-          colors = _this$props2.colors,
-          colorPicker = _this$props2.colorPicker,
-          colorPickerTheme = _this$props2.colorPickerTheme,
-          colorPickerAutoHide = _this$props2.colorPickerAutoHide,
-          fontSizes = _this$props2.fontSizes,
-          fontFamilies = _this$props2.fontFamilies,
-          emojis = _this$props2.emojis,
-          containerNode = _this$props2.containerNode,
-          lineHeights = _this$props2.lineHeights,
-          letterSpacings = _this$props2.letterSpacings,
-          textAligns = _this$props2.textAligns,
-          textBackgroundColor = _this$props2.textBackgroundColor,
-          defaultLinkTarget = _this$props2.defaultLinkTarget;
+      var _this$props = this.props,
+          editor = _this$props.editor,
+          editorId = _this$props.editorId,
+          editorState = _this$props.editorState,
+          className = _this$props.className,
+          style = _this$props.style,
+          controls = _this$props.controls,
+          media = _this$props.media,
+          extendControls = _this$props.extendControls,
+          language = _this$props.language,
+          hooks = _this$props.hooks,
+          colors = _this$props.colors,
+          colorPicker = _this$props.colorPicker,
+          colorPickerTheme = _this$props.colorPickerTheme,
+          colorPickerAutoHide = _this$props.colorPickerAutoHide,
+          fontSizes = _this$props.fontSizes,
+          fontFamilies = _this$props.fontFamilies,
+          emojis = _this$props.emojis,
+          containerNode = _this$props.containerNode,
+          lineHeights = _this$props.lineHeights,
+          letterSpacings = _this$props.letterSpacings,
+          textAligns = _this$props.textAligns,
+          textBackgroundColor = _this$props.textBackgroundColor,
+          defaultLinkTarget = _this$props.defaultLinkTarget;
       var currentBlockType = external_braft_utils_["ContentUtils"].getSelectionBlockType(editorState);
       var commonProps = {
         editor: editor,
@@ -4617,8 +4613,8 @@ function (_React$Component) {
       var renderedControls = [];
       var editorControls = configs_controls(language, editor);
       var extensionControls = getExtensionControls(editorId);
-      var allControls = mergeControls(commonProps, controls, extensionControls, extendControls); //extensionControls.length ? [ ...controls, 'separator', ...extensionControls, ...extendControls] : [ ...controls, ...extensionControls, ...extendControls]
-
+      var allControls = mergeControls(commonProps, controls, extensionControls, extendControls);
+      this.allControls = allControls;
       return external_react_default.a.createElement("div", {
         className: "bf-controlbar ".concat(className || ''),
         style: style,

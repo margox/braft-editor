@@ -65,7 +65,7 @@ export default (superProps, customBlockRendererFn) => (block) => {
   const extensionBlockRendererFns = getExtensionBlockRendererFns(superProps.editorId)
 
   extensionBlockRendererFns.find(item => {
-    if (item.blockType === blockType) {
+    if (item.blockType === blockType || (item.blockType instanceof RegExp && item.blockType.test(blockType))) {
       blockRenderer = item.rendererFn ? item.rendererFn(superProps) : null
       return true
     }

@@ -20,6 +20,7 @@ class Demo extends React.Component {
     super(props)
 
     this.state = {
+      count: 0,
       editorState: BraftEditor.createEditorState(null)
     }
 
@@ -33,6 +34,14 @@ class Demo extends React.Component {
     console.log(this.state.editorState.toHTML())
   }
 
+  updateCount = () => {
+    this.setState({
+      count: this.state.count + 1
+    }, () => {
+      console.log(this.state.count)
+    })
+  }
+
   render() {
 
     const { editorState } = this.state
@@ -43,9 +52,16 @@ class Demo extends React.Component {
           <BraftEditor
             extendControls={[{
               key: 'log-html',
-              type: 'button',
-              text: 'Log HTML',
-              onClick: this.logHTML
+              type: 'modal',
+              text: this.state.count,
+              // onClick: this.logHTML,
+              modal: {
+                id: 'test-modal',
+                title: this.state.count,
+                children: (
+                  <div style={{width: 300, height: 150}} onClick={this.updateCount}>{this.state.count}</div>
+                )
+              }
             }]}
             media={{ uploadFn }}
             value={editorState}
