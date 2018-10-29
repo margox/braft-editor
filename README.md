@@ -20,6 +20,11 @@
 - 多语言支持（目前已支持简体中文、繁体中文和英文）
 - ...更多特性开发中
 
+## 鸣谢
+- 感谢[Jyoti Puri](https://github.com/jpuri) 开发的[draftjs-utils](https://github.com/jpuri/draftjs-utils) 提供的帮助和[react-draft-wysiwyg](https://github.com/jpuri/react-draft-wysiwyg) 提供的参考，Thanks！
+- 感谢[HubSpot](https://github.com/HubSpot) 开发的[draft-convert](https://github.com/hubspot/draft-convert)，Thanks！
+- 感谢[Samy Pessé](https://github.com/SamyPesse) 开发的[draft-js-multidecorators](https://github.com/SamyPesse/draft-js-multidecorators)，Thanks！
+
 ## 近期更新记录
 
 - 2018-10-29 v2.1.24
@@ -150,3 +155,12 @@ export default class EditorDemo extends React.Component {
 -------
 
 #### 更多介绍请查看[详细文档](https://www.yuque.com/margox/be/lzwpnr#zrs7hr)
+
+## Buy me a beer
+如果你想感谢本编辑器为你的项目节省了时间，或者单纯地喜欢这个编辑器，可以扫码赞赏几块钱来请我喝杯啤酒喔！
+
+<img src="https://braft.margox.cn/images/qrcode-alipay.png" width="180" height="180" />&emsp;&emsp;
+<img src="https://braft.margox.cn/images/qrcode-wechat.png" width="180" height="180" />
+
+#### &emsp;&emsp;&emsp;&emsp;&ensp;支付宝&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;微信
+
