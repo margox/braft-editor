@@ -2,16 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 import { ContentUtils } from 'braft-utils'
+import CodeHightlighter from 'braft-extensions/dist/code-highlighter'
 
-const uploadFn = (param) => {
+BraftEditor.use(CodeHightlighter())
 
-  param.success({
-    url: URL.createObjectURL(param.file),
-    width: 100,
-    height: 100
-  })
-
-}
+const editorState = BraftEditor.createEditorState('<pre data-lang="javascript" class="lang-javascript"><code class="lang-javascript">function foo() {<br/>  console.log(123)<br/>}</code></pre>')
+console.log(editorState.toHTML())
 
 class Demo extends React.Component {
 
@@ -34,14 +30,6 @@ class Demo extends React.Component {
     console.log(this.state.editorState.toHTML())
   }
 
-  updateCount = () => {
-    this.setState({
-      count: this.state.count + 1
-    }, () => {
-      console.log(this.state.count)
-    })
-  }
-
   render() {
 
     const { editorState } = this.state
@@ -52,18 +40,10 @@ class Demo extends React.Component {
           <BraftEditor
             extendControls={[{
               key: 'log-html',
-              type: 'modal',
-              text: this.state.count,
-              // onClick: this.logHTML,
-              modal: {
-                id: 'test-modal',
-                title: this.state.count,
-                children: (
-                  <div style={{width: 300, height: 150}} onClick={this.updateCount}>{this.state.count}</div>
-                )
-              }
+              type: 'button',
+              text: 'Log HTML',
+              onClick: this.logHTML,
             }]}
-            media={{ uploadFn }}
             value={editorState}
             onChange={this.handleChange}
           />

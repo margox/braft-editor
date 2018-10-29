@@ -1,7 +1,7 @@
 import BraftEditor from './editor'
 import { EditorState } from 'draft-js'
 import { convertRawToEditorState, convertHTMLToEditorState, convertEditorStateToRaw, convertEditorStateToHTML } from 'braft-convert'
-import { createExtensibleEditor, compositeStyleImportFn, compositeEntityImportFn, compositeBlockImportFn } from 'helpers/extension'
+import { createExtensibleEditor, compositeStyleImportFn, compositeStyleExportFn, compositeEntityImportFn, compositeEntityExportFn, compositeBlockImportFn, compositeBlockExportFn } from 'helpers/extension'
 import { getDecorators } from 'renderers'
 
 EditorState.prototype.setConvertOptions = function (options = {}) {
@@ -27,47 +27,45 @@ EditorState.prototype.isEmpty = function () {
 
 BraftEditor.createEditorState = EditorState.createFrom = (content, options = {}) => {
 
+  options.unitExportFn = options.unitExportFn || BraftEditor.defaultProps.converts.unitExportFn
   options.styleImportFn = compositeStyleImportFn(options.styleImportFn, options.editorId)
   options.entityImportFn = compositeEntityImportFn(options.entityImportFn, options.editorId)
   options.blockImportFn = compositeBlockImportFn(options.blockImportFn, options.editorId)
 
-  if (typeof content === 'object' && content && content.blocks && content.entityMap) {
-    return convertRawToEditorState(content, getDecorators(options.editorId))
+  let editorState = null
+
+  if (content instanceof EditorState) {
+    editorState = content
+  } else if (typeof content === 'object' && content && content.blocks && content.entityMap) {
+    editorState = convertRawToEditorState(content, getDecorators(options.editorId))
   } else if (typeof content === 'string') {
     try {
-      return EditorState.createFrom(JSON.parse(content), options)
+      editorState = EditorState.createFrom(JSON.parse(content), options)
     } catch (error) {
-      return convertHTMLToEditorState(content, getDecorators(options.editorId), options, 'create')
+      editorState = convertHTMLToEditorState(content, getDecorators(options.editorId), options, 'create')
     }
   } else {
-    return EditorState.createEmpty(getDecorators(options.editorId))
+    editorState = EditorState.createEmpty(getDecorators(options.editorId))
   }
+
+  options.styleExportFn = compositeStyleExportFn(options.styleExportFn, options.editorId)
+  options.entityExportFn = compositeEntityExportFn(options.entityExportFn, options.editorId)
+  options.blockExportFn = compositeBlockExportFn(options.blockExportFn, options.editorId)
+
+  editorState.setConvertOptions(options)
+
+  return editorState
 
 }
 
 export default createExtensibleEditor(BraftEditor)
 export { EditorState, getDecorators }
 
-// 2.1版本开发计划
-// [ ]增强扩展性
-// [ ]完成font-size等样式的全量支持
-// [ ]支持无限制取色器
-// [ ]支持替换内置控件
-// [ ]允许自定义快捷键
-
 // 2.2版本开发计划
-// [ ]支持非媒体类附件
-// [ ]优化全选会选择上传中的项目的问题
-// [ ]支持param.success时设置媒体文件的更多属性（尺寸、图片链接等）
-// [ ]简化上传配置流程
-// [ ]支持媒体库组件的更多个性化配置（placeholder等）
-// [ ]优化HTML格式无法存储媒体名称的问题 
+// [ ]表格功能
+// [ ]美化UI，包括图标和界面风格
 
 // 2.3版本开发计划
-// [ ]优化换行与空格
-// [ ]支持自定义Atomic组件
+// [ ]初级md快捷输入支持
 // [ ]图片裁切等简单的编辑功能
-// [ ]初级表格功能
-
-// 2.4版本开发计划
-// [ ]美化UI，包括图标和界面风格
+// [ ]允许自定义快捷键

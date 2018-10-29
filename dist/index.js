@@ -5375,44 +5375,41 @@ external_draft_js_["EditorState"].prototype.isEmpty = function () {
 
 editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createFrom = function (content) {
   var options = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
+  options.unitExportFn = options.unitExportFn || editor_BraftEditor.defaultProps.converts.unitExportFn;
   options.styleImportFn = compositeStyleImportFn(options.styleImportFn, options.editorId);
   options.entityImportFn = compositeEntityImportFn(options.entityImportFn, options.editorId);
   options.blockImportFn = compositeBlockImportFn(options.blockImportFn, options.editorId);
+  var editorState = null;
 
-  if (typeof_default()(content) === 'object' && content && content.blocks && content.entityMap) {
-    return Object(external_braft_convert_["convertRawToEditorState"])(content, getDecorators(options.editorId));
+  if (content instanceof external_draft_js_["EditorState"]) {
+    editorState = content;
+  } else if (typeof_default()(content) === 'object' && content && content.blocks && content.entityMap) {
+    editorState = Object(external_braft_convert_["convertRawToEditorState"])(content, getDecorators(options.editorId));
   } else if (typeof content === 'string') {
     try {
-      return external_draft_js_["EditorState"].createFrom(JSON.parse(content), options);
+      editorState = external_draft_js_["EditorState"].createFrom(JSON.parse(content), options);
     } catch (error) {
-      return Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(options.editorId), options, 'create');
+      editorState = Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(options.editorId), options, 'create');
     }
   } else {
-    return external_draft_js_["EditorState"].createEmpty(getDecorators(options.editorId));
+    editorState = external_draft_js_["EditorState"].createEmpty(getDecorators(options.editorId));
   }
+
+  options.styleExportFn = compositeStyleExportFn(options.styleExportFn, options.editorId);
+  options.entityExportFn = compositeEntityExportFn(options.entityExportFn, options.editorId);
+  options.blockExportFn = compositeBlockExportFn(options.blockExportFn, options.editorId);
+  editorState.setConvertOptions(options);
+  return editorState;
 };
 
 /* harmony default export */ var index_0 = __webpack_exports__["default"] = (createExtensibleEditor(editor_BraftEditor));
- // 2.1版本开发计划
-// [ ]增强扩展性
-// [ ]完成font-size等样式的全量支持
-// [ ]支持无限制取色器
-// [ ]支持替换内置控件
-// [ ]允许自定义快捷键
-// 2.2版本开发计划
-// [ ]支持非媒体类附件
-// [ ]优化全选会选择上传中的项目的问题
-// [ ]支持param.success时设置媒体文件的更多属性（尺寸、图片链接等）
-// [ ]简化上传配置流程
-// [ ]支持媒体库组件的更多个性化配置（placeholder等）
-// [ ]优化HTML格式无法存储媒体名称的问题 
-// 2.3版本开发计划
-// [ ]优化换行与空格
-// [ ]支持自定义Atomic组件
-// [ ]图片裁切等简单的编辑功能
-// [ ]初级表格功能
-// 2.4版本开发计划
+ // 2.2版本开发计划
+// [ ]表格功能
 // [ ]美化UI，包括图标和界面风格
+// 2.3版本开发计划
+// [ ]初级md快捷输入支持
+// [ ]图片裁切等简单的编辑功能
+// [ ]允许自定义快捷键
 
 /***/ }),
 /* 31 */

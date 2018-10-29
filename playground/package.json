@@ -1,9 +1,12 @@
 {
   "devDependencies": {
-    "formidable": "^1.2.1"
+    "draft-js-prism": "^1.0.6",
+    "formidable": "^1.2.1",
+    "prism-js": "^1.0.0",
+    "prismjs": "^1.15.0"
   },
   "dependencies": {
-    "braft-extensions": "^0.0.3",
+    "braft-extensions": "^0.0.8",
     "react-color": "^2.14.1"
   }
 }
