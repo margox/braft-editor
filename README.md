@@ -162,5 +162,4 @@ export default class EditorDemo extends React.Component {
 <img src="https://braft.margox.cn/images/qrcode-alipay.png" width="180" height="180" />&emsp;&emsp;
 <img src="https://braft.margox.cn/images/qrcode-wechat.png" width="180" height="180" />
 
-#### &emsp;&emsp;&emsp;&emsp;&ensp;支付宝&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;微信
-
+#### &emsp;&emsp;&emsp;&emsp;支付宝&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;微信
