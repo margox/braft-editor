@@ -61,6 +61,9 @@ BraftEditor.createEditorState = EditorState.createFrom = (content, options = {})
 export default createExtensibleEditor(BraftEditor)
 export { EditorState, getDecorators }
 
+// 2.1版本开发计划
+// [ ]优化选中多行文字是插入链接报错的问题
+
 // 2.2版本开发计划
 // [ ]表格功能
 // [ ]美化UI，包括图标和界面风格

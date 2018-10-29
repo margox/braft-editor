@@ -14,7 +14,8 @@ export default class Modal extends React.Component {
   }
 
   static defaultProps = {
-    showFooter: true
+    showFooter: true,
+    closeOnBlur: true
   }
 
   componentDidMount () {
@@ -76,7 +77,7 @@ export default class Modal extends React.Component {
 
     const childComponent = (
       <div className={'bf-modal ' + (className || '')}>
-        <div className='bf-modal-mask'></div>
+        <div className='bf-modal-mask' onClick={this.handleMaskClick}></div>
         <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className='bf-modal-content'>
           <div className='bf-modal-header'>
             <h3 className='bf-modal-caption'>{title}</h3>
@@ -121,6 +122,11 @@ export default class Modal extends React.Component {
   handleConfirm = () => {
     this.props.closeOnConfirm && this.close()
     this.props.onConfirm && this.props.onConfirm()
+  }
+
+  handleMaskClick = () => {
+    this.props.closeOnBlur && this.close()
+    this.props.onBlue && this.props.onBlue()
   }
 
   close = () => {

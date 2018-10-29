@@ -1,6 +1,6 @@
 {
   "name": "braft-editor",
-  "version": "2.1.23",
+  "version": "2.1.24",
   "description": "Rich Text Editor Based On Draft.js",
   "main": "dist/index.js",
   "author": "Margox",

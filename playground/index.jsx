@@ -43,6 +43,15 @@ class Demo extends React.Component {
               type: 'button',
               text: 'Log HTML',
               onClick: this.logHTML,
+            }, {
+              key: 'my-modal',
+              type: 'modal',
+              text: 'modal',
+              modal: {
+                id: 'a',
+                // closeOnBlur: false,
+                component: <div>123123</div>
+              }
             }]}
             value={editorState}
             onChange={this.handleChange}

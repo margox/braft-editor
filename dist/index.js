@@ -4203,6 +4203,11 @@ function (_React$Component) {
       _this.props.onConfirm && _this.props.onConfirm();
     });
 
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMaskClick", function () {
+      _this.props.closeOnBlur && _this.close();
+      _this.props.onBlue && _this.props.onBlue();
+    });
+
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "close", function () {
       _this.unrenderComponent();
 
@@ -4278,7 +4283,8 @@ function (_React$Component) {
       var childComponent = external_react_default.a.createElement("div", {
         className: 'bf-modal ' + (className || '')
       }, external_react_default.a.createElement("div", {
-        className: "bf-modal-mask"
+        className: "bf-modal-mask",
+        onClick: this.handleMaskClick
       }), external_react_default.a.createElement("div", {
         onTransitionEnd: this.handleTransitionEnd,
         style: {
@@ -4333,7 +4339,8 @@ function (_React$Component) {
 }(external_react_default.a.Component);
 
 defineProperty_default()(Modal_Modal, "defaultProps", {
-  showFooter: true
+  showFooter: true,
+  closeOnBlur: true
 });
 
 
@@ -5403,7 +5410,9 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 };
 
 /* harmony default export */ var index_0 = __webpack_exports__["default"] = (createExtensibleEditor(editor_BraftEditor));
- // 2.2版本开发计划
+ // 2.1版本开发计划
+// [ ]优化选中多行文字是插入链接报错的问题
+// 2.2版本开发计划
 // [ ]表格功能
 // [ ]美化UI，包括图标和界面风格
 // 2.3版本开发计划
