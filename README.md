@@ -17,13 +17,15 @@
 - 允许设置编辑器可用的颜色列表、字号以及字体
 - 允许自定义需要展示的控制按钮和展示顺序
 - 允许增加额外的自定义按钮
-- 多语言支持（目前已支持简体中文、繁体中文和英文）
+- 多语言支持（目前已支持简体中文、繁体中文、英文和波兰语）
 - ...更多特性开发中
 
 ## 鸣谢
 - 感谢[Jyoti Puri](https://github.com/jpuri) 开发的[draftjs-utils](https://github.com/jpuri/draftjs-utils) 提供的帮助和[react-draft-wysiwyg](https://github.com/jpuri/react-draft-wysiwyg) 提供的参考，Thanks！
 - 感谢[HubSpot](https://github.com/HubSpot) 开发的[draft-convert](https://github.com/hubspot/draft-convert)，Thanks！
 - 感谢[Samy Pessé](https://github.com/SamyPesse) 开发的[draft-js-multidecorators](https://github.com/SamyPesse/draft-js-multidecorators)，Thanks！
+- 感谢[JackLam](https://github.com/lamjack)提供的繁体中文语言自持，Thanks!
+- 感谢[Paweł Krefta](https://github.com/pkrefta)提供的波兰语言支持，Thanks!
 
 ## 近期更新记录
 

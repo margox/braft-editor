@@ -1114,7 +1114,7 @@ var external_draftjs_utils_ = __webpack_require__(20);
 
 
 var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorState, editor) {
-  if (editor.editorProps.handleKeyCommand && editor.editorProps.handleKeyCommand(command, editorState) === 'handled') {
+  if (editor.editorProps.handleKeyCommand && editor.editorProps.handleKeyCommand(command, editorState, editor) === 'handled') {
     return 'handled';
   }
 
@@ -1167,7 +1167,7 @@ var handlers_keyCommandHandlers = function keyCommandHandlers(command, editorSta
   return 'not-handled';
 };
 var handlers_returnHandlers = function returnHandlers(event, editorState, editor) {
-  if (editor.editorProps.handleReturn && editor.editorProps.handleReturn(event, editorState) === 'handled') {
+  if (editor.editorProps.handleReturn && editor.editorProps.handleReturn(event, editorState, editor) === 'handled') {
     return 'handled';
   }
 
@@ -1209,7 +1209,7 @@ var handlers_returnHandlers = function returnHandlers(event, editorState, editor
   return 'not-handled';
 };
 var beforeInputHandlers = function beforeInputHandlers(chars, editorState, editor) {
-  if (editor.editorProps.handleBeforeInput && editor.editorProps.handleBeforeInput(chars, editorState) === 'handled') {
+  if (editor.editorProps.handleBeforeInput && editor.editorProps.handleBeforeInput(chars, editorState, editor) === 'handled') {
     return 'handled';
   }
 
@@ -1250,21 +1250,21 @@ var handlers_handleFiles = function handleFiles(files, editor) {
   return 'not-handled';
 };
 var droppedFilesHandlers = function droppedFilesHandlers(selectionState, files, editor) {
-  if (editor.editorProps.handleDroppedFiles && editor.editorProps.handleDroppedFiles(selectionState, files) === 'handled') {
+  if (editor.editorProps.handleDroppedFiles && editor.editorProps.handleDroppedFiles(selectionState, files, editor) === 'handled') {
     return 'handled';
   }
 
   return handlers_handleFiles(files, editor);
 };
 var pastedFilesHandlers = function pastedFilesHandlers(files, editor) {
-  if (editor.editorProps.handlePastedFiles && editor.editorProps.handlePastedFiles(files) === 'handled') {
+  if (editor.editorProps.handlePastedFiles && editor.editorProps.handlePastedFiles(files, editor) === 'handled') {
     return 'handled';
   }
 
   return handlers_handleFiles(files, editor);
 };
 var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editorState, editor) {
-  if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState) === 'handled') {
+  if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState, editor) === 'handled') {
     return 'handled';
   }
 
@@ -5412,6 +5412,7 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 /* harmony default export */ var index_0 = __webpack_exports__["default"] = (createExtensibleEditor(editor_BraftEditor));
  // 2.1版本开发计划
 // [ ]优化选中多行文字是插入链接报错的问题
+// [ ]新增编辑器内图片删除hook
 // 2.2版本开发计划
 // [ ]表格功能
 // [ ]美化UI，包括图标和界面风格

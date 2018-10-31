@@ -4,7 +4,7 @@ import { handleNewLine } from 'draftjs-utils'
 
 export const keyCommandHandlers = (command, editorState, editor) => {
 
-  if (editor.editorProps.handleKeyCommand && editor.editorProps.handleKeyCommand(command, editorState) === 'handled') {
+  if (editor.editorProps.handleKeyCommand && editor.editorProps.handleKeyCommand(command, editorState, editor) === 'handled') {
     return 'handled'
   }
 
@@ -60,7 +60,7 @@ export const keyCommandHandlers = (command, editorState, editor) => {
 
 export const returnHandlers = (event, editorState, editor) => {
 
-  if (editor.editorProps.handleReturn && editor.editorProps.handleReturn(event, editorState) === 'handled') {
+  if (editor.editorProps.handleReturn && editor.editorProps.handleReturn(event, editorState, editor) === 'handled') {
     return 'handled'
   }
 
@@ -122,7 +122,7 @@ export const returnHandlers = (event, editorState, editor) => {
 
 export const beforeInputHandlers = (chars, editorState, editor) => {
 
-  if (editor.editorProps.handleBeforeInput && editor.editorProps.handleBeforeInput(chars, editorState) === 'handled') {
+  if (editor.editorProps.handleBeforeInput && editor.editorProps.handleBeforeInput(chars, editorState, editor) === 'handled') {
     return 'handled'
   }
 
@@ -173,7 +173,7 @@ export const handleFiles = (files, editor) => {
 
 export const droppedFilesHandlers = (selectionState, files, editor) => {
 
-  if (editor.editorProps.handleDroppedFiles && editor.editorProps.handleDroppedFiles(selectionState, files) === 'handled') {
+  if (editor.editorProps.handleDroppedFiles && editor.editorProps.handleDroppedFiles(selectionState, files, editor) === 'handled') {
     return 'handled'
   }
 
@@ -183,7 +183,7 @@ export const droppedFilesHandlers = (selectionState, files, editor) => {
 
 export const pastedFilesHandlers = (files, editor) => {
 
-  if (editor.editorProps.handlePastedFiles && editor.editorProps.handlePastedFiles(files) === 'handled') {
+  if (editor.editorProps.handlePastedFiles && editor.editorProps.handlePastedFiles(files, editor) === 'handled') {
     return 'handled'
   }
 
@@ -193,7 +193,7 @@ export const pastedFilesHandlers = (files, editor) => {
 
 export const pastedTextHandlers = (text, html, editorState, editor) => {
 
-  if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState) === 'handled') {
+  if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState, editor) === 'handled') {
     return 'handled'
   }
 
