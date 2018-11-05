@@ -55,7 +55,7 @@ export default (superProps, customBlockRendererFn) => (block) => {
   let blockRenderer = null
 
   if (customBlockRendererFn) {
-    blockRenderer = customBlockRendererFn(superProps) || null
+    blockRenderer = customBlockRendererFn(block, superProps) || null
   }
 
   if (blockRenderer) {

@@ -6,9 +6,6 @@ import CodeHightlighter from 'braft-extensions/dist/code-highlighter'
 
 BraftEditor.use(CodeHightlighter())
 
-const editorState = BraftEditor.createEditorState('<pre data-lang="javascript" class="lang-javascript"><code class="lang-javascript">function foo() {<br/>  console.log(123)<br/>}</code></pre>')
-console.log(editorState.toHTML())
-
 class Demo extends React.Component {
 
   constructor(props) {
@@ -49,7 +46,9 @@ class Demo extends React.Component {
               text: 'modal',
               modal: {
                 id: 'a',
-                // closeOnBlur: false,
+                closeOnBlur: true,
+                confirmable: true,
+                closeOnConfirm: false,
                 component: <div>123123</div>
               }
             }]}

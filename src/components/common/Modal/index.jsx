@@ -139,20 +139,28 @@ export default class Modal extends React.Component {
 export const showModal = (props) => {
 
   const hostNode = document.createElement('div')
+
   hostNode.style.display = 'none'
   document.body.appendChild(hostNode)
+
+  props = {
+    visible: true,
+    closeOnConfirm: true,
+    closeOnCancel: true,
+    ...props
+  }
 
   const close = () => {
     ReactDOM.unmountComponentAtNode(hostNode) && hostNode.parentNode.removeChild(hostNode)
   }
 
   const onConfirm = () => {
-    close()
+    props.closeOnConfirm && close()
     props.onConfirm && props.onConfirm()
   }
 
   const onCancel = () => {
-    close()
+    props.closeOnCancel && close()
     props.onCancel && props.onCancel()
   }
 
@@ -161,14 +169,7 @@ export const showModal = (props) => {
     props.onClose && props.onClose()
   }
 
-  const extProps = {
-    onConfirm, onCancel, onClose,
-    visible: true,
-    closeOnConfirm: true,
-    closeOnCancel: true
-  }
-
-  const modalInstance = ReactDOM.render(<Modal { ...props } { ...extProps }/>, hostNode)
+  const modalInstance = ReactDOM.render(<Modal { ...props } onConfirm={onConfirm} onCancel={onCancel} onClose={onClose} />, hostNode)
   modalInstance.destroy = close
   modalInstance.update = modalInstance.renderComponent
 
