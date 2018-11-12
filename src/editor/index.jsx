@@ -396,16 +396,16 @@ export default class BraftEditor extends React.Component {
       onTab: this.onTab,
       onFocus: this.onFocus,
       onBlur: this.onBlur,
-      readOnly: disabled || readOnly,
       blockRenderMap, blockRendererFn, blockStyleFn,
       customStyleMap, customStyleFn,
       keyBindingFn, placeholder, stripPastedStyles,
       ...this.editorProps.draftProps,
-      ...this.state.draftProps
+      ...this.state.draftProps,
+      readOnly: disabled || readOnly,
     }
 
     return (
-      <div ref={this.setEditorContainerNode} className={`bf-container ${className}${(disabled ? ' disabled' : '')}${(readOnly ? ' read-only' : '')}${isFullscreen ? ' fullscreen' : ''}`} style={style}>
+      <div ref={this.setEditorContainerNode} className={`bf-container${className}${(disabled ? ' disabled' : '')}${(readOnly ? ' read-only' : '')}${isFullscreen ? ' fullscreen' : ''}`} style={style}>
         <ControlBar {...controlBarProps} />
         {componentBelowControlBar}
         <div className={`bf-content ${contentClassName}`} style={contentStyle}>

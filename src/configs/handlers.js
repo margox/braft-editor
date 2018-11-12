@@ -132,6 +132,10 @@ export const beforeInputHandlers = (chars, editorState, editor) => {
 
 export const dropHandlers = (selectionState, dataTransfer, editor) => {
 
+  if (editor.editorProps.readOnly || editor.editorProps.disabled) {
+    return 'handled'
+  }
+
   if (window && window.__BRAFT_DRAGING__IMAGE__) {
 
     let nextEditorState = EditorState.forceSelection(editor.state.editorState, selectionState)

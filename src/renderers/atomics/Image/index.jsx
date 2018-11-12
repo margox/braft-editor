@@ -122,6 +122,22 @@ export default class Image extends React.Component {
 
   }
 
+  lockEditor () {
+
+    if (!this.props.editor.editorProps.readOnly && !this.props.editor.editorProps.disabled) {
+      this.props.editor.setDraftProps({ readOnly: true })
+    }
+
+  }
+
+  unlockEditor () {
+
+    if (!this.props.editor.editorProps.readOnly && !this.props.editor.editorProps.disabled) {
+      this.props.editor.setDraftProps({ readOnly: false })
+    }
+
+  }
+
   calcToolbarOffset () {
 
     if (!this.props.containerNode) {
@@ -147,6 +163,10 @@ export default class Image extends React.Component {
 
   handleDragStart = () => {
 
+    if (this.props.editor.editorProps.readOnly || this.props.editor.editorProps.disabled) {
+      return false
+    }
+
     window.__BRAFT_DRAGING__IMAGE__ = {
       block: this.props.block,
       mediaData: {
@@ -158,7 +178,7 @@ export default class Image extends React.Component {
     this.setState({
       toolbarVisible: false
     }, () => {
-      this.props.editor.setDraftProps({ readOnly: false })
+      this.unlockEditor()
     })
 
     return true
@@ -183,7 +203,7 @@ export default class Image extends React.Component {
 
   removeImage = () => {
     this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
-    this.props.editor.setDraftProps({ readOnly: false })
+    this.unlockEditor()
   }
 
   toggleLinkEditor = () => {
@@ -285,15 +305,19 @@ export default class Image extends React.Component {
 
   setImageFloat = (float) => {
     this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { float }))
-    this.props.editor.setDraftProps({ readOnly: false })
+    this.unlockEditor()
   }
 
   setImageAlignment = (alignment) => {
     this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { alignment }))
-    this.props.editor.setDraftProps({ readOnly: false })
+    this.unlockEditor()
   }
 
   showToolbar = (event) => {
+
+    if (this.props.editor.editorProps.readOnly || this.props.editor.editorProps.disabled) {
+      return false
+    }
 
     event.preventDefault()
 
@@ -301,7 +325,7 @@ export default class Image extends React.Component {
       this.setState({
         toolbarVisible: true
       }, () => {
-        this.props.editor.setDraftProps({ readOnly: true })
+        this.lockEditor()
         this.setState({ toolbarOffset: this.calcToolbarOffset() })
       })
     }
@@ -315,7 +339,7 @@ export default class Image extends React.Component {
     this.setState({
       toolbarVisible: false
     }, () => {
-      this.props.editor.setDraftProps({ readOnly: false })
+      this.unlockEditor()
       this.props.editor.requestFocus()
     })
 

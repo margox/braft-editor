@@ -1216,6 +1216,10 @@ var beforeInputHandlers = function beforeInputHandlers(chars, editorState, edito
   return 'not-handled';
 };
 var handlers_dropHandlers = function dropHandlers(selectionState, dataTransfer, editor) {
+  if (editor.editorProps.readOnly || editor.editorProps.disabled) {
+    return 'handled';
+  }
+
   if (window && window.__BRAFT_DRAGING__IMAGE__) {
     var nextEditorState = external_draft_js_["EditorState"].forceSelection(editor.state.editorState, selectionState);
     nextEditorState = external_braft_utils_["ContentUtils"].insertMedias(nextEditorState, [window.__BRAFT_DRAGING__IMAGE__.mediaData]);
@@ -1995,6 +1999,10 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDragStart", function () {
+      if (_this.props.editor.editorProps.readOnly || _this.props.editor.editorProps.disabled) {
+        return false;
+      }
+
       window.__BRAFT_DRAGING__IMAGE__ = {
         block: _this.props.block,
         mediaData: objectSpread_default()({
@@ -2005,9 +2013,7 @@ function (_React$Component) {
       _this.setState({
         toolbarVisible: false
       }, function () {
-        _this.props.editor.setDraftProps({
-          readOnly: false
-        });
+        _this.unlockEditor();
       });
 
       return true;
@@ -2034,9 +2040,7 @@ function (_React$Component) {
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeImage", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
 
-      _this.props.editor.setDraftProps({
-        readOnly: false
-      });
+      _this.unlockEditor();
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleLinkEditor", function () {
@@ -2131,9 +2135,7 @@ function (_React$Component) {
         float: float
       }));
 
-      _this.props.editor.setDraftProps({
-        readOnly: false
-      });
+      _this.unlockEditor();
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageAlignment", function (alignment) {
@@ -2141,21 +2143,21 @@ function (_React$Component) {
         alignment: alignment
       }));
 
-      _this.props.editor.setDraftProps({
-        readOnly: false
-      });
+      _this.unlockEditor();
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "showToolbar", function (event) {
+      if (_this.props.editor.editorProps.readOnly || _this.props.editor.editorProps.disabled) {
+        return false;
+      }
+
       event.preventDefault();
 
       if (!_this.state.toolbarVisible) {
         _this.setState({
           toolbarVisible: true
         }, function () {
-          _this.props.editor.setDraftProps({
-            readOnly: true
-          });
+          _this.lockEditor();
 
           _this.setState({
             toolbarOffset: _this.calcToolbarOffset()
@@ -2170,9 +2172,7 @@ function (_React$Component) {
       _this.setState({
         toolbarVisible: false
       }, function () {
-        _this.props.editor.setDraftProps({
-          readOnly: false
-        });
+        _this.unlockEditor();
 
         _this.props.editor.requestFocus();
       });
@@ -2328,6 +2328,24 @@ function (_React$Component) {
           float: 'none'
         }
       }));
+    }
+  }, {
+    key: "lockEditor",
+    value: function lockEditor() {
+      if (!this.props.editor.editorProps.readOnly && !this.props.editor.editorProps.disabled) {
+        this.props.editor.setDraftProps({
+          readOnly: true
+        });
+      }
+    }
+  }, {
+    key: "unlockEditor",
+    value: function unlockEditor() {
+      if (!this.props.editor.editorProps.readOnly && !this.props.editor.editorProps.disabled) {
+        this.props.editor.setDraftProps({
+          readOnly: false
+        });
+      }
     }
   }, {
     key: "calcToolbarOffset",
@@ -5317,7 +5335,6 @@ function (_React$Component) {
         onTab: this.onTab,
         onFocus: this.onFocus,
         onBlur: this.onBlur,
-        readOnly: disabled || readOnly,
         blockRenderMap: blockRenderMap,
         blockRendererFn: blockRendererFn,
         blockStyleFn: blockStyleFn,
@@ -5326,11 +5343,13 @@ function (_React$Component) {
         keyBindingFn: keyBindingFn,
         placeholder: placeholder,
         stripPastedStyles: stripPastedStyles
-      }, this.editorProps.draftProps, this.state.draftProps);
+      }, this.editorProps.draftProps, this.state.draftProps, {
+        readOnly: disabled || readOnly
+      });
 
       return external_react_default.a.createElement("div", {
         ref: this.setEditorContainerNode,
-        className: "bf-container ".concat(className).concat(disabled ? ' disabled' : '').concat(readOnly ? ' read-only' : '').concat(isFullscreen ? ' fullscreen' : ''),
+        className: "bf-container".concat(className).concat(disabled ? ' disabled' : '').concat(readOnly ? ' read-only' : '').concat(isFullscreen ? ' fullscreen' : ''),
         style: style
       }, external_react_default.a.createElement(ControlBar_ControlBar, controlBarProps), componentBelowControlBar, external_react_default.a.createElement("div", {
         className: "bf-content ".concat(contentClassName),

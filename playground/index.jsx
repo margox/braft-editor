@@ -1,10 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
-import { ContentUtils } from 'braft-utils'
-import CodeHightlighter from 'braft-extensions/dist/code-highlighter'
-
-BraftEditor.use(CodeHightlighter())
 
 class Demo extends React.Component {
 
@@ -14,6 +10,7 @@ class Demo extends React.Component {
 
     this.state = {
       count: 0,
+      readOnly: false,
       editorState: BraftEditor.createEditorState(null)
     }
 
@@ -24,12 +21,15 @@ class Demo extends React.Component {
   }
 
   logHTML = () => {
+    this.setState({
+      readOnly: true
+    })
     console.log(this.state.editorState.toHTML())
   }
 
   render() {
 
-    const { editorState } = this.state
+    const { readOnly, editorState } = this.state
 
     return (
       <div>
@@ -54,6 +54,7 @@ class Demo extends React.Component {
             }]}
             value={editorState}
             onChange={this.handleChange}
+            readOnly={readOnly}
           />
         </div>
       </div>

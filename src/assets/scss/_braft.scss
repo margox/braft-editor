@@ -28,6 +28,11 @@
     .bf-controlbar{
       pointer-events: none;
     }
+    .bf-image{
+      img:hover{
+        outline: none;
+      }
+    }
   }
 
   &.fullscreen{
