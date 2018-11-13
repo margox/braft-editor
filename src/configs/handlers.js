@@ -144,7 +144,7 @@ export const dropHandlers = (selectionState, dataTransfer, editor) => {
 
     window.__BRAFT_DRAGING__IMAGE__ = null
 
-    editor.setDraftProps({ readOnly: false })
+    editor.lockOrUnlockEditor(true)
     editor.setValue(nextEditorState)
 
     return 'handled'

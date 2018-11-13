@@ -308,13 +308,8 @@ export default class BraftEditor extends React.Component {
 
   }
 
-  setDraftProps (draftProps) {
-    this.setState({
-      draftProps: {
-        ...this.state.draftProps,
-        ...draftProps
-      }
-    })
+  lockOrUnlockEditor (editorLocked) {
+    this.setState({ editorLocked })
   }
 
   setEditorContainerNode = (containerNode) => {
@@ -382,6 +377,12 @@ export default class BraftEditor extends React.Component {
 
     const keyBindingFn = getKeyBindingFn(this.editorProps.keyBindingFn)
 
+    const mixedProps = {}
+
+    if (this.state.editorLocked || this.editorProps.disabled || this.editorProps.readOnly || this.editorProps.draftProps.readOnly) {
+      mixedProps.readOnly = true
+    }
+
     const draftProps = {
       ref: instance => { this.draftInstance = instance },
       editorState: this.state.editorState,
@@ -400,8 +401,7 @@ export default class BraftEditor extends React.Component {
       customStyleMap, customStyleFn,
       keyBindingFn, placeholder, stripPastedStyles,
       ...this.editorProps.draftProps,
-      ...this.state.draftProps,
-      readOnly: disabled || readOnly,
+      ...mixedProps
     }
 
     return (

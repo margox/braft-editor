@@ -123,19 +123,11 @@ export default class Image extends React.Component {
   }
 
   lockEditor () {
-
-    if (!this.props.editor.editorProps.readOnly && !this.props.editor.editorProps.disabled) {
-      this.props.editor.setDraftProps({ readOnly: true })
-    }
-
+    this.props.editor.lockOrUnlockEditor(true)
   }
 
   unlockEditor () {
-
-    if (!this.props.editor.editorProps.readOnly && !this.props.editor.editorProps.disabled) {
-      this.props.editor.setDraftProps({ readOnly: false })
-    }
-
+    this.props.editor.lockOrUnlockEditor(false)
   }
 
   calcToolbarOffset () {

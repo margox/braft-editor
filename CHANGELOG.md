@@ -1,5 +1,8 @@
 ### 历史更新记录
 
+- 2018-11-13 v2.1.28
+  - 修复图片工具栏无法使用的问题[#293](https://github.com/margox/braft-editor/issues/293)
+  - 部分细节优化[#291](https://github.com/margox/braft-editor/issues/291)
 - 2018-11-12 v2.1.27
   - 修复readOnly为true时图片工具栏依然可用并导致readOnly属性失效的问题
 - 2018-10-29 v2.1.24
