@@ -1089,6 +1089,7 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
   },
   emojis: ['🤣', '🙌', '💚', '💛', '👏', '😉', '💯', '💕', '💞', '💘', '💙', '💝', '🖤', '💜', '❤️', '😍', '😻', '💓', '💗', '😋', '😇', '😂', '😹', '😘', '💖', '😁', '😀', '🤞', '😲', '😄', '😊', '👍', '😌', '😃', '😅', '✌️', '🤗', '💋', '😗', '😽', '😚', '🤠', '😙', '😺', '👄', '😸', '😏', '😼', '👌', '😎', '😆', '😛', '🙏', '🤝', '🙂', '🤑', '😝', '😐', '😑', '🤤', '😤', '🙃', '🤡', '😶', '😪', '😴', '😵', '😓', '👊', '😦', '😷', '🤐', '😜', '🤓', '👻', '😥', '🙄', '🤔', '🤒', '🙁', '😔', '😯', '☹️', '☠️', '😰', '😩', '😖', '😕', '😒', '😣', '😢', '😮', '😿', '🤧', '😫', '🤥', '😞', '😬', '👎', '💀', '😳', '😨', '🤕', '🤢', '😱', '😭', '😠', '😈', '😧', '💔', '😟', '🙀', '💩', '👿', '😡', '😾', '🖕'],
   stripPastedStyles: false,
+  triggerChangeOnMount: true,
   className: '',
   style: {},
   controlBarClassName: '',
@@ -1214,6 +1215,15 @@ var beforeInputHandlers = function beforeInputHandlers(chars, editorState, edito
   }
 
   return 'not-handled';
+};
+var handlers_compositionStartHandler = function compositionStartHandler(_, editor) {
+  var editorState = editor.state.editorState;
+  var selectedBlocks = external_braft_utils_["ContentUtils"].getSelectedBlocks(editorState);
+
+  if (selectedBlocks && selectedBlocks.length > 1) {
+    var nextEditorState = external_draft_js_["EditorState"].push(editorState, external_draft_js_["Modifier"].removeRange(editorState.getCurrentContent(), editorState.getSelection(), 'backward'), 'remove-range');
+    editor.setValue(nextEditorState);
+  }
 };
 var handlers_dropHandlers = function dropHandlers(selectionState, dataTransfer, editor) {
   if (editor.editorProps.readOnly || editor.editorProps.disabled) {
@@ -5003,6 +5013,10 @@ function (_React$Component) {
       return handlers_pastedTextHandlers(text, html, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCompositionStart", function (event) {
+      return handlers_compositionStartHandler(event, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
+    });
+
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "undo", function () {
       _this.setValue(external_braft_utils_["ContentUtils"].undo(_this.state.editorState));
     });
@@ -5120,7 +5134,7 @@ function (_React$Component) {
           tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), this.editorProps.colors),
           editorState: editorState
         }, function () {
-          _this3.props.onChange && _this3.props.onChange(editorState);
+          _this3.props.triggerChangeOnMount && _this3.props.onChange && _this3.props.onChange(editorState);
         });
       }
 
@@ -5342,9 +5356,10 @@ function (_React$Component) {
 
       return external_react_default.a.createElement("div", {
         ref: this.setEditorContainerNode,
-        className: "bf-container".concat(className).concat(disabled ? ' disabled' : '').concat(readOnly ? ' read-only' : '').concat(isFullscreen ? ' fullscreen' : ''),
+        className: "bf-container ".concat(className).concat(disabled ? ' disabled' : '').concat(readOnly ? ' read-only' : '').concat(isFullscreen ? ' fullscreen' : ''),
         style: style
       }, external_react_default.a.createElement(ControlBar_ControlBar, controlBarProps), componentBelowControlBar, external_react_default.a.createElement("div", {
+        onCompositionStart: this.handleCompositionStart,
         className: "bf-content ".concat(contentClassName),
         style: contentStyle
       }, external_react_default.a.createElement(external_draft_js_["Editor"], draftProps)));

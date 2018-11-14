@@ -1,5 +1,9 @@
 ### 历史更新记录
 
+- 2018-11-14 v2.1.29
+  - 尝试修复选中多行内容后输入中文导致页面报错的问题[[#295](https://github.com/margox/braft-editor/issues/295)]，依赖braft-utils@3.0.6
+  - 新增triggerChangeOnMount属性，用于指定在编辑器组件加载完成后是否触发一次onChange，默认为true
+  - 修复传入className属性导致编辑器显示异常的问题
 - 2018-11-13 v2.1.28
   - 修复图片工具栏无法使用的问题[#293](https://github.com/margox/braft-editor/issues/293)
   - 部分细节优化[#291](https://github.com/margox/braft-editor/issues/291)

@@ -1,5 +1,5 @@
 import { ContentUtils, ColorUtils } from 'braft-utils'
-import { RichUtils, EditorState } from 'draft-js'
+import { RichUtils, Modifier, EditorState } from 'draft-js'
 import { handleNewLine } from 'draftjs-utils'
 
 export const keyCommandHandlers = (command, editorState, editor) => {
@@ -127,6 +127,25 @@ export const beforeInputHandlers = (chars, editorState, editor) => {
   }
 
   return 'not-handled'
+
+}
+
+export const compositionStartHandler = (_, editor) => {
+
+  const { editorState } = editor.state
+  const selectedBlocks = ContentUtils.getSelectedBlocks(editorState)
+
+  if (selectedBlocks && selectedBlocks.length > 1) {
+
+    const nextEditorState = EditorState.push(
+      editorState,
+      Modifier.removeRange(editorState.getCurrentContent(), editorState.getSelection(), 'backward'),
+      'remove-range'
+    )
+
+    editor.setValue(nextEditorState)
+
+  }
 
 }
 

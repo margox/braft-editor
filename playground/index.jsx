@@ -21,9 +21,6 @@ class Demo extends React.Component {
   }
 
   logHTML = () => {
-    this.setState({
-      readOnly: true
-    })
     console.log(this.state.editorState.toHTML())
   }
 
@@ -52,9 +49,11 @@ class Demo extends React.Component {
                 component: <div>123123</div>
               }
             }]}
+            triggerChangeOnMount={false}
             value={editorState}
             onChange={this.handleChange}
             readOnly={readOnly}
+            stripPastedStyles={true}
           />
         </div>
       </div>

@@ -1151,13 +1151,13 @@ braft-convert@^2.1.4:
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
 
-braft-finder@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.12.tgz#d8b3164db0e62cf21ba9a0b53242536bfe5f5c6d"
+braft-finder@^0.0.14:
+  version "0.0.14"
+  resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.14.tgz#f5a65548a00dbe3193be58a90fffe5264f0a1184"
 
 braft-utils@^3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-3.0.4.tgz#dd3d00b8fb4c5e6548a80cbd08389bcc40361756"
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/braft-utils/-/braft-utils-3.0.6.tgz#5229014fb16879e9c6187e02dfc90fcbffa05937"
 
 brorand@^1.0.1:
   version "1.1.0"

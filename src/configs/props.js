@@ -109,6 +109,7 @@ export default {
     '💩', '👿', '😡', '😾', '🖕'
   ],
   stripPastedStyles: false,
+  triggerChangeOnMount: true,
   className: '',
   style: {},
   controlBarClassName: '',

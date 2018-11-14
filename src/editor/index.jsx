@@ -8,7 +8,7 @@ import { Editor } from 'draft-js'
 import { Map } from 'immutable'
 import getKeyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
-import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, pastedFilesHandlers, pastedTextHandlers } from 'configs/handlers'
+import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, pastedFilesHandlers, pastedTextHandlers, compositionStartHandler } from 'configs/handlers'
 import { getBlockRendererFn, getBlockRenderMap, getBlockStyleFn, getCustomStyleMap, getCustomStyleFn, getDecorators } from 'renderers'
 import { compositeStyleImportFn, compositeStyleExportFn, compositeEntityImportFn, compositeEntityExportFn, compositeBlockImportFn, compositeBlockExportFn, getPropInterceptors } from 'helpers/extension'
 import ControlBar from 'components/business/ControlBar'
@@ -124,7 +124,7 @@ export default class BraftEditor extends React.Component {
         tempColors: filterColors([...this.state.tempColors, ...tempColors], this.editorProps.colors),
         editorState: editorState
       }, () => {
-        this.props.onChange && this.props.onChange(editorState)
+        this.props.triggerChangeOnMount && this.props.onChange && this.props.onChange(editorState)
       })
 
     }
@@ -276,6 +276,8 @@ export default class BraftEditor extends React.Component {
 
   handlePastedText = (text, html, editorState) => pastedTextHandlers(text, html, editorState, this)
 
+  handleCompositionStart = (event) => compositionStartHandler(event, this)
+
   undo = () => {
     this.setValue(ContentUtils.undo(this.state.editorState))
   }
@@ -405,10 +407,18 @@ export default class BraftEditor extends React.Component {
     }
 
     return (
-      <div ref={this.setEditorContainerNode} className={`bf-container${className}${(disabled ? ' disabled' : '')}${(readOnly ? ' read-only' : '')}${isFullscreen ? ' fullscreen' : ''}`} style={style}>
+      <div
+        ref={this.setEditorContainerNode}
+        className={`bf-container ${className}${(disabled ? ' disabled' : '')}${(readOnly ? ' read-only' : '')}${isFullscreen ? ' fullscreen' : ''}`}
+        style={style}
+      >
         <ControlBar {...controlBarProps} />
         {componentBelowControlBar}
-        <div className={`bf-content ${contentClassName}`} style={contentStyle}>
+        <div
+          onCompositionStart={this.handleCompositionStart}
+          className={`bf-content ${contentClassName}`}
+          style={contentStyle}
+        >
           <Editor {...draftProps} />
         </div>
       </div>
