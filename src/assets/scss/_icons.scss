@@ -1,10 +1,8 @@
-$eotPath: '../icons/icons.eot';
-$ttfPath: '../icons/icons.ttf';
+$woffPath: '../icons/icons.woff';
 
 @font-face {
   font-family: 'braft-icons';
-  src: url($eotPath);
-  src: url($ttfPath) format('truetype');
+  src: url($woffPath);
   font-weight: normal;
   font-style: normal;
 }
@@ -23,6 +21,9 @@ $ttfPath: '../icons/icons.ttf';
     /* Better Font Rendering =========== */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  .bfi-table:before {
+    content: "\e228";
   }
   .bfi-clear_all:before {
     content: "\e0b8";
@@ -226,10 +227,12 @@ $ttfPath: '../icons/icons.ttf';
     content: "\e91f";
   }
   .bfi-text-color .path1:before {
+    font-family: 'braft-icons' !important;
     content: "\e930";
     opacity: 0.36;
   }
   .bfi-text-color .path2:before {
+    font-family: 'braft-icons' !important;
     content: "\e931";
     margin-left: -1em;
   }

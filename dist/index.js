@@ -1018,7 +1018,7 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
 // CONCATENATED MODULE: ./configs/props.js
 /* harmony default export */ var configs_props = ({
   language: 'zh',
-  controls: ['undo', 'redo', 'separator', 'font-size', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'separator', 'text-indent', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'media', 'link', 'split', 'hr', 'separator', 'clear', 'separator', 'fullscreen'],
+  controls: ['undo', 'redo', 'separator', 'font-size', 'line-height', 'letter-spacing', 'separator', 'text-color', 'bold', 'italic', 'underline', 'strike-through', 'separator', 'superscript', 'subscript', 'remove-styles', 'emoji', 'separator', 'text-indent', 'text-align', 'separator', 'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator', 'media', 'link', 'table', 'split', 'hr', 'separator', 'clear', 'separator', 'fullscreen'],
   excludeControls: [],
   extendControls: [],
   extendAtomics: [],
@@ -1703,10 +1703,10 @@ var slicedToArray = __webpack_require__(21);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
 // EXTERNAL MODULE: ./renderers/atomics/Image/style.scss
-var Image_style = __webpack_require__(37);
+var Image_style = __webpack_require__(36);
 
 // EXTERNAL MODULE: ./components/common/Switch/style.scss
-var Switch_style = __webpack_require__(38);
+var Switch_style = __webpack_require__(37);
 
 // CONCATENATED MODULE: ./components/common/Switch/index.jsx
 
@@ -2384,7 +2384,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
-var Video_style = __webpack_require__(39);
+var Video_style = __webpack_require__(38);
 
 // CONCATENATED MODULE: ./components/common/StaticContainer/index.jsx
 
@@ -2503,7 +2503,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(40);
+var Audio_style = __webpack_require__(39);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -2585,7 +2585,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(41);
+var Embed_style = __webpack_require__(40);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -2669,7 +2669,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(42);
+var HorizontalLine_style = __webpack_require__(41);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -3015,13 +3015,13 @@ var getCustomStyleMap = inlineStyleMap;
 var getCustomStyleFn = inlineStyleFn;
 var getDecorators = decorators;
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(43);
+var ControlBar_style = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
-var LinkEditor_style = __webpack_require__(44);
+var LinkEditor_style = __webpack_require__(43);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
-var DropDown_style = __webpack_require__(45);
+var DropDown_style = __webpack_require__(44);
 
 // CONCATENATED MODULE: ./helpers/responsive.js
 
@@ -3457,7 +3457,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/Headings/style.scss
-var Headings_style = __webpack_require__(46);
+var Headings_style = __webpack_require__(45);
 
 // CONCATENATED MODULE: ./configs/maps.js
 
@@ -3547,10 +3547,10 @@ var blocks = {
   })));
 });
 // EXTERNAL MODULE: ./components/business/TextColor/style.scss
-var TextColor_style = __webpack_require__(47);
+var TextColor_style = __webpack_require__(46);
 
 // EXTERNAL MODULE: ./components/common/ColorPicker/style.scss
-var ColorPicker_style = __webpack_require__(48);
+var ColorPicker_style = __webpack_require__(47);
 
 // CONCATENATED MODULE: ./components/common/ColorPicker/index.jsx
 
@@ -3728,7 +3728,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/FontSize/style.scss
-var FontSize_style = __webpack_require__(49);
+var FontSize_style = __webpack_require__(48);
 
 // CONCATENATED MODULE: ./components/business/FontSize/index.jsx
 
@@ -3783,7 +3783,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/LineHeight/style.scss
-var LineHeight_style = __webpack_require__(50);
+var LineHeight_style = __webpack_require__(49);
 
 // CONCATENATED MODULE: ./components/business/LineHeight/index.jsx
 
@@ -3838,7 +3838,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/FontFamily/style.scss
-var FontFamily_style = __webpack_require__(51);
+var FontFamily_style = __webpack_require__(50);
 
 // CONCATENATED MODULE: ./components/business/FontFamily/index.jsx
 
@@ -3981,7 +3981,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/EmojiPicker/style.scss
-var EmojiPicker_style = __webpack_require__(52);
+var EmojiPicker_style = __webpack_require__(51);
 
 // CONCATENATED MODULE: ./components/business/EmojiPicker/index.jsx
 
@@ -4027,7 +4027,7 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
   }))));
 });
 // EXTERNAL MODULE: ./components/business/LetterSpacing/style.scss
-var LetterSpacing_style = __webpack_require__(53);
+var LetterSpacing_style = __webpack_require__(52);
 
 // CONCATENATED MODULE: ./components/business/LetterSpacing/index.jsx
 
@@ -4169,7 +4169,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/common/Modal/style.scss
-var Modal_style = __webpack_require__(54);
+var Modal_style = __webpack_require__(53);
 
 // EXTERNAL MODULE: external "react-dom"
 var external_react_dom_ = __webpack_require__(15);
@@ -5466,7 +5466,12 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 /***/ }),
 /* 34 */,
 /* 35 */,
-/* 36 */,
+/* 36 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
 /* 37 */
 /***/ (function(module, exports) {
 
@@ -5564,12 +5569,6 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 
 /***/ }),
 /* 53 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 54 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

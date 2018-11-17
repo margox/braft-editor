@@ -7,7 +7,7 @@ export default {
     'superscript', 'subscript', 'remove-styles', 'emoji', 'separator',
     'text-indent', 'text-align', 'separator',
     'headings', 'list-ul', 'list-ol', 'blockquote', 'code', 'separator',
-    'media', 'link', 'split', 'hr', 'separator',
+    'media', 'link', 'table', 'split', 'hr', 'separator',
     'clear', 'separator',
     'fullscreen'
   ],
