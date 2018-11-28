@@ -4,11 +4,11 @@ import React from 'react'
 import languages from 'languages'
 import BraftFinder from 'braft-finder'
 import { ColorUtils, ContentUtils } from 'braft-utils'
-import { Editor } from 'draft-js'
+import { Editor, EditorState } from 'draft-js'
 import { Map } from 'immutable'
 import getKeyBindingFn from 'configs/keybindings'
 import defaultProps from 'configs/props'
-import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, pastedFilesHandlers, pastedTextHandlers, compositionStartHandler } from 'configs/handlers'
+import { keyCommandHandlers, returnHandlers, beforeInputHandlers, dropHandlers, droppedFilesHandlers, copyHandlers, pastedFilesHandlers, pastedTextHandlers, compositionStartHandler } from 'configs/handlers'
 import { getBlockRendererFn, getBlockRenderMap, getBlockStyleFn, getCustomStyleMap, getCustomStyleFn, getDecorators } from 'renderers'
 import { compositeStyleImportFn, compositeStyleExportFn, compositeEntityImportFn, compositeEntityExportFn, compositeBlockImportFn, compositeBlockExportFn, getPropInterceptors } from 'helpers/extension'
 import ControlBar from 'components/business/ControlBar'
@@ -56,7 +56,7 @@ export default class BraftEditor extends React.Component {
     this.braftFinder = null
     this.valueInitialized = !!(this.props.defaultValue || this.props.value)
 
-    const defaultEditorState = ContentUtils.isEditorState(this.props.defaultValue || this.props.value) ? (this.props.defaultValue || this.props.value) : ContentUtils.createEmptyEditorState(this.editorDecorators)
+    const defaultEditorState = (this.props.defaultValue || this.props.value) instanceof EditorState ? (this.props.defaultValue || this.props.value) : EditorState.createEmpty(this.editorDecorators)
     defaultEditorState.setConvertOptions(getConvertOptions(this.editorProps))
 
     this.state = {
@@ -207,6 +207,12 @@ export default class BraftEditor extends React.Component {
 
   onChange = (editorState, callback) => {
 
+    if (!(editorState instanceof EditorState)) {
+      editorState = EditorState.set(editorState, {
+        decorator: this.editorDecorators
+      })
+    }
+
     if (!editorState.convertOptions) {
       editorState.setConvertOptions(getConvertOptions(this.editorProps))
     }
@@ -273,6 +279,8 @@ export default class BraftEditor extends React.Component {
   handleDroppedFiles = (selectionState, files) => droppedFilesHandlers(selectionState, files, this)
 
   handlePastedFiles = (files) => pastedFilesHandlers(files, this)
+
+  handleCopyContent = (event) => copyHandlers(event, this)
 
   handlePastedText = (text, html, editorState) => pastedTextHandlers(text, html, editorState, this)
 
@@ -408,9 +416,10 @@ export default class BraftEditor extends React.Component {
 
     return (
       <div
+        style={style}
         ref={this.setEditorContainerNode}
         className={`bf-container ${className}${(disabled ? ' disabled' : '')}${(readOnly ? ' read-only' : '')}${isFullscreen ? ' fullscreen' : ''}`}
-        style={style}
+        onCopy={this.handleCopyContent}
       >
         <ControlBar {...controlBarProps} />
         {componentBelowControlBar}
@@ -427,3 +436,5 @@ export default class BraftEditor extends React.Component {
   }
 
 }
+
+export { EditorState }

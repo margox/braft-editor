@@ -1,5 +1,4 @@
-import BraftEditor from './editor'
-import { EditorState } from 'draft-js'
+import BraftEditor, { EditorState } from './editor'
 import { convertRawToEditorState, convertHTMLToEditorState, convertEditorStateToRaw, convertEditorStateToHTML } from 'braft-convert'
 import { createExtensibleEditor, compositeStyleImportFn, compositeStyleExportFn, compositeEntityImportFn, compositeEntityExportFn, compositeBlockImportFn, compositeBlockExportFn } from 'helpers/extension'
 import { getDecorators } from 'renderers'

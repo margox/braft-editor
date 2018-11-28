@@ -6,7 +6,7 @@
     "prismjs": "^1.15.0"
   },
   "dependencies": {
-    "braft-extensions": "^0.0.8",
+    "braft-extensions": "beta",
     "react-color": "^2.14.1"
   }
 }

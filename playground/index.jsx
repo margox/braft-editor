@@ -1,6 +1,15 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
+import Emoticon, { defaultEmoticons } from 'braft-extensions/dist/emoticon'
+
+import 'braft-extensions/dist/emoticon.css'
+
+const emoticons = defaultEmoticons.map(item => require(`braft-extensions/dist/assets/${item}`))
+
+BraftEditor.use(Emoticon({
+  emoticons: emoticons
+}))
 
 class Demo extends React.Component {
 
@@ -53,7 +62,6 @@ class Demo extends React.Component {
             value={editorState}
             onChange={this.handleChange}
             readOnly={readOnly}
-            stripPastedStyles={true}
           />
         </div>
       </div>

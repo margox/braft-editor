@@ -2,9 +2,10 @@
 
 #### 一个基于draft-js的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
 #### [使用文档](https://www.yuque.com/margox/be) [在线演示](https://braft.margox.cn/demos/basic)
-##### 注意，项目当前版本为2.1，如果你使用的是1.x.x版本，请参阅[旧版本文档](https://github.com/margox/braft-editor/blob/old-master/README.md)
+##### 注意，项目当前版本为2.x，如果你使用的是1.x.x版本，请参阅[旧版本文档](https://github.com/margox/braft-editor/blob/old-master/README.md)
 
 ### 编辑器专用扩展包已发布，请查看[Braft Extensions](https://github.com/margox/braft-extensions)
+表格扩展模块已发布测试版本，请安装升级braft-editor和braft-utils到最新版本，并安装braft-extensions@beta，使用方式请查看[[表格扩展模块](https://github.com/margox/braft-extensions/tree/dev_table#%E8%A1%A8%E6%A0%BC%E6%A8%A1%E5%9D%97)]
 
 交流反馈请加QQ群：725634541
 
@@ -29,6 +30,11 @@
 
 ## 近期更新记录
 
+- 2018-11-27 v2.1.32
+  - 优化图片工具栏的展示
+  - 优化编辑器内复制粘贴
+  - 修复部分图标在某些情况下显示异常的问题
+  - 修复其他问题
 - 2018-11-14 v2.1.29
   - 尝试修复选中多行内容后输入中文导致页面报错的问题[[#295](https://github.com/margox/braft-editor/issues/295)]，依赖braft-utils@3.0.6
   - 新增triggerChangeOnMount属性，用于指定在编辑器组件加载完成后是否触发一次onChange，默认为true

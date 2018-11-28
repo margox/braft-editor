@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("immutable"), require("braft-convert"), require("react-dom"), require("braft-finder"), require("draftjs-utils")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["immutable"], root["braft-convert"], root["react-dom"], root["braft-finder"], root["draftjs-utils"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__20__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__10__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__23__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 30);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -210,7 +210,7 @@ module.exports = _getPrototypeOf;
 /* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(23);
+var setPrototypeOf = __webpack_require__(26);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -290,11 +290,11 @@ module.exports = _extends;
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(24);
+var arrayWithoutHoles = __webpack_require__(27);
 
-var iterableToArray = __webpack_require__(25);
+var iterableToArray = __webpack_require__(28);
 
-var nonIterableSpread = __webpack_require__(26);
+var nonIterableSpread = __webpack_require__(29);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
@@ -443,7 +443,177 @@ module.exports = MultiDecorator;
 /* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var objectWithoutPropertiesLoose = __webpack_require__(22);
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule CharacterMetadata
+ * @format
+ * 
+ */
+
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _require = __webpack_require__(13),
+    Map = _require.Map,
+    OrderedSet = _require.OrderedSet,
+    Record = _require.Record;
+
+// Immutable.map is typed such that the value for every key in the map
+// must be the same type
+
+
+var EMPTY_SET = OrderedSet();
+
+var defaultRecord = {
+  style: EMPTY_SET,
+  entity: null
+};
+
+var CharacterMetadataRecord = Record(defaultRecord);
+
+var CharacterMetadata = function (_CharacterMetadataRec) {
+  _inherits(CharacterMetadata, _CharacterMetadataRec);
+
+  function CharacterMetadata() {
+    _classCallCheck(this, CharacterMetadata);
+
+    return _possibleConstructorReturn(this, _CharacterMetadataRec.apply(this, arguments));
+  }
+
+  CharacterMetadata.prototype.getStyle = function getStyle() {
+    return this.get('style');
+  };
+
+  CharacterMetadata.prototype.getEntity = function getEntity() {
+    return this.get('entity');
+  };
+
+  CharacterMetadata.prototype.hasStyle = function hasStyle(style) {
+    return this.getStyle().includes(style);
+  };
+
+  CharacterMetadata.applyStyle = function applyStyle(record, style) {
+    var withStyle = record.set('style', record.getStyle().add(style));
+    return CharacterMetadata.create(withStyle);
+  };
+
+  CharacterMetadata.removeStyle = function removeStyle(record, style) {
+    var withoutStyle = record.set('style', record.getStyle().remove(style));
+    return CharacterMetadata.create(withoutStyle);
+  };
+
+  CharacterMetadata.applyEntity = function applyEntity(record, entityKey) {
+    var withEntity = record.getEntity() === entityKey ? record : record.set('entity', entityKey);
+    return CharacterMetadata.create(withEntity);
+  };
+
+  /**
+   * Use this function instead of the `CharacterMetadata` constructor.
+   * Since most content generally uses only a very small number of
+   * style/entity permutations, we can reuse these objects as often as
+   * possible.
+   */
+
+
+  CharacterMetadata.create = function create(config) {
+    if (!config) {
+      return EMPTY;
+    }
+
+    var defaultConfig = {
+      style: EMPTY_SET,
+      entity: null
+    };
+
+    // Fill in unspecified properties, if necessary.
+    var configMap = Map(defaultConfig).merge(config);
+
+    var existing = pool.get(configMap);
+    if (existing) {
+      return existing;
+    }
+
+    var newCharacter = new CharacterMetadata(configMap);
+    pool = pool.set(configMap, newCharacter);
+    return newCharacter;
+  };
+
+  return CharacterMetadata;
+}(CharacterMetadataRecord);
+
+var EMPTY = new CharacterMetadata();
+var pool = Map([[Map(defaultRecord), EMPTY]]);
+
+CharacterMetadata.EMPTY = EMPTY;
+
+module.exports = CharacterMetadata;
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule findRangesImmutable
+ * @format
+ * 
+ */
+
+
+
+/**
+ * Search through an array to find contiguous stretches of elements that
+ * match a specified filter function.
+ *
+ * When ranges are found, execute a specified `found` function to supply
+ * the values to the caller.
+ */
+function findRangesImmutable(haystack, areEqualFn, filterFn, foundFn) {
+  if (!haystack.size) {
+    return;
+  }
+
+  var cursor = 0;
+
+  haystack.reduce(function (value, nextValue, nextIndex) {
+    if (!areEqualFn(value, nextValue)) {
+      if (filterFn(value)) {
+        foundFn(cursor, nextIndex);
+      }
+      cursor = nextIndex;
+    }
+    return nextValue;
+  });
+
+  filterFn(haystack.last()) && foundFn(cursor, haystack.count());
+}
+
+module.exports = findRangesImmutable;
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var objectWithoutPropertiesLoose = __webpack_require__(25);
 
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
@@ -467,20 +637,54 @@ function _objectWithoutProperties(source, excluded) {
 module.exports = _objectWithoutProperties;
 
 /***/ }),
-/* 20 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__20__;
-
-/***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(27);
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule getFragmentFromSelection
+ * @format
+ * 
+ */
 
-var iterableToArrayLimit = __webpack_require__(28);
 
-var nonIterableRest = __webpack_require__(29);
+
+var getContentStateFragment = __webpack_require__(30);
+
+function getFragmentFromSelection(editorState) {
+  var selectionState = editorState.getSelection();
+
+  if (selectionState.isCollapsed()) {
+    return null;
+  }
+
+  return getContentStateFragment(editorState.getCurrentContent(), selectionState);
+}
+
+module.exports = getFragmentFromSelection;
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__23__;
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var arrayWithHoles = __webpack_require__(36);
+
+var iterableToArrayLimit = __webpack_require__(37);
+
+var nonIterableRest = __webpack_require__(38);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
@@ -489,7 +693,7 @@ function _slicedToArray(arr, i) {
 module.exports = _slicedToArray;
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports) {
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -510,7 +714,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 module.exports = _objectWithoutPropertiesLoose;
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -525,7 +729,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf;
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports) {
 
 function _arrayWithoutHoles(arr) {
@@ -541,7 +745,7 @@ function _arrayWithoutHoles(arr) {
 module.exports = _arrayWithoutHoles;
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -551,7 +755,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray;
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
@@ -561,7 +765,551 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread;
 
 /***/ }),
-/* 27 */
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule getContentStateFragment
+ * @format
+ * 
+ */
+
+
+
+var randomizeBlockMapKeys = __webpack_require__(31);
+var removeEntitiesAtEdges = __webpack_require__(34);
+
+var getContentStateFragment = function getContentStateFragment(contentState, selectionState) {
+  var startKey = selectionState.getStartKey();
+  var startOffset = selectionState.getStartOffset();
+  var endKey = selectionState.getEndKey();
+  var endOffset = selectionState.getEndOffset();
+
+  // Edge entities should be stripped to ensure that we don't preserve
+  // invalid partial entities when the fragment is reused. We do, however,
+  // preserve entities that are entirely within the selection range.
+  var contentWithoutEdgeEntities = removeEntitiesAtEdges(contentState, selectionState);
+
+  var blockMap = contentWithoutEdgeEntities.getBlockMap();
+  var blockKeys = blockMap.keySeq();
+  var startIndex = blockKeys.indexOf(startKey);
+  var endIndex = blockKeys.indexOf(endKey) + 1;
+
+  return randomizeBlockMapKeys(blockMap.slice(startIndex, endIndex).map(function (block, blockKey) {
+    var text = block.getText();
+    var chars = block.getCharacterList();
+
+    if (startKey === endKey) {
+      return block.merge({
+        text: text.slice(startOffset, endOffset),
+        characterList: chars.slice(startOffset, endOffset)
+      });
+    }
+
+    if (blockKey === startKey) {
+      return block.merge({
+        text: text.slice(startOffset),
+        characterList: chars.slice(startOffset)
+      });
+    }
+
+    if (blockKey === endKey) {
+      return block.merge({
+        text: text.slice(0, endOffset),
+        characterList: chars.slice(0, endOffset)
+      });
+    }
+
+    return block;
+  }));
+};
+
+module.exports = getContentStateFragment;
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule randomizeBlockMapKeys
+ * @format
+ * 
+ */
+
+
+
+var ContentBlockNode = __webpack_require__(32);
+var Immutable = __webpack_require__(13);
+
+var generateRandomKey = __webpack_require__(33);
+
+var OrderedMap = Immutable.OrderedMap;
+
+
+var randomizeContentBlockNodeKeys = function randomizeContentBlockNodeKeys(blockMap) {
+  var newKeysRef = {};
+
+  // we keep track of root blocks in order to update subsequent sibling links
+  var lastRootBlock = void 0;
+
+  return OrderedMap(blockMap.withMutations(function (blockMapState) {
+    blockMapState.forEach(function (block, index) {
+      var oldKey = block.getKey();
+      var nextKey = block.getNextSiblingKey();
+      var prevKey = block.getPrevSiblingKey();
+      var childrenKeys = block.getChildKeys();
+      var parentKey = block.getParentKey();
+
+      // new key that we will use to build linking
+      var key = generateRandomKey();
+
+      // we will add it here to re-use it later
+      newKeysRef[oldKey] = key;
+
+      if (nextKey) {
+        var nextBlock = blockMapState.get(nextKey);
+        if (nextBlock) {
+          blockMapState.setIn([nextKey, 'prevSibling'], key);
+        } else {
+          // this can happen when generating random keys for fragments
+          blockMapState.setIn([oldKey, 'nextSibling'], null);
+        }
+      }
+
+      if (prevKey) {
+        var prevBlock = blockMapState.get(prevKey);
+        if (prevBlock) {
+          blockMapState.setIn([prevKey, 'nextSibling'], key);
+        } else {
+          // this can happen when generating random keys for fragments
+          blockMapState.setIn([oldKey, 'prevSibling'], null);
+        }
+      }
+
+      if (parentKey && blockMapState.get(parentKey)) {
+        var parentBlock = blockMapState.get(parentKey);
+        var parentChildrenList = parentBlock.getChildKeys();
+        blockMapState.setIn([parentKey, 'children'], parentChildrenList.set(parentChildrenList.indexOf(block.getKey()), key));
+      } else {
+        // blocks will then be treated as root block nodes
+        blockMapState.setIn([oldKey, 'parent'], null);
+
+        if (lastRootBlock) {
+          blockMapState.setIn([lastRootBlock.getKey(), 'nextSibling'], key);
+          blockMapState.setIn([oldKey, 'prevSibling'], newKeysRef[lastRootBlock.getKey()]);
+        }
+
+        lastRootBlock = blockMapState.get(oldKey);
+      }
+
+      childrenKeys.forEach(function (childKey) {
+        var childBlock = blockMapState.get(childKey);
+        if (childBlock) {
+          blockMapState.setIn([childKey, 'parent'], key);
+        } else {
+          blockMapState.setIn([oldKey, 'children'], block.getChildKeys().filter(function (child) {
+            return child !== childKey;
+          }));
+        }
+      });
+    });
+  }).toArray().map(function (block) {
+    return [newKeysRef[block.getKey()], block.set('key', newKeysRef[block.getKey()])];
+  }));
+};
+
+var randomizeContentBlockKeys = function randomizeContentBlockKeys(blockMap) {
+  return OrderedMap(blockMap.toArray().map(function (block) {
+    var key = generateRandomKey();
+    return [key, block.set('key', key)];
+  }));
+};
+
+var randomizeBlockMapKeys = function randomizeBlockMapKeys(blockMap) {
+  var isTreeBasedBlockMap = blockMap.first() instanceof ContentBlockNode;
+
+  if (!isTreeBasedBlockMap) {
+    return randomizeContentBlockKeys(blockMap);
+  }
+
+  return randomizeContentBlockNodeKeys(blockMap);
+};
+
+module.exports = randomizeBlockMapKeys;
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule ContentBlockNode
+ * @format
+ * 
+ *
+ * This file is a fork of ContentBlock adding support for nesting references by
+ * providing links to children, parent, prevSibling, and nextSibling.
+ *
+ * This is unstable and not part of the public API and should not be used by
+ * production systems. This file may be update/removed without notice.
+ */
+
+
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var CharacterMetadata = __webpack_require__(19);
+var Immutable = __webpack_require__(13);
+
+var findRangesImmutable = __webpack_require__(20);
+
+var List = Immutable.List,
+    Map = Immutable.Map,
+    OrderedSet = Immutable.OrderedSet,
+    Record = Immutable.Record,
+    Repeat = Immutable.Repeat;
+
+
+var EMPTY_SET = OrderedSet();
+
+var defaultRecord = {
+  parent: null,
+  characterList: List(),
+  data: Map(),
+  depth: 0,
+  key: '',
+  text: '',
+  type: 'unstyled',
+  children: List(),
+  prevSibling: null,
+  nextSibling: null
+};
+
+var haveEqualStyle = function haveEqualStyle(charA, charB) {
+  return charA.getStyle() === charB.getStyle();
+};
+
+var haveEqualEntity = function haveEqualEntity(charA, charB) {
+  return charA.getEntity() === charB.getEntity();
+};
+
+var decorateCharacterList = function decorateCharacterList(config) {
+  if (!config) {
+    return config;
+  }
+
+  var characterList = config.characterList,
+      text = config.text;
+
+
+  if (text && !characterList) {
+    config.characterList = List(Repeat(CharacterMetadata.EMPTY, text.length));
+  }
+
+  return config;
+};
+
+var ContentBlockNode = function (_Record) {
+  _inherits(ContentBlockNode, _Record);
+
+  function ContentBlockNode() {
+    var props = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : defaultRecord;
+
+    _classCallCheck(this, ContentBlockNode);
+
+    return _possibleConstructorReturn(this, _Record.call(this, decorateCharacterList(props)));
+  }
+
+  ContentBlockNode.prototype.getKey = function getKey() {
+    return this.get('key');
+  };
+
+  ContentBlockNode.prototype.getType = function getType() {
+    return this.get('type');
+  };
+
+  ContentBlockNode.prototype.getText = function getText() {
+    return this.get('text');
+  };
+
+  ContentBlockNode.prototype.getCharacterList = function getCharacterList() {
+    return this.get('characterList');
+  };
+
+  ContentBlockNode.prototype.getLength = function getLength() {
+    return this.getText().length;
+  };
+
+  ContentBlockNode.prototype.getDepth = function getDepth() {
+    return this.get('depth');
+  };
+
+  ContentBlockNode.prototype.getData = function getData() {
+    return this.get('data');
+  };
+
+  ContentBlockNode.prototype.getInlineStyleAt = function getInlineStyleAt(offset) {
+    var character = this.getCharacterList().get(offset);
+    return character ? character.getStyle() : EMPTY_SET;
+  };
+
+  ContentBlockNode.prototype.getEntityAt = function getEntityAt(offset) {
+    var character = this.getCharacterList().get(offset);
+    return character ? character.getEntity() : null;
+  };
+
+  ContentBlockNode.prototype.getChildKeys = function getChildKeys() {
+    return this.get('children');
+  };
+
+  ContentBlockNode.prototype.getParentKey = function getParentKey() {
+    return this.get('parent');
+  };
+
+  ContentBlockNode.prototype.getPrevSiblingKey = function getPrevSiblingKey() {
+    return this.get('prevSibling');
+  };
+
+  ContentBlockNode.prototype.getNextSiblingKey = function getNextSiblingKey() {
+    return this.get('nextSibling');
+  };
+
+  ContentBlockNode.prototype.findStyleRanges = function findStyleRanges(filterFn, callback) {
+    findRangesImmutable(this.getCharacterList(), haveEqualStyle, filterFn, callback);
+  };
+
+  ContentBlockNode.prototype.findEntityRanges = function findEntityRanges(filterFn, callback) {
+    findRangesImmutable(this.getCharacterList(), haveEqualEntity, filterFn, callback);
+  };
+
+  return ContentBlockNode;
+}(Record(defaultRecord));
+
+module.exports = ContentBlockNode;
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule generateRandomKey
+ * @format
+ * 
+ */
+
+
+
+var seenKeys = {};
+var MULTIPLIER = Math.pow(2, 24);
+
+function generateRandomKey() {
+  var key = void 0;
+  while (key === undefined || seenKeys.hasOwnProperty(key) || !isNaN(+key)) {
+    key = Math.floor(Math.random() * MULTIPLIER).toString(32);
+  }
+  seenKeys[key] = true;
+  return key;
+}
+
+module.exports = generateRandomKey;
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ * All rights reserved.
+ *
+ * This source code is licensed under the BSD-style license found in the
+ * LICENSE file in the root directory of this source tree. An additional grant
+ * of patent rights can be found in the PATENTS file in the same directory.
+ *
+ * @providesModule removeEntitiesAtEdges
+ * @format
+ * 
+ */
+
+
+
+var CharacterMetadata = __webpack_require__(19);
+
+var findRangesImmutable = __webpack_require__(20);
+var invariant = __webpack_require__(35);
+
+function removeEntitiesAtEdges(contentState, selectionState) {
+  var blockMap = contentState.getBlockMap();
+  var entityMap = contentState.getEntityMap();
+
+  var updatedBlocks = {};
+
+  var startKey = selectionState.getStartKey();
+  var startOffset = selectionState.getStartOffset();
+  var startBlock = blockMap.get(startKey);
+  var updatedStart = removeForBlock(entityMap, startBlock, startOffset);
+
+  if (updatedStart !== startBlock) {
+    updatedBlocks[startKey] = updatedStart;
+  }
+
+  var endKey = selectionState.getEndKey();
+  var endOffset = selectionState.getEndOffset();
+  var endBlock = blockMap.get(endKey);
+  if (startKey === endKey) {
+    endBlock = updatedStart;
+  }
+
+  var updatedEnd = removeForBlock(entityMap, endBlock, endOffset);
+
+  if (updatedEnd !== endBlock) {
+    updatedBlocks[endKey] = updatedEnd;
+  }
+
+  if (!Object.keys(updatedBlocks).length) {
+    return contentState.set('selectionAfter', selectionState);
+  }
+
+  return contentState.merge({
+    blockMap: blockMap.merge(updatedBlocks),
+    selectionAfter: selectionState
+  });
+}
+
+function getRemovalRange(characters, key, offset) {
+  var removalRange;
+  findRangesImmutable(characters, function (a, b) {
+    return a.getEntity() === b.getEntity();
+  }, function (element) {
+    return element.getEntity() === key;
+  }, function (start, end) {
+    if (start <= offset && end >= offset) {
+      removalRange = { start: start, end: end };
+    }
+  });
+  !(typeof removalRange === 'object') ?  false ? undefined : invariant(false) : void 0;
+  return removalRange;
+}
+
+function removeForBlock(entityMap, block, offset) {
+  var chars = block.getCharacterList();
+  var charBefore = offset > 0 ? chars.get(offset - 1) : undefined;
+  var charAfter = offset < chars.count() ? chars.get(offset) : undefined;
+  var entityBeforeCursor = charBefore ? charBefore.getEntity() : undefined;
+  var entityAfterCursor = charAfter ? charAfter.getEntity() : undefined;
+
+  if (entityAfterCursor && entityAfterCursor === entityBeforeCursor) {
+    var entity = entityMap.__get(entityAfterCursor);
+    if (entity.getMutability() !== 'MUTABLE') {
+      var _getRemovalRange = getRemovalRange(chars, entityAfterCursor, offset),
+          start = _getRemovalRange.start,
+          end = _getRemovalRange.end;
+
+      var current;
+      while (start < end) {
+        current = chars.get(start);
+        chars = chars.set(start, CharacterMetadata.applyEntity(current, null));
+        start++;
+      }
+      return block.set('characterList', chars);
+    }
+  }
+
+  return block;
+}
+
+module.exports = removeEntitiesAtEdges;
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+
+
+/**
+ * Use invariant() to assert state which your program assumes to be true.
+ *
+ * Provide sprintf-style format (only %s is supported) and arguments
+ * to provide information about what broke and what you were
+ * expecting.
+ *
+ * The invariant message will be stripped in production, but the invariant
+ * will remain to ensure logic does not differ in production.
+ */
+
+var validateFormat = function validateFormat(format) {};
+
+if (false) {}
+
+function invariant(condition, format, a, b, c, d, e, f) {
+  validateFormat(format);
+
+  if (!condition) {
+    var error;
+    if (format === undefined) {
+      error = new Error('Minified exception occurred; use the non-minified dev environment ' + 'for the full error message and additional helpful warnings.');
+    } else {
+      var args = [a, b, c, d, e, f];
+      var argIndex = 0;
+      error = new Error(format.replace(/%s/g, function () {
+        return args[argIndex++];
+      }));
+      error.name = 'Invariant Violation';
+    }
+
+    error.framesToPop = 1; // we don't care about invariant's own frame
+    throw error;
+  }
+}
+
+module.exports = invariant;
+
+/***/ }),
+/* 36 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -571,7 +1319,7 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 28 */
+/* 37 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
@@ -603,7 +1351,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit;
 
 /***/ }),
-/* 29 */
+/* 38 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -613,7 +1361,7 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 30 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -628,7 +1376,7 @@ var objectSpread = __webpack_require__(9);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectWithoutProperties.js
-var objectWithoutProperties = __webpack_require__(19);
+var objectWithoutProperties = __webpack_require__(21);
 var objectWithoutProperties_default = /*#__PURE__*/__webpack_require__.n(objectWithoutProperties);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/classCallCheck.js
@@ -664,10 +1412,10 @@ var toConsumableArray = __webpack_require__(12);
 var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
 
 // EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
-var Draft = __webpack_require__(31);
+var Draft = __webpack_require__(40);
 
 // EXTERNAL MODULE: ./assets/scss/_base.scss
-var _base = __webpack_require__(33);
+var _base = __webpack_require__(42);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(0);
@@ -1105,10 +1853,15 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
   onDelete: null,
   onSave: null
 });
+// EXTERNAL MODULE: ../node_modules/draft-js/lib/getFragmentFromSelection.js
+var getFragmentFromSelection = __webpack_require__(22);
+var getFragmentFromSelection_default = /*#__PURE__*/__webpack_require__.n(getFragmentFromSelection);
+
 // EXTERNAL MODULE: external "draftjs-utils"
-var external_draftjs_utils_ = __webpack_require__(20);
+var external_draftjs_utils_ = __webpack_require__(23);
 
 // CONCATENATED MODULE: ./configs/handlers.js
+
 
 
 
@@ -1275,9 +2028,32 @@ var pastedFilesHandlers = function pastedFilesHandlers(files, editor) {
 
   return handlers_handleFiles(files, editor);
 };
+var handlers_copyHandlers = function copyHandlers(event, editor) {
+  var blockMap = getFragmentFromSelection_default()(editor.state.editorState);
+
+  if (blockMap && blockMap.toJS) {
+    try {
+      (event.clipboardData || window.clipboardData || event.originalEvent.clipboardData).setData('text/plain', '__BRAFT_CLIPBOARD_DATA__');
+      window.__BRAFT_CLIPBOARD_DATA__ = blockMap;
+      event.preventDefault();
+    } catch (error) {
+      console.warn(error);
+    }
+  }
+};
 var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editorState, editor) {
   if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState, editor) === 'handled') {
     return 'handled';
+  }
+
+  if (text === '__BRAFT_CLIPBOARD_DATA__' && window.__BRAFT_CLIPBOARD_DATA__) {
+    try {
+      editor.setValue(external_draft_js_["EditorState"].push(editorState, external_draft_js_["Modifier"].replaceWithFragment(editorState.getCurrentContent(), editorState.getSelection(), window.__BRAFT_CLIPBOARD_DATA__), 'insert-fragment'));
+      return 'handled';
+    } catch (error) {
+      console.log(error);
+      return 'not-handler';
+    }
   }
 
   if (!html || editor.editorProps.stripPastedStyles) {
@@ -1699,14 +2475,14 @@ var helpers_extends = __webpack_require__(11);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/slicedToArray.js
-var slicedToArray = __webpack_require__(21);
+var slicedToArray = __webpack_require__(24);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
 // EXTERNAL MODULE: ./renderers/atomics/Image/style.scss
-var Image_style = __webpack_require__(36);
+var Image_style = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./components/common/Switch/style.scss
-var Switch_style = __webpack_require__(37);
+var Switch_style = __webpack_require__(46);
 
 // CONCATENATED MODULE: ./components/common/Switch/index.jsx
 
@@ -2354,7 +3130,7 @@ function (_React$Component) {
         return 0;
       }
 
-      var viewRect = this.props.containerNode.getBoundingClientRect();
+      var viewRect = this.props.containerNode.querySelector('.bf-content').getBoundingClientRect();
       var toolbarRect = this.toolbarElement.getBoundingClientRect();
       var imageRect = this.imageElement.getBoundingClientRect();
       var right = viewRect.right - (imageRect.right - imageRect.width / 2 + toolbarRect.width / 2);
@@ -2384,7 +3160,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
-var Video_style = __webpack_require__(38);
+var Video_style = __webpack_require__(47);
 
 // CONCATENATED MODULE: ./components/common/StaticContainer/index.jsx
 
@@ -2503,7 +3279,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(39);
+var Audio_style = __webpack_require__(48);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -2585,7 +3361,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(40);
+var Embed_style = __webpack_require__(49);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -2669,7 +3445,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(41);
+var HorizontalLine_style = __webpack_require__(50);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -3015,13 +3791,13 @@ var getCustomStyleMap = inlineStyleMap;
 var getCustomStyleFn = inlineStyleFn;
 var getDecorators = decorators;
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(42);
+var ControlBar_style = __webpack_require__(51);
 
 // EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
-var LinkEditor_style = __webpack_require__(43);
+var LinkEditor_style = __webpack_require__(52);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
-var DropDown_style = __webpack_require__(44);
+var DropDown_style = __webpack_require__(53);
 
 // CONCATENATED MODULE: ./helpers/responsive.js
 
@@ -3457,7 +4233,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/Headings/style.scss
-var Headings_style = __webpack_require__(45);
+var Headings_style = __webpack_require__(54);
 
 // CONCATENATED MODULE: ./configs/maps.js
 
@@ -3547,10 +4323,10 @@ var blocks = {
   })));
 });
 // EXTERNAL MODULE: ./components/business/TextColor/style.scss
-var TextColor_style = __webpack_require__(46);
+var TextColor_style = __webpack_require__(55);
 
 // EXTERNAL MODULE: ./components/common/ColorPicker/style.scss
-var ColorPicker_style = __webpack_require__(47);
+var ColorPicker_style = __webpack_require__(56);
 
 // CONCATENATED MODULE: ./components/common/ColorPicker/index.jsx
 
@@ -3728,7 +4504,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/FontSize/style.scss
-var FontSize_style = __webpack_require__(48);
+var FontSize_style = __webpack_require__(57);
 
 // CONCATENATED MODULE: ./components/business/FontSize/index.jsx
 
@@ -3783,7 +4559,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/LineHeight/style.scss
-var LineHeight_style = __webpack_require__(49);
+var LineHeight_style = __webpack_require__(58);
 
 // CONCATENATED MODULE: ./components/business/LineHeight/index.jsx
 
@@ -3838,7 +4614,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/FontFamily/style.scss
-var FontFamily_style = __webpack_require__(50);
+var FontFamily_style = __webpack_require__(59);
 
 // CONCATENATED MODULE: ./components/business/FontFamily/index.jsx
 
@@ -3981,7 +4757,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/EmojiPicker/style.scss
-var EmojiPicker_style = __webpack_require__(51);
+var EmojiPicker_style = __webpack_require__(60);
 
 // CONCATENATED MODULE: ./components/business/EmojiPicker/index.jsx
 
@@ -4027,7 +4803,7 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
   }))));
 });
 // EXTERNAL MODULE: ./components/business/LetterSpacing/style.scss
-var LetterSpacing_style = __webpack_require__(52);
+var LetterSpacing_style = __webpack_require__(61);
 
 // CONCATENATED MODULE: ./components/business/LetterSpacing/index.jsx
 
@@ -4169,7 +4945,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/common/Modal/style.scss
-var Modal_style = __webpack_require__(53);
+var Modal_style = __webpack_require__(62);
 
 // EXTERNAL MODULE: external "react-dom"
 var external_react_dom_ = __webpack_require__(15);
@@ -4929,6 +5705,12 @@ function (_React$Component) {
     _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(BraftEditor).call(this, props));
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onChange", function (editorState, callback) {
+      if (!(editorState instanceof external_draft_js_["EditorState"])) {
+        editorState = external_draft_js_["EditorState"].set(editorState, {
+          decorator: _this.editorDecorators
+        });
+      }
+
       if (!editorState.convertOptions) {
         editorState.setConvertOptions(editor_getConvertOptions(_this.editorProps));
       }
@@ -5009,6 +5791,10 @@ function (_React$Component) {
       return pastedFilesHandlers(files, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCopyContent", function (event) {
+      return handlers_copyHandlers(event, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
+    });
+
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedText", function (text, html, editorState) {
       return handlers_pastedTextHandlers(text, html, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
@@ -5059,7 +5845,7 @@ function (_React$Component) {
     _this.isLiving = false;
     _this.braftFinder = null;
     _this.valueInitialized = !!(_this.props.defaultValue || _this.props.value);
-    var defaultEditorState = external_braft_utils_["ContentUtils"].isEditorState(_this.props.defaultValue || _this.props.value) ? _this.props.defaultValue || _this.props.value : external_braft_utils_["ContentUtils"].createEmptyEditorState(_this.editorDecorators);
+    var defaultEditorState = (_this.props.defaultValue || _this.props.value) instanceof external_draft_js_["EditorState"] ? _this.props.defaultValue || _this.props.value : external_draft_js_["EditorState"].createEmpty(_this.editorDecorators);
     defaultEditorState.setConvertOptions(editor_getConvertOptions(_this.editorProps));
     _this.state = {
       containerNode: null,
@@ -5355,9 +6141,10 @@ function (_React$Component) {
       }, this.editorProps.draftProps, mixedProps);
 
       return external_react_default.a.createElement("div", {
+        style: style,
         ref: this.setEditorContainerNode,
         className: "bf-container ".concat(className).concat(disabled ? ' disabled' : '').concat(readOnly ? ' read-only' : '').concat(isFullscreen ? ' fullscreen' : ''),
-        style: style
+        onCopy: this.handleCopyContent
       }, external_react_default.a.createElement(ControlBar_ControlBar, controlBarProps), componentBelowControlBar, external_react_default.a.createElement("div", {
         onCompositionStart: this.handleCompositionStart,
         className: "bf-content ".concat(contentClassName),
@@ -5372,13 +6159,13 @@ function (_React$Component) {
 defineProperty_default()(editor_BraftEditor, "defaultProps", configs_props);
 
 
+
 // EXTERNAL MODULE: external "braft-convert"
 var external_braft_convert_ = __webpack_require__(14);
 
 // CONCATENATED MODULE: ./index.jsx
 /* concated harmony reexport EditorState */__webpack_require__.d(__webpack_exports__, "EditorState", function() { return external_draft_js_["EditorState"]; });
 /* concated harmony reexport getDecorators */__webpack_require__.d(__webpack_exports__, "getDecorators", function() { return getDecorators; });
-
 
 
 
@@ -5451,75 +6238,21 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 // [ ]允许自定义快捷键
 
 /***/ }),
-/* 31 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 32 */,
-/* 33 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 34 */,
-/* 35 */,
-/* 36 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
 /* 40 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 41 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 41 */,
 /* 42 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 43 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 44 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 43 */,
+/* 44 */,
 /* 45 */
 /***/ (function(module, exports) {
 
@@ -5569,6 +6302,60 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 
 /***/ }),
 /* 53 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 55 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 59 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 60 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 61 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 62 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
