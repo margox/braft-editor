@@ -1,22 +1,21 @@
 import './style.scss'
-import React from 'react'
+import React, { createRef } from 'react'
 import ResponsiveHelper from 'helpers/responsive'
 import { BaseUtils } from 'braft-utils'
 
 export default class DropDown extends React.Component {
-
   alive = false
   responsiveResolveId = null
-  dropDownHandlerElement = null
-  dropDownContentElement = null
-  componentId = this.props.componentId || ('BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex())
+  dropDownHandlerElement = createRef()
+  dropDownContentElement = createRef()
+  componentId =
+    this.props.componentId || 'BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex()
   state = {
     active: false,
-    offset: 0
+    offset: 0,
   }
 
-  componentDidMount () {
-
+  componentDidMount() {
     this.alive = true
 
     document.body.addEventListener('click', (event) => {
@@ -26,40 +25,42 @@ export default class DropDown extends React.Component {
     this.responsiveResolveId = ResponsiveHelper.resolve(() => {
       this.fixDropDownPosition()
     })
-
   }
 
-  componentWillReceiveProps (next) {
-
+  componentWillReceiveProps(next) {
     if (!this.props.disabled && next.disabled) {
       this.hide()
     }
-
   }
 
-  componentDidUpdate (prevState) {
-
+  componentDidUpdate(prevState) {
     if (!prevState.active && this.state.active) {
       this.fixDropDownPosition()
     }
-
   }
 
-  componentWillUnmount () {
-
+  componentWillUnmount() {
     document.body.removeEventListener('click', (event) => {
       this.registerClickEvent(event)
     })
 
     this.alive = false
     ResponsiveHelper.unresolve(this.responsiveResolveId)
-
   }
 
-  render () {
-
+  render() {
     let { active, offset } = this.state
-    let { caption, htmlCaption, title, disabled, showArrow, arrowActive, className, children, theme } = this.props
+    let {
+      caption,
+      htmlCaption,
+      title,
+      disabled,
+      showArrow,
+      arrowActive,
+      className,
+      children,
+      theme,
+    } = this.props
 
     disabled && (active = false)
     theme === 'light' && (className = ' light-theme ' + className)
@@ -67,55 +68,59 @@ export default class DropDown extends React.Component {
     return (
       <div
         id={this.componentId}
-        className={'bf-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className}
+        className={
+          'bf-dropdown ' +
+          (active ? 'active ' : '') +
+          (disabled ? 'disabled ' : '') +
+          className
+        }
       >
         {htmlCaption ? (
           <button
-            type='button'
-            className='dropdown-handler'
+            type="button"
+            className="dropdown-handler"
             data-title={title}
             data-braft-component-id={this.componentId}
-            dangerouslySetInnerHTML={htmlCaption ? {__html: htmlCaption} : null}
-            ref={(instance) => this.dropDownHandlerElement = instance}
-          ></button>
+            dangerouslySetInnerHTML={
+              htmlCaption ? { __html: htmlCaption } : null
+            }
+            ref={this.dropDownHandlerElement}
+          />
         ) : (
           <button
-            type='button'
-            className='dropdown-handler'
+            type="button"
+            className="dropdown-handler"
             data-title={title}
             data-braft-component-id={this.componentId}
-            ref={(instance) => this.dropDownHandlerElement = instance}
+            ref={this.dropDownHandlerElement}
           >
             <span>{caption}</span>
-            {showArrow !== false ? <i className='bfi-drop-down'></i> : null}
+            {showArrow !== false ? <i className="bfi-drop-down" /> : null}
           </button>
         )}
         <div
-          className='dropdown-content'
-          style={{marginLeft: offset }}
-          ref={(instance) => this.dropDownContentElement = instance}
+          className="dropdown-content"
+          style={{ marginLeft: offset }}
+          ref={this.dropDownContentElement}
         >
           <i
-            style={{marginLeft: offset * -1}}
+            style={{ marginLeft: offset * -1 }}
             className={'dropdown-arrow' + (arrowActive ? ' active' : '')}
-          ></i>
-          <div className='dropdown-content-inner'>
-            {children}
-          </div>
+          />
+          <div className="dropdown-content-inner">{children}</div>
         </div>
       </div>
     )
-
   }
 
-  fixDropDownPosition () {
-
+  fixDropDownPosition() {
     const viewRect = this.props.containerNode.getBoundingClientRect()
-    const handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
-    const contentRect = this.dropDownContentElement.getBoundingClientRect()
+    const handlerRect = this.dropDownHandlerElement.current.getBoundingClientRect()
+    const contentRect = this.dropDownContentElement.current.getBoundingClientRect()
 
     let offset = 0
-    let right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2
+    let right =
+      handlerRect.right - handlerRect.width / 2 + contentRect.width / 2
     let left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2
 
     right = viewRect.right - right
@@ -130,11 +135,9 @@ export default class DropDown extends React.Component {
     if (offset !== this.state.offset) {
       this.setState({ offset })
     }
-
   }
 
-  registerClickEvent (event) {
-
+  registerClickEvent(event) {
     let { autoHide } = this.props
     let active = false
 
@@ -145,19 +148,17 @@ export default class DropDown extends React.Component {
     }
 
     this.alive && this.setState({ active })
-
   }
 
-  show () {
+  show() {
     this.setState({
-      active: true
+      active: true,
     })
   }
 
-  hide () {
+  hide() {
     this.setState({
-      active: false
+      active: false,
     })
   }
-
 }

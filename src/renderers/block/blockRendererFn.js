@@ -7,7 +7,6 @@ import HorizontalLine from 'renderers/atomics/HorizontalLine'
 import { getExtensionBlockRendererFns } from 'helpers/extension'
 
 const getAtomicBlockComponent = (superProps) => (props) => {
-
   const entityKey = props.block.getEntityAt(0)
 
   if (!entityKey) {
@@ -20,24 +19,25 @@ const getAtomicBlockComponent = (superProps) => (props) => {
   const mediaProps = {
     ...superProps,
     block: props.block,
-    mediaData, entityKey
+    mediaData,
+    entityKey,
   }
 
   if (mediaType === 'IMAGE') {
-    return <Image { ...mediaProps } />
+    return <Image {...mediaProps} />
   } else if (mediaType === 'AUDIO') {
-    return <Audio { ...mediaProps } />
+    return <Audio {...mediaProps} />
   } else if (mediaType === 'VIDEO') {
-    return <Video { ...mediaProps } />
+    return <Video {...mediaProps} />
   } else if (mediaType === 'EMBED') {
-    return <Embed { ...mediaProps } />
+    return <Embed {...mediaProps} />
   } else if (mediaType === 'HR') {
-    return <HorizontalLine { ...mediaProps } />
+    return <HorizontalLine {...mediaProps} />
   }
 
   if (superProps.extendAtomics) {
     const atomics = superProps.extendAtomics
-    for (let i = 0; i < atomics.length; i++) {
+    for (let i = 0, j = atomics.length; i < j; i++) {
       if (mediaType === atomics[i].type) {
         const Component = atomics[i].component
         return <Component {...mediaProps} />
@@ -46,11 +46,9 @@ const getAtomicBlockComponent = (superProps) => (props) => {
   }
 
   return null
-
 }
 
 export default (superProps, customBlockRendererFn) => (block) => {
-
   const blockType = block.getType()
   let blockRenderer = null
 
@@ -62,10 +60,15 @@ export default (superProps, customBlockRendererFn) => (block) => {
     return blockRenderer
   }
 
-  const extensionBlockRendererFns = getExtensionBlockRendererFns(superProps.editorId)
+  const extensionBlockRendererFns = getExtensionBlockRendererFns(
+    superProps.editorId,
+  )
 
-  extensionBlockRendererFns.find(item => {
-    if (item.blockType === blockType || (item.blockType instanceof RegExp && item.blockType.test(blockType))) {
+  extensionBlockRendererFns.find((item) => {
+    if (
+      item.blockType === blockType ||
+      (item.blockType instanceof RegExp && item.blockType.test(blockType))
+    ) {
       blockRenderer = item.rendererFn ? item.rendererFn(superProps) : null
       return true
     }
@@ -78,10 +81,9 @@ export default (superProps, customBlockRendererFn) => (block) => {
   if (blockType === 'atomic') {
     blockRenderer = {
       component: getAtomicBlockComponent(superProps),
-      editable: false
+      editable: false,
     }
   }
 
   return blockRenderer
-
 }
