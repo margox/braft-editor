@@ -2,24 +2,24 @@
 
 .bf-switch{
   position: relative;
-  width: 40px;
-  height: 20px;
+  width: 32px;
+  height: 16px;
   background-color: rgba(#fff, .15);
-  border-radius: 10px;
+  border-radius: 8px;
   transition: background .3s;
   &.active{
     background-color: $COLOR_ACTIVE;
     &::before{
-      left: 20px;
+      left: 16px;
     }
   }
   &::before{
     position: absolute;
     left: 0;
     display: block;
-    width: 20px;
-    height: 20px;
-    border-radius: 10px;
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
     background-color: #eee;
     content: '';
     transform: scale(1.2);

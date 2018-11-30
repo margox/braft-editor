@@ -25,6 +25,7 @@ export default (props) => {
 
   let caption = null
   let currentIndex = null
+  let dropDownInstance = null
 
   props.fontFamilies.find((item, index) => {
     if (ContentUtils.selectionHasInlineStyle(props.editorState, 'FONTFAMILY-' + item.name)) {
@@ -40,7 +41,9 @@ export default (props) => {
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       title={props.language.controls.fontFamily}
+      autoHide={true}
       arrowActive={currentIndex === 0}
+      ref={(instance) => dropDownInstance = instance}
       className={'control-item dropdown font-family-dropdown'}
     >
       <ul className='menu'>
@@ -50,7 +53,7 @@ export default (props) => {
               key={index}
               className={'menu-item ' + (index === currentIndex ? 'active' : '')}
               data-name={item.name}
-              onClick={(event) => toggleFontFamily(event, props)}
+              onClick={(event) => {toggleFontFamily(event, props),dropDownInstance.hide()}}
             >
               <span style={{fontFamily: item.family}}>{item.name}</span>
             </li>

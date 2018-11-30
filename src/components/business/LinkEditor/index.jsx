@@ -18,7 +18,7 @@ export default class LinkEditor extends React.Component {
 
   }
 
-  dropDownComponent = null
+  dropDownInstance = null
 
   componentWillReceiveProps (nextProps) {
 
@@ -42,11 +42,11 @@ export default class LinkEditor extends React.Component {
           key={0}
           caption={caption}
           title={this.props.language.controls.link}
-          autoHide={false}
+          autoHide={true}
           containerNode={this.props.containerNode}
           showArrow={false}
           disabled={!textSelected}
-          ref={(instance) => this.dropDownComponent = instance}
+          ref={(instance) => this.dropDownInstance = instance}
           className={'control-item dropdown link-editor-dropdown'}
         >
           <div className='bf-link-editor'>
@@ -113,11 +113,11 @@ export default class LinkEditor extends React.Component {
   }
 
   handleCancel = () => {
-    this.dropDownComponent.hide()
+    this.dropDownInstance.hide()
   }
 
   handleUnlink = () => {
-    this.dropDownComponent.hide()
+    this.dropDownInstance.hide()
     this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, false))
   }
 
@@ -126,7 +126,7 @@ export default class LinkEditor extends React.Component {
     let { href, target } = this.state
     const hookReturns = this.props.hooks('toggle-link', { href, target })({ href, target })
 
-    this.dropDownComponent.hide()
+    this.dropDownInstance.hide()
     this.props.editor.requestFocus()
 
     if (hookReturns === false) {

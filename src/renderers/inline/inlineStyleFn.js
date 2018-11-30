@@ -30,7 +30,7 @@ export default (props, options) => (styles, block) => {
     } else if (style.indexOf('TEXTINDENT-') === 0) {
       output.textIndent = unitExportFn(getStyleValue(style), 'text-indent', 'editor')
     } else if (style.indexOf('FONTFAMILY-') === 0) {
-      output.fontFamily = (fontFamilies.find(item => item.name === getStyleValue(style)) || {}).family || ''
+      output.fontFamily = (fontFamilies.find(item => item.name.toUpperCase() === getStyleValue(style)) || {}).family || ''
     }
 
   })

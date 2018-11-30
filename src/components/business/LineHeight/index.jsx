@@ -25,6 +25,7 @@ export default (props) => {
 
   let caption = null
   let currentLineHeight = null
+  let dropDownInstance = null
 
   props.lineHeights.find((item) => {
     if (ContentUtils.selectionHasInlineStyle(props.editorState, 'LINEHEIGHT-' + item)) {
@@ -37,9 +38,11 @@ export default (props) => {
 
   return (
     <DropDown
+      autoHide={true}
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       title={props.language.controls.lineHeight}
+      ref={(instance) => dropDownInstance = instance}
       className={'control-item dropdown bf-line-height-dropdown'}
     >
       <ul className='bf-line-heights'>
@@ -49,7 +52,7 @@ export default (props) => {
               key={index}
               className={item === currentLineHeight ? 'active' : null}
               data-size={item}
-              onClick={(event) => toggleLineHeight(event, props)}
+              onClick={(event) => {toggleLineHeight(event, props),dropDownInstance.hide()}}
             >{item}</li>
           )
         })}

@@ -2,15 +2,13 @@ import './style.scss'
 import React from 'react'
 import DropDown from 'components/common/DropDown'
 import BuiltinColorPicker from 'components/common/ColorPicker'
-import { BaseUtils, ContentUtils } from 'braft-utils'
+import { ContentUtils } from 'braft-utils'
 
 export default class TextColor extends React.Component {
 
   state = {
     colorType: 'color'
   }
-
-  dropDownComponentId = 'BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex()
 
   render () {
 
@@ -51,8 +49,7 @@ export default class TextColor extends React.Component {
         autoHide={this.props.autoHide}
         theme={this.props.theme}
         containerNode={this.props.containerNode}
-        componentId={this.dropDownComponentId}
-        ref={(instance) => this.dropDownComponent = instance}
+        ref={(instance) => this.dropDownInstance = instance}
         className={'control-item dropdown text-color-dropdown'}
       >
         <div className='bf-text-color-picker-wrap'>
@@ -60,16 +57,12 @@ export default class TextColor extends React.Component {
             <button
               type='button'
               data-type='color'
-              data-keep-active={true}
-              data-braft-component-id={this.dropDownComponentId}
               className={colorType === 'color' ? 'active' : ''}
               onClick={this.switchColorType}
             >{this.props.language.controls.textColor}</button>
             <button
               type='button'
               data-type='background-color'
-              data-keep-active={true}
-              data-braft-component-id={this.dropDownComponentId}
               className={colorType === 'background-color' ? 'active' : ''}
               onClick={this.switchColorType}
             >{this.props.language.controls.backgroundColor}</button>
@@ -116,7 +109,7 @@ export default class TextColor extends React.Component {
     }
 
     if (closePicker) {
-      this.dropDownComponent.hide()
+      this.dropDownInstance.hide()
       this.props.editor.requestFocus()
     }
 

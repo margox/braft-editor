@@ -26,6 +26,7 @@ export default (props) => {
   return (
     <DropDown
       caption={props.defaultCaption}
+      autoHide={true}
       showArrow={false}
       containerNode={props.containerNode}
       title={props.language.controls.emoji}

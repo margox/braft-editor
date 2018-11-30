@@ -3670,7 +3670,7 @@ var getStyleValue = function getStyleValue(style) {
         output.textIndent = unitExportFn(getStyleValue(style), 'text-indent', 'editor');
       } else if (style.indexOf('FONTFAMILY-') === 0) {
         output.fontFamily = (fontFamilies.find(function (item) {
-          return item.name === getStyleValue(style);
+          return item.name.toUpperCase() === getStyleValue(style);
         }) || {}).family || '';
       }
     });
@@ -3844,7 +3844,6 @@ if (!responsiveHelperInited) {
 
 
 
-
 var DropDown_DropDown =
 /*#__PURE__*/
 function (_React$Component) {
@@ -3863,19 +3862,70 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "alive", false);
-
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "responsiveResolveId", null);
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownHandlerElement", null);
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownContentElement", null);
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "componentId", _this.props.componentId || 'BRAFT-DROPDOWN-' + external_braft_utils_["BaseUtils"].UniqueIndex());
-
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
       active: false,
       offset: 0
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "fixDropDownPosition", function () {
+      var viewRect = _this.props.containerNode.getBoundingClientRect();
+
+      var handlerRect = _this.dropDownHandlerElement.getBoundingClientRect();
+
+      var contentRect = _this.dropDownContentElement.getBoundingClientRect();
+
+      var offset = 0;
+      var right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2;
+      var left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2;
+      right = viewRect.right - right;
+      left = left - viewRect.left;
+
+      if (right < 10) {
+        offset = right - 10;
+      } else if (left < 10) {
+        offset = left * -1 + 10;
+      }
+
+      if (offset !== _this.state.offset) {
+        _this.setState({
+          offset: offset
+        });
+      }
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "registerClickEvent", function (event) {
+      var autoHide = _this.props.autoHide;
+      var active = _this.state.active;
+
+      if (_this.dropDownContentElement.contains(event.target) || _this.dropDownHandlerElement.contains(event.target)) {
+        return false;
+      }
+
+      autoHide && active && _this.hide();
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggle", function () {
+      _this.setState({
+        active: !_this.state.active
+      });
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "show", function () {
+      _this.setState({
+        active: true
+      });
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "hide", function () {
+      _this.setState({
+        active: false
+      });
     });
 
     return _this;
@@ -3884,15 +3934,8 @@ function (_React$Component) {
   createClass_default()(DropDown, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      this.alive = true;
-      document.body.addEventListener('click', function (event) {
-        _this2.registerClickEvent(event);
-      });
-      this.responsiveResolveId = responsive.resolve(function () {
-        _this2.fixDropDownPosition();
-      });
+      document.body.addEventListener('click', this.registerClickEvent);
+      this.responsiveResolveId = responsive.resolve(this.fixDropDownPosition);
     }
   }, {
     key: "componentWillReceiveProps",
@@ -3911,18 +3954,13 @@ function (_React$Component) {
   }, {
     key: "componentWillUnmount",
     value: function componentWillUnmount() {
-      var _this3 = this;
-
-      document.body.removeEventListener('click', function (event) {
-        _this3.registerClickEvent(event);
-      });
-      this.alive = false;
+      document.body.removeEventListener('click', this.registerClickEvent);
       responsive.unresolve(this.responsiveResolveId);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this4 = this;
+      var _this2 = this;
 
       var _this$state = this.state,
           active = _this$state.active,
@@ -3940,26 +3978,25 @@ function (_React$Component) {
       disabled && (active = false);
       theme === 'light' && (className = ' light-theme ' + className);
       return external_react_default.a.createElement("div", {
-        id: this.componentId,
         className: 'bf-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className
       }, htmlCaption ? external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
         "data-title": title,
-        "data-braft-component-id": this.componentId,
+        onClick: this.toggle,
         dangerouslySetInnerHTML: htmlCaption ? {
           __html: htmlCaption
         } : null,
         ref: function ref(instance) {
-          return _this4.dropDownHandlerElement = instance;
+          return _this2.dropDownHandlerElement = instance;
         }
       }) : external_react_default.a.createElement("button", {
         type: "button",
         className: "dropdown-handler",
         "data-title": title,
-        "data-braft-component-id": this.componentId,
+        onClick: this.toggle,
         ref: function ref(instance) {
-          return _this4.dropDownHandlerElement = instance;
+          return _this2.dropDownHandlerElement = instance;
         }
       }, external_react_default.a.createElement("span", null, caption), showArrow !== false ? external_react_default.a.createElement("i", {
         className: "bfi-drop-down"
@@ -3969,7 +4006,7 @@ function (_React$Component) {
           marginLeft: offset
         },
         ref: function ref(instance) {
-          return _this4.dropDownContentElement = instance;
+          return _this2.dropDownContentElement = instance;
         }
       }, external_react_default.a.createElement("i", {
         style: {
@@ -3979,60 +4016,6 @@ function (_React$Component) {
       }), external_react_default.a.createElement("div", {
         className: "dropdown-content-inner"
       }, children)));
-    }
-  }, {
-    key: "fixDropDownPosition",
-    value: function fixDropDownPosition() {
-      var viewRect = this.props.containerNode.getBoundingClientRect();
-      var handlerRect = this.dropDownHandlerElement.getBoundingClientRect();
-      var contentRect = this.dropDownContentElement.getBoundingClientRect();
-      var offset = 0;
-      var right = handlerRect.right - handlerRect.width / 2 + contentRect.width / 2;
-      var left = handlerRect.left + handlerRect.width / 2 - contentRect.width / 2;
-      right = viewRect.right - right;
-      left = left - viewRect.left;
-
-      if (right < 10) {
-        offset = right - 10;
-      } else if (left < 10) {
-        offset = left * -1 + 10;
-      }
-
-      if (offset !== this.state.offset) {
-        this.setState({
-          offset: offset
-        });
-      }
-    }
-  }, {
-    key: "registerClickEvent",
-    value: function registerClickEvent(event) {
-      var autoHide = this.props.autoHide;
-      var active = false;
-
-      if (event.target.dataset.braftComponentId === this.componentId) {
-        active = event.target.dataset.keepActive ? true : !this.state.active;
-      } else if (autoHide === false) {
-        active = this.state.active;
-      }
-
-      this.alive && this.setState({
-        active: active
-      });
-    }
-  }, {
-    key: "show",
-    value: function show() {
-      this.setState({
-        active: true
-      });
-    }
-  }, {
-    key: "hide",
-    value: function hide() {
-      this.setState({
-        active: false
-      });
     }
   }]);
 
@@ -4078,7 +4061,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(LinkEditor).call(this, props));
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownComponent", null);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownInstance", null);
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handeKeyDown", function (e) {
       if (e.keyCode === 13) {
@@ -4102,11 +4085,11 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCancel", function () {
-      _this.dropDownComponent.hide();
+      _this.dropDownInstance.hide();
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleUnlink", function () {
-      _this.dropDownComponent.hide();
+      _this.dropDownInstance.hide();
 
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionLink(_this.props.editorState, false));
     });
@@ -4124,7 +4107,7 @@ function (_React$Component) {
         target: target
       });
 
-      _this.dropDownComponent.hide();
+      _this.dropDownInstance.hide();
 
       _this.props.editor.requestFocus();
 
@@ -4175,12 +4158,12 @@ function (_React$Component) {
         key: 0,
         caption: caption,
         title: this.props.language.controls.link,
-        autoHide: false,
+        autoHide: true,
         containerNode: this.props.containerNode,
         showArrow: false,
         disabled: !textSelected,
         ref: function ref(instance) {
-          return _this2.dropDownComponent = instance;
+          return _this2.dropDownInstance = instance;
         },
         className: 'control-item dropdown link-editor-dropdown'
       }, external_react_default.a.createElement("div", {
@@ -4298,6 +4281,7 @@ var blocks = {
 
 
 /* harmony default export */ var Headings = (function (props) {
+  var dropDownInstance = null;
   var headings = maps_getHeadings(props.language);
   var currentHeadingIndex = headings.findIndex(function (item) {
     return item.command === props.current;
@@ -4305,9 +4289,13 @@ var blocks = {
   var caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : props.language.controls.normal;
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: caption,
+    autoHide: true,
     containerNode: props.containerNode,
     title: props.language.controls.headings,
     arrowActive: currentHeadingIndex === 0,
+    ref: function ref(instance) {
+      return dropDownInstance = instance;
+    },
     className: 'control-item dropdown headings-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "menu"
@@ -4317,7 +4305,7 @@ var blocks = {
       key: index,
       className: 'menu-item' + (isActive ? ' active' : ''),
       onClick: function onClick() {
-        return props.onChange(item.command, item.type);
+        props.onChange(item.command, item.type), dropDownInstance.hide();
       }
     }, item.text);
   })));
@@ -4388,8 +4376,6 @@ function (_React$Component) {
       colorType: 'color'
     });
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownComponentId", 'BRAFT-DROPDOWN-' + external_braft_utils_["BaseUtils"].UniqueIndex());
-
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "switchColorType", function (_ref) {
       var currentTarget = _ref.currentTarget;
 
@@ -4418,7 +4404,7 @@ function (_React$Component) {
       }
 
       if (closePicker) {
-        _this.dropDownComponent.hide();
+        _this.dropDownInstance.hide();
 
         _this.props.editor.requestFocus();
       }
@@ -4463,9 +4449,8 @@ function (_React$Component) {
         autoHide: this.props.autoHide,
         theme: this.props.theme,
         containerNode: this.props.containerNode,
-        componentId: this.dropDownComponentId,
         ref: function ref(instance) {
-          return _this2.dropDownComponent = instance;
+          return _this2.dropDownInstance = instance;
         },
         className: 'control-item dropdown text-color-dropdown'
       }, external_react_default.a.createElement("div", {
@@ -4478,15 +4463,11 @@ function (_React$Component) {
       }, external_react_default.a.createElement("button", {
         type: "button",
         "data-type": "color",
-        "data-keep-active": true,
-        "data-braft-component-id": this.dropDownComponentId,
         className: colorType === 'color' ? 'active' : '',
         onClick: this.switchColorType
       }, this.props.language.controls.textColor), external_react_default.a.createElement("button", {
         type: "button",
         "data-type": "background-color",
-        "data-keep-active": true,
-        "data-braft-component-id": this.dropDownComponentId,
         className: colorType === 'background-color' ? 'active' : '',
         onClick: this.switchColorType
       }, this.props.language.controls.backgroundColor)), external_react_default.a.createElement(ColorPicker, {
@@ -4531,6 +4512,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
 /* harmony default export */ var FontSize = (function (props) {
   var caption = null;
   var currentFontSize = null;
+  var dropDownInstance = null;
   props.fontSizes.find(function (item) {
     if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(props.editorState, 'FONTSIZE-' + item)) {
       caption = item;
@@ -4541,9 +4523,13 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
     return false;
   });
   return external_react_default.a.createElement(DropDown_DropDown, {
+    autoHide: true,
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
     title: props.language.controls.fontSize,
+    ref: function ref(instance) {
+      return dropDownInstance = instance;
+    },
     className: 'control-item dropdown bf-font-size-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "bf-font-sizes"
@@ -4553,7 +4539,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
       className: item === currentFontSize ? 'active' : null,
       "data-size": item,
       onClick: function onClick(event) {
-        return FontSize_toggleFontSize(event, props);
+        FontSize_toggleFontSize(event, props), dropDownInstance.hide();
       }
     }, item);
   })));
@@ -4586,6 +4572,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
 /* harmony default export */ var LineHeight = (function (props) {
   var caption = null;
   var currentLineHeight = null;
+  var dropDownInstance = null;
   props.lineHeights.find(function (item) {
     if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(props.editorState, 'LINEHEIGHT-' + item)) {
       caption = item;
@@ -4596,9 +4583,13 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
     return false;
   });
   return external_react_default.a.createElement(DropDown_DropDown, {
+    autoHide: true,
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
     title: props.language.controls.lineHeight,
+    ref: function ref(instance) {
+      return dropDownInstance = instance;
+    },
     className: 'control-item dropdown bf-line-height-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "bf-line-heights"
@@ -4608,7 +4599,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
       className: item === currentLineHeight ? 'active' : null,
       "data-size": item,
       onClick: function onClick(event) {
-        return LineHeight_toggleLineHeight(event, props);
+        LineHeight_toggleLineHeight(event, props), dropDownInstance.hide();
       }
     }, item);
   })));
@@ -4641,6 +4632,7 @@ var FontFamily_toggleFontFamily = function toggleFontFamily(event, props) {
 /* harmony default export */ var FontFamily = (function (props) {
   var caption = null;
   var currentIndex = null;
+  var dropDownInstance = null;
   props.fontFamilies.find(function (item, index) {
     if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(props.editorState, 'FONTFAMILY-' + item.name)) {
       caption = item.name;
@@ -4654,7 +4646,11 @@ var FontFamily_toggleFontFamily = function toggleFontFamily(event, props) {
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
     title: props.language.controls.fontFamily,
+    autoHide: true,
     arrowActive: currentIndex === 0,
+    ref: function ref(instance) {
+      return dropDownInstance = instance;
+    },
     className: 'control-item dropdown font-family-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "menu"
@@ -4664,7 +4660,7 @@ var FontFamily_toggleFontFamily = function toggleFontFamily(event, props) {
       className: 'menu-item ' + (index === currentIndex ? 'active' : ''),
       "data-name": item.name,
       onClick: function onClick(event) {
-        return FontFamily_toggleFontFamily(event, props);
+        FontFamily_toggleFontFamily(event, props), dropDownInstance.hide();
       }
     }, external_react_default.a.createElement("span", {
       style: {
@@ -4784,6 +4780,7 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
 /* harmony default export */ var EmojiPicker = (function (props) {
   return external_react_default.a.createElement(DropDown_DropDown, {
     caption: props.defaultCaption,
+    autoHide: true,
     showArrow: false,
     containerNode: props.containerNode,
     title: props.language.controls.emoji,
@@ -4830,6 +4827,7 @@ var LetterSpacing_toggleLetterSpacing = function toggleLetterSpacing(event, prop
 /* harmony default export */ var LetterSpacing = (function (props) {
   var caption = null;
   var currentLetterSpacing = null;
+  var dropDownInstance = null;
   props.letterSpacings.find(function (item) {
     if (external_braft_utils_["ContentUtils"].selectionHasInlineStyle(props.editorState, 'LETTERSPACING-' + item)) {
       caption = item;
@@ -4840,9 +4838,13 @@ var LetterSpacing_toggleLetterSpacing = function toggleLetterSpacing(event, prop
     return false;
   });
   return external_react_default.a.createElement(DropDown_DropDown, {
+    autoHide: true,
     caption: caption || props.defaultCaption,
     containerNode: props.containerNode,
     title: props.language.controls.letterSpacing,
+    ref: function ref(instance) {
+      return dropDownInstance = instance;
+    },
     className: 'control-item dropdown bf-letter-spacing-dropdown'
   }, external_react_default.a.createElement("ul", {
     className: "bf-letter-spacings"
@@ -4852,7 +4854,7 @@ var LetterSpacing_toggleLetterSpacing = function toggleLetterSpacing(event, prop
       className: item === currentLetterSpacing ? 'active' : null,
       "data-size": item,
       onClick: function onClick(event) {
-        return LetterSpacing_toggleLetterSpacing(event, props);
+        LetterSpacing_toggleLetterSpacing(event, props), dropDownInstance.hide();
       }
     }, item);
   })));

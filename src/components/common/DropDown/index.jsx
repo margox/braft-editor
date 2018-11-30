@@ -1,15 +1,12 @@
 import './style.scss'
 import React from 'react'
 import ResponsiveHelper from 'helpers/responsive'
-import { BaseUtils } from 'braft-utils'
 
 export default class DropDown extends React.Component {
 
-  alive = false
   responsiveResolveId = null
   dropDownHandlerElement = null
   dropDownContentElement = null
-  componentId = this.props.componentId || ('BRAFT-DROPDOWN-' + BaseUtils.UniqueIndex())
   state = {
     active: false,
     offset: 0
@@ -17,15 +14,8 @@ export default class DropDown extends React.Component {
 
   componentDidMount () {
 
-    this.alive = true
-
-    document.body.addEventListener('click', (event) => {
-      this.registerClickEvent(event)
-    })
-
-    this.responsiveResolveId = ResponsiveHelper.resolve(() => {
-      this.fixDropDownPosition()
-    })
+    document.body.addEventListener('click', this.registerClickEvent)
+    this.responsiveResolveId = ResponsiveHelper.resolve(this.fixDropDownPosition)
 
   }
 
@@ -47,11 +37,7 @@ export default class DropDown extends React.Component {
 
   componentWillUnmount () {
 
-    document.body.removeEventListener('click', (event) => {
-      this.registerClickEvent(event)
-    })
-
-    this.alive = false
+    document.body.removeEventListener('click', this.registerClickEvent)
     ResponsiveHelper.unresolve(this.responsiveResolveId)
 
   }
@@ -65,16 +51,13 @@ export default class DropDown extends React.Component {
     theme === 'light' && (className = ' light-theme ' + className)
 
     return (
-      <div
-        id={this.componentId}
-        className={'bf-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className}
-      >
+      <div className={'bf-dropdown ' + (active ? 'active ' : '') + (disabled ? 'disabled ' : '') + className}>
         {htmlCaption ? (
           <button
             type='button'
             className='dropdown-handler'
             data-title={title}
-            data-braft-component-id={this.componentId}
+            onClick={this.toggle}
             dangerouslySetInnerHTML={htmlCaption ? {__html: htmlCaption} : null}
             ref={(instance) => this.dropDownHandlerElement = instance}
           ></button>
@@ -83,7 +66,7 @@ export default class DropDown extends React.Component {
             type='button'
             className='dropdown-handler'
             data-title={title}
-            data-braft-component-id={this.componentId}
+            onClick={this.toggle}
             ref={(instance) => this.dropDownHandlerElement = instance}
           >
             <span>{caption}</span>
@@ -108,7 +91,7 @@ export default class DropDown extends React.Component {
 
   }
 
-  fixDropDownPosition () {
+  fixDropDownPosition = () => {
 
     const viewRect = this.props.containerNode.getBoundingClientRect()
     const handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
@@ -133,31 +116,29 @@ export default class DropDown extends React.Component {
 
   }
 
-  registerClickEvent (event) {
+  registerClickEvent = (event) => {
 
-    let { autoHide } = this.props
-    let active = false
+    const { autoHide } = this.props
+    const { active } = this.state
 
-    if (event.target.dataset.braftComponentId === this.componentId) {
-      active = event.target.dataset.keepActive ? true : !this.state.active
-    } else if (autoHide === false) {
-      active = this.state.active
+    if (this.dropDownContentElement.contains(event.target) || this.dropDownHandlerElement.contains(event.target)) {
+      return false
     }
 
-    this.alive && this.setState({ active })
+    autoHide && active && this.hide()
 
   }
 
-  show () {
-    this.setState({
-      active: true
-    })
+  toggle = () => {
+    this.setState({ active: !this.state.active })
   }
 
-  hide () {
-    this.setState({
-      active: false
-    })
+  show = () => {
+    this.setState({ active: true })
+  }
+
+  hide = () => {
+    this.setState({ active: false })
   }
 
 }

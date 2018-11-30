@@ -25,6 +25,7 @@ export default (props) => {
 
   let caption = null
   let currentLetterSpacing = null
+  let dropDownInstance = null
 
   props.letterSpacings.find((item) => {
     if (ContentUtils.selectionHasInlineStyle(props.editorState, 'LETTERSPACING-' + item)) {
@@ -37,9 +38,11 @@ export default (props) => {
 
   return (
     <DropDown
+      autoHide={true}
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       title={props.language.controls.letterSpacing}
+      ref={(instance) => dropDownInstance = instance}
       className={'control-item dropdown bf-letter-spacing-dropdown'}
     >
       <ul className='bf-letter-spacings'>
@@ -49,7 +52,7 @@ export default (props) => {
               key={index}
               className={item === currentLetterSpacing ? 'active' : null}
               data-size={item}
-              onClick={(event) => toggleLetterSpacing(event, props)}
+              onClick={(event) => {toggleLetterSpacing(event, props),dropDownInstance.hide()}}
             >{item}</li>
           )
         })}

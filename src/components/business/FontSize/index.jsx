@@ -25,6 +25,7 @@ export default (props) => {
 
   let caption = null
   let currentFontSize = null
+  let dropDownInstance = null
 
   props.fontSizes.find((item) => {
     if (ContentUtils.selectionHasInlineStyle(props.editorState, 'FONTSIZE-' + item)) {
@@ -37,9 +38,11 @@ export default (props) => {
 
   return (
     <DropDown
+      autoHide={true}
       caption={caption || props.defaultCaption}
       containerNode={props.containerNode}
       title={props.language.controls.fontSize}
+      ref={(instance) => dropDownInstance = instance}
       className={'control-item dropdown bf-font-size-dropdown'}
     >
       <ul className='bf-font-sizes'>
@@ -49,7 +52,7 @@ export default (props) => {
               key={index}
               className={item === currentFontSize ? 'active' : null}
               data-size={item}
-              onClick={(event) => toggleFontSize(event, props)}
+              onClick={(event) => {toggleFontSize(event, props),dropDownInstance.hide()}}
             >{item}</li>
           )
         })}

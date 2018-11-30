@@ -1,15 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
+import ColorPicker from 'braft-extensions/dist/color-picker'
 import Emoticon, { defaultEmoticons } from 'braft-extensions/dist/emoticon'
 
 import 'braft-extensions/dist/emoticon.css'
+import 'braft-extensions/dist/color-picker.css'
 
 const emoticons = defaultEmoticons.map(item => require(`braft-extensions/dist/assets/${item}`))
 
-BraftEditor.use(Emoticon({
-  emoticons: emoticons
-}))
+BraftEditor.use([
+  Emoticon({
+    emoticons: emoticons
+  }),
+  ColorPicker({
+    theme: 'dark'
+  })
+])
 
 class Demo extends React.Component {
 

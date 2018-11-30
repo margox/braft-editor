@@ -5,6 +5,8 @@ import DropDown from 'components/common/DropDown'
 
 export default (props) => {
 
+  let dropDownInstance = null
+
   const headings = getHeadings(props.language)
   const currentHeadingIndex = headings.findIndex((item) => item.command === props.current)
   const caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : props.language.controls.normal
@@ -12,9 +14,11 @@ export default (props) => {
   return (
     <DropDown
       caption={caption}
+      autoHide={true}
       containerNode={props.containerNode}
       title={props.language.controls.headings}
       arrowActive={currentHeadingIndex === 0}
+      ref={(instance) => dropDownInstance = instance}
       className={'control-item dropdown headings-dropdown'}
     >
       <ul className='menu'>
@@ -25,7 +29,7 @@ export default (props) => {
               <li
                 key={index}
                 className={'menu-item' + (isActive ? ' active' : '')}
-                onClick={() => props.onChange(item.command, item.type)}
+                onClick={() => {props.onChange(item.command, item.type),dropDownInstance.hide()}}
               >
                 {item.text}
               </li>
