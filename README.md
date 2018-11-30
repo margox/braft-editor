@@ -5,7 +5,7 @@
 ##### 注意，项目当前版本为2.x，如果你使用的是1.x.x版本，请参阅[旧版本文档](https://github.com/margox/braft-editor/blob/old-master/README.md)
 
 ### 编辑器专用扩展包已发布，请查看[Braft Extensions](https://github.com/margox/braft-extensions)
-表格扩展模块已发布测试版本，请安装升级braft-editor和braft-utils到最新版本，并安装braft-extensions@beta，使用方式请查看[[表格扩展模块](https://github.com/margox/braft-extensions/tree/dev_table#%E8%A1%A8%E6%A0%BC%E6%A8%A1%E5%9D%97)]
+表格扩展模块已发布测试版本，请升级braft-editor和braft-utils到最新版本，并安装最新版本的braft-extensions，使用方式请查看[[表格扩展模块](https://github.com/margox/braft-extensions#%E8%A1%A8%E6%A0%BC%E6%A8%A1%E5%9D%97)]
 
 交流反馈请加QQ群：725634541
 
