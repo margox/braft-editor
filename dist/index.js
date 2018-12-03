@@ -2031,10 +2031,14 @@ var pastedFilesHandlers = function pastedFilesHandlers(files, editor) {
 var handlers_copyHandlers = function copyHandlers(event, editor) {
   var blockMap = getFragmentFromSelection_default()(editor.state.editorState);
 
-  if (blockMap && blockMap.toJS) {
+  if (blockMap && blockMap.toArray) {
     try {
-      (event.clipboardData || window.clipboardData || event.originalEvent.clipboardData).setData('text/plain', '__BRAFT_CLIPBOARD_DATA__');
-      window.__BRAFT_CLIPBOARD_DATA__ = blockMap;
+      var tempContentState = external_draft_js_["ContentState"].createFromBlockArray(blockMap.toArray());
+      var tempEditorState = external_draft_js_["EditorState"].createWithContent(tempContentState);
+      var clipboardData = event.clipboardData || window.clipboardData || event.originalEvent.clipboardData;
+      tempEditorState.setConvertOptions(editor.state.editorState.convertOptions);
+      clipboardData.setData('text/html', tempEditorState.toHTML());
+      clipboardData.setData('text/plain', tempEditorState.toText());
       event.preventDefault();
     } catch (error) {
       console.warn(error);
@@ -2044,16 +2048,6 @@ var handlers_copyHandlers = function copyHandlers(event, editor) {
 var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editorState, editor) {
   if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState, editor) === 'handled') {
     return 'handled';
-  }
-
-  if (text === '__BRAFT_CLIPBOARD_DATA__' && window.__BRAFT_CLIPBOARD_DATA__) {
-    try {
-      editor.setValue(external_draft_js_["EditorState"].push(editorState, external_draft_js_["Modifier"].replaceWithFragment(editorState.getCurrentContent(), editorState.getSelection(), window.__BRAFT_CLIPBOARD_DATA__), 'insert-fragment'));
-      return 'handled';
-    } catch (error) {
-      console.log(error);
-      return 'not-handler';
-    }
   }
 
   if (!html || editor.editorProps.stripPastedStyles) {

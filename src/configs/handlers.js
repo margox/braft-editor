@@ -1,5 +1,5 @@
 import { ContentUtils, ColorUtils } from 'braft-utils'
-import { RichUtils, Modifier, EditorState } from 'draft-js'
+import { RichUtils, Modifier, EditorState, ContentState } from 'draft-js'
 import getFragmentFromSelection from 'draft-js/lib/getFragmentFromSelection'
 import { handleNewLine } from 'draftjs-utils'
 
@@ -219,12 +219,21 @@ export const copyHandlers = (event, editor) => {
 
   const blockMap = getFragmentFromSelection(editor.state.editorState)
 
-  if (blockMap && blockMap.toJS) {
+  if (blockMap && blockMap.toArray) {
 
     try {
-      (event.clipboardData || window.clipboardData || event.originalEvent.clipboardData).setData('text/plain', '__BRAFT_CLIPBOARD_DATA__')
-      window.__BRAFT_CLIPBOARD_DATA__ = blockMap
+
+      const tempContentState = ContentState.createFromBlockArray(blockMap.toArray())
+      const tempEditorState = EditorState.createWithContent(tempContentState)
+      const clipboardData = (event.clipboardData || window.clipboardData || event.originalEvent.clipboardData)
+
+      tempEditorState.setConvertOptions(editor.state.editorState.convertOptions)
+
+      clipboardData.setData('text/html', tempEditorState.toHTML())
+      clipboardData.setData('text/plain', tempEditorState.toText())
+
       event.preventDefault()
+
     } catch (error) {
       console.warn(error)
     }
@@ -237,25 +246,6 @@ export const pastedTextHandlers = (text, html, editorState, editor) => {
 
   if (editor.editorProps.handlePastedText && editor.editorProps.handlePastedText(text, html, editorState, editor) === 'handled') {
     return 'handled'
-  }
-
-  if (text === '__BRAFT_CLIPBOARD_DATA__' && window.__BRAFT_CLIPBOARD_DATA__) {
-
-    try {
-
-      editor.setValue(EditorState.push(editorState, Modifier.replaceWithFragment(
-        editorState.getCurrentContent(),
-        editorState.getSelection(),
-        window.__BRAFT_CLIPBOARD_DATA__
-      ), 'insert-fragment'))
-
-      return 'handled'
-
-    } catch (error) {
-      console.log(error)
-      return 'not-handler'
-    }
-
   }
 
   if (!html || editor.editorProps.stripPastedStyles) {

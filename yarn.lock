@@ -1145,8 +1145,8 @@ braces@^2.3.0, braces@^2.3.1:
     to-regex "^3.0.1"
 
 braft-convert@^2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/braft-convert/-/braft-convert-2.1.4.tgz#6b0cd317b32be2ac93d7dd31751671c6b7d854f1"
+  version "2.1.10"
+  resolved "https://registry.yarnpkg.com/braft-convert/-/braft-convert-2.1.10.tgz#b90ee326c15af86384b122a56af4c871984576e5"
   dependencies:
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
