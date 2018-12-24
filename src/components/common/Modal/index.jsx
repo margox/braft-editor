@@ -76,7 +76,7 @@ export default class Modal extends React.Component {
     typeof showFooter === 'undefined' && (showFooter = true)
 
     const childComponent = (
-      <div className={'bf-modal ' + (className || '')}>
+      <div onMouseDown={this.handleMouseDown} className={'bf-modal ' + (className || '')}>
         <div className='bf-modal-mask' onClick={this.handleMaskClick}></div>
         <div onTransitionEnd={this.handleTransitionEnd} style={{width, height}} className='bf-modal-content'>
           <div className='bf-modal-header'>
@@ -112,6 +112,10 @@ export default class Modal extends React.Component {
       this.rootElement.classList.add('active')
     })
 
+  }
+
+  handleMouseDown = (event) => {
+    event.preventDefault()
   }
 
   handleCancel = () => {
@@ -155,12 +159,10 @@ export const showModal = (props) => {
   }
 
   const onConfirm = () => {
-    props.closeOnConfirm && close()
     props.onConfirm && props.onConfirm()
   }
 
   const onCancel = () => {
-    props.closeOnCancel && close()
     props.onCancel && props.onCancel()
   }
 

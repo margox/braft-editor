@@ -48,6 +48,7 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            controls={['font-family']}
             extendControls={[{
               key: 'log-html',
               type: 'button',

@@ -4984,6 +4984,10 @@ function (_React$Component) {
       }
     });
 
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMouseDown", function (event) {
+      event.preventDefault();
+    });
+
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCancel", function () {
       _this.props.closeOnCancel && _this.close();
       _this.props.onCancel && _this.props.onCancel();
@@ -5072,6 +5076,7 @@ function (_React$Component) {
       typeof showConfirm === 'undefined' && (showConfirm = true);
       typeof showFooter === 'undefined' && (showFooter = true);
       var childComponent = external_react_default.a.createElement("div", {
+        onMouseDown: this.handleMouseDown,
         className: 'bf-modal ' + (className || '')
       }, external_react_default.a.createElement("div", {
         className: "bf-modal-mask",
@@ -5150,12 +5155,10 @@ var Modal_showModal = function showModal(props) {
   };
 
   var onConfirm = function onConfirm() {
-    props.closeOnConfirm && close();
     props.onConfirm && props.onConfirm();
   };
 
   var onCancel = function onCancel() {
-    props.closeOnCancel && close();
     props.onCancel && props.onCancel();
   };
 
