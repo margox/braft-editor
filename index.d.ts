@@ -1,13 +1,15 @@
 import * as React from 'react';
 import {
 	EditorState as _EditorState,
-	DraftEditorProps,
+	EditorProps as DraftEditorProps,
 	Editor
 } from 'draft-js';
 
 export type EditorState = _EditorState & {
 	[key: string]: any;
 };
+
+export { DraftEditorProps };
 
 export interface BraftEditorPorps {
 	value?: EditorState;
@@ -221,10 +223,29 @@ export type ImageControlType =
 	| string;
 
 export type HooksType = {
-	[key: HookType]: (
-		params: { href: string; target: any }
-	) => { href: string; target: any };
+	'toggle-link': HookFunc;
+	'open-braft-finder': HookFunc;
+	'toggle-inline-style': HookFunc;
+	'change-block-type': HookFunc;
+	'exec-editor-command': HookFunc;
+	'insert-emoji': HookFunc;
+	'toggle-font-family': HookFunc;
+	'toggle-font-size': HookFunc;
+	'toggle-letter-spacing': HookFunc;
+	'toggle-line-height': HookFunc;
+	'toggle-text-alignment': HookFunc;
+	'toggle-text-color': HookFunc;
+	'toggle-text-background-color': HookFunc;
+	'select-medias': HookFunc;
+	'deselect-medias': HookFunc;
+	'remove-medias': HookFunc;
+	'insert-medias': HookFunc;
+	'select-files': HookFunc;
 };
+
+export type HookFunc = (
+	params: { href: string; target: any }
+) => { href: string; target: any };
 
 export type HookType =
 	| 'toggle-link'
@@ -244,5 +265,4 @@ export type HookType =
 	| 'deselect-medias'
 	| 'remove-medias'
 	| 'insert-medias'
-	| 'select-files'
-	| string;
+	| 'select-files';
