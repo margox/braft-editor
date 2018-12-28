@@ -48,6 +48,15 @@ export default class BraftEditor extends React.Component<BraftEditorPorps> {
 	getDraftInstance(): Editor;
 }
 
+export type ControlType =
+	| BuiltInControlType
+	| {
+			key: BuiltInControlType;
+			title?: string;
+			text?: string | React.ReactNode;
+		}
+	| ExtendControlType;
+
 export type BuiltInControlType =
 	| 'font-size'
 	| 'font-family'
@@ -72,15 +81,6 @@ export type BuiltInControlType =
 	| 'redo'
 	| 'separator'
 	| string;
-
-export type ControlType =
-	| BuiltInControlType
-	| {
-			key: BuiltInControlType;
-			title?: string;
-			text?: string | React.ReactNode;
-		}
-	| ExtendControlType;
 
 export type ExtendControlType =
 	| {
