@@ -99,8 +99,7 @@ export type BuiltInControlType =
 	| 'clear'
 	| 'undo'
 	| 'redo'
-	| 'separator'
-	| string;
+	| 'separator';
 
 export type ExtendControlType =
 	| {
@@ -219,8 +218,7 @@ export type ImageControlType =
 			text?: string;
 			render?: (mediaData: any) => void;
 			onClick?: (block: any) => void;
-		}
-	| string;
+		};
 
 export type HooksType = {
 	'toggle-link': HookFunc;
