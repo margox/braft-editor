@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import {
 	EditorState as _EditorState,
 	DraftEditorProps,
@@ -14,7 +14,11 @@ export interface BraftEditorPorps {
 	defaultValue?: EditorState;
 	placeholder?: string;
 	readOnly?: boolean;
-	language?: string;
+	language?:
+		| 'zh'
+		| 'zh-hant'
+		| 'en'
+		| ((languages: any, context: any) => any);
 	controls?: ControlType[];
 	excludeControls?: BuiltInControlType[];
 	extendControls?: ExtendControlType[];
@@ -30,6 +34,20 @@ export interface BraftEditorPorps {
 	emojis?: string[];
 	draftProps?: DraftEditorProps;
 	hooks?: HooksType;
+	textBackgroundColor?: boolean;
+	stripPastedStyles?: boolean;
+	className?: string;
+	style?: React.CSSProperties;
+	controlBarClassName?: string;
+	controlBarStyle?: React.CSSProperties;
+	contentClassName?: string;
+	contentStyle?: React.CSSProperties;
+	onChange?: (editorState: EditorState) => void;
+	onFocus?: Function;
+	onBlur?: Function;
+	onTab?: Function;
+	onDelete?: Function;
+	onSave?: Function;
 }
 
 export default class BraftEditor extends React.Component<BraftEditorPorps> {
