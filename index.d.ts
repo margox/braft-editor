@@ -55,7 +55,7 @@ export interface BraftEditorPorps {
 export default class BraftEditor extends React.Component<BraftEditorPorps> {
 	static createEditorState(
 		content: string | any,
-		options: object
+		options?: object
 	): EditorState;
 
 	undo(): void;
