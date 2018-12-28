@@ -241,6 +241,7 @@ export type HooksType = {
 	'remove-medias': HookFunc;
 	'insert-medias': HookFunc;
 	'select-files': HookFunc;
+	[key: string]: HookFunc;
 };
 
 export type HookFunc = (
