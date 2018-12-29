@@ -52,7 +52,7 @@ export default class Image extends React.Component {
           </a>
         )
       } else if (item && (item.render || item.text)) {
-        return item.render ? item.render(mediaData) : <a key={index} href='javascript:void(0);' onClick={() => item.onClick && this.executeCommand(item.onClick)}>{item.text}</a>
+        return item.render ? item.render(mediaData, this.props.block) : <a key={index} href='javascript:void(0);' onClick={() => item.onClick && this.executeCommand(item.onClick)}>{item.text}</a>
       } else {
         return null
       }
@@ -185,12 +185,14 @@ export default class Image extends React.Component {
   }
 
   executeCommand = (command) => {
+
     if (typeof command === 'string') {
       const [method, param] = command.split('|')
       this[method] && this[method](param)
     } else if (typeof command === 'function') {
-      command(this.props.block, this.props.editorState)
+      command(this.props.block, this.props.mediaData, this.props.editorState)
     }
+
   }
 
   removeImage = () => {

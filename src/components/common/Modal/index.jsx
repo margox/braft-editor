@@ -115,7 +115,15 @@ export default class Modal extends React.Component {
   }
 
   handleMouseDown = (event) => {
+
+    const tagName = event.target.tagName.toLowerCase()
+
+    if (tagName === 'input' || tagName === 'textarea') {
+      return false
+    }
+
     event.preventDefault()
+
   }
 
   handleCancel = () => {

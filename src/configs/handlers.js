@@ -179,12 +179,25 @@ export const dropHandlers = (selectionState, dataTransfer, editor) => {
 
 export const handleFiles = (files, editor) => {
 
-  const { pasteImage, imagePasteLimit } = { ...editor.constructor.defaultProps.media, ...editor.editorProps.media }
+  const { pasteImage, validateFn, imagePasteLimit } = { ...editor.constructor.defaultProps.media, ...editor.editorProps.media }
 
   pasteImage && files.slice(0, imagePasteLimit).forEach((file) => {
-    file && file.type.indexOf('image') > -1 && editor.braftFinder.uploadImage(file, image => {
-      editor.isLiving && editor.setValue(ContentUtils.insertMedias(editor.state.editorState, [image]))
-    })
+
+    if (file && file.type.indexOf('image') > -1 && editor.braftFinder) {
+      let validateResult = validateFn ? validateFn(file) : true
+      if (validateResult instanceof Promise) {
+        validateResult.then(() => {
+          editor.braftFinder.uploadImage(file, image => {
+            editor.isLiving && editor.setValue(ContentUtils.insertMedias(editor.state.editorState, [image]))
+          })
+        })
+      } else if (validateResult) {
+        editor.braftFinder.uploadImage(file, image => {
+          editor.isLiving && editor.setValue(ContentUtils.insertMedias(editor.state.editorState, [image]))
+        })
+      }
+    }
+
   })
 
   if (files[0] && files[0].type.indexOf('image') > -1 && pasteImage) {
@@ -192,7 +205,7 @@ export const handleFiles = (files, editor) => {
   }
 
   return 'not-handled'
-  
+
 }
 
 export const droppedFilesHandlers = (selectionState, files, editor) => {

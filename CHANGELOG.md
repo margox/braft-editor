@@ -1,5 +1,9 @@
 ### 历史更新记录
 
+- 2018-12-29 v2.2.0
+  - 新增d.ts文件，在TypeScript项目中使用更友好，感谢[幅川大佬](https://github.com/weifuchuan)的贡献！
+  - 修复弹窗组件中的输入框无法使用的问题
+  - 其他优化和问题修复：[Issue#336](https://github.com/margox/braft-editor/issues/336),[Issue#331](https://github.com/margox/braft-editor/issues/331),[Issue#328](https://github.com/margox/braft-editor/issues/328)
 - 2018-12-24 v2.1.36
   - 修复弹窗组件偶尔无法正常关闭的问题
 - 2018-12-03 v2.1.34

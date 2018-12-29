@@ -40,7 +40,7 @@ const mergeControls = (commonProps, builtControls, extensionControls, extendCont
   }).concat(extensionControls.length ? 'separator' : '').concat(extensionControls.filter(item => {
     return !item.replace
   })).concat(extendControls.filter(item => {
-    return !item.replace
+    return typeof item === 'string' || !item.replace
   }))
 
 }

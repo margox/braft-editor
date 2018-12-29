@@ -2000,12 +2000,25 @@ var handlers_dropHandlers = function dropHandlers(selectionState, dataTransfer, 
 var handlers_handleFiles = function handleFiles(files, editor) {
   var _editor$constructor$d = objectSpread_default()({}, editor.constructor.defaultProps.media, editor.editorProps.media),
       pasteImage = _editor$constructor$d.pasteImage,
+      validateFn = _editor$constructor$d.validateFn,
       imagePasteLimit = _editor$constructor$d.imagePasteLimit;
 
   pasteImage && files.slice(0, imagePasteLimit).forEach(function (file) {
-    file && file.type.indexOf('image') > -1 && editor.braftFinder.uploadImage(file, function (image) {
-      editor.isLiving && editor.setValue(external_braft_utils_["ContentUtils"].insertMedias(editor.state.editorState, [image]));
-    });
+    if (file && file.type.indexOf('image') > -1 && editor.braftFinder) {
+      var validateResult = validateFn ? validateFn(file) : true;
+
+      if (validateResult instanceof Promise) {
+        validateResult.then(function () {
+          editor.braftFinder.uploadImage(file, function (image) {
+            editor.isLiving && editor.setValue(external_braft_utils_["ContentUtils"].insertMedias(editor.state.editorState, [image]));
+          });
+        });
+      } else if (validateResult) {
+        editor.braftFinder.uploadImage(file, function (image) {
+          editor.isLiving && editor.setValue(external_braft_utils_["ContentUtils"].insertMedias(editor.state.editorState, [image]));
+        });
+      }
+    }
   });
 
   if (files[0] && files[0].type.indexOf('image') > -1 && pasteImage) {
@@ -2811,7 +2824,7 @@ function (_React$Component) {
 
         _this[method] && _this[method](param);
       } else if (typeof command === 'function') {
-        command(_this.props.block, _this.props.editorState);
+        command(_this.props.block, _this.props.mediaData, _this.props.editorState);
       }
     });
 
@@ -3011,7 +3024,7 @@ function (_React$Component) {
             }
           }, imageControlItems[item].text);
         } else if (item && (item.render || item.text)) {
-          return item.render ? item.render(mediaData) : external_react_default.a.createElement("a", {
+          return item.render ? item.render(mediaData, _this2.props.block) : external_react_default.a.createElement("a", {
             key: index,
             href: "javascript:void(0);",
             onClick: function onClick() {
@@ -4985,6 +4998,12 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMouseDown", function (event) {
+      var tagName = event.target.tagName.toLowerCase();
+
+      if (tagName === 'input' || tagName === 'textarea') {
+        return false;
+      }
+
       event.preventDefault();
     });
 
@@ -5230,7 +5249,7 @@ var mergeControls = function mergeControls(commonProps, builtControls, extension
   }).concat(extensionControls.length ? 'separator' : '').concat(extensionControls.filter(function (item) {
     return !item.replace;
   })).concat(extendControls.filter(function (item) {
-    return !item.replace;
+    return typeof item === 'string' || !item.replace;
   }));
 };
 

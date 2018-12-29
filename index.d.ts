@@ -11,7 +11,7 @@ export type EditorState = _EditorState & {
 
 export { DraftEditorProps };
 
-export interface BraftEditorPorps {
+export interface BraftEditorProps {
 	value?: EditorState;
 	defaultValue?: EditorState;
 	placeholder?: string;
@@ -20,6 +20,7 @@ export interface BraftEditorPorps {
 		| 'zh'
 		| 'zh-hant'
 		| 'en'
+		| 'pl'
 		| ((languages: any, context: any) => any);
 	controls?: ControlType[];
 	excludeControls?: BuiltInControlType[];
@@ -52,7 +53,7 @@ export interface BraftEditorPorps {
 	onSave?: Function;
 }
 
-export default class BraftEditor extends React.Component<BraftEditorPorps> {
+export default class BraftEditor extends React.Component<BraftEditorProps> {
 	static createEditorState(
 		content: string | any,
 		options?: object
