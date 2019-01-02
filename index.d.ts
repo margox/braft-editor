@@ -17,11 +17,11 @@ export interface BraftEditorProps {
 	placeholder?: string;
 	readOnly?: boolean;
 	language?:
-		| 'zh'
-		| 'zh-hant'
-		| 'en'
-		| 'pl'
-		| ((languages: any, context: any) => any);
+	| 'zh'
+	| 'zh-hant'
+	| 'en'
+	| 'pl'
+	| ((languages: any, context: any) => any);
 	controls?: ControlType[];
 	excludeControls?: BuiltInControlType[];
 	extendControls?: ExtendControlType[];
@@ -72,95 +72,101 @@ export default class BraftEditor extends React.Component<BraftEditorProps> {
 export type ControlType =
 	| BuiltInControlType
 	| {
-			key: BuiltInControlType;
-			title?: string;
-			text?: string | React.ReactNode;
-		}
+		key: BuiltInControlType;
+		title?: string;
+		text?: string | React.ReactNode;
+	}
 	| ExtendControlType;
 
 export type BuiltInControlType =
-	| 'font-size'
-	| 'font-family'
-	| 'line-height'
-	| 'letter-spacing'
-	| 'text-color'
+	| 'blockquote'
 	| 'bold'
+	| 'code'
+	| 'clear'
+	| 'emoji'
+	| 'font-family'
+	| 'font-size'
+	| 'fullscreen'
+	| 'headings'
+	| 'hr'
 	| 'italic'
-	| 'underline'
+	| 'letter-spacing'
+	| 'line-height'
+	| 'link'
+	| 'list-ol'
+	| 'list-ul'
+	| 'media'
+	| 'redo'
+	| 'remove-styles'
+	| 'separator'
 	| 'strike-through'
 	| 'superscript'
 	| 'subscript'
-	| 'remove-styles'
-	| 'emoji'
 	| 'text-align'
+	| 'text-color'
 	| 'text-indent'
-	| 'link'
-	| 'hr'
-	| 'media'
-	| 'clear'
-	| 'undo'
-	| 'redo'
-	| 'separator';
+	| 'underline'
+	| 'undo';
 
 export type ExtendControlType =
 	| {
-			key: string;
-			type: 'button';
+		key: string;
+		type: 'button';
+		title?: string;
+		className?: string;
+		html?: string | null;
+		text?: string | React.ReactNode;
+		onClick?: Function;
+	}
+	| {
+		key: string;
+		type: 'dropdown';
+		title?: string;
+		className?: string;
+		html?: string | null;
+		text?: string | React.ReactNode;
+		showArrow?: boolean;
+		arrowActive?: boolean;
+		autoHide?: boolean;
+		component: React.ReactNode;
+	}
+	| {
+		key: string;
+		type: 'modal';
+		title?: string;
+		className?: string;
+		html?: string | null;
+		text?: string | React.ReactNode;
+		onClick?: Function;
+		modal: {
+			id: string;
 			title?: string;
 			className?: string;
-			html?: string | null;
-			text?: string | React.ReactNode;
-			onClick?: Function;
-		}
-	| {
-			key: string;
-			type: 'dropdown';
-			title?: string;
-			className?: string;
-			html?: string | null;
-			text?: string | React.ReactNode;
-			showArrow?: boolean;
-			arrowActive?: boolean;
-			autoHide?: boolean;
-			component: React.ReactNode;
-		}
-	| {
-			key: string;
-			type: 'modal';
-			title?: string;
-			className?: string;
-			html?: string | null;
-			text?: string | React.ReactNode;
-			onClick?: Function;
-			modal: {
-				id: string;
-				title?: string;
-				className?: string;
-				width?: number;
-				height?: number;
-				showFooter?: boolean;
-				showCancel?: boolean;
-				showConfirm?: boolean;
-				confirmable?: boolean;
-				showClose?: boolean;
-				closeOnBlur?: boolean;
-				closeOnConfirm?: boolean;
-				closeOnCancel?: boolean;
-				cancelText?: string;
-				confirmText?: string;
-				bottomText?: React.ReactNode;
-				onConfirm?: Function;
-				onCancel?: Function;
-				onClose?: Function;
-				onBlur?: Function;
-				children: React.ReactNode;
-			};
-		}
-	| {
-			key: string;
-			type: 'component';
-			component: React.ReactNode;
+			width?: number;
+			height?: number;
+			showFooter?: boolean;
+			showCancel?: boolean;
+			showConfirm?: boolean;
+			confirmable?: boolean;
+			showClose?: boolean;
+			closeOnBlur?: boolean;
+			closeOnConfirm?: boolean;
+			closeOnCancel?: boolean;
+			cancelText?: string;
+			confirmText?: string;
+			bottomText?: React.ReactNode;
+			onConfirm?: Function;
+			onCancel?: Function;
+			onClose?: Function;
+			onBlur?: Function;
+			children: React.ReactNode;
 		};
+	}
+	| {
+		key: string;
+		type: 'component';
+		component: React.ReactNode;
+	};
 
 export type MediaType = {
 	uploadFn?: (
@@ -216,10 +222,10 @@ export type ImageControlType =
 	| 'size'
 	| 'remove'
 	| {
-			text?: string;
-			render?: (mediaData: any) => void;
-			onClick?: (block: any) => void;
-		};
+		text?: string;
+		render?: (mediaData: any) => void;
+		onClick?: (block: any) => void;
+	};
 
 export type HooksType = {
 	'toggle-link': HookFunc;
