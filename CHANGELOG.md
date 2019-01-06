@@ -1,5 +1,7 @@
 ### 历史更新记录
 
+- 2019-01-06 v2.2.1
+  - 完善index.d.ts([PR#340](https://github.com/margox/braft-editor/pull/340))
 - 2018-12-29 v2.2.0
   - 新增d.ts文件，在TypeScript项目中使用更友好，感谢[幅川大佬](https://github.com/weifuchuan)的贡献！
   - 修复弹窗组件中的输入框无法使用的问题
