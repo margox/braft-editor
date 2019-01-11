@@ -27,7 +27,7 @@ const isControlEnabled = (props, controlName) => {
 
 const getConvertOptions = (props) => {
 
-  const editorId = props.id || props.editorId
+  const editorId = props.editorId || props.id
   const convertOptions = { ...defaultProps.converts, ...props.converts, fontFamilies: props.fontFamilies }
 
   convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn, editorId)
@@ -50,7 +50,7 @@ export default class BraftEditor extends React.Component {
     super(props)
 
     this.editorProps = this.getEditorProps(props)
-    this.editorDecorators = getDecorators(this.editorProps.id || this.editorProps.editorId)
+    this.editorDecorators = getDecorators(this.editorProps.editorId || this.editorProps.id)
 
     this.isFocused = false
     this.isLiving = false
@@ -75,7 +75,7 @@ export default class BraftEditor extends React.Component {
     props = props || this.props
 
     const {value, defaultValue, onChange, ...restProps} = props// eslint-disable-line no-unused-vars
-    const propInterceptors = getPropInterceptors(restProps.id || restProps.editorId)
+    const propInterceptors = getPropInterceptors(restProps.editorId || restProps.id)
 
     if (propInterceptors.length === 0) {
       return restProps
@@ -337,7 +337,7 @@ export default class BraftEditor extends React.Component {
 
     const { isFullscreen } = this.state
 
-    editorId = id || editorId
+    editorId = editorId || id
     hooks = buildHooks(hooks)
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
     language = (typeof language === 'function' ? language(languages, 'braft-editor') : languages[language]) || languages[defaultProps.language]
