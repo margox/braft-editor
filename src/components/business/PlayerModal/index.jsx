@@ -6,29 +6,32 @@ const playViaModal = (title, component, language) => showModal({
   title: title,
   component: component,
   language: language,
-  footer: null
+  showFooter: false
 })
 
-// const typeIconsMap = {
-//   'video': 'bfi-film',
-//   'audio': 'bfi-music',
-//   'embed': 'bfi-code',
-// }
+const typeIconsMap = {
+  'video': 'bfi-film',
+  'audio': 'bfi-music',
+  'embed': 'bfi-code'
+}
 
-export default ({title, language, name, url, poster, children}) => {
+export default ({title, type, language, name, url, poster, children, onRemove}) => {
 
   return (
-    <div className="bf-player-holder">
-      <button onClick={() => playViaModal(name ? `${title}:${name}` : title, children, language)} className="button-play">
+    <div className={`bf-player-holder ${type}`}>
+      <div className="icon-badge">
+        <i className={typeIconsMap[type]}></i>
+        <span className="text">{language.media[type]}</span>
+      </div>
+      <button onMouseDown={onRemove} className="button-remove">
+        <i className="bfi-close"></i>
+      </button>
+      <button onMouseDown={() => playViaModal(name ? `${title}:${name}` : title, children, language)} className="button-play">
         <i className="bfi-play_arrow"></i>
       </button>
-      <h5>{name}</h5>
-      <h6>{url}</h6>
-      {poster ? (
-        <div className="bf-poster">
-          <img src={poster} alt={name} />
-        </div>
-      ) : null}
+      {name ? <h5 className="bf-name">{name}</h5> : null}
+      <h6 className="bf-url">{url}</h6>
+      {poster ? <div className="bf-poster" style={{backgroundImage: `url(${poster})`}}></div> : null}
     </div>
   )
 

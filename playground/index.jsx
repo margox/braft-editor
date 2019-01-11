@@ -65,6 +65,24 @@ class Demo extends React.Component {
                 component: <div>123123</div>
               }
             }]}
+            media={{
+              items: [
+                {
+                  id: 'embed_1',
+                  type: 'EMBED',
+                  name: '优酷视频',
+                  meta: {
+                    poster: 'https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg'
+                  },
+                  url: `<embed src='http://player.youku.com/player.php/sid/XNDAwNDIxODg4OA==/v.swf' allowFullScreen='true' quality='high' width='480' height='400' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>`
+                }, {
+                  id: 'audio_1',
+                  type: 'AUDIO',
+                  name: '才华有限公司',
+                  url: 'http://cloudary-1253638848.cossh.myqcloud.com/%E9%87%91%E7%8E%9F%E5%B2%90%20-%20%E6%89%8D%E5%8D%8E%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8.mp3'
+                }
+              ]
+            }}
             triggerChangeOnMount={false}
             value={editorState}
             onChange={this.handleChange}

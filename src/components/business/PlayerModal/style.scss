@@ -1,5 +1,100 @@
 @import '~scssinc';
 
 .bf-player-holder{
-
+  position: relative;
+  height: 240px;
+  overflow: hidden;
+  background-color: $COLOR_DARK;
+  border-radius: 3px;
+  .icon-badge{
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    height: 30px;
+    padding: 0 15px;
+    border-radius: 0 0 3px 0;
+    color: #fff;
+    background-color: rgba(#fff, .1);
+    i,span{
+      display: block;
+      float: left;
+      line-height: 30px;
+    }
+    span{
+      margin-left: 5px;
+      font-size: 12px;
+    }
+  }
+  .button-remove{
+    position: absolute;
+    z-index: 2;
+    top: 5px;
+    right: 5px;
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+      color: $COLOR_DANGER;
+    }
+  }
+  .button-play{
+    position: relative;
+    z-index: 2;
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin: 40px auto 20px auto;
+    background-color: rgba(#000, .7);
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    color: #fff;
+    font-size: 48px;
+    line-height: 80px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    cursor: pointer;
+    &:hover{
+      background-color: $COLOR_ACTIVE;
+    }
+  }
+  .bf-name{
+    position: relative;
+    z-index: 2;
+    margin: 0;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+  }
+  .bf-url{
+    position: relative;
+    z-index: 2;
+    width: 70%;
+    margin: 10px auto;
+    color: rgba(#fff, .5);
+    font-size: 12px;
+    font-weight: normal;
+    text-align: center;
+  }
+  .bf-poster{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    background-size: cover;
+    opacity: .3;
+  }
 }

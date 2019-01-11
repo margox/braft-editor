@@ -1,34 +1,20 @@
 import './style.scss'
 import React from 'react'
-import StaticContainer from 'components/common/StaticContainer'
+import PlayerModal from 'components/business/PlayerModal'
 import { ContentUtils } from 'braft-utils'
 
 export default class Video extends React.Component {
 
-  state = {
-    toolbarVisible: false,
-  }
-
   render () {
 
-    const { toolbarVisible } = this.state
-    const { mediaData } = this.props
-    const { url, meta } = mediaData
+    const { mediaData, language } = this.props
+    const { url, name, meta } = mediaData
 
     return (
-      <div
-        className='bf-video-wrap'
-        onMouseOver={this.showToolbar}
-        onMouseLeave={this.hideToolbar}
-      >
-        <StaticContainer>
-          <video controls src={url} poster={meta ? meta.poster || '' : ''}/>
-        </StaticContainer>
-        {toolbarVisible ? (
-          <div className='bf-media-toolbar'>
-            <a onClick={this.removeVideo}>&#xe9ac;</a>
-          </div>
-        ) : null}
+      <div className='bf-video-wrap'>
+        <PlayerModal type="video" onRemove={this.removeVideo} poster={meta ? meta.poster || '' : ''} language={language} url={url} name={name} title={language.videoPlayer.title}>
+          <div className="bf-video-player"><video controls src={url} poster={meta ? meta.poster || '' : ''}/></div>
+        </PlayerModal>
       </div>
     )
 
@@ -36,18 +22,6 @@ export default class Video extends React.Component {
 
   removeVideo = () => {
     this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
-  }
-
-  showToolbar = () => {
-    this.setState({
-      toolbarVisible: true
-    })
-  }
-
-  hideToolbar = () => {
-    this.setState({
-      toolbarVisible: false
-    })
   }
 
 }

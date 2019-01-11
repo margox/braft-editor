@@ -1,12 +1,9 @@
 @import '~scssinc';
 
-.bf-content .bf-audio{
-  position: relative;
-  display: block;
-  margin: 10px 0;
-  background-color: #f1f2f3;
+.bf-audio-player{
   audio{
-    display: block;
-    width: 100%;
+    width: 480px;
+    max-width: 80vw;
+    margin: 0 10px 10px 10px;
   }
 }

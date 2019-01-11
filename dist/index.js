@@ -143,94 +143,6 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-function _defineProperties(target, props) {
-  for (var i = 0; i < props.length; i++) {
-    var descriptor = props[i];
-    descriptor.enumerable = descriptor.enumerable || false;
-    descriptor.configurable = true;
-    if ("value" in descriptor) descriptor.writable = true;
-    Object.defineProperty(target, descriptor.key, descriptor);
-  }
-}
-
-function _createClass(Constructor, protoProps, staticProps) {
-  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
-  if (staticProps) _defineProperties(Constructor, staticProps);
-  return Constructor;
-}
-
-module.exports = _createClass;
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var _typeof = __webpack_require__(16);
-
-var assertThisInitialized = __webpack_require__(1);
-
-function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof(call) === "object" || typeof call === "function")) {
-    return call;
-  }
-
-  return assertThisInitialized(self);
-}
-
-module.exports = _possibleConstructorReturn;
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-function _getPrototypeOf(o) {
-  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
-    return o.__proto__ || Object.getPrototypeOf(o);
-  };
-  return _getPrototypeOf(o);
-}
-
-module.exports = _getPrototypeOf;
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var setPrototypeOf = __webpack_require__(26);
-
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) setPrototypeOf(subClass, superClass);
-}
-
-module.exports = _inherits;
-
-/***/ }),
-/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(2);
@@ -255,6 +167,94 @@ function _objectSpread(target) {
 }
 
 module.exports = _objectSpread;
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+function _defineProperties(target, props) {
+  for (var i = 0; i < props.length; i++) {
+    var descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ("value" in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+}
+
+function _createClass(Constructor, protoProps, staticProps) {
+  if (protoProps) _defineProperties(Constructor.prototype, protoProps);
+  if (staticProps) _defineProperties(Constructor, staticProps);
+  return Constructor;
+}
+
+module.exports = _createClass;
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var _typeof = __webpack_require__(16);
+
+var assertThisInitialized = __webpack_require__(1);
+
+function _possibleConstructorReturn(self, call) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
+    return call;
+  }
+
+  return assertThisInitialized(self);
+}
+
+module.exports = _possibleConstructorReturn;
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+function _getPrototypeOf(o) {
+  module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
+    return o.__proto__ || Object.getPrototypeOf(o);
+  };
+  return _getPrototypeOf(o);
+}
+
+module.exports = _getPrototypeOf;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var setPrototypeOf = __webpack_require__(26);
+
+function _inherits(subClass, superClass) {
+  if (typeof superClass !== "function" && superClass !== null) {
+    throw new TypeError("Super expression must either be null or a function");
+  }
+
+  subClass.prototype = Object.create(superClass && superClass.prototype, {
+    constructor: {
+      value: subClass,
+      writable: true,
+      configurable: true
+    }
+  });
+  if (superClass) setPrototypeOf(subClass, superClass);
+}
+
+module.exports = _inherits;
 
 /***/ }),
 /* 10 */
@@ -1372,7 +1372,7 @@ var helpers_typeof = __webpack_require__(16);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(9);
+var objectSpread = __webpack_require__(4);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectWithoutProperties.js
@@ -1380,23 +1380,23 @@ var objectWithoutProperties = __webpack_require__(21);
 var objectWithoutProperties_default = /*#__PURE__*/__webpack_require__.n(objectWithoutProperties);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(4);
+var classCallCheck = __webpack_require__(5);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/createClass.js
-var createClass = __webpack_require__(5);
+var createClass = __webpack_require__(6);
 var createClass_default = /*#__PURE__*/__webpack_require__.n(createClass);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js
-var possibleConstructorReturn = __webpack_require__(6);
+var possibleConstructorReturn = __webpack_require__(7);
 var possibleConstructorReturn_default = /*#__PURE__*/__webpack_require__.n(possibleConstructorReturn);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/getPrototypeOf.js
-var getPrototypeOf = __webpack_require__(7);
+var getPrototypeOf = __webpack_require__(8);
 var getPrototypeOf_default = /*#__PURE__*/__webpack_require__.n(getPrototypeOf);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/inherits.js
-var inherits = __webpack_require__(8);
+var inherits = __webpack_require__(9);
 var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/assertThisInitialized.js
@@ -3169,7 +3169,14 @@ function (_React$Component) {
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
 var Video_style = __webpack_require__(47);
 
-// CONCATENATED MODULE: ./components/common/StaticContainer/index.jsx
+// EXTERNAL MODULE: ./components/common/Modal/style.scss
+var Modal_style = __webpack_require__(48);
+
+// EXTERNAL MODULE: external "react-dom"
+var external_react_dom_ = __webpack_require__(15);
+var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
+
+// CONCATENATED MODULE: ./components/common/Modal/index.jsx
 
 
 
@@ -3177,33 +3184,295 @@ var Video_style = __webpack_require__(47);
 
 
 
-var StaticContainer_default =
+
+
+
+
+
+
+
+var Modal_Modal =
 /*#__PURE__*/
 function (_React$Component) {
-  inherits_default()(_default, _React$Component);
+  inherits_default()(Modal, _React$Component);
 
-  function _default() {
-    classCallCheck_default()(this, _default);
+  function Modal(props) {
+    var _this;
 
-    return possibleConstructorReturn_default()(this, getPrototypeOf_default()(_default).apply(this, arguments));
+    classCallCheck_default()(this, Modal);
+
+    _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(Modal).call(this, props));
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleTransitionEnd", function () {
+      if (!_this.rootElement || !_this.rootElement.classList) {
+        return false;
+      }
+
+      if (!_this.rootElement.classList.contains('active')) {
+        external_react_dom_default.a.unmountComponentAtNode(_this.rootElement) && _this.rootElement.parentNode.removeChild(_this.rootElement);
+      }
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMouseDown", function (event) {
+      var tagName = event.target.tagName.toLowerCase();
+
+      if (tagName === 'input' || tagName === 'textarea') {
+        return false;
+      }
+
+      event.preventDefault();
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCancel", function () {
+      _this.props.closeOnCancel && _this.close();
+      _this.props.onCancel && _this.props.onCancel();
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleConfirm", function () {
+      _this.props.closeOnConfirm && _this.close();
+      _this.props.onConfirm && _this.props.onConfirm();
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMaskClick", function () {
+      _this.props.closeOnBlur && _this.close();
+      _this.props.onBlue && _this.props.onBlue();
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "close", function () {
+      _this.unrenderComponent();
+
+      _this.props.onClose && _this.props.onClose();
+    });
+
+    _this.active = false;
+    _this.componentId = 'BRAFT-MODAL-' + external_braft_utils_["BaseUtils"].UniqueIndex();
+    return _this;
   }
 
-  createClass_default()(_default, [{
-    key: "shouldComponentUpdate",
-    value: function shouldComponentUpdate() {
-      return false;
+  createClass_default()(Modal, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      if (this.props.visible) {
+        this.active = true;
+        this.renderComponent(this.props);
+      }
+    }
+  }, {
+    key: "componentWillReceiveProps",
+    value: function componentWillReceiveProps(next) {
+      if (this.props.visible && !next.visible) {
+        this.unrenderComponent();
+      } else if (this.props.visible || next.visible) {
+        this.active = true;
+        this.renderComponent(next);
+      }
     }
   }, {
     key: "render",
     value: function render() {
-      return external_react_default.a.createElement("div", null, this.props.children);
+      return null;
+    }
+  }, {
+    key: "unrenderComponent",
+    value: function unrenderComponent() {
+      this.active = false;
+      this.activeId && window.clearImmediate(this.activeId);
+
+      if (this.rootElement && this.rootElement.classList) {
+        this.rootElement.classList.remove('active');
+      }
+    }
+  }, {
+    key: "renderComponent",
+    value: function renderComponent(props) {
+      var _this2 = this;
+
+      if (!this.active) {
+        return false;
+      }
+
+      var title = props.title,
+          className = props.className,
+          width = props.width,
+          height = props.height,
+          children = props.children,
+          component = props.component,
+          confirmable = props.confirmable,
+          showFooter = props.showFooter,
+          showCancel = props.showCancel,
+          showConfirm = props.showConfirm,
+          showClose = props.showClose,
+          cancelText = props.cancelText,
+          confirmText = props.confirmText,
+          bottomText = props.bottomText,
+          language = props.language;
+      typeof showCancel === 'undefined' && (showCancel = true);
+      typeof showClose === 'undefined' && (showClose = true);
+      typeof showConfirm === 'undefined' && (showConfirm = true);
+      typeof showFooter === 'undefined' && (showFooter = true);
+      var childComponent = external_react_default.a.createElement("div", {
+        onMouseDown: this.handleMouseDown,
+        className: 'bf-modal ' + (className || '')
+      }, external_react_default.a.createElement("div", {
+        className: "bf-modal-mask",
+        onClick: this.handleMaskClick
+      }), external_react_default.a.createElement("div", {
+        onTransitionEnd: this.handleTransitionEnd,
+        style: {
+          width: width,
+          height: height
+        },
+        className: "bf-modal-content"
+      }, external_react_default.a.createElement("div", {
+        className: "bf-modal-header"
+      }, external_react_default.a.createElement("h3", {
+        className: "bf-modal-caption"
+      }, title), showClose && external_react_default.a.createElement("button", {
+        type: "button",
+        onClick: this.close,
+        className: "bf-modal-close-button"
+      }, external_react_default.a.createElement("i", {
+        className: "bfi-close"
+      }))), external_react_default.a.createElement("div", {
+        className: "bf-modal-body"
+      }, children || component), showFooter ? external_react_default.a.createElement("div", {
+        className: "bf-modal-footer"
+      }, external_react_default.a.createElement("div", {
+        className: "bf-modal-addon-text"
+      }, bottomText), external_react_default.a.createElement("div", {
+        className: "bf-modal-buttons"
+      }, showCancel && external_react_default.a.createElement("button", {
+        type: "button",
+        onClick: this.handleCancel,
+        className: "bf-modal-cancel"
+      }, cancelText || language.base.cancel), showConfirm && external_react_default.a.createElement("button", {
+        type: "button",
+        onClick: this.handleConfirm,
+        className: 'bf-modal-confirm ' + (!confirmable ? 'disabled' : '')
+      }, confirmText || language.base.confirm))) : null));
+      this.rootElement = document.querySelector('#' + this.componentId);
+
+      if (!this.rootElement) {
+        this.rootElement = document.createElement('div');
+        this.rootElement.id = this.componentId;
+        this.rootElement.className = 'bf-modal-root';
+        document.body.appendChild(this.rootElement);
+      }
+
+      external_react_dom_default.a.render(childComponent, this.rootElement);
+      this.activeId = window.setImmediate(function () {
+        _this2.rootElement.classList.add('active');
+      });
     }
   }]);
 
-  return _default;
+  return Modal;
 }(external_react_default.a.Component);
 
+defineProperty_default()(Modal_Modal, "defaultProps", {
+  showFooter: true,
+  closeOnBlur: true
+});
 
+
+var Modal_showModal = function showModal(props) {
+  var hostNode = document.createElement('div');
+  hostNode.style.display = 'none';
+  document.body.appendChild(hostNode);
+  props = objectSpread_default()({
+    visible: true,
+    closeOnConfirm: true,
+    closeOnCancel: true
+  }, props);
+
+  var close = function close() {
+    external_react_dom_default.a.unmountComponentAtNode(hostNode) && hostNode.parentNode.removeChild(hostNode);
+  };
+
+  var onConfirm = function onConfirm() {
+    props.onConfirm && props.onConfirm();
+  };
+
+  var onCancel = function onCancel() {
+    props.onCancel && props.onCancel();
+  };
+
+  var onClose = function onClose() {
+    close();
+    props.onClose && props.onClose();
+  };
+
+  var modalInstance = external_react_dom_default.a.render(external_react_default.a.createElement(Modal_Modal, extends_default()({}, props, {
+    onConfirm: onConfirm,
+    onCancel: onCancel,
+    onClose: onClose
+  })), hostNode);
+  modalInstance.destroy = close;
+  modalInstance.update = modalInstance.renderComponent;
+  return modalInstance;
+};
+// EXTERNAL MODULE: ./components/business/PlayerModal/style.scss
+var PlayerModal_style = __webpack_require__(49);
+
+// CONCATENATED MODULE: ./components/business/PlayerModal/index.jsx
+
+
+
+
+var PlayerModal_playViaModal = function playViaModal(title, component, language) {
+  return Modal_showModal({
+    title: title,
+    component: component,
+    language: language,
+    showFooter: false
+  });
+};
+
+var typeIconsMap = {
+  'video': 'bfi-film',
+  'audio': 'bfi-music',
+  'embed': 'bfi-code'
+};
+/* harmony default export */ var PlayerModal = (function (_ref) {
+  var title = _ref.title,
+      type = _ref.type,
+      language = _ref.language,
+      name = _ref.name,
+      url = _ref.url,
+      poster = _ref.poster,
+      children = _ref.children,
+      onRemove = _ref.onRemove;
+  return external_react_default.a.createElement("div", {
+    className: "bf-player-holder ".concat(type)
+  }, external_react_default.a.createElement("div", {
+    className: "icon-badge"
+  }, external_react_default.a.createElement("i", {
+    className: typeIconsMap[type]
+  }), external_react_default.a.createElement("span", {
+    className: "text"
+  }, language.media[type])), external_react_default.a.createElement("button", {
+    onMouseDown: onRemove,
+    className: "button-remove"
+  }, external_react_default.a.createElement("i", {
+    className: "bfi-close"
+  })), external_react_default.a.createElement("button", {
+    onMouseDown: function onMouseDown() {
+      return PlayerModal_playViaModal(name ? "".concat(title, ":").concat(name) : title, children, language);
+    },
+    className: "button-play"
+  }, external_react_default.a.createElement("i", {
+    className: "bfi-play_arrow"
+  })), name ? external_react_default.a.createElement("h5", {
+    className: "bf-name"
+  }, name) : null, external_react_default.a.createElement("h6", {
+    className: "bf-url"
+  }, url), poster ? external_react_default.a.createElement("div", {
+    className: "bf-poster",
+    style: {
+      backgroundImage: "url(".concat(poster, ")")
+    }
+  }) : null);
+});
 // CONCATENATED MODULE: ./renderers/atomics/Video/index.jsx
 
 
@@ -3235,24 +3504,8 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(Video)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
-      toolbarVisible: false
-    });
-
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeVideo", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "showToolbar", function () {
-      _this.setState({
-        toolbarVisible: true
-      });
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "hideToolbar", function () {
-      _this.setState({
-        toolbarVisible: false
-      });
     });
 
     return _this;
@@ -3261,23 +3514,29 @@ function (_React$Component) {
   createClass_default()(Video, [{
     key: "render",
     value: function render() {
-      var toolbarVisible = this.state.toolbarVisible;
-      var mediaData = this.props.mediaData;
+      var _this$props = this.props,
+          mediaData = _this$props.mediaData,
+          language = _this$props.language;
       var url = mediaData.url,
+          name = mediaData.name,
           meta = mediaData.meta;
       return external_react_default.a.createElement("div", {
-        className: "bf-video-wrap",
-        onMouseOver: this.showToolbar,
-        onMouseLeave: this.hideToolbar
-      }, external_react_default.a.createElement(StaticContainer_default, null, external_react_default.a.createElement("video", {
+        className: "bf-video-wrap"
+      }, external_react_default.a.createElement(PlayerModal, {
+        type: "video",
+        onRemove: this.removeVideo,
+        poster: meta ? meta.poster || '' : '',
+        language: language,
+        url: url,
+        name: name,
+        title: language.videoPlayer.title
+      }, external_react_default.a.createElement("div", {
+        className: "bf-video-player"
+      }, external_react_default.a.createElement("video", {
         controls: true,
         src: url,
         poster: meta ? meta.poster || '' : ''
-      })), toolbarVisible ? external_react_default.a.createElement("div", {
-        className: "bf-media-toolbar"
-      }, external_react_default.a.createElement("a", {
-        onClick: this.removeVideo
-      }, "\uE9AC")) : null);
+      }))));
     }
   }]);
 
@@ -3286,7 +3545,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(48);
+var Audio_style = __webpack_require__(50);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -3319,24 +3578,8 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(Audio)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
-      toolbarVisible: false
-    });
-
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeAudio", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "showToolbar", function () {
-      _this.setState({
-        toolbarVisible: true
-      });
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "hideToolbar", function () {
-      _this.setState({
-        toolbarVisible: false
-      });
     });
 
     return _this;
@@ -3345,21 +3588,28 @@ function (_React$Component) {
   createClass_default()(Audio, [{
     key: "render",
     value: function render() {
-      var toolbarVisible = this.state.toolbarVisible;
-      var mediaData = this.props.mediaData;
-      var url = mediaData.url;
+      var _this$props = this.props,
+          mediaData = _this$props.mediaData,
+          language = _this$props.language;
+      var url = mediaData.url,
+          name = mediaData.name,
+          meta = mediaData.meta;
       return external_react_default.a.createElement("div", {
-        className: "bf-audio",
-        onMouseOver: this.showToolbar,
-        onMouseLeave: this.hideToolbar
-      }, external_react_default.a.createElement(StaticContainer_default, null, external_react_default.a.createElement("audio", {
+        className: "bf-audio-wrap"
+      }, external_react_default.a.createElement(PlayerModal, {
+        type: "audio",
+        onRemove: this.removeAudio,
+        poster: meta ? meta.poster || '' : '',
+        language: language,
+        url: url,
+        name: name,
+        title: language.audioPlayer.title
+      }, external_react_default.a.createElement("div", {
+        className: "bf-audio-player"
+      }, external_react_default.a.createElement("audio", {
         controls: true,
         src: url
-      })), toolbarVisible ? external_react_default.a.createElement("div", {
-        className: "bf-media-toolbar"
-      }, external_react_default.a.createElement("a", {
-        onClick: this.removeAudio
-      }, "\uE9AC")) : null);
+      }))));
     }
   }]);
 
@@ -3368,7 +3618,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(49);
+var Embed_style = __webpack_require__(51);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -3401,24 +3651,8 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(Embed)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
-      toolbarVisible: false
-    });
-
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeEmbed", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "showToolbar", function () {
-      _this.setState({
-        toolbarVisible: true
-      });
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "hideToolbar", function () {
-      _this.setState({
-        toolbarVisible: false
-      });
     });
 
     return _this;
@@ -3427,23 +3661,28 @@ function (_React$Component) {
   createClass_default()(Embed, [{
     key: "render",
     value: function render() {
-      var toolbarVisible = this.state.toolbarVisible;
-      var mediaData = this.props.mediaData;
-      var url = mediaData.url;
+      var _this$props = this.props,
+          mediaData = _this$props.mediaData,
+          language = _this$props.language;
+      var name = mediaData.name,
+          url = mediaData.url,
+          meta = mediaData.meta;
       return external_react_default.a.createElement("div", {
-        className: "bf-embed",
-        onMouseOver: this.showToolbar,
-        onMouseLeave: this.hideToolbar
-      }, external_react_default.a.createElement(StaticContainer_default, null, external_react_default.a.createElement("div", {
+        className: "bf-embed-wrap"
+      }, external_react_default.a.createElement(PlayerModal, {
+        type: "embed",
+        onRemove: this.removeEmbed,
+        poster: meta ? meta.poster || '' : '',
+        language: language,
+        url: url,
+        name: name,
+        title: language.videoPlayer.embedTitle
+      }, external_react_default.a.createElement("div", {
         className: "bf-embed-player",
         dangerouslySetInnerHTML: {
           __html: url
         }
-      })), toolbarVisible ? external_react_default.a.createElement("div", {
-        className: "bf-media-toolbar"
-      }, external_react_default.a.createElement("a", {
-        onClick: this.removeEmbed
-      }, "\uE9AC")) : null);
+      })));
     }
   }]);
 
@@ -3452,7 +3691,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(50);
+var HorizontalLine_style = __webpack_require__(52);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -3798,13 +4037,13 @@ var getCustomStyleMap = inlineStyleMap;
 var getCustomStyleFn = inlineStyleFn;
 var getDecorators = decorators;
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(51);
+var ControlBar_style = __webpack_require__(53);
 
 // EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
-var LinkEditor_style = __webpack_require__(52);
+var LinkEditor_style = __webpack_require__(54);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
-var DropDown_style = __webpack_require__(53);
+var DropDown_style = __webpack_require__(55);
 
 // CONCATENATED MODULE: ./helpers/responsive.js
 
@@ -4223,7 +4462,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/Headings/style.scss
-var Headings_style = __webpack_require__(54);
+var Headings_style = __webpack_require__(56);
 
 // CONCATENATED MODULE: ./configs/maps.js
 
@@ -4318,10 +4557,10 @@ var blocks = {
   })));
 });
 // EXTERNAL MODULE: ./components/business/TextColor/style.scss
-var TextColor_style = __webpack_require__(55);
+var TextColor_style = __webpack_require__(57);
 
 // EXTERNAL MODULE: ./components/common/ColorPicker/style.scss
-var ColorPicker_style = __webpack_require__(56);
+var ColorPicker_style = __webpack_require__(58);
 
 // CONCATENATED MODULE: ./components/common/ColorPicker/index.jsx
 
@@ -4492,7 +4731,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/FontSize/style.scss
-var FontSize_style = __webpack_require__(57);
+var FontSize_style = __webpack_require__(59);
 
 // CONCATENATED MODULE: ./components/business/FontSize/index.jsx
 
@@ -4552,7 +4791,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/LineHeight/style.scss
-var LineHeight_style = __webpack_require__(58);
+var LineHeight_style = __webpack_require__(60);
 
 // CONCATENATED MODULE: ./components/business/LineHeight/index.jsx
 
@@ -4612,7 +4851,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/FontFamily/style.scss
-var FontFamily_style = __webpack_require__(59);
+var FontFamily_style = __webpack_require__(61);
 
 // CONCATENATED MODULE: ./components/business/FontFamily/index.jsx
 
@@ -4760,7 +4999,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/EmojiPicker/style.scss
-var EmojiPicker_style = __webpack_require__(60);
+var EmojiPicker_style = __webpack_require__(62);
 
 // CONCATENATED MODULE: ./components/business/EmojiPicker/index.jsx
 
@@ -4807,7 +5046,7 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
   }))));
 });
 // EXTERNAL MODULE: ./components/business/LetterSpacing/style.scss
-var LetterSpacing_style = __webpack_require__(61);
+var LetterSpacing_style = __webpack_require__(63);
 
 // CONCATENATED MODULE: ./components/business/LetterSpacing/index.jsx
 
@@ -4953,248 +5192,6 @@ function (_React$Component) {
 }(external_react_default.a.Component);
 
 
-// EXTERNAL MODULE: ./components/common/Modal/style.scss
-var Modal_style = __webpack_require__(62);
-
-// EXTERNAL MODULE: external "react-dom"
-var external_react_dom_ = __webpack_require__(15);
-var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
-
-// CONCATENATED MODULE: ./components/common/Modal/index.jsx
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-var Modal_Modal =
-/*#__PURE__*/
-function (_React$Component) {
-  inherits_default()(Modal, _React$Component);
-
-  function Modal(props) {
-    var _this;
-
-    classCallCheck_default()(this, Modal);
-
-    _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(Modal).call(this, props));
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleTransitionEnd", function () {
-      if (!_this.rootElement || !_this.rootElement.classList) {
-        return false;
-      }
-
-      if (!_this.rootElement.classList.contains('active')) {
-        external_react_dom_default.a.unmountComponentAtNode(_this.rootElement) && _this.rootElement.parentNode.removeChild(_this.rootElement);
-      }
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMouseDown", function (event) {
-      var tagName = event.target.tagName.toLowerCase();
-
-      if (tagName === 'input' || tagName === 'textarea') {
-        return false;
-      }
-
-      event.preventDefault();
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCancel", function () {
-      _this.props.closeOnCancel && _this.close();
-      _this.props.onCancel && _this.props.onCancel();
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleConfirm", function () {
-      _this.props.closeOnConfirm && _this.close();
-      _this.props.onConfirm && _this.props.onConfirm();
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMaskClick", function () {
-      _this.props.closeOnBlur && _this.close();
-      _this.props.onBlue && _this.props.onBlue();
-    });
-
-    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "close", function () {
-      _this.unrenderComponent();
-
-      _this.props.onClose && _this.props.onClose();
-    });
-
-    _this.active = false;
-    _this.componentId = 'BRAFT-MODAL-' + external_braft_utils_["BaseUtils"].UniqueIndex();
-    return _this;
-  }
-
-  createClass_default()(Modal, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      if (this.props.visible) {
-        this.active = true;
-        this.renderComponent(this.props);
-      }
-    }
-  }, {
-    key: "componentWillReceiveProps",
-    value: function componentWillReceiveProps(next) {
-      if (this.props.visible && !next.visible) {
-        this.unrenderComponent();
-      } else if (this.props.visible || next.visible) {
-        this.active = true;
-        this.renderComponent(next);
-      }
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      return null;
-    }
-  }, {
-    key: "unrenderComponent",
-    value: function unrenderComponent() {
-      this.active = false;
-      this.activeId && window.clearImmediate(this.activeId);
-
-      if (this.rootElement && this.rootElement.classList) {
-        this.rootElement.classList.remove('active');
-      }
-    }
-  }, {
-    key: "renderComponent",
-    value: function renderComponent(props) {
-      var _this2 = this;
-
-      if (!this.active) {
-        return false;
-      }
-
-      var title = props.title,
-          className = props.className,
-          width = props.width,
-          height = props.height,
-          children = props.children,
-          component = props.component,
-          confirmable = props.confirmable,
-          showFooter = props.showFooter,
-          showCancel = props.showCancel,
-          showConfirm = props.showConfirm,
-          showClose = props.showClose,
-          cancelText = props.cancelText,
-          confirmText = props.confirmText,
-          bottomText = props.bottomText,
-          language = props.language;
-      typeof showCancel === 'undefined' && (showCancel = true);
-      typeof showClose === 'undefined' && (showClose = true);
-      typeof showConfirm === 'undefined' && (showConfirm = true);
-      typeof showFooter === 'undefined' && (showFooter = true);
-      var childComponent = external_react_default.a.createElement("div", {
-        onMouseDown: this.handleMouseDown,
-        className: 'bf-modal ' + (className || '')
-      }, external_react_default.a.createElement("div", {
-        className: "bf-modal-mask",
-        onClick: this.handleMaskClick
-      }), external_react_default.a.createElement("div", {
-        onTransitionEnd: this.handleTransitionEnd,
-        style: {
-          width: width,
-          height: height
-        },
-        className: "bf-modal-content"
-      }, external_react_default.a.createElement("div", {
-        className: "bf-modal-header"
-      }, external_react_default.a.createElement("h3", {
-        className: "bf-modal-caption"
-      }, title), showClose && external_react_default.a.createElement("button", {
-        type: "button",
-        onClick: this.close,
-        className: "bf-modal-close-button"
-      }, external_react_default.a.createElement("i", {
-        className: "bfi-close"
-      }))), external_react_default.a.createElement("div", {
-        className: "bf-modal-body"
-      }, children || component), showFooter ? external_react_default.a.createElement("div", {
-        className: "bf-modal-footer"
-      }, external_react_default.a.createElement("div", {
-        className: "bf-modal-addon-text"
-      }, bottomText), external_react_default.a.createElement("div", {
-        className: "bf-modal-buttons"
-      }, showCancel && external_react_default.a.createElement("button", {
-        type: "button",
-        onClick: this.handleCancel,
-        className: "bf-modal-cancel"
-      }, cancelText || language.base.cancel), showConfirm && external_react_default.a.createElement("button", {
-        type: "button",
-        onClick: this.handleConfirm,
-        className: 'bf-modal-confirm ' + (!confirmable ? 'disabled' : '')
-      }, confirmText || language.base.confirm))) : null));
-      this.rootElement = document.querySelector('#' + this.componentId);
-
-      if (!this.rootElement) {
-        this.rootElement = document.createElement('div');
-        this.rootElement.id = this.componentId;
-        this.rootElement.className = 'bf-modal-root';
-        document.body.appendChild(this.rootElement);
-      }
-
-      external_react_dom_default.a.render(childComponent, this.rootElement);
-      this.activeId = window.setImmediate(function () {
-        _this2.rootElement.classList.add('active');
-      });
-    }
-  }]);
-
-  return Modal;
-}(external_react_default.a.Component);
-
-defineProperty_default()(Modal_Modal, "defaultProps", {
-  showFooter: true,
-  closeOnBlur: true
-});
-
-
-var Modal_showModal = function showModal(props) {
-  var hostNode = document.createElement('div');
-  hostNode.style.display = 'none';
-  document.body.appendChild(hostNode);
-  props = objectSpread_default()({
-    visible: true,
-    closeOnConfirm: true,
-    closeOnCancel: true
-  }, props);
-
-  var close = function close() {
-    external_react_dom_default.a.unmountComponentAtNode(hostNode) && hostNode.parentNode.removeChild(hostNode);
-  };
-
-  var onConfirm = function onConfirm() {
-    props.onConfirm && props.onConfirm();
-  };
-
-  var onCancel = function onCancel() {
-    props.onCancel && props.onCancel();
-  };
-
-  var onClose = function onClose() {
-    close();
-    props.onClose && props.onClose();
-  };
-
-  var modalInstance = external_react_dom_default.a.render(external_react_default.a.createElement(Modal_Modal, extends_default()({}, props, {
-    onConfirm: onConfirm,
-    onCancel: onCancel,
-    onClose: onClose
-  })), hostNode);
-  modalInstance.destroy = close;
-  modalInstance.update = modalInstance.renderComponent;
-  return modalInstance;
-};
 // CONCATENATED MODULE: ./components/business/ControlBar/index.jsx
 
 
@@ -6374,6 +6371,12 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 
 /***/ }),
 /* 62 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 63 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
