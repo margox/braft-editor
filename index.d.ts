@@ -15,6 +15,8 @@ export interface BraftEditorProps {
 	value?: EditorState;
 	defaultValue?: EditorState;
 	placeholder?: string;
+	id?: string,
+	editorId?: string,
 	readOnly?: boolean;
 	language?:
 	| 'zh'

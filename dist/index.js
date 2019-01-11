@@ -5694,16 +5694,18 @@ var editor_isControlEnabled = function isControlEnabled(props, controlName) {
 };
 
 var editor_getConvertOptions = function getConvertOptions(props) {
+  var editorId = props.id || props.editorId;
+
   var convertOptions = objectSpread_default()({}, configs_props.converts, props.converts, {
     fontFamilies: props.fontFamilies
   });
 
-  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn, props.id);
-  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn, props.id);
-  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn, props.id);
-  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn, props.id);
-  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn, props.id);
-  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn, props.id);
+  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn, editorId);
+  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn, editorId);
+  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn, editorId);
+  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn, editorId);
+  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn, editorId);
+  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn, editorId);
   return convertOptions;
 };
 
@@ -5855,7 +5857,7 @@ function (_React$Component) {
     });
 
     _this.editorProps = _this.getEditorProps(props);
-    _this.editorDecorators = getDecorators(_this.editorProps.id);
+    _this.editorDecorators = getDecorators(_this.editorProps.id || _this.editorProps.editorId);
     _this.isFocused = false;
     _this.isLiving = false;
     _this.braftFinder = null;
@@ -5886,7 +5888,7 @@ function (_React$Component) {
           restProps = objectWithoutProperties_default()(_props, ["value", "defaultValue", "onChange"]); // eslint-disable-line no-unused-vars
 
 
-      var propInterceptors = getPropInterceptors(restProps.id);
+      var propInterceptors = getPropInterceptors(restProps.id || restProps.editorId);
 
       if (propInterceptors.length === 0) {
         return restProps;
@@ -6023,7 +6025,8 @@ function (_React$Component) {
       var _this5 = this;
 
       var _this$editorProps3 = this.editorProps,
-          editorId = _this$editorProps3.id,
+          id = _this$editorProps3.id,
+          editorId = _this$editorProps3.editorId,
           controls = _this$editorProps3.controls,
           excludeControls = _this$editorProps3.excludeControls,
           extendControls = _this$editorProps3.extendControls,
@@ -6056,6 +6059,7 @@ function (_React$Component) {
           stripPastedStyles = _this$editorProps3.stripPastedStyles,
           componentBelowControlBar = _this$editorProps3.componentBelowControlBar;
       var isFullscreen = this.state.isFullscreen;
+      editorId = id || editorId;
       hooks = buildHooks(hooks);
       controls = controls.filter(function (item) {
         return excludeControls.indexOf(item) === -1;

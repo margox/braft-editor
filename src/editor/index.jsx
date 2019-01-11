@@ -27,14 +27,15 @@ const isControlEnabled = (props, controlName) => {
 
 const getConvertOptions = (props) => {
 
+  const editorId = props.id || props.editorId
   const convertOptions = { ...defaultProps.converts, ...props.converts, fontFamilies: props.fontFamilies }
 
-  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn, props.id)
-  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn, props.id)
-  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn, props.id)
-  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn, props.id)
-  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn, props.id)
-  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn, props.id)
+  convertOptions.styleImportFn = compositeStyleImportFn(convertOptions.styleImportFn, editorId)
+  convertOptions.styleExportFn = compositeStyleExportFn(convertOptions.styleExportFn, editorId)
+  convertOptions.entityImportFn = compositeEntityImportFn(convertOptions.entityImportFn, editorId)
+  convertOptions.entityExportFn = compositeEntityExportFn(convertOptions.entityExportFn, editorId)
+  convertOptions.blockImportFn = compositeBlockImportFn(convertOptions.blockImportFn, editorId)
+  convertOptions.blockExportFn = compositeBlockExportFn(convertOptions.blockExportFn, editorId)
 
   return convertOptions
 
@@ -49,7 +50,7 @@ export default class BraftEditor extends React.Component {
     super(props)
 
     this.editorProps = this.getEditorProps(props)
-    this.editorDecorators = getDecorators(this.editorProps.id)
+    this.editorDecorators = getDecorators(this.editorProps.id || this.editorProps.editorId)
 
     this.isFocused = false
     this.isLiving = false
@@ -74,7 +75,7 @@ export default class BraftEditor extends React.Component {
     props = props || this.props
 
     const {value, defaultValue, onChange, ...restProps} = props// eslint-disable-line no-unused-vars
-    const propInterceptors = getPropInterceptors(restProps.id)
+    const propInterceptors = getPropInterceptors(restProps.id || restProps.editorId)
 
     if (propInterceptors.length === 0) {
       return restProps
@@ -329,13 +330,14 @@ export default class BraftEditor extends React.Component {
   render () {
 
     let {
-      id: editorId, controls, excludeControls, extendControls, readOnly, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
+      id, editorId, controls, excludeControls, extendControls, readOnly, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
       fontSizes, fontFamilies, emojis, placeholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.editorProps
 
     const { isFullscreen } = this.state
 
+    editorId = id || editorId
     hooks = buildHooks(hooks)
     controls = controls.filter(item => excludeControls.indexOf(item) === -1)
     language = (typeof language === 'function' ? language(languages, 'braft-editor') : languages[language]) || languages[defaultProps.language]
