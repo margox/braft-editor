@@ -43,6 +43,8 @@ BraftEditor.createEditorState = EditorState.createFrom = (content, options = {})
     } catch (error) {
       editorState = convertHTMLToEditorState(content, getDecorators(options.editorId), options, 'create')
     }
+  } else if (typeof content === 'number') {
+    editorState = convertHTMLToEditorState(`${content}`, getDecorators(options.editorId), options, 'create')
   } else {
     editorState = EditorState.createEmpty(getDecorators(options.editorId))
   }
