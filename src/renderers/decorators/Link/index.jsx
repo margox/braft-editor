@@ -19,7 +19,7 @@ const viewLink = (event, link) => {
       || event.getModifierState('Meta')) {
     const tempLink = document.createElement('a')
     tempLink.href = link
-    tempLink.target = '_blank'
+    tempLink.target = event.currentTarget.target
     tempLink.click()
   }
 }
