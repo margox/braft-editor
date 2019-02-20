@@ -14,10 +14,12 @@ export default (props) => {
 }
 
 const viewLink = (event, link) => {
-  if (event.getModifierState('Shift')) {
+  // 当按下Ctrl/command键时，点击打开链接文字中的url
+  if (event.getModifierState('Control') 
+      || event.getModifierState('Meta')) {
     const tempLink = document.createElement('a')
     tempLink.href = link
-    tempLink.target = '_blank'
+    tempLink.target = event.currentTarget.target
     tempLink.click()
   }
 }
