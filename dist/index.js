@@ -2461,20 +2461,26 @@ var createExtensibleEditor = function createExtensibleEditor(BraftEditor) {
       })
     }
   });
-  var extensionBlockRenderMaps = getExtensionBlockRenderMaps(props.editorId);
-  extensionBlockRenderMaps.forEach(function (item) {
-    if (typeof item.renderMap === 'function') {
-      customBlockRenderMap = customBlockRenderMap.merge(item.renderMap(props));
-    } else if (item.renderMap instanceof external_immutable_["Map"]) {
-      customBlockRenderMap = customBlockRenderMap.merge(item.renderMap);
-    }
-  });
 
-  if (blockRenderMap && blockRenderMap instanceof external_immutable_["Map"]) {
-    customBlockRenderMap = customBlockRenderMap.merge(blockRenderMap);
+  try {
+    var extensionBlockRenderMaps = getExtensionBlockRenderMaps(props.editorId);
+    customBlockRenderMap = extensionBlockRenderMaps.reduce(function (customBlockRenderMap, item) {
+      return customBlockRenderMap.merge(typeof item.renderMap === 'function' ? item.renderMap(props) : item.renderMap);
+    }, customBlockRenderMap);
+
+    if (blockRenderMap) {
+      if (typeof blockRenderMap === 'function') {
+        customBlockRenderMap = customBlockRenderMap.merge(blockRenderMap(props));
+      } else {
+        customBlockRenderMap = customBlockRenderMap.merge(blockRenderMap);
+      }
+    }
+
+    customBlockRenderMap = external_draft_js_["DefaultDraftBlockRenderMap"].merge(customBlockRenderMap);
+  } catch (error) {
+    console.warn(error);
   }
 
-  customBlockRenderMap = external_draft_js_["DefaultDraftBlockRenderMap"].merge(customBlockRenderMap);
   return customBlockRenderMap;
 });
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/extends.js
@@ -3951,10 +3957,11 @@ var draft_js_multidecorators_default = /*#__PURE__*/__webpack_require__.n(draft_
 });
 
 var viewLink = function viewLink(event, link) {
-  if (event.getModifierState('Shift')) {
+  // 当按下Ctrl/command键时，点击打开链接文字中的url
+  if (event.getModifierState('Control') || event.getModifierState('Meta')) {
     var tempLink = document.createElement('a');
     tempLink.href = link;
-    tempLink.target = '_blank';
+    tempLink.target = event.currentTarget.target;
     tempLink.click();
   }
 };
@@ -5224,6 +5231,10 @@ var commandHookMap = {
   'block-type': 'change-block-type',
   'editor-method': 'exec-editor-command'
 };
+var exclusiveInlineStyles = {
+  'superscript': 'subscript',
+  'subscript': 'superscript'
+};
 
 var mergeControls = function mergeControls(commonProps, builtControls, extensionControls, extendControls) {
   extensionControls = extensionControls.map(function (item) {
@@ -5367,6 +5378,7 @@ function (_React$Component) {
     value: function applyControl(command, type) {
       var data = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
       var hookReturns = this.props.hooks(commandHookMap[type] || type, command)(command);
+      var editorState = this.props.editorState;
 
       if (hookReturns === false) {
         return false;
@@ -5377,11 +5389,17 @@ function (_React$Component) {
       }
 
       if (type === 'inline-style') {
-        this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionInlineStyle(this.props.editorState, command));
+        var exclusiveInlineStyle = exclusiveInlineStyles[command];
+
+        if (exclusiveInlineStyle && external_braft_utils_["ContentUtils"].selectionHasInlineStyle(editorState, exclusiveInlineStyle)) {
+          editorState = external_braft_utils_["ContentUtils"].toggleSelectionInlineStyle(editorState, exclusiveInlineStyle);
+        }
+
+        this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionInlineStyle(editorState, command));
       } else if (type === 'block-type') {
-        this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBlockType(this.props.editorState, command));
+        this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionBlockType(editorState, command));
       } else if (type === 'entity') {
-        this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionEntity(this.props.editorState, {
+        this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionEntity(editorState, {
           type: command,
           mutability: data.mutability || 'MUTABLE',
           data: data.data || {}
@@ -6233,6 +6251,8 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
     } catch (error) {
       editorState = Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(options.editorId), options, 'create');
     }
+  } else if (typeof content === 'number') {
+    editorState = Object(external_braft_convert_["convertHTMLToEditorState"])("".concat(content), getDecorators(options.editorId), options, 'create');
   } else {
     editorState = external_draft_js_["EditorState"].createEmpty(getDecorators(options.editorId));
   }

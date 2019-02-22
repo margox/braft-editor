@@ -15,21 +15,27 @@ export default (props, blockRenderMap) => {
     }
   })
 
-  const extensionBlockRenderMaps = getExtensionBlockRenderMaps(props.editorId)
+  try {
 
-  extensionBlockRenderMaps.forEach(item => {
-    if (typeof item.renderMap === 'function') {
-      customBlockRenderMap = customBlockRenderMap.merge(item.renderMap(props))
-    } else if (item.renderMap instanceof Map) {
-      customBlockRenderMap = customBlockRenderMap.merge(item.renderMap)
+    const extensionBlockRenderMaps = getExtensionBlockRenderMaps(props.editorId)
+
+    customBlockRenderMap = extensionBlockRenderMaps.reduce((customBlockRenderMap, item) => {
+      return customBlockRenderMap.merge(typeof item.renderMap === 'function' ? item.renderMap(props) : item.renderMap)
+    }, customBlockRenderMap)
+
+    if (blockRenderMap) {
+      if (typeof blockRenderMap === 'function') {
+        customBlockRenderMap = customBlockRenderMap.merge(blockRenderMap(props))
+      } else {
+        customBlockRenderMap = customBlockRenderMap.merge(blockRenderMap)
+      }
     }
-  })
 
-  if (blockRenderMap && blockRenderMap instanceof Map) {
-    customBlockRenderMap = customBlockRenderMap.merge(blockRenderMap)
+    customBlockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
+
+  } catch (error) {
+    console.warn(error)
   }
-
-  customBlockRenderMap = DefaultDraftBlockRenderMap.merge(customBlockRenderMap)
 
   return customBlockRenderMap
 

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Immutable from 'immutable';
 import {
 	EditorState as _EditorState,
 	EditorProps as DraftEditorProps,
@@ -38,6 +39,9 @@ export interface BraftEditorProps {
 	letterSpacings?: number[];
 	emojis?: string[];
 	draftProps?: DraftEditorProps;
+	blockRenderMap?: Immutable.Map | Function;
+	blockRendererFn?: Function;
+	converts?: object;
 	hooks?: HooksType;
 	textBackgroundColor?: boolean;
 	stripPastedStyles?: boolean;
@@ -60,7 +64,7 @@ export default class BraftEditor extends React.Component<BraftEditorProps> {
 		content: string | any,
 		options?: object
 	): EditorState;
-
+	static use(extension: object | object[]): void;
 	undo(): void;
 	redo(): void;
 	clearEditorContent(): void;
@@ -251,9 +255,7 @@ export type HooksType = {
 	[key: string]: HookFunc;
 };
 
-export type HookFunc = (
-	params: { href: string; target: any }
-) => { href: string; target: any };
+export type HookFunc = (any) => any;
 
 export type HookType =
 	| 'toggle-link'

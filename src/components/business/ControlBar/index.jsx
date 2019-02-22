@@ -22,6 +22,11 @@ const commandHookMap = {
   'editor-method': 'exec-editor-command'
 }
 
+const exclusiveInlineStyles = {
+  'superscript': 'subscript',
+  'subscript': 'superscript'
+}
+
 const mergeControls = (commonProps, builtControls, extensionControls, extendControls) => {
 
   extensionControls = extensionControls.map(item => typeof item === 'function' ? item(commonProps) : item)
@@ -85,6 +90,7 @@ export default class ControlBar extends React.Component {
   applyControl (command, type, data = {}) {
 
     const hookReturns = this.props.hooks(commandHookMap[type] || type, command)(command)
+    let editorState = this.props.editorState
 
     if (hookReturns === false) {
       return false
@@ -95,11 +101,15 @@ export default class ControlBar extends React.Component {
     }
 
     if (type === 'inline-style') {
-      this.props.editor.setValue(ContentUtils.toggleSelectionInlineStyle(this.props.editorState, command))
+      let exclusiveInlineStyle = exclusiveInlineStyles[command]
+      if (exclusiveInlineStyle && ContentUtils.selectionHasInlineStyle(editorState, exclusiveInlineStyle)) {
+        editorState = ContentUtils.toggleSelectionInlineStyle(editorState, exclusiveInlineStyle)
+      }
+      this.props.editor.setValue(ContentUtils.toggleSelectionInlineStyle(editorState, command))
     } else if (type === 'block-type') {
-      this.props.editor.setValue(ContentUtils.toggleSelectionBlockType(this.props.editorState, command))
+      this.props.editor.setValue(ContentUtils.toggleSelectionBlockType(editorState, command))
     } else if (type === 'entity') {
-      this.props.editor.setValue(ContentUtils.toggleSelectionEntity(this.props.editorState, {
+      this.props.editor.setValue(ContentUtils.toggleSelectionEntity(editorState, {
         type: command,
         mutability: data.mutability || 'MUTABLE',
         data: data.data || {}
