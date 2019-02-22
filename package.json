@@ -1,13 +1,14 @@
 {
   "name": "braft-editor",
-  "version": "2.2.6",
+  "version": "2.2.7",
   "description": "Rich Text Editor Based On Draft.js",
   "main": "dist/index.js",
   "types": "index.d.ts",
   "author": "Margox",
   "scripts": {
     "start": "webpack-dev-server --config ./build/webpack.development.js -d --history-api-fallback --no-inline --progress --colors --host 0.0.0.0",
-    "build": "rm -rf dist/ && NODE_ENV=production webpack --config ./build/webpack.production.js --progress --colors",
+    "build": "rm -rf dist/ && NODE_ENV=production webpack --config ./build/webpack.production.js --progress --colors && node ./build/scss-output.js",
+    "build-output-css": "node ./build/scss-output.js",
     "lint": "node_modules/eslint/bin/eslint.js .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

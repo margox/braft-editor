@@ -1,0 +1,47 @@
+.braft-output-content{
+
+  p{
+    min-height: 1em;
+  }
+
+  .image-wrap img{
+    max-width: 100%;
+    height: auto;
+  }
+
+  ul, ol{
+    margin: 16px 0;
+    padding: 0;
+  }
+
+  blockquote{
+    margin: 0 0 10px 0;
+    padding: 15px 20px;
+    background-color: #f1f2f3;
+    border-left: solid 5px #ccc;
+    color: #666;
+    font-style: italic;
+  }
+
+  pre{
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    overflow: auto;
+    background-color: #f1f2f3;
+    border-radius: 3px;
+    color: #666;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 16px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    pre{
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+}

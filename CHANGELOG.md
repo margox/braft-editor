@@ -1,5 +1,7 @@
 ### 历史更新记录
 
+- 2019-02-22 v2.2.7
+  - 新增用于美化输出HTML的样板CSS文件(`node_modules/braft-editor/dist/output.css`)
 - 2019-02-22 v2.2.6
   - 优化blockRenerMap属性，支持传入一个返回blockRenerMap对象的函数
   - 优化上下标样式的设置
