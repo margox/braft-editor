@@ -176,7 +176,7 @@ export type ExtendControlType =
 };
 
 export type MediaType = {
-  items: any[],
+  items?: any[],
   uploadFn?: (
     params: {
       file: File;
