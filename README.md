@@ -30,6 +30,8 @@
 
 ## 近期更新记录
 
+- 2019-03-06 v2.2.8
+  - 修改index.d.ts
 - 2019-02-22 v2.2.7
   - 新增用于美化输出HTML的样板CSS文件(`node_modules/braft-editor/dist/output.css`)
 - 2019-02-22 v2.2.6
