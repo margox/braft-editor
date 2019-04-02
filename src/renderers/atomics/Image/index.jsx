@@ -13,8 +13,7 @@ export default class Image extends React.Component {
     sizeEditorVisible: false,
     tempLink: null,
     tempWidth: null,
-    tempHeight: null,
-    showChangeSizeIcon: true
+    tempHeight: null
   }
   initialLeft
   initialTop
@@ -56,12 +55,10 @@ export default class Image extends React.Component {
     this.confirmImageSize()
     document.removeEventListener('mousemove',this.moveImage)
     document.removeEventListener('mouseup',this.upImage)
-    this.setState({showChangeSizeIcon : false})
   }
 
   repareChangeSize = type => (e) => {
     this.reSizeType = type
-    this.setState({showChangeSizeIcon : true})
     const imageRect = this.imageElement.getBoundingClientRect()
     this.initialLeft = this.initialTop = 0
     this.initialWidth = imageRect.width
@@ -75,7 +72,7 @@ export default class Image extends React.Component {
   render () {
 
     const { mediaData, language, imageControls } = this.props
-    const { toolbarVisible, toolbarOffset, linkEditorVisible, sizeEditorVisible, tempWidth, tempHeight, showChangeSizeIcon } = this.state
+    const { toolbarVisible, toolbarOffset, linkEditorVisible, sizeEditorVisible, tempWidth, tempHeight } = this.state
     const blockData = this.props.block.getData()
 
     let float = blockData.get('float')
@@ -155,8 +152,8 @@ export default class Image extends React.Component {
               {sizeEditorVisible ? (
                 <div className='bf-image-size-editor'>
                   <div className='editor-input-group'>
-                    <input type='number' min='1' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
-                    <input type='number' min='1' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
+                    <input type='text' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
+                    <input type='text' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
                     <button type='button' onClick={this.confirmImageSize}>{language.base.confirm}</button>
                   </div>
                 </div>
@@ -187,14 +184,10 @@ export default class Image extends React.Component {
                 onMouseDown={this.repareChangeSize('leftbottom')}
               />
             }
-            {
-              showChangeSizeIcon && 
-              <div 
-                className={`bf-pre-csize ${this.reSizeType}`} 
-                style={{width: `${tempWidth}px`, height:`${tempHeight}px`}}
-              />
-            }
-           
+            <div 
+              className={`bf-pre-csize ${this.reSizeType}`} 
+              style={{width: `${tempWidth}px`, height:`${tempHeight}px`}}
+            />
           </div>
           
         </div>
@@ -370,7 +363,6 @@ export default class Image extends React.Component {
 
     const { tempWidth: width, tempHeight: height } = this.state
     const newImageSize = {}
-    console.log(width)
 
     width !== null && (newImageSize.width = width)
     height !== null && (newImageSize.height = height)
@@ -417,7 +409,7 @@ export default class Image extends React.Component {
       toolbarVisible: false
     }, () => {
       this.unlockEditor()
-      this.props.editor.requestFocus()
+      // this.props.editor.requestFocus()
     })
 
   }
