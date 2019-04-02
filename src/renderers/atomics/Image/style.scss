@@ -94,15 +94,16 @@
   }
   .bf-pre-csize{
     position: absolute;
-    border: 1px dashed deepskyblue;
     background: transparent;
     &.rightbottom{
       left: 0;
       top: 0;
+      border: 1px dashed deepskyblue;
     }
     &.leftbottom{
       right: 0;
       top: 0;
+      border: 1px dashed deepskyblue;
     }
   }
 
