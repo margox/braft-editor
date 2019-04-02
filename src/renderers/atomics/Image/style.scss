@@ -74,6 +74,38 @@
 }
 
 .bf-content .bf-image{
+  position: relative;
+  .bf-csize-icon{
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: transparent;
+    border: 1px solid blue;
+    &.right-bottom{
+      right: 0;
+      bottom: 0;
+      cursor: se-resize;
+    }
+    &.left-bottom{
+      left: 0;
+      bottom: 0;
+      cursor: sw-resize;
+    }
+  }
+  .bf-pre-csize{
+    position: absolute;
+    border: 1px dashed deepskyblue;
+    background: transparent;
+    &.rightbottom{
+      left: 0;
+      top: 0;
+    }
+    &.leftbottom{
+      right: 0;
+      top: 0;
+    }
+  }
+
   .bf-media-toolbar{
     &::before{
       visibility: hidden;

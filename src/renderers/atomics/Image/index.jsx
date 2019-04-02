@@ -13,13 +13,69 @@ export default class Image extends React.Component {
     sizeEditorVisible: false,
     tempLink: null,
     tempWidth: null,
-    tempHeight: null
+    tempHeight: null,
+    showChangeSizeIcon: true
+  }
+  initialLeft
+  initialTop
+  initialWidth
+  initialHeight
+  reSizeType
+
+  changeSize = e => {
+    let type = this.reSizeType
+    if(!this.initialLeft){
+      this.initialLeft = e.screenX
+      this.initialTop = e.screenY
+    }
+    if(type === 'rightbottom'){
+      this.initialHeight +=  e.screenY-this.initialTop
+      this.initialWidth +=  e.screenX-this.initialLeft
+    }
+    if(type === 'leftbottom'){
+      this.initialHeight +=  e.screenY-this.initialTop
+      this.initialWidth +=  -e.screenX+this.initialLeft
+    }
+    
+   
+    this.initialLeft = e.screenX
+    this.initialTop = e.screenY
+  }
+
+  moveImage = (e) => {
+    
+    this.changeSize(e)
+
+    this.setState({
+      tempWidth: Math.abs(this.initialWidth),
+      tempHeight: Math.abs(this.initialHeight)
+    })
+  }
+
+  upImage = () => {
+    this.confirmImageSize()
+    document.removeEventListener('mousemove',this.moveImage)
+    document.removeEventListener('mouseup',this.upImage)
+    this.setState({showChangeSizeIcon : false})
+  }
+
+  repareChangeSize = type => (e) => {
+    this.reSizeType = type
+    this.setState({showChangeSizeIcon : true})
+    const imageRect = this.imageElement.getBoundingClientRect()
+    this.initialLeft = this.initialTop = 0
+    this.initialWidth = imageRect.width
+    this.initialHeight = imageRect.height
+    e.preventDefault()
+    let that = this
+    document.addEventListener('mousemove',that.moveImage)
+    document.addEventListener('mouseup',this.upImage)
   }
 
   render () {
 
     const { mediaData, language, imageControls } = this.props
-    const { toolbarVisible, toolbarOffset, linkEditorVisible, sizeEditorVisible } = this.state
+    const { toolbarVisible, toolbarOffset, linkEditorVisible, sizeEditorVisible, tempWidth, tempHeight, showChangeSizeIcon } = this.state
     const blockData = this.props.block.getData()
 
     let float = blockData.get('float')
@@ -72,6 +128,7 @@ export default class Image extends React.Component {
           ref={instance => this.mediaEmbederInstance = instance}
           className='bf-image'
         >
+         
           {toolbarVisible ? (
             <div
               style={{marginLeft: toolbarOffset}}
@@ -98,8 +155,8 @@ export default class Image extends React.Component {
               {sizeEditorVisible ? (
                 <div className='bf-image-size-editor'>
                   <div className='editor-input-group'>
-                    <input type='text' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
-                    <input type='text' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
+                    <input type='number' min='1' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
+                    <input type='number' min='1' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
                     <button type='button' onClick={this.confirmImageSize}>{language.base.confirm}</button>
                   </div>
                 </div>
@@ -108,13 +165,38 @@ export default class Image extends React.Component {
               <i style={{marginLeft: toolbarOffset * -1}} className='bf-media-toolbar-arrow'></i>
             </div>
           ) : null}
-          <img
-            ref={instance => this.imageElement = instance}
-            src={url}
-            width={width}
-            height={height}
-            {...meta}
-          />
+          <div style={{position:'relative',width: `${width}px`,height: `${height}px`,display: 'inline-block'}}>
+            <img
+              ref={instance => this.imageElement = instance}
+              src={url}
+              width={width}
+              height={height}
+              {...meta}
+            />
+            {
+              toolbarVisible && 
+              <div 
+                className='bf-csize-icon right-bottom'
+                onMouseDown={this.repareChangeSize('rightbottom')}
+              />
+            }
+            {
+              toolbarVisible && 
+              <div 
+                className='bf-csize-icon left-bottom'
+                onMouseDown={this.repareChangeSize('leftbottom')}
+              />
+            }
+            {
+              showChangeSizeIcon && 
+              <div 
+                className={`bf-pre-csize ${this.reSizeType}`} 
+                style={{width: `${tempWidth}px`, height:`${tempHeight}px`}}
+              />
+            }
+           
+          </div>
+          
         </div>
         {clearFix && <div className='clearfix' style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}
       </div>
@@ -288,6 +370,7 @@ export default class Image extends React.Component {
 
     const { tempWidth: width, tempHeight: height } = this.state
     const newImageSize = {}
+    console.log(width)
 
     width !== null && (newImageSize.width = width)
     height !== null && (newImageSize.height = height)
