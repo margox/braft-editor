@@ -116,6 +116,7 @@ export type BuiltInControlType =
   | 'table';
 
 export type ExtendControlType =
+  'separator'
   | {
   key: string;
   type: 'button';
