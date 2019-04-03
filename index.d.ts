@@ -3,11 +3,16 @@ import * as Immutable from 'immutable';
 import {
   EditorState as _EditorState,
   EditorProps as DraftEditorProps,
-  Editor
+  Editor, RawDraftContentState
 } from 'draft-js';
 
 export type EditorState = _EditorState & {
   [key: string]: any;
+  setConvertOptions(option?: Object): void;
+  toHTML(option?: Object): string;
+  toRAW(noStringify?: boolean): RawDraftContentState | string;
+  toText(): string;
+  isEmpty(): boolean;
 };
 
 export { DraftEditorProps };
