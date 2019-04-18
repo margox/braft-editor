@@ -39,7 +39,7 @@ BraftEditor.createEditorState = EditorState.createFrom = (content, options = {})
     editorState = convertRawToEditorState(content, getDecorators(options.editorId))
   } else if (typeof content === 'string') {
     try {
-      if (!/^(\-)?\d{1,15}$/.test(content)) {
+      if (!/^(-)?\d{1,15}$/.test(content)) {
         editorState = convertHTMLToEditorState(content, getDecorators(options.editorId), options, 'create')
       } else {
         editorState = EditorState.createFrom(JSON.parse(content), options)
