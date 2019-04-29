@@ -1,5 +1,10 @@
 ### 历史更新记录
 
+- 2019-04-29 v2.2.10
+  - 图片支持拖动调整大小，感谢[ArthasDragon](https://github.com/margox/braft-editor/pull/424)的贡献！
+  - 优化使用纯数字初始化编辑器内容异常的问题，感谢[WzFFzW](https://github.com/margox/braft-editor/pull/446)的贡献！
+  - 新增fixPlaceholder属性(Boolean)，用于修复部分情况下placeholder文本显示异常的问题，默认false
+  - 优化forceRender
 - 2019-03-06 v2.2.9
   - 修改index.d.ts
 - 2019-02-22 v2.2.7

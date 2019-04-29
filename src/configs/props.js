@@ -123,5 +123,6 @@ export default {
   onBlur: null,
   onTab: null,
   onDelete: null,
-  onSave: null
+  onSave: null,
+  fixPlaceholder: false
 }

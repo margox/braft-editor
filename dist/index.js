@@ -1721,7 +1721,161 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     embed: 'Obiekt osadzony'
   }
 });
+// CONCATENATED MODULE: ./languages/kr.js
+/* harmony default export */ var kr = ({
+  base: {
+    remove: '삭제',
+    cancel: '취소',
+    confirm: '결정',
+    inert: '삽입',
+    width: '너비',
+    height: '높이'
+  },
+  controls: {
+    clear: '콘텐츠지우기',
+    undo: '취소',
+    redo: '다시하기',
+    fontSize: '글자크기',
+    lineHeight: '행높이',
+    letterSpacing: '단어간격',
+    textIndent: '단락들여쓰기',
+    increaseIndent: '들여쓰기늘리기',
+    decreaseIndent: '들여쓰기줄이기',
+    border: '국경',
+    color: '색상',
+    textColor: '텍스트색상',
+    backgroundColor: '배경색상',
+    tempColors: '임시색',
+    bold: '굵게',
+    italic: '기울임꼴',
+    underline: '밑줄',
+    strikeThrough: '취소선',
+    fontFamily: '글꼴',
+    textAlign: '텍스트정렬',
+    alignLeft: '왼쪽',
+    alignCenter: '중심',
+    alignRight: '오른쪽',
+    alignJustify: '양쪽끝',
+    floatLeft: '떠다니기',
+    floatRight: '오른쪽부동',
+    superScript: '위첨자',
+    subScript: '첨자',
+    removeStyles: '스타일지우기',
+    headings: '제목',
+    header: '제목',
+    normal: '재래식',
+    orderedList: '순서가지정된목록',
+    unorderedList: '정렬되지않은목록',
+    blockQuote: '참고문헌',
+    code: '코드',
+    link: '링크',
+    unlink: '링크삭제',
+    hr: '수평선',
+    media: '미디어',
+    mediaLibirary: '미디어라이브러리',
+    emoji: '작은표현',
+    fullscreen: '전체화면',
+    exitFullscreen: '전체화면종료'
+  },
+  linkEditor: {
+    inputPlaceHolder: '링크주소입력',
+    inputWithEnterPlaceHolder: '링크주소입력.',
+    openInNewWindow: '새창열기',
+    removeLink: '링크삭제'
+  },
+  audioPlayer: {
+    title: '오디오파일재생'
+  },
+  videoPlayer: {
+    title: '비디오파일재생',
+    embedTitle: '임베디드미디어'
+  },
+  media: {
+    image: '이미지',
+    video: '비디오',
+    audio: '오디오',
+    embed: '임베디드미디어'
+  }
+});
+// CONCATENATED MODULE: ./languages/jpn.js
+/* harmony default export */ var jpn = ({
+  base: {
+    remove: '削除',
+    cancel: 'キャンセル',
+    confirm: '決定',
+    inert: '挿入',
+    width: '幅',
+    height: '高さ'
+  },
+  controls: {
+    clear: 'クリアコンテンツ',
+    undo: 'キャンセル',
+    redo: 'キャンセル',
+    fontSize: 'フォントサイズ',
+    lineHeight: 'フォントサイズ',
+    letterSpacing: 'ワード間隔',
+    textIndent: '段落のインデント',
+    increaseIndent: 'インデントを増やす',
+    decreaseIndent: 'インデントを減らす',
+    border: '国境',
+    color: '色',
+    textColor: 'テキストの色',
+    backgroundColor: '背景色',
+    tempColors: '仮色',
+    bold: '太字',
+    italic: 'イタリック体',
+    underline: '下線',
+    strikeThrough: '取り消し線',
+    fontFamily: 'フォント',
+    textAlign: 'テキストの配置',
+    alignLeft: '左',
+    alignCenter: '中央揃え',
+    alignRight: '右に立つ',
+    alignJustify: '両端',
+    floatLeft: '左フローティング',
+    floatRight: '右フローティング',
+    superScript: '上付き',
+    subScript: '下付き文字',
+    removeStyles: 'クリアスタイル',
+    headings: '役職',
+    header: '役職',
+    normal: '従来の',
+    orderedList: '順序付きリスト',
+    unorderedList: '番号なしリスト',
+    blockQuote: '参照',
+    code: 'コード',
+    link: 'リンク',
+    unlink: 'リンクを解除',
+    hr: '横線',
+    media: 'メディア',
+    mediaLibirary: 'メディアライブラリー',
+    emoji: '小さな表現',
+    fullscreen: '全画面',
+    exitFullscreen: '全画面を退く'
+  },
+  linkEditor: {
+    inputPlaceHolder: 'リンクアドレスを入力',
+    inputWithEnterPlaceHolder: 'リンクアドレスを入力して戻ります',
+    openInNewWindow: '新しいウィンドウで開く',
+    removeLink: '新しいウィンドウで開く'
+  },
+  audioPlayer: {
+    title: 'オーディオファイルを再生する'
+  },
+  videoPlayer: {
+    title: 'ビデオファイルを再生する',
+    embedTitle: '埋め込みメディア'
+  },
+  media: {
+    image: '画像',
+    video: 'ビデオ',
+    audio: '音声',
+    embed: '埋め込みメディア'
+  }
+});
 // CONCATENATED MODULE: ./languages/index.js
+
+
 
 
 
@@ -1730,7 +1884,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
   'en': en,
   'zh': zh,
   'zh-hant': zh_hant,
-  'pl': pl
+  'pl': pl,
+  'kr': kr,
+  'jpn': jpn
 });
 // EXTERNAL MODULE: external "braft-finder"
 var external_braft_finder_ = __webpack_require__(17);
@@ -1851,7 +2007,8 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
   onBlur: null,
   onTab: null,
   onDelete: null,
-  onSave: null
+  onSave: null,
+  fixPlaceholder: false
 });
 // EXTERNAL MODULE: ../node_modules/draft-js/lib/getFragmentFromSelection.js
 var getFragmentFromSelection = __webpack_require__(22);
@@ -2795,6 +2952,77 @@ function (_React$Component) {
       tempHeight: null
     });
 
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialLeft", void 0);
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialTop", void 0);
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialWidth", void 0);
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialHeight", void 0);
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "reSizeType", void 0);
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "changeSize", function (e) {
+      var type = _this.reSizeType;
+
+      if (!_this.initialLeft) {
+        _this.initialLeft = e.screenX;
+        _this.initialTop = e.screenY;
+      }
+
+      if (type === 'rightbottom') {
+        _this.initialHeight += e.screenY - _this.initialTop;
+        _this.initialWidth += e.screenX - _this.initialLeft;
+      }
+
+      if (type === 'leftbottom') {
+        _this.initialHeight += e.screenY - _this.initialTop;
+        _this.initialWidth += -e.screenX + _this.initialLeft;
+      }
+
+      _this.initialLeft = e.screenX;
+      _this.initialTop = e.screenY;
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "moveImage", function (e) {
+      _this.changeSize(e);
+
+      _this.setState({
+        tempWidth: Math.abs(_this.initialWidth),
+        tempHeight: Math.abs(_this.initialHeight)
+      });
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "upImage", function () {
+      _this.confirmImageSize();
+
+      document.removeEventListener('mousemove', _this.moveImage);
+      document.removeEventListener('mouseup', _this.upImage);
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "repareChangeSize", function (type) {
+      return function (e) {
+        _this.reSizeType = type;
+
+        var imageRect = _this.imageElement.getBoundingClientRect();
+
+        _this.initialLeft = _this.initialTop = 0;
+        _this.initialWidth = imageRect.width;
+        _this.initialHeight = imageRect.height;
+        e.preventDefault();
+
+        var that = assertThisInitialized_default()(assertThisInitialized_default()(_this));
+
+        document.addEventListener('mousemove', that.moveImage);
+        document.addEventListener('mouseup', _this.upImage);
+      };
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "preventDragEvent", function (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    });
+
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDragStart", function () {
       if (_this.props.editor.editorProps.readOnly || _this.props.editor.editorProps.disabled) {
         return false;
@@ -2830,12 +3058,12 @@ function (_React$Component) {
 
         _this[method] && _this[method](param);
       } else if (typeof command === 'function') {
-        command(_this.props.block, _this.props.mediaData, _this.props.editorState);
+        command(_this.props.block, _this.props.mediaData, _this.props.editor.getValue());
       }
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeImage", function () {
-      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
+      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editor.getValue(), _this.props.block));
 
       _this.unlockEditor();
     });
@@ -2874,7 +3102,7 @@ function (_React$Component) {
       var link = _this.state.tempLink;
 
       if (link !== null) {
-        _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(_this.props.editorState, _this.props.entityKey, {
+        _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(_this.props.editor.getValue(), _this.props.entityKey, {
           link: link
         }));
 
@@ -2922,13 +3150,13 @@ function (_React$Component) {
       width !== null && (newImageSize.width = width);
       height !== null && (newImageSize.height = height);
 
-      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(_this.props.editorState, _this.props.entityKey, newImageSize));
+      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(_this.props.editor.getValue(), _this.props.entityKey, newImageSize));
 
       window.setImmediate(_this.props.editor.forceRender);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageFloat", function (float) {
-      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaPosition(_this.props.editorState, _this.props.block, {
+      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
         float: float
       }));
 
@@ -2936,7 +3164,7 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageAlignment", function (alignment) {
-      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaPosition(_this.props.editorState, _this.props.block, {
+      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
         alignment: alignment
       }));
 
@@ -2991,7 +3219,9 @@ function (_React$Component) {
           toolbarVisible = _this$state2.toolbarVisible,
           toolbarOffset = _this$state2.toolbarOffset,
           linkEditorVisible = _this$state2.linkEditorVisible,
-          sizeEditorVisible = _this$state2.sizeEditorVisible;
+          sizeEditorVisible = _this$state2.sizeEditorVisible,
+          tempWidth = _this$state2.tempWidth,
+          tempHeight = _this$state2.tempHeight;
       var blockData = this.props.block.getData();
       var float = blockData.get('float');
       var alignment = blockData.get('alignment');
@@ -3091,12 +3321,14 @@ function (_React$Component) {
         className: "editor-input-group"
       }, external_react_default.a.createElement("input", {
         type: "text",
+        onDragStart: this.preventDragEvent,
         placeholder: language.base.width,
         onKeyDown: this.handleSizeInputKeyDown,
         onChange: this.setImageWidth,
         defaultValue: width
       }), external_react_default.a.createElement("input", {
         type: "text",
+        onDragStart: this.preventDragEvent,
         placeholder: language.base.height,
         onKeyDown: this.handleSizeInputKeyDown,
         onChange: this.setImageHeight,
@@ -3109,14 +3341,33 @@ function (_React$Component) {
           marginLeft: toolbarOffset * -1
         },
         className: "bf-media-toolbar-arrow"
-      })) : null, external_react_default.a.createElement("img", extends_default()({
+      })) : null, external_react_default.a.createElement("div", {
+        style: {
+          position: 'relative',
+          width: "".concat(width, "px"),
+          height: "".concat(height, "px"),
+          display: 'inline-block'
+        }
+      }, external_react_default.a.createElement("img", extends_default()({
         ref: function ref(instance) {
           return _this2.imageElement = instance;
         },
         src: url,
         width: width,
         height: height
-      }, meta))), clearFix && external_react_default.a.createElement("div", {
+      }, meta)), toolbarVisible && external_react_default.a.createElement("div", {
+        className: "bf-csize-icon right-bottom",
+        onMouseDown: this.repareChangeSize('rightbottom')
+      }), toolbarVisible && external_react_default.a.createElement("div", {
+        className: "bf-csize-icon left-bottom",
+        onMouseDown: this.repareChangeSize('leftbottom')
+      }), external_react_default.a.createElement("div", {
+        className: "bf-pre-csize ".concat(this.reSizeType),
+        style: {
+          width: "".concat(tempWidth, "px"),
+          height: "".concat(tempHeight, "px")
+        }
+      }))), clearFix && external_react_default.a.createElement("div", {
         className: "clearfix",
         style: {
           clear: 'both',
@@ -3161,7 +3412,7 @@ function (_React$Component) {
     key: "setImageLinkTarget",
     value: function setImageLinkTarget(link_target) {
       link_target = link_target === '_blank' ? '' : '_blank';
-      this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(this.props.editorState, this.props.entityKey, {
+      this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(this.props.editor.getValue(), this.props.entityKey, {
         link_target: link_target
       }));
       window.setImmediate(this.props.editor.forceRender);
@@ -5558,6 +5809,7 @@ function (_React$Component) {
             type: "button",
             key: index,
             "data-title": controlItem.title,
+            disabled: controlItem.disabled,
             className: "control-item media button",
             onClick: _this3.openBraftFinder
           }, controlItem.text);
@@ -5580,6 +5832,7 @@ function (_React$Component) {
             type: "button",
             key: index,
             "data-title": controlItem.title,
+            disabled: controlItem.disabled,
             className: "control-item extend-control-item button ".concat(controlItem.className || ''),
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -5613,6 +5866,7 @@ function (_React$Component) {
             type: "button",
             key: index,
             "data-title": controlItem.title,
+            disabled: controlItem.disabled,
             className: "control-item button ".concat(controlItem.className || ''),
             dangerouslySetInnerHTML: controlItem.html ? {
               __html: controlItem.html
@@ -5775,7 +6029,13 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "forceRender", function () {
-      return _this.setValue(external_braft_utils_["ContentUtils"].createEditorState(_this.state.editorState.getCurrentContent(), _this.editorDecorators));
+      var selectionState = _this.state.editorState.getSelection();
+
+      _this.setValue(external_draft_js_["EditorState"].set(_this.state.editorState, {
+        decorator: _this.editorDecorators
+      }), function () {
+        _this.setValue(external_draft_js_["EditorState"].forceSelection(_this.state.editorState, selectionState));
+      });
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onTab", function (event) {
@@ -6061,6 +6321,7 @@ function (_React$Component) {
           fontFamilies = _this$editorProps3.fontFamilies,
           emojis = _this$editorProps3.emojis,
           placeholder = _this$editorProps3.placeholder,
+          fixPlaceholder = _this$editorProps3.fixPlaceholder,
           imageControls = _this$editorProps3.imageControls,
           lineHeights = _this$editorProps3.lineHeights,
           letterSpacings = _this$editorProps3.letterSpacings,
@@ -6076,7 +6337,9 @@ function (_React$Component) {
           contentStyle = _this$editorProps3.contentStyle,
           stripPastedStyles = _this$editorProps3.stripPastedStyles,
           componentBelowControlBar = _this$editorProps3.componentBelowControlBar;
-      var isFullscreen = this.state.isFullscreen;
+      var _this$state = this.state,
+          isFullscreen = _this$state.isFullscreen,
+          editorState = _this$state.editorState;
       editorId = editorId || id;
       hooks = buildHooks(hooks);
       controls = controls.filter(function (item) {
@@ -6097,7 +6360,7 @@ function (_React$Component) {
 
       var controlBarProps = {
         editor: this,
-        editorState: this.state.editorState,
+        editorState: editorState,
         braftFinder: this.braftFinder,
         ref: function ref(instance) {
           return _this5.controlBarInstance = instance;
@@ -6124,12 +6387,12 @@ function (_React$Component) {
         textBackgroundColor: textBackgroundColor,
         defaultLinkTarget: defaultLinkTarget
       };
-      var unitExportFn = this.state.editorState.convertOptions.unitExportFn;
+      var unitExportFn = editorState.convertOptions.unitExportFn;
       var commonProps = {
         editor: this,
         editorId: editorId,
         hooks: hooks,
-        editorState: this.state.editorState,
+        editorState: editorState,
         containerNode: this.state.containerNode,
         imageControls: imageControls,
         language: language,
@@ -6151,11 +6414,15 @@ function (_React$Component) {
         mixedProps.readOnly = true;
       }
 
+      if (placeholder && fixPlaceholder && editorState.isEmpty() && editorState.getCurrentContent().getFirstBlock().getType() !== 'unstyled') {
+        placeholder = '';
+      }
+
       var draftProps = objectSpread_default()({
         ref: function ref(instance) {
           _this5.draftInstance = instance;
         },
-        editorState: this.state.editorState,
+        editorState: editorState,
         handleKeyCommand: this.handleKeyCommand,
         handleReturn: this.handleReturn,
         handleBeforeInput: this.handleBeforeInput,
@@ -6247,7 +6514,11 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
     editorState = Object(external_braft_convert_["convertRawToEditorState"])(content, getDecorators(options.editorId));
   } else if (typeof content === 'string') {
     try {
-      editorState = external_draft_js_["EditorState"].createFrom(JSON.parse(content), options);
+      if (!/^(-)?\d{1,15}$/.test(content)) {
+        editorState = Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(options.editorId), options, 'create');
+      } else {
+        editorState = external_draft_js_["EditorState"].createFrom(JSON.parse(content), options);
+      }
     } catch (error) {
       editorState = Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(options.editorId), options, 'create');
     }

@@ -295,6 +295,7 @@ export default class ControlBar extends React.Component {
                   type='button'
                   key={index}
                   data-title={controlItem.title}
+                  disabled={controlItem.disabled}
                   className='control-item media button'
                   onClick={this.openBraftFinder}
                 >
@@ -326,6 +327,7 @@ export default class ControlBar extends React.Component {
                   type='button'
                   key={index}
                   data-title={controlItem.title}
+                  disabled={controlItem.disabled}
                   className={`control-item extend-control-item button ${controlItem.className || ''}`}
                   dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
                   onClick={(event) => {
@@ -357,6 +359,7 @@ export default class ControlBar extends React.Component {
                   type='button'
                   key={index}
                   data-title={controlItem.title}
+                  disabled={controlItem.disabled}
                   className={`control-item button ${controlItem.className || ''}`}
                   dangerouslySetInnerHTML={controlItem.html ? { __html: controlItem.html } : null}
                   onClick={(event) => controlItem.onClick && controlItem.onClick(event)}

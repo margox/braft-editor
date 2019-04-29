@@ -50,6 +50,7 @@ export interface BraftEditorProps {
   hooks?: HooksType;
   textBackgroundColor?: boolean;
   stripPastedStyles?: boolean;
+  fixPlaceholder?: boolean;
   className?: string;
   style?: React.CSSProperties;
   controlBarClassName?: string;

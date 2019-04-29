@@ -152,8 +152,8 @@ export default class Image extends React.Component {
               {sizeEditorVisible ? (
                 <div className='bf-image-size-editor'>
                   <div className='editor-input-group'>
-                    <input type='text' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
-                    <input type='text' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
+                    <input type='text' onDragStart={this.preventDragEvent} placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
+                    <input type='text' onDragStart={this.preventDragEvent} placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
                     <button type='button' onClick={this.confirmImageSize}>{language.base.confirm}</button>
                   </div>
                 </div>
@@ -170,26 +170,13 @@ export default class Image extends React.Component {
               height={height}
               {...meta}
             />
-            {
-              toolbarVisible && 
-              <div 
-                className='bf-csize-icon right-bottom'
-                onMouseDown={this.repareChangeSize('rightbottom')}
-              />
-            }
-            {
-              toolbarVisible && 
-              <div 
-                className='bf-csize-icon left-bottom'
-                onMouseDown={this.repareChangeSize('leftbottom')}
-              />
-            }
+            {toolbarVisible && <div className='bf-csize-icon right-bottom' onMouseDown={this.repareChangeSize('rightbottom')} />}
+            {toolbarVisible && <div className='bf-csize-icon left-bottom' onMouseDown={this.repareChangeSize('leftbottom')} />}
             <div 
               className={`bf-pre-csize ${this.reSizeType}`} 
               style={{width: `${tempWidth}px`, height:`${tempHeight}px`}}
             />
           </div>
-          
         </div>
         {clearFix && <div className='clearfix' style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}
       </div>
@@ -226,6 +213,11 @@ export default class Image extends React.Component {
       return 0
     }
 
+  }
+
+  preventDragEvent = (event) => {
+    event.stopPropagation()
+    event.preventDefault()
   }
 
   handleDragStart = () => {
@@ -265,13 +257,13 @@ export default class Image extends React.Component {
       const [method, param] = command.split('|')
       this[method] && this[method](param)
     } else if (typeof command === 'function') {
-      command(this.props.block, this.props.mediaData, this.props.editorState)
+      command(this.props.block, this.props.mediaData, this.props.editor.getValue())
     }
 
   }
 
   removeImage = () => {
-    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
+    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editor.getValue(), this.props.block))
     this.unlockEditor()
   }
 
@@ -307,7 +299,7 @@ export default class Image extends React.Component {
   setImageLinkTarget (link_target) {
 
     link_target = link_target === '_blank' ? '' : '_blank'
-    this.props.editor.setValue(ContentUtils.setMediaData(this.props.editorState, this.props.entityKey, { link_target }))
+    this.props.editor.setValue(ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, { link_target }))
     window.setImmediate(this.props.editor.forceRender)
 
   }
@@ -317,7 +309,7 @@ export default class Image extends React.Component {
     const { tempLink: link } = this.state
 
     if (link !== null) {
-      this.props.editor.setValue(ContentUtils.setMediaData(this.props.editorState, this.props.entityKey, { link }))
+      this.props.editor.setValue(ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, { link }))
       window.setImmediate(this.props.editor.forceRender)
     }
 
@@ -367,18 +359,18 @@ export default class Image extends React.Component {
     width !== null && (newImageSize.width = width)
     height !== null && (newImageSize.height = height)
 
-    this.props.editor.setValue(ContentUtils.setMediaData(this.props.editorState, this.props.entityKey, newImageSize))
+    this.props.editor.setValue(ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, newImageSize))
     window.setImmediate(this.props.editor.forceRender)
 
   }
 
   setImageFloat = (float) => {
-    this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { float }))
+    this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editor.getValue(), this.props.block, { float }))
     this.unlockEditor()
   }
 
   setImageAlignment = (alignment) => {
-    this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editorState, this.props.block, { alignment }))
+    this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editor.getValue(), this.props.block, { alignment }))
     this.unlockEditor()
   }
 
@@ -409,7 +401,7 @@ export default class Image extends React.Component {
       toolbarVisible: false
     }, () => {
       this.unlockEditor()
-      // this.props.editor.requestFocus()
+      this.props.editor.requestFocus()
     })
 
   }

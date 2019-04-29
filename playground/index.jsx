@@ -27,12 +27,13 @@ class Demo extends React.Component {
     this.state = {
       count: 0,
       readOnly: false,
-      editorState: BraftEditor.createEditorState(null)
+      editorState: BraftEditor.createEditorState(123123131231231231)
     }
 
   }
 
   handleChange = (editorState) => {
+    console.log('change')
     this.setState({ editorState })
   }
 
@@ -52,11 +53,13 @@ class Demo extends React.Component {
               key: 'log-html',
               type: 'button',
               text: 'Log HTML',
+              // disabled: true,
               onClick: this.logHTML,
             }, {
               key: 'my-modal',
               type: 'modal',
               text: 'modal',
+              // disabled: true,
               modal: {
                 id: 'a',
                 closeOnBlur: true,
@@ -64,12 +67,20 @@ class Demo extends React.Component {
                 closeOnConfirm: false,
                 component: <div>123123</div>
               }
+            }, {
+              key: 'my-dropdown',
+              type: 'dropdown',
+              text: 'Hello',
+              // disabled: true,
+              component: <h1>Hello World!</h1>
             }]}
+            placeholder="Hello World!"
+            forceFixPlaceholder={true}
             media={{
               items: [
                 {
                   id: 'embed_1',
-                  type: 'EMBED',
+                  type: 'VIDEO',
                   name: '优酷视频',
                   meta: {
                     poster: 'https://margox.cn/wp-content/uploads/2018/09/IMG_9508.jpg'

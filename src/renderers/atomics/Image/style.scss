@@ -79,8 +79,7 @@
     position: absolute;
     width: 10px;
     height: 10px;
-    background: transparent;
-    border: 1px solid blue;
+    background-color: rgba($COLOR_ACTIVE, .3);
     &.right-bottom{
       right: 0;
       bottom: 0;
