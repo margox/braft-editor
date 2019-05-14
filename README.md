@@ -4,6 +4,13 @@
 #### [使用文档](https://www.yuque.com/margox/be) [在线演示](https://braft.margox.cn/demos/basic)
 ##### 注意，项目当前版本为2.x，如果你使用的是1.x.x版本，请参阅[旧版本文档](https://github.com/margox/braft-editor/blob/old-master/README.md)
 
+## 使用前请了解
+Braft Editor是基于draft-js开发的编辑器，而draft-js内部并不是直接使用HTML作为组件状态的，它自己实现了一个EditorState类型，本质上是一个JS对象；在传统富文本编辑器中的一段段的HTML内容对应到EditorState就是一个个的block块；这一点可以通过查看editorState.toRAW()进行验证。
+使用EditorState代替HTML字符串的好处在于一套EditorState可以多端使用，编辑器产出的内容不再局限于只在web平台展示，（当然各个平台也需要自行实现对应的EditorState to View的转换功能），同时也和React的组件状态更加适配。
+然而，上述实现方式，最大的问题在于无法将外部的HTML完美的转换为EditorState，因为其支持的样式、标签、标签属性等等极为有限，没办法将HTML中的所有特性转换为EditorState中的状态，导致在使用第三方或者遗留HTML字符串来初始化编辑器内容的时候，只有被编辑器支持的少量样式和标签属性才能被保留，大部分内容将会被过滤或者忽略掉。
+基于上面的缺点，如果各位的项目强依赖于原始HTML标签和属性等，则不建议使用本编辑器。
+
+
 ### 编辑器专用扩展包已发布，请查看[Braft Extensions](https://github.com/margox/braft-extensions)
 表格扩展模块已发布测试版本，请升级braft-editor和braft-utils到最新版本，并安装最新版本的braft-extensions，使用方式请查看[[表格扩展模块](https://github.com/margox/braft-extensions#%E8%A1%A8%E6%A0%BC%E6%A8%A1%E5%9D%97)]
 
