@@ -35,11 +35,20 @@ export const keyCommandHandlers = (command, editorState, editor) => {
   }
 
   if (command === 'tab') {
-
     const blockType = ContentUtils.getSelectionBlockType(editorState)
 
     if (blockType === 'code-block') {
       editor.setValue(ContentUtils.insertText(editorState, ' '.repeat(editor.editorProps.codeTabIndents)))
+      return 'handled'
+    } else if (blockType === 'ordered-list-item' || blockType === 'unordered-list-item') {
+      const newEditorState = RichUtils.onTab(
+        event,
+        editorState,
+        4,
+      )
+      if (newEditorState !== editorState) {
+        editor.setValue(newEditorState)
+      }
       return 'handled'
     } else if (blockType !== 'atomic' && allowIndent && cursorIsAtFirst) {
       editor.setValue(ContentUtils.increaseSelectionIndent(editorState))
