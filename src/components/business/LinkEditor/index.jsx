@@ -43,7 +43,7 @@ export default class LinkEditor extends React.Component {
           caption={caption}
           title={this.props.language.controls.link}
           autoHide={true}
-          containerNode={this.props.containerNode}
+          getContainerNode={this.props.getContainerNode}
           showArrow={false}
           disabled={!textSelected}
           ref={(instance) => this.dropDownInstance = instance}

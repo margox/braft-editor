@@ -48,7 +48,7 @@ export default class TextColor extends React.Component {
         showArrow={false}
         autoHide={this.props.autoHide}
         theme={this.props.theme}
-        containerNode={this.props.containerNode}
+        getContainerNode={this.props.getContainerNode}
         ref={(instance) => this.dropDownInstance = instance}
         className={'control-item dropdown text-color-dropdown'}
       >
