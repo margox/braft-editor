@@ -57,17 +57,28 @@ export default class BraftEditor extends React.Component {
     this.braftFinder = null
     this.valueInitialized = !!(this.props.defaultValue || this.props.value)
 
-    const defaultEditorState = (this.props.defaultValue || this.props.value) instanceof EditorState ? (this.props.defaultValue || this.props.value) : EditorState.createEmpty(this.editorDecorators)
+    const defaultEditorState = (this.props.defaultValue || this.props.value) instanceof EditorState
+      ? (this.props.defaultValue || this.props.value)
+      : EditorState.createEmpty(this.editorDecorators)
     defaultEditorState.setConvertOptions(getConvertOptions(this.editorProps))
 
+    let tempColors = []
+
+    if (ContentUtils.isEditorState(defaultEditorState)) {
+
+      const colors = ColorUtils.detectColorsFromDraftState(defaultEditorState.toRAW(true))
+      defaultEditorState.setConvertOptions(getConvertOptions(this.editorProps))
+
+      tempColors = filterColors(colors, this.editorProps.colors)
+    }
+
     this.state = {
-      containerNode: null,
-      tempColors: [],
+      tempColors,
       editorState: defaultEditorState,
       isFullscreen: false,
       draftProps: {}
     }
-
+    this.containerNode = null
   }
 
   getEditorProps (props) {
@@ -112,23 +123,6 @@ export default class BraftEditor extends React.Component {
   }
 
   componentDidMount () {
-
-    this.editorProps = this.getEditorProps()
-    const { value: editorState } = this.props
-
-    if (ContentUtils.isEditorState(editorState)) {
-
-      const tempColors = ColorUtils.detectColorsFromDraftState(editorState.toRAW(true))
-      editorState.setConvertOptions(getConvertOptions(this.editorProps))
-
-      this.setState({
-        tempColors: filterColors([...this.state.tempColors, ...tempColors], this.editorProps.colors),
-        editorState: editorState
-      }, () => {
-        this.props.triggerChangeOnMount && this.props.onChange && this.props.onChange(editorState)
-      })
-
-    }
 
     this.isLiving = true
 
@@ -332,11 +326,11 @@ export default class BraftEditor extends React.Component {
   }
 
   setEditorContainerNode = (containerNode) => {
-    this.setState({ containerNode }, this.forceRender)
+    this.containerNode = containerNode
   }
 
   render () {
-
+    
     let {
       id, editorId, controls, excludeControls, extendControls, readOnly, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
       fontSizes, fontFamilies, emojis, placeholder, fixPlaceholder, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget,
@@ -372,7 +366,7 @@ export default class BraftEditor extends React.Component {
       editorState: editorState,
       braftFinder: this.braftFinder,
       ref: instance => this.controlBarInstance = instance,
-      containerNode: this.state.containerNode,
+      getContainerNode: () => this.containerNode,
       className: controlBarClassName,
       style: controlBarStyle,
       colors: [...colors, ...this.state.tempColors],
@@ -385,7 +379,7 @@ export default class BraftEditor extends React.Component {
     const commonProps = {
       editor: this, editorId, hooks,
       editorState: editorState,
-      containerNode: this.state.containerNode,
+      containerNode: this.containerNode,
       imageControls, language, extendAtomics
     }
 

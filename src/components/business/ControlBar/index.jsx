@@ -178,9 +178,9 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
+    const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, fontSizes, fontFamilies, emojis, getContainerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
-    const commonProps = { editor, editorId, editorState, language, containerNode, hooks }
+    const commonProps = { editor, editorId, editorState, language, getContainerNode, hooks }
 
     const renderedControls = []
     const editorControls = getEditorControls(language, editor)

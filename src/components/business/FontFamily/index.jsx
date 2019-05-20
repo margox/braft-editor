@@ -39,7 +39,7 @@ export default (props) => {
   return (
     <DropDown
       caption={caption || props.defaultCaption}
-      containerNode={props.containerNode}
+      getContainerNode={props.getContainerNode}
       title={props.language.controls.fontFamily}
       autoHide={true}
       arrowActive={currentIndex === 0}
