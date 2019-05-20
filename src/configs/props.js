@@ -60,6 +60,7 @@ export default {
   colorPickerTheme: 'dark',
   colorPickerAutoHide: true,
   codeTabIndents: 2,
+  headings: ['header-one', 'header-two', 'header-three', 'header-four', 'header-five', 'header-six', 'unstyled'],
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,
   defaultLinkTarget: '',

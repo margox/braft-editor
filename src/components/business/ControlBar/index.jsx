@@ -178,7 +178,7 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
+    const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, headings, fontSizes, fontFamilies, emojis, containerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const commonProps = { editor, editorId, editorState, language, containerNode, hooks }
 
@@ -217,6 +217,7 @@ export default class ControlBar extends React.Component {
             if (controlItem.type === 'headings') {
               return <HeadingPicker
                 key={index}
+                headings={headings}
                 current={currentBlockType}
                 onChange={(command) => this.applyControl(command, 'block-type')}
                 {...commonProps}

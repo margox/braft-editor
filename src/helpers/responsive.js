@@ -18,7 +18,7 @@ export default {
 
 }
 
-if (!responsiveHelperInited) {
+if (!responsiveHelperInited && typeof window === 'object') {
 
   window.addEventListener('resize', (event) => {
     clearTimeout(debouce)

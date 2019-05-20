@@ -7,7 +7,7 @@ export default (props) => {
 
   let dropDownInstance = null
 
-  const headings = getHeadings(props.language)
+  const headings = getHeadings(props.language).filter(item => props.headings.indexOf(item.key) !== -1)
   const currentHeadingIndex = headings.findIndex((item) => item.command === props.current)
   const caption = headings[currentHeadingIndex] ? headings[currentHeadingIndex].title : props.language.controls.normal
 

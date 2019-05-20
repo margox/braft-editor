@@ -36,6 +36,7 @@ export interface BraftEditorProps {
   componentBelowControlBar?: React.ReactNode;
   media?: MediaType;
   imageControls?: ImageControlType[];
+  headings?: string[];
   colors?: string[];
   fontSizes?: number[];
   fontFamilies?: { name: string; family: string }[];

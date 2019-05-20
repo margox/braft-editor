@@ -74,6 +74,7 @@ class Demo extends React.Component {
               // disabled: true,
               component: <h1>Hello World!</h1>
             }]}
+            headings={['header-one', 'unstyled']}
             placeholder="Hello World!"
             forceFixPlaceholder={true}
             media={{
