@@ -41,6 +41,10 @@ class Demo extends React.Component {
     console.log(this.state.editorState.toHTML())
   }
 
+  logRAW = () => {
+    console.log(this.state.editorState.toRAW())
+  }
+
   render() {
 
     const { readOnly, editorState } = this.state
@@ -50,6 +54,12 @@ class Demo extends React.Component {
         <div className="demo" id="demo">
           <BraftEditor
             extendControls={[{
+              key: 'log-raw',
+              type: 'button',
+              text: 'Log RAW',
+              // disabled: true,
+              onClick: this.logRAW,
+            }, {
               key: 'log-html',
               type: 'button',
               text: 'Log HTML',

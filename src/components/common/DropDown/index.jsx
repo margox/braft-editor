@@ -97,7 +97,7 @@ export default class DropDown extends React.Component {
 
   fixDropDownPosition = () => {
 
-    const viewRect = this.props.containerNode.getBoundingClientRect()
+    const viewRect = this.props.getContainerNode().getBoundingClientRect()
     const handlerRect = this.dropDownHandlerElement.getBoundingClientRect()
     const contentRect = this.dropDownContentElement.getBoundingClientRect()
 

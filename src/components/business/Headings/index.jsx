@@ -15,7 +15,7 @@ export default (props) => {
     <DropDown
       caption={caption}
       autoHide={true}
-      containerNode={props.containerNode}
+      getContainerNode={props.getContainerNode}
       title={props.language.controls.headings}
       arrowActive={currentHeadingIndex === 0}
       ref={(instance) => dropDownInstance = instance}

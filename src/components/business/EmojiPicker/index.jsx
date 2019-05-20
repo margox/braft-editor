@@ -28,7 +28,7 @@ export default (props) => {
       caption={props.defaultCaption}
       autoHide={true}
       showArrow={false}
-      containerNode={props.containerNode}
+      getContainerNode={props.getContainerNode}
       title={props.language.controls.emoji}
       className={'control-item dropdown bf-emoji-dropdown'}
     >
