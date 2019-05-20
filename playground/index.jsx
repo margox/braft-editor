@@ -86,7 +86,7 @@ class Demo extends React.Component {
             }]}
             headings={['header-one', 'unstyled']}
             placeholder="Hello World!"
-            forceFixPlaceholder={true}
+            fixPlaceholder={true}
             media={{
               items: [
                 {
