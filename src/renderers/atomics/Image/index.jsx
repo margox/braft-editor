@@ -193,12 +193,13 @@ export default class Image extends React.Component {
   }
 
   calcToolbarOffset () {
-    const containerNode = this.props.getContainerNode()
-    if (!containerNode) {
+    const { getContainerNode, containerNode } = this.props;
+    const container = getContainerNode ? getContainerNode() : containerNode;
+    if (!container) {
       return 0
     }
 
-    const viewRect = containerNode.querySelector('.bf-content').getBoundingClientRect()
+    const viewRect = container.querySelector('.bf-content').getBoundingClientRect()
     const toolbarRect = this.toolbarElement.getBoundingClientRect()
     const imageRect = this.imageElement.getBoundingClientRect()
 
