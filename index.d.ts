@@ -47,6 +47,7 @@ export interface BraftEditorProps {
   draftProps?: DraftEditorProps;
   blockRenderMap?: Immutable.Map<any, any> | Function;
   blockRendererFn?: Function;
+  handlePastedText?: Function;
   converts?: object;
   hooks?: HooksType;
   textBackgroundColor?: boolean;

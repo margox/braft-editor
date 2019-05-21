@@ -40,6 +40,8 @@ Braft Editor是基于draft-js开发的编辑器，而draft-js内部并不是直�
 
 ## 近期更新记录
 
+- 2019-05-20 v2.3.1
+  - 修复v2.3.0的致命bug
 - 2019-05-20 v2.3.0
   - 支持嵌套列表以及部分内部细节优化，感谢[SyMind](https://github.com/SyMind)的贡献:[PR#486](https://github.com/margox/braft-editor/pull/486),[PR#485](https://github.com/margox/braft-editor/pull/485)
   - 优化在SSR中使用的问题

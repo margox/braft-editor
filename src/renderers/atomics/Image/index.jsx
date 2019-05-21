@@ -125,7 +125,6 @@ export default class Image extends React.Component {
           ref={instance => this.mediaEmbederInstance = instance}
           className='bf-image'
         >
-         
           {toolbarVisible ? (
             <div
               style={{marginLeft: toolbarOffset}}
@@ -193,8 +192,10 @@ export default class Image extends React.Component {
   }
 
   calcToolbarOffset () {
-    const { getContainerNode, containerNode } = this.props;
-    const container = getContainerNode ? getContainerNode() : containerNode;
+
+    const { getContainerNode, containerNode } = this.props
+    const container = getContainerNode ? getContainerNode() : containerNode
+
     if (!container) {
       return 0
     }
