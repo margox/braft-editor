@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("immutable"), require("braft-convert"), require("react-dom"), require("braft-finder"), require("draftjs-utils")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["immutable"], root["braft-convert"], root["react-dom"], root["braft-finder"], root["draftjs-utils"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__16__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__23__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__16__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__23__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -143,6 +143,18 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 /* 4 */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var defineProperty = __webpack_require__(2);
@@ -169,22 +181,10 @@ function _objectSpread(target) {
 module.exports = _objectSpread;
 
 /***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
-
-/***/ }),
 /* 6 */
 /***/ (function(module, exports) {
 
-function _classCallCheck(instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-}
-
-module.exports = _classCallCheck;
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
 
 /***/ }),
 /* 7 */
@@ -1372,7 +1372,7 @@ var helpers_typeof = __webpack_require__(15);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectSpread.js
-var objectSpread = __webpack_require__(4);
+var objectSpread = __webpack_require__(5);
 var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectWithoutProperties.js
@@ -1380,7 +1380,7 @@ var objectWithoutProperties = __webpack_require__(21);
 var objectWithoutProperties_default = /*#__PURE__*/__webpack_require__.n(objectWithoutProperties);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/classCallCheck.js
-var classCallCheck = __webpack_require__(6);
+var classCallCheck = __webpack_require__(4);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
 // EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/createClass.js
@@ -1896,7 +1896,7 @@ var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_
 var external_braft_utils_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external "draft-js"
-var external_draft_js_ = __webpack_require__(5);
+var external_draft_js_ = __webpack_require__(6);
 
 // EXTERNAL MODULE: external "immutable"
 var external_immutable_ = __webpack_require__(13);
@@ -4028,8 +4028,25 @@ function (_React$Component) {
 
 
 
-var blockRendererFn_getAtomicBlockComponent = function getAtomicBlockComponent(superProps) {
-  return function (props) {
+
+
+var blockRendererFn_BlockRenderFnContext = function BlockRenderFnContext() {
+  var _this = this;
+
+  classCallCheck_default()(this, BlockRenderFnContext);
+
+  defineProperty_default()(this, "superProps", void 0);
+
+  defineProperty_default()(this, "customBlockRendererFn", void 0);
+
+  defineProperty_default()(this, "getRenderFn", function (superProps, customBlockRendererFn) {
+    _this.superProps = superProps;
+    _this.customBlockRendererFn = customBlockRendererFn;
+    return _this.blockRendererFn;
+  });
+
+  defineProperty_default()(this, "renderAtomicBlock", function (props) {
+    var superProps = _this.superProps;
     var entityKey = props.block.getEntityAt(0);
 
     if (!entityKey) {
@@ -4070,11 +4087,11 @@ var blockRendererFn_getAtomicBlockComponent = function getAtomicBlockComponent(s
     }
 
     return null;
-  };
-};
+  });
 
-/* harmony default export */ var block_blockRendererFn = (function (superProps, customBlockRendererFn) {
-  return function (block) {
+  defineProperty_default()(this, "blockRendererFn", function (block) {
+    var customBlockRendererFn = _this.customBlockRendererFn,
+        superProps = _this.superProps;
     var blockType = block.getType();
     var blockRenderer = null;
 
@@ -4100,14 +4117,17 @@ var blockRendererFn_getAtomicBlockComponent = function getAtomicBlockComponent(s
 
     if (blockType === 'atomic') {
       blockRenderer = {
-        component: blockRendererFn_getAtomicBlockComponent(superProps),
+        component: _this.renderAtomicBlock,
         editable: false
       };
     }
 
     return blockRenderer;
-  };
-});
+  });
+};
+
+var blockRenderFnContext = new blockRendererFn_BlockRenderFnContext();
+/* harmony default export */ var block_blockRendererFn = (blockRenderFnContext.getRenderFn);
 // CONCATENATED MODULE: ./renderers/block/blockStyleFn.js
 /* harmony default export */ var block_blockStyleFn = (function (customBlockStyleFn) {
   return function (block) {
@@ -6531,7 +6551,7 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
     editorState = Object(external_braft_convert_["convertRawToEditorState"])(content, getDecorators(options.editorId));
   } else if (typeof content === 'string') {
     try {
-      if (!/^(-)?\d{1,15}$/.test(content)) {
+      if (/^(-)?\d+$/.test(content)) {
         editorState = Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(options.editorId), options, 'create');
       } else {
         editorState = external_draft_js_["EditorState"].createFrom(JSON.parse(content), options);
@@ -6540,7 +6560,7 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
       editorState = Object(external_braft_convert_["convertHTMLToEditorState"])(content, getDecorators(options.editorId), options, 'create');
     }
   } else if (typeof content === 'number') {
-    editorState = Object(external_braft_convert_["convertHTMLToEditorState"])("".concat(content), getDecorators(options.editorId), options, 'create');
+    editorState = Object(external_braft_convert_["convertHTMLToEditorState"])(content.toLocaleString().replace(/,/g, ''), getDecorators(options.editorId), options, 'create');
   } else {
     editorState = external_draft_js_["EditorState"].createEmpty(getDecorators(options.editorId));
   }

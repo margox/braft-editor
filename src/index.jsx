@@ -39,7 +39,7 @@ BraftEditor.createEditorState = EditorState.createFrom = (content, options = {})
     editorState = convertRawToEditorState(content, getDecorators(options.editorId))
   } else if (typeof content === 'string') {
     try {
-      if (!/^(-)?\d{1,15}$/.test(content)) {
+      if (/^(-)?\d+$/.test(content)) {
         editorState = convertHTMLToEditorState(content, getDecorators(options.editorId), options, 'create')
       } else {
         editorState = EditorState.createFrom(JSON.parse(content), options)
@@ -48,7 +48,7 @@ BraftEditor.createEditorState = EditorState.createFrom = (content, options = {})
       editorState = convertHTMLToEditorState(content, getDecorators(options.editorId), options, 'create')
     }
   } else if (typeof content === 'number') {
-    editorState = convertHTMLToEditorState(`${content}`, getDecorators(options.editorId), options, 'create')
+    editorState = convertHTMLToEditorState(content.toLocaleString().replace(/,/g, ''), getDecorators(options.editorId), options, 'create')
   } else {
     editorState = EditorState.createEmpty(getDecorators(options.editorId))
   }
