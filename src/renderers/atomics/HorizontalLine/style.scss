@@ -6,6 +6,9 @@
   height: 15px;
   padding-top: 15px;
   text-align: center;
+  &.readonly {
+    pointer-events: none;
+  }
   &::before{
     display: block;
     height: 1px;

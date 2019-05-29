@@ -6,8 +6,14 @@ export default class HorizontalLine extends React.Component {
 
   render () {
 
+    const hrClasses = ['bf-hr']
+    if (this.props.editor.editorProps.readOnly || this.props.editor.editorProps.disabled) {
+      hrClasses.push('readonly')
+    }
+    const hrClassName = hrClasses.join(' ')
+
     return (
-      <div className='bf-hr'>
+      <div className={hrClassName}>
         <div className='bf-media-toolbar'>
           <a onClick={this.removeHorizontalLine}>&#xe9ac;</a>
         </div>
