@@ -22,6 +22,9 @@
     pointer-events: none;
     opacity: .7;
     filter: grayscale(70%);
+    .bf-hr{
+      pointer-events: none;
+    }
   }
 
   &.read-only{
@@ -32,6 +35,9 @@
       img:hover{
         outline: none;
       }
+    }
+    .bf-hr{
+      pointer-events: none;
     }
   }
 
