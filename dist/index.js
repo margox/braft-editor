@@ -1496,6 +1496,81 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     embed: 'Embed'
   }
 });
+var ru = ({
+        base: {
+          remove: 'Удалить',
+          cancel: 'Отмена',
+          confirm: 'Подтвердить',
+          inert: 'Вставить',
+          width: 'Ширина',
+          height: 'Высота'
+        },
+        controls: {
+          clear: 'Очистить',
+          undo: 'Отменить',
+          redo: 'Повторить',
+          fontSize: 'Размер шрифта',
+          color: 'Цвет',
+          textColor: 'Цвет текста',
+          tempColors: 'Temp Colors',
+          backgroundColor: 'Цвет фона',
+          bold: 'Жирный',
+          lineHeight: 'Высота строки',
+          letterSpacing: 'Межбуквенный интервал',
+          textIndent: 'Text Indent',
+          increaseIndent: 'Increase Indent',
+          decreaseIndent: 'Decrease Indent',
+          italic: 'Курсив',
+          underline: 'Надчеркнутый',
+          strikeThrough: 'Перечеркнутый',
+          fontFamily: 'Font Family',
+          textAlign: 'Text Alignment',
+          alignLeft: 'Left Alignment',
+          alignCenter: 'Center Alignment',
+          alignRight: 'Right Alignment',
+          alignJustify: 'Justify Alignment',
+          floatLeft: 'Left Float',
+          floatRight: 'Right Float',
+          superScript: 'Super Script',
+          subScript: 'Sub Script',
+          removeStyles: 'Remove Styles',
+          headings: 'Headings',
+          header: 'Header',
+          normal: 'Normal',
+          orderedList: 'Ordered List',
+          unorderedList: 'Unordered List',
+          blockQuote: 'Quote',
+          code: 'Code',
+          link: 'Link',
+          unlink: 'Unlink',
+          hr: 'Horizontal Line',
+          media: 'Media',
+          mediaLibirary: 'Media Library',
+          emoji: 'Emoji',
+          fullscreen: 'Fullscreen',
+          exitFullscreen: 'Exit Fullscreen'
+        },
+        linkEditor: {
+          inputPlaceHolder: 'Input link URL',
+          inputWithEnterPlaceHolder: 'Input link URL and press Enter',
+          openInNewWindow: 'Open in new window',
+          removeLink: 'Remove Link'
+        },
+        audioPlayer: {
+          title: 'Play Audio'
+        },
+        videoPlayer: {
+          title: 'Play Video',
+          embedTitle: 'Embed Media'
+        },
+        media: {
+          image: 'Image',
+          video: 'Video',
+          audio: 'Audio',
+          embed: 'Embed'
+        }
+      });
+
 // CONCATENATED MODULE: ./languages/zh.js
 /* harmony default export */ var zh = ({
   base: {
@@ -1572,7 +1647,8 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     embed: '嵌入式媒体'
   }
 });
-// CONCATENATED MODULE: ./languages/zh-hant.js
+// CONCATENATED MODULE: ./
+	s/zh-hant.js
 /* harmony default export */ var zh_hant = ({
   base: {
     remove: '刪除',
@@ -1886,7 +1962,8 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
   'zh-hant': zh_hant,
   'pl': pl,
   'kr': kr,
-  'jpn': jpn
+  'jpn': jpn,
+  'ru':ru
 });
 // EXTERNAL MODULE: external "braft-finder"
 var external_braft_finder_ = __webpack_require__(17);
