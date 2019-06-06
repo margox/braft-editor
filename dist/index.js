@@ -1646,8 +1646,7 @@ var ru = ({
     embed: '嵌入式媒体'
   }
 });
-// CONCATENATED MODULE: ./
-	s/zh-hant.js
+// CONCATENATED MODULE: .s/zh-hant.js
 /* harmony default export */ var zh_hant = ({
   base: {
     remove: '刪除',
