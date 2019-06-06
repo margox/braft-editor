@@ -1501,7 +1501,7 @@ var ru = ({
           remove: 'Удалить',
           cancel: 'Отмена',
           confirm: 'Подтвердить',
-          inert: 'Вставить',
+          insert: 'Вставить',
           width: 'Ширина',
           height: 'Высота'
         },
@@ -1515,62 +1515,61 @@ var ru = ({
           tempColors: 'Temp Colors',
           backgroundColor: 'Цвет фона',
           bold: 'Жирный',
-          lineHeight: 'Высота строки',
+          lineHeight: 'Межстрочный интервал',
           letterSpacing: 'Межбуквенный интервал',
-          textIndent: 'Text Indent',
-          increaseIndent: 'Increase Indent',
-          decreaseIndent: 'Decrease Indent',
+          textIndent: 'Отступ',
+          increaseIndent: 'Увеличить отступ',
+          decreaseIndent: 'Уменьшить отступ',
           italic: 'Курсив',
-          underline: 'Надчеркнутый',
+          underline: 'Подчеркнутый',
           strikeThrough: 'Перечеркнутый',
-          fontFamily: 'Font Family',
-          textAlign: 'Text Alignment',
-          alignLeft: 'Left Alignment',
-          alignCenter: 'Center Alignment',
-          alignRight: 'Right Alignment',
-          alignJustify: 'Justify Alignment',
-          floatLeft: 'Left Float',
-          floatRight: 'Right Float',
-          superScript: 'Super Script',
-          subScript: 'Sub Script',
-          removeStyles: 'Remove Styles',
-          headings: 'Headings',
-          header: 'Header',
-          normal: 'Normal',
-          orderedList: 'Ordered List',
-          unorderedList: 'Unordered List',
-          blockQuote: 'Quote',
-          code: 'Code',
-          link: 'Link',
-          unlink: 'Unlink',
-          hr: 'Horizontal Line',
-          media: 'Media',
-          mediaLibirary: 'Media Library',
+          fontFamily: 'Шрифт',
+          textAlign: 'Расположение текста',
+          alignLeft: 'По левому краю',
+          alignCenter: 'По центру',
+          alignRight: 'По правому краю',
+          alignJustify: 'По ширине',
+          floatLeft: 'Обтекание слева',
+          floatRight: 'Обтекание справа',
+          superScript: 'Надстрочный индекс',
+          subScript: 'Подстрочный индекс',
+          removeStyles: 'Убрать стили',
+          headings: 'Заголовки',
+          header: 'Заголовок',
+          normal: 'Обычный',
+          orderedList: 'Упорядоченный список',
+          unorderedList: 'Неупорядоченный список',
+          blockQuote: 'Цитата',
+          code: 'Код',
+          link: 'Вставить ссылку',
+          unlink: 'Убрать ссылку',
+          hr: 'Горизонтальная линия',
+          media: 'Медиа',
+          mediaLibirary: 'Медиа библиотека',
           emoji: 'Emoji',
-          fullscreen: 'Fullscreen',
-          exitFullscreen: 'Exit Fullscreen'
+          fullscreen: 'Полноэкранный режим',
+          exitFullscreen: 'Выйти из полноэкранного режима'
         },
         linkEditor: {
-          inputPlaceHolder: 'Input link URL',
-          inputWithEnterPlaceHolder: 'Input link URL and press Enter',
-          openInNewWindow: 'Open in new window',
-          removeLink: 'Remove Link'
+          inputPlaceHolder: 'Вставить ссылку',
+          inputWithEnterPlaceHolder: 'Вставить ссылку и нажать Enter',
+          openInNewWindow: 'Открыть в новом окне',
+          removeLink: 'Убрать ссылку'
         },
         audioPlayer: {
-          title: 'Play Audio'
+          title: 'Воспроизвести аудиофайл'
         },
         videoPlayer: {
-          title: 'Play Video',
+          title: 'Воспроизвести видеофайл',
           embedTitle: 'Embed Media'
         },
         media: {
-          image: 'Image',
-          video: 'Video',
-          audio: 'Audio',
-          embed: 'Embed'
+          image: 'Картинка',
+          video: 'Видео',
+          audio: 'Аудио',
+          embed: 'Встроенное'
         }
       });
-
 // CONCATENATED MODULE: ./languages/zh.js
 /* harmony default export */ var zh = ({
   base: {
