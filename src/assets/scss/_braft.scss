@@ -33,6 +33,9 @@
         outline: none;
       }
     }
+    .bf-hr{
+      pointer-events: none;
+    }
   }
 
   &.fullscreen{
