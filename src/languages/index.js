@@ -3,6 +3,7 @@ import zh from './zh'
 import zhHant from './zh-hant'
 import pl from './pl'
 import kr from './kr'
+import ru from './ru'
 import tr from './tr'
 import jpn from './jpn'
 
@@ -12,6 +13,7 @@ export default {
   'zh-hant': zhHant,
   'pl': pl,
   'kr': kr,
+  'ru': ru,
   'tr': tr,
   'jpn': jpn
 }
