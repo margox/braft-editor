@@ -28,6 +28,7 @@ export interface BraftEditorProps {
     | 'zh'
     | 'zh-hant'
     | 'en'
+    | 'tr'
     | 'pl'
     | ((languages: any, context: any) => any);
   controls?: ControlType[];
