@@ -1496,80 +1496,6 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     embed: 'Embed'
   }
 });
-var ru = ({
-        base: {
-          remove: 'Удалить',
-          cancel: 'Отмена',
-          confirm: 'Подтвердить',
-          insert: 'Вставить',
-          width: 'Ширина',
-          height: 'Высота'
-        },
-        controls: {
-          clear: 'Очистить',
-          undo: 'Отменить',
-          redo: 'Повторить',
-          fontSize: 'Размер шрифта',
-          color: 'Цвет',
-          textColor: 'Цвет текста',
-          tempColors: 'Temp Colors',
-          backgroundColor: 'Цвет фона',
-          bold: 'Жирный',
-          lineHeight: 'Межстрочный интервал',
-          letterSpacing: 'Межбуквенный интервал',
-          textIndent: 'Отступ',
-          increaseIndent: 'Увеличить отступ',
-          decreaseIndent: 'Уменьшить отступ',
-          italic: 'Курсив',
-          underline: 'Подчеркнутый',
-          strikeThrough: 'Перечеркнутый',
-          fontFamily: 'Шрифт',
-          textAlign: 'Расположение текста',
-          alignLeft: 'По левому краю',
-          alignCenter: 'По центру',
-          alignRight: 'По правому краю',
-          alignJustify: 'По ширине',
-          floatLeft: 'Обтекание слева',
-          floatRight: 'Обтекание справа',
-          superScript: 'Надстрочный индекс',
-          subScript: 'Подстрочный индекс',
-          removeStyles: 'Убрать стили',
-          headings: 'Заголовки',
-          header: 'Заголовок',
-          normal: 'Обычный',
-          orderedList: 'Упорядоченный список',
-          unorderedList: 'Неупорядоченный список',
-          blockQuote: 'Цитата',
-          code: 'Код',
-          link: 'Вставить ссылку',
-          unlink: 'Убрать ссылку',
-          hr: 'Горизонтальная линия',
-          media: 'Медиа',
-          mediaLibirary: 'Медиа библиотека',
-          emoji: 'Emoji',
-          fullscreen: 'Полноэкранный режим',
-          exitFullscreen: 'Выйти из полноэкранного режима'
-        },
-        linkEditor: {
-          inputPlaceHolder: 'Вставить ссылку',
-          inputWithEnterPlaceHolder: 'Вставить ссылку и нажать Enter',
-          openInNewWindow: 'Открыть в новом окне',
-          removeLink: 'Убрать ссылку'
-        },
-        audioPlayer: {
-          title: 'Воспроизвести аудиофайл'
-        },
-        videoPlayer: {
-          title: 'Воспроизвести видеофайл',
-          embedTitle: 'Embed Media'
-        },
-        media: {
-          image: 'Картинка',
-          video: 'Видео',
-          audio: 'Аудио',
-          embed: 'Встроенное'
-        }
-      });
 // CONCATENATED MODULE: ./languages/zh.js
 /* harmony default export */ var zh = ({
   base: {
@@ -1646,7 +1572,7 @@ var ru = ({
     embed: '嵌入式媒体'
   }
 });
-// CONCATENATED MODULE: .s/zh-hant.js
+// CONCATENATED MODULE: ./languages/zh-hant.js
 /* harmony default export */ var zh_hant = ({
   base: {
     remove: '刪除',
@@ -1871,6 +1797,81 @@ var ru = ({
     embed: '임베디드미디어'
   }
 });
+// CONCATENATED MODULE: ./languages/tr.js
+/* harmony default export */ var tr = ({
+  base: {
+    remove: 'Kaldır',
+    cancel: 'İptal',
+    confirm: 'Onayla',
+    inert: 'Ekle',
+    width: 'Genişlik',
+    height: 'Yükseklik'
+  },
+  controls: {
+    clear: 'Temizle',
+    undo: 'Geri al',
+    redo: 'İleri al',
+    fontSize: 'Yazı boyutu',
+    color: 'Renk',
+    textColor: 'Yazı rengi',
+    tempColors: 'Geçici renkler',
+    backgroundColor: 'Arkaplan',
+    bold: 'Kalın',
+    lineHeight: 'Satır yüksekliği',
+    letterSpacing: 'Harf aralığı',
+    textIndent: 'Çentik aralığı',
+    increaseIndent: 'Çentiği genişlet',
+    decreaseIndent: 'Çentiği daralt',
+    italic: 'Eğik',
+    underline: 'Altı çizili',
+    strikeThrough: 'Üstü çizili',
+    fontFamily: 'Yazı tipi',
+    textAlign: 'Metin Hizalama',
+    alignLeft: 'Sola hizala',
+    alignCenter: 'Ortaya hizala',
+    alignRight: 'Sağa hizala',
+    alignJustify: 'Her iki tarafa hizala',
+    floatLeft: 'Sola yatır',
+    floatRight: 'Sağa yatır',
+    superScript: 'Ana kod',
+    subScript: 'Alt kod',
+    removeStyles: 'Stilleri kaldır',
+    headings: 'Başlıklar',
+    header: 'Başlık',
+    normal: 'Normal',
+    orderedList: 'Sıralı liste',
+    unorderedList: 'Sırasız liste',
+    blockQuote: 'Alıntı',
+    code: 'Kod',
+    link: 'Bağlantı',
+    unlink: 'Bağlantıyı kaldır',
+    hr: 'Yatay çizgi',
+    media: 'Medya',
+    mediaLibirary: 'Kütüphane',
+    emoji: 'İfade',
+    fullscreen: 'Tam ekran',
+    exitFullscreen: 'Tam ekrandan çık'
+  },
+  linkEditor: {
+    inputPlaceHolder: 'Bağlantı URL\' si girin',
+    inputWithEnterPlaceHolder: 'Bağlantı URL\'si girin ve Enter\' a basın',
+    openInNewWindow: 'Yeni pencerede aç',
+    removeLink: 'Bağlantıyı kaldır'
+  },
+  audioPlayer: {
+    title: 'Ses çal'
+  },
+  videoPlayer: {
+    title: 'Görüntü oynat',
+    embedTitle: 'Görüntüyü göm'
+  },
+  media: {
+    image: 'Resim',
+    video: 'Görüntü',
+    audio: 'Ses',
+    embed: 'Gömülü nesne'
+  }
+});
 // CONCATENATED MODULE: ./languages/jpn.js
 /* harmony default export */ var jpn = ({
   base: {
@@ -1947,7 +1948,84 @@ var ru = ({
     embed: '埋め込みメディア'
   }
 });
+// CONCATENATED MODULE: ./languages/ru.js
+/* harmony default export */ var ru = ({
+  base: {
+    remove: 'Удалить',
+    cancel: 'Отмена',
+    confirm: 'Подтвердить',
+    insert: 'Вставить',
+    width: 'Ширина',
+    height: 'Высота'
+  },
+  controls: {
+    clear: 'Очистить',
+    undo: 'Отменить',
+    redo: 'Повторить',
+    fontSize: 'Размер шрифта',
+    color: 'Цвет',
+    textColor: 'Цвет текста',
+    tempColors: 'Temp Colors',
+    backgroundColor: 'Цвет фона',
+    bold: 'Жирный',
+    lineHeight: 'Межстрочный интервал',
+    letterSpacing: 'Межбуквенный интервал',
+    textIndent: 'Отступ',
+    increaseIndent: 'Увеличить отступ',
+    decreaseIndent: 'Уменьшить отступ',
+    italic: 'Курсив',
+    underline: 'Подчеркнутый',
+    strikeThrough: 'Перечеркнутый',
+    fontFamily: 'Шрифт',
+    textAlign: 'Расположение текста',
+    alignLeft: 'По левому краю',
+    alignCenter: 'По центру',
+    alignRight: 'По правому краю',
+    alignJustify: 'По ширине',
+    floatLeft: 'Обтекание слева',
+    floatRight: 'Обтекание справа',
+    superScript: 'Надстрочный индекс',
+    subScript: 'Подстрочный индекс',
+    removeStyles: 'Убрать стили',
+    headings: 'Заголовки',
+    header: 'Заголовок',
+    normal: 'Обычный',
+    orderedList: 'Упорядоченный список',
+    unorderedList: 'Неупорядоченный список',
+    blockQuote: 'Цитата',
+    code: 'Код',
+    link: 'Вставить ссылку',
+    unlink: 'Убрать ссылку',
+    hr: 'Горизонтальная линия',
+    media: 'Медиа',
+    mediaLibirary: 'Медиа библиотека',
+    emoji: 'Emoji',
+    fullscreen: 'Полноэкранный режим',
+    exitFullscreen: 'Выйти из полноэкранного режима'
+  },
+  linkEditor: {
+    inputPlaceHolder: 'Вставить ссылку',
+    inputWithEnterPlaceHolder: 'Вставить ссылку и нажать Enter',
+    openInNewWindow: 'Открыть в новом окне',
+    removeLink: 'Убрать ссылку'
+  },
+  audioPlayer: {
+    title: 'Воспроизвести аудиофайл'
+  },
+  videoPlayer: {
+    title: 'Воспроизвести видеофайл',
+    embedTitle: 'Embed Media'
+  },
+  media: {
+    image: 'Картинка',
+    video: 'Видео',
+    audio: 'Аудио',
+    embed: 'Встроенное'
+  }
+});
 // CONCATENATED MODULE: ./languages/index.js
+
+
 
 
 
@@ -1960,8 +2038,9 @@ var ru = ({
   'zh-hant': zh_hant,
   'pl': pl,
   'kr': kr,
-  'jpn': jpn,
-  'ru':ru
+  'tr': tr,
+  'jp': jpn,
+  'ru': ru
 });
 // EXTERNAL MODULE: external "braft-finder"
 var external_braft_finder_ = __webpack_require__(17);
@@ -3185,6 +3264,16 @@ function (_React$Component) {
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "confirmImageLink", function () {
       var link = _this.state.tempLink;
 
+      var hookReturns = _this.props.hooks('set-image-link', link)(link);
+
+      if (hookReturns === false) {
+        return false;
+      }
+
+      if (typeof hookReturns === 'string') {
+        link = hookReturns;
+      }
+
       if (link !== null) {
         _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(_this.props.editor.getValue(), _this.props.entityKey, {
           link: link
@@ -3234,12 +3323,32 @@ function (_React$Component) {
       width !== null && (newImageSize.width = width);
       height !== null && (newImageSize.height = height);
 
+      var hookReturns = _this.props.hooks('set-image-size', newImageSize)(newImageSize);
+
+      if (hookReturns === false) {
+        return false;
+      }
+
+      if (hookReturns && (hookReturns.width || hookReturns.height)) {
+        newImageSize = hookReturns;
+      }
+
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(_this.props.editor.getValue(), _this.props.entityKey, newImageSize));
 
       window.setImmediate(_this.props.editor.forceRender);
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageFloat", function (float) {
+      var hookReturns = _this.props.hooks('set-image-float', float)(float);
+
+      if (hookReturns === false) {
+        return false;
+      }
+
+      if (typeof hookReturns === 'string') {
+        float = hookReturns;
+      }
+
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
         float: float
       }));
@@ -3248,6 +3357,16 @@ function (_React$Component) {
     });
 
     defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageAlignment", function (alignment) {
+      var hookReturns = _this.props.hooks('set-image-alignment', alignment)(alignment);
+
+      if (hookReturns === false) {
+        return false;
+      }
+
+      if (typeof hookReturns === 'string') {
+        alignment = hookReturns;
+      }
+
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaPosition(_this.props.editor.getValue(), _this.props.block, {
         alignment: alignment
       }));
@@ -3500,6 +3619,16 @@ function (_React$Component) {
   }, {
     key: "setImageLinkTarget",
     value: function setImageLinkTarget(link_target) {
+      var hookReturns = this.props.hooks('set-image-link-target', link_target)(link_target);
+
+      if (hookReturns === false) {
+        return false;
+      }
+
+      if (typeof hookReturns === 'string') {
+        link_target = hookReturns;
+      }
+
       link_target = link_target === '_blank' ? '' : '_blank';
       this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(this.props.editor.getValue(), this.props.entityKey, {
         link_target: link_target

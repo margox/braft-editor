@@ -2,12 +2,22 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import BraftEditor from '../src'
 import ColorPicker from 'braft-extensions/dist/color-picker'
+import Table from 'braft-extensions/dist/table'
+import CodeHighlighter from 'braft-extensions/dist/code-highlighter'
 import Emoticon, { defaultEmoticons } from 'braft-extensions/dist/emoticon'
 
 import 'braft-extensions/dist/emoticon.css'
 import 'braft-extensions/dist/color-picker.css'
+import 'braft-extensions/dist/table.css'
+import 'braft-extensions/dist/code-highlighter.css'
 
 const emoticons = defaultEmoticons.map(item => require(`braft-extensions/dist/assets/${item}`))
+
+const hooks = {
+  'set-image-alignment': () => {
+    return 'left'
+  }
+}
 
 BraftEditor.use([
   Emoticon({
@@ -15,7 +25,9 @@ BraftEditor.use([
   }),
   ColorPicker({
     theme: 'dark'
-  })
+  }),
+  Table(),
+  CodeHighlighter()
 ])
 
 class Demo extends React.Component {
@@ -27,7 +39,7 @@ class Demo extends React.Component {
     this.state = {
       count: 0,
       readOnly: false,
-      editorState: BraftEditor.createEditorState('{"blocks":[{"key":"avlot","text":"1123123123123123123123123123qweqweeqwe","type":"unstyled","depth":0,"inlineStyleRanges":[{"offset":11,"length":6,"style":"BGCOLOR-AC0303"},{"offset":11,"length":6,"style":"COLOR-E215D0"},{"offset":23,"length":7,"style":"BOLD"}],"entityRanges":[],"data":{}}],"entityMap":{}}')
+      editorState: BraftEditor.createEditorState(null)
     }
 
   }
@@ -53,6 +65,7 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
+            language="tr"
             extendControls={[{
               key: 'log-raw',
               type: 'button',
@@ -91,6 +104,7 @@ class Demo extends React.Component {
             value={editorState}
             onChange={this.handleChange}
             readOnly={readOnly}
+            hooks={hooks}
           />
         </div>
       </div>

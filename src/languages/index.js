@@ -4,7 +4,8 @@ import zhHant from './zh-hant'
 import pl from './pl'
 import kr from './kr'
 import tr from './tr'
-import jpn from './jpn'
+import jp from './jpn'
+import ru from './ru'
 
 export default {
   'en': en,
@@ -13,5 +14,6 @@ export default {
   'pl': pl,
   'kr': kr,
   'tr': tr,
-  'jpn': jpn
+  'jp': jp,
+  'ru': ru
 }

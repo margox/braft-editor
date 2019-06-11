@@ -29,6 +29,9 @@ export interface BraftEditorProps {
     | 'zh-hant'
     | 'en'
     | 'tr'
+    | 'ru'
+    | 'jp'
+    | 'kr'
     | 'pl'
     | ((languages: any, context: any) => any);
   controls?: ControlType[];
@@ -66,6 +69,7 @@ export interface BraftEditorProps {
   onTab?: Function;
   onDelete?: Function;
   onSave?: Function;
+  onFullscreen?: Function;
 }
 
 export default class BraftEditor extends React.Component<BraftEditorProps> {
@@ -264,6 +268,11 @@ export type HooksType = {
   ['remove-medias']?: HookFunc,
   ['insert-medias']?: HookFunc,
   ['select-files']?: HookFunc,
+  ['set-image-link-target']?: HookFunc,
+  ['set-image-link']?: HookFunc,
+  ['set-image-size']?: HookFunc,
+  ['set-image-float']?: HookFunc,
+  ['set-image-alignment']?: HookFunc,
 };
 
 export type HookFunc = (any: any) => any;

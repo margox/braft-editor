@@ -54,7 +54,7 @@ export default {
   },
   linkEditor: {
     inputPlaceHolder: 'Bağlantı URL\' si girin',
-    inputWithEnterPlaceHolder: 'Bağlantı URL\'si girin ve Enter' a basın',
+    inputWithEnterPlaceHolder: 'Bağlantı URL\'si girin ve Enter\' a basın',
     openInNewWindow: 'Yeni pencerede aç',
     removeLink: 'Bağlantıyı kaldır'
   },

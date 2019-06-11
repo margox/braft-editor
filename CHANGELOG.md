@@ -1,5 +1,8 @@
 ### 历史更新记录
 
+- 2019-06-11 v2.3.3
+  - 支持部分更多自定义html属性的保留(需要升级braft-convert至v2.1.13)
+  - 加入更多[hooks](https://www.yuque.com/braft-editor/be/gz44tn#gug9gs)支持
 - 2019-05-28 v2.3.2
   - 修复传入RAW字符串无法正常解析为问题
 - 2019-05-20 v2.3.1

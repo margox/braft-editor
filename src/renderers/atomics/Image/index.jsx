@@ -290,7 +290,6 @@ export default class Image extends React.Component {
     } else {
       return
     }
-
   }
 
   setImageLink = (e) => {
@@ -300,21 +299,38 @@ export default class Image extends React.Component {
 
   setImageLinkTarget (link_target) {
 
+    const hookReturns = this.props.hooks('set-image-link-target', link_target)(link_target)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (typeof hookReturns === 'string') {
+      link_target = hookReturns
+    }
+
     link_target = link_target === '_blank' ? '' : '_blank'
     this.props.editor.setValue(ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, { link_target }))
     window.setImmediate(this.props.editor.forceRender)
-
   }
 
   confirmImageLink = () => {
 
-    const { tempLink: link } = this.state
+    let { tempLink: link } = this.state
+    const hookReturns = this.props.hooks('set-image-link', link)(link)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (typeof hookReturns === 'string') {
+      link = hookReturns
+    }
 
     if (link !== null) {
       this.props.editor.setValue(ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, { link }))
       window.setImmediate(this.props.editor.forceRender)
     }
-
   }
 
   handleSizeInputKeyDown = (e) => {
@@ -336,7 +352,6 @@ export default class Image extends React.Component {
     })
 
     return
-
   }
 
   setImageHeight = ({ currentTarget }) => {
@@ -350,28 +365,58 @@ export default class Image extends React.Component {
     })
 
     return
-
   }
 
   confirmImageSize = () => {
 
     const { tempWidth: width, tempHeight: height } = this.state
-    const newImageSize = {}
+    let newImageSize = {}
 
     width !== null && (newImageSize.width = width)
     height !== null && (newImageSize.height = height)
 
+    const hookReturns = this.props.hooks('set-image-size', newImageSize)(newImageSize)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (hookReturns && (hookReturns.width || hookReturns.height)) {
+      newImageSize = hookReturns
+    }
+
     this.props.editor.setValue(ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, newImageSize))
     window.setImmediate(this.props.editor.forceRender)
-
   }
 
   setImageFloat = (float) => {
+
+    const hookReturns = this.props.hooks('set-image-float', float)(float)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (typeof hookReturns === 'string') {
+      float = hookReturns
+    }
+
     this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editor.getValue(), this.props.block, { float }))
     this.unlockEditor()
   }
 
   setImageAlignment = (alignment) => {
+
+    const hookReturns = this.props.hooks('set-image-alignment', alignment)(alignment)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (typeof hookReturns === 'string') {
+      alignment = hookReturns
+    }
+
     this.props.editor.setValue(ContentUtils.setMediaPosition(this.props.editor.getValue(), this.props.block, { alignment }))
     this.unlockEditor()
   }
@@ -392,7 +437,6 @@ export default class Image extends React.Component {
         this.setState({ toolbarOffset: this.calcToolbarOffset() })
       })
     }
-
   }
 
   hideToolbar = (event) => {
@@ -405,7 +449,6 @@ export default class Image extends React.Component {
       this.unlockEditor()
       this.props.editor.requestFocus()
     })
-
   }
 
 }
