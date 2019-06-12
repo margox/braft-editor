@@ -2039,7 +2039,7 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
   'pl': pl,
   'kr': kr,
   'tr': tr,
-  'jp': jpn,
+  'jpn': jpn,
   'ru': ru
 });
 // EXTERNAL MODULE: external "braft-finder"

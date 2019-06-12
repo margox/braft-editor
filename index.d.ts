@@ -30,7 +30,7 @@ export interface BraftEditorProps {
     | 'en'
     | 'tr'
     | 'ru'
-    | 'jp'
+    | 'jpn'
     | 'kr'
     | 'pl'
     | ((languages: any, context: any) => any);

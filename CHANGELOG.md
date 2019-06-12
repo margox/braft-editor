@@ -1,5 +1,9 @@
 ### 历史更新记录
 
+- 2019-06-11 v2.3.4
+  - 支持部分更多自定义html属性的保留(需要升级braft-convert至v2.3.0)
+  - 加入韩语(kr)、日语(jpn)、土耳其语(tr)
+  - 加入更多[hooks](https://www.yuque.com/braft-editor/be/gz44tn#gug9gs)支持
 - 2019-06-11 v2.3.3
   - 支持部分更多自定义html属性的保留(需要升级braft-convert至v2.1.13)
   - 加入更多[hooks](https://www.yuque.com/braft-editor/be/gz44tn#gug9gs)支持

@@ -1162,16 +1162,16 @@ braces@^2.3.0, braces@^2.3.1:
     split-string "^3.0.2"
     to-regex "^3.0.1"
 
-braft-convert@^2.1.10:
-  version "2.1.12"
-  resolved "https://registry.yarnpkg.com/braft-convert/-/braft-convert-2.1.12.tgz#dc331722feb5fe3fc2392d44db0c02922c19c6b2"
+braft-convert@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/braft-convert/-/braft-convert-2.3.0.tgz#27d5905136c334903d083b7a2352a72045627888"
   dependencies:
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
 
-braft-finder@^0.0.18:
-  version "0.0.18"
-  resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.18.tgz#5f43659b61290081fb2920cc3ce1f62e31e9da57"
+braft-finder@^0.0.19:
+  version "0.0.19"
+  resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.19.tgz#c324d82526ed3476a93de86cc9b407f4e188bc8d"
 
 braft-utils@^3.0.8:
   version "3.0.12"

@@ -39,7 +39,7 @@ class Demo extends React.Component {
     this.state = {
       count: 0,
       readOnly: false,
-      editorState: BraftEditor.createEditorState(null)
+      editorState: BraftEditor.createEditorState('<p data-foo="adasd" class="my-classname">asdasdasda</p>')
     }
 
   }
