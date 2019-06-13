@@ -70,7 +70,12 @@ export interface BraftEditorProps {
   onDelete?: Function;
   onSave?: Function;
   onFullscreen?: Function;
+  handlePastedFiles?: Function;
   handleDroppedFiles?: Function;
+  handlePastedText?: Function;
+  handleBeforeInput?: Function;
+  handleReturn?: Function;
+  handleKeyCommand?: Function;
 }
 
 export default class BraftEditor extends React.Component<BraftEditorProps> {
