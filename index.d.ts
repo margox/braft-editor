@@ -70,6 +70,7 @@ export interface BraftEditorProps {
   onDelete?: Function;
   onSave?: Function;
   onFullscreen?: Function;
+  handleDroppedFiles?: Function;
 }
 
 export default class BraftEditor extends React.Component<BraftEditorProps> {
