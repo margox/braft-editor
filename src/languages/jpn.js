@@ -54,7 +54,8 @@ export default {
     exitFullscreen: '全画面を退く',
   },
   linkEditor: {
-    inputPlaceHolder: 'リンクアドレスを入力',
+    textInputPlaceHolder: 'リンクテキストを入力',
+    linkInputPlaceHolder: 'リンクアドレスを入力',
     inputWithEnterPlaceHolder: 'リンクアドレスを入力して戻ります',
     openInNewWindow: '新しいウィンドウで開く',
     removeLink: '新しいウィンドウで開く'

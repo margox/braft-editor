@@ -65,7 +65,6 @@ class Demo extends React.Component {
       <div>
         <div className="demo" id="demo">
           <BraftEditor
-            language="tr"
             extendControls={[{
               key: 'log-raw',
               type: 'button',
@@ -100,6 +99,7 @@ class Demo extends React.Component {
             headings={['header-one', 'unstyled']}
             placeholder="Hello World!"
             fixPlaceholder={true}
+            allowEditlinkText={true}
             triggerChangeOnMount={false}
             value={editorState}
             onChange={this.handleChange}

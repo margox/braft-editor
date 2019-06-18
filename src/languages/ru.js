@@ -53,7 +53,8 @@ export default {
     exitFullscreen: 'Выйти из полноэкранного режима'
   },
   linkEditor: {
-    inputPlaceHolder: 'Вставить ссылку',
+    textInputPlaceHolder: 'Введите текст ссылки',
+    linkInputPlaceHolder: 'Вставить ссылку',
     inputWithEnterPlaceHolder: 'Вставить ссылку и нажать Enter',
     openInNewWindow: 'Открыть в новом окне',
     removeLink: 'Убрать ссылку'

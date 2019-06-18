@@ -51,7 +51,8 @@ export default {
     emoji: 'Emoji'
   },
   linkEditor: {
-    inputPlaceHolder: 'Adres URL',
+    textInputPlaceHolder: 'Wpisz tekst linku',
+    linkInputPlaceHolder: 'Wpisz Adres URL',
     inputWithEnterPlaceHolder: 'Wpisz adres URL i naciśnij Enter',
     openInNewWindow: 'Otwórz w nowym oknie',
     removeLink: 'Usuń link'

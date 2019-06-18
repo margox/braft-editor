@@ -53,7 +53,8 @@ export default {
     exitFullscreen: 'Exit Fullscreen',
   },
   linkEditor: {
-    inputPlaceHolder: 'Input link URL',
+    textInputPlaceHolder: 'Input link text',
+    linkInputPlaceHolder: 'Input link URL',
     inputWithEnterPlaceHolder: 'Input link URL and press Enter',
     openInNewWindow: 'Open in new window',
     removeLink: 'Remove Link'

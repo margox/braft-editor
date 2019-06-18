@@ -178,7 +178,7 @@ export default class ControlBar extends React.Component {
 
   render() {
 
-    const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, headings, fontSizes, fontFamilies, emojis, getContainerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, defaultLinkTarget } = this.props
+    const { editor, editorId, editorState, className, style, controls, media, extendControls, language, hooks, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, headings, fontSizes, fontFamilies, emojis, getContainerNode, lineHeights, letterSpacings, textAligns, textBackgroundColor, allowInsertLinkText, defaultLinkTarget } = this.props
     const currentBlockType = ContentUtils.getSelectionBlockType(editorState)
     const commonProps = { editor, editorId, editorState, language, getContainerNode, hooks }
 
@@ -277,6 +277,7 @@ export default class ControlBar extends React.Component {
               return <LinkEditor
                 key={index}
                 defaultLinkTarget={defaultLinkTarget}
+                allowInsertLinkText={allowInsertLinkText}
                 {...commonProps}
               />
             } else if (controlItem.type === 'text-align') {

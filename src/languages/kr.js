@@ -54,7 +54,8 @@ export default {
     exitFullscreen: '전체화면종료',
   },
   linkEditor: {
-    inputPlaceHolder: '링크주소입력',
+    textInputPlaceHolder: '링크텍스트입력',
+    linkInputPlaceHolder: '링크주소입력',
     inputWithEnterPlaceHolder: '링크주소입력.',
     openInNewWindow: '새창열기',
     removeLink: '링크삭제'

@@ -63,6 +63,7 @@ export default {
   headings: ['header-one', 'header-two', 'header-three', 'header-four', 'header-five', 'header-six', 'unstyled'],
   textAligns: ['left', 'center', 'right', 'justify'],
   textBackgroundColor: true,
+  allowInsertLinkText: false,
   defaultLinkTarget: '',
   letterSpacings: [0, 1, 2, 3, 4, 5, 6],
   lineHeights: [1, 1.2, 1.5, 1.75, 2, 2.5, 3, 4],

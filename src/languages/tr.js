@@ -53,7 +53,8 @@ export default {
     exitFullscreen: 'Tam ekrandan çık',
   },
   linkEditor: {
-    inputPlaceHolder: 'Bağlantı URL\' si girin',
+    textInputPlaceHolder: 'Bağlantı metnini girin',
+    linkInputPlaceHolder: 'Bağlantı URL\' si girin',
     inputWithEnterPlaceHolder: 'Bağlantı URL\'si girin ve Enter\' a basın',
     openInNewWindow: 'Yeni pencerede aç',
     removeLink: 'Bağlantıyı kaldır'

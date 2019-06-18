@@ -12,8 +12,10 @@ export default class LinkEditor extends React.Component {
     super(props)
 
     this.state = {
+      text: '',
       href: '',
-      target: props.defaultLinkTarget || ''
+      target: props.defaultLinkTarget || '',
+      textSelected: false
     }
 
   }
@@ -23,7 +25,17 @@ export default class LinkEditor extends React.Component {
   componentWillReceiveProps (nextProps) {
 
     const { href, target } = ContentUtils.getSelectionEntityData(nextProps.editorState, 'LINK')
+    const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
+
+    let selectedText = ''
+
+    if (textSelected) {
+      selectedText = ContentUtils.getSelectionText(this.props.editorState)
+    }
+
     this.setState({
+      textSelected: textSelected,
+      text: selectedText,
       href: href || '',
       target: typeof target === 'undefined' ? (nextProps.defaultLinkTarget || '') : (target || '')
     })
@@ -32,9 +44,9 @@ export default class LinkEditor extends React.Component {
 
   render () {
 
-    const { href, target } = this.state
+    const { allowInsertLinkText } = this.props
+    const { text, href, target, textSelected } = this.state
     const caption = <i className='bfi-link'></i>
-    const textSelected = !ContentUtils.isSelectionCollapsed(this.props.editorState) && ContentUtils.getSelectionBlockType(this.props.editorState) !== 'atomic'
 
     return (
       <ControlGroup>
@@ -45,19 +57,29 @@ export default class LinkEditor extends React.Component {
           autoHide={true}
           getContainerNode={this.props.getContainerNode}
           showArrow={false}
-          disabled={!textSelected}
           ref={(instance) => this.dropDownInstance = instance}
           className={'control-item dropdown link-editor-dropdown'}
         >
           <div className='bf-link-editor'>
+            {allowInsertLinkText ? <div className='input-group'>
+              <input
+                type='text'
+                value={text}
+                spellCheck={false}
+                disabled={textSelected}
+                placeholder={this.props.language.linkEditor.textInputPlaceHolder}
+                onKeyDown={this.handeKeyDown}
+                onChange={this.handleTnputText}
+              />
+            </div> : null}
             <div className='input-group'>
               <input
                 type='text'
                 value={href}
                 spellCheck={false}
-                placeholder={this.props.language.linkEditor.inputPlaceHolder}
+                placeholder={this.props.language.linkEditor.linkInputPlaceHolder}
                 onKeyDown={this.handeKeyDown}
-                onChange={this.inputLink}
+                onChange={this.handleInputLink}
               />
             </div>
             <div className='switch-group'>
@@ -100,7 +122,13 @@ export default class LinkEditor extends React.Component {
     }
   }
 
-  inputLink = (e) => {
+  handleTnputText = (e) => {
+    this.setState({
+      text: e.currentTarget.value
+    })
+  }
+
+  handleInputLink = (e) => {
     this.setState({
       href: e.currentTarget.value
     })
@@ -123,7 +151,7 @@ export default class LinkEditor extends React.Component {
 
   handleConfirm = () => {
 
-    let { href, target } = this.state
+    let { text, href, target, textSelected } = this.state
     const hookReturns = this.props.hooks('toggle-link', { href, target })({ href, target })
 
     this.dropDownInstance.hide()
@@ -138,7 +166,18 @@ export default class LinkEditor extends React.Component {
       typeof hookReturns.target === 'string' && (target = hookReturns.target)
     }
 
-    this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, href, target))
+    if (textSelected) {
+      if (href) {
+        this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, href, target))
+      } else {
+        this.props.editor.setValue(ContentUtils.toggleSelectionLink(this.props.editorState, false))
+      }
+    } else {
+      this.props.editor.setValue(ContentUtils.insertText(this.props.editorState, text || href, null, {
+        type: 'LINK',
+        data: { href, target }
+      }))
+    }
 
   }
 

@@ -54,7 +54,8 @@ export default {
     exitFullscreen: '退出全熒幕',
   },
   linkEditor: {
-    inputPlaceHolder: '輸入鏈接地址',
+    textInputPlaceHolder: '輸入鏈接文字',
+    linkInputPlaceHolder: '輸入鏈接地址',
     inputWithEnterPlaceHolder: '輸入鏈接地址並回車',
     openInNewWindow: '在新窗口打開',
     removeLink: '移除鏈接'

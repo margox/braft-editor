@@ -55,6 +55,8 @@ export interface BraftEditorProps {
   converts?: object;
   hooks?: HooksType;
   textBackgroundColor?: boolean;
+  allowInsertLinkText?: boolean;
+  defaultLinkTarget?: string;
   stripPastedStyles?: boolean;
   fixPlaceholder?: boolean;
   className?: string;
