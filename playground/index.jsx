@@ -23,9 +23,9 @@ BraftEditor.use([
   Emoticon({
     emoticons: emoticons
   }),
-  ColorPicker({
-    theme: 'dark'
-  }),
+  // ColorPicker({
+  //   theme: 'dark'
+  // }),
   Table(),
   CodeHighlighter()
 ])
@@ -39,7 +39,7 @@ class Demo extends React.Component {
     this.state = {
       count: 0,
       readOnly: false,
-      editorState: BraftEditor.createEditorState('<p data-foo="adasd" class="my-classname">asdasdasda</p>')
+      editorState: BraftEditor.createEditorState('<p data-foo="adasd" class="my-classname"><img src="https://www.baidu.com/img/bd_logo1.png?where=super" /><span style="color:#e25041;">asdasdasda</span>asdads</p>')
     }
 
   }
@@ -96,15 +96,17 @@ class Demo extends React.Component {
               // disabled: true,
               component: <h1>Hello World!</h1>
             }]}
+            colors={['#e25041']}
             headings={['header-one', 'unstyled']}
             placeholder="Hello World!"
             fixPlaceholder={true}
-            allowEditlinkText={true}
+            allowInsertLinkText={true}
             triggerChangeOnMount={false}
             value={editorState}
             onChange={this.handleChange}
             readOnly={readOnly}
             hooks={hooks}
+            imageResizable={false}
           />
         </div>
       </div>

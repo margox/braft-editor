@@ -42,6 +42,9 @@ Braft Editor是基于draft-js开发的编辑器，而draft-js内部并不是直�
 
 ## 近期更新记录
 
+- 2019-06-20 v2.3.7
+  - 修复问题[#542](https://github.com/margox/braft-editor/issues/542)、[#541](https://github.com/margox/braft-editor/issues/541)、[#467](https://github.com/margox/braft-editor/issues/467)
+  - 修复问题[#512](https://github.com/margox/braft-editor/issues/512)并新增imageResizable属性，允许关闭图片的拖动调整尺寸功能
 - 2019-06-18 v2.3.6
   - 支持不选择文字的情况下直接插入链接
   - 新增`allowInsertLinkText`属性，允许直接插入链接时输入链接文字，默认`false`

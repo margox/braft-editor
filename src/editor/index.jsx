@@ -18,7 +18,9 @@ const buildHooks= (hooks) => (hookName, defaultReturns = {}) => {
 }
 
 const filterColors = (colors, colors2) => {
-  return colors.filter(item => colors2.indexOf(item) === -1).filter((item, index, array) => array.indexOf(item) === index)
+  return colors.filter(item => {
+    return !colors2.find(color => color.toLowerCase() === item.toLowerCase())
+  }).filter((item, index, array) => array.indexOf(item) === index)
 }
 
 const isControlEnabled = (props, controlName) => {
@@ -333,7 +335,7 @@ export default class BraftEditor extends React.Component {
     
     let {
       id, editorId, controls, excludeControls, extendControls, readOnly, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
-      fontSizes, fontFamilies, emojis, placeholder, fixPlaceholder, headings, imageControls, lineHeights, letterSpacings, textAligns, textBackgroundColor, allowInsertLinkText, defaultLinkTarget,
+      fontSizes, fontFamilies, emojis, placeholder, fixPlaceholder, headings, imageControls, imageResizable, lineHeights, letterSpacings, textAligns, textBackgroundColor, allowInsertLinkText, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.editorProps
 
@@ -380,7 +382,7 @@ export default class BraftEditor extends React.Component {
       editor: this, editorId, hooks,
       editorState: editorState,
       containerNode: this.containerNode,
-      imageControls, language, extendAtomics
+      imageControls, imageResizable, language, extendAtomics
     }
 
     const blockRendererFn = getBlockRendererFn(commonProps, this.editorProps.blockRendererFn)
@@ -430,13 +432,13 @@ export default class BraftEditor extends React.Component {
         style={style}
         ref={this.setEditorContainerNode}
         className={`bf-container ${className}${(disabled ? ' disabled' : '')}${(readOnly ? ' read-only' : '')}${isFullscreen ? ' fullscreen' : ''}`}
-        onCopy={this.handleCopyContent}
       >
         <ControlBar {...controlBarProps} />
         {componentBelowControlBar}
         <div
           onCompositionStart={this.handleCompositionStart}
           className={`bf-content ${contentClassName}`}
+          onCopy={this.handleCopyContent}
           style={contentStyle}
         >
           <Editor {...draftProps} />

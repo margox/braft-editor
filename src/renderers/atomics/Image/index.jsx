@@ -53,8 +53,8 @@ export default class Image extends React.Component {
 
   upImage = () => {
     this.confirmImageSize()
-    document.removeEventListener('mousemove',this.moveImage)
-    document.removeEventListener('mouseup',this.upImage)
+    document.removeEventListener('mousemove', this.moveImage)
+    document.removeEventListener('mouseup', this.upImage)
   }
 
   repareChangeSize = type => (e) => {
@@ -64,14 +64,13 @@ export default class Image extends React.Component {
     this.initialWidth = imageRect.width
     this.initialHeight = imageRect.height
     e.preventDefault()
-    let that = this
-    document.addEventListener('mousemove',that.moveImage)
-    document.addEventListener('mouseup',this.upImage)
+    document.addEventListener('mousemove', this.moveImage)
+    document.addEventListener('mouseup', this.upImage)
   }
 
   render () {
 
-    const { mediaData, language, imageControls } = this.props
+    const { mediaData, language, imageControls, imageResizable } = this.props
     const { toolbarVisible, toolbarOffset, linkEditorVisible, sizeEditorVisible, tempWidth, tempHeight } = this.state
     const blockData = this.props.block.getData()
 
@@ -169,12 +168,12 @@ export default class Image extends React.Component {
               height={height}
               {...meta}
             />
-            {toolbarVisible && <div className='bf-csize-icon right-bottom' onMouseDown={this.repareChangeSize('rightbottom')} />}
-            {toolbarVisible && <div className='bf-csize-icon left-bottom' onMouseDown={this.repareChangeSize('leftbottom')} />}
-            <div 
+            {toolbarVisible && imageResizable ? <div className='bf-csize-icon right-bottom' onMouseDown={this.repareChangeSize('rightbottom')} /> : null}
+            {toolbarVisible && imageResizable ? <div className='bf-csize-icon left-bottom' onMouseDown={this.repareChangeSize('leftbottom')} /> : null}
+            {imageResizable ? <div
               className={`bf-pre-csize ${this.reSizeType}`} 
               style={{width: `${tempWidth}px`, height:`${tempHeight}px`}}
-            />
+            /> : null}
           </div>
         </div>
         {clearFix && <div className='clearfix' style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}

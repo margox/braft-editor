@@ -40,6 +40,7 @@ export interface BraftEditorProps {
   componentBelowControlBar?: React.ReactNode;
   media?: MediaType;
   imageControls?: ImageControlType[];
+  imageResizable?: boolean;
   headings?: string[];
   colors?: string[];
   fontSizes?: number[];
@@ -51,7 +52,6 @@ export interface BraftEditorProps {
   draftProps?: DraftEditorProps;
   blockRenderMap?: Immutable.Map<any, any> | Function;
   blockRendererFn?: Function;
-  handlePastedText?: Function;
   converts?: object;
   hooks?: HooksType;
   textBackgroundColor?: boolean;

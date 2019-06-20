@@ -77,6 +77,7 @@
   position: relative;
   .bf-csize-icon{
     position: absolute;
+    z-index: 2;
     width: 10px;
     height: 10px;
     background-color: rgba($COLOR_ACTIVE, .3);
@@ -93,6 +94,7 @@
   }
   .bf-pre-csize{
     position: absolute;
+    z-index: 1;
     background: transparent;
     &.rightbottom{
       left: 0;

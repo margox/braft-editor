@@ -51,6 +51,7 @@ export default {
     'align-left', 'align-center', 'align-right',
     'link', 'size', 'remove'
   ],
+  imageResizable: true,
   colors: [
     '#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff',
     '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784',
