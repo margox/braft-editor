@@ -146,6 +146,7 @@ export type ExtendControlType =
   html?: string | null;
   text?: string | React.ReactNode;
   onClick?: Function;
+  disabled?: boolean;
 }
   | {
   key: string;
@@ -158,6 +159,7 @@ export type ExtendControlType =
   arrowActive?: boolean;
   autoHide?: boolean;
   component: React.ReactNode;
+  disabled?: boolean;
 }
   | {
   key: string;
@@ -167,6 +169,7 @@ export type ExtendControlType =
   html?: string | null;
   text?: string | React.ReactNode;
   onClick?: Function;
+  disabled?: boolean;
   modal: {
     id: string;
     title?: string;
