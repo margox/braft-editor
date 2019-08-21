@@ -1,10 +1,11 @@
-import * as React from 'react';
-import * as Immutable from 'immutable';
 import {
-  EditorState as _EditorState,
+  Editor,
   EditorProps as DraftEditorProps,
-  Editor, RawDraftContentState
-} from 'draft-js';
+  EditorState as _EditorState,
+  RawDraftContentState,
+} from 'draft-js'
+import * as Immutable from 'immutable'
+import * as React from 'react'
 
 export type EditorState = _EditorState & {
   [key: string]: any;
@@ -33,6 +34,7 @@ export interface BraftEditorProps {
     | 'jpn'
     | 'kr'
     | 'pl'
+    | 'fr'
     | ((languages: any, context: any) => any);
   controls?: ControlType[];
   excludeControls?: BuiltInControlType[];
