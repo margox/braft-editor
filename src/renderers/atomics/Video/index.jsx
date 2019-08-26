@@ -13,7 +13,11 @@ export default class Video extends React.Component {
     return (
       <div className='bf-video-wrap'>
         <PlayerModal type="video" onRemove={this.removeVideo} poster={meta ? meta.poster || '' : ''} language={language} url={url} name={name} title={language.videoPlayer.title}>
-          <div className="bf-video-player"><video controls src={url} poster={meta ? meta.poster || '' : ''}/></div>
+          <div className="bf-video-player">
+            <video controls poster={meta ? meta.poster || '' : ''}>
+              <source src={url} />
+            </video>
+          </div>
         </PlayerModal>
       </div>
     )
