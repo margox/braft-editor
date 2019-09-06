@@ -7,6 +7,7 @@ import tr from './tr'
 import jpn from './jpn'
 import ru from './ru'
 import fr from './fr'
+import ptBr from './pt-br'
 
 export default {
   'en': en,
@@ -17,5 +18,6 @@ export default {
   'tr': tr,
   'jpn': jpn,
   'ru': ru,
-  'fr': fr
+  'fr': fr,
+  'pt-br': ptBr
 }

@@ -106,7 +106,7 @@ class Demo extends React.Component {
             onChange={this.handleChange}
             readOnly={readOnly}
             hooks={hooks}
-            imageResizable={false}
+            imageResizable={true}
           />
         </div>
       </div>

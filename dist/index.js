@@ -2031,7 +2031,161 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
     embed: 'Встроенное'
   }
 });
+// CONCATENATED MODULE: ./languages/fr.js
+/* harmony default export */ var fr = ({
+  base: {
+    remove: 'Supprimer',
+    cancel: 'Annuler',
+    confirm: 'Confirmer',
+    inert: 'Insérer',
+    width: 'Largeur',
+    height: 'Hauteur'
+  },
+  controls: {
+    clear: 'Effacer',
+    undo: 'Annuler',
+    redo: 'Refaire',
+    fontSize: 'Taille de police',
+    color: 'Couleur',
+    textColor: 'Texte',
+    tempColors: 'Couleurs temporaire',
+    backgroundColor: 'Couleur d\'arrière plan',
+    bold: 'Gras',
+    lineHeight: 'Hauteur de ligne',
+    letterSpacing: 'Espacement des lettres',
+    textIndent: 'Indentation du texte',
+    increaseIndent: 'Augmenter l\'indentation',
+    decreaseIndent: 'Réduire l\'indentation',
+    italic: 'Italique',
+    underline: 'Souligner',
+    strikeThrough: 'Barrer',
+    fontFamily: 'Police d\'écriture',
+    textAlign: 'Alignement du texte',
+    alignLeft: 'Aligner à gauche',
+    alignCenter: 'Aligner au centre',
+    alignRight: 'Aligner à droite',
+    alignJustify: 'Justifier',
+    floatLeft: 'Déplacer à gauche',
+    floatRight: 'Déplacer à droite',
+    superScript: 'Super-script',
+    subScript: 'Sous-script',
+    removeStyles: 'Supprimer les styles',
+    headings: 'Titres',
+    header: 'Entêtes',
+    normal: 'Normal',
+    orderedList: 'Liste ordonnée',
+    unorderedList: 'Liste non-ordonnée',
+    blockQuote: 'Citation',
+    code: 'Code',
+    link: 'Insérer un lien',
+    unlink: 'Supprimer le lien',
+    hr: 'Ligne horizontale',
+    media: 'Média',
+    mediaLibirary: 'Bibliothêque',
+    emoji: 'Emoji',
+    fullscreen: 'Plein écran',
+    exitFullscreen: 'Quitter le plein écran'
+  },
+  linkEditor: {
+    textInputPlaceHolder: 'Insérer le texte à afficher',
+    linkInputPlaceHolder: 'Insérer le lien URL',
+    inputWithEnterPlaceHolder: 'Insérer le lien URL puis appuyer sur Entrée',
+    openInNewWindow: 'Ouvrir dans une nouvelle fenêtre',
+    removeLink: 'Supprimer le lien'
+  },
+  audioPlayer: {
+    title: 'Lancer le son audio'
+  },
+  videoPlayer: {
+    title: 'Lancer la video',
+    embedTitle: 'Intégrer média'
+  },
+  media: {
+    image: 'Image',
+    video: 'Vidéo',
+    audio: 'Audio',
+    embed: 'Intégré'
+  }
+});
+// CONCATENATED MODULE: ./languages/pt-br.js
+/* harmony default export */ var pt_br = ({
+  base: {
+    remove: 'Remover',
+    cancel: 'Cancelar',
+    confirm: 'Confirmar',
+    inert: 'Inserir',
+    width: 'Largura',
+    height: 'Altura'
+  },
+  controls: {
+    clear: 'Limpar',
+    undo: 'Desfazer',
+    redo: 'Refazer',
+    fontSize: 'Tamanho da Fonte',
+    color: 'Cor',
+    textColor: 'Texto',
+    tempColors: 'Temp Colors',
+    backgroundColor: 'Cor de Fundo',
+    bold: 'Negrito',
+    lineHeight: 'Altura da LinhaLine Height',
+    letterSpacing: 'Espaçamento entre Letras',
+    textIndent: 'Identação de Texto',
+    increaseIndent: 'Aumentar Identação',
+    decreaseIndent: 'Diminuir Identção',
+    italic: 'Itálico',
+    underline: 'Sublinhado',
+    strikeThrough: 'Riscado',
+    fontFamily: 'Família da Fonte',
+    textAlign: 'Alinhamento de Texto',
+    alignLeft: 'Alinhamento à Esquerda',
+    alignCenter: 'Alinhamento Centralizado',
+    alignRight: 'Alinhamento à Direita',
+    alignJustify: 'Alinhamento Justificado',
+    floatLeft: 'Flutuação à Esquerda',
+    floatRight: 'Flutuação à Direita',
+    superScript: 'Sobrescrito',
+    subScript: 'Subscrito',
+    removeStyles: 'Remover Estilos',
+    headings: 'Cabeçalhos',
+    header: 'Cabeçalho',
+    normal: 'Normal',
+    orderedList: 'Lista Ordenada',
+    unorderedList: 'Lista Não Ordenada',
+    blockQuote: 'Citação',
+    code: 'Código',
+    link: 'Link',
+    unlink: 'Remover Link',
+    hr: 'Linha Horizontal',
+    media: 'Mídia',
+    mediaLibirary: 'Biblioteca de Mídia',
+    emoji: 'Emoji',
+    fullscreen: 'Tela Cheia',
+    exitFullscreen: 'Sair de Tela Cheia'
+  },
+  linkEditor: {
+    textInputPlaceHolder: 'Insira o texto do link',
+    linkInputPlaceHolder: 'Insira a URL do link',
+    inputWithEnterPlaceHolder: 'Insira a URL do link e aperte Enter',
+    openInNewWindow: 'Abrir em nova janela',
+    removeLink: 'Remover Link'
+  },
+  audioPlayer: {
+    title: 'Tocar Áudio'
+  },
+  videoPlayer: {
+    title: 'Tocar Vídeo',
+    embedTitle: 'Mídia Embutida'
+  },
+  media: {
+    image: 'Imagem',
+    video: 'Vídeo',
+    audio: 'Áudio',
+    embed: 'Embutido'
+  }
+});
 // CONCATENATED MODULE: ./languages/index.js
+
+
 
 
 
@@ -2048,7 +2202,9 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
   'kr': kr,
   'tr': tr,
   'jpn': jpn,
-  'ru': ru
+  'ru': ru,
+  'fr': fr,
+  'pt-br': pt_br
 });
 // EXTERNAL MODULE: external "braft-finder"
 var external_braft_finder_ = __webpack_require__(17);
@@ -3407,9 +3563,8 @@ function (_React$Component) {
       _this.setState({
         toolbarVisible: false
       }, function () {
-        _this.unlockEditor();
+        _this.unlockEditor(); // this.props.editor.requestFocus()
 
-        _this.props.editor.requestFocus();
       });
     });
 
@@ -3465,7 +3620,6 @@ function (_React$Component) {
           return external_react_default.a.createElement("a", {
             className: item === 'link' && link ? 'active' : '',
             key: index,
-            href: "javascript:void(0);",
             onClick: function onClick() {
               return _this2.executeCommand(imageControlItems[item].command);
             }
@@ -3473,7 +3627,6 @@ function (_React$Component) {
         } else if (item && (item.render || item.text)) {
           return item.render ? item.render(mediaData, _this2.props.block) : external_react_default.a.createElement("a", {
             key: index,
-            href: "javascript:void(0);",
             onClick: function onClick() {
               return item.onClick && _this2.executeCommand(item.onClick);
             }
@@ -3532,14 +3685,12 @@ function (_React$Component) {
         className: "editor-input-group"
       }, external_react_default.a.createElement("input", {
         type: "text",
-        onDragStart: this.preventDragEvent,
         placeholder: language.base.width,
         onKeyDown: this.handleSizeInputKeyDown,
         onChange: this.setImageWidth,
         defaultValue: width
       }), external_react_default.a.createElement("input", {
         type: "text",
-        onDragStart: this.preventDragEvent,
         placeholder: language.base.height,
         onKeyDown: this.handleSizeInputKeyDown,
         onChange: this.setImageHeight,
@@ -3572,13 +3723,13 @@ function (_React$Component) {
       }) : null, toolbarVisible && imageResizable ? external_react_default.a.createElement("div", {
         className: "bf-csize-icon left-bottom",
         onMouseDown: this.repareChangeSize('leftbottom')
-      }) : null, imageResizable ? external_react_default.a.createElement("div", {
+      }) : null, external_react_default.a.createElement("div", {
         className: "bf-pre-csize ".concat(this.reSizeType),
         style: {
           width: "".concat(tempWidth, "px"),
           height: "".concat(tempHeight, "px")
         }
-      }) : null)), clearFix && external_react_default.a.createElement("div", {
+      }))), clearFix && external_react_default.a.createElement("div", {
         className: "clearfix",
         style: {
           clear: 'both',
@@ -4017,9 +4168,10 @@ function (_React$Component) {
         className: "bf-video-player"
       }, external_react_default.a.createElement("video", {
         controls: true,
-        src: url,
         poster: meta ? meta.poster || '' : ''
-      }))));
+      }, external_react_default.a.createElement("source", {
+        src: url
+      })))));
     }
   }]);
 
@@ -4985,8 +5137,7 @@ function (_React$Component) {
         className: "buttons"
       }, external_react_default.a.createElement("a", {
         onClick: this.handleUnlink,
-        className: "primary button-remove-link pull-left",
-        href: "javascript:void(0);"
+        className: "primary button-remove-link pull-left"
       }, external_react_default.a.createElement("i", {
         className: "bfi-close"
       }), external_react_default.a.createElement("span", null, this.props.language.linkEditor.removeLink)), external_react_default.a.createElement("button", {
