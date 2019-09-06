@@ -53,8 +53,8 @@ export default class Image extends React.Component {
 
   upImage = () => {
     this.confirmImageSize()
-    document.removeEventListener('mousemove', this.moveImage)
-    document.removeEventListener('mouseup', this.upImage)
+    document.removeEventListener('mousemove',this.moveImage)
+    document.removeEventListener('mouseup',this.upImage)
   }
 
   repareChangeSize = type => (e) => {
@@ -150,8 +150,8 @@ export default class Image extends React.Component {
               {sizeEditorVisible ? (
                 <div className='bf-image-size-editor'>
                   <div className='editor-input-group'>
-                    <input type='text' onDragStart={this.preventDragEvent} placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
-                    <input type='text' onDragStart={this.preventDragEvent} placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
+                    <input type='text' placeholder={language.base.width} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageWidth} defaultValue={width}/>
+                    <input type='text' placeholder={language.base.height} onKeyDown={this.handleSizeInputKeyDown} onChange={this.setImageHeight} defaultValue={height}/>
                     <button type='button' onClick={this.confirmImageSize}>{language.base.confirm}</button>
                   </div>
                 </div>
@@ -168,12 +168,20 @@ export default class Image extends React.Component {
               height={height}
               {...meta}
             />
-            {toolbarVisible && imageResizable ? <div className='bf-csize-icon right-bottom' onMouseDown={this.repareChangeSize('rightbottom')} /> : null}
-            {toolbarVisible && imageResizable ? <div className='bf-csize-icon left-bottom' onMouseDown={this.repareChangeSize('leftbottom')} /> : null}
-            {imageResizable ? <div
+            {toolbarVisible && imageResizable ?
+              <div 
+                className='bf-csize-icon right-bottom'
+                onMouseDown={this.repareChangeSize('rightbottom')}
+              /> : null}
+            {toolbarVisible &&  imageResizable ?
+              <div 
+                className='bf-csize-icon left-bottom'
+                onMouseDown={this.repareChangeSize('leftbottom')}
+              /> : null}
+            <div 
               className={`bf-pre-csize ${this.reSizeType}`} 
               style={{width: `${tempWidth}px`, height:`${tempHeight}px`}}
-            /> : null}
+            />
           </div>
         </div>
         {clearFix && <div className='clearfix' style={{clear:'both',height:0,lineHeight:0,float:'none'}}></div>}
@@ -446,7 +454,7 @@ export default class Image extends React.Component {
       toolbarVisible: false
     }, () => {
       this.unlockEditor()
-      this.props.editor.requestFocus()
+      // this.props.editor.requestFocus()
     })
   }
 
