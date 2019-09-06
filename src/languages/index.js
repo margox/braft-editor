@@ -6,6 +6,7 @@ import kr from './kr'
 import tr from './tr'
 import jpn from './jpn'
 import ru from './ru'
+import fr from './fr'
 
 export default {
   'en': en,
@@ -15,5 +16,6 @@ export default {
   'kr': kr,
   'tr': tr,
   'jpn': jpn,
-  'ru': ru
+  'ru': ru,
+  'fr': fr
 }
