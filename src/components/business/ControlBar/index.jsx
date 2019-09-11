@@ -138,6 +138,7 @@ export default class ControlBar extends React.Component {
       language: this.props.language,
       width: 640,
       showFooter: false,
+      className: mediaProps.modalClassName,
       component: (
         <MediaLibrary
           accepts={mediaProps.accepts}
