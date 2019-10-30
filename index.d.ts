@@ -43,6 +43,7 @@ export interface BraftEditorProps {
   media?: MediaType;
   imageControls?: ImageControlType[];
   imageResizable?: boolean;
+  imageEqualRatio?: boolean;
   headings?: string[];
   colors?: string[];
   fontSizes?: number[];

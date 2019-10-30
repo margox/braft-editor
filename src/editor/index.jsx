@@ -179,14 +179,14 @@ export default class BraftEditor extends React.Component {
 
         const tempColors = ColorUtils.detectColorsFromDraftState(nextEditorState.toRAW(true))
         nextEditorState.setConvertOptions(getConvertOptions(this.editorProps))
-  
+
         this.setState({
           tempColors: filterColors([...this.state.tempColors, ...tempColors], currentProps.colors),
           editorState: nextEditorState
         }, () => {
           this.props.onChange && this.props.onChange(nextEditorState)
         })
-  
+
       } else {
         this.setState({
           editorState: nextEditorState
@@ -332,10 +332,10 @@ export default class BraftEditor extends React.Component {
   }
 
   render () {
-    
+
     let {
       id, editorId, controls, excludeControls, extendControls, readOnly, disabled, media, language, colors, colorPicker, colorPickerTheme, colorPickerAutoHide, hooks,
-      fontSizes, fontFamilies, emojis, placeholder, fixPlaceholder, headings, imageControls, imageResizable, lineHeights, letterSpacings, textAligns, textBackgroundColor, allowInsertLinkText, defaultLinkTarget,
+      fontSizes, fontFamilies, emojis, placeholder, fixPlaceholder, headings, imageControls, imageResizable, imageEqualRatio, lineHeights, letterSpacings, textAligns, textBackgroundColor, allowInsertLinkText, defaultLinkTarget,
       extendAtomics, className, style, controlBarClassName, controlBarStyle, contentClassName, contentStyle, stripPastedStyles, componentBelowControlBar
     } = this.editorProps
 
@@ -382,7 +382,7 @@ export default class BraftEditor extends React.Component {
       editor: this, editorId, hooks,
       editorState: editorState,
       containerNode: this.containerNode,
-      imageControls, imageResizable, language, extendAtomics
+      imageControls, imageResizable, language, extendAtomics, imageEqualRatio
     }
 
     const blockRendererFn = getBlockRendererFn(commonProps, this.editorProps.blockRendererFn)
