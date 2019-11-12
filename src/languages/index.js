@@ -8,6 +8,7 @@ import jpn from './jpn'
 import ru from './ru'
 import fr from './fr'
 import ptBr from './pt-br'
+import viVn from './vi-vn'
 
 export default {
   'en': en,
@@ -19,5 +20,6 @@ export default {
   'jpn': jpn,
   'ru': ru,
   'fr': fr,
-  'pt-br': ptBr
+  'pt-br': ptBr,
+  'vi-vn': viVn
 }
