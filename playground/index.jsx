@@ -107,6 +107,7 @@ class Demo extends React.Component {
             readOnly={readOnly}
             hooks={hooks}
             imageResizable={true}
+            imageEqualRatio={true}
           />
         </div>
       </div>

@@ -20,6 +20,8 @@ export default class Image extends React.Component {
   initialWidth
   initialHeight
   reSizeType
+  // 图片宽高比
+  zoom
 
   changeSize = e => {
     let type = this.reSizeType
@@ -35,16 +37,14 @@ export default class Image extends React.Component {
       this.initialHeight +=  e.screenY-this.initialTop
       this.initialWidth +=  -e.screenX+this.initialLeft
     }
-    
-   
+
+
     this.initialLeft = e.screenX
     this.initialTop = e.screenY
   }
 
   moveImage = (e) => {
-    
     this.changeSize(e)
-
     this.setState({
       tempWidth: Math.abs(this.initialWidth),
       tempHeight: Math.abs(this.initialHeight)
@@ -52,7 +52,12 @@ export default class Image extends React.Component {
   }
 
   upImage = () => {
-    this.confirmImageSize()
+    const {imageEqualRatio} = this.props
+    if (imageEqualRatio) {
+      this.confirmImageSizeEqualRatio()
+    } else {
+      this.confirmImageSize()
+    }
     document.removeEventListener('mousemove',this.moveImage)
     document.removeEventListener('mouseup',this.upImage)
   }
@@ -63,6 +68,7 @@ export default class Image extends React.Component {
     this.initialLeft = this.initialTop = 0
     this.initialWidth = imageRect.width
     this.initialHeight = imageRect.height
+    this.zoom = imageRect.width / imageRect.height
     e.preventDefault()
     document.addEventListener('mousemove', this.moveImage)
     document.addEventListener('mouseup', this.upImage)
@@ -169,17 +175,17 @@ export default class Image extends React.Component {
               {...meta}
             />
             {toolbarVisible && imageResizable ?
-              <div 
+              <div
                 className='bf-csize-icon right-bottom'
                 onMouseDown={this.repareChangeSize('rightbottom')}
               /> : null}
             {toolbarVisible &&  imageResizable ?
-              <div 
+              <div
                 className='bf-csize-icon left-bottom'
                 onMouseDown={this.repareChangeSize('leftbottom')}
               /> : null}
-            <div 
-              className={`bf-pre-csize ${this.reSizeType}`} 
+            <div
+              className={`bf-pre-csize ${this.reSizeType}`}
               style={{width: `${tempWidth}px`, height:`${tempHeight}px`}}
             />
           </div>
@@ -381,6 +387,43 @@ export default class Image extends React.Component {
 
     width !== null && (newImageSize.width = width)
     height !== null && (newImageSize.height = height)
+
+    const hookReturns = this.props.hooks('set-image-size', newImageSize)(newImageSize)
+
+    if (hookReturns === false) {
+      return false
+    }
+
+    if (hookReturns && (hookReturns.width || hookReturns.height)) {
+      newImageSize = hookReturns
+    }
+
+    this.props.editor.setValue(ContentUtils.setMediaData(this.props.editor.getValue(), this.props.entityKey, newImageSize))
+    window.setImmediate(this.props.editor.forceRender)
+  }
+
+  confirmImageSizeEqualRatio = () => {
+
+    const { tempWidth: width, tempHeight: height } = this.state
+    let equalWidth
+    let equalHeight
+    let newImageSize = {}
+    // 宽度过大 图片等比缩放
+    if (width / height > this.zoom) {
+      equalWidth = Math.floor(height * this.zoom)
+      this.setState({
+        tempWidth: equalWidth
+      })
+      equalHeight = height
+    } else if (width / height < this.zoom) {
+      equalHeight = Math.floor(width / this.zoom)
+      this.setState({
+        tempHeight: equalHeight
+      })
+      equalWidth = width
+    }
+    equalWidth !== null && (newImageSize.width = equalWidth)
+    equalHeight !== null && (newImageSize.height = equalHeight)
 
     const hookReturns = this.props.hooks('set-image-size', newImageSize)(newImageSize)
 

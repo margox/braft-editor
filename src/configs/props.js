@@ -52,6 +52,7 @@ export default {
     'link', 'size', 'remove'
   ],
   imageResizable: true,
+  imageEqualRatio: true,
   colors: [
     '#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff',
     '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784',
