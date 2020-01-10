@@ -36,6 +36,7 @@ export interface BraftEditorProps {
     | 'pl'
     | 'fr'
     | 'vi-vn'
+    | 'es'
     | ((languages: any, context: any) => any);
   controls?: ControlType[];
   excludeControls?: BuiltInControlType[];
