@@ -7,7 +7,7 @@
 		var a = typeof exports === 'object' ? factory(require("react"), require("braft-utils"), require("draft-js"), require("immutable"), require("braft-convert"), require("react-dom"), require("braft-finder"), require("draftjs-utils")) : factory(root["react"], root["braft-utils"], root["draft-js"], root["immutable"], root["braft-convert"], root["react-dom"], root["braft-finder"], root["draftjs-utils"]);
 		for(var i in a) (typeof exports === 'object' ? exports : root)[i] = a[i];
 	}
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__5__, __WEBPACK_EXTERNAL_MODULE__12__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__15__, __WEBPACK_EXTERNAL_MODULE__16__, __WEBPACK_EXTERNAL_MODULE__22__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__0__, __WEBPACK_EXTERNAL_MODULE__3__, __WEBPACK_EXTERNAL_MODULE__6__, __WEBPACK_EXTERNAL_MODULE__13__, __WEBPACK_EXTERNAL_MODULE__14__, __WEBPACK_EXTERNAL_MODULE__16__, __WEBPACK_EXTERNAL_MODULE__17__, __WEBPACK_EXTERNAL_MODULE__23__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -91,7 +91,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 38);
+/******/ 	return __webpack_require__(__webpack_require__.s = 39);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -102,6 +102,20 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports) {
+
+function _assertThisInitialized(self) {
+  if (self === void 0) {
+    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
+  }
+
+  return self;
+}
+
+module.exports = _assertThisInitialized;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports) {
 
 function _defineProperty(obj, key, value) {
@@ -120,20 +134,6 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-function _assertThisInitialized(self) {
-  if (self === void 0) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return self;
-}
-
-module.exports = _assertThisInitialized;
 
 /***/ }),
 /* 3 */
@@ -155,12 +155,39 @@ module.exports = _classCallCheck;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__5__;
+var defineProperty = __webpack_require__(2);
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+    var ownKeys = Object.keys(source);
+
+    if (typeof Object.getOwnPropertySymbols === 'function') {
+      ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {
+        return Object.getOwnPropertyDescriptor(source, sym).enumerable;
+      }));
+    }
+
+    ownKeys.forEach(function (key) {
+      defineProperty(target, key, source[key]);
+    });
+  }
+
+  return target;
+}
+
+module.exports = _objectSpread;
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 function _defineProperties(target, props) {
@@ -182,12 +209,12 @@ function _createClass(Constructor, protoProps, staticProps) {
 module.exports = _createClass;
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _typeof = __webpack_require__(14);
+var _typeof = __webpack_require__(15);
 
-var assertThisInitialized = __webpack_require__(2);
+var assertThisInitialized = __webpack_require__(1);
 
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
@@ -200,7 +227,7 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 function _getPrototypeOf(o) {
@@ -213,10 +240,10 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(25);
+var setPrototypeOf = __webpack_require__(26);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -236,7 +263,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 function _extends() {
@@ -260,26 +287,20 @@ function _extends() {
 module.exports = _extends;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithoutHoles = __webpack_require__(26);
+var arrayWithoutHoles = __webpack_require__(27);
 
-var iterableToArray = __webpack_require__(27);
+var iterableToArray = __webpack_require__(28);
 
-var nonIterableSpread = __webpack_require__(28);
+var nonIterableSpread = __webpack_require__(29);
 
 function _toConsumableArray(arr) {
   return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
 }
 
 module.exports = _toConsumableArray;
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__12__;
 
 /***/ }),
 /* 13 */
@@ -289,6 +310,12 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__13__;
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__14__;
+
+/***/ }),
+/* 15 */
 /***/ (function(module, exports) {
 
 function _typeof2(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof2 = function _typeof2(obj) { return typeof obj; }; } else { _typeof2 = function _typeof2(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof2(obj); }
@@ -310,12 +337,6 @@ function _typeof(obj) {
 module.exports = _typeof;
 
 /***/ }),
-/* 15 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__15__;
-
-/***/ }),
 /* 16 */
 /***/ (function(module, exports) {
 
@@ -323,9 +344,15 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__16__;
 
 /***/ }),
 /* 17 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__17__;
+
+/***/ }),
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var Immutable = __webpack_require__(12);
+var Immutable = __webpack_require__(13);
 
 var KEY_SEPARATOR = '-';
 
@@ -413,7 +440,7 @@ module.exports = MultiDecorator;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -438,7 +465,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var _require = __webpack_require__(12),
+var _require = __webpack_require__(13),
     Map = _require.Map,
     OrderedSet = _require.OrderedSet,
     Record = _require.Record;
@@ -534,7 +561,7 @@ CharacterMetadata.EMPTY = EMPTY;
 module.exports = CharacterMetadata;
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -583,10 +610,10 @@ function findRangesImmutable(haystack, areEqualFn, filterFn, foundFn) {
 module.exports = findRangesImmutable;
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var objectWithoutPropertiesLoose = __webpack_require__(24);
+var objectWithoutPropertiesLoose = __webpack_require__(25);
 
 function _objectWithoutProperties(source, excluded) {
   if (source == null) return {};
@@ -610,7 +637,7 @@ function _objectWithoutProperties(source, excluded) {
 module.exports = _objectWithoutProperties;
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -629,7 +656,7 @@ module.exports = _objectWithoutProperties;
 
 
 
-var getContentStateFragment = __webpack_require__(29);
+var getContentStateFragment = __webpack_require__(30);
 
 function getFragmentFromSelection(editorState) {
   var selectionState = editorState.getSelection();
@@ -644,20 +671,20 @@ function getFragmentFromSelection(editorState) {
 module.exports = getFragmentFromSelection;
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__22__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__23__;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var arrayWithHoles = __webpack_require__(35);
+var arrayWithHoles = __webpack_require__(36);
 
-var iterableToArrayLimit = __webpack_require__(36);
+var iterableToArrayLimit = __webpack_require__(37);
 
-var nonIterableRest = __webpack_require__(37);
+var nonIterableRest = __webpack_require__(38);
 
 function _slicedToArray(arr, i) {
   return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || nonIterableRest();
@@ -666,7 +693,7 @@ function _slicedToArray(arr, i) {
 module.exports = _slicedToArray;
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 function _objectWithoutPropertiesLoose(source, excluded) {
@@ -687,7 +714,7 @@ function _objectWithoutPropertiesLoose(source, excluded) {
 module.exports = _objectWithoutPropertiesLoose;
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -702,7 +729,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf;
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 function _arrayWithoutHoles(arr) {
@@ -718,7 +745,7 @@ function _arrayWithoutHoles(arr) {
 module.exports = _arrayWithoutHoles;
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports) {
 
 function _iterableToArray(iter) {
@@ -728,7 +755,7 @@ function _iterableToArray(iter) {
 module.exports = _iterableToArray;
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports) {
 
 function _nonIterableSpread() {
@@ -738,7 +765,7 @@ function _nonIterableSpread() {
 module.exports = _nonIterableSpread;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -757,8 +784,8 @@ module.exports = _nonIterableSpread;
 
 
 
-var randomizeBlockMapKeys = __webpack_require__(30);
-var removeEntitiesAtEdges = __webpack_require__(33);
+var randomizeBlockMapKeys = __webpack_require__(31);
+var removeEntitiesAtEdges = __webpack_require__(34);
 
 var getContentStateFragment = function getContentStateFragment(contentState, selectionState) {
   var startKey = selectionState.getStartKey();
@@ -808,7 +835,7 @@ var getContentStateFragment = function getContentStateFragment(contentState, sel
 module.exports = getContentStateFragment;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -827,10 +854,10 @@ module.exports = getContentStateFragment;
 
 
 
-var ContentBlockNode = __webpack_require__(31);
-var Immutable = __webpack_require__(12);
+var ContentBlockNode = __webpack_require__(32);
+var Immutable = __webpack_require__(13);
 
-var generateRandomKey = __webpack_require__(32);
+var generateRandomKey = __webpack_require__(33);
 
 var OrderedMap = Immutable.OrderedMap;
 
@@ -927,7 +954,7 @@ var randomizeBlockMapKeys = function randomizeBlockMapKeys(blockMap) {
 module.exports = randomizeBlockMapKeys;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -958,10 +985,10 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var CharacterMetadata = __webpack_require__(18);
-var Immutable = __webpack_require__(12);
+var CharacterMetadata = __webpack_require__(19);
+var Immutable = __webpack_require__(13);
 
-var findRangesImmutable = __webpack_require__(19);
+var findRangesImmutable = __webpack_require__(20);
 
 var List = Immutable.List,
     Map = Immutable.Map,
@@ -1088,7 +1115,7 @@ var ContentBlockNode = function (_Record) {
 module.exports = ContentBlockNode;
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1122,7 +1149,7 @@ function generateRandomKey() {
 module.exports = generateRandomKey;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1141,10 +1168,10 @@ module.exports = generateRandomKey;
 
 
 
-var CharacterMetadata = __webpack_require__(18);
+var CharacterMetadata = __webpack_require__(19);
 
-var findRangesImmutable = __webpack_require__(19);
-var invariant = __webpack_require__(34);
+var findRangesImmutable = __webpack_require__(20);
+var invariant = __webpack_require__(35);
 
 function removeEntitiesAtEdges(contentState, selectionState) {
   var blockMap = contentState.getBlockMap();
@@ -1229,7 +1256,7 @@ function removeForBlock(entityMap, block, offset) {
 module.exports = removeEntitiesAtEdges;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1282,7 +1309,7 @@ function invariant(condition, format, a, b, c, d, e, f) {
 module.exports = invariant;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 function _arrayWithHoles(arr) {
@@ -1292,14 +1319,10 @@ function _arrayWithHoles(arr) {
 module.exports = _arrayWithHoles;
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports) {
 
 function _iterableToArrayLimit(arr, i) {
-  if (!(Symbol.iterator in Object(arr) || Object.prototype.toString.call(arr) === "[object Arguments]")) {
-    return;
-  }
-
   var _arr = [];
   var _n = true;
   var _d = false;
@@ -1328,7 +1351,7 @@ function _iterableToArrayLimit(arr, i) {
 module.exports = _iterableToArrayLimit;
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 function _nonIterableRest() {
@@ -1338,57 +1361,61 @@ function _nonIterableRest() {
 module.exports = _nonIterableRest;
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/typeof.js
-var helpers_typeof = __webpack_require__(14);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/typeof.js
+var helpers_typeof = __webpack_require__(15);
 var typeof_default = /*#__PURE__*/__webpack_require__.n(helpers_typeof);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/defineProperty.js
-var defineProperty = __webpack_require__(1);
-var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectSpread.js
+var objectSpread = __webpack_require__(5);
+var objectSpread_default = /*#__PURE__*/__webpack_require__.n(objectSpread);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/objectWithoutProperties.js
-var objectWithoutProperties = __webpack_require__(20);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/objectWithoutProperties.js
+var objectWithoutProperties = __webpack_require__(21);
 var objectWithoutProperties_default = /*#__PURE__*/__webpack_require__.n(objectWithoutProperties);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/classCallCheck.js
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/classCallCheck.js
 var classCallCheck = __webpack_require__(4);
 var classCallCheck_default = /*#__PURE__*/__webpack_require__.n(classCallCheck);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/createClass.js
-var createClass = __webpack_require__(6);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/createClass.js
+var createClass = __webpack_require__(7);
 var createClass_default = /*#__PURE__*/__webpack_require__.n(createClass);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/possibleConstructorReturn.js
-var possibleConstructorReturn = __webpack_require__(7);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/possibleConstructorReturn.js
+var possibleConstructorReturn = __webpack_require__(8);
 var possibleConstructorReturn_default = /*#__PURE__*/__webpack_require__.n(possibleConstructorReturn);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/getPrototypeOf.js
-var getPrototypeOf = __webpack_require__(8);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/getPrototypeOf.js
+var getPrototypeOf = __webpack_require__(9);
 var getPrototypeOf_default = /*#__PURE__*/__webpack_require__.n(getPrototypeOf);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/assertThisInitialized.js
-var assertThisInitialized = __webpack_require__(2);
-var assertThisInitialized_default = /*#__PURE__*/__webpack_require__.n(assertThisInitialized);
-
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/inherits.js
-var inherits = __webpack_require__(9);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/inherits.js
+var inherits = __webpack_require__(10);
 var inherits_default = /*#__PURE__*/__webpack_require__.n(inherits);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/toConsumableArray.js
-var toConsumableArray = __webpack_require__(11);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/assertThisInitialized.js
+var assertThisInitialized = __webpack_require__(1);
+var assertThisInitialized_default = /*#__PURE__*/__webpack_require__.n(assertThisInitialized);
+
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/defineProperty.js
+var defineProperty = __webpack_require__(2);
+var defineProperty_default = /*#__PURE__*/__webpack_require__.n(defineProperty);
+
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/toConsumableArray.js
+var toConsumableArray = __webpack_require__(12);
 var toConsumableArray_default = /*#__PURE__*/__webpack_require__.n(toConsumableArray);
 
-// EXTERNAL MODULE: ../node_modules/_draft-js@0.10.5@draft-js/dist/Draft.css
-var Draft = __webpack_require__(39);
+// EXTERNAL MODULE: ../node_modules/draft-js/dist/Draft.css
+var Draft = __webpack_require__(40);
 
 // EXTERNAL MODULE: ./assets/scss/_base.scss
-var _base = __webpack_require__(41);
+var _base = __webpack_require__(42);
 
 // EXTERNAL MODULE: external "react"
 var external_react_ = __webpack_require__(0);
@@ -2259,17 +2286,17 @@ var external_react_default = /*#__PURE__*/__webpack_require__.n(external_react_)
   'vi-vn': vi_vn
 });
 // EXTERNAL MODULE: external "braft-finder"
-var external_braft_finder_ = __webpack_require__(16);
+var external_braft_finder_ = __webpack_require__(17);
 var external_braft_finder_default = /*#__PURE__*/__webpack_require__.n(external_braft_finder_);
 
 // EXTERNAL MODULE: external "braft-utils"
 var external_braft_utils_ = __webpack_require__(3);
 
 // EXTERNAL MODULE: external "draft-js"
-var external_draft_js_ = __webpack_require__(5);
+var external_draft_js_ = __webpack_require__(6);
 
 // EXTERNAL MODULE: external "immutable"
-var external_immutable_ = __webpack_require__(12);
+var external_immutable_ = __webpack_require__(13);
 var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_immutable_);
 
 // CONCATENATED MODULE: ./configs/keybindings.js
@@ -2330,6 +2357,7 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
   },
   imageControls: ['float-left', 'float-right', 'align-left', 'align-center', 'align-right', 'link', 'size', 'remove'],
   imageResizable: true,
+  imageEqualRatio: true,
   colors: ['#000000', '#333333', '#666666', '#999999', '#cccccc', '#ffffff', '#61a951', '#16a085', '#07a9fe', '#003ba5', '#8e44ad', '#f32784', '#c0392b', '#d35400', '#f39c12', '#fdda00'],
   colorPicker: null,
   colorPickerTheme: 'dark',
@@ -2383,20 +2411,15 @@ var external_immutable_default = /*#__PURE__*/__webpack_require__.n(external_imm
   onSave: null,
   fixPlaceholder: false
 });
-// EXTERNAL MODULE: ../node_modules/_draft-js@0.10.5@draft-js/lib/getFragmentFromSelection.js
-var getFragmentFromSelection = __webpack_require__(21);
+// EXTERNAL MODULE: ../node_modules/draft-js/lib/getFragmentFromSelection.js
+var getFragmentFromSelection = __webpack_require__(22);
 var getFragmentFromSelection_default = /*#__PURE__*/__webpack_require__.n(getFragmentFromSelection);
 
 // EXTERNAL MODULE: external "draftjs-utils"
-var external_draftjs_utils_ = __webpack_require__(22);
+var external_draftjs_utils_ = __webpack_require__(23);
 
 // CONCATENATED MODULE: ./configs/handlers.js
 
-
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -2541,7 +2564,7 @@ var handlers_dropHandlers = function dropHandlers(selectionState, dataTransfer, 
   return 'not-handled';
 };
 var handlers_handleFiles = function handleFiles(files, editor) {
-  var _editor$constructor$d = _objectSpread({}, editor.constructor.defaultProps.media, {}, editor.editorProps.media),
+  var _editor$constructor$d = objectSpread_default()({}, editor.constructor.defaultProps.media, editor.editorProps.media),
       pasteImage = _editor$constructor$d.pasteImage,
       validateFn = _editor$constructor$d.validateFn,
       imagePasteLimit = _editor$constructor$d.imagePasteLimit;
@@ -2612,7 +2635,7 @@ var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editor
 
   var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromHTMLString(html);
   editor.setState({
-    tempColors: [].concat(toConsumableArray_default()(editor.state.tempColors), toConsumableArray_default()(tempColors)).filter(function (item) {
+    tempColors: toConsumableArray_default()(editor.state.tempColors).concat(toConsumableArray_default()(tempColors)).filter(function (item) {
       return editor.editorProps.colors.indexOf(item) === -1;
     }).filter(function (item, index, array) {
       return array.indexOf(item) === index;
@@ -2623,11 +2646,6 @@ var handlers_pastedTextHandlers = function pastedTextHandlers(text, html, editor
   return 'handled';
 };
 // CONCATENATED MODULE: ./helpers/extension.js
-
-
-function extension_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function extension_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { extension_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { extension_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 // TODO
 // - block-style和atomic类型的扩展支持
@@ -2819,7 +2837,7 @@ var extension_useExtension = function useExtension(extension) {
       extension_extensionControls.push({
         includeEditors: includeEditors,
         excludeEditors: excludeEditors,
-        data: extension_objectSpread({
+        data: objectSpread_default()({
           key: inlineStyleName,
           type: 'inline-style',
           command: inlineStyleName
@@ -2878,7 +2896,7 @@ var extension_useExtension = function useExtension(extension) {
       extension_extensionControls.push({
         includeEditors: includeEditors,
         excludeEditors: excludeEditors,
-        data: typeof extension.control === 'function' ? extension.control : extension_objectSpread({
+        data: typeof extension.control === 'function' ? extension.control : objectSpread_default()({
           key: entityType,
           type: 'entity',
           command: entityType,
@@ -3031,19 +3049,19 @@ var createExtensibleEditor = function createExtensibleEditor(BraftEditor) {
 
   return customBlockRenderMap;
 });
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/extends.js
-var helpers_extends = __webpack_require__(10);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/extends.js
+var helpers_extends = __webpack_require__(11);
 var extends_default = /*#__PURE__*/__webpack_require__.n(helpers_extends);
 
-// EXTERNAL MODULE: ../node_modules/_@babel_runtime@7.7.2@@babel/runtime/helpers/slicedToArray.js
-var slicedToArray = __webpack_require__(23);
+// EXTERNAL MODULE: ../node_modules/@babel/runtime/helpers/slicedToArray.js
+var slicedToArray = __webpack_require__(24);
 var slicedToArray_default = /*#__PURE__*/__webpack_require__.n(slicedToArray);
 
 // EXTERNAL MODULE: ./renderers/atomics/Image/style.scss
-var Image_style = __webpack_require__(44);
+var Image_style = __webpack_require__(45);
 
 // EXTERNAL MODULE: ./components/common/Switch/style.scss
-var Switch_style = __webpack_require__(45);
+var Switch_style = __webpack_require__(46);
 
 // CONCATENATED MODULE: ./components/common/Switch/index.jsx
 
@@ -3309,10 +3327,6 @@ var imageControlItems = {
 
 
 
-function Image_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function Image_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Image_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Image_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 
 
 
@@ -3337,7 +3351,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(Image)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "state", {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
       toolbarVisible: false,
       toolbarOffset: 0,
       linkEditorVisible: false,
@@ -3347,17 +3361,19 @@ function (_React$Component) {
       tempHeight: null
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "initialLeft", void 0);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialLeft", void 0);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "initialTop", void 0);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialTop", void 0);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "initialWidth", void 0);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialWidth", void 0);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "initialHeight", void 0);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "initialHeight", void 0);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "reSizeType", void 0);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "reSizeType", void 0);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "changeSize", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "zoom", void 0);
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "changeSize", function (e) {
       var type = _this.reSizeType;
 
       if (!_this.initialLeft) {
@@ -3379,7 +3395,7 @@ function (_React$Component) {
       _this.initialTop = e.screenY;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "moveImage", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "moveImage", function (e) {
       _this.changeSize(e);
 
       _this.setState({
@@ -3388,14 +3404,20 @@ function (_React$Component) {
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "upImage", function () {
-      _this.confirmImageSize();
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "upImage", function () {
+      var imageEqualRatio = _this.props.imageEqualRatio;
+
+      if (imageEqualRatio) {
+        _this.confirmImageSizeEqualRatio();
+      } else {
+        _this.confirmImageSize();
+      }
 
       document.removeEventListener('mousemove', _this.moveImage);
       document.removeEventListener('mouseup', _this.upImage);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "repareChangeSize", function (type) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "repareChangeSize", function (type) {
       return function (e) {
         _this.reSizeType = type;
 
@@ -3404,25 +3426,26 @@ function (_React$Component) {
         _this.initialLeft = _this.initialTop = 0;
         _this.initialWidth = imageRect.width;
         _this.initialHeight = imageRect.height;
+        _this.zoom = imageRect.width / imageRect.height;
         e.preventDefault();
         document.addEventListener('mousemove', _this.moveImage);
         document.addEventListener('mouseup', _this.upImage);
       };
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "preventDragEvent", function (event) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "preventDragEvent", function (event) {
       event.stopPropagation();
       event.preventDefault();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleDragStart", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDragStart", function () {
       if (_this.props.editor.editorProps.readOnly || _this.props.editor.editorProps.disabled) {
         return false;
       }
 
       window.__BRAFT_DRAGING__IMAGE__ = {
         block: _this.props.block,
-        mediaData: Image_objectSpread({
+        mediaData: objectSpread_default()({
           type: 'IMAGE'
         }, _this.props.mediaData)
       };
@@ -3436,12 +3459,12 @@ function (_React$Component) {
       return true;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleDragEnd", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDragEnd", function () {
       window.__BRAFT_DRAGING__IMAGE__ = null;
       return false;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "executeCommand", function (command) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "executeCommand", function (command) {
       if (typeof command === 'string') {
         var _command$split = command.split('|'),
             _command$split2 = slicedToArray_default()(_command$split, 2),
@@ -3454,27 +3477,27 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "removeImage", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeImage", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editor.getValue(), _this.props.block));
 
       _this.unlockEditor();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "toggleLinkEditor", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleLinkEditor", function () {
       _this.setState({
         linkEditorVisible: !_this.state.linkEditorVisible,
         sizeEditorVisible: false
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "toggleSizeEditor", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleSizeEditor", function () {
       _this.setState({
         linkEditorVisible: false,
         sizeEditorVisible: !_this.state.sizeEditorVisible
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleLinkInputKeyDown", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleLinkInputKeyDown", function (e) {
       if (e.keyCode === 13) {
         _this.confirmImageLink();
       } else {
@@ -3482,7 +3505,7 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setImageLink", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageLink", function (e) {
       _this.setState({
         tempLink: e.currentTarget.value
       });
@@ -3490,7 +3513,7 @@ function (_React$Component) {
       return;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "confirmImageLink", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "confirmImageLink", function () {
       var link = _this.state.tempLink;
 
       var hookReturns = _this.props.hooks('set-image-link', link)(link);
@@ -3512,7 +3535,7 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleSizeInputKeyDown", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleSizeInputKeyDown", function (e) {
       if (e.keyCode === 13) {
         _this.confirmImageSize();
       } else {
@@ -3520,7 +3543,7 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setImageWidth", function (_ref) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageWidth", function (_ref) {
       var currentTarget = _ref.currentTarget;
       var value = currentTarget.value;
       value && !isNaN(value) && (value = value + 'px');
@@ -3532,7 +3555,7 @@ function (_React$Component) {
       return;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setImageHeight", function (_ref2) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageHeight", function (_ref2) {
       var currentTarget = _ref2.currentTarget;
       var value = currentTarget.value;
       value && !isNaN(value) && (value = value + 'px');
@@ -3544,7 +3567,7 @@ function (_React$Component) {
       return;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "confirmImageSize", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "confirmImageSize", function () {
       var _this$state = _this.state,
           width = _this$state.tempWidth,
           height = _this$state.tempHeight;
@@ -3567,7 +3590,51 @@ function (_React$Component) {
       window.setImmediate(_this.props.editor.forceRender);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setImageFloat", function (float) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "confirmImageSizeEqualRatio", function () {
+      var _this$state2 = _this.state,
+          width = _this$state2.tempWidth,
+          height = _this$state2.tempHeight;
+      var equalWidth;
+      var equalHeight;
+      var newImageSize = {}; // 宽度过大 图片等比缩放
+
+      if (width / height > _this.zoom) {
+        equalWidth = Math.floor(height * _this.zoom);
+
+        _this.setState({
+          tempWidth: equalWidth
+        });
+
+        equalHeight = height;
+      } else if (width / height < _this.zoom) {
+        equalHeight = Math.floor(width / _this.zoom);
+
+        _this.setState({
+          tempHeight: equalHeight
+        });
+
+        equalWidth = width;
+      }
+
+      equalWidth !== null && (newImageSize.width = equalWidth);
+      equalHeight !== null && (newImageSize.height = equalHeight);
+
+      var hookReturns = _this.props.hooks('set-image-size', newImageSize)(newImageSize);
+
+      if (hookReturns === false) {
+        return false;
+      }
+
+      if (hookReturns && (hookReturns.width || hookReturns.height)) {
+        newImageSize = hookReturns;
+      }
+
+      _this.props.editor.setValue(external_braft_utils_["ContentUtils"].setMediaData(_this.props.editor.getValue(), _this.props.entityKey, newImageSize));
+
+      window.setImmediate(_this.props.editor.forceRender);
+    });
+
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageFloat", function (float) {
       var hookReturns = _this.props.hooks('set-image-float', float)(float);
 
       if (hookReturns === false) {
@@ -3585,7 +3652,7 @@ function (_React$Component) {
       _this.unlockEditor();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setImageAlignment", function (alignment) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setImageAlignment", function (alignment) {
       var hookReturns = _this.props.hooks('set-image-alignment', alignment)(alignment);
 
       if (hookReturns === false) {
@@ -3603,7 +3670,7 @@ function (_React$Component) {
       _this.unlockEditor();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "showToolbar", function (event) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "showToolbar", function (event) {
       if (_this.props.editor.editorProps.readOnly || _this.props.editor.editorProps.disabled) {
         return false;
       }
@@ -3623,7 +3690,7 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "hideToolbar", function (event) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "hideToolbar", function (event) {
       event.preventDefault();
 
       _this.setState({
@@ -3647,13 +3714,13 @@ function (_React$Component) {
           language = _this$props.language,
           imageControls = _this$props.imageControls,
           imageResizable = _this$props.imageResizable;
-      var _this$state2 = this.state,
-          toolbarVisible = _this$state2.toolbarVisible,
-          toolbarOffset = _this$state2.toolbarOffset,
-          linkEditorVisible = _this$state2.linkEditorVisible,
-          sizeEditorVisible = _this$state2.sizeEditorVisible,
-          tempWidth = _this$state2.tempWidth,
-          tempHeight = _this$state2.tempHeight;
+      var _this$state3 = this.state,
+          toolbarVisible = _this$state3.toolbarVisible,
+          toolbarOffset = _this$state3.toolbarOffset,
+          linkEditorVisible = _this$state3.linkEditorVisible,
+          sizeEditorVisible = _this$state3.sizeEditorVisible,
+          tempWidth = _this$state3.tempWidth,
+          tempHeight = _this$state3.tempHeight;
       var blockData = this.props.block.getData();
       var float = blockData.get('float');
       var alignment = blockData.get('alignment');
@@ -3867,13 +3934,13 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Video/style.scss
-var Video_style = __webpack_require__(46);
+var Video_style = __webpack_require__(47);
 
 // EXTERNAL MODULE: ./components/common/Modal/style.scss
-var Modal_style = __webpack_require__(47);
+var Modal_style = __webpack_require__(48);
 
 // EXTERNAL MODULE: external "react-dom"
-var external_react_dom_ = __webpack_require__(15);
+var external_react_dom_ = __webpack_require__(16);
 var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_react_dom_);
 
 // CONCATENATED MODULE: ./components/common/Modal/index.jsx
@@ -3885,10 +3952,6 @@ var external_react_dom_default = /*#__PURE__*/__webpack_require__.n(external_rea
 
 
 
-
-function Modal_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function Modal_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { Modal_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { Modal_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -3907,7 +3970,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(Modal).call(this, props));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleTransitionEnd", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleTransitionEnd", function () {
       if (!_this.rootElement || !_this.rootElement.classList) {
         return false;
       }
@@ -3917,7 +3980,7 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleMouseDown", function (event) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMouseDown", function (event) {
       var tagName = event.target.tagName.toLowerCase();
 
       if (tagName === 'input' || tagName === 'textarea') {
@@ -3927,22 +3990,22 @@ function (_React$Component) {
       event.preventDefault();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleCancel", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCancel", function () {
       _this.props.closeOnCancel && _this.close();
       _this.props.onCancel && _this.props.onCancel();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleConfirm", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleConfirm", function () {
       _this.props.closeOnConfirm && _this.close();
       _this.props.onConfirm && _this.props.onConfirm();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleMaskClick", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleMaskClick", function () {
       _this.props.closeOnBlur && _this.close();
       _this.props.onBlue && _this.props.onBlue();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "close", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "close", function () {
       _this.unrenderComponent();
 
       _this.props.onClose && _this.props.onClose();
@@ -4083,7 +4146,7 @@ var Modal_showModal = function showModal(props) {
   var hostNode = document.createElement('div');
   hostNode.style.display = 'none';
   document.body.appendChild(hostNode);
-  props = Modal_objectSpread({
+  props = objectSpread_default()({
     visible: true,
     closeOnConfirm: true,
     closeOnCancel: true
@@ -4116,7 +4179,7 @@ var Modal_showModal = function showModal(props) {
   return modalInstance;
 };
 // EXTERNAL MODULE: ./components/business/PlayerModal/style.scss
-var PlayerModal_style = __webpack_require__(48);
+var PlayerModal_style = __webpack_require__(49);
 
 // CONCATENATED MODULE: ./components/business/PlayerModal/index.jsx
 
@@ -4208,7 +4271,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(Video)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "removeVideo", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeVideo", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
     });
 
@@ -4250,7 +4313,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Audio/style.scss
-var Audio_style = __webpack_require__(49);
+var Audio_style = __webpack_require__(50);
 
 // CONCATENATED MODULE: ./renderers/atomics/Audio/index.jsx
 
@@ -4283,7 +4346,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(Audio)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "removeAudio", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeAudio", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
     });
 
@@ -4323,7 +4386,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/Embed/style.scss
-var Embed_style = __webpack_require__(50);
+var Embed_style = __webpack_require__(51);
 
 // CONCATENATED MODULE: ./renderers/atomics/Embed/index.jsx
 
@@ -4356,7 +4419,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(Embed)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "removeEmbed", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeEmbed", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
     });
 
@@ -4396,7 +4459,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./renderers/atomics/HorizontalLine/style.scss
-var HorizontalLine_style = __webpack_require__(51);
+var HorizontalLine_style = __webpack_require__(52);
 
 // CONCATENATED MODULE: ./renderers/atomics/HorizontalLine/index.jsx
 
@@ -4428,7 +4491,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(HorizontalLine)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "removeHorizontalLine", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeHorizontalLine", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].removeBlock(_this.props.editorState, _this.props.block));
     });
 
@@ -4455,10 +4518,6 @@ function (_React$Component) {
 // CONCATENATED MODULE: ./renderers/block/blockRendererFn.js
 
 
-
-function blockRendererFn_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function blockRendererFn_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { blockRendererFn_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { blockRendererFn_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -4495,7 +4554,7 @@ var blockRendererFn_BlockRenderFnContext = function BlockRenderFnContext() {
     var mediaData = entity.getData();
     var mediaType = entity.getType();
 
-    var mediaProps = blockRendererFn_objectSpread({}, superProps, {
+    var mediaProps = objectSpread_default()({}, superProps, {
       block: props.block,
       mediaData: mediaData,
       entityKey: entityKey
@@ -4596,15 +4655,10 @@ var blockRenderFnContext = new blockRendererFn_BlockRenderFnContext();
 // CONCATENATED MODULE: ./renderers/inline/inlineStyleMap.js
 
 
-function inlineStyleMap_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function inlineStyleMap_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { inlineStyleMap_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { inlineStyleMap_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-
 /* harmony default export */ var inlineStyleMap = (function (props) {
   var customStyleMap = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
   var extensionInlineStyleMap = getExtensionInlineStyleMap(props.editorId);
-  return inlineStyleMap_objectSpread({
+  return objectSpread_default()({
     'SUPERSCRIPT': {
       position: 'relative',
       top: '-8px',
@@ -4615,7 +4669,7 @@ function inlineStyleMap_objectSpread(target) { for (var i = 1; i < arguments.len
       bottom: '-8px',
       fontSize: '11px'
     }
-  }, extensionInlineStyleMap, {}, customStyleMap);
+  }, extensionInlineStyleMap, customStyleMap);
 });
 // CONCATENATED MODULE: ./renderers/inline/inlineStyleFn.js
 
@@ -4657,9 +4711,9 @@ var getStyleValue = function getStyleValue(style) {
     return output;
   };
 });
-// EXTERNAL MODULE: ../node_modules/_draft-js-multidecorators@1.0.0@draft-js-multidecorators/index.js
-var _draft_js_multidecorators_1_0_0_draft_js_multidecorators = __webpack_require__(17);
-var _draft_js_multidecorators_1_0_0_draft_js_multidecorators_default = /*#__PURE__*/__webpack_require__.n(_draft_js_multidecorators_1_0_0_draft_js_multidecorators);
+// EXTERNAL MODULE: ../node_modules/draft-js-multidecorators/index.js
+var draft_js_multidecorators = __webpack_require__(18);
+var draft_js_multidecorators_default = /*#__PURE__*/__webpack_require__.n(draft_js_multidecorators);
 
 // CONCATENATED MODULE: ./renderers/decorators/Link/index.jsx
 
@@ -4702,7 +4756,7 @@ var viewLink = function viewLink(event, link) {
 
 var KEY_SEPARATOR = '-';
 
-_draft_js_multidecorators_1_0_0_draft_js_multidecorators_default.a.prototype.getDecorations = function (block, contentState) {
+draft_js_multidecorators_default.a.prototype.getDecorations = function (block, contentState) {
   var decorations = Array(block.getText().length).fill(null);
   this.decorators.forEach(function (decorator, i) {
     decorator.getDecorations(block, contentState).forEach(function (key, offset) {
@@ -4736,7 +4790,7 @@ var createStrategy = function createStrategy(type) {
 
 /* harmony default export */ var decorators = (function (editorId) {
   var extensionDecorators = getExtensionDecorators(editorId);
-  var entityDecorators = [].concat(builtinDecorators, toConsumableArray_default()(extensionDecorators.filter(function (item) {
+  var entityDecorators = builtinDecorators.concat(toConsumableArray_default()(extensionDecorators.filter(function (item) {
     return item.type === 'entity';
   })));
   var strategyDecorators = extensionDecorators.filter(function (item) {
@@ -4745,9 +4799,9 @@ var createStrategy = function createStrategy(type) {
   var classDecorators = extensionDecorators.filter(function (item) {
     return item.type === 'class';
   });
-  return new _draft_js_multidecorators_1_0_0_draft_js_multidecorators_default.a([].concat(toConsumableArray_default()(classDecorators.map(function (item) {
+  return new draft_js_multidecorators_default.a(toConsumableArray_default()(classDecorators.map(function (item) {
     return item.decorator;
-  })), [// combine decorators created with strategy
+  })).concat([// combine decorators created with strategy
   new external_draft_js_["CompositeDecorator"](strategyDecorators.map(function (item) {
     return item.decorator;
   })), // combine decorators for entities
@@ -4772,13 +4826,13 @@ var getCustomStyleMap = inlineStyleMap;
 var getCustomStyleFn = inlineStyleFn;
 var getDecorators = decorators;
 // EXTERNAL MODULE: ./components/business/ControlBar/style.scss
-var ControlBar_style = __webpack_require__(52);
+var ControlBar_style = __webpack_require__(53);
 
 // EXTERNAL MODULE: ./components/business/LinkEditor/style.scss
-var LinkEditor_style = __webpack_require__(53);
+var LinkEditor_style = __webpack_require__(54);
 
 // EXTERNAL MODULE: ./components/common/DropDown/style.scss
-var DropDown_style = __webpack_require__(54);
+var DropDown_style = __webpack_require__(55);
 
 // CONCATENATED MODULE: ./helpers/responsive.js
 
@@ -4844,18 +4898,18 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(DropDown)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "responsiveResolveId", null);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "responsiveResolveId", null);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "dropDownHandlerElement", null);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownHandlerElement", null);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "dropDownContentElement", null);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownContentElement", null);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "state", {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
       active: false,
       offset: 0
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "fixDropDownPosition", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "fixDropDownPosition", function () {
       var viewRect = _this.props.getContainerNode().getBoundingClientRect();
 
       var handlerRect = _this.dropDownHandlerElement.getBoundingClientRect();
@@ -4881,7 +4935,7 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "registerClickEvent", function (event) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "registerClickEvent", function (event) {
       var autoHide = _this.props.autoHide;
       var active = _this.state.active;
 
@@ -4892,19 +4946,19 @@ function (_React$Component) {
       autoHide && active && _this.hide();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "toggle", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggle", function () {
       _this.setState({
         active: !_this.state.active
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "show", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "show", function () {
       _this.setState({
         active: true
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "hide", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "hide", function () {
       _this.setState({
         active: false
       });
@@ -5047,9 +5101,9 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(LinkEditor).call(this, props));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "dropDownInstance", null);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "dropDownInstance", null);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handeKeyDown", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handeKeyDown", function (e) {
       if (e.keyCode === 13) {
         _this.handleConfirm();
 
@@ -5058,35 +5112,35 @@ function (_React$Component) {
       }
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleTnputText", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleTnputText", function (e) {
       _this.setState({
         text: e.currentTarget.value
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleInputLink", function (e) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleInputLink", function (e) {
       _this.setState({
         href: e.currentTarget.value
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setTarget", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setTarget", function () {
       _this.setState({
         target: _this.state.target === '_blank' ? '' : '_blank'
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleCancel", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCancel", function () {
       _this.dropDownInstance.hide();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleUnlink", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleUnlink", function () {
       _this.dropDownInstance.hide();
 
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].toggleSelectionLink(_this.props.editorState, false));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleConfirm", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleConfirm", function () {
       var _this$state = _this.state,
           text = _this$state.text,
           href = _this$state.href,
@@ -5245,7 +5299,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/Headings/style.scss
-var Headings_style = __webpack_require__(55);
+var Headings_style = __webpack_require__(56);
 
 // CONCATENATED MODULE: ./configs/maps.js
 
@@ -5342,10 +5396,10 @@ var blocks = {
   })));
 });
 // EXTERNAL MODULE: ./components/business/TextColor/style.scss
-var TextColor_style = __webpack_require__(56);
+var TextColor_style = __webpack_require__(57);
 
 // EXTERNAL MODULE: ./components/common/ColorPicker/style.scss
-var ColorPicker_style = __webpack_require__(57);
+var ColorPicker_style = __webpack_require__(58);
 
 // CONCATENATED MODULE: ./components/common/ColorPicker/index.jsx
 
@@ -5403,11 +5457,11 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(TextColor)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "state", {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
       colorType: 'color'
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "switchColorType", function (_ref) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "switchColorType", function (_ref) {
       var currentTarget = _ref.currentTarget;
 
       _this.setState({
@@ -5415,7 +5469,7 @@ function (_React$Component) {
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "toggleColor", function (color, closePicker) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleColor", function (color, closePicker) {
       if (color) {
         var hookReturns = _this.props.hooks("toggle-text-".concat(_this.state.colorType), color)(color);
 
@@ -5516,7 +5570,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/FontSize/style.scss
-var FontSize_style = __webpack_require__(58);
+var FontSize_style = __webpack_require__(59);
 
 // CONCATENATED MODULE: ./components/business/FontSize/index.jsx
 
@@ -5576,7 +5630,7 @@ var FontSize_toggleFontSize = function toggleFontSize(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/LineHeight/style.scss
-var LineHeight_style = __webpack_require__(59);
+var LineHeight_style = __webpack_require__(60);
 
 // CONCATENATED MODULE: ./components/business/LineHeight/index.jsx
 
@@ -5636,7 +5690,7 @@ var LineHeight_toggleLineHeight = function toggleLineHeight(event, props) {
   })));
 });
 // EXTERNAL MODULE: ./components/business/FontFamily/style.scss
-var FontFamily_style = __webpack_require__(60);
+var FontFamily_style = __webpack_require__(61);
 
 // CONCATENATED MODULE: ./components/business/FontFamily/index.jsx
 
@@ -5730,11 +5784,11 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(TextAlign)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "state", {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
       currentAlignment: undefined
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setAlignment", function (event) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setAlignment", function (event) {
       var alignment = event.currentTarget.dataset.alignment;
 
       var hookReturns = _this.props.hooks('toggle-text-alignment', alignment)(alignment);
@@ -5784,7 +5838,7 @@ function (_React$Component) {
 
 
 // EXTERNAL MODULE: ./components/business/EmojiPicker/style.scss
-var EmojiPicker_style = __webpack_require__(61);
+var EmojiPicker_style = __webpack_require__(62);
 
 // CONCATENATED MODULE: ./components/business/EmojiPicker/index.jsx
 
@@ -5831,7 +5885,7 @@ var EmojiPicker_insertEmoji = function insertEmoji(event, props) {
   }))));
 });
 // EXTERNAL MODULE: ./components/business/LetterSpacing/style.scss
-var LetterSpacing_style = __webpack_require__(62);
+var LetterSpacing_style = __webpack_require__(63);
 
 // CONCATENATED MODULE: ./components/business/LetterSpacing/index.jsx
 
@@ -5920,17 +5974,17 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(TextAlign)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "state", {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "state", {
       currentIndent: 0
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "increaseIndent", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "increaseIndent", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].increaseSelectionIndent(_this.props.editorState));
 
       _this.props.editor.requestFocus();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "decreaseIndent", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "decreaseIndent", function () {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].decreaseSelectionIndent(_this.props.editorState));
 
       _this.props.editor.requestFocus();
@@ -5986,10 +6040,6 @@ function (_React$Component) {
 
 
 
-
-function ControlBar_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function ControlBar_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ControlBar_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ControlBar_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -6061,13 +6111,13 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, (_getPrototypeOf2 = getPrototypeOf_default()(ControlBar)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "allControls", []);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "allControls", []);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "mediaLibiraryModal", null);
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "mediaLibiraryModal", null);
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "extendedModals", {});
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "extendedModals", {});
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "openBraftFinder", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "openBraftFinder", function () {
       if (!_this.props.braftFinder || !_this.props.braftFinder.ReactComponent) {
         return false;
       }
@@ -6098,13 +6148,13 @@ function (_React$Component) {
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "bindBraftFinderHook", function (hookName) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "bindBraftFinderHook", function (hookName) {
       return function () {
         return _this.props.hooks(hookName, arguments.length <= 0 ? undefined : arguments[0]).apply(void 0, arguments);
       };
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "insertMedias", function (medias) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "insertMedias", function (medias) {
       _this.props.editor.setValue(external_braft_utils_["ContentUtils"].insertMedias(_this.props.editorState, medias));
 
       _this.props.editor.requestFocus();
@@ -6114,7 +6164,7 @@ function (_React$Component) {
       _this.closeBraftFinder();
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "closeBraftFinder", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "closeBraftFinder", function () {
       _this.props.media.onCancel && _this.props.media.onCancel();
       _this.mediaLibiraryModal && _this.mediaLibiraryModal.close();
     });
@@ -6131,7 +6181,7 @@ function (_React$Component) {
       this.allControls.forEach(function (item) {
         if (item.type === 'modal') {
           if (item.modal && item.modal.id && _this2.extendedModals[item.modal.id]) {
-            _this2.extendedModals[item.modal.id].update(ControlBar_objectSpread({}, item.modal, {
+            _this2.extendedModals[item.modal.id].update(objectSpread_default()({}, item.modal, {
               language: language
             }));
           }
@@ -6262,7 +6312,7 @@ function (_React$Component) {
         });
 
         if (typeof item !== 'string') {
-          controlItem = ControlBar_objectSpread({}, controlItem, {}, item);
+          controlItem = objectSpread_default()({}, controlItem, item);
         }
 
         if (!controlItem) {
@@ -6377,11 +6427,11 @@ function (_React$Component) {
                 if (_this3.extendedModals[controlItem.modal.id]) {
                   _this3.extendedModals[controlItem.modal.id].active = true;
 
-                  _this3.extendedModals[controlItem.modal.id].update(ControlBar_objectSpread({}, controlItem.modal, {
+                  _this3.extendedModals[controlItem.modal.id].update(objectSpread_default()({}, controlItem.modal, {
                     language: language
                   }));
                 } else {
-                  _this3.extendedModals[controlItem.modal.id] = Modal_showModal(ControlBar_objectSpread({}, controlItem.modal, {
+                  _this3.extendedModals[controlItem.modal.id] = Modal_showModal(objectSpread_default()({}, controlItem.modal, {
                     language: language
                   }));
                   controlItem.modal.onCreate && controlItem.modal.onCreate(_this3.extendedModals[controlItem.modal.id]);
@@ -6462,10 +6512,6 @@ function (_React$Component) {
 
 
 
-function editor_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function editor_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { editor_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { editor_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
 
 
 
@@ -6501,7 +6547,7 @@ var filterColors = function filterColors(colors, colors2) {
 };
 
 var editor_isControlEnabled = function isControlEnabled(props, controlName) {
-  return [].concat(toConsumableArray_default()(props.controls), toConsumableArray_default()(props.extendControls)).find(function (item) {
+  return toConsumableArray_default()(props.controls).concat(toConsumableArray_default()(props.extendControls)).find(function (item) {
     return item === controlName || item.key === controlName;
   }) && props.excludeControls.indexOf(controlName) === -1;
 };
@@ -6509,7 +6555,7 @@ var editor_isControlEnabled = function isControlEnabled(props, controlName) {
 var editor_getConvertOptions = function getConvertOptions(props) {
   var editorId = props.editorId || props.id;
 
-  var convertOptions = editor_objectSpread({}, configs_props.converts, {}, props.converts, {
+  var convertOptions = objectSpread_default()({}, configs_props.converts, props.converts, {
     fontFamilies: props.fontFamilies
   });
 
@@ -6534,7 +6580,7 @@ function (_React$Component) {
 
     _this = possibleConstructorReturn_default()(this, getPrototypeOf_default()(BraftEditor).call(this, props));
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "onChange", function (editorState, callback) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onChange", function (editorState, callback) {
       if (!(editorState instanceof external_draft_js_["EditorState"])) {
         editorState = external_draft_js_["EditorState"].set(editorState, {
           decorator: _this.editorDecorators
@@ -6553,23 +6599,23 @@ function (_React$Component) {
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "getDraftInstance", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "getDraftInstance", function () {
       return _this.draftInstance;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "getFinderInstance", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "getFinderInstance", function () {
       return _this.braftFinder;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "getValue", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "getValue", function () {
       return _this.state.editorState;
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setValue", function (editorState, callback) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setValue", function (editorState, callback) {
       return _this.onChange(editorState, callback);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "forceRender", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "forceRender", function () {
       var selectionState = _this.state.editorState.getSelection();
 
       _this.setValue(external_draft_js_["EditorState"].set(_this.state.editorState, {
@@ -6579,89 +6625,89 @@ function (_React$Component) {
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "onTab", function (event) {
-      if (handlers_keyCommandHandlers('tab', _this.state.editorState, assertThisInitialized_default()(_this)) === 'handled') {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onTab", function (event) {
+      if (handlers_keyCommandHandlers('tab', _this.state.editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this))) === 'handled') {
         event.preventDefault();
       }
 
       _this.editorProps.onTab && _this.editorProps.onTab(event);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "onFocus", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onFocus", function () {
       _this.isFocused = true;
       _this.editorProps.onFocus && _this.editorProps.onFocus(_this.state.editorState);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "onBlur", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "onBlur", function () {
       _this.isFocused = false;
       _this.editorProps.onBlur && _this.editorProps.onBlur(_this.state.editorState);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "requestFocus", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "requestFocus", function () {
       setTimeout(function () {
         return _this.draftInstance.focus();
       }, 0);
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleKeyCommand", function (command, editorState) {
-      return handlers_keyCommandHandlers(command, editorState, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleKeyCommand", function (command, editorState) {
+      return handlers_keyCommandHandlers(command, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleReturn", function (event, editorState) {
-      return handlers_returnHandlers(event, editorState, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleReturn", function (event, editorState) {
+      return handlers_returnHandlers(event, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleBeforeInput", function (chars, editorState) {
-      return beforeInputHandlers(chars, editorState, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleBeforeInput", function (chars, editorState) {
+      return beforeInputHandlers(chars, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleDrop", function (selectionState, dataTransfer) {
-      return handlers_dropHandlers(selectionState, dataTransfer, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDrop", function (selectionState, dataTransfer) {
+      return handlers_dropHandlers(selectionState, dataTransfer, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleDroppedFiles", function (selectionState, files) {
-      return droppedFilesHandlers(selectionState, files, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleDroppedFiles", function (selectionState, files) {
+      return droppedFilesHandlers(selectionState, files, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handlePastedFiles", function (files) {
-      return pastedFilesHandlers(files, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedFiles", function (files) {
+      return pastedFilesHandlers(files, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleCopyContent", function (event) {
-      return handlers_copyHandlers(event, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCopyContent", function (event) {
+      return handlers_copyHandlers(event, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handlePastedText", function (text, html, editorState) {
-      return handlers_pastedTextHandlers(text, html, editorState, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handlePastedText", function (text, html, editorState) {
+      return handlers_pastedTextHandlers(text, html, editorState, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "handleCompositionStart", function (event) {
-      return handlers_compositionStartHandler(event, assertThisInitialized_default()(_this));
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "handleCompositionStart", function (event) {
+      return handlers_compositionStartHandler(event, assertThisInitialized_default()(assertThisInitialized_default()(_this)));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "undo", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "undo", function () {
       _this.setValue(external_braft_utils_["ContentUtils"].undo(_this.state.editorState));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "redo", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "redo", function () {
       _this.setValue(external_braft_utils_["ContentUtils"].redo(_this.state.editorState));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "removeSelectionInlineStyles", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "removeSelectionInlineStyles", function () {
       _this.setValue(external_braft_utils_["ContentUtils"].removeSelectionInlineStyles(_this.state.editorState));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "insertHorizontalLine", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "insertHorizontalLine", function () {
       _this.setValue(external_braft_utils_["ContentUtils"].insertHorizontalLine(_this.state.editorState));
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "clearEditorContent", function () {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "clearEditorContent", function () {
       _this.setValue(external_braft_utils_["ContentUtils"].clear(_this.state.editorState), function (editorState) {
         _this.setValue(external_braft_utils_["ContentUtils"].toggleSelectionIndent(editorState, 0));
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "toggleFullscreen", function (fullscreen) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "toggleFullscreen", function (fullscreen) {
       _this.setState({
         isFullscreen: typeof fullscreen !== 'undefined' ? fullscreen : !_this.state.isFullscreen
       }, function () {
@@ -6669,7 +6715,7 @@ function (_React$Component) {
       });
     });
 
-    defineProperty_default()(assertThisInitialized_default()(_this), "setEditorContainerNode", function (containerNode) {
+    defineProperty_default()(assertThisInitialized_default()(assertThisInitialized_default()(_this)), "setEditorContainerNode", function (containerNode) {
       _this.containerNode = containerNode;
     });
 
@@ -6733,7 +6779,7 @@ function (_React$Component) {
             language = _this$editorProps.language,
             media = _this$editorProps.media;
 
-        var _defaultProps$media$m = editor_objectSpread({}, configs_props.media, {}, media),
+        var _defaultProps$media$m = objectSpread_default()({}, configs_props.media, media),
             uploadFn = _defaultProps$media$m.uploadFn,
             validateFn = _defaultProps$media$m.validateFn,
             items = _defaultProps$media$m.items;
@@ -6772,7 +6818,7 @@ function (_React$Component) {
       var currentProps = this.getEditorProps();
 
       if (!editor_isControlEnabled(currentProps, 'media') && editor_isControlEnabled(this.editorProps, 'media') && !this.braftFinder) {
-        var _defaultProps$media$m2 = editor_objectSpread({}, configs_props.media, {}, media),
+        var _defaultProps$media$m2 = objectSpread_default()({}, configs_props.media, media),
             uploadFn = _defaultProps$media$m2.uploadFn,
             validateFn = _defaultProps$media$m2.validateFn,
             items = _defaultProps$media$m2.items;
@@ -6803,7 +6849,7 @@ function (_React$Component) {
           var tempColors = external_braft_utils_["ColorUtils"].detectColorsFromDraftState(nextEditorState.toRAW(true));
           nextEditorState.setConvertOptions(editor_getConvertOptions(this.editorProps));
           this.setState({
-            tempColors: filterColors([].concat(toConsumableArray_default()(this.state.tempColors), toConsumableArray_default()(tempColors)), currentProps.colors),
+            tempColors: filterColors(toConsumableArray_default()(this.state.tempColors).concat(toConsumableArray_default()(tempColors)), currentProps.colors),
             editorState: nextEditorState
           }, function () {
             _this3.props.onChange && _this3.props.onChange(nextEditorState);
@@ -6856,6 +6902,7 @@ function (_React$Component) {
           headings = _this$editorProps3.headings,
           imageControls = _this$editorProps3.imageControls,
           imageResizable = _this$editorProps3.imageResizable,
+          imageEqualRatio = _this$editorProps3.imageEqualRatio,
           lineHeights = _this$editorProps3.lineHeights,
           letterSpacings = _this$editorProps3.letterSpacings,
           textAligns = _this$editorProps3.textAligns,
@@ -6880,9 +6927,9 @@ function (_React$Component) {
         return excludeControls.indexOf(item) === -1;
       });
       language = (typeof language === 'function' ? language(languages, 'braft-editor') : languages[language]) || languages[configs_props.language];
-      var externalMedias = media && media.externals ? editor_objectSpread({}, configs_props.media.externals, {}, media.externals) : configs_props.media.externals;
-      var accepts = media && media.accepts ? editor_objectSpread({}, configs_props.media.accepts, {}, media.accepts) : configs_props.media.accepts;
-      media = editor_objectSpread({}, configs_props.media, {}, media, {
+      var externalMedias = media && media.externals ? objectSpread_default()({}, configs_props.media.externals, media.externals) : configs_props.media.externals;
+      var accepts = media && media.accepts ? objectSpread_default()({}, configs_props.media.accepts, media.accepts) : configs_props.media.accepts;
+      media = objectSpread_default()({}, configs_props.media, media, {
         externalMedias: externalMedias,
         accepts: accepts
       });
@@ -6904,7 +6951,7 @@ function (_React$Component) {
         },
         className: controlBarClassName,
         style: controlBarStyle,
-        colors: [].concat(toConsumableArray_default()(colors), toConsumableArray_default()(this.state.tempColors)),
+        colors: toConsumableArray_default()(colors).concat(toConsumableArray_default()(this.state.tempColors)),
         colorPicker: colorPicker,
         colorPickerTheme: colorPickerTheme,
         colorPickerAutoHide: colorPickerAutoHide,
@@ -6935,7 +6982,8 @@ function (_React$Component) {
         imageControls: imageControls,
         imageResizable: imageResizable,
         language: language,
-        extendAtomics: extendAtomics
+        extendAtomics: extendAtomics,
+        imageEqualRatio: imageEqualRatio
       };
       var blockRendererFn = getBlockRendererFn(commonProps, this.editorProps.blockRendererFn);
       var blockRenderMap = getBlockRenderMap(commonProps, this.editorProps.blockRenderMap);
@@ -6957,7 +7005,7 @@ function (_React$Component) {
         placeholder = '';
       }
 
-      var draftProps = editor_objectSpread({
+      var draftProps = objectSpread_default()({
         ref: function ref(instance) {
           _this4.draftInstance = instance;
         },
@@ -6981,7 +7029,7 @@ function (_React$Component) {
         keyBindingFn: keyBindingFn,
         placeholder: placeholder,
         stripPastedStyles: stripPastedStyles
-      }, this.editorProps.draftProps, {}, mixedProps);
+      }, this.editorProps.draftProps, mixedProps);
 
       return external_react_default.a.createElement("div", {
         style: style,
@@ -7004,17 +7052,12 @@ defineProperty_default()(editor_BraftEditor, "defaultProps", configs_props);
 
 
 // EXTERNAL MODULE: external "braft-convert"
-var external_braft_convert_ = __webpack_require__(13);
+var external_braft_convert_ = __webpack_require__(14);
 
 // CONCATENATED MODULE: ./index.jsx
 /* concated harmony reexport EditorState */__webpack_require__.d(__webpack_exports__, "EditorState", function() { return external_draft_js_["EditorState"]; });
 /* concated harmony reexport getDecorators */__webpack_require__.d(__webpack_exports__, "getDecorators", function() { return getDecorators; });
 
-
-
-function index_ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function index_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { index_ownKeys(source, true).forEach(function (key) { defineProperty_default()(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { index_ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 
 
@@ -7029,7 +7072,7 @@ external_draft_js_["EditorState"].prototype.setConvertOptions = function () {
 external_draft_js_["EditorState"].prototype.toHTML = function () {
   var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var convertOptions = this.convertOptions || {};
-  return Object(external_braft_convert_["convertEditorStateToHTML"])(this, index_objectSpread({}, convertOptions, {}, options));
+  return Object(external_braft_convert_["convertEditorStateToHTML"])(this, objectSpread_default()({}, convertOptions, options));
 };
 
 external_draft_js_["EditorState"].prototype.toRAW = function (noStringify) {
@@ -7092,27 +7135,21 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 // [ ]允许自定义快捷键
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 40 */,
-/* 41 */
+/* 41 */,
+/* 42 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
 
 /***/ }),
-/* 42 */,
 /* 43 */,
-/* 44 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
+/* 44 */,
 /* 45 */
 /***/ (function(module, exports) {
 
@@ -7216,6 +7253,12 @@ editor_BraftEditor.createEditorState = external_draft_js_["EditorState"].createF
 
 /***/ }),
 /* 62 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 63 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
