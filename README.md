@@ -33,7 +33,7 @@ Exchange feedback, please add QQ group: 725634541
 - Multi-language support (Simplified Chinese, Traditional Chinese, English, Polish, Japanese, Korean, Turkish)
 - ... More features under development
 
-##Thanks
+## Thanks
 - Thanks to [Draftjs-utils](https://github.com/jpuri/draftjs-utils) developed by [Jyoti Puri](https://github.com/jpuri) for help and [react-draft-wysiwyg](https://github.com/jpuri/react-draft-wysiwyg) References, Thanks!
 - Thanks [Draft-convert](https://github.com/hubspot/draft-convert) developed by [HubSpot](https://github.com/HubSpot), Thanks!
 - Thanks to [Samy Pessé](https://github.com/SamyPesse) for [draft-js-multidecorators](https://github.com/SamyPesse/draft-js-multidecorators), Thanks!
@@ -64,8 +64,8 @@ Exchange feedback, please add QQ group: 725634541
 - 2019-05-20 v2.3.1
   - Fixed fatal bug in v2.3.0
 - 2019-05-20 v2.3.0
- - Support nested list and optimization of some internal details, thanks to [SyMind](https://github.com/SyMind) for your contribution: [PR # 486](https://github.com/margox/braft-editor/pull /486),[PR#485](https://github.com/margox/braft-editor/pull/485)
- - Optimize issues for use in SSR
+  - Support nested list and optimization of some internal details, thanks to [SyMind](https://github.com/SyMind) for your contribution: [PR # 486](https://github.com/margox/braft-editor/pull /486),[PR#485](https://github.com/margox/braft-editor/pull/485)
+  - Optimize issues for use in SSR
 - 2019-04-29 v2.2.10
   - The picture supports dragging and resizing. Thanks to [ArthasDragon](https://github.com/margox/braft-editor/pull/424) for your contribution!
   - Optimized the use of pure numbers to initialize the editor's content. Thank you [WzFFzW](https://github.com/margox/braft-editor/pull/446) for your contribution!

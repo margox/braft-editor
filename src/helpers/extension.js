@@ -1,5 +1,5 @@
 // TODO
-// - block-style和atomic类型的扩展支持
+//-extended support for block-style and atomic types
 
 import React from 'react'
 
