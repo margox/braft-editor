@@ -14,7 +14,7 @@ export default (props) => {
 }
 
 const viewLink = (event, link) => {
-  // 当按下Ctrl/command键时，点击打开链接文字中的url
+  // When pressing the Ctrl / command key, click to open the url in the link text
   if (event.getModifierState('Control') 
       || event.getModifierState('Meta')) {
     const tempLink = document.createElement('a')

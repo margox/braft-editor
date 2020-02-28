@@ -1,105 +1,109 @@
-# Braft Editor
+# Braft Editor-EN 
+> Thanks to **Google Translate**
 
-#### 一个基于draft-js的Web富文本编辑器，适用于React框架，兼容主流现代浏览器。
-#### [使用文档](https://www.yuque.com/margox/be) [在线演示](https://braft.margox.cn/demos/basic)
-##### 注意，项目当前版本为2.x，如果你使用的是1.x.x版本，请参阅[旧版本文档](https://github.com/margox/braft-editor/blob/old-master/README.md)
+#### A web rich text editor based on draft-js, suitable for React framework, compatible with mainstream modern browsers.
+#### [Use Document](https://www.yuque.com/margox/be) [Online Demo](https://braft.margox.cn/demos/basic)
+##### Note that the current version of the project is 2.x. If you are using 1.xx version, please refer to [Old Version Document](https://github.com/margox/braft-editor/blob/old-master/README. md)
 
-## 使用前请了解
-Braft Editor是基于draft-js开发的编辑器，而draft-js内部并不是直接使用HTML作为组件状态的，它自己实现了一个EditorState类型，本质上是一个JS对象；在传统富文本编辑器中的一段段的HTML内容对应到EditorState就是一个个的block块；这一点可以通过查看editorState.toRAW()进行验证。
+## Please understand before using
+Braft Editor is an editor based on draft-js. Draft-js does not directly use HTML as the component state. It implements an EditorState type, which is essentially a JS object. In the traditional rich text editor, The piece of HTML content corresponding to EditorState is a block; this can be verified by looking at editorState.toRAW ().
 
-使用EditorState代替HTML字符串的好处在于一套EditorState可以多端使用，编辑器产出的内容不再局限于只在web平台展示，（当然各个平台也需要自行实现对应的EditorState to View的转换功能），同时也和React的组件状态更加适配。
+The advantage of using EditorState instead of HTML strings is that a set of EditorState can be used on multiple ends, and the content produced by the editor is no longer limited to being displayed on the web platform (of course, each platform also needs to implement the corresponding EditorState to View conversion function) At the same time, it is more suitable for the component state of React.
 
-然而，上述实现方式，最大的问题在于无法将外部的HTML完美的转换为EditorState，因为其支持的样式、标签、标签属性等等极为有限，没办法将HTML中的所有特性转换为EditorState中的状态，导致在使用第三方或历史HTML字符串来初始化编辑器内容的时候，以及粘贴外部HTML内容的时候，只有被编辑器支持的少量样式和标签属性才能被保留，大部分内容将会被过滤或者忽略掉。
+However, in the above implementation, the biggest problem is that it cannot perfectly convert external HTML into EditorState, because its supported styles, tags, tag attributes, and so on are extremely limited, and there is no way to convert all the features in HTML to the state in EditorState. , When using third-party or historical HTML strings to initialize the editor content, and when pasting external HTML content, only a small number of styles and tag attributes supported by the editor can be retained, most of the content will be filtered or Ignore it.
 
-基于上面的缺点，如果各位的项目强依赖于原始HTML标签和属性等，则不建议使用本编辑器。
+Based on the above shortcomings, if your project strongly depends on the original HTML tags and attributes, etc., this editor is not recommended.
 
+### Editor-specific extension packs have been released, please see [Braft Extensions](https://github.com/margox/braft-extensions)
 
-### 编辑器专用扩展包已发布，请查看[Braft Extensions](https://github.com/margox/braft-extensions)
-表格扩展模块已发布测试版本，请升级braft-editor和braft-utils到最新版本，并安装最新版本的braft-extensions，使用方式请查看[[表格扩展模块](https://github.com/margox/braft-extensions#%E8%A1%A8%E6%A0%BC%E6%A8%A1%E5%9D%97)]
+The form extension module has been released in a test version. Please upgrade craft-editor and craft-utils to the latest version and install the latest version of craft-extensions. For the usage, please see [[form extension module](https://github.com/margox/braft-extensions#%E8%A1%A8%E6%A0%BC%E6%A8%A1%E5%9D%97)]
 
-交流反馈请加QQ群：725634541
+Exchange feedback, please add QQ group: 725634541
 
-## 特性
-- 完善的文本内容编辑功能
-- 诸多开放的编辑接口，良好的可扩展性
-- 允许插入图片、音视频等多媒体内容
-- 允许自定义多媒体内容的上传接口
-- 允许设置图片的左右浮动（即文字绕排功能）
-- 允许设置编辑器可用的颜色列表、字号以及字体
-- 允许自定义需要展示的控制按钮和展示顺序
-- 允许增加额外的自定义按钮
-- 多语言支持（目前已支持简体中文、繁体中文、英文、波兰语、日语、韩语、土耳其语）
-- ...更多特性开发中
+## Features
 
-## 鸣谢
-- 感谢[Jyoti Puri](https://github.com/jpuri) 开发的[draftjs-utils](https://github.com/jpuri/draftjs-utils) 提供的帮助和[react-draft-wysiwyg](https://github.com/jpuri/react-draft-wysiwyg) 提供的参考，Thanks！
-- 感谢[HubSpot](https://github.com/HubSpot) 开发的[draft-convert](https://github.com/hubspot/draft-convert)，Thanks！
-- 感谢[Samy Pessé](https://github.com/SamyPesse) 开发的[draft-js-multidecorators](https://github.com/SamyPesse/draft-js-multidecorators)，Thanks！
-- 感谢[JackLam](https://github.com/lamjack)提供的繁体中文语言自持，Thanks!
-- 感谢[Paweł Krefta](https://github.com/pkrefta)提供的波兰语言支持，Thanks!
-- 感谢[YYL1999](https://github.com/YYL1999)提供的韩语和日语语言支持，Thanks!
-- 感谢[Gencer W. Genç](https://github.com/gencer)提供的土耳其语言支持，Thanks!
+- Perfect text content editing function
+- Many open editing interfaces, good scalability
+- Allows inserting multimedia content such as pictures, audio and video
+- Allows to customize the upload interface of multimedia content
+- Allow to set the image to float left and right (ie text wrapping function)
+- Allows setting the color list, font size, and fonts available to the editor
+- Allows customizing the control buttons and display order to be displayed
+- Allows adding additional custom buttons
+- Multi-language support (Simplified Chinese, Traditional Chinese, English, Polish, Japanese, Korean, Turkish)
+- ... More features under development
 
-## 近期更新记录
+## Thanks
+- Thanks to [Draftjs-utils](https://github.com/jpuri/draftjs-utils) developed by [Jyoti Puri](https://github.com/jpuri) for help and [react-draft-wysiwyg](https://github.com/jpuri/react-draft-wysiwyg) References, Thanks!
+- Thanks [Draft-convert](https://github.com/hubspot/draft-convert) developed by [HubSpot](https://github.com/HubSpot), Thanks!
+- Thanks to [Samy Pessé](https://github.com/SamyPesse) for [draft-js-multidecorators](https://github.com/SamyPesse/draft-js-multidecorators), Thanks!
+- Thanks to [JackLam](https://github.com/lamjack) for traditional Chinese language self-holding, Thanks!
+- Thanks to [Paweł Krefta](https://github.com/pkrefta) for Polish language support, Thanks!
+- Thanks to [YYL1999](https://github.com/YYL1999) for Korean and Japanese language support, Thanks!
+- Thanks to [Gencer W. Genç](https://github.com/gencer) for Turkish language support, Thanks!
+
+## Recent updates
 
 - 2019-08-06 v2.3.8
-  - 修复a标签href中带有javascript语句导致警告的问题
-  - 合并PR[#560](https://github.com/margox/braft-editor/pull/560)，[#593](https://github.com/margox/braft-editor/pull/593)，[#588](https://github.com/margox/braft-editor/pull/588)，[#582](https://github.com/margox/braft-editor/pull/582)
+  - Fixed the issue that javascript statements in a tag href caused a warning
+  - Merge PR [# 560](https://github.com/margox/braft-editor/pull/560), [# 593](https://github.com/margox/braft-editor/pull/593) , [# 588](https://github.com/margox/braft-editor/pull/588), [# 582](https://github.com/margox/braft-editor/pull/582)
 - 2019-06-20 v2.3.7
-  - 修复问题[#542](https://github.com/margox/braft-editor/issues/542)、[#541](https://github.com/margox/braft-editor/issues/541)、[#467](https://github.com/margox/braft-editor/issues/467)
-  - 修复问题[#512](https://github.com/margox/braft-editor/issues/512)并新增imageResizable属性，允许关闭图片的拖动调整尺寸功能
+  - Fix issues [# 542](https://github.com/margox/braft-editor/issues/542), [# 541](https://github.com/margox/braft-editor/issues/541) , [# 467](https://github.com/margox/braft-editor/issues/467)
+  - Fix the problem [# 512](https://github.com/margox/braft-editor/issues/512) and add the imageResizable attribute, which allows to turn off the drag and resize function of the image
 - 2019-06-18 v2.3.6
-  - 支持不选择文字的情况下直接插入链接
-  - 新增`allowInsertLinkText`属性，允许直接插入链接时输入链接文字，默认`false`
+  - Supports inserting links without selecting text
+  - Added `allowInsertLinkText` property, allowing link text to be entered when inserting a link directly, default` false`
 - 2019-06-14 v2.3.5
-  - 完善index.d.ts
+  - Perfect index.d.ts
 - 2019-06-11 v2.3.4
-  - 支持部分更多自定义html属性的保留(需要升级braft-convert至v2.3.0)
-  - 加入韩语(kr)、日语(jpn)、土耳其语(tr)
-  - 加入更多[hooks](https://www.yuque.com/braft-editor/be/gz44tn#gug9gs)支持
+  - Support the retention of some more custom html attributes (need to upgrade craft-convert to v2.3.0)
+  - Added Korean (kr), Japanese (jpn), Turkish (tr)
+  - Add more [hooks](https://www.yuque.com/braft-editor/be/gz44tn#gug9gs) support
 - 2019-05-28 v2.3.2
-  - 修复传入RAW字符串无法正常解析为问题
+  - Fixed the issue that incoming RAW strings could not be parsed normally
 - 2019-05-20 v2.3.1
-  - 修复v2.3.0的致命bug
+  - Fixed fatal bug in v2.3.0
 - 2019-05-20 v2.3.0
-  - 支持嵌套列表以及部分内部细节优化，感谢[SyMind](https://github.com/SyMind)的贡献:[PR#486](https://github.com/margox/braft-editor/pull/486),[PR#485](https://github.com/margox/braft-editor/pull/485)
-  - 优化在SSR中使用的问题
+  - Support nested list and optimization of some internal details, thanks to [SyMind](https://github.com/SyMind) for your contribution: [PR # 486](https://github.com/margox/braft-editor/pull /486),[PR#485](https://github.com/margox/braft-editor/pull/485)
+  - Optimize issues for use in SSR
 - 2019-04-29 v2.2.10
-  - 图片支持拖动调整大小，感谢[ArthasDragon](https://github.com/margox/braft-editor/pull/424)的贡献！
-  - 优化使用纯数字初始化编辑器内容异常的问题，感谢[WzFFzW](https://github.com/margox/braft-editor/pull/446)的贡献！
-  - 新增fixPlaceholder属性(Boolean)，用于修复部分情况下placeholder文本显示异常的问题，默认false
-  - 优化forceRender
+  - The picture supports dragging and resizing. Thanks to [ArthasDragon](https://github.com/margox/braft-editor/pull/424) for your contribution!
+  - Optimized the use of pure numbers to initialize the editor's content. Thank you [WzFFzW](https://github.com/margox/braft-editor/pull/446) for your contribution!
+  - Added fixPlaceholder attribute (Boolean), which is used to fix the problem that placeholder text is displayed abnormally in some cases. The default is false.
+  - Optimize forceRender
 - 2019-03-06 v2.2.9
-  - 修改index.d.ts
+  - Modify index.d.ts
 - 2019-02-22 v2.2.7
-  - 新增用于美化输出HTML的样板CSS文件(`node_modules/braft-editor/dist/output.css`)
+  - Added boilerplate CSS files for beautifying output HTML(`node_modules/braft-editor/dist/output.css`)
 - 2019-02-22 v2.2.6
-  - 优化blockRenerMap属性，支持传入一个返回blockRenerMap对象的函数
-  - 优化上下标样式的设置
-  - 优化编辑器内文本缩进和文本对齐同事存在时的显示效果
+  - Optimize the blockRenerMap property and support passing in a function that returns a blockRenerMap object
+  - Optimize the settings of subscript style
+  - Optimize the display of text indentation and text alignment in the editor when colleagues are present
 - 2019-01-11 v2.2.4
-  - 新增editorId属性，作用与id属性完全一样，用于解决在Ant Design Form组件中id属性会被覆盖导致无法正常使用扩展模块的问题
+  - Added the editorId property, which has the same effect as the id property, and is used to solve the problem that the id property will be overwritten in the Ant Design Form component and the extension module cannot be used normally
 - 2019-01-11 v2.2.2
-  - 优化音视频和嵌入式媒体的播放交互，改为在模态框中播放
+  - Optimized the playback interaction between audio and video and embedded media, instead playing in the modal box
 - 2019-01-06 v2.2.1
-  - 完善index.d.ts([PR#340](https://github.com/margox/braft-editor/pull/340))
+  - Perfect index.d.ts([PR#340](https://github.com/margox/braft-editor/pull/340))
 - 2018-12-29 v2.2.0
-  - 新增d.ts文件，在TypeScript项目中使用更友好，感谢[幅川大佬](https://github.com/weifuchuan)的贡献！
-  - 修复弹窗组件中的输入框无法使用的问题
-  - 其他优化和问题修复：[Issue#336](https://github.com/margox/braft-editor/issues/336),[Issue#331](https://github.com/margox/braft-editor/issues/331),[Issue#328](https://github.com/margox/braft-editor/issues/328)
+  - Added the d.ts file, which is more friendly to use in TypeScript projects. Thanks for the contribution of [张 川 大兄](https://github.com/weifuchuan)
+  - Fixed the problem that the input box in the popup component is unavailable
+  - Other optimizations and bug fixes: [Issue # 336](https://github.com/margox/braft-editor/issues/336), [Issue # 331](https://github.com/margox/braft- editor / issues / 331), [Issue # 328](https://github.com/margox/braft-editor/issues/328)
 
-[查看历史更新记录](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
+[View history update record](https://github.com/margox/braft-editor/blob/master/CHANGELOG.md)
 
-## 安装
+## installation
+
 ```bash
-# 使用yarn安装
+# Install using yarn
 yarn add braft-editor
-# 使用npm安装
+# Install using npm
 npm install braft-editor --save
 ```
-## 使用
 
-编辑器支持**value**和**onChange**属性，这类似于React中原生的input组件。通常情况下，可以用典型的**受控组件**的形式来使用本编辑器：
+## use
+
+The editor supports **value** and **onChange** properties, which are similar to the native input components in React. In general, you can use this editor in the form of a typical **controlled component**:
 
 ```jsx
 import React from 'react'
@@ -113,28 +117,28 @@ export default class EditorDemo extends React.Component {
   }
 
   async componentDidMount () {
-    // 假设此处从服务端获取html格式的编辑器内容
+    // Assume here to get the editor content in html format from the server
     const htmlContent = await fetchEditorContent()
-    // 使用BraftEditor.createEditorState将html字符串转换为编辑器需要的editorState数据
+    // Use BraftEditor.createEditorState to convert html strings to editorState data needed by the editor
     this.setState({
       editorState: BraftEditor.createEditorState(htmlContent)
     })
   }
 
   submitContent = async () => {
-    // 在编辑器获得焦点时按下ctrl+s会执行此方法
-    // 编辑器内容提交到服务端之前，可直接调用editorState.toHTML()来获取HTML格式的内容
+    // Pressing ctrl + s when the editor has focus will execute this method
+    // Before the editor content is submitted to the server, you can directly call editorState.toHTML () to get the HTML content
     const htmlContent = this.state.editorState.toHTML()
     const result = await saveEditorContent(htmlContent)
   }
 
   handleEditorChange = (editorState) => {
-    this.setState({ editorState })
+    this.setState({ editorState })
   }
 
   render () {
 
-    const { editorState } = this.state
+    const { editorState } = this.state
 
     return (
       <div className="my-component">
@@ -151,16 +155,15 @@ export default class EditorDemo extends React.Component {
 }
 ```
 
-当然本编辑器也支持**defaultValue**属性，因此你也可以将本编辑器作为一个**非受控组件**来使用。
-
+Of course, this editor also supports the **defaultValue** property, so you can also use this editor as a **uncontrolled component**.
 -------
 
-#### 更多介绍请查看[详细文档](https://www.yuque.com/margox/be/lzwpnr#zrs7hr)
+#### For more introduction, please see [Detailed Document](https://www.yuque.com/margox/be/lzwpnr#zrs7hr)
 
 ## Buy me a beer
-如果你想感谢本编辑器为你的项目节省了时间，或者单纯地喜欢这个编辑器，可以扫码赞赏几块钱来请我喝杯啤酒喔！
+If you want to thank this editor for saving time for your project, or simply like this editor, you can scan the code and appreciate a few dollars to invite me for a beer!
 
 <img src="https://braft.margox.cn/images/qrcode-alipay.png" width="180" height="180" />&emsp;&emsp;
 <img src="https://braft.margox.cn/images/qrcode-wechat.png" width="180" height="180" />
 
-#### &emsp;&emsp;&emsp;&emsp;支付宝&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;微信
+#### &emsp;&emsp;&emsp;&emsp;支付宝&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;WeChat

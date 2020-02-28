@@ -66,15 +66,15 @@ BraftEditor.createEditorState = EditorState.createFrom = (content, options = {})
 export default createExtensibleEditor(BraftEditor)
 export { EditorState, getDecorators }
 
-// 2.1版本开发计划
-// [ ]优化选中多行文字是插入链接报错的问题
-// [ ]新增编辑器内图片删除hook
+// 2.1 version development plan
+// [] Optimizing the selection of multiple lines of text is an error when inserting a link
+// [] Add a new image delete hook in the editor
 
-// 2.2版本开发计划
-// [ ]表格功能
-// [ ]美化UI，包括图标和界面风格
+// 2.2 development plan
+// [] table function
+// [] Beautify the UI, including icons and interface style
 
-// 2.3版本开发计划
-// [ ]初级md快捷输入支持
-// [ ]图片裁切等简单的编辑功能
-// [ ]允许自定义快捷键
+// version 2.3 development plan
+// [] Primary md shortcut input support
+// [] simple editing functions such as picture cropping
+// [] allows custom shortcuts

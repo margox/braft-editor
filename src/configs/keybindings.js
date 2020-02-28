@@ -1,7 +1,7 @@
 import { getDefaultKeyBinding, KeyBindingUtil } from 'draft-js'
 
 // TODO
-// 允许自定义的快捷键设置
+// Allow custom shortcut settings
 
 export default (customKeyBindingFn) => (event) => {
 
