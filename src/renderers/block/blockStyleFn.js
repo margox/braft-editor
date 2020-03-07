@@ -1,27 +1,25 @@
 export default (customBlockStyleFn) => (block) => {
+  const blockAlignment = block.getData() && block.getData().get('textAlign');
+  const blockIndent = block.getData() && block.getData().get('textIndent');
+  const blockFloat = block.getData() && block.getData().get('float');
 
-  const blockAlignment = block.getData() && block.getData().get('textAlign')
-  const blockIndent = block.getData() && block.getData().get('textIndent')
-  const blockFloat = block.getData() && block.getData().get('float')
-
-  let result = ''
+  let result = '';
 
   if (blockAlignment) {
-    result = `bfa-${blockAlignment}`
+    result = `bfa-${blockAlignment}`;
   }
 
   if (blockIndent && blockIndent !== 0) {
-    result += ` bftd-${blockIndent}`
+    result += ` bftd-${blockIndent}`;
   }
 
   if (blockFloat) {
-    result += ` bff-${blockFloat}`
+    result += ` bff-${blockFloat}`;
   }
 
   if (customBlockStyleFn) {
-    result += (customBlockStyleFn(block) || '')
+    result += customBlockStyleFn(block) || '';
   }
 
-  return result
-
-}
+  return result;
+};

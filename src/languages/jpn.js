@@ -5,7 +5,7 @@ export default {
     confirm: '決定',
     inert: '挿入',
     width: '幅',
-    height: '高さ'
+    height: '高さ',
   },
   controls: {
     clear: 'クリアコンテンツ',
@@ -58,19 +58,19 @@ export default {
     linkInputPlaceHolder: 'リンクアドレスを入力',
     inputWithEnterPlaceHolder: 'リンクアドレスを入力して戻ります',
     openInNewWindow: '新しいウィンドウで開く',
-    removeLink: '新しいウィンドウで開く'
+    removeLink: '新しいウィンドウで開く',
   },
   audioPlayer: {
-    title: 'オーディオファイルを再生する'
+    title: 'オーディオファイルを再生する',
   },
   videoPlayer: {
     title: 'ビデオファイルを再生する',
-    embedTitle: '埋め込みメディア'
+    embedTitle: '埋め込みメディア',
   },
   media: {
     image: '画像',
     video: 'ビデオ',
     audio: '音声',
-    embed: '埋め込みメディア'
-  }
-}
+    embed: '埋め込みメディア',
+  },
+};

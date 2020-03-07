@@ -5,7 +5,7 @@ export default {
     confirm: '确定',
     inert: '插入',
     width: '宽度',
-    height: '高度'
+    height: '高度',
   },
   controls: {
     clear: '清除内容',
@@ -58,19 +58,19 @@ export default {
     linkInputPlaceHolder: '输入链接地址',
     inputWithEnterPlaceHolder: '输入链接地址并回车',
     openInNewWindow: '在新窗口打开',
-    removeLink: '移除链接'
+    removeLink: '移除链接',
   },
   audioPlayer: {
-    title: '播放音频文件'
+    title: '播放音频文件',
   },
   videoPlayer: {
     title: '播放视频文件',
-    embedTitle: '嵌入式媒体'
+    embedTitle: '嵌入式媒体',
   },
   media: {
     image: '图像',
     video: '视频',
     audio: '音频',
-    embed: '嵌入式媒体'
-  }
-}
+    embed: '嵌入式媒体',
+  },
+};

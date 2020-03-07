@@ -1,41 +1,104 @@
 module.exports = {
-    "parser": "babel-eslint",
-    "env": {
-        "browser": true,
-        "commonjs": true,
-        "es6": true,
-        "node": true
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": 2018,
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react"
+    ecmaVersion: 2018,
+    sourceType: 'module',
+  },
+  env: {
+    browser: true,
+    commonjs: true,
+    es6: true,
+    node: true,
+  },
+  globals: {
+    _: false,
+  },
+  extends: ['airbnb', 'prettier', 'prettier/react'],
+  plugins: ['prettier', 'react', 'react-hooks', 'jsx-a11y'],
+  rules: {
+    'arrow-parens': ['error', 'always'],
+    'class-methods-use-this': 0,
+    'comma-dangle': [
+      'error',
+      {
+        arrays: 'always-multiline',
+        objects: 'always-multiline',
+        imports: 'always-multiline',
+        exports: 'always-multiline',
+        functions: 'only-multiline',
+      },
     ],
-    "rules": {
-        "no-console": 0,
-        "react/jsx-uses-react": [1],
-        "react/jsx-uses-vars": [2],
-        "indent": [
-            "error",
-            2
+    'eol-last': ['error', 'always'],
+    'function-paren-newline': 0,
+    'func-names': ['error', 'as-needed'],
+    'import/extensions': 0,
+    'import/no-extraneous-dependencies': ['error', { devDependencies: true }],
+    'import/no-named-as-default': 0,
+    'import/no-unresolved': 0,
+    'import/no-webpack-loader-syntax': 0,
+    indent: ['error', 2, { ArrayExpression: 'first' }],
+    'jsx-a11y/anchor-is-valid': 0,
+    'jsx-a11y/click-events-have-key-events': 0,
+    'jsx-a11y/label-has-for': 0,
+    'jsx-a11y/mouse-events-have-key-events': 0,
+    'jsx-a11y/no-autofocus': 0,
+    'linebreak-style': 0,
+    'max-len': 0,
+    'new-cap': [
+      'error',
+      { capIsNewExceptions: ['List', 'Map', 'Set', 'Record', 'OrderedMap'] },
+    ],
+    'no-console': 0,
+    'no-else-return': 0,
+    'no-mixed-operators': 0,
+    'no-nested-ternary': 0,
+    'no-plusplus': ['error', { allowForLoopAfterthoughts: true }],
+    'no-restricted-globals': 0,
+    'no-underscore-dangle': [
+      'error',
+      { allow: ['_isMounted', '__html', '__'] },
+    ],
+    'prefer-destructuring': 0,
+    quotes: [2, 'single', { avoidEscape: true }],
+    'react/button-has-type': 0,
+    'react/destructuring-assignment': [0, 'always'],
+    'react/forbid-prop-types': 0,
+    'react/jsx-filename-extension': ['error', { extensions: ['.js', '.jsx'] }],
+    'react/jsx-props-no-spreading': 0,
+    'react/jsx-uses-react': [1],
+    'react/jsx-uses-vars': [2],
+    'react/no-unused-prop-types': 0,
+    'react/prefer-stateless-function': 'warn',
+    'react/prop-types': 'error',
+    'react/require-default-props': 0,
+    'react/sort-comp': [
+      2,
+      {
+        order: [
+          'constructor',
+          'state',
+          'initialState',
+          'static-methods',
+          'lifecycle',
+          'fetching',
+          'everything-else',
+          'rendering',
         ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "never"
-        ]
-    }
+        groups: {
+          fetching: ['fetchDataIfNeded', 'fetch.+IfNeeded'],
+          rendering: [
+            'renderLoader',
+            'renderError',
+            'renderNoData',
+            '/^render.+$/',
+            'render',
+          ],
+        },
+      },
+    ],
+    'react/state-in-constructor': 0,
+  },
 };

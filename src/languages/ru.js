@@ -5,7 +5,7 @@ export default {
     confirm: 'Подтвердить',
     insert: 'Вставить',
     width: 'Ширина',
-    height: 'Высота'
+    height: 'Высота',
   },
   controls: {
     clear: 'Очистить',
@@ -50,26 +50,26 @@ export default {
     mediaLibirary: 'Медиа библиотека',
     emoji: 'Emoji',
     fullscreen: 'Полноэкранный режим',
-    exitFullscreen: 'Выйти из полноэкранного режима'
+    exitFullscreen: 'Выйти из полноэкранного режима',
   },
   linkEditor: {
     textInputPlaceHolder: 'Введите текст ссылки',
     linkInputPlaceHolder: 'Вставить ссылку',
     inputWithEnterPlaceHolder: 'Вставить ссылку и нажать Enter',
     openInNewWindow: 'Открыть в новом окне',
-    removeLink: 'Убрать ссылку'
+    removeLink: 'Убрать ссылку',
   },
   audioPlayer: {
-    title: 'Воспроизвести аудиофайл'
+    title: 'Воспроизвести аудиофайл',
   },
   videoPlayer: {
     title: 'Воспроизвести видеофайл',
-    embedTitle: 'Embed Media'
+    embedTitle: 'Embed Media',
   },
   media: {
     image: 'Картинка',
     video: 'Видео',
     audio: 'Аудио',
-    embed: 'Встроенное'
-  }
-}
+    embed: 'Встроенное',
+  },
+};

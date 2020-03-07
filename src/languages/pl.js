@@ -5,7 +5,7 @@ export default {
     confirm: 'Potwierdź',
     inert: 'Wstaw',
     width: 'Szerokość',
-    height: 'Wysokość'
+    height: 'Wysokość',
   },
   controls: {
     clear: 'Wyczyść',
@@ -17,9 +17,9 @@ export default {
     tempColors: 'Kolory',
     backgroundColor: 'Tło',
     bold: 'Pogrubienie',
-    lineHeight:'Wysokość linii',
-    letterSpacing:'Odstęp znaków',
-    textIndent:'Wcięcie tekstu',
+    lineHeight: 'Wysokość linii',
+    letterSpacing: 'Odstęp znaków',
+    textIndent: 'Wcięcie tekstu',
     increaseIndent: 'Zwiększ wcięcie',
     decreaseIndent: 'Zmniejsz wcięcie',
     italic: 'Italiki',
@@ -48,26 +48,26 @@ export default {
     hr: 'Linia pozioma',
     media: 'Media',
     mediaLibirary: 'Biblioteka mediów',
-    emoji: 'Emoji'
+    emoji: 'Emoji',
   },
   linkEditor: {
     textInputPlaceHolder: 'Wpisz tekst linku',
     linkInputPlaceHolder: 'Wpisz Adres URL',
     inputWithEnterPlaceHolder: 'Wpisz adres URL i naciśnij Enter',
     openInNewWindow: 'Otwórz w nowym oknie',
-    removeLink: 'Usuń link'
+    removeLink: 'Usuń link',
   },
   audioPlayer: {
-    title: 'Odtwórz audio'
+    title: 'Odtwórz audio',
   },
   videoPlayer: {
     title: 'Odtwórz wideo',
-    embedTitle: 'Tytuł'
+    embedTitle: 'Tytuł',
   },
   media: {
     image: 'Obraz',
     video: 'Wideo',
     audio: 'Audio',
-    embed: 'Obiekt osadzony'
-  }
-}
+    embed: 'Obiekt osadzony',
+  },
+};

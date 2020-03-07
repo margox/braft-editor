@@ -1,27 +1,43 @@
-import './style.scss'
-import React from 'react'
-import PlayerModal from 'components/business/PlayerModal'
-import { ContentUtils } from 'braft-utils'
+/* eslint-disable jsx-a11y/media-has-caption */
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ContentUtils } from 'braft-utils';
 
-export default class Audio extends React.Component {
+import PlayerModal from 'components/business/PlayerModal';
 
-  render () {
+import './style.scss';
 
-    const { mediaData, language } = this.props
-    const { url, name, meta } = mediaData
+const Audio = ({ mediaData, language, editor, editorState, block }) => {
+  const { url, name, meta } = mediaData;
+  const removeAudio = () => {
+    editor.setValue(ContentUtils.removeBlock(editorState, block));
+  };
 
-    return (
-      <div className='bf-audio-wrap'>
-        <PlayerModal type="audio" onRemove={this.removeAudio} poster={meta ? meta.poster || '' : ''} language={language} url={url} name={name} title={language.audioPlayer.title}>
-          <div className="bf-audio-player"><audio controls src={url}/></div>
-        </PlayerModal>
-      </div>
-    )
+  return (
+    <div className="bf-audio-wrap">
+      <PlayerModal
+        type="audio"
+        onRemove={removeAudio}
+        poster={meta ? meta.poster || '' : ''}
+        language={language}
+        url={url}
+        name={name}
+        title={language.audioPlayer.title}
+      >
+        <div className="bf-audio-player">
+          <audio controls src={url} />
+        </div>
+      </PlayerModal>
+    </div>
+  );
+};
 
-  }
+Audio.propTypes = {
+  mediaData: PropTypes.any,
+  language: PropTypes.any,
+  editor: PropTypes.any,
+  editorState: PropTypes.any,
+  block: PropTypes.any,
+};
 
-  removeAudio = () => {
-    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
-  }
-
-}
+export default Audio;

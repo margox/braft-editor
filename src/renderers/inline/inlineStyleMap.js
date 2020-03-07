@@ -1,22 +1,20 @@
-import { getExtensionInlineStyleMap } from 'helpers/extension'
+import { getExtensionInlineStyleMap } from 'helpers/extension';
 
 export default (props, customStyleMap = {}) => {
-
-  const extensionInlineStyleMap = getExtensionInlineStyleMap(props.editorId)
+  const extensionInlineStyleMap = getExtensionInlineStyleMap(props.editorId);
 
   return {
-    'SUPERSCRIPT': {
+    SUPERSCRIPT: {
       position: 'relative',
       top: '-8px',
-      fontSize: '11px'
+      fontSize: '11px',
     },
-    'SUBSCRIPT': {
+    SUBSCRIPT: {
       position: 'relative',
       bottom: '-8px',
-      fontSize: '11px'
+      fontSize: '11px',
     },
     ...extensionInlineStyleMap,
-    ...customStyleMap
-  }
-
-}
+    ...customStyleMap,
+  };
+};
