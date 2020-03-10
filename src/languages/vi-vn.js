@@ -5,7 +5,7 @@ export default {
     confirm: 'Xác nhận',
     inert: 'Chèn vào',
     width: 'Độ rộng',
-    height: 'Độ cao'
+    height: 'Độ cao',
   },
   controls: {
     clear: 'Xóa toàn bộ nội dung',
@@ -58,19 +58,19 @@ export default {
     linkInputPlaceHolder: 'Nhập địa chỉ liên kết',
     inputWithEnterPlaceHolder: 'Nhập địa chỉ liên kết và Enter',
     openInNewWindow: 'Mở trong tab mới',
-    removeLink: 'Gỡ liên kết'
+    removeLink: 'Gỡ liên kết',
   },
   audioPlayer: {
-    title: 'Phát tệp âm thanh'
+    title: 'Phát tệp âm thanh',
   },
   videoPlayer: {
     title: 'Phát tệp video',
-    embedTitle: 'Media nhúng'
+    embedTitle: 'Media nhúng',
   },
   media: {
     image: 'Hình ảnh',
     video: 'Video',
     audio: 'Âm thanh',
-    embed: 'Media nhúng'
-  }
-}
+    embed: 'Media nhúng',
+  },
+};

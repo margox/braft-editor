@@ -5,7 +5,7 @@ export default {
     confirm: 'Confirm',
     inert: 'Insert',
     width: 'Width',
-    height: 'Height'
+    height: 'Height',
   },
   controls: {
     clear: 'Clear',
@@ -17,9 +17,9 @@ export default {
     tempColors: 'Temp Colors',
     backgroundColor: 'Background',
     bold: 'Bold',
-    lineHeight:'Line Height',
-    letterSpacing:'Letter Spacing',
-    textIndent:'Text Indent',
+    lineHeight: 'Line Height',
+    letterSpacing: 'Letter Spacing',
+    textIndent: 'Text Indent',
     increaseIndent: 'Increase Indent',
     decreaseIndent: 'Decrease Indent',
     italic: 'Italic',
@@ -57,19 +57,19 @@ export default {
     linkInputPlaceHolder: 'Input link URL',
     inputWithEnterPlaceHolder: 'Input link URL and press Enter',
     openInNewWindow: 'Open in new window',
-    removeLink: 'Remove Link'
+    removeLink: 'Remove Link',
   },
   audioPlayer: {
-    title: 'Play Audio'
+    title: 'Play Audio',
   },
   videoPlayer: {
     title: 'Play Video',
-    embedTitle: 'Embed Media'
+    embedTitle: 'Embed Media',
   },
   media: {
     image: 'Image',
     video: 'Video',
     audio: 'Audio',
-    embed: 'Embed'
-  }
-}
+    embed: 'Embed',
+  },
+};

@@ -5,7 +5,7 @@ export default {
     confirm: 'Confirmar',
     inert: 'Inserir',
     width: 'Largura',
-    height: 'Altura'
+    height: 'Altura',
   },
   controls: {
     clear: 'Limpar',
@@ -17,9 +17,9 @@ export default {
     tempColors: 'Temp Colors',
     backgroundColor: 'Cor de Fundo',
     bold: 'Negrito',
-    lineHeight:'Altura da LinhaLine Height',
-    letterSpacing:'Espaçamento entre Letras',
-    textIndent:'Identação de Texto',
+    lineHeight: 'Altura da LinhaLine Height',
+    letterSpacing: 'Espaçamento entre Letras',
+    textIndent: 'Identação de Texto',
     increaseIndent: 'Aumentar Identação',
     decreaseIndent: 'Diminuir Identção',
     italic: 'Itálico',
@@ -57,19 +57,19 @@ export default {
     linkInputPlaceHolder: 'Insira a URL do link',
     inputWithEnterPlaceHolder: 'Insira a URL do link e aperte Enter',
     openInNewWindow: 'Abrir em nova janela',
-    removeLink: 'Remover Link'
+    removeLink: 'Remover Link',
   },
   audioPlayer: {
-    title: 'Tocar Áudio'
+    title: 'Tocar Áudio',
   },
   videoPlayer: {
     title: 'Tocar Vídeo',
-    embedTitle: 'Mídia Embutida'
+    embedTitle: 'Mídia Embutida',
   },
   media: {
     image: 'Imagem',
     video: 'Vídeo',
     audio: 'Áudio',
-    embed: 'Embutido'
-  }
-}
+    embed: 'Embutido',
+  },
+};

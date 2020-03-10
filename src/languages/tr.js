@@ -5,7 +5,7 @@ export default {
     confirm: 'Onayla',
     inert: 'Ekle',
     width: 'Genişlik',
-    height: 'Yükseklik'
+    height: 'Yükseklik',
   },
   controls: {
     clear: 'Temizle',
@@ -17,9 +17,9 @@ export default {
     tempColors: 'Geçici renkler',
     backgroundColor: 'Arkaplan',
     bold: 'Kalın',
-    lineHeight:'Satır yüksekliği',
-    letterSpacing:'Harf aralığı',
-    textIndent:'Çentik aralığı',
+    lineHeight: 'Satır yüksekliği',
+    letterSpacing: 'Harf aralığı',
+    textIndent: 'Çentik aralığı',
     increaseIndent: 'Çentiği genişlet',
     decreaseIndent: 'Çentiği daralt',
     italic: 'Eğik',
@@ -54,22 +54,22 @@ export default {
   },
   linkEditor: {
     textInputPlaceHolder: 'Bağlantı metnini girin',
-    linkInputPlaceHolder: 'Bağlantı URL\' si girin',
-    inputWithEnterPlaceHolder: 'Bağlantı URL\'si girin ve Enter\' a basın',
+    linkInputPlaceHolder: "Bağlantı URL' si girin",
+    inputWithEnterPlaceHolder: "Bağlantı URL'si girin ve Enter' a basın",
     openInNewWindow: 'Yeni pencerede aç',
-    removeLink: 'Bağlantıyı kaldır'
+    removeLink: 'Bağlantıyı kaldır',
   },
   audioPlayer: {
-    title: 'Ses çal'
+    title: 'Ses çal',
   },
   videoPlayer: {
     title: 'Görüntü oynat',
-    embedTitle: 'Görüntüyü göm'
+    embedTitle: 'Görüntüyü göm',
   },
   media: {
     image: 'Resim',
     video: 'Görüntü',
     audio: 'Ses',
-    embed: 'Gömülü nesne'
-  }
-}
+    embed: 'Gömülü nesne',
+  },
+};

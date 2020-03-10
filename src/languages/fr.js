@@ -5,7 +5,7 @@ export default {
     confirm: 'Confirmer',
     inert: 'Insérer',
     width: 'Largeur',
-    height: 'Hauteur'
+    height: 'Hauteur',
   },
   controls: {
     clear: 'Effacer',
@@ -15,17 +15,17 @@ export default {
     color: 'Couleur',
     textColor: 'Texte',
     tempColors: 'Couleurs temporaire',
-    backgroundColor: 'Couleur d\'arrière plan',
+    backgroundColor: "Couleur d'arrière plan",
     bold: 'Gras',
-    lineHeight:'Hauteur de ligne',
-    letterSpacing:'Espacement des lettres',
-    textIndent:'Indentation du texte',
-    increaseIndent: 'Augmenter l\'indentation',
-    decreaseIndent: 'Réduire l\'indentation',
+    lineHeight: 'Hauteur de ligne',
+    letterSpacing: 'Espacement des lettres',
+    textIndent: 'Indentation du texte',
+    increaseIndent: "Augmenter l'indentation",
+    decreaseIndent: "Réduire l'indentation",
     italic: 'Italique',
     underline: 'Souligner',
     strikeThrough: 'Barrer',
-    fontFamily: 'Police d\'écriture',
+    fontFamily: "Police d'écriture",
     textAlign: 'Alignement du texte',
     alignLeft: 'Aligner à gauche',
     alignCenter: 'Aligner au centre',
@@ -57,19 +57,19 @@ export default {
     linkInputPlaceHolder: 'Insérer le lien URL',
     inputWithEnterPlaceHolder: 'Insérer le lien URL puis appuyer sur Entrée',
     openInNewWindow: 'Ouvrir dans une nouvelle fenêtre',
-    removeLink: 'Supprimer le lien'
+    removeLink: 'Supprimer le lien',
   },
   audioPlayer: {
-    title: 'Lancer le son audio'
+    title: 'Lancer le son audio',
   },
   videoPlayer: {
     title: 'Lancer la video',
-    embedTitle: 'Intégrer média'
+    embedTitle: 'Intégrer média',
   },
   media: {
     image: 'Image',
     video: 'Vidéo',
     audio: 'Audio',
-    embed: 'Intégré'
-  }
-}
+    embed: 'Intégré',
+  },
+};

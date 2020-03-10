@@ -5,7 +5,7 @@ export default {
     confirm: '결정',
     inert: '삽입',
     width: '너비',
-    height: '높이'
+    height: '높이',
   },
   controls: {
     clear: '콘텐츠지우기',
@@ -58,19 +58,19 @@ export default {
     linkInputPlaceHolder: '링크주소입력',
     inputWithEnterPlaceHolder: '링크주소입력.',
     openInNewWindow: '새창열기',
-    removeLink: '링크삭제'
+    removeLink: '링크삭제',
   },
   audioPlayer: {
-    title: '오디오파일재생'
+    title: '오디오파일재생',
   },
   videoPlayer: {
     title: '비디오파일재생',
-    embedTitle: '임베디드미디어'
+    embedTitle: '임베디드미디어',
   },
   media: {
     image: '이미지',
     video: '비디오',
     audio: '오디오',
-    embed: '임베디드미디어'
-  }
-}
+    embed: '임베디드미디어',
+  },
+};

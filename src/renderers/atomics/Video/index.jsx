@@ -1,31 +1,47 @@
-import './style.scss'
-import React from 'react'
-import PlayerModal from 'components/business/PlayerModal'
-import { ContentUtils } from 'braft-utils'
+/* eslint-disable jsx-a11y/media-has-caption */
+import React from 'react';
+import PropTypes from 'prop-types';
+import { ContentUtils } from 'braft-utils';
 
-export default class Video extends React.Component {
+import PlayerModal from 'components/business/PlayerModal';
 
-  render () {
+import './style.scss';
 
-    const { mediaData, language } = this.props
-    const { url, name, meta } = mediaData
+const Video = ({ mediaData, language, editor, editorState, block }) => {
+  const { url, name, meta } = mediaData;
+  const { poster = '' } = meta;
 
-    return (
-      <div className='bf-video-wrap'>
-        <PlayerModal type="video" onRemove={this.removeVideo} poster={meta ? meta.poster || '' : ''} language={language} url={url} name={name} title={language.videoPlayer.title}>
-          <div className="bf-video-player">
-            <video controls poster={meta ? meta.poster || '' : ''}>
-              <source src={url} />
-            </video>
-          </div>
-        </PlayerModal>
-      </div>
-    )
+  const removeVideo = () => {
+    editor.setValue(ContentUtils.removeBlock(editorState, block));
+  };
 
-  }
+  return (
+    <div className="bf-video-wrap">
+      <PlayerModal
+        type="video"
+        onRemove={removeVideo}
+        poster={poster}
+        language={language}
+        url={url}
+        name={name}
+        title={language.videoPlayer.title}
+      >
+        <div className="bf-video-player">
+          <video controls poster={poster}>
+            <source src={url} />
+          </video>
+        </div>
+      </PlayerModal>
+    </div>
+  );
+};
 
-  removeVideo = () => {
-    this.props.editor.setValue(ContentUtils.removeBlock(this.props.editorState, this.props.block))
-  }
+Video.propTypes = {
+  mediaData: PropTypes.any,
+  language: PropTypes.any,
+  editor: PropTypes.any,
+  editorState: PropTypes.any,
+  block: PropTypes.any,
+};
 
-}
+export default Video;
