@@ -185,6 +185,7 @@ export default class ControlBar extends React.Component {
       language: this.props.language,
       width: 640,
       showFooter: false,
+      onClose: mediaProps.onClose,
       component: (
         <MediaLibrary
           accepts={mediaProps.accepts}
