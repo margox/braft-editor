@@ -214,14 +214,14 @@ export type MediaType = {
       success: (
         res: {
           url: string;
-          meta: {
-            id: string;
-            title: string;
-            alt: string;
-            loop: boolean;
-            autoPlay: boolean;
-            controls: boolean;
-            poster: string;
+          meta?: {
+            id?: string;
+            title?: string;
+            alt?: string;
+            loop?: boolean;
+            autoPlay?: boolean;
+            controls?: boolean;
+            poster?: string;
           };
         }
       ) => void;
