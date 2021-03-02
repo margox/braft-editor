@@ -12,7 +12,7 @@ export default {
     undo: 'キャンセル',
     redo: 'キャンセル',
     fontSize: 'フォントサイズ',
-    lineHeight: 'フォントサイズ',
+    lineHeight: '行の高さ',
     letterSpacing: 'ワード間隔',
     textIndent: '段落のインデント',
     increaseIndent: 'インデントを増やす',
