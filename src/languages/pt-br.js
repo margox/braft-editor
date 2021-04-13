@@ -17,7 +17,7 @@ export default {
     tempColors: 'Temp Colors',
     backgroundColor: 'Cor de Fundo',
     bold: 'Negrito',
-    lineHeight: 'Altura da LinhaLine Height',
+    lineHeight: 'Altura da Linha',
     letterSpacing: 'Espaçamento entre Letras',
     textIndent: 'Identação de Texto',
     increaseIndent: 'Aumentar Identação',
@@ -45,7 +45,7 @@ export default {
     code: 'Código',
     link: 'Link',
     unlink: 'Remover Link',
-    hr: 'Linha Horizontal',
+    hr: 'Separador Horizontal',
     media: 'Mídia',
     mediaLibirary: 'Biblioteca de Mídia',
     emoji: 'Emoji',
@@ -60,16 +60,16 @@ export default {
     removeLink: 'Remover Link',
   },
   audioPlayer: {
-    title: 'Tocar Áudio',
+    title: 'Reproduzir Áudio',
   },
   videoPlayer: {
-    title: 'Tocar Vídeo',
-    embedTitle: 'Mídia Embutida',
+    title: 'Reproduzir Vídeo',
+    embedTitle: 'Mídia Incorporada',
   },
   media: {
     image: 'Imagem',
     video: 'Vídeo',
     audio: 'Áudio',
-    embed: 'Embutido',
+    embed: 'Mídia Incorporada',
   },
 };
