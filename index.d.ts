@@ -58,6 +58,7 @@ export interface BraftEditorProps {
   blockRendererFn?: Function;
   converts?: object;
   hooks?: HooksType;
+  maxLength?: number;
   textBackgroundColor?: boolean;
   allowInsertLinkText?: boolean;
   defaultLinkTarget?: string;
@@ -82,6 +83,7 @@ export interface BraftEditorProps {
   handleBeforeInput?: Function;
   handleReturn?: Function;
   handleKeyCommand?: Function;
+  onReachMaxLength?: Function;
 }
 
 export default class BraftEditor extends React.Component<BraftEditorProps> {
