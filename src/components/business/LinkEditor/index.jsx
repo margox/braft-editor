@@ -17,6 +17,7 @@ class LinkEditor extends React.Component {
     this.state = {
       text: '',
       href: '',
+      rel: '',
       target: props.defaultLinkTarget || '',
       textSelected: false,
     };
@@ -71,6 +72,12 @@ class LinkEditor extends React.Component {
     });
   };
 
+  handleInputRel = (e) => {
+    this.setState({
+      rel: e.currentTarget.value,
+    });
+  };
+
   setTarget = () => {
     this.setState((prevState) => ({
       target: prevState.target === '_blank' ? '' : '_blank',
@@ -91,9 +98,10 @@ class LinkEditor extends React.Component {
   handleConfirm = () => {
     let { href, target } = this.state;
     const { text, textSelected } = this.state;
-    const hookReturns = this.props.hooks('toggle-link', { href, target })({
+    const hookReturns = this.props.hooks('toggle-link', { href, target, rel })({
       href,
       target,
+      rel
     });
 
     this.dropDownInstance.hide();
@@ -118,7 +126,10 @@ class LinkEditor extends React.Component {
           ContentUtils.toggleSelectionLink(
             this.props.editorState,
             href,
-            target,
+            {
+              target,
+              ...rel ? { rel } : {}
+            }
           ),
         );
       } else {
@@ -130,7 +141,7 @@ class LinkEditor extends React.Component {
       this.props.editor.setValue(
         ContentUtils.insertText(this.props.editorState, text || href, null, {
           type: 'LINK',
-          data: { href, target },
+          data: { href, target, rel },
         }),
       );
     }
@@ -180,6 +191,18 @@ class LinkEditor extends React.Component {
                 }
                 onKeyDown={this.handeKeyDown}
                 onChange={this.handleInputLink}
+              />
+            </div>
+            <div className="input-group">
+              <input
+                type="text"
+                value={ref}
+                spellCheck={false}
+                placeholder={
+                  this.props.language.linkEditor.relInputPlaceHolder
+                }
+                onKeyDown={this.handeKeyDown}
+                onChange={this.handleInputRel}
               />
             </div>
             <div className="switch-group">

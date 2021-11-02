@@ -56,6 +56,7 @@ export default {
   linkEditor: {
     textInputPlaceHolder: '輸入鏈接文字',
     linkInputPlaceHolder: '輸入鏈接地址',
+    relInputPlaceHolder: '輸入rel屬性',
     inputWithEnterPlaceHolder: '輸入鏈接地址並回車',
     openInNewWindow: '在新窗口打開',
     removeLink: '移除鏈接',
