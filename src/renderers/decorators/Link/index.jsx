@@ -13,7 +13,7 @@ const viewLink = (event, link) => {
 
 const Link = (props) => {
   const { children, entityKey, contentState } = props;
-  const { href, target } = contentState.getEntity(entityKey).getData();
+  const { href, ...attrs } = contentState.getEntity(entityKey).getData();
 
   return (
     <span className="bf-link-wrap">
@@ -21,7 +21,7 @@ const Link = (props) => {
         onClick={(event) => viewLink(event, href)}
         className="bf-link"
         href={href}
-        target={target}
+        {...attrs}
       >
         {children}
       </a>
