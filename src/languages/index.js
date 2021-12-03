@@ -11,14 +11,14 @@ import ptBr from './pt-br';
 import viVn from './vi-vn';
 
 export default {
-  en,
   zh,
   'zh-hant': zhHant,
-  pl,
-  kr,
+  en,
   tr,
-  jpn,
   ru,
+  jpn,
+  kr,
+  pl,
   fr,
   'pt-br': ptBr,
   'vi-vn': viVn,
