@@ -61,7 +61,7 @@
     "html-webpack-plugin": "next",
     "http-proxy-middleware": "^1.0.1",
     "ip": "^1.1.5",
-    "node-sass": "^4.13.1",
+    "node-sass": "^9.0.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "prettier": "^1.19.1",
     "prism-js": "^1.0.0",
