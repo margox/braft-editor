@@ -9,6 +9,7 @@ import ru from './ru';
 import fr from './fr';
 import ptBr from './pt-br';
 import viVn from './vi-vn';
+import th from './th';
 
 export default {
   en,
@@ -22,4 +23,5 @@ export default {
   fr,
   'pt-br': ptBr,
   'vi-vn': viVn,
+  th,
 };
